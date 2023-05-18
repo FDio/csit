@@ -274,6 +274,7 @@ class InterfaceUtil:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
             cmd = f"ip link set {pf_eth} mtu {mtu}"
             exec_cmd_no_error(node, cmd, sudo=True)
+        # TODO: Update the MTU value in topology?
 
     @staticmethod
     def set_interface_channels(
@@ -347,32 +348,47 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
-        """Set Ethernet MTU on interface.
+    def vpp_flap_hardware_interface_to_set_mtu(node, interface, mtu):
+        """Set interface state to down, apply new MTU value, bring if up.
+
+        VPP (at least for dpdk plugin) refuses to change MTU
+        when interface is up.
+
+        This keyword is intentionally the only way to change MTU using VPP.
+        It is intended to be applied to primary hardware interfaces only.
+        If this is applied to a virtual interface (including memif)
+        if probably fails directly, is ignored, or causes downstream
+        configuration problems due to the flap.
+
+        When VPP adds better support for MTU on virtual interfaces,
+        it will likely come with currently unknown limitations,
+        and this keyword will need a rework anyway.
+        Until then, it is safer for this keyword to remain unfriendly,
+        to discourage uninformed use in suites.
 
         :param node: VPP node.
-        :param interface: Interface to setup MTU. Default: 9200.
+        :param interface: Interface to setup MTU.
         :param mtu: Ethernet MTU size in Bytes.
         :type node: dict
         :type interface: str or int
         :type mtu: int
+        :raises AsserionError: If VPP refused to change the MTU or set if state.
         """
         if isinstance(interface, str):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
             sw_if_index = interface
 
+        InterfaceUtil.set_interface_state(node, interface, u"down")
+
         cmd = u"hw_interface_set_mtu"
         err_msg = f"Failed to set interface MTU on host {node[u'host']}"
-        args = dict(
-            sw_if_index=sw_if_index,
-            mtu=int(mtu)
-        )
-        try:
-            with PapiSocketExecutor(node) as papi_exec:
-                papi_exec.add(cmd, **args).get_reply(err_msg)
-        except AssertionError as err:
-            logger.debug(f"Setting MTU failed.\n{err}")
+        args = dict(sw_if_index=sw_if_index, mtu=int(mtu))
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+        InterfaceUtil.set_interface_state(node, interface, u"up")
+        # TODO: Update the MTU value in topology?
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, retries=15):
@@ -1994,7 +2010,7 @@ class InterfaceUtil:
         thread_data = VPPUtil.vpp_show_threads(node)
         worker_cnt = len(thread_data) - 1
         if not worker_cnt:
-            return None
+            return
         worker_ids = list()
         if workers:
             for item in thread_data:
