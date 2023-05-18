@@ -853,3 +853,16 @@
 | |
 | | ${vhost_dump}= | Vhost User Dump | ${dut}
 | | Return From Keyword | ${vhost_dump}
+
+| Lower DUT1-DUT2 MTU For Fragmentation
+| | [Documentation] | Set lower MTU on both ends of DUT1-DUT2 link.
+| |
+| | ... | This should force VPP to fragment (and reassembly) packets.
+| | ... | Should be called after Initialize Layer Interface.
+| | ... | Suite variables such as \${dut2_if1} should be defined by then.
+| |
+| | # TODO: ip_reassembly_set to increase max_reassembly_length so jumbo passes.
+| | VPP Flap Hardware Interface To Set MTU
+| | ... | ${nodes['DUT1']} | ${dut1_if2} | ${MTU_FOR_FRAGMENTATION}
+| | VPP Flap Hardware Interface To Set MTU
+| | ... | ${nodes['DUT2']} | ${dut2_if1} | ${MTU_FOR_FRAGMENTATION}
