@@ -31,6 +31,7 @@ from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
+from .TRexConfigGenerator import TrexInitConfig
 from .DUTSetup import DUTSetup as DS
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
@@ -284,14 +285,11 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             return "none"
 
-    # TODO: pylint disable=too-many-locals.
     def initialize_traffic_generator(
             self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
             tg_if2_adj_node, tg_if2_adj_if, osi_layer, tg_if1_dst_mac=None,
             tg_if2_dst_mac=None):
         """TG initialization.
-
-        TODO: Document why do we need (and how do we use) _ifaces_reordered.
 
         :param tg_node: Traffic generator node.
         :param tg_if1: TG - name of first interface.
@@ -319,87 +317,32 @@ class TrafficGenerator(AbstractMeasurer):
         subtype = check_subtype(tg_node)
         if subtype == NodeSubTypeTG.TREX:
             self._node = tg_node
-            self._mode = TrexMode.ASTF if osi_layer == u"L7" else TrexMode.STL
-            if1 = dict()
-            if2 = dict()
-            if1[u"pci"] = Topology().get_interface_pci_addr(self._node, tg_if1)
-            if2[u"pci"] = Topology().get_interface_pci_addr(self._node, tg_if2)
-            if1[u"addr"] = Topology().get_interface_mac(self._node, tg_if1)
-            if2[u"addr"] = Topology().get_interface_mac(self._node, tg_if2)
+            self._mode = TrexMode.ASTF if osi_layer == "L7" else TrexMode.STL
 
-            if osi_layer == u"L2":
-                if1[u"adj_addr"] = if2[u"addr"]
-                if2[u"adj_addr"] = if1[u"addr"]
-            elif osi_layer in (u"L3", u"L7"):
-                if1[u"adj_addr"] = Topology().get_interface_mac(
+            if osi_layer == "L2":
+                tg_if1_adj_addr = Topology().get_interface_mac(tg_node, tg_if2)
+                tg_if2_adj_addr = Topology().get_interface_mac(tg_node, tg_if1)
+            elif osi_layer in ("L3", "L7"):
+                tg_if1_adj_addr = Topology().get_interface_mac(
                     tg_if1_adj_node, tg_if1_adj_if
                 )
-                if2[u"adj_addr"] = Topology().get_interface_mac(
+                tg_if2_adj_addr = Topology().get_interface_mac(
                     tg_if2_adj_node, tg_if2_adj_if
                 )
             else:
-                raise ValueError(u"Unknown OSI layer!")
+                raise ValueError("Unknown OSI layer!")
 
-            # in case of switched environment we can override MAC addresses
-            if tg_if1_dst_mac is not None and tg_if2_dst_mac is not None:
-                if1[u"adj_addr"] = tg_if1_dst_mac
-                if2[u"adj_addr"] = tg_if2_dst_mac
-
-            if min(if1[u"pci"], if2[u"pci"]) != if1[u"pci"]:
-                if1, if2 = if2, if1
+            tg_topology = list()
+            tg_topology.append(dict(interface=tg_if1, dst_mac=tg_if1_adj_addr))
+            tg_topology.append(dict(interface=tg_if2, dst_mac=tg_if2_adj_addr))
+            if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
+            if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
+            if min(if1_pci, if2_pci) != if1_pci:
                 self._ifaces_reordered = True
+                tg_topology.sort(reverse=True)
 
-            master_thread_id, latency_thread_id, socket, threads = \
-                CpuUtils.get_affinity_trex(
-                    self._node, tg_if1, tg_if2,
-                    tg_dtc=Constants.TREX_CORE_COUNT)
-
-            if osi_layer in (u"L2", u"L3", u"L7"):
-                exec_cmd_no_error(
-                    self._node,
-                    f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    f"- version: 2\n"
-                    f"  c: {len(threads)}\n"
-                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
-                    f"  interfaces: [\"{if1[u'pci']}\",\"{if2[u'pci']}\"]\n"
-                    f"  port_info:\n"
-                    f"      - dest_mac: \'{if1[u'adj_addr']}\'\n"
-                    f"        src_mac: \'{if1[u'addr']}\'\n"
-                    f"      - dest_mac: \'{if2[u'adj_addr']}\'\n"
-                    f"        src_mac: \'{if2[u'addr']}\'\n"
-                    f"  platform :\n"
-                    f"      master_thread_id: {master_thread_id}\n"
-                    f"      latency_thread_id: {latency_thread_id}\n"
-                    f"      dual_if:\n"
-                    f"          - socket: {socket}\n"
-                    f"            threads: {threads}\n"
-                    f"EOF'",
-                    sudo=True, message=u"T-Rex config generation!"
-                )
-
-                if Constants.TREX_RX_DESCRIPTORS_COUNT != 0:
-                    exec_cmd_no_error(
-                        self._node,
-                        f"sh -c 'cat << EOF >> /etc/trex_cfg.yaml\n"
-                        f"  rx_desc: {Constants.TREX_RX_DESCRIPTORS_COUNT}\n"
-                        f"EOF'",
-                        sudo=True, message=u"T-Rex rx_desc modification!"
-                    )
-
-                if Constants.TREX_TX_DESCRIPTORS_COUNT != 0:
-                    exec_cmd_no_error(
-                        self._node,
-                        f"sh -c 'cat << EOF >> /etc/trex_cfg.yaml\n"
-                        f"  tx_desc: {Constants.TREX_TX_DESCRIPTORS_COUNT}\n"
-                        f"EOF'",
-                        sudo=True, message=u"T-Rex tx_desc modification!"
-                    )
-            else:
-                raise ValueError(u"Unknown OSI layer!")
-
-            TrafficGenerator.startup_trex(
-                self._node, osi_layer, subtype=subtype
-            )
+            TrexInitConfig.init_trex_startup_configuration(tg_node, tg_topology)
+            TrafficGenerator.startup_trex(tg_node, osi_layer, subtype=subtype)
 
     @staticmethod
     def startup_trex(tg_node, osi_layer, subtype=None):
