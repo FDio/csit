@@ -96,8 +96,7 @@
 | | ... | Variable Should Exist | @{${dut}_${int}${pf}_1}
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
-| | | Set Interface State | ${nodes['${dut}']} | ${if} | up
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
+| | | VPP Set Interface MTU and bring up | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -357,7 +356,7 @@
 | Initialize layer vfio-pci on node
 | | [Documentation]
 | | ... | Initialize vfio-pci interfaces on DUT on NIC PF.
-| | ... | Currently no operation.
+| | ... | Currently just set MTU to a fixed value.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -369,7 +368,9 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | ${mtu} = | Set Variable If | ${jumbo} | ${9200} | ${1800}
+| | VPP Set Interface MTU and bring up
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${mtu}
 
 | Initialize layer avf on node
 | | [Documentation]
@@ -457,7 +458,7 @@
 | Initialize layer mlx5_core on node
 | | [Documentation]
 | | ... | Initialize mlx5_core interfaces on DUT on NIC PF.
-| | ... | Currently no operation.
+| | ... | Currently just set MTU to a fixed value.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -469,7 +470,9 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | ${mtu} = | Set Variable If | ${jumbo} | ${9200} | ${1800}
+| | VPP Set Interface MTU and bring up
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${mtu}
 
 | Initialize layer interface
 | | [Documentation]
