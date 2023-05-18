@@ -20,7 +20,6 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from .Constants import Constants
-from .CpuUtils import CpuUtils
 from .DropRateSearch import DropRateSearch
 from .MLRsearch.AbstractMeasurer import AbstractMeasurer
 from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
@@ -31,6 +30,7 @@ from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
+from .TRexConfigGenerator import TrexInitConfig
 from .DUTSetup import DUTSetup as DS
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
@@ -129,18 +129,13 @@ class TrexMode:
     STL = u"STL"
 
 
-# TODO: Pylint says too-many-instance-attributes.
 class TrafficGenerator(AbstractMeasurer):
     """Traffic Generator."""
-
-    # TODO: Remove "trex" from lines which could work with other TGs.
 
     # Use one instance of TrafficGenerator for all tests in test suite
     ROBOT_LIBRARY_SCOPE = u"TEST SUITE"
 
     def __init__(self):
-        # TODO: Separate into few dataclasses/dicts.
-        #       Pylint dislikes large unstructured state, and it is right.
         self._node = None
         self._mode = None
         # TG interface order mapping
@@ -180,7 +175,6 @@ class TrafficGenerator(AbstractMeasurer):
         self.state_timeout = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
-        # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
 
     @property
     def node(self):
@@ -284,14 +278,11 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             return "none"
 
-    # TODO: pylint disable=too-many-locals.
     def initialize_traffic_generator(
             self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
             tg_if2_adj_node, tg_if2_adj_if, osi_layer, tg_if1_dst_mac=None,
             tg_if2_dst_mac=None):
         """TG initialization.
-
-        TODO: Document why do we need (and how do we use) _ifaces_reordered.
 
         :param tg_node: Traffic generator node.
         :param tg_if1: TG - name of first interface.
@@ -319,87 +310,32 @@ class TrafficGenerator(AbstractMeasurer):
         subtype = check_subtype(tg_node)
         if subtype == NodeSubTypeTG.TREX:
             self._node = tg_node
-            self._mode = TrexMode.ASTF if osi_layer == u"L7" else TrexMode.STL
-            if1 = dict()
-            if2 = dict()
-            if1[u"pci"] = Topology().get_interface_pci_addr(self._node, tg_if1)
-            if2[u"pci"] = Topology().get_interface_pci_addr(self._node, tg_if2)
-            if1[u"addr"] = Topology().get_interface_mac(self._node, tg_if1)
-            if2[u"addr"] = Topology().get_interface_mac(self._node, tg_if2)
+            self._mode = TrexMode.ASTF if osi_layer == "L7" else TrexMode.STL
 
-            if osi_layer == u"L2":
-                if1[u"adj_addr"] = if2[u"addr"]
-                if2[u"adj_addr"] = if1[u"addr"]
-            elif osi_layer in (u"L3", u"L7"):
-                if1[u"adj_addr"] = Topology().get_interface_mac(
+            if osi_layer == "L2":
+                tg_if1_adj_addr = Topology().get_interface_mac(tg_node, tg_if2)
+                tg_if2_adj_addr = Topology().get_interface_mac(tg_node, tg_if1)
+            elif osi_layer in ("L3", "L7"):
+                tg_if1_adj_addr = Topology().get_interface_mac(
                     tg_if1_adj_node, tg_if1_adj_if
                 )
-                if2[u"adj_addr"] = Topology().get_interface_mac(
+                tg_if2_adj_addr = Topology().get_interface_mac(
                     tg_if2_adj_node, tg_if2_adj_if
                 )
             else:
-                raise ValueError(u"Unknown OSI layer!")
+                raise ValueError("Unknown OSI layer!")
 
-            # in case of switched environment we can override MAC addresses
-            if tg_if1_dst_mac is not None and tg_if2_dst_mac is not None:
-                if1[u"adj_addr"] = tg_if1_dst_mac
-                if2[u"adj_addr"] = tg_if2_dst_mac
-
-            if min(if1[u"pci"], if2[u"pci"]) != if1[u"pci"]:
-                if1, if2 = if2, if1
+            tg_topology = list()
+            tg_topology.append(dict(interface=tg_if1, dst_mac=tg_if1_adj_addr))
+            tg_topology.append(dict(interface=tg_if2, dst_mac=tg_if2_adj_addr))
+            if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
+            if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
+            if min(if1_pci, if2_pci) != if1_pci:
                 self._ifaces_reordered = True
+                tg_topology.sort(reverse=True)
 
-            master_thread_id, latency_thread_id, socket, threads = \
-                CpuUtils.get_affinity_trex(
-                    self._node, tg_if1, tg_if2,
-                    tg_dtc=Constants.TREX_CORE_COUNT)
-
-            if osi_layer in (u"L2", u"L3", u"L7"):
-                exec_cmd_no_error(
-                    self._node,
-                    f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    f"- version: 2\n"
-                    f"  c: {len(threads)}\n"
-                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
-                    f"  interfaces: [\"{if1[u'pci']}\",\"{if2[u'pci']}\"]\n"
-                    f"  port_info:\n"
-                    f"      - dest_mac: \'{if1[u'adj_addr']}\'\n"
-                    f"        src_mac: \'{if1[u'addr']}\'\n"
-                    f"      - dest_mac: \'{if2[u'adj_addr']}\'\n"
-                    f"        src_mac: \'{if2[u'addr']}\'\n"
-                    f"  platform :\n"
-                    f"      master_thread_id: {master_thread_id}\n"
-                    f"      latency_thread_id: {latency_thread_id}\n"
-                    f"      dual_if:\n"
-                    f"          - socket: {socket}\n"
-                    f"            threads: {threads}\n"
-                    f"EOF'",
-                    sudo=True, message=u"T-Rex config generation!"
-                )
-
-                if Constants.TREX_RX_DESCRIPTORS_COUNT != 0:
-                    exec_cmd_no_error(
-                        self._node,
-                        f"sh -c 'cat << EOF >> /etc/trex_cfg.yaml\n"
-                        f"  rx_desc: {Constants.TREX_RX_DESCRIPTORS_COUNT}\n"
-                        f"EOF'",
-                        sudo=True, message=u"T-Rex rx_desc modification!"
-                    )
-
-                if Constants.TREX_TX_DESCRIPTORS_COUNT != 0:
-                    exec_cmd_no_error(
-                        self._node,
-                        f"sh -c 'cat << EOF >> /etc/trex_cfg.yaml\n"
-                        f"  tx_desc: {Constants.TREX_TX_DESCRIPTORS_COUNT}\n"
-                        f"EOF'",
-                        sudo=True, message=u"T-Rex tx_desc modification!"
-                    )
-            else:
-                raise ValueError(u"Unknown OSI layer!")
-
-            TrafficGenerator.startup_trex(
-                self._node, osi_layer, subtype=subtype
-            )
+            TrexInitConfig.init_trex_startup_configuration(tg_node, tg_topology)
+            TrafficGenerator.startup_trex(tg_node, osi_layer, subtype=subtype)
 
     @staticmethod
     def startup_trex(tg_node, osi_layer, subtype=None):
@@ -670,8 +606,6 @@ class TrafficGenerator(AbstractMeasurer):
         if not isinstance(duration, (float, int)):
             duration = float(duration)
 
-        # TODO: Refactor the code so duration is computed only once,
-        # and both the initial and the computed durations are logged.
         computed_duration, _ = self._compute_duration(duration, multiplier)
 
         command_line = OptionString().add(u"python3")
@@ -783,8 +717,6 @@ class TrafficGenerator(AbstractMeasurer):
         if not isinstance(duration, (float, int)):
             duration = float(duration)
 
-        # TODO: Refactor the code so duration is computed only once,
-        # and both the initial and the computed durations are logged.
         duration, _ = self._compute_duration(duration=duration, multiplier=rate)
 
         command_line = OptionString().add(u"python3")
@@ -808,7 +740,6 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
         command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY)
 
-        # TODO: This is ugly. Handle parsing better.
         self._start_time = time.monotonic()
         self._rate = float(rate[:-3]) if u"pps" in rate else float(rate)
         stdout, _ = exec_cmd_no_error(
@@ -980,7 +911,6 @@ class TrafficGenerator(AbstractMeasurer):
                 )
             elif u"trex-stl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
-                # TODO: Suport transaction_scale et al?
                 self.trex_stl_start_remote_exec(
                     duration, unit_rate_str, async_call
                 )
@@ -1027,7 +957,6 @@ class TrafficGenerator(AbstractMeasurer):
         complete = False
         if self.ramp_up_rate:
             # Figure out whether we need to insert a ramp-up trial.
-            # TODO: Give up on async_call=True?
             if ramp_up_only or self.ramp_up_start is None:
                 # We never ramped up yet (at least not in this test case).
                 ramp_up_needed = True
@@ -1098,8 +1027,6 @@ class TrafficGenerator(AbstractMeasurer):
 
     def fail_if_no_traffic_forwarded(self):
         """Fail if no traffic forwarded.
-
-        TODO: Check number of passed transactions instead.
 
         :returns: nothing
         :raises Exception: If no traffic forwarded.
@@ -1261,8 +1188,6 @@ class TrafficGenerator(AbstractMeasurer):
         depend on the transaction type. Usually they are in transactions
         per second, or aggregated packets per second.
 
-        TODO: Fail on running or already reported measurement.
-
         :returns: Structure containing the result of the measurement.
         :rtype: ReceiveRateMeasurement
         """
@@ -1405,8 +1330,6 @@ class TrafficGenerator(AbstractMeasurer):
         if self.sleep_till_duration:
             sleeptime = time_stop - time.monotonic()
             if sleeptime > 0.0:
-                # TODO: Sometimes we have time to do additional trials here,
-                # adapt PLRsearch to accept all the results.
                 time.sleep(sleeptime)
         return result
 
@@ -1447,7 +1370,6 @@ class TrafficGenerator(AbstractMeasurer):
         :param transaction_type: An identifier specifying which counters
             and formulas to use when computing attempted and failed
             transactions. Default: "packet".
-            TODO: Does this also specify parsing for the measured duration?
         :param duration_limit: Zero or maximum limit for computed (or given)
             duration.
         :param negative_loss: If false, negative loss is reported as zero loss.
@@ -1596,8 +1518,6 @@ class OptimizedSearch:
             u"resources.libraries.python.TrafficGenerator"
         )
         # Overrides for fixed transaction amount.
-        # TODO: Move to robot code? We have two call sites, so this saves space,
-        #       even though this is surprising for log readers.
         if transaction_scale:
             initial_trial_duration = 1.0
             final_trial_duration = 1.0
@@ -1725,11 +1645,7 @@ class OptimizedSearch:
             u"resources.libraries.python.TrafficGenerator"
         )
         # Overrides for fixed transaction amount.
-        # TODO: Move to robot code? We have a single call site
-        #       but MLRsearch has two and we want the two to be used similarly.
         if transaction_scale:
-            # TODO: What is a good value for max scale?
-            # TODO: Scale the timeout with transaction scale.
             timeout = 7200.0
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
