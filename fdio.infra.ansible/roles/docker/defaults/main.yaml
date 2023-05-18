@@ -10,7 +10,7 @@ docker_package_state: latest
 docker_service_state: started
 docker_service_enabled: true
 docker_restart_handler_state: restarted
-docker_service_mgr: ""
+docker_service_mgr: "systemd"
 
 # Used only for Debian/Ubuntu.
 docker_apt_release_channel: "stable"
