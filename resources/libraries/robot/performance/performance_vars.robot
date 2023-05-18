@@ -404,6 +404,8 @@
 | | ... | *Test variables set:*
 | | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
 | | ... | enabled. Type: boolean
+| | ... | - recommended_mtu - Resonable value (with space for encap overhead)
+| | ... | according to jumbo. Type: int
 | |
 | | ... | *Example:*
 | |
@@ -413,11 +415,14 @@
 | | Set Numeric Frame Sizes
 | | ${jumbo} = | Evaluate | ${max_frame_size} >= 1522
 | | Set Test Variable | \${jumbo}
+| | ${recommended_mtu} = | Set Variable If | ${jumbo} | ${9200} | ${1800}
+| | Set Test Variable | \${recommended_mtu}
 
 | Set Max Rate And Jumbo
 | | [Documentation]
-| | ... | This keyword computes maximal unidirectional transmit rate
-| | ... | and jumbo boolean (some suites need that for configuration decisions).
+| | ... | This keyword computes maximal unidirectional transmit rate,
+| | ... | jumbo boolean (some suites need that for configuration decisions),
+| | ... | and recommended MTU value (depends on jumbo).
 | | ... | To streamline suite autogeneration, both input and output values
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
@@ -447,6 +452,8 @@
 | | ... | Type: float
 | | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
 | | ... | enabled. Type: boolean
+| | ... | - recommended_mtu - Resonable value (with space for encap overhead)
+| | ... | according to jumbo. Type: int
 | | ... | - max_frame_size - Maximal frame size including overhead. Type: float
 | | ... | - avg_directional_frame_size - Average frame size including overhead
 | | ... | for the more loaded direction. Type: float
