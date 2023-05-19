@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "803559c1_2c43212f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-05-19T04:25:35Z",
+      "side": 1,
+      "message": "| | | Set Interface State | ${nodes[\u0027${dut}\u0027]} | ${if} | down\n| | | VPP Set Interface MTU | ${nodes[\u0027${dut}\u0027]} | ${if}\n| | | Set Interface State | ${nodes[\u0027${dut}\u0027]} | ${if} | up",
+      "revId": "7e0ab2d93cfe8662550236095c59dcdcb69bbf90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
