@@ -250,6 +250,9 @@ class Constants:
     # Default path to VPP API Stats socket.
     SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
+    # This MTU value is used to force VPP to fragment 1518B packet into two.
+    MTU_FOR_FRAGMENTATION = 1043
+
     # Number of trials to execute in MRR test.
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
