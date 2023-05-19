@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -97,6 +97,10 @@ class DpdkUtil:
         # Run by default.
         options.add_if_from_dict(
             u"auto-start", u"pmd_auto_start", kwargs, True
+        )
+        # Disable LSC interrupts to print port link status when starting
+        options.add_if_from_dict(
+            u"no-lsc-interrupt", u"pmd_no_lsc_interupt", kwargs, True
         )
         # Set the number of mbufs to be allocated in the mbuf pools.
         options.add_equals_from_dict(

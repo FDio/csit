@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -27,7 +27,7 @@ class TestpmdTest:
     """
     This class start testpmd on topology nodes and check if properly started.
     """
-    
+
     @staticmethod
     def start_testpmd_on_all_duts(
             nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
@@ -154,7 +154,8 @@ class TestpmdTest:
                 pmd_nb_cores=nb_cores,
                 pmd_disable_link_check=False,
                 pmd_auto_start=True,
-                pmd_numa=True
+                pmd_numa=True,
+                pmd_no_lsc_interupt=True
             )
 
             command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
