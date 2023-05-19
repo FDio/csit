@@ -22,7 +22,7 @@
 | Set single interfaces in path up
 | | [Documentation]
 | | ... | *Set UP state on single physical VPP interfaces in path on all DUT
-| | ... | nodes and set maximal MTU.*
+| | ... | nodes.*
 | |
 | | ... | *Arguments:*
 | | ... | - pf - NIC physical function (physical port).
@@ -41,8 +41,7 @@
 
 | Set interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes.*
 | |
 | | ... | *Arguments:*
 | | ... | - validate - Validate interfaces are up.
@@ -58,8 +57,7 @@
 
 | Set interfaces in path up on node
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -77,8 +75,7 @@
 
 | Set interfaces in path up on node on PF
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -97,7 +94,6 @@
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -181,10 +177,8 @@
 | | ... | Pre-initialize rdma-core driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
-| | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${recommended_mtu}
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
@@ -194,10 +188,8 @@
 | | ... | Pre-initialize mlx5_core driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
-| | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${recommended_mtu}
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
@@ -357,7 +349,7 @@
 | Initialize layer vfio-pci on node
 | | [Documentation]
 | | ... | Initialize vfio-pci interfaces on DUT on NIC PF.
-| | ... | Currently no operation.
+| | ... | Currently just set MTU to the recommended value.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -369,7 +361,8 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | VPP Set Interface MTU
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${recommended_mtu}
 
 | Initialize layer avf on node
 | | [Documentation]
@@ -457,7 +450,7 @@
 | Initialize layer mlx5_core on node
 | | [Documentation]
 | | ... | Initialize mlx5_core interfaces on DUT on NIC PF.
-| | ... | Currently no operation.
+| | ... | Currently just set MTU to the recommended value.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -469,7 +462,8 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | VPP Set Interface MTU
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${recommended_mtu}
 
 | Initialize layer interface
 | | [Documentation]
