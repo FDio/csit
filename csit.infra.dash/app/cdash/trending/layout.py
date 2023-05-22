@@ -647,15 +647,11 @@ class Layout:
                 gap=2,
                 children=[
                     dbc.Button(
+                        "Add Telemetry Panel",
                         id={"type": "telemetry-btn", "index": "open"},
-                        children="Telemetry",
                         color="info"
                     ),
-                    dbc.Button(
-                        id="plot-btn-url",
-                        children="Show URL",
-                        color="info"
-                    ),
+                    dbc.Button("Show URL", id="plot-btn-url", color="info"),
                     dbc.Modal(
                         [
                             dbc.ModalHeader(dbc.ModalTitle("URL")),
@@ -743,50 +739,40 @@ class Layout:
             )
 
         trending = [
-            dbc.Row(children=[
+            dbc.Row(
                 dbc.Tabs(
                     children=tab_items,
                     id="tabs",
                     active_tab="tab-tput",
-                )
-            ]),
+                ),
+                class_name="g-0 p-0"
+            ),
             dbc.Row(
-                [
-                    dbc.Col([html.Div(
-                        [
-                            dbc.Button(
-                                id="plot-btn-download",
-                                children="Download Data",
-                                class_name="me-1",
-                                color="info",
-                                style={"padding": "0rem 1rem"}
-                            ),
-                            dcc.Download(id="download-trending-data")
-                        ],
-                        className=\
-                            "d-grid gap-0 d-md-flex justify-content-md-end"
-                    )])
-                ],
+                html.Div(
+                    [
+                        dbc.Button(
+                            "Download Data",
+                            id="plot-btn-download",
+                            class_name="me-1",
+                            color="info",
+                            style={"padding": "0rem 1rem"}
+                        ),
+                        dcc.Download(id="download-trending-data")
+                    ],
+                    className="d-grid gap-0 d-md-flex justify-content-md-end"
+                ),
                 class_name="g-0 p-0"
             )
         ]
 
         return dbc.Col(
             children=[
-                dbc.Row(
-                    dbc.Accordion(
-                        children=[
-                            dbc.AccordionItem(
-                                title="Trending",
-                                children=trending
-                            )
-                        ],
-                        class_name="g-0 p-1",
-                        start_collapsed=False,
-                        always_open=True,
-                        active_item=["item-0", ]
-                    ),
-                    class_name="g-0 p-0",
+                dbc.Accordion(
+                    dbc.AccordionItem(trending, title="Trending"),
+                    class_name="g-0 p-1",
+                    start_collapsed=False,
+                    always_open=True,
+                    active_item=["item-0", ]
                 ),
                 dbc.Modal(
                     [
@@ -802,16 +788,19 @@ class Layout:
                             dbc.Button(
                                 "Select",
                                 id={"type": "telemetry-btn", "index": "select"},
+                                color="success",
                                 disabled=True
                             ),
                             dbc.Button(
                                 "Cancel",
                                 id={"type": "telemetry-btn", "index": "cancel"},
+                                color="info",
                                 disabled=False
                             ),
                             dbc.Button(
-                                "Remove",
-                                id={"type": "telemetry-btn", "index": "remove"},
+                                "Remove All",
+                                id={"type": "telemetry-btn", "index": "rm-all"},
+                                color="danger",
                                 disabled=False
                             )
                         ])
@@ -837,16 +826,19 @@ class Layout:
                             dbc.Button(
                                 "Back",
                                 id={"type": "telemetry-btn", "index": "back"},
+                                color="info",
                                 disabled=False
                             ),
                             dbc.Button(
-                                "Display Telemetry",
+                                "Add Telemetry Panel",
                                 id={"type": "telemetry-btn", "index": "add"},
+                                color="success",
                                 disabled=True
                             ),
                             dbc.Button(
                                 "Cancel",
                                 id={"type": "telemetry-btn", "index": "cancel"},
+                                color="info",
                                 disabled=False
                             )
                         ])
@@ -861,37 +853,90 @@ class Layout:
             ]
         )
 
-    def _plotting_area_telemetry(self, graphs: list) -> dbc.Col:
+    @staticmethod
+    def _plotting_area_telemetry(graphs: list) -> dbc.Col:
         """Generate the plotting area with telemetry.
         """
         if not graphs:
             return C.PLACEHOLDER
+        
+        def _plural(iterative):
+            return "s" if len(iterative) > 1 else str()
 
-        acc_items = list()
-        for graph in graphs:
-            acc_items.append(
+        panels = list()
+        for idx, graph_set in enumerate(graphs):
+            acc_items = list()
+            for graph in graph_set[0]:
+                graph_name = ", ".join(graph[1])
+                acc_items.append(
+                    dbc.AccordionItem(
+                        dcc.Graph(
+                            id={"type": "graph-telemetry", "index": graph_name},
+                            figure=graph[0]
+                        ),
+                        title=(f"Test{_plural(graph[1])}: {graph_name}"),
+                        class_name="g-0 p-0"
+                    )
+                )
+            panels.append(
                 dbc.AccordionItem(
-                    title=f"Telemetry: {graph[1]}" if graph[1] else "Telemetry",
-                    children=dcc.Graph(
-                        id={"type": "graph-telemetry", "index": graph[1]},
-                        figure=graph[0]
+                    [
+                        dbc.Row(
+                            dbc.Accordion(
+                                children=acc_items,
+                                class_name="g-0 p-0",
+                                always_open=True,
+                                flush=True,
+                                active_item=\
+                                    [f"item-{i}" for i in range(len(acc_items))]
+                            ),
+                            class_name="g-0 p-0"
+                        ),
+                        dbc.Row(
+                            html.Div(
+                                [
+                                    dbc.Button(
+                                        "Remove",
+                                        id={
+                                            "type": "tm-btn-remove",
+                                            "index": idx
+                                        },
+                                        class_name="me-1",
+                                        color="danger",
+                                        style={"padding": "0rem 1rem"}
+                                    ),
+                                    dbc.Button(
+                                        "Download Data",
+                                        id={
+                                            "type": "tm-btn-download",
+                                            "index": idx
+                                        },
+                                        class_name="me-1",
+                                        color="info",
+                                        style={"padding": "0rem 1rem"}
+                                    )
+                                ],
+                            className=\
+                                "d-grid gap-0 d-md-flex justify-content-md-end"
+                            ),
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    class_name="g-0 p-0",
+                    title=(
+                        f"Metric{_plural(graph_set[1])}: ",
+                        ", ".join(graph_set[1])
                     )
                 )
             )
 
         return dbc.Col(
-            children=[
-                dbc.Row(
-                    dbc.Accordion(
-                        children=acc_items,
-                        class_name="g-0 p-1",
-                        start_collapsed=False,
-                        always_open=True,
-                        active_item=[f"item-{i}" for i in range(len(acc_items))]
-                    ),
-                    class_name="g-0 p-0",
-                )
-            ]
+            dbc.Accordion(
+                panels,
+                class_name="g-0 p-1",
+                always_open=True,
+                active_item=[f"item-{i}" for i in range(len(panels))]
+            )
         )
 
     @staticmethod
@@ -1027,6 +1072,7 @@ class Layout:
             Input("normalize", "value"),
             Input({"type": "telemetry-search-in", "index": ALL}, "value"),
             Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
+            Input({"type": "tm-btn-remove", "index": ALL}, "n_clicks"),
             Input({"type": "ctrl-dd", "index": ALL}, "value"),
             Input({"type": "ctrl-cl", "index": ALL}, "value"),
             Input({"type": "ctrl-btn", "index": ALL}, "n_clicks"),
@@ -1056,6 +1102,8 @@ class Layout:
                     "selected-tests": list(),
                     "telemetry-data": dict(),
                     "selected-metrics": dict(),
+                    "telemetry-panels": list(),
+                    "telemetry-all-in-one": list(),
                     "url": str()
                 }
 
@@ -1066,6 +1114,8 @@ class Layout:
             store_sel = store["selected-tests"]
             tm_data = store["telemetry-data"]
             tm_user = store["selected-metrics"]
+            tm_panels = store["telemetry-panels"]
+            tm_all_in_one = store["telemetry-all-in-one"]
 
             plotting_area_telemetry = no_update
             on_draw = [False, False]  # 0 --> trending, 1 --> telemetry
@@ -1105,8 +1155,11 @@ class Layout:
                     store_sel = literal_eval(url_params["store_sel"][0])
                     normalize = literal_eval(url_params["norm"][0])
                     telemetry = literal_eval(url_params["telemetry"][0])
-                    all_in_one = literal_eval(url_params["all-in-one"][0])
-                except (KeyError, IndexError, AttributeError):
+                    tm_all_in_one = literal_eval(url_params["all-in-one"][0])
+                    if not isinstance(telemetry, list):
+                        telemetry = [telemetry, ]
+                        tm_all_in_one = [tm_all_in_one, ]
+                except (KeyError, IndexError, AttributeError, ValueError):
                     pass
                 if store_sel:
                     last_test = store_sel[-1]
@@ -1154,7 +1207,7 @@ class Layout:
                         tm.from_dataframe(self._data)
                         tm_data = tm.to_json()
                         tm.from_json(tm_data)
-                        tm_user["selected_metrics_with_labels"] = telemetry
+                        tm_panels = telemetry
                         on_draw[1] = True
             elif trigger.type == "normalize":
                 ctrl_panel.set({"cl-normalize-val": trigger.value})
@@ -1385,13 +1438,17 @@ class Layout:
                         is_open = (False, False)
                 elif trigger.idx == "add":
                     tm.from_json(tm_data)
+                    tm_panels.append(tm_user["selected_metrics_with_labels"])
+                    tm_all_in_one.append(all_in_one)
                     is_open = (False, False)
                     tm_btns_disabled[1], tm_btns_disabled[5] = True, True
                     on_draw = [True, True]
                 elif trigger.idx == "cancel":
                     is_open = (False, False)
                     tm_btns_disabled[1], tm_btns_disabled[5] = True, True
-                elif trigger.idx == "remove":
+                elif trigger.idx == "rm-all":
+                    tm_panels = list()
+                    tm_all_in_one = list()
                     tm_user = None
                     is_open = (False, False)
                     tm_btns_disabled[1], tm_btns_disabled[5] = True, True
@@ -1441,15 +1498,19 @@ class Layout:
                     tm_btns_disabled[5] = False
                 else:
                     list_metrics[0] = str()
+            elif trigger.type == "tm-btn-remove":
+                del tm_panels[trigger.idx]
+                del tm_all_in_one[trigger.idx]
+                tm.from_json(tm_data)
+                on_draw = [True, True]
 
             new_url_params = {
                 "store_sel": store_sel,
                 "norm": ctrl_panel.get("cl-normalize-val")
             }
-            if tm_user and tm_user.get("selected_metrics_with_labels", None):
-                new_url_params["telemetry"] = \
-                    tm_user["selected_metrics_with_labels"]
-                new_url_params["all-in-one"] = all_in_one
+            if tm_panels:
+                new_url_params["telemetry"] = tm_panels
+                new_url_params["all-in-one"] = tm_all_in_one
 
             if on_draw[0]:  # Trending
                 if store_sel:
@@ -1459,15 +1520,15 @@ class Layout:
                         bool(ctrl_panel.get("cl-normalize-val"))
                     )
                     if on_draw[1]:  # Telemetry
-                        plotting_area_telemetry = self._plotting_area_telemetry(
-                            graph_tm_trending(
-                                tm.select_tm_trending_data(
-                                    tm_user["selected_metrics_with_labels"]
-                                ),
+                        tm_graphs = list()
+                        for panel, aio in zip(tm_panels, tm_all_in_one):
+                            tm_graphs.append(graph_tm_trending(
+                                tm.select_tm_trending_data(panel),
                                 self._graph_layout,
-                                False if not all_in_one else all_in_one[0]
-                            )
-                        )
+                                bool(aio[0])
+                            ))
+                        plotting_area_telemetry = \
+                            Layout._plotting_area_telemetry(tm_graphs)
                     col_plotting_area = C.STYLE_ENABLED
                     row_card_sel_tests = C.STYLE_ENABLED
                     row_btns_sel_tests = C.STYLE_ENABLED
@@ -1481,6 +1542,8 @@ class Layout:
                     row_btns_add_tm = C.STYLE_DISABLED
                     lg_selected = no_update
                     store_sel = list()
+                    tm_panels = list()
+                    tm_all_in_one = list()
                     tm_user = None
             else:
                 plotting_area_trending = no_update
@@ -1495,6 +1558,8 @@ class Layout:
             store["selected-tests"] = store_sel
             store["telemetry-data"] = tm_data
             store["selected-metrics"] = tm_user
+            store["telemetry-panels"] = tm_panels
+            store["telemetry-all-in-one"] = tm_all_in_one
             ret_val = [
                 store,
                 plotting_area_trending,
@@ -1720,9 +1785,10 @@ class Layout:
             Output("download-trending-data", "data"),
             State("store", "data"),
             Input("plot-btn-download", "n_clicks"),
+            Input({"type": "tm-btn-download", "index": ALL}, "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(store: list, _) -> dict:
+        def _download_data(store: list, *_) -> dict:
             """Download the data
 
             :param store_sel: List of tests selected by user stored in the
@@ -1737,12 +1803,30 @@ class Layout:
                 raise PreventUpdate
             if not store["selected-tests"]:
                 raise PreventUpdate
-
+            
             df = pd.DataFrame()
-            for itm in store["selected-tests"]:
-                sel_data = select_trending_data(self._data, itm)
-                if sel_data is None:
-                    continue
-                df = pd.concat([df, sel_data], ignore_index=True, copy=False)
+            
+            trigger = Trigger(callback_context.triggered)
+            if not trigger.value:
+                raise PreventUpdate
+            
+            if trigger.type == "plot-btn-download":
+                data = list()
+                for itm in store["selected-tests"]:
+                    sel_data = select_trending_data(self._data, itm)
+                    if sel_data is None:
+                        continue
+                    data.append(sel_data)
+                df = pd.concat(data, ignore_index=True, copy=False)
+                file_name = C.TREND_DOWNLOAD_FILE_NAME
+            elif trigger.type == "tm-btn-download":
+                tm = TelemetryData(store["selected-tests"])
+                tm.from_json(store["telemetry-data"])
+                df = tm.select_tm_trending_data(
+                    store["telemetry-panels"][trigger.idx]
+                )
+                file_name = C.TELEMETRY_DOWNLOAD_FILE_NAME
+            else:
+                raise PreventUpdate
 
-            return dcc.send_data_frame(df.to_csv, C.TREND_DOWNLOAD_FILE_NAME)
+            return dcc.send_data_frame(df.to_csv, file_name)

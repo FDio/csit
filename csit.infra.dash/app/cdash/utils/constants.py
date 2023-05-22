@@ -363,6 +363,7 @@ class Constants:
 
     # Default name of downloaded file with selected data.
     TREND_DOWNLOAD_FILE_NAME = "trending_data.csv"
+    TELEMETRY_DOWNLOAD_FILE_NAME = "telemetry_data.csv"
 
     ############################################################################
     # Coverage data.
