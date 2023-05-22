@@ -312,7 +312,7 @@ class Constants:
         u"Intel-E822CQ": 24500000000,
         u"Intel-E810CQ": 100000000000,
         u"Mellanox-CX556A": 100000000000,
-        u"Mellanox-CX7VEAT": 200000000000,
+        u"Mellanox-CX7VEAT": 100000000000,
         u"Amazon-Nitro-50G": 10000000000,
         u"virtual": 100000000,
     }
@@ -459,9 +459,9 @@ class Constants:
     }
 
     PERF_TYPE_TO_KEYWORD = {
-        u"mrr": u"Traffic should pass with maximum rate",
-        u"ndrpdr": u"Find NDR and PDR intervals using optimized search",
-        u"soak": u"Find critical load using PLRsearch",
+        u"mrr": u"FAIL",
+        u"ndrpdr": u"FAIL",
+        u"soak": u"FAIL",
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {
