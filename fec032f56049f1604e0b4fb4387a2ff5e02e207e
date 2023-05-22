@@ -142,6 +142,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ce2799_43473d2c",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-05-22T08:27:31Z",
+      "side": 1,
+      "message": "That is not part of this function. Ok i will open CR on my own.",
+      "parentUuid": "f5d24606_24c2f292",
+      "range": {
+        "startLine": 362,
+        "startChar": 16,
+        "endLine": 362,
+        "endChar": 29
+      },
+      "revId": "fec032f56049f1604e0b4fb4387a2ff5e02e207e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b60d975d_dd0ae0da",
