@@ -459,9 +459,9 @@ class Constants:
     }
 
     PERF_TYPE_TO_KEYWORD = {
-        u"mrr": u"Traffic should pass with maximum rate",
-        u"ndrpdr": u"Find NDR and PDR intervals using optimized search",
-        u"soak": u"Find critical load using PLRsearch",
+        u"mrr": u"FAIL",
+        u"ndrpdr": u"FAIL",
+        u"soak": u"FAIL",
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {

@@ -194,9 +194,8 @@
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ... | Optionally, call \${resetter} (if defined) to reset DUT state.
 | |
-| | Run Keyword If Test Passed | Return From Keyword
-| | ${use_latency} = | Get Use Latency
-| | ${rate_for_teardown} = | Get Rate For Teardown
+| | ${use_latency} = | ${True}
+| | ${rate_for_teardown} = | ${10.0}
 | | Call Resetter
 | | Set Test Variable | \${extended_debug} | ${True}
 | | Set Test Variable | ${telemetry_rate} | ${EMPTY}
