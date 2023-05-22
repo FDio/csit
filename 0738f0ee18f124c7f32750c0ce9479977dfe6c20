@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5682dcf8_3d1af4c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-22T11:46:29Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 11,
+        "startChar": 31,
+        "endLine": 11,
+        "endChar": 35
+      },
+      "revId": "0738f0ee18f124c7f32750c0ce9479977dfe6c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1630608_d55394c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-22T11:46:29Z",
+      "side": 1,
+      "message": "I guess this was meant to mean that \"we did a small number of manually administered tests and the results suggest the following\". The current meaning is usually followed by the contrary, e.g. few manual tests suggest this, but a large number of tests suggest this.\n\nI any case, it\u0027s a bit unclear, so I suggest a rewording. :-)",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "0738f0ee18f124c7f32750c0ce9479977dfe6c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1c9c2b3_eab1d00b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-22T11:46:29Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*AND64bANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "0738f0ee18f124c7f32750c0ce9479977dfe6c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8730ab_bcbc2810",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-22T11:46:29Z",
+      "side": 1,
+      "message": "I guess this assumes that links between SUTs and TG are always going to be up (the links between SUTs are not going to be up, at least for the first SUT, as the counterpart port on the second SUT is not being used)?\nIs that a safe assumption? I guess there should be plenty of time between testpmd starting and the check occurring for the port (the SUT port on the SUT-TG link) to go up.",
+      "revId": "0738f0ee18f124c7f32750c0ce9479977dfe6c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}

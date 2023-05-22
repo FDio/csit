@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "346cf1fa_ba88f37c",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-22T11:46:29Z",
+      "side": 0,
+      "message": "We have to wait for the apps to fully start either way, so I don\u0027t see why we shouldn\u0027t keep this.",
+      "revId": "6e862ec7b63e177b9b0103612848b3377271729b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
