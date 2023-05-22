@@ -71,6 +71,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be22eece_b4e00bcb",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-22T08:19:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2805615_fbf9be91",
+      "range": {
+        "startLine": 277,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 49
+      },
+      "revId": "fec032f56049f1604e0b4fb4387a2ff5e02e207e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c1fc71a_22695068",
@@ -94,6 +118,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d24606_24c2f292",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-22T08:19:05Z",
+      "side": 1,
+      "message": "There is get_reply which checks retval and raises (PapiExecutor.py line 103) if not zero.",
+      "parentUuid": "6c1fc71a_22695068",
+      "range": {
+        "startLine": 362,
+        "startChar": 16,
+        "endLine": 362,
+        "endChar": 29
+      },
+      "revId": "fec032f56049f1604e0b4fb4387a2ff5e02e207e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b60d975d_dd0ae0da",
@@ -107,6 +155,30 @@
       "writtenOn": "2023-05-22T05:09:24Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 373,
+        "startChar": 8,
+        "endLine": 373,
+        "endChar": 49
+      },
+      "revId": "fec032f56049f1604e0b4fb4387a2ff5e02e207e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d45b455b_0faed3ee",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-22T08:19:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b60d975d_dd0ae0da",
       "range": {
         "startLine": 373,
         "startChar": 8,
