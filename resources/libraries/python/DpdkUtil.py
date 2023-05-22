@@ -115,6 +115,10 @@ class DpdkUtil:
         options.add_if_from_dict(
             u"disable-link-check", u"pmd_disable_link_check", kwargs, True
         )
+        # Cause link status be logged after Done.
+        options.add_if_from_dict(
+            u"no-lsc-interrupt", u"pmd_no_lsc_interrupt", kwargs, True
+        )
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
         options.add_equals_from_dict(
             u"eth-peer", u"pmd_eth_peer_0", kwargs
