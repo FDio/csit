@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
       "revId": "2cc25cf45611f9111e4f7004f5ea0422f64c3521",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09f6df0_71a138cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-22T15:19:05Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
+      "revId": "2cc25cf45611f9111e4f7004f5ea0422f64c3521",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
