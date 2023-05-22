@@ -63,7 +63,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 130
+    MAX_TIME_PERIOD = 20  # 130
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -363,6 +363,7 @@ class Constants:
 
     # Default name of downloaded file with selected data.
     TREND_DOWNLOAD_FILE_NAME = "trending_data.csv"
+    TELEMETRY_DOWNLOAD_FILE_NAME = "telemetry_data.csv"
 
     ############################################################################
     # Coverage data.
