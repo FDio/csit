@@ -389,8 +389,8 @@ def graph_tm_trending(
         :rtype: list
         """
         traces = list()
-        nr_of_metrics = len(data.tm_metric.unique())
-        for idx, metric in enumerate(data.tm_metric.unique()):
+        metrics = data.tm_metric.unique().tolist()
+        for idx, metric in enumerate(metrics):
             if "-pdr" in test and "='pdr'" not in metric:
                 continue
             if "-ndr" in test and "='ndr'" not in metric:
@@ -449,7 +449,7 @@ def graph_tm_trending(
             else:
                 anomalies = None
             if all_in_one:
-                color = get_color(color_index * nr_of_metrics + idx)
+                color = get_color(color_index * len(metrics) + idx)
                 metric_name = f"{test}<br>{metric}"
             else:
                 color = get_color(idx)
@@ -543,7 +543,10 @@ def graph_tm_trending(
                     )
                 )
 
-        return traces
+        unique_metrics = set()
+        for itm in metrics:
+            unique_metrics.add(itm.split("{", 1)[0])
+        return traces, unique_metrics
 
     tm_trending_graphs = list()
     graph_layout = layout.get("plot-trending-telemetry", dict())
@@ -551,10 +554,12 @@ def graph_tm_trending(
     if all_in_one:
         all_traces = list()
 
+    all_metrics = set()
     for idx, test in enumerate(data.test_name.unique()):
         df = data.loc[(data["test_name"] == test)]
-        traces = _generate_traces(df, test, all_in_one, idx)
+        traces, metrics = _generate_traces(df, test, all_in_one, idx)
         if traces:
+            all_metrics.update(metrics)
             if all_in_one:
                 all_traces.extend(traces)
             else:
@@ -569,4 +574,4 @@ def graph_tm_trending(
         graph.update_layout(graph_layout)
         tm_trending_graphs.append((graph, str(), ))
 
-    return tm_trending_graphs
+    return tm_trending_graphs, all_metrics
