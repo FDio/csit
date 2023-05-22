@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -114,6 +114,10 @@ class DpdkUtil:
         # Disable link status check.
         options.add_if_from_dict(
             u"disable-link-check", u"pmd_disable_link_check", kwargs, True
+        )
+        # Cause link status be logged after Done.
+        options.add_if_from_dict(
+            u"no-lsc-interrupt", u"pmd_no_lsc_interrupt", kwargs, True
         )
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
         options.add_equals_from_dict(

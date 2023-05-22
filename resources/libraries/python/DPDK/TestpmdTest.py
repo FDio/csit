@@ -153,6 +153,7 @@ class TestpmdTest:
                 pmd_txq=queue_nums,
                 pmd_nb_cores=nb_cores,
                 pmd_disable_link_check=False,
+                pmd_no_lsc_interrupt=True,
                 pmd_auto_start=True,
                 pmd_numa=True
             )

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -207,7 +207,7 @@ function dpdk_l3fwd_compile () {
 
 function dpdk_l3fwd () {
 
-    # Run DPDK l3fwd.
+    # Run DPDK l3fwd. Readiness check not done yet.
     #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
@@ -222,24 +222,13 @@ function dpdk_l3fwd () {
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start l3fwd"
     }
-
-    for attempt in {1..60}; do
-        echo "Checking if l3fwd is alive, attempt nr ${attempt}"
-        if fgrep "L3FWD: entering main loop on lcore" screenlog.0; then
-            cat screenlog.0
-            exit 0
-        fi
-        sleep 1
-    done
-    cat screenlog.0
-
-    exit 1
 }
 
 
 function dpdk_l3fwd_check () {
 
     # DPDK l3fwd check state.
+    # It is assumed when one link is up, the other one will be soon too.
 
     set -exuo pipefail
 
@@ -294,7 +283,7 @@ function dpdk_precheck () {
 
 function dpdk_testpmd () {
 
-    # Run DPDK testpmd.
+    # Run DPDK testpmd. Readiness check not done yet.
     #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
@@ -309,31 +298,22 @@ function dpdk_testpmd () {
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start testpmd"
     }
-
-    for attempt in {1..60}; do
-        echo "Checking if testpmd is alive, attempt nr ${attempt}"
-        if fgrep "Press enter to exit" screenlog.0; then
-            cat screenlog.0
-            dpdk_testpmd_pid
-            exit 0
-        fi
-        sleep 1
-    done
-    cat screenlog.0
-
-    exit 1
 }
 
 
 function dpdk_testpmd_check () {
 
     # DPDK testpmd check links state.
+    # Currently the same check as for l3fwd.
+    #
+    # TODO: Re-add checks for link state change events
+    #       if CSIT-1848 symptoms appear again.
 
     set -exuo pipefail
 
     for attempt in {1..60}; do
         echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "link state change event" screenlog.0; then
+        if fgrep "Link up" screenlog.0; then
             cat screenlog.0
             exit 0
         fi
