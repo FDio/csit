@@ -358,7 +358,6 @@ class InterfaceUtil:
         :type node: dict
         :type interface: str or int
         :type mtu: int
-        :raises AsserionError: If VPP refused to change the MTU or set if state.
         """
         if isinstance(interface, str):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
