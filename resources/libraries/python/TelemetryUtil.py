@@ -55,7 +55,7 @@ class TelemetryUtil:
             bin_cmd = f"python3 -m telemetry --config {config} --hook {spath}\""
         else:
             bin_cmd = f"python3 -m telemetry --config {config}\""
-        exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
+        exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True, timeout=9999)
 
         if not export:
             return
