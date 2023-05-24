@@ -1,18 +1,4 @@
 # 2n-zn2
-## ./container_memif
-## ./crypto
-## ./ip4
-## ./ip4_tunnels
-## ./ip6
-## ./ip6_tunnels
-## ./l2
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./srv6
-## ./tcp
 ## ./vm_vhost
 ### intel-xxv710
 #### avf
@@ -137,4 +123,3 @@
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
-## ./vts

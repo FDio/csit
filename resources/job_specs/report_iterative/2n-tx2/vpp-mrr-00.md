@@ -164,7 +164,6 @@
 1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
 2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
 4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
-## ./ip4_tunnels
 ## ./ip6
 ### intel-xl710
 #### af_xdp
@@ -197,7 +196,6 @@
 1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
 2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
 4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
-## ./ip6_tunnels
 ## ./l2
 ### intel-xl710
 #### af_xdp
@@ -266,13 +264,3 @@
 1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
 2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
 4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
-## ./tcp
-## ./vm_vhost
-## ./vts

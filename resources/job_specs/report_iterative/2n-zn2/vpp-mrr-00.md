@@ -41,19 +41,7 @@
 1c AND 64b AND mrr AND cx556a AND drv_rdma_core AND ethip4-ip4base-eth-2memif-1dcr
 2c AND 64b AND mrr AND cx556a AND drv_rdma_core AND ethip4-ip4base-eth-2memif-1dcr
 4c AND 64b AND mrr AND cx556a AND drv_rdma_core AND ethip4-ip4base-eth-2memif-1dcr
-## ./crypto
 ## ./ip4
-### intel-x710
-#### avf
-##### ethip4-ip4base
-1c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4base
-2c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4base
-4c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4base
-#### dpdk-vfio-pci
-##### ethip4-ip4base
-1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND ethip4-ip4base
-2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND ethip4-ip4base
-4c AND 64b AND mrr AND x710 AND drv_vfio_pci AND ethip4-ip4base
 ### intel-xxv710
 #### avf
 ##### ethip4-ip4base
@@ -175,17 +163,6 @@
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
 ## ./ip6
-### intel-x710
-#### avf
-##### ethip6-ip6base
-1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
-2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
-4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
-#### dpdk-vfio-pci
-##### ethip6-ip6base
-1c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
-2c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
-4c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
 ### intel-xxv710
 #### avf
 ##### ethip6-ip6base
@@ -237,17 +214,6 @@
 4c AND 78b AND mrr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
 ## ./ip6_tunnels
 ## ./l2
-### intel-x710
-#### avf
-##### eth-l2bdbasemaclrn
-1c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2bdbasemaclrn
-2c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2bdbasemaclrn
-4c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2bdbasemaclrn
-#### dpdk-vfio-pci
-##### eth-l2bdbasemaclrn
-1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
-2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
-4c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
 ### intel-xxv710
 #### avf
 ##### eth-l2bdbasemaclrn
@@ -321,14 +287,6 @@
 1c AND 64b AND mrr AND cx556a AND drv_rdma_core AND eth-l2patch
 2c AND 64b AND mrr AND cx556a AND drv_rdma_core AND eth-l2patch
 4c AND 64b AND mrr AND cx556a AND drv_rdma_core AND eth-l2patch
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
-## ./tcp
 ## ./vm_vhost
 ### intel-xxv710
 #### avf

@@ -1,6 +1,4 @@
 # 2n-aws
-## ./container_memif
-## ./crypto
 ## ./ip4
 ### Amazon-Nitro-50G
 #### dpdk-vfio-pci
@@ -19,7 +17,6 @@
 2c AND 64b AND ndrpdr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 1c AND 1518b AND ndrpdr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 1518b AND ndrpdr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-## ./ip4_tunnels
 ## ./ip6
 ### Amazon-Nitro-50G
 #### dpdk-vfio-pci
@@ -38,15 +35,3 @@
 2c AND 78b AND ndrpdr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 1c AND 1518b AND ndrpdr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 2c AND 1518b AND ndrpdr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-## ./ip6_tunnels
-## ./l2
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
-## ./hoststack
-## ./vm_vhost
-## ./vts
