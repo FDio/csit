@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "15cfaec2_648e85d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-24T08:46:43Z",
+      "side": 1,
+      "message": "We\u0027d need that if we wanted to see which links are up/down at startup.\nThe best check would be to look at which links are up/down and only wait for link status update (occurring after the link check) for those links, at least in testpmd.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "6c8ef3d599d641a8420fbd04fe7f48e433ca7b72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d49027_6a06ac80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-24T08:46:43Z",
+      "side": 1,
+      "message": "The reference is incorrect, the issue has been solved by using an Intel cable.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "6c8ef3d599d641a8420fbd04fe7f48e433ca7b72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "79a70be7_1248290b",
@@ -14,6 +60,23 @@
       "writtenOn": "2023-05-24T08:26:45Z",
       "side": 1,
       "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4c mrrANDnic_*ANDdrv_*AND64bANDethip4-ip4base-l3fwdNOT4c",
+      "revId": "6c8ef3d599d641a8420fbd04fe7f48e433ca7b72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f8d912_f765b442",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-24T08:46:43Z",
+      "side": 1,
+      "message": "I started to review v3 and finished with v4.",
       "revId": "6c8ef3d599d641a8420fbd04fe7f48e433ca7b72",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
