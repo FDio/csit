@@ -1,5 +1,5 @@
 ---
-# file: roles/trex/defaults/main.yaml
+# file: defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower] + packages_by_arch[ansible_machine] }}"
 
@@ -30,4 +30,4 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
-  - "3.00"
+  - "3.03"

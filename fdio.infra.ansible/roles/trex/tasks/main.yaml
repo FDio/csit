@@ -1,5 +1,5 @@
 ---
-# file: roles/trex/tasks/main.yaml
+# file: tasks/main.yaml
 
 - name: Update Package Cache (APT)
   ansible.builtin.apt:
