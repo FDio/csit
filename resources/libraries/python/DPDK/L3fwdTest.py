@@ -32,8 +32,9 @@ class L3fwdTest:
 
     @staticmethod
     def start_l3fwd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
-            rxd=None, txd=None):
+        nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+        rxd=None, txd=None
+    ):
         """
         Execute the l3fwd on all dut nodes.
 
@@ -57,45 +58,39 @@ class L3fwdTest:
         :type txd: int
         :raises RuntimeError: If bash return code is not 0.
         """
-        cpu_count_int = dp_count_int = int(phy_cores)
-        if dp_count_int > 1:
-            BuiltIn().set_tags('MTHREAD')
-        else:
-            BuiltIn().set_tags('STHREAD')
-        BuiltIn().set_tags(
-            f"{dp_count_int}T{cpu_count_int}C"
-        )
         tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
-        duts = [node for node in nodes if u"DUT" in node]
-        for _ in range(3):
-            for dut in duts:
-                DpdkUtil.kill_dpdk(nodes[dut])
-            for dut in duts:
-                compute_resource_info = CpuUtils.get_affinity_vswitch(
-                    nodes, dut, phy_cores, rx_queues=rx_queues,
-                    rxd=rxd, txd=txd,
-                )
-                cpu_dp = compute_resource_info[u"cpu_dp"]
-                rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1 = topology_info[f"{dut}_pf1"][0]
-                if2 = topology_info[f"{dut}_pf2"][0]
-                L3fwdTest.start_l3fwd(
-                    nodes, nodes[dut], if1=if1, if2=if2, lcores_list=cpu_dp,
-                    nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames, tg_flip=tg_flip,
-                )
-                # TODO: Add nic_rxq_size, and nic_txq_size.
-            all_ready = True
-            for dut in duts:
-                if not L3fwdTest.is_l3fwd_ready(nodes[dut]):
-                    all_ready = False
-                    break
-            for dut in duts:
-                exec_cmd(nodes[dut], u"cat screenlog.0")
-            if all_ready:
-                return
-            # Restart all testpmds.
-        raise RuntimeError(f"L3fwd failed to start properly.")
+
+        def start_function(
+            node, if1, if2, lcores_list, nb_cores, queue_nums,
+        ):
+            """Call start_l3fwd with added static arguments.
+
+            FIXME: params, types.
+            """
+            L3fwdTest.start_l3fwd(
+                nodes=nodes,
+                node=node,
+                if1=if1,
+                if2=if2,
+                lcores_list=lcores_list,
+                nb_cores=nb_cores,
+                queue_nums=queue_nums,
+                jumbo_frames=jumbo_frames,
+                tg_flip=tg_flip,
+            )
+            # TODO: Add nic_rxq_size, and nic_txq_size.
+
+        start_dpdk_app_on_all_duts(
+            start_function=start_function,
+            check_function=L3fwdTest.is_l3fwd_ready,
+            nodes=nodes,
+            topology_info=topology_info,
+            phy_cores=phy_cores,
+            rx_queues=rx_queues,
+            jumbo_frames=jumbo_frames,
+            rxd=rxd,
+            txd=txd,
+        )
 
     @staticmethod
     def start_l3fwd(
