@@ -1,5 +1,5 @@
 ---
-# file: roles/dpdk/tasks/deploy_block.yaml
+# file: tasks/deploy_block.yaml
 
 - name: Download Release {{ item }}
   ansible.builtin.get_url:
