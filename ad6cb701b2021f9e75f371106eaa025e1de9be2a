@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-icx-perftest mrrANDnic_intel-e810cqANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4cNOT2c",
       "revId": "ad6cb701b2021f9e75f371106eaa025e1de9be2a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da45a084_a9bcb207",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T15:03:08Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4cNOT2c",
+      "revId": "ad6cb701b2021f9e75f371106eaa025e1de9be2a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
