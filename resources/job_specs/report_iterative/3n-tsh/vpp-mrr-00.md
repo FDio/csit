@@ -159,12 +159,6 @@
 1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
 2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
 4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
 ## ./srv6
 ### intel-x520-da2
 #### dpdk-vfio-pci
@@ -192,7 +186,6 @@
 1c AND 78b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip6srhip6-ip6base-srv6proxy-stat
 2c AND 78b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip6srhip6-ip6base-srv6proxy-stat
 4c AND 78b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip6srhip6-ip6base-srv6proxy-stat
-## ./tcp
 ## ./vm_vhost
 ### intel-x520-da2
 #### dpdk-vfio-pci

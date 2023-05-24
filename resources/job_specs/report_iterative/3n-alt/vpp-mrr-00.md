@@ -215,14 +215,6 @@
 1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
 2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
 4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-oacl50sl-10kflows
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
-## ./tcp
 ## ./vm_vhost
 ### intel-xl710
 #### dpdk-vfio-pci
