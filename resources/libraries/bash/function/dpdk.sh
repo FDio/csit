@@ -209,6 +209,11 @@ function dpdk_l3fwd () {
 
     # Run DPDK l3fwd.
     #
+    # No check for "entering main loop" is done here,
+    # as the later check in dpdk_l3fwdd_check is more important.
+    # This way l3fwd can be starting on multiple DUTs at once,
+    # so dut-dut link can go up within default wait time 9s.
+    #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
     # Functions called:
@@ -222,39 +227,6 @@ function dpdk_l3fwd () {
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start l3fwd"
     }
-
-    for attempt in {1..60}; do
-        echo "Checking if l3fwd is alive, attempt nr ${attempt}"
-        if fgrep "L3FWD: entering main loop on lcore" screenlog.0; then
-            cat screenlog.0
-            exit 0
-        fi
-        sleep 1
-    done
-    cat screenlog.0
-
-    exit 1
-}
-
-
-function dpdk_l3fwd_check () {
-
-    # DPDK l3fwd check state.
-
-    set -exuo pipefail
-
-    for attempt in {1..60}; do
-        echo "Checking if l3fwd state is ok, attempt nr ${attempt}"
-        if fgrep "Link up" screenlog.0; then
-            cat screenlog.0
-            dpdk_l3fwd_pid
-            exit 0
-        fi
-        sleep 1
-    done
-    cat screenlog.0
-
-    exit 1
 }
 
 
@@ -296,6 +268,11 @@ function dpdk_testpmd () {
 
     # Run DPDK testpmd.
     #
+    # No check for "Press enter to exit" is done here,
+    # as the later check in dpdk_testpmd_check is more important.
+    # This way l3fwd can be starting on multiple DUTs at once,
+    # so dut-dut link can go up within default wait time 9s.
+    #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
     # Functions called:
@@ -305,43 +282,71 @@ function dpdk_testpmd () {
 
     rm -f screenlog.0 || true
     binary="${DPDK_DIR}/build/app/dpdk-testpmd"
-
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start testpmd"
     }
+}
 
-    for attempt in {1..60}; do
-        echo "Checking if testpmd is alive, attempt nr ${attempt}"
-        if fgrep "Press enter to exit" screenlog.0; then
-            cat screenlog.0
-            dpdk_testpmd_pid
-            exit 0
-        fi
+
+function dpdk_app_check () {
+
+    # Return with error code 1 if a dpdk app is not ready in time.
+    #
+    # This function holds a logic common to testpmd and l3fwd,
+    # as the only difference between them is the "done string".
+    #
+    # L3fwd can only be started with its own link checking
+    # (waits up to 9 seconds) and without LSC (Link State Change) interrupts.
+    # So it is either fully ready when it prints "done",
+    # or it does not signal when (if ever) the missing link went up.
+    # While testpmd can be started without link checking and with interrupts,
+    # that would only make detection logic here more complicated.
+    #
+    # Currently, all testbeds are fairly quick at bringing links up,
+    # assuming apps on both DUTs are starting at the same time.
+    # Occasional timeout will probably be fixed by few app restarts.
+    # If severe symptoms of CSIT-1848 ever return, it would be better
+    # to keep tests failing so infra fix gets priority.
+    #
+    # Arguments:
+    # - ${1} - Grep pattern signifying place in log where port status is known.
+
+    set -exuo pipefail
+
+    set +x
+    for attempt in $(seq 30); do
         sleep 1
+        dones=$(grep -c "${1}" screenlog.0) || true
+        if [[ "${dones}" == "0" ]]; then
+            echo "Attempt ${attempt} does not see Done yet."
+            continue
+        fi
+        if [[ "${dones}" == "" ]]; then
+            echo "Fail fast on bad Done count."
+            set -x
+            return 1
+        fi
+        echo "Dpdk app is ready."
+        set -x
+        return 0
     done
-    cat screenlog.0
+    echo "Dpdk app is still not ready after ${attempt} checks."
+    set -x
+    return 1
+}
 
-    exit 1
+
+function dpdk_l3fwd_check () {
+
+    dpdk_app_check 'Checking link status.*done'
+
 }
 
 
 function dpdk_testpmd_check () {
 
-    # DPDK testpmd check links state.
+    dpdk_app_check "Done"
 
-    set -exuo pipefail
-
-    for attempt in {1..60}; do
-        echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "link state change event" screenlog.0; then
-            cat screenlog.0
-            exit 0
-        fi
-        sleep 1
-    done
-    cat screenlog.0
-
-    exit 1
 }
 
 
