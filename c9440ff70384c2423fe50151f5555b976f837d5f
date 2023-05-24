@@ -35,6 +35,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d12ee3a3_eec655fd",
+        "filename": "resources/libraries/bash/entry/kill_dpdk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "In new code, old app on DUT2 is killed before new app on DUT1 is started. More in later commit messages.",
+      "parentUuid": "cc573075_487cd824",
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ae0f50e_899cc69d",
@@ -83,6 +101,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c9d547c_5c59669e",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "Unclear. I do not see a difference between your \"we could\" description and what the new code does, so I am not sure what do you not like here.",
+      "parentUuid": "d8666e1b_62a0b19c",
+      "range": {
+        "startLine": 273,
+        "startChar": 15,
+        "endLine": 273,
+        "endChar": 21
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "431bab95_fd7ebf79",
         "filename": "resources/libraries/bash/function/dpdk.sh",
         "patchSetId": 3
@@ -94,6 +136,30 @@
       "writtenOn": "2023-05-24T08:46:43Z",
       "side": 1,
       "message": "I find references to JIRA tickets not helpful in code. A short explanation of what\u0027s in the ticket is much better, as the people reading this may not get what part of CSIT-1848 is relevant in this context. Same goes for other references to JIRA.",
+      "range": {
+        "startLine": 308,
+        "startChar": 28,
+        "endLine": 308,
+        "endChar": 37
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ad7e7e_6b8f162d",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "Reworded. Reference now comes after description of symptoms (so looking at Jira is not required).",
+      "parentUuid": "431bab95_fd7ebf79",
       "range": {
         "startLine": 308,
         "startChar": 28,
@@ -127,6 +193,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "300349d0_2c7d04b9",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "True, but with those changes we may want to revisit the check logic (and command line arguments) anyway, so I think making this less brittle is not worth the effort right now.",
+      "parentUuid": "77c60639_f5afad8c",
+      "range": {
+        "startLine": 348,
+        "startChar": 19,
+        "endLine": 348,
+        "endChar": 25
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1cfcb5f_d0b8c590",
@@ -140,6 +230,30 @@
       "writtenOn": "2023-05-24T08:46:43Z",
       "side": 1,
       "message": "Since CSIT-1848 was a hardware issue, I don\u0027t like addressing it here. This is only going to extend the run time without any apparent upside.",
+      "range": {
+        "startLine": 40,
+        "startChar": 64,
+        "endLine": 40,
+        "endChar": 73
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0b30b40_d39fe400",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "Reference removed.",
+      "parentUuid": "a1cfcb5f_d0b8c590",
       "range": {
         "startLine": 40,
         "startChar": 64,
@@ -173,6 +287,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed449c10_ec0897a7",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "Reduced to 3 everywhere.",
+      "parentUuid": "ad9e109f_166dc922",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 26
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8427d024_83666e7c",
@@ -196,6 +334,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b006d21_fcaea38d",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "Such refactor will be in separate change so we can decide.",
+      "parentUuid": "8427d024_83666e7c",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 22
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a0fa6b0_7fa8d55d",
@@ -209,6 +371,30 @@
       "writtenOn": "2023-05-24T08:46:43Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 43,
+        "startChar": 62,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "becd6ca8_27c0dedc",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-24T13:55:31Z",
+      "side": 1,
+      "message": "Block removed.",
+      "parentUuid": "4a0fa6b0_7fa8d55d",
       "range": {
         "startLine": 43,
         "startChar": 62,
