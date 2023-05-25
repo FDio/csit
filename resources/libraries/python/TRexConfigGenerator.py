@@ -244,7 +244,7 @@ class TrexInitConfig:
         latency_thread_id = None
         cores = None
         limit_memory = f"{Constants.TREX_LIMIT_MEMORY}"
-        sockets = 0
+        sockets = list()
 
         for link in tg_topology:
             pci_addresses.append(
@@ -264,8 +264,8 @@ class TrexInitConfig:
                     dst_mac=link["dst_mac"]
                 )
             )
-            sockets = sockets | socket
-        if sockets:
+            sockets.append(socket)
+        if 0 in sockets and 1 in sockets:
             limit_memory = (
                 f"{Constants.TREX_LIMIT_MEMORY},{Constants.TREX_LIMIT_MEMORY}"
             )
