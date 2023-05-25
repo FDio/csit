@@ -330,6 +330,7 @@ class TrafficGenerator(AbstractMeasurer):
             tg_topology.append(dict(interface=tg_if2, dst_mac=tg_if2_adj_addr))
             if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
             if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
+            logger.debug(f"{tg_topology!r}")
             if min(if1_pci, if2_pci) != if1_pci:
                 self._ifaces_reordered = True
                 tg_topology.reverse()
