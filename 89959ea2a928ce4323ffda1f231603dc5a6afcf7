@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4cNOT2c",
       "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b40fd0_2f217ee4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-25T12:10:25Z",
+      "side": 1,
+      "message": "Waiting for end of RC1 testing.",
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
