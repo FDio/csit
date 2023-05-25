@@ -332,7 +332,7 @@ class TrafficGenerator(AbstractMeasurer):
             if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
             if min(if1_pci, if2_pci) != if1_pci:
                 self._ifaces_reordered = True
-                tg_topology.sort(reverse=True)
+                tg_topology.reverse()
 
             TrexInitConfig.init_trex_startup_configuration(tg_node, tg_topology)
             TrafficGenerator.startup_trex(tg_node, osi_layer, subtype=subtype)
