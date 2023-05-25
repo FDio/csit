@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "373e37fd_bd6d278a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "Typo still.",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 8
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b714e785_3a05b934",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "I think this was never actually used (the default was and is False), so we can change this to keeping.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1dcbafc6_cf17e7db",
@@ -31,6 +77,155 @@
       "writtenOn": "2023-05-25T12:10:25Z",
       "side": 1,
       "message": "Waiting for end of RC1 testing.",
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eaacc11_54cab840",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "Mostly grammar nitpicks, with one real comment and one suggestion that\u0027s probably not worth it.",
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8bf1bd1_38e7bfed",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "Typo.",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 39
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573094d0_5fdcd352",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "No article.",
+      "range": {
+        "startLine": 295,
+        "startChar": 26,
+        "endLine": 295,
+        "endChar": 28
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab48a74_bee15206",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "This part is a bit confusing in what the different instances of the word done mean.\n\nI suggest we reword this to something like this:\n\nas the only difference between them is the \"done string\" emitted when link checking is done. At that time, both links should be reported as up.\nThis function looks for the \"done string\" each second up to 30 times, and when the link checking is done, it verifies that the links are up.",
+      "range": {
+        "startLine": 296,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 40
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "171dfbce_d73ccc65",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "the testpmd app or just testpmd",
+      "range": {
+        "startLine": 34,
+        "startChar": 17,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa31052f_b2fcad81",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "a few times",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d6c577e_a4e5472e",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "Can we check which testpmd needs restarting and restart only that or is that too much of a hassle?",
       "revId": "89959ea2a928ce4323ffda1f231603dc5a6afcf7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }

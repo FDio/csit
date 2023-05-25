@@ -149,6 +149,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "356d6a5e_a8a944b7",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-25T14:45:17Z",
+      "side": 1,
+      "message": "By the \"app started\" check I meant checking for \"entering main loop\"/\"Press enter to exit\".\nThe current link status-only check allows for errors to occur after the link status check. I\u0027d like to check that testpmd/l3fwd started properly and only then check the link status.",
+      "parentUuid": "6c9d547c_5c59669e",
+      "range": {
+        "startLine": 273,
+        "startChar": 15,
+        "endLine": 273,
+        "endChar": 21
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "431bab95_fd7ebf79",
         "filename": "resources/libraries/bash/function/dpdk.sh",
         "patchSetId": 3
