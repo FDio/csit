@@ -261,7 +261,7 @@ class TrexInitConfig:
                     src_mac=Topology().get_interface_mac(
                         node, link["interface"]
                     ),
-                    dst_mac=link["dst_mac"]
+                    dest_mac=link["dst_mac"]
                 )
             )
             sockets.append(socket)
