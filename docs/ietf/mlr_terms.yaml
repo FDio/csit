@@ -1,0 +1,589 @@
+legend:
+    draft: '
+        Phrase as used in https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-03
+        Ends in question mark if the phrase does not fit the term clearly enough
+        (but still is the best fit).
+        '
+    slides: Phrase as used in ietf116-mlrsearch.pdf (question mark if as above).
+    alternatives: '
+        Array of old phrases, phrases used in code, or other ideas.
+        In extreme cases literal_variable_name.
+        '
+    tags: '
+        Array of identifiers, so frequently occuring information
+        does not need to take space in description.
+        '
+    description: '
+        Longer text putting the term into context.
+        Useful especially for short phrases that can fit different terms.
+        May be missing entirely for self-eplanatory terms.
+
+        _ in any field means the source does not have any phrase for the term.
+        Part of phrase in parens gives context (usually using other phrases).
+        '
+tags:
+- essential: Does need to be mentioned in draft, no way to hide.
+- optional: Does help with algorithm description, but can be hidden.
+- lowlevel: Has its place in code comments, but would be distracting in draft.
+- obvious: Englis-derived from others. No need to define as a separate term.
+- goal attribute: One attribute of the search goal.
+- target attribute: One attribute of the search target.
+- stat attribute: One attribute of the load stat.
+- selector action: One of possible "action" states of a load selector.
+- selector flag: Additional non-exclusive part of load selector state.
+terms:
+-   alternatives:
+    - goal
+    - criterion
+    - user goal
+    - input goal
+    - goal specification
+    draft: search goal?
+    slides: _
+    tags:
+    - essential
+    description: '
+        consist of attributes
+        User input contains multiple goals (plus some global values).
+        '
+
+-   alternatives:
+    - to reach (a goal)
+    - to finalize (a goal)
+    tags:
+    - optional
+    description: '
+        When return values for this goal are known
+        (but other goals may need more trials to finalize).
+        '
+
+-   alternatives:
+    - goals
+    - criteria
+    tags:
+    - optional? lowlevel? obvious?
+    description: '
+        The set/list of individual goals.
+        The same as all user inputs without global fields
+        '
+
+-   alternatives:
+    - global field (one of them)
+    tags:
+    - lowlevel
+
+-   alternatives:
+    - user input (as a whole)
+    tags:
+    - essential
+
+-   alternatives:
+    - min load
+    tags:
+    - optional
+    description: Self-explanatory. Example of a global field.
+
+-   alternatives:
+    - max load
+    - max rate
+    - maximal load
+    - maximal offered load
+    - maximal intended load
+    tags:
+    - optional
+
+-   alternatives:
+    - interval
+    - load interval
+    tags:
+    - optional
+    description: '
+        Upper bound and lower bound. Maybe both are the same
+        (e.g. zero loss on max load).
+        Mostly internal term, but relates to relative width (goal attribute).
+        Also, currently the outputs are describes in terms of intervals.
+        The same as all user inputs without global fields
+        '
+
+-   alternatives:
+    - interval width
+    - relative width
+    tags:
+    - essential
+    description: '
+        General term. Should be specified if it relates to input, output
+        or internal state.
+        '
+
+-   alternatives:
+    - search_duration_max
+    - timeout
+    tags:
+    - optional
+    description: '
+        Fail if whole search (maybe except the last trial) takes longer than this.
+        '
+
+-   alternatives:
+    - whole search
+    tags:
+    - obvious
+
+-   alternatives:
+    - warmup duration
+    tags:
+    - lowlevel
+
+-   alternatives:
+    - loss ratio
+    - loss ratio goal
+    tags:
+    - essential
+    - goal attribute
+
+-   alternatives:
+    - exceed ratio
+    tags:
+    - essential
+    - goal attribute
+
+-   alternatives:
+    - relative width
+    tags:
+    - essential
+    - goal attribute
+
+-   alternatives:
+    - single_duration_min
+    tags:
+    - optional
+    - goal attribute
+
+-   alternatives:
+    - single_duration_max
+    tags:
+    - essential
+    - goal attribute
+
+-   alternatives:
+    - sum_duration_min
+    tags:
+    - essential
+    - goal attribute
+
+-   alternatives:
+    - intermediate_phases
+    - preceding targets?
+    tags:
+    - essential
+    - goal attribute
+
+-   alternatives:
+    - expansion_coefficient
+    tags:
+    - optional
+    - goal attribute
+
+-   alternatives:
+    - target
+    - target specification
+    tags:
+    - essential
+    description: '
+        Similar, but distinct to search goal.
+        Each search goal prescribes a "final" target,
+        probably with a "chain" of "preceding" targets.
+        '
+
+-   alternatives:
+    - final target
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - non-final target
+    tags:
+    - optional? lowlevel? obvious?
+
+-   alternatives:
+    - initial target
+    tags:
+    - optional? lowlevel? obvious?
+    description: '
+        Not to be confused with initial measurements.
+        '
+
+-   alternatives:
+    - initial trials
+    - initial phase
+    tags:
+    - essential
+    description: '
+        They need to fit several different initial targets at once.
+        '
+
+-   alternatives:
+    - to achieve (a target)
+    - to reach (a target)
+    tags:
+    - essential
+    description: '
+        No more trials are required for this target.
+        For final targets it meas the corresponding goal is reached.
+        '
+
+-   alternatives:
+    - (a goal) corresponding to (a final target)
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - (a final target) corresponding to (a goal)
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - (a perhaps non-final target) associated with (a goal)
+    - (a perhaps non-final target) belonging to (a goal)
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - loss ratio
+    - target loss ratio
+    tags:
+    - essential
+    - target attribute
+
+-   alternatives:
+    - exceed ratio
+    tags:
+    - essential
+    - target attribute
+
+-   alternatives:
+    - discrete_width
+    - target width
+    - relative width
+    tags:
+    - essential
+    - target attribute
+
+-   alternatives:
+    - single_duration_whole
+    tags:
+    - essential
+    - target attribute
+
+-   alternatives:
+    - sum_duration_whole
+    tags:
+    - essential
+    - target attribute
+
+-   alternatives:
+    - expansion_coefficient
+    tags:
+    - optional
+    - target attribute
+
+-   alternatives:
+    - coarser
+    tags:
+    - lowlevel
+    - target attribute
+    description: '
+        Reference to a different target (non-final) belonging to the same goal.
+        If empty, the current target is an initial target.
+        The reference points to the next target in a chain,
+        the one with doubled width.
+        '
+
+-   alternatives:
+    - load stats
+    tags:
+    - optional
+    description: '
+        The four values below form a single "stat" for a single load and target.
+        Set of stats for single load and all targets is "load stats".
+        One of the four values below is perhaps a "stat counter"?
+        '
+
+-   alternatives:
+    - abide_dursum_full
+    - GL
+    slides: good longer
+    tags:
+    - essential
+    - stat attribute
+
+-   alternatives:
+    - exceed_dursum_full
+    - BL
+    slides: bad longer
+    tags:
+    - essential
+    - stat attribute
+
+-   alternatives:
+    - abide_dursum_short
+    - GS
+    slides: good shorter
+    tags:
+    - essential
+    - stat attribute
+
+-   alternatives:
+    - exceed_dursum_full
+    - BS
+    slides: bad shorter
+    tags:
+    - essential
+    - stat attribute
+
+-   alternatives:
+    - target tracker
+    slides: selector
+    tags:
+    - essential
+
+-   alternatives:
+    - waiting (selector state)
+    tags:
+    - essential
+    - selector action
+
+-   alternatives:
+    - halving (selector state)
+    tags:
+    - essential
+    - selector action
+
+-   alternatives:
+    - remeasuring (selector state)
+    - refining (upper or lower)
+    tags:
+    - essential
+    - selector action
+
+-   alternatives:
+    - extending (selector state)
+    - external search (up or down)
+    tags:
+    - essential
+    - selector action
+
+-   alternatives:
+    - bisecting (selector state)
+    tags:
+    - essential
+    - selector action
+
+-   alternatives:
+    - done (selector state)
+    tags:
+    - essential
+    - selector action
+
+-   alternatives:
+    - _
+    slides: load classification (as a process)
+    tags:
+    - optional
+
+-   alternatives:
+    - _
+    slides: load classification (as a result)
+    tags:
+    - optional
+
+-   alternatives:
+    - _
+    slides: upper bound (relative to a target) (as classified by a load classifier)
+    tags:
+    - essential
+
+-   alternatives:
+    - _
+    slides: lower bound (relative to a target) (as classified by a load classifier)
+    tags:
+    - essential
+
+-   alternatives:
+    - _
+    slides: load classifier
+    tags:
+    - optional
+
+-   alternatives:
+    - load stats
+    tags:
+    - optional
+    description: '
+        Equivalent to load classifier, but described not as an actor,
+        just as a data-like object with added classification function.
+        '
+
+-   alternatives:
+    - current target (for a selector)
+    tags:
+    - essential
+
+-   alternatives:
+    - previous target (for a selector)
+    slides: preceding target
+    tags:
+    - essential
+
+-   alternatives:
+    - candidate load (as chosen by selector)
+    tags:
+    - essential
+    description: '
+        Candidates have defined ordering, to simplify finding the below.
+        '
+
+-   alternatives:
+    - chosen load (among selector)
+    - chosen candidate
+    - winning candidate
+    - winner (as candidate)
+    tags:
+    - optional
+    description: '
+        Lower load among candidates, longer duration if tied.
+        '
+
+-   alternatives:
+    - winner (as selector)
+    tags:
+    - lowlevel
+    - selector flag
+    description: '
+        In current code, a selector behaved differently depending on
+        whether his previous candidate became the winner or not.
+        Possible logic error (or just inefficiencies) if other selector
+        candidate won but caused the same change in classifications
+        as if this selector cadidate won.
+        '
+
+-   alternatives:
+    - halved (as additional selector state)
+    tags:
+    - lowlevel
+    - selector flag
+    description: '
+        In current code, a selector does not only rely on classifications
+        and its current "action" (and winner status), it also tracks
+        whether a particular action already succeeded
+        (so it is not started again when other candidate trials change
+        the classifications).
+        '
+
+-   alternatives:
+    - refined (as additional selector state) high
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - refined (as additional selector state) low
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - prev_candidate (just for winner detection)
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - prev_action (also affects selector behavior)
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - prev_width
+    tags:
+    - lowlevel? optional?
+    description: '
+        Width expansion in external search is tracked here,
+        because current bounds can be changed unpredictably
+        by other selectors winning.
+        '
+
+-   alternatives:
+    - bounds
+    - relevant bounds
+    - current interval
+    tags:
+    - optional? essential?
+    description: '
+        This will become the target final output,
+        but only has internal uses when target is not done yet.
+        '
+
+-   alternatives:
+    - rounding (as a computation)
+    tags:
+    - lowlevel
+    description: '
+        The code uses "rounding" to convert from float values (load or width)
+        to integers, so arithmetic has no rounding errors.
+        '
+
+-   alternatives:
+    - rounding (as a singular mutable object referenced in many places in code)
+    tags:
+    - lowlevel
+    description: '
+        A helper object used to perform rounding computations.
+        Implemented as a growable table, as the number of possible
+        integer values is not very high in practice.
+        '
+
+-   alternatives:
+    - measurement database
+    tags:
+    - lowlevel
+    description: '
+        A central place where trial results are added,
+        and load stats for all targets are tracked,
+        so it can be efficiently queried for tightest upper and lower bound.
+        Selectors rely only on those relevant bounds
+        (as opposed to individual classification results).
+        '
+
+-   alternatives:
+    - generated targets
+    tags:
+    - lowlevel? optional?
+    description: '
+        All targets used in MLRsearch.
+        Final ones from goals and non-final due intermediate phases.
+        '
+
+-   alternatives:
+    - target scaling
+    tags:
+    - lowlevel
+    description: '
+        The process of generating targets from goals.
+        Internal code functionality, definitely too low-level for draft.
+        '
+
+-   alternatives:
+    - trimmed load stats
+    - load stat?
+    tags:
+    - lowlevel
+    description: '
+        Database tracks "full stats", e.g. for a load it can classify
+        according to all generated targets.
+        But when queried, database responds to a single target
+        so only stats for classifying that target are useful in debugging.
+        Once again, perhaps too low level.
+        But visible in MLRsearch return object, so needs a name in docstrings.
+        '
