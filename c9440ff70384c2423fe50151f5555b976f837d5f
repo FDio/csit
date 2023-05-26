@@ -173,6 +173,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32d6c261_a204f386",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-26T09:08:15Z",
+      "side": 1,
+      "message": "Ah, I see. I think that can be done with this code, just by using a different \"done pattern\" (and updating code comments so we know it is possible to be both links up but still not ready).",
+      "parentUuid": "356d6a5e_a8a944b7",
+      "range": {
+        "startLine": 273,
+        "startChar": 15,
+        "endLine": 273,
+        "endChar": 21
+      },
+      "revId": "c9440ff70384c2423fe50151f5555b976f837d5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "431bab95_fd7ebf79",
         "filename": "resources/libraries/bash/function/dpdk.sh",
         "patchSetId": 3
