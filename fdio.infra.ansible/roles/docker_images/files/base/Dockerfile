@@ -43,6 +43,7 @@ RUN apt-get -q update \
         libpixman-1-dev \
         libssl-dev \
         net-tools \
+        ninja-build \
         openssh-server \
         pciutils \
         python3-all \
@@ -146,7 +147,8 @@ RUN pip3 install \
         s3transfer==0.4.2 \
         six==1.16.0 \
         snowballstemmer==2.2.0 \
-        urllib3==1.26.10
+        urllib3==1.26.10 \
+        meson==0.64.1
 
 RUN groupadd -g 1000 testuser \
  && useradd -rm -d /home/testuser -s /bin/bash -g testuser -G sudo -u 1000 testuser \
