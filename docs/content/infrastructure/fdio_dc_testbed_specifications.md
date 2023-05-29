@@ -1385,8 +1385,6 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s52-t21-sut1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s52-t21-sut1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s52-t21-sut1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s52-t21-sut1-c11/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s52-t21-sut1-c11/p2 - 200GE-port2 ConnectX7-2p200GE.
 - TG [Server-Type-H2]:
     - testbedname: testbed21.
     - hostname: s53-t21-tg1.
