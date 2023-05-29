@@ -146,7 +146,7 @@ nodes:
     password: Csit1234
     uio_driver: vfio-pci
     interfaces:
-      port2:
+      port1:
         # s52-t21-sut2-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
         mac_address: "b8:3f:d2:b7:a1:20"
         pci_address: "0000:ab:00.0"
