@@ -30,6 +30,7 @@ RUN apt-get -q update \
         ethtool \
         gdb \
         gfortran \
+        iperf3 \
         libapr1 \
         libblas-dev \
         libffi-dev \
@@ -57,6 +58,7 @@ RUN apt-get -q update \
         python3-virtualenv \
         qemu-system \
         rsyslog \
+        screen \
         socat \
         software-properties-common \
         strongswan \
