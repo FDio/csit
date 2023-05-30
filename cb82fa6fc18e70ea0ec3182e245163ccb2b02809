@@ -33,6 +33,23 @@
       "message": "csit-dpdk-report-cov-3nb-spr-perftest dpdk-00",
       "revId": "cb82fa6fc18e70ea0ec3182e245163ccb2b02809",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d929b4_e790a326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-05-30T07:25:52Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3nb-spr-perftest dpdk-ndrpdr-00",
+      "revId": "cb82fa6fc18e70ea0ec3182e245163ccb2b02809",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
