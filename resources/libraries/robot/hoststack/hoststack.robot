@@ -473,6 +473,8 @@
 | | | ... | ${vpp_hoststack_attr}[sess_lendpt_mem]
 | | END
 | | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
 
 | Get Test Results From Hoststack VPP Echo Test
 | | [Documentation]
