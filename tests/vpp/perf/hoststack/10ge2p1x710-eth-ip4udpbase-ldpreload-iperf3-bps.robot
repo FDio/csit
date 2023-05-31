@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,7 +46,7 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
-| ${nic_pfs}= | 1
+| ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
