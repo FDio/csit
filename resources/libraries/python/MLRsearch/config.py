@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,11 +13,14 @@
 
 """Module defining Config class."""
 
-from dataclasses import dataclass, field
+from __future__ import annotations
 
-from .criteria import Criteria
-from .criterion import Criterion
-from .dataclass_property.dataclass_property import dataclass_property
+from dataclasses import dataclass
+from typing import Iterable, Optional
+
+from .search_goal import SearchGoal
+from .search_goal_set import SearchGoalSet
+from .dataclass_property import DataclassProperty
 
 
 @dataclass
@@ -32,6 +35,7 @@ class Config:
     internally mutable state and are set at an unknown time
     before the search starts. This way users can override only some values,
     and do it over multiple calls.
+    All "official" user inputs are contained here.
 
     Properties are defined to enforce the requirements on allowed values.
     All fields have default values, so instances can be created without any.
@@ -41,37 +45,44 @@ class Config:
     As some relations between values of different fields are required,
     users must take care to set them in the correct order.
 
-    For example, final_trial_count has to be set to equal
-    initial_trial_count, before number_of_intermediate_phases can be set
-    to zero.
+    For example, min_load has to be set to a value smaller
+    than the current value of max_load.
     """
 
     # Externally visible "fields" (but in fact redefined as properties).
-    criteria: Criteria = Criteria((Criterion(),))
-    """FIXME"""
+    goals: SearchGoalSet = SearchGoalSet((SearchGoal(),))
+    """Container holding search goals."""
     min_load: float = 1e0
     """Each trial measurement must have intended load at least this [tps]."""
     max_load: float = 1e9
     """Each trial measurement must have intended load at most this [tps]."""
-    min_trial_duration: float = 1.0
-    """FIXME"""
-    subtrial_duration: float = 1.0
-    """FIXME"""
-    max_search_duration: float = 1800.0
+    search_duration_max: float = 1800.0
     """The search will end as a failure this long [s] after it is started."""
-    warmup_duration: float = 0.0
-    """FIXME"""
-    # Internal private fields holding the values for properties to access.
-    _criteria: Criteria = field(init=False, repr=False)
-    _min_load: float = field(init=False, repr=False)
-    _max_load: float = field(init=False, repr=False)
-    _min_trial_duration: float = field(init=False, repr=False)
-    _subtrial_duration: float = field(init=False, repr=False)
-    _initial_trial_count: int = field(init=False, repr=False)
-    _max_search_duration: float = field(init=False, repr=False)
-    _warmup_duration: float = field(init=False, repr=False)
+    warmup_duration: Optional(float) = None
+    """If specified, one trial at max load and this duration is performed
+    before the usual search starts. The results of that one trial are ignored."""
 
-    @dataclass_property
+    @DataclassProperty
+    def goals(self) -> SearchGoalSet:
+        """Return the reference to the current container.
+
+        :returns: The current container instance.
+        :rtype: SearchGoalSet
+        """
+        return self._goals
+
+    @goals.setter
+    def goals(self, goals: Iterable[SearchGoal]) -> None:
+        """Create and store the goal container.
+
+        :param goals: Search goals to add to the container to store.
+        :type goals: Iterable[SearchGoal]
+        :raises ValueError: If there are no goals.
+        :raises TypeError: If a goal is not a SearchGoal.
+        """
+        self._goals = SearchGoalSet(goals)
+
+    @DataclassProperty
     def min_load(self) -> float:
         """Getter for min load, no logic here.
 
@@ -96,7 +107,7 @@ class Config:
             raise ValueError(f"Min load {load} must be smaller.")
         self._min_load = load
 
-    @dataclass_property
+    @DataclassProperty
     def max_load(self) -> float:
         """Getter for max load, no logic here.
 
@@ -118,101 +129,7 @@ class Config:
             raise ValueError(f"Max load {load} must be bigger.")
         self._max_load = load
 
-    @dataclass_property
-    def min_trial_duration(self) -> float:
-        """Getter for max search duration, no logic here.
-
-        :returns: Currently set max search duration [s].
-        :rtype: float
-        """
-        return self._min_trial_duration
-
-    @min_trial_duration.setter
-    def min_trial_duration(self, duration: float) -> None:
-        """Set max search duration after converting and checking value.
-
-        :param duration: Max search duration [s] value to set.
-        :type duration: float
-        :raises ValueError: If the argument is found invalid.
-        """
-        duration = float(duration)
-        if duration <= 0.0:
-            raise ValueError(f"Min trial duration too small: {duration}")
-        if (
-            hasattr(self, "_subtrial_duration")
-            and duration > self.subtrial_duration
-        ):
-            raise ValueError(f"Min trial duration {duration} must be smaller.")
-        self._min_trial_duration = duration
-
-    @dataclass_property
-    def subtrial_duration(self) -> float:
-        """Getter for max search duration, no logic here.
-
-        :returns: Currently set max search duration [s].
-        :rtype: float
-        """
-        return self._subtrial_duration
-
-    @subtrial_duration.setter
-    def subtrial_duration(self, duration: float) -> None:
-        """Set max search duration after converting and checking value.
-
-        :param duration: Max search duration [s]ue to set.
-        :type duration: float
-        :raises ValueError: If the argument is found invalid.
-        """
-        duration = float(duration)
-        if duration < self.min_trial_duration:
-            raise ValueError(f"Single trial duration too small: {duration}")
-        self._subtrial_duration = duration
-
-    @dataclass_property
-    def criteria(self) -> Criteria:
-        """Return a copy of the current list.
-
-        :returns: The current list of loss ratios.
-        :rtype: List[float]
-        """
-        return self._criteria
-
-    @criteria.setter
-    def criteria(self, criteria: Criteria) -> None:
-        """Copy, convert, check and store the argument list values.
-
-        :param loss_ratios: List of ratios for the current search.
-        :type loss_ratios: Iterable[float]
-        :raises TypeError: If there is some problem with the argument.
-        """
-        if not isinstance(criteria, Criteria):
-            raise TypeError(f"Must by Criteria instance: {criteria}")
-        if len(criteria.loss_ratios) < 1:
-            raise ValueError(f"At least one criterion needed: {criteria}")
-        self._criteria = criteria
-
-    @dataclass_property
-    def max_search_duration(self) -> float:
-        """Getter for max search duration, no logic here.
-
-        :returns: Currently set max search duration [s].
-        :rtype: float
-        """
-        return self._max_search_duration
-
-    @max_search_duration.setter
-    def max_search_duration(self, duration: float) -> None:
-        """Set max search duration after converting and checking value.
-
-        :param duration: Max search duration [s]ue to set.
-        :type duration: float
-        :raises ValueError: If the argument is found invalid.
-        """
-        duration = float(duration)
-        if duration <= 0.0:
-            raise ValueError(f"Max search duration too small: {duration}")
-        self._max_search_duration = duration
-
-    @dataclass_property
+    @DataclassProperty
     def warmup_duration(self) -> float:
         """Getter for max search duration, no logic here.
 
@@ -222,14 +139,19 @@ class Config:
         return self._warmup_duration
 
     @warmup_duration.setter
-    def warmup_duration(self, duration: float) -> None:
+    def warmup_duration(self, duration: Optional(float)) -> None:
         """Set max search duration after converting and checking value.
 
-        :param duration: Max search duration [s]ue to set.
-        :type duration: float
+        Zero duration is treated as None, meaning no warmup trial.
+
+        :param duration: Max search duration [s] to set.
+        :type duration: Optional(float)
         :raises ValueError: If the argument is found invalid.
         """
-        duration = float(duration)
-        if duration < 0.0:
-            raise ValueError(f"Warmup duration too small: {duration}")
+        if duration:
+            duration = float(duration)
+            if duration < 0.0:
+                raise ValueError(f"Warmup duration too small: {duration}")
+        else:
+            duration = None
         self._warmup_duration = duration

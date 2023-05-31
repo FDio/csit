@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,6 +12,8 @@
 # limitations under the License.
 
 """Module defining MeasurementResult class."""
+
+from __future__ import annotations
 
 from dataclasses import dataclass
 
@@ -31,12 +33,9 @@ class MeasurementResult:
     at unknown (possibly very limited) precision and accuracy.
 
     There are relations between the counts (e.g. offered count
-    has to be a sum of forwarding count and loss count).
-    This implementation performs the consistency checks, but also uses them
+    should be equal to a sum of forwarding count and loss count).
+    This implementation does not perform consistency checks, but uses them
     for computing quantities the caller left unspecified.
-
-    Similar relations between non-integer quantities are not enforced,
-    for example a load multiplied by a duration does not have to match a count.
 
     In some cases, the units of intended load are different from units
     of loss count (e.g. load in transactions but loss in packets).
@@ -52,8 +51,6 @@ class MeasurementResult:
 
     The current implementation intentionally limits the secondary quantities
     to the few that proved useful in practice.
-    Users can easily subclass to add new quantities, or wrap
-    to override semantics of current quantities.
     """
 
     # Required primary quantities.
@@ -78,7 +75,7 @@ class MeasurementResult:
     """Expected number of packets to transmit."""
 
     def __post_init__(self):
-        """Convert types, check assumptions, compute missing values.
+        """Convert types, compute missing values.
 
         Current caveats:
         A failing assumption looks like a conversion error.
@@ -127,7 +124,7 @@ class MeasurementResult:
     def loss_ratio(self) -> float:
         """Bad count divided by overall count, zero if the latter is zero.
 
-        The bad count does not only include loss count, but also unsent count.
+        The bad count includes not only loss count, but also unsent count.
         If unsent count is negative, its absolute value is used.
         The overall count is intended count or offered count,
         whichever is bigger.
@@ -137,7 +134,7 @@ class MeasurementResult:
         thus guiding search algorithms towards lower loads
         where there should be less irregularities.
         The zero default is there to prevent search algorithms from
-        getting stuck on a too low load.
+        getting stuck on a too low intended load.
 
         :returns: Bad count divided by overall count.
         :rtype: float
