@@ -41,6 +41,7 @@ RUN apt-get -q update \
         libnuma-dev \
         libpcap-dev \
         libpixman-1-dev \
+        libsctp-dev \
         libssl-dev \
         net-tools \
         ninja-build \
