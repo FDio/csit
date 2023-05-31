@@ -12,8 +12,13 @@
 # limitations under the License.
 
 """
-__init__ file for Python package "trial_measurement".
+__init__ file for Python package "pep3140".
 """
 
-from .abstract_measurer import AbstractMeasurer
-from .measurement_result import MeasurementResult
+# TODO: Move submodules to separate modules.
+# Not obvious how to do that from PyPI point of view
+# without affecting the current CSIT global "resources" package root.
+# Probably it can be done by specifying multiple directories
+# in PYTHONPATH used throughout CSIT.
+
+from .classes import Pep3140Dict

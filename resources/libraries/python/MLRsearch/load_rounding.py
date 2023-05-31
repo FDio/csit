@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,6 +12,8 @@
 # limitations under the License.
 
 """Module defining LoadRounding class."""
+
+from __future__ import annotations
 
 import math
 
@@ -29,13 +31,13 @@ class LoadRounding:
 
     This class offers conversion to and from an integer quantity.
     Operations in the integer realm are guaranteed to be reversible,
-    so the only risk is when converting betwwn float and integer realm.
+    so the only risk is when converting between float and integer realm.
 
-    What relative width corresponds to the unit integer
+    Which relative width corresponds to the unit integer
     is dynamically computed from width goals,
     striking a balance between memory requirements and precision.
 
-    There are two quality goals. One restricts how far
+    There are two quality knobs. One restricts how far
     can an integer be from the exact float value.
     The other restrict how close it can be. That is to make sure
     even with unpredictable rounding errors during the conversion,
@@ -43,9 +45,9 @@ class LoadRounding:
     to ensure the resulting intervals from MLRsearch will always
     meet the relative width goal.
 
-    Even more convenience is offered when (integer) goals are offered
-    as DiscreteWidth instances. To avoid circular dependencies (type hints),
-    this class does not offer that convenience; see LoadRounding.
+    An instance of this class is mutable only in the sense it contains
+    a growing cache of previously computed values.
+    TODO: Hide the cache and present as frozen hashable object.
     """
 
     min_load: float
@@ -53,7 +55,8 @@ class LoadRounding:
     max_load: float
     """Maximal intended load [tps] to support, must be bigger than min load."""
     float_goals: Tuple[float]
-    """Relative width goals to approximate, each must be positive."""
+    """Relative width goals to approximate, each must be positive
+    and smaller than one."""
     quality_lower: float = 0.99
     """Minimal multiple of each goal to be achievable."""
     quality_upper: float = 0.999999
@@ -61,7 +64,7 @@ class LoadRounding:
     int_goals: List[int] = field(init=False, repr=False)
     """These amounts of units are within quality to float goals."""
     max_int_load: int = field(init=False, repr=False)
-    """Integer for max load (min load is int zero)."""
+    """Integer for max load (min load int is zero)."""
     _int2load: List[Tuple[int, float]] = field(init=False, repr=False)
     """Known int values (sorted) and their float equivalents."""
 
@@ -73,12 +76,12 @@ class LoadRounding:
         self.min_load = float(self.min_load)
         self.max_load = float(self.max_load)
         if not 0.0 < self.min_load < self.max_load:
-            raise RuntimeError("Load limits not supported.")
+            raise RuntimeError("Load limits not supported: {self}")
         self.quality_lower = float(self.quality_lower)
         self.quality_upper = float(self.quality_upper)
         if not 0.0 < self.quality_lower < self.quality_upper < 1.0:
-            raise RuntimeError("Qualities not supported.")
-        goals = list()
+            raise RuntimeError("Qualities not supported: {self}")
+        goals = []
         for goal in self.float_goals:
             goal = float(goal)
             if not 0.0 < goal < 1.0:
@@ -86,30 +89,31 @@ class LoadRounding:
             goals.append(goal)
         self.float_goals = tuple(sorted(set(goals)))
         self.max_int_load = self._find_ints()
-        self._int2load = list()
+        self._int2load = []
         self._int2load.append((0, self.min_load))
         self._int2load.append((self.max_int_load, self.max_load))
 
     def _find_ints(self) -> int:
-        """Find and return values for max_int_load and int_goals.
+        """Find and return value for max_int_load.
 
-        Separated out of post init, as this is less conversion and checking
+        Separated out of post init, as this is less conversion and checking,
         and more math and searching.
 
         A dumb implementation would start with 1 and kept increasing by 1
         until all goals are within quality limits.
         An actual implementation is smarter with the increment,
-        so it is expected to find the resulting values faster.
+        so it is expected to find the resulting values somewhat faster.
 
-        :returns: Value to be stored as max_int_load and int goals.
-        :rtype: Tuple[int, List[int]]
+        :returns: Value to be stored as max_int_load.
+        :rtype: int
         """
         minmax_log_width = math.log(self.max_load) - math.log(self.min_load)
         log_goals = [-math.log1p(-goal) for goal in self.float_goals]
         candidate = 1
         while 1:
             log_width_unit = minmax_log_width / candidate
-            next_tries = list()
+            # Fallback to increment by one if rounding errors make tries bad.
+            next_tries = [candidate + 1]
             acceptable = True
             for log_goal in log_goals:
                 units = log_goal / log_width_unit
@@ -120,17 +124,13 @@ class LoadRounding:
                     target = (int_units + 1) / self.quality_upper
                     next_try = (target / units) * candidate
                     next_tries.append(next_try)
-                else:
-                    # Quality acceptable, not bumping the candidate.
-                    next_tries.append(candidate)
+                # Else quality acceptable, not bumping the candidate.
             if acceptable:
                 return candidate
-            next_try = int(math.ceil(max(next_tries)))
-            # Fallback to increment by one if rounding errors made tries bad.
-            candidate = max(next_try, candidate + 1)
+            candidate = int(math.ceil(max(next_tries)))
 
     def int2float(self, int_load: int) -> float:
-        """Convert from int to tps load. Expand internal table as needed.
+        """Convert from int to float tps load. Expand internal table as needed.
 
         Too low or too high ints result in min or max load respectively.
 
@@ -164,14 +164,14 @@ class LoadRounding:
                 hi_index, hi_int, hi_load = mid_index, mid_int, mid_load
                 continue
             return mid_load
-        raise RuntimeError("Bisect in int2load failed.")
+        raise RuntimeError("Bisect in int2float failed.")
 
     def float2int(self, float_load: float) -> int:
-        """Convert and round from tps load to int. Maybe internal table.
+        """Convert and round from tps load to int. Maybe expand internal table.
 
         Too low or too high load result in zero or max int respectively.
 
-        Rounds down to closest (tps for the) integer, in logarithmic tps space.
+        Result value is rounded down to an integer.
 
         :param float_load: Tps quantity to convert into int.
         :type float_load: float
