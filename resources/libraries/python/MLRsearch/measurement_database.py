@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,158 +13,132 @@
 
 """Module defining MeasurementDatabase class."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Dict, Optional, Tuple
 
-from .criteria import Criteria
-from .criterion import Criterion
 from .discrete_load import DiscreteLoad
 from .discrete_interval import DiscreteInterval
-from .load_stat import LoadStat
-
-
-MaybeLoad = Optional[LoadStat]
+from .load_stats import LoadStats
+from .target_spec import TargetSpec
+from .trial_measurement import MeasurementResult
 
 
 @dataclass
 class MeasurementDatabase:
-    """Structure holding measurement results for multiple durations.
+    """Structure holding measurement results for multiple durations and loads.
 
     Several utility methods are added, accomplishing tasks useful for MLRsearch.
-    The replacement logic is benevolent both for higher loads
-    (where effective loss ratio hides lucky long duration results),
-    and for small loads (overridden ratio hides lucky short duration results).
 
     The constructor uses shallow copy, so users should not edit
     the measurement results afterwards.
     """
 
-    criteria: Criteria
-    """FIXME"""
-    load_to_stat: Dict[int, LoadStat] = None
-    """FIXME"""
+    targets: Tuple[TargetSpec] = None
+    """Targets to track stats for."""
+    load_to_stats: Dict[DiscreteLoad, LoadStats] = None
+    """Mapping from loads to stats."""
 
     def __post_init__(self) -> None:
-        """Store (shallow copy of) measurement results and normalize them."""
-        if not self.load_to_stat:
-            self.load_to_stat = dict()
-        self._normalize()
+        """Store (shallow copy of) measurement results and normalize them.
 
-    def _normalize(self) -> None:
-        """Sort, remove obsoleted results, set effective and overridden ratios.
+        If no stats yet, initialize empty ones.
 
-        MLRsearch algorithm needs several assumptions to ensure convergence,
-        but real results may violate those assumptions.
-        The main anomaly to deal with is when a measurement at higher load
-        results in smaller loss ratio than at lower load.
-
-        The normalization here restores the assumptions
-        by selectively removing old measurement results,
-        or overriding some loss ratios to safe "conservative" values.
-
-        There are three specific situations which need to be addressed:
-
-        1. If there are two trial measurements done at exactly the same
-        intended load. In that case, the shorter duration one
-        has no purpose, so is removed from database.
-
-        2. If a longer duration trial has smaller loss rate than
-        a shorter duration trial at lower load. In this case, the shorter
-        duration can still become useful (e.g. when the longer gets deleted
-        due to point 1 later), but its loss rate needs to be hidden.
-        That is done by setting its overridden loss rate.
-
-        3. If the same duration trial (other cases are handled
-        by previous points) at lower load has higher loss rate.
-        In this case, it is the higher load result that is deemed "lucky",
-        so its effective loss ratio is increased.
-
-        Keeping the list of results sorted allows all the points to be applied
-        quickly by iterating in the correct direction.
+        :raises ValueError: If there are no targets.
         """
-        self.load_to_stat = dict(sorted(self.load_to_stat.items()))
+        if not self.targets:
+            raise ValueError(
+                f"Database needs targets: {self.targets!r}"
+            )
+        if not self.load_to_stats:
+            self.load_to_stats = {}
+        self._sort()
 
-    def update(self, load_stat: LoadStat) -> None:
-        """Add measurement and normalize.
+    def _sort(self) -> None:
+        """Sort keys from low to high load.."""
+        self.load_to_stats = dict(sorted(self.load_to_stats.items()))
+
+    def __getitem__(self, key: DiscreteLoad) -> LoadStats:
+        """Allow access to stats as if self was load_to_stats.
+
+        This also accepts LoadStats as key, so callers do not need
+        to care about hashability.
+
+        :param key: The load to get stats for.
+        :type key: DiscreteLoad
+        :returns: Stats for the given load.
+        :rtype LoadStats:
+        """
+        return self.load_to_stats[key.hashable()]
+
+    def add(self, measurement: MeasurementResult) -> None:
+        """Incorporate given trial measurement result.
+
+        The measurement is expected to contain "discrete_load" field.
 
         :param measurement: Measurement result to add to the database.
         :type measurement: MeasurementResult
         """
-        self.load_to_stat[int(load_stat)] = load_stat
-        self._normalize()
-
-    def stat_for(self, load: DiscreteLoad, subtrial_duration: float):
-        """FIXME"""
-        int_load = int(load)
-        if int_load in self.load_to_stat:
-            stat = self.load_to_stat[int_load]
-            if stat.subtrial_duration >= subtrial_duration:
-                return stat
-        return LoadStat.new_empty(load, subtrial_duration, self.criteria)
+        discrete_load = measurement.discrete_load.hashable()
+        if not discrete_load.is_round:
+            raise ValueError(f"Not round load: {discrete_load!r}")
+        if discrete_load not in self.load_to_stats:
+            self.load_to_stats[discrete_load] = LoadStats.new_empty(
+                load=discrete_load,
+                targets=self.targets,
+            )
+            self._sort()
+        self.load_to_stats[discrete_load].add(measurement)
 
     def get_valid_bounds(
-        self,
-        criterion,
-        min_duration,
-    ) -> Tuple[MaybeLoad, MaybeLoad, MaybeLoad, MaybeLoad]:
-        """Return None or a valid measurement for two tightest bounds.
+        self, target: TargetSpec
+    ) -> Tuple[Optional[LoadStats], Optional[LoadStats]]:
+        """Return None or a valid measurement, for the two tightest bounds.
 
-        Measurement results with smaller duration are ignored.
+        A load is valid only if both optimistic and pessimistic estimates agree.
 
-        The validity of a measurement to act as a bound is determined
-        by comparing the argument ratio with measurement's effective loss ratio.
+        Both lower and upper bounds are returned.
+        If some value is not available, None is returned instead.
+        The returned stats are trimmed to the argument target.
 
-        Both lower and upper bounds are returned, both tightest and second
-        tightest. If some value is not available, None is returned instead.
-
-        :param ratio: Target ratio, valid has to be lower or equal.
-        :param min_duration: Consider results with at least this duration [s].
-        :type ratio: float
-        :type min_duration: float
-        :returns: Tightest lower bound, tightest upper bound,
-            second tightest lower bound, second tightest upper bound.
-        :rtype: 4-tuple of Optional[ComparableMeasurementResult]
+        :param target: Target to classify loads when finding bounds.
+        :type target: TargetSpec
+        :returns: Tightest lower bound, tightest upper bound.
+        :rtype: Tuple[Optional[LoadStats], Optional[LoadStats]]
         """
-        lower_1, upper_1, lower_2, upper_2 = None, None, None, None
-        for load_stat in self.load_to_stat.values():
-            opt, pes = load_stat.satisfies(criterion, min_duration)
+        lower_bound, upper_bound = None, None
+        for load_stats in self.load_to_stats.values():
+            opt, pes = load_stats.estimates(target)
             if opt != pes:
                 continue
             if not opt:
-                if upper_1 is None:
-                    upper_1 = load_stat
-                    continue
-                upper_2 = load_stat
+                upper_bound = load_stats
                 break
-            if upper_1 is None:
-                lower_1, lower_2 = load_stat, lower_1
-        return lower_1, upper_1, lower_2, upper_2
+            lower_bound = load_stats
+        if lower_bound:
+            lower_bound = lower_bound.trimmed_to_target(target)
+        if upper_bound:
+            upper_bound = upper_bound.trimmed_to_target(target)
+        return lower_bound, upper_bound
 
-    def get_intervals(self) -> Dict[Criterion, DiscreteInterval]:
-        """Return list of intervals for given ratios, at the duration.
-
-        This assumes no trial had larger duration.
+    def get_interval(self, target: TargetSpec) -> DiscreteInterval:
+        """Return interval for given target spec.
 
         Attempt to construct valid intervals. If a valid bound is missing,
         use smallest/biggest intended_load for lower/upper bound.
         This can result in degenerate intervals,
         but is expected e.g. if max load has zero loss.
 
-        :param ratio_list: Ratios to create intervals for.
-        :type ratio_list: Iterable[float]
-        :returns: List of intervals.
-        :rtype: List[DiscreteInterval]
+        :param target: Which target should the returned interval describe.
+        :type target: TargetSpec
+        :returns: Interval of lower and upper bound for the target.
+        :rtype: DiscreteInterval
         """
-        ret_dict = dict()
-        for criterion in self.criteria:
-            bounds = self.get_valid_bounds(
-                criterion=criterion,
-                min_duration=criterion.trials_duration,
-            )
-            lower_bound, upper_bound, _, _ = bounds
-            if lower_bound is None:
-                lower_bound = list(self.load_to_stat.values())[0]
-            if upper_bound is None:
-                upper_bound = list(self.load_to_stat.values())[-1]
-            ret_dict[criterion] = DiscreteInterval(lower_bound, upper_bound)
-        return ret_dict
+        bounds = self.get_valid_bounds(target=target)
+        lower_bound, upper_bound = bounds
+        if lower_bound is None:
+            lower_bound = list(self.load_to_stats.values())[0]
+        if upper_bound is None:
+            upper_bound = list(self.load_to_stats.values())[-1]
+        return DiscreteInterval(lower_bound, upper_bound)

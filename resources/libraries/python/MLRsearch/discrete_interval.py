@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,12 +13,15 @@
 
 """Module defining DiscreteInterval class."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 from .discrete_load import DiscreteLoad
 from .discrete_width import DiscreteWidth
 
 
+# TODO: Can this be frozen?
 @dataclass
 class DiscreteInterval:
     """Interval class with more computations available.
@@ -28,9 +31,9 @@ class DiscreteInterval:
     """
 
     low_end: DiscreteLoad
-    """Measurement for the lower (or higher) load."""
+    """Measurement for the lower load."""
     high_end: DiscreteLoad
-    """Measurement for the higher (or lower) load."""
+    """Measurement for the higher load."""
     discrete_width: DiscreteWidth = field(init=False, repr=False)
     """Discrete width between intended loads (high_end minus low_end)."""
 
@@ -47,6 +50,14 @@ class DiscreteInterval:
             self.low_end, self.high_end = self.high_end, self.low_end
         self.discrete_width = self.high_end - self.low_end
 
+    def __str__(self) -> str:
+        """Convert to a short human-readable string.
+
+        :returns: The short string.
+        :rtype: str
+        """
+        return f"lower_bound=({self.low_end}),upper_bound=({self.high_end})"
+
     def width_in_goals(self, goal: DiscreteWidth) -> float:
         """Return relative width as a logaritmic multiple of given goal.
 
@@ -59,7 +70,7 @@ class DiscreteInterval:
         :returns: Current width as (logarithmic) multiple of goal width.
         :rtype: float
         """
-        return (int(self.high_end) - int(self.low_end)) / int(goal)
+        return int(self.discrete_width) / int(goal)
 
     @property
     def relative_width(self) -> float:
@@ -72,8 +83,8 @@ class DiscreteInterval:
         :returns: Difference of float load divided by high end load.
         :rtype: float
         """
-        difference = float(self.high_end) - float(self.low_end)
-        return difference / float(self.high_end)
+        high_float = float(self.high_end)
+        return (high_float - float(self.low_end)) / high_float
 
     def middle(self, width_goal: DiscreteWidth) -> DiscreteLoad:
         """Return new intended load (discrete form) in the middle.
@@ -105,7 +116,7 @@ class DiscreteInterval:
         if int_self < 2 * int_goal:
             # This can only happen when int_goal >= 2.
             # In this case, we do not have good enough split at this width goal,
-            # but maybe this is not the final phase, so we can attempt
+            # but maybe this is not the final target, so we can attempt
             # a split at half width goal.
             if not int_goal % 2:
                 return self.middle(width_goal=width_goal.half_rounded_down())

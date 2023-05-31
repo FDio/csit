@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from functools import total_ordering
-from typing import Callable, Union
+from typing import Callable, Optional, Union
 
 from .load_rounding import LoadRounding
 from .discrete_width import DiscreteWidth
@@ -31,7 +31,7 @@ class DiscreteLoad:
     LoadRounding instance is needed to enable conversion between two forms.
     Conversion methods and factories are added for convenience.
 
-    In general, the int form is allowed to differ from conversion from int.
+    In general, the float form is allowed to differ from conversion from int.
 
     Comparisons are supported, acting on the float load component.
     Additive operations are supported, acting on int form.
@@ -39,6 +39,9 @@ class DiscreteLoad:
 
     As for all user defined classes by default, all instances are truthy.
     That is useful when dealing with Optional values, as None is falsy.
+
+    This dataclass is effectively frozen, but cannot be marked as such
+    as that would prevent LoadStats from being its subclass.
     """
 
     # For most debugs, rounding in repr just takes space.
@@ -53,8 +56,10 @@ class DiscreteLoad:
         """Ensure types, compute missing information.
 
         At this point, it is allowed for float load to differ from
-        conversion from int load. MLR should round explicitly later,
+        conversion from int load. MLRsearch should round explicitly later,
         based on its additional information.
+
+        :raises RuntimeError: If both init arguments are None.
         """
         if self.float_load is None and self.int_load is None:
             raise RuntimeError("Float or int value is needed.")
@@ -65,16 +70,54 @@ class DiscreteLoad:
             self.float_load = float(self.float_load)
             self.int_load = self.rounding.float2int(self.float_load)
 
-    # Explicit comparson operators.
+    def __str__(self) -> str:
+        """Convert to a short human-readable string.
+
+        :returns: The short string.
+        :rtype: str
+        """
+        return f"int_load={int(self)}"
+
+    # Explicit comparison operators.
     # Those generated with dataclass order=True do not allow subclass instances.
 
-    def __eq__(self, other):
-        """FIXME"""
+    def __eq__(self, other: Optional[DiscreteLoad]) -> bool:
+        """Return whether the other instance has the same float form.
+
+        None is effectively considered to be an unequal instance.
+
+        :param other: Other instance to compare to, or None.
+        :type other: Optional[DiscreteLoad]
+        :returns: True only of float forms are exactly equal.
+        :rtype: bool
+        """
+        if other is None:
+            return False
         return float(self) == float(other)
 
-    def __lt__(self, other):
-        """FIXME"""
+    def __lt__(self, other: DiscreteLoad) -> bool:
+        """Return whether self has smaller float form than the other instance.
+
+        None is not supported, as MLRsearch does not need that
+        (so when None appears we want to raise).
+
+        :param other: Other instance to compare to.
+        :type other: DiscreteLoad
+        :returns: True only of float forms of self is strictly smaller.
+        :rtype: bool
+        """
         return float(self) < float(other)
+
+    def __hash__(self) -> int:
+        """Return a hash based on the float value.
+
+        With this, the instance can be used as if it was immutable and hashable,
+        e.g. it can be a key in a dict.
+
+        :returns: Hash value for this instance.
+        :rtype: int
+        """
+        return hash(float(self))
 
     @property
     def is_round(self) -> bool:
@@ -135,7 +178,9 @@ class DiscreteLoad:
         """
 
         def factory_float(float_load: float) -> DiscreteLoad:
-            """Use rounding and float load to create discrete load.
+            """Use rounding instance and float load to create discrete load.
+
+            The float form is not rounded yet.
 
             :param int_load: Intended load in float form [tps].
             :type int_load: float
@@ -145,6 +190,26 @@ class DiscreteLoad:
             return DiscreteLoad(rounding=rounding, float_load=float_load)
 
         return factory_float
+
+    def rounded_down(self) -> DiscreteLoad:
+        """Create and return new instance with float form matching int.
+
+        :returns: New instance with same int form and float form rounded down.
+        :rtype: DiscreteLoad
+        """
+        return DiscreteLoad(rounding=self.rounding, int_load=int(self))
+
+    def hashable(self) -> DiscreteLoad:
+        """Return new equivalent instance.
+
+        This is mainly useful for conversion from unhashable subclasses,
+        such as LoadStats.
+        Rounding instance (reference) is copied from self.
+
+        :returns: New instance with values based on float form of self.
+        :rtype: DiscreteLoad
+        """
+        return DiscreteLoad(rounding=self.rounding, float_load=float(self))
 
     def __add__(self, width: DiscreteWidth) -> DiscreteLoad:
         """Return newly constructed instance with width added to int load.
@@ -161,9 +226,9 @@ class DiscreteLoad:
         :raises RuntimeError: When argument has unexpected type.
         """
         if not isinstance(width, DiscreteWidth):
-            raise RuntimeError(f"Not width: {type(width)}")
+            raise RuntimeError(f"Not width: {width!r}")
         return DiscreteLoad(
-            rounding=self.rounding, int_load=self.int_load + int(width)
+            rounding=self.rounding, int_load=self.int_load + int(width),
         )
 
     def __sub__(
@@ -186,7 +251,7 @@ class DiscreteLoad:
             return self._minus_width(other)
         if isinstance(other, DiscreteLoad):
             return self._minus_load(other)
-        raise RuntimeError(f"Unsupported type {type(other)}")
+        raise RuntimeError(f"Unsupported type {other!r}")
 
     def _minus_width(self, width: DiscreteWidth) -> DiscreteLoad:
         """Return newly constructed instance, width subtracted from int load.
@@ -199,7 +264,7 @@ class DiscreteLoad:
         :rtype: DiscreteLoad
         """
         return DiscreteLoad(
-            rounding=self.rounding, int_load=self.int_load - int(width)
+            rounding=self.rounding, int_load=self.int_load - int(width),
         )
 
     def _minus_load(self, other: DiscreteLoad) -> DiscreteWidth:
@@ -213,7 +278,7 @@ class DiscreteLoad:
         :rtype: DiscreteWidth
         """
         return DiscreteWidth(
-            rounding=self.rounding, int_width=self.int_load - int(other)
+            rounding=self.rounding, int_width=self.int_load - int(other),
         )
 
     def __mul__(self, coefficient: float) -> DiscreteLoad:
@@ -232,7 +297,7 @@ class DiscreteLoad:
         if coefficient <= 0.0:
             raise RuntimeError(f"Not positive: {coefficient!r}")
         return DiscreteLoad(
-            rounding=self.rounding, float_load=self.float_load * coefficient
+            rounding=self.rounding, float_load=self.float_load * coefficient,
         )
 
     def __truediv__(self, coefficient: float) -> DiscreteLoad:

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,11 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Module defining dataclass_property class.
+"""Module defining DataclassProperty class.
 
 The main issue that needs support is dataclasses with properties
-(including setters) and with default values, including mutable ones
-(meaning default_factory would ordinarilty be used).
+(including setters) and with (immutable) default values.
 
 First, this explains how property ends up passed as default constructor value:
 https://florimond.dev/en/posts/2018/10/reconciling-dataclasses-and-properties-in-python/
@@ -28,12 +27,11 @@ TL;DR: It relies on the underscored field being replaced by the value.
 
 But that does not work for field which use default_factory (or no default)
 (the underscored class field is deleted instead).
-
-So another way is needed to store a mutable default value somewhere,
-so setter can use it when called with a property instead of a value.
+So another way is needed to cover those cases,
+ideally without the need to define both original and underscored field.
 
 This implementation relies on a fact that decorators are executed
-when the class field do yet exist, and decorated function
+when the class fields do yet exist, and decorated function
 does know its name, so the decorator can get the value stored in
 the class field, and store it as an additional attribute of the getter function.
 Then for setter, the property contains the getter (as an unbound function),
@@ -41,11 +39,16 @@ so it can access the additional attribute to get the value.
 
 This approach circumvents the precautions dataclasses take to prevent mishaps
 when a single mutable object is shared between multiple instances.
-So it is up to setters to create an appropriate copy of the default object.
+So it is up to setters to create an appropriate copy of the default object
+if the default value is mutable.
+
+The default value cannot be MISSING nor Field nor DataclassProperty,
+otherwise the intended logic breaks down.
 """
 
 from __future__ import annotations
 
+from dataclasses import Field, MISSING
 from functools import wraps
 from inspect import stack
 from typing import Callable, Optional, TypeVar, Union
@@ -80,14 +83,13 @@ def _calling_scope_variable(name: str) -> Value:
     return frame.f_locals[name]
 
 
-# TODO: Pylint wants DataclassProperty. Give in or override.
-class dataclass_property(property):
+class DataclassProperty(property):
     """Subclass of property, handles default values for dataclass fields.
 
     If a dataclass field does not specify a default value (nor default_factory),
     this is not needed, and in fact it will not work (so use built-in property).
 
-    This implementation transparently finds and inserts the default value
+    This implementation seemlessly finds and inserts the default value
     (can be mutable) into a new attribute of the getter function.
     Before calling a setter function in init (recognized by type),
     the default value is retrieved and passed transparently to the setter.
@@ -96,7 +98,7 @@ class dataclass_property(property):
     """
 
     def __init__(
-        self: dataclass_property,
+        self,
         fget: Optional[Callable[[], Value]] = None,
         fset: Optional[Callable[[Self, Value], None]] = None,
         fdel: Optional[Callable[[], None]] = None,
@@ -116,48 +118,53 @@ class dataclass_property(property):
         :type fdel: Optional[Callable[[Self], None]]
         :type doc: Optional[str]
         """
-        default_value = _calling_scope_variable(fget.__name__)
-        if not isinstance(default_value, dataclass_property):
-            fget.default_value = default_value
+        variable_found = _calling_scope_variable(fget.__name__)
+        if not isinstance(variable_found, DataclassProperty):
+            if isinstance(variable_found, Field):
+                if variable_found.default is not MISSING:
+                    fget.default_value = variable_found.default
+                # Else do not store any default value.
+            else:
+                fget.default_value = variable_found
         # Else this is the second time init is called (when setting setter),
         # in which case the default is already stored into fget.
         super().__init__(fget=fget, fset=fset, fdel=fdel, doc=doc)
 
     def setter(
-        self: dataclass_property,
+        self,
         fset: Optional[Callable[[Self, Value], None]],
-    ) -> dataclass_property:
+    ) -> DataclassProperty:
         """Return new instance with a wrapped setter function set.
 
         If the argument is None, call superclass method.
 
         The wrapped function recognizes when it is called in init
-        (by the fact the value argument is of type dataclass_property)
+        (by the fact the value argument is of type DataclassProperty)
         and in that case it extracts the stored default and passes that
         to the user-defined setter function.
 
         :param fset: Setter function to wrap and apply.
         :type fset: Optional[Callable[[Self, Value], None]]
         :returns: New property instance with correct setter function set.
-        :rtype: dataclass_property
+        :rtype: DataclassProperty
         """
         if fset is None:
             return super().setter(fset)
 
         @wraps(fset)
-        def wrapped(sel_: Self, val: Union[Value, dataclass_property]) -> None:
+        def wrapped(sel_: Self, val: Union[Value, DataclassProperty]) -> None:
             """Extract default from getter if needed, call the user setter.
 
             The sel_ parameter is listed explicitly, to signify
             this is an unbound function, not a bounded method yet.
 
-            :param sel_: Instance of dataclass (not of dataclass_property)
+            :param sel_: Instance of dataclass (not of DataclassProperty)
                 to set the value on.
             :param val: Set this value, or the default value stored there.
             :type sel_: Self
-            :type val: Union[Value, dataclass_property]
+            :type val: Union[Value, DataclassProperty]
             """
-            if isinstance(val, dataclass_property):
+            if isinstance(val, DataclassProperty):
                 val = val.fget.default_value
             fset(sel_, val)
 

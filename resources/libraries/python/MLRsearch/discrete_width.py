@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,21 +20,22 @@ from dataclasses import dataclass, field
 from .load_rounding import LoadRounding
 
 
-@dataclass(order=True)
+@dataclass(order=True)  # TODO: Make properly frozen.
 class DiscreteWidth:
     """Structure to store float width together with its rounded integer form.
 
-    The width has to be positive, i.e. the computed integer width
-    has to be larger than zero.
+    The width does not have to be positive, i.e. the computed integer width
+    does not have to be larger than zero.
 
     LoadRounding instance is needed to enable conversion between two forms.
-    In practice, LoadRounding instances will be used by callers,
-    but LoadRounding definition depends on DiscreteWidth,
-    hence two rounding classes to avoid circular type hints.
 
     Conversion and arithmetic methods are added for convenience.
-    Division and non-integer multiplication are intentionally _not_ supported,
+    Division and non-integer multiplication are intentionally not supported,
     as MLRsearch should not seek unround widths when round ones are available.
+
+    The instance is effectively immutable, but not hashable as it refers
+    to the rounding instance, which is implemented as mutable
+    (although the mutations are not visible).
     """
 
     # For most debugs, rounding in repr just takes space.
@@ -57,14 +58,12 @@ class DiscreteWidth:
         If both forms are specified, the float form is taken as primary
         (thus the integer form is recomputed to match).
 
-        :raises RuntimeError: Is int width is not positive.
+        :raises RuntimeError: If both init arguments are None.
         """
         if self.float_width is None and self.int_width is None:
             raise RuntimeError("Float or int value is needed.")
         if self.float_width is None:
             self.int_width = int(self.int_width)
-            # if self.int_width <= 0:
-            #     raise RuntimeError(f"Got non-positive iwidth: {self.int_width}")
             min_load = self.rounding.int2float(0)
             increased_load = self.rounding.int2float(self.int_width)
             self.float_width = (increased_load - min_load) / increased_load
@@ -77,8 +76,14 @@ class DiscreteWidth:
         if verify_load > increased_load:
             int_load -= 1
         self.int_width = int_load
-        if self.int_width < 0:
-            raise RuntimeError(f"Got negative iwidth: {self.int_width}")
+
+    def __str__(self) -> str:
+        """Convert into a short human-readable string.
+
+        :returns: The short string.
+        :rtype: str
+        """
+        return f"int_width={int(self)}"
 
     def __int__(self) -> int:
         """Return the integer form.
@@ -96,6 +101,25 @@ class DiscreteWidth:
         """
         return self.float_width
 
+    def __hash__(self) -> int:
+        """Return a hash based on the float value.
+
+        With this, the instance can be used as if it was immutable and hashable,
+        e.g. it can be a key in a dict.
+
+        :returns: Hash value for this instance.
+        :rtype: int
+        """
+        return hash(float(self))
+
+    def rounded_down(self) -> DiscreteWidth:
+        """Create and return new instance with float form matching int.
+
+        :returns: New instance with same int form and float form rounded down.
+        :rtype: DiscreteWidth
+        """
+        return DiscreteWidth(rounding=self.rounding, int_width=int(self))
+
     def __add__(self, width: DiscreteWidth) -> DiscreteWidth:
         """Return newly constructed instance with int widths added.
 
@@ -110,9 +134,9 @@ class DiscreteWidth:
         :raises RuntimeError: When argument has unexpected type.
         """
         if not isinstance(width, DiscreteWidth):
-            raise RuntimeError(f"Not width: {type(width)}")
+            raise RuntimeError(f"Not width: {width!r}")
         return DiscreteWidth(
-            rounding=self.rounding, int_width=self.int_width + int(width)
+            rounding=self.rounding, int_width=self.int_width + int(width),
         )
 
     def __sub__(self, width: DiscreteWidth) -> DiscreteWidth:
@@ -132,7 +156,7 @@ class DiscreteWidth:
         if not isinstance(width, DiscreteWidth):
             raise RuntimeError(f"Not width: {type(width)}")
         return DiscreteWidth(
-            rounding=self.rounding, int_width=self.int_width - int(width)
+            rounding=self.rounding, int_width=self.int_width - int(width),
         )
 
     def __mul__(self, coefficient: int) -> DiscreteWidth:
@@ -151,7 +175,7 @@ class DiscreteWidth:
         if coefficient < 1:
             raise RuntimeError(f"Coefficient not positive: {coefficient!r}")
         return DiscreteWidth(
-            rounding=self.rounding, int_width=self.int_width * coefficient
+            rounding=self.rounding, int_width=self.int_width * coefficient,
         )
 
     def half_rounded_down(self) -> DiscreteWidth:
@@ -164,5 +188,5 @@ class DiscreteWidth:
         :raises RuntimeError: If the resulting integerl width is not positive.
         """
         return DiscreteWidth(
-            rounding=self.rounding, int_width=self.int_width // 2
+            rounding=self.rounding, int_width=self.int_width // 2,
         )
