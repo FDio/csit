@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,13 +13,15 @@
 
 """Module defining AbstractMeasurer class."""
 
+from __future__ import annotations
+
 from abc import ABCMeta, abstractmethod
 
 from .measurement_result import MeasurementResult as Result
 
 
 class AbstractMeasurer(metaclass=ABCMeta):
-    """Abstract class defining common API for measurement providers.
+    """Abstract class defining common API for trial measurement providers.
 
     The original use of this class was in the realm of
     RFC 2544 Throughput search, which explains the teminology
@@ -39,13 +41,15 @@ class AbstractMeasurer(metaclass=ABCMeta):
 
         It is assumed the measurer got already configured with anything else
         needed to perform the measurement (e.g. traffic profile
-        of transaction limit).
+        or transaction limit).
 
         Duration and load are the only values expected to vary
         during the search.
 
         :param intended_duration: Intended trial duration [s].
         :param intended_load: Intended rate of transactions (packets) [tps].
+            It is the aggregated rate, e.g. bi-directional for SUTs
+            with two ports.
         :type intended_duration: float
         :type intended_load: float
         :returns: Structure detailing the result of the measurement.

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,8 +21,11 @@ __init__ file for Python package "MLRsearch".
 # Probably it can be done by specifying multiple directories
 # in PYTHONPATH used throughout CSIT.
 
-# Import user-facing (API) stuff, so useds do not need to know submodules.
+# Import user-facing (API) stuff, so users do not need to know submodules.
 from .config import Config
-from .criteria import Criteria
-from .criterion import Criterion
+from .search_goal import SearchGoal
+from .discrete_interval import DiscreteInterval
+from .discrete_result import DiscreteResult
+from .load_stats import LoadStats
 from .multiple_loss_ratio_search import MultipleLossRatioSearch
+from .pep3140 import Pep3140Dict
