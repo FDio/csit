@@ -135,7 +135,7 @@ Used for FD.io performance tests.
 
 ### 3-Node-Icelake Xeon Intel (3n-icx)
 
-Each 3-Node-Icelake testbed includes two SUTs (Server-Type-F1) and one
+Each 3-Node-Icelake testbed includes two SUTs (Server-Type-F3) and one
 TG (Server-Type-F3) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
@@ -143,24 +143,15 @@ Used for FD.io performance tests.
 ### 3-Node-SnowRidge Atom Intel (3n-snr)
 
 Each 3-Node-SnowRidge testbed includes two SUTs (Server-Type-G1) and one
-TG (Server-Type-F4) connected in a 3-node circular topology
+TG (Server-Type-F5) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
-
-### 2-Node-Full-SapphireRapids Xeon Intel (2nf-spr)
-
-One 2-Node-Full-SapphireRapids testbed includes one SUT (Server-Type-H1) and
-one TG (Server-Type-H2) connected in a 2-node physical topology
-with NUMA (socket) daisy chaining. For more detail see
-[Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
-Used for FD.io performance tests in a full system SUT setup with all PCIe
-Gen5 x16 lane slots populated with 2p200GbE NICs.
 
 ### 2-Node-SapphireRapids Xeon Intel (2n-spr)
 
 Each 2-Node-SapphireRapids testbed includes one SUT (Server-Type-H5) and
-one TG (Server-Type-H6) connected in a 2-node circular topology. For more
-detail see [Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
+one TG (Server-Type-H6) connected in a 2-node or 3-node circular topology
+([Server Types](#server-types)).
 Used for FD.io performance tests.
 
 
@@ -504,10 +495,10 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot10 ff:00.xx: empty.
 
 18. **Server-Type-F1**: Purpose - Icelake Xeon SUT for FD.io performance testing.
-    - Quantity: 8.
+    - Quantity: 4.
     - Physical connectivity:
         - IPMI and host management ports.
-        - NIC ports connected into 2-node or 3-node testbed topologies.
+        - NIC ports connected into 2-node topology.
     - Main HW configuration:
         - Chassis: SuperMicro SYS-740GP-TNRT.
         - Motherboard: Super X12DPG-QT6.
@@ -521,11 +512,11 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
         - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 86:00.xx: empty.
-            - PCIe Slot8 af:00.xx: empty.
+            - PCIe Slot8 af:00.xx: ConnectX7-2p200GE Mellanox.
             - PCIe Slot10 d8:00.xx: empty.
 
 19. **Server-Type-F2**: Purpose - Icelake Xeon TG for FD.io performance testing.
-    - Quantity: 3.
+    - Quantity: 4.
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 2-node testbed topologies.
@@ -542,10 +533,31 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
         - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 86:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot8 af:00.xx: ConnectX7-2p200GE Mellanox.
+            - PCIe Slot10 d8:00.xx: empty.
+
+20. **Server-Type-F3**: Purpose - Icelake Xeon TG or SUT for FD.io performance testing.
+    - Quantity: 6.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-740GP-TNRT.
+        - Motherboard: Super X12DPG-QT6.
+        - Processors: 2* Intel Platinum 8358 2.6 GHz.
+        - RAM Memory: 16* 16GB DDR4-3200.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
+            - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
+            - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
+            - PCIe Slot6 86:00.xx: ConnectX6-2p100GE Mellanox.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-20. **Server-Type-F3**: Purpose - Icelake Xeon TG for FD.io performance testing.
+21. **Server-Type-F4**: Purpose - Icelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -562,11 +574,11 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
         - Numa1: (x16, x16, x16 PCIe4.0 lanes)
-            - PCIe Slot6 86:00.xx: empty.
+            - PCIe Slot6 86:00.xx: ConnectX6-2p100GE Mellanox.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-21. **Server-Type-F4**: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
+22. **Server-Type-F5**: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -587,7 +599,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 b1:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot10 ff:00.xx: empty.
 
-22. **Server-Type-G1**: Purpose - SnowRidge Atom SUT for FD.io performance testing.
+23. **Server-Type-G1**: Purpose - SnowRidge Atom SUT for FD.io performance testing.
     - Quantity: 2
     - Physical connectivity:
         - IPMI and host management ports.
@@ -602,7 +614,7 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, PCIe3.0 lane)
             - PCIe BuiltIn ec:00.xx: e810-XXVDA4-4p25GE Intel.
 
-23. **Server-Type-H1**: Purpose - SapphireRapids Xeon SUT for FD.io full system performance testing.
+24. **Server-Type-H1**: Purpose - SapphireRapids Xeon SUT for FD.io full system performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -623,7 +635,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot11 d8:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
 
-24. **Server-Type-H2**: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
+25. **Server-Type-H2**: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -644,7 +656,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot11 d8:00.xx: empty.
 
-25. **Server-Type-H3**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
+26. **Server-Type-H3**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -665,7 +677,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot11 d8:00.xx: empty.
 
-26. **Server-Type-H4**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
+27. **Server-Type-H4**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -686,7 +698,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: empty.
             - PCIe Slot11 d8:00.xx: empty.
 
-27. **Server-Type-H5**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
+28. **Server-Type-H5**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -707,7 +719,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: empty.
             - PCIe Slot11 d8:00.xx: empty.
 
-28. **Server-Type-H6**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
+29. **Server-Type-H6**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -1034,6 +1046,8 @@ FD.io CSIT lab contains following server types:
         - s71-t212-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s71-t212-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s71-t212-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s71-t212-sut1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s71-t212-sut1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed212.
     - hostname: s72-t212-tg1.
@@ -1050,6 +1064,8 @@ FD.io CSIT lab contains following server types:
         - s72-t212-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s72-t212-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s72-t212-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s72-t212-tg1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s72-t212-tg1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - SUT [Server-Type-F1]:
     - testbedname: testbed213.
     - hostname: s83-t213-sut1.
@@ -1064,6 +1080,8 @@ FD.io CSIT lab contains following server types:
         - s83-t213-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s83-t213-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s83-t213-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s83-t213-sut1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s83-t213-sut1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed213.
     - hostname: s84-t213-tg1.
@@ -1080,6 +1098,8 @@ FD.io CSIT lab contains following server types:
         - s84-t213-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s84-t213-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s84-t213-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s84-t213-tg1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s84-t213-tg1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - SUT [Server-Type-F1]:
     - testbedname: testbed214.
     - hostname: s85-t214-sut1.
@@ -1094,6 +1114,8 @@ FD.io CSIT lab contains following server types:
         - s85-t214-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s85-t214-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s85-t214-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s85-t214-sut1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s85-t214-sut1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed214.
     - hostname: s86-t214-tg1.
@@ -1110,6 +1132,8 @@ FD.io CSIT lab contains following server types:
         - s86-t214-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s86-t214-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s86-t214-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s86-t214-tg1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s86-t214-tg1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - SUT [Server-Type-F1]:
     - testbedname: testbed215.
     - hostname: s87-t215-sut1.
@@ -1124,6 +1148,8 @@ FD.io CSIT lab contains following server types:
         - s87-t215-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s87-t215-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s87-t215-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s87-t215-sut1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s87-t215-sut1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed215.
     - hostname: s88-t215-tg1.
@@ -1140,6 +1166,8 @@ FD.io CSIT lab contains following server types:
         - s88-t215-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s88-t215-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s88-t215-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s88-t215-tg1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s88-t215-tg1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
 ```
 
 ### 3-Node-Rangeley (3n-rng)
@@ -1269,7 +1297,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 {{< figure src="/cdocs/testbed-3n-icx.svg" >}}
 
 ```
-- ServerF1 [Server-Type-F1]:
+- SUT1 [Server-Type-F3]:
     - testbedname: testbed37.
     - hostname: s65-t37-sut1.
     - IPMI IP: 10.30.50.75
@@ -1283,7 +1311,9 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s65-t37-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s65-t37-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s65-t37-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-- ServerF1 [Server-Type-F1]:
+        - s65-t37-sut1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s65-t37-sut1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+- SUT2 [Server-Type-F3]:
     - testbedname: testbed37.
     - hostname: s66-t37-sut2.
     - IPMI IP: 10.30.50.76
@@ -1297,7 +1327,9 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s66-t37-sut2-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s66-t37-sut2-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s66-t37-sut2-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-- ServerF3 [Server-Type-F3]:
+        - s65-t37-sut1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s65-t37-sut1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+- TG [Server-Type-F3]:
     - testbedname: testbed37.
     - hostname: s67-t37-tg1.
     - IPMI IP: 10.30.50.77
@@ -1311,7 +1343,9 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s67-t37-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s67-t37-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s67-t37-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-- ServerF1 [Server-Type-F1]:
+        - s67-t37-tg1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s67-t37-tg1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+- SUT1 [Server-Type-F3]:
     - testbedname: testbed38.
     - hostname: s78-t38-sut1.
     - IPMI IP: 10.30.50.78
@@ -1325,7 +1359,9 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s78-t38-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s78-t38-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s78-t38-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-- ServerF1 [Server-Type-F1]:
+        - s78-t38-sut1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s78-t38-sut1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+- SUT2 [Server-Type-F3]:
     - testbedname: testbed38.
     - hostname: s79-t38-sut2.
     - IPMI IP: 10.30.50.79
@@ -1339,7 +1375,9 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s79-t38-sut2-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s79-t38-sut2-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s79-t38-sut2-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-- ServerF3 [Server-Type-F3]:
+        - s79-t38-sut2-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s79-t38-sut2-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+- TG [Server-Type-F3]:
     - testbedname: testbed38.
     - hostname: s80-t38-tg1.
     - IPMI IP: 10.30.50.80
@@ -1353,6 +1391,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s80-t38-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s80-t38-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s80-t38-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s80-t38-tg1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s80-t38-tg1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
 ```
 
 ### 3-Node-SnowRidge (3n-snr)
@@ -1380,7 +1420,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s94-t39-sut2-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
         - s94-t39-sut2-c1/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
         - s94-t39-sut2-c1/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-- ServerF4 [Server-Type-F4]:
+- ServerF4 [Server-Type-F5]:
     - testbedname: testbed39.
     - hostname: s89-t39t310-tg1.
     - IPMI IP: 10.30.50.89
@@ -1686,65 +1726,77 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 
 ```
 - testbed212:
-    - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
+    - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s72-t212-tg1-c2/p1 to s71-t212-sut1-c2/p1.
         - s71-t212-sut1-c2/p2 to s72-t212-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
+    - ring2 25GE-ports e810-XXVDA4-2p25GE:
         - s72-t212-tg1-c4/p1 to s71-t212-sut1-c4/p1.
         - s71-t212-sut1-c4/p2 to s72-t212-tg1-c4/p2.
         - s72-t212-tg1-c4/p3 to s71-t212-sut1-c4/p3.
         - s71-t212-sut1-c4/p4 to s72-t212-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring3 100GE-ports e810-2CQDA2-2p100GE:
         - s72-t212-tg1-c9/p1 to s71-t212-sut1-c9/p1.
         - s71-t212-sut1-c9/p2 to s72-t212-tg1-c9/p2.
-    - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s72-t212-tg1-c6/p1 to s72-t212-tg1-c6/p2.
         - s72-t212-tg1-c6/p2 to s72-t212-tg1-c6/p1.
+    - ring5 100GE-ports ConnectX7-2p100GE:
+        - s72-t212-tg1-c8/p1 to s71-t212-sut1-c8/p1.
+        - s71-t212-sut1-c8/p2 to s72-t212-tg1-c8/p2.
 - testbed213:
-    - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
+    - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s84-t213-tg1-c2/p1 to s83-t213-sut1-c2/p1.
         - s83-t213-sut1-c2/p2 to s84-t213-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
+    - ring2 25GE-ports e810-XXVDA4-2p25GE:
         - s84-t213-tg1-c4/p1 to s83-t213-sut1-c4/p1.
         - s83-t213-sut1-c4/p2 to s84-t213-tg1-c4/p2.
         - s84-t213-tg1-c4/p3 to s83-t213-sut1-c4/p3.
         - s83-t213-sut1-c4/p4 to s84-t213-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring3 100GE-ports e810-2CQDA2-2p100GE:
         - s84-t213-tg1-c9/p1 to s83-t213-sut1-c9/p1.
         - s83-t213-sut1-c9/p2 to s84-t213-tg1-c9/p2.
-    - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s84-t213-tg1-c6/p1 to s84-t213-tg1-c6/p2.
         - s84-t213-tg1-c6/p2 to s84-t213-tg1-c6/p1.
+    - ring5 100GE-ports ConnectX7-2p100GE:
+        - s84-t213-tg1-c8/p1 to s83-t213-sut1-c8/p1.
+        - s83-t213-sut1-c8/p2 to s84-t213-tg1-c8/p2.
 - testbed214:
-    - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
+    - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s86-t214-tg1-c2/p1 to s85-t214-sut1-c2/p1.
         - s85-t214-sut1-c2/p2 to s86-t214-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
+    - ring2 25GE-ports e810-XXVDA4-2p25GE:
         - s86-t214-tg1-c4/p1 to s85-t214-sut1-c4/p1.
         - s85-t214-sut1-c4/p2 to s86-t214-tg1-c4/p2.
         - s86-t214-tg1-c4/p3 to s85-t214-sut1-c4/p3.
         - s85-t214-sut1-c4/p4 to s86-t214-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring3 100GE-ports e810-2CQDA2-2p100GE:
         - s86-t214-tg1-c9/p1 to s85-t214-sut1-c9/p1.
         - s85-t214-sut1-c9/p2 to s86-t214-tg1-c9/p2.
-    - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s86-t214-tg1-c6/p1 to s86-t214-tg1-c6/p2.
         - s86-t214-tg1-c6/p2 to s86-t214-tg1-c6/p1.
+    - ring5 100GE-ports ConnectX7-2p100GE:
+        - s86-t214-tg1-c8/p1 to s85-t214-sut1-c8/p1.
+        - s85-t214-sut1-c8/p2 to s86-t214-tg1-c8/p2.
 - testbed215:
-    - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
+    - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s88-t215-tg1-c2/p1 to s87-t215-sut1-c2/p1.
         - s87-t215-sut1-c2/p2 to s88-t215-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
+    - ring2 25GE-ports e810-XXVDA4-2p25GE:
         - s88-t215-tg1-c4/p1 to s87-t215-sut1-c4/p1.
         - s87-t215-sut1-c4/p2 to s88-t215-tg1-c4/p2.
         - s88-t215-tg1-c4/p3 to s87-t215-sut1-c4/p3.
         - s87-t215-sut1-c4/p4 to s88-t215-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring3 100GE-ports e810-2CQDA2-2p100GE:
         - s88-t215-tg1-c9/p1 to s87-t215-sut1-c9/p1.
         - s87-t215-sut1-c9/p2 to s88-t215-tg1-c9/p2.
-    - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
+    - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s88-t215-tg1-c6/p1 to s88-t215-tg1-c6/p2.
         - s88-t215-tg1-c6/p2 to s88-t215-tg1-c6/p1.
+    - ring5 100GE-ports ConnectX7-2p100GE:
+        - s88-t215-tg1-c8/p1 to s87-t215-sut1-c8/p1.
+        - s87-t215-sut1-c8/p2 to s88-t215-tg1-c8/p2.
 ```
 
 ### 3-Node-Rangeley (3n-rng)
@@ -1785,37 +1837,45 @@ To be completed.
 
 ```
 - testbed37:
-    - ring1 25GE-ports xxv710-DA2-2p25GE on SUTs:
+    - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s67-t37-tg1-c2/p1 to s65-t37-sut1-c2/p1.
         - s65-t37-sut1-c2/p2 to s66-t37-sut2-c2/p2.
         - s66-t37-sut2-c2/p1 to s67-t37-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-4p25GE on SUT:
+    - ring2 25GE-ports e810-XXVDA4-4p25GE:
         - s67-t37-tg1-c4/p1 to s65-t37-sut1-c4/p1.
         - s65-t37-sut1-c4/p2 to s66-t37-sut2-c4/p2.
         - s66-t37-sut2-c4/p1 to s67-t37-tg1-c4/p2.
         - s67-t37-tg1-c4/p3 to s65-t37-sut1-c4/p3.
         - s65-t37-sut1-c4/p4 to s66-t37-sut2-c4/p4.
         - s66-t37-sut2-c4/p3 to s67-t37-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT
+    - ring3 100GE-ports e810-2CQDA2-2p100GE:
         - s67-t37-tg1-c9/p1 to s65-t37-sut1-c9/p1.
         - s65-t37-sut1-c9/p2 to s66-t37-sut2-c9/p2.
         - s66-t37-sut2-c9/p1 to s67-t37-tg1-c9/p2.
+    - ring4 100GE-ports ConnectX6-2p100GE:
+        - s67-t37-tg1-c6/p1 - s65-t37-sut1-c6/p2.
+        - s65-t37-sut1-c6/p1 - s66-t37-sut2-c6/p2.
+        - s66-t37-sut2-c6/p1 - s67-t37-tg1-c9-c6/p2.
 - testbed38:
-    - ring1 25GE-ports xxv710-DA2-2p25GE on SUTs:
+    - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s80-t38-tg1-c2/p1 to s78-t38-sut1-c2/p1.
         - s78-t38-sut1-c2/p2 to s79-t38-sut2-c2/p2.
         - s79-t38-sut2-c2/p1 to s80-t38-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-4p25GE on SUT:
+    - ring2 25GE-ports e810-XXVDA4-4p25GE:
         - s80-t38-tg1-c4/p1 to s78-t38-sut1-c4/p1.
         - s78-t38-sut1-c4/p2 to s79-t38-sut2-c4/p2.
         - s79-t38-sut2-c4/p1 to s80-t38-tg1-c4/p2.
         - s80-t38-tg1-c4/p3 to s78-t38-sut1-c4/p3.
         - s78-t38-sut1-c4/p4 to s79-t38-sut2-c4/p4.
         - s79-t38-sut2-c4/p3 to s80-t38-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT
+    - ring3 100GE-ports e810-2CQDA2-2p100GE:
         - s80-t38-tg1-c9/p1 to s78-t38-sut1-c9/p1.
         - s78-t38-sut1-c9/p2 to s79-t38-sut2-c9/p2.
         - s79-t38-sut2-c9/p1 to s80-t38-tg1-c9/p2.
+    - ring4 100GE-ports ConnectX6-2p100GE:
+        - s80-t38-tg1-c6/p1 to s78-t38-sut1-c6/p1.
+        - s78-t38-sut1-c6/p2 to s79-t38-sut2-c6/p2.
+        - s79-t38-sut2-c6/p1 to s80-t38-tg1-c6/p2.
 ```
 
 ### 3-Node-SnowRidge (3n-snr)
