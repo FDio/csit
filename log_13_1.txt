@@ -1,0 +1,23 @@
+vrpolak@ds:~/t/t$ bash repro.sh 13 1
++ rm -rf t
+++ python3 repro.py 13 1
+16383 test cases generated
++ command='robot --dryrun --suite t --include tANDt1*ANDt0* t'
++ robot --dryrun --suite t --include 'tANDt1*ANDt0*' t
+[ ERROR ] Suite 'T' contains no tests matching tag 't AND t1* AND t0*' in suite 't'.
+
+Try --help for usage information.
+
+real    0m9.632s
+user    0m9.096s
+sys     0m0.537s
++ true
++ python --version
+Python 3.10.7
++ pip list
+Package        Version
+-------------- -------
+pip            23.1.2
+robotframework 6.1b1
+setuptools     67.8.0
+wheel          0.40.0
