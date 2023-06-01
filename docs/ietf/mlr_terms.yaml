@@ -1,0 +1,1290 @@
+mlr_legend:
+    draft03: "
+        Phrase as used in https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-03
+        Ends in question mark if the phrase does not fit the term clearly enough
+        (but perhaps still is the best fit).
+        "
+    slides116: Phrase as used in ietf116-mlrsearch.pdf (question mark if as above).
+    alternatives: "
+        Array of old phrases, phrases used in code, or other ideas.
+        In extreme cases literal_variable_name.
+        "
+    conflicts: "
+        List of phrases incompatible with this one.
+        We will have to chose which one will be included in draft04,
+        or else some other terms would need to be split to support the differences.
+        "
+    tags: "
+        Array of identifiers, so frequently occuring information
+        does not need to take space in description.
+        "
+    description: "
+        Longer text putting the term into context.
+        Useful especially for short phrases that can fit different terms.
+        May be missing entirely for self-eplanatory terms.
+        Essential terms should have description defining them precisely.
+        Other terms can have brief or even empty description.
+
+        _ in any field means the source does not have any phrase for the term.
+        Part of phrase in parens gives context (usually using other phrases).
+        "
+    definition_text: "
+        The text that will appear in new draft04 as the official definition.
+        May be missing if the exact definition is not important or not finalized yet.
+        "
+    definition_dependencies: "
+        List of phrases that need to be defined (or referenced from an RFC)
+        in draft04 before the current phrase definition can be formulated.
+        "
+
+tags_values:
+- essential: Need to be mentioned in draft04, no way to hide.
+- optional: Does help with algorithm description, but can remain hidden from draft04.
+- lowlevel: Has its place in code comments, but would be distracting in draft04.
+- obvious: English-derived from others. No need to define as a separate term.
+- goal attribute: One attribute of the search goal.
+- target attribute: One attribute of the search target.
+- trial attribute: Related to trial inputs or outputs.
+- stat attribute: One attribute of the load stat.
+- selector action: One of possible "action" states of a load selector.
+- selector flag: Additional non-exclusive part of load selector state.
+
+# TODO: rfc terms legend?
+rfc_terms:
+-   phrase: SUT
+    link: TODO
+    definition: TODO
+    tags:
+    - essential
+
+-   phrase: DUT
+    link: TODO
+    definition: TODO
+    tags:
+    - optional? essential?
+
+-   phrase: TG (Traffic Generator)
+    link: TODO
+    definition: TODO
+    tags:
+    - essential
+
+-   phrase: TA (Traffic Analyzer)
+    link: TODO
+    definition: TODO
+    tags:
+    - optional? essential?
+
+-   phrase: trial
+    link: TODO
+    definition: TODO
+    tags:
+    - essential
+
+-   phrase: trial duration
+    link: TODO
+    definition: TODO
+    tags:
+    - essential
+    - trial attribute
+
+-   phrase: constant load
+    link: TODO
+    definition: TODO
+    tags:
+    - optional
+
+-   phrase: intended load
+    link: TODO
+    definition: TODO
+    tags:
+    - essential
+    - trial attribute
+
+-   phrase: offered load
+    link: TODO
+    definition: TODO
+    tags:
+    - optional
+
+-   phrase: throughput
+    link: TODO
+    definition: TODO
+    tags:
+    - essential
+
+-   phrase: (benchmark being) conditionally compatibile with RFC2544
+    link: TODO
+    definition: TODO
+    tags:
+    - optional
+
+-   phrase: (benchmark being) unconditionally compatibile with RFC2544
+    link: TODO
+    definition: TODO
+    tags:
+    - optional
+
+-   phrase: forwarding rate
+    link: TODO
+    definition: TODO
+    tags:
+    - essential? optional?
+
+-   phrase: FRMOL
+    link: TODO
+    definition: TODO
+    tags:
+    - essential? optional?
+
+mlr_terms:
+# "attribute" as used in draft04 in general?
+-   alternatives:
+    - trial inputs
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    description: "
+        Intended load and intended duration to use in an upcoming trial measurement.
+        Other inputs (traffic profile) are assumed to be constant and set up front.
+        "
+    definition_dependencies:
+    - constant load
+    - intended load
+    - trial
+
+-   alternatives:
+    - trial loss ratio (vague about unsent frames)
+    slides116: trial loss ratio
+    draft03: trial loss ratio
+    tags:
+    - essential
+    - trial attribute
+    description: "
+        The primary quantity measured in the trial.
+        Maybe needs loss_count and offered_count as separate terms.
+
+        RFC1242 Frame Loss Rate:
+        Percentage of frames that should have been forwarded
+        by a network device under steady state (constant)
+        load that were not forwarded due to lack of
+        resources.
+
+        (RFC2544 restricts Frame Loss Rate to a type of benchmark,
+        for loads 100% of 'maximum rate', 90% and so on.)
+        "
+    definition_dependencies:
+    - trial
+    conflicts:
+    - relative loss ratio (explicit about unsent frames)
+
+-   alternatives:
+    - trial loss ratio (explicit about unsent frames)
+    slides116: trial loss ratio?
+    draft03: trial loss ratio?
+    tags:
+    - optional
+    - trial attribute
+    description: "
+        The primary quantity measured in the trial.
+        Definitely needs also unsent_count and maybe intended_count
+        as separate terms.
+        This is what the code does, but maybe we do not need
+        to mention this in draft04.
+        "
+    definition_dependencies:
+    - trial
+    - intended count?
+    - unsent count?
+    conflicts:
+    - relative loss ratio (vague about unsent frames)
+
+-   alternatives:
+    - relative forwarding rate (explicit about units)
+    slides116: forwarding rate
+    draft03: forwarding rate
+    tags:
+    - optional
+    - trial attribute
+    description: "
+        The secondary quantity measured in the trial.
+        For example if TA count packets but TG controls rate of transactions,
+        we want the packet forwarding rate to be recomputed
+        as a 'transaction success rate'.
+        "
+    definition_dependencies:
+    - trial
+    - forwarding rate (RFC)
+    conflicts:
+    - forwarding rate (RFC one not used except when defining the relative one)
+
+-   alternatives:
+    - trial duration with overheads
+    - real trial duration?
+    - offered trial duration?
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    - trial attribute
+    description: "
+        This includes also the 'silence' between 'running trials'.
+        In draft04 we may keep using intended trial duration instead
+        (and call it just trial duration).
+        "
+    definition_dependencies:
+    - trial
+    - trial duration
+
+-   alternatives:
+    - trial outputs
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    description: "
+        Quantities measured in the trial that are important for MLRsearch.
+        "
+    definition_dependencies:
+    - trial loss ratio (one of them)
+    - (relative) forwarding rate
+    - trial duration with overheads (if defined in draft04)
+
+-   alternatives:
+    - measurement
+    slides116: trial measurement
+    draft03: trial
+    tags:
+    - optional
+    description: "
+        The act of turning trial inputs into trial outputs.
+        "
+    definition_dependencies:
+    - trial inputs
+    - trial outputs
+
+-   alternatives:
+    - trial result
+    - trial attributes (bad for talking about multiple trial results)
+    slides116: trial measurement?
+    draft03: trial result?
+    tags:
+    - essential
+    description: "
+        All trial attribute values as a single composite object.
+        includes both trial inputs and trial outputs.
+        The overall result (as opposed to just output) of a trial measurement.
+        "
+    definition_dependencies:
+    - trial inputs
+    - trial outputs
+
+-   alternatives:
+    - measurer
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        A callable injectable to MLRsearch library,
+        calling it with trial inputs returns trial result.
+        "
+    definition_dependencies:
+    - trial result
+
+-   alternatives:
+    - loss ratio
+    - loss ratio goal
+    slides116: _
+    draft03: loss ratio goal
+    tags:
+    - essential
+    - goal attribute
+    description: "
+        Trial loss ratios will be compared to this value,
+        a trial will be considered bad if its loss ratio is higher than this.
+        "
+    definition_dependencies:
+    - trial loss ratio
+
+-   alternatives:
+    - good trial
+    - good trial result
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        With respect to a loss ratio goal (or loss ratio target),
+        a trial result is considered good if trial loss ratio is not larger
+        than that.
+        "
+    definition_dependencies:
+    - trial result
+    - loss ratio goal
+
+-   alternatives:
+    - bad trial
+    - bad trial result
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        With respect to a loss ratio goal (or loss ratio target),
+        a trial result is considered bad if trial loss ratio is larger
+        than that.
+        "
+    definition_dependencies:
+    - trial result
+    - loss ratio goal
+
+-   alternatives:
+    - duration sum (of a set of trials)
+    slides116: sum of durations of trials
+    draft03: _
+    tags:
+    - optional
+    description: "
+        For a set of trial results, this is the sum of their duration
+        (with overheads if mentioned in draft04).
+        "
+    - trial result
+
+# HERE.
+
+-   alternatives:
+    - exceed ratio
+    - exceed ratio goal
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - goal attribute
+    description: "
+        At most this fraction of seconds coming from current trial duration trials
+        can come from bad trials and still be classified as upper bound.
+        If there are shorted duration trials, the logic is more complicated.
+        "
+    # TODO: Do we need "good trial" and "bad trial" as separate essential terms?
+
+-   alternatives:
+    - interval width
+    - relative width
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    description: "
+        General term. Should be specified if it relates to input, output
+        or internal state.
+        For a pair (lower and higher) of load values,
+        the relative width is their difference divided by the higher value.
+        "
+
+-   alternatives:
+    - relative width
+    slides116: _
+    draft03: precision goal
+    tags:
+    - essential
+    - goal attribute
+    description: "
+        Relevant bounds need to be this close before conditional throughput
+        can be reported.
+        "
+
+-   alternatives:
+    - single_duration_min
+    - initial trial duration
+    slides116: _
+    draft03: _
+    tags:
+    - essential? optional?
+    - goal attribute
+    description: "
+        MLRsearch is allowed to use trials as short as this when focusing
+        on this goal.
+        "
+    # TODO: Define what "focusing on a goal" is? I bet that is an optional term.
+
+-   alternatives:
+    - single_duration_max
+    - final trial duration
+    - full length tral duration (RFC2544)
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - goal attribute
+    description: "
+        MLRsearch is allowed to use trials as long as this when focusing
+        on this goal. If more data is needed, trials at this duration
+        can be repeated.
+        "
+
+-   alternatives:
+    - sum_duration_min
+    - min duration sum
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - goal attribute
+    description: "
+        If the sum of all (good and bad) long trials is at least this
+        (and there are no short trials), then the load is guaranteed
+        to be classified as an upper or lower bound.
+        In some cases, the classification is known sooner,
+        when the "missing" trials cannot change the outcome.
+        When short trials are present, the logic is more complicated.
+        "
+
+-   alternatives:
+    - intermediate_phases
+    - preceding targets
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - goal attribute
+    description: "
+        How many additional non-final targets to add.
+        each next preceding target has double width
+        and min duration sum closer to initial trial duration.
+        "
+
+-   alternatives:
+    - search goal
+    - goal
+    - criterion
+    - user goal
+    - input goal
+    - goal specification
+    slides116: _
+    draft03: search goal?
+    tags:
+    - essential
+    description: "
+        Consist of goal attributes.
+        User input contains multiple goals (plus some global values).
+        Each goal will get its conditional throughput discovered
+        and reported at the end of the search.
+        "
+
+-   alternatives:
+    - config
+    - user input (as a whole)
+    - user config
+    slides116: _
+    draft03: main inputs
+    tags:
+    - essential? obvious?
+
+-   alternatives:
+    - initial trials
+    - initial phase
+    slides116: pre-initialization?
+    draft03: initial phase (3 measurements)
+    tags:
+    - essential
+    description: "
+        They need to fit several different initial targets at once.
+        Duration is the largest among initial trial durations,
+        loads are computed from forwarding rate an smallest loss ratio goal.
+        "
+
+-   alternatives:
+    - target specification
+    slides116: target
+    draft03: _
+    tags:
+    - essential
+    description: "
+        Similar, but distinct to search goal.
+        Each search goal prescribes a "final" target,
+        probably with a "chain" of "preceding" targets.
+        "
+
+-   alternatives:
+    - to reach (a target)
+    slides116: to achieve (a target)
+    draft03: _
+    tags:
+    - essential?
+    description: "
+        No more trials are required for this target.
+        For final targets it means the corresponding goal is reached.
+        The same as selector reaching state done.
+        "
+
+-   alternatives:
+    - target loss ratio
+    slides116: loss ratio
+    draft03: current loss ratio goal
+    tags:
+    - essential
+    - target attribute
+    description: Same as loss ratio of the corresponding goal.
+
+-   alternatives:
+    - target exceed ratio
+    slides116: exceed ratio
+    draft03: _
+    tags:
+    - essential
+    - target attribute
+    description: Same as exceed ratio of the corresponding goal.
+
+-   alternatives:
+    - discrete_width
+    - target width
+    - relative width
+    slides116: width
+    draft03: current precision goal
+    tags:
+    - essential
+    - target attribute
+    description: Doubled from goal width for each level of preceding target.
+
+-   alternatives:
+    - sum_duration_whole
+    slides116: min duration sum
+    draft03: _
+    tags:
+    - essential
+    - target attribute
+    description: "
+        Interpolated between initial target duration and goal min duration sum.
+        "
+
+-   alternatives:
+    - single_duration_whole
+    slides116: main trial duration
+    draft03: current trial duration
+    tags:
+    - essential
+    - target attribute
+    description: Smaller of goal final trial duration and target min duration sum.
+
+-   alternatives:
+    - abide_dursum_full
+    - good long
+    - GL
+    slides116: good longer
+    draft03: _
+    tags:
+    - essential
+    - stat attribute
+    description: "
+        Sum of durations of all trials at this load which are good and long
+        (with respect to the current target).
+        "
+
+-   alternatives:
+    - exceed_dursum_full
+    - bad long
+    - BL
+    slides116: bad longer
+    draft03: _
+    tags:
+    - essential
+    - stat attribute
+    description: "
+        Sum of durations of all trials at this load which are bad and long
+        (with respect to the current target).
+        "
+
+-   alternatives:
+    - abide_dursum_short
+    - good short
+    - GS
+    slides116: good shorter
+    draft03: _
+    tags:
+    - essential
+    - stat attribute
+    description: "
+        Sum of durations of all trials at this load which are good and short
+        (with respect to the current target).
+        "
+
+-   alternatives:
+    - exceed_dursum_full
+    - bad short
+    - BS
+    slides116: bad shorter
+    draft03: _
+    tags:
+    - essential
+    - stat attribute
+    description: "
+        Sum of durations of all trials at this load which are bad and short
+        (with respect to the current target).
+        "
+
+-   alternatives:
+    - target tracker
+    - load selector
+    - candidate selector
+    slides116: selector
+    draft03: _
+    tags:
+    - essential
+    description: "
+        A stateful object (a finite state machine).
+        Initialized for a current target and its preceding target (if any).
+        Internal state consists of "actions" and "flags".
+        External state is the actual relevant bounds for both targets
+        (current and previous).
+        After accepting a trial result, each selector can nominate
+        one candidate (or no candidate) for the next trial measurement.
+        "
+
+-   alternatives: []
+    slides116: waiting (selector state)
+    draft03: _
+    tags:
+    - essential
+    - selector action
+    description: Not enough relevant bounds, no candidate.
+
+-   alternatives:
+    - halving (selector state)
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - selector action
+    description: "
+        Preceding target just got done. Candidate is between the relevant bounds.
+        "
+
+-   alternatives:
+    - remeasuring (selector state)
+    - refining (upper or lower)
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - selector action
+    description: "
+        Only one bound for the current target is available.
+        Candidate is the other bound from the previous target.
+        "
+
+-   alternatives:
+    - extending (selector state)
+    - external search (up or down)
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - selector action
+    description: "
+        Refined already by the other bound for the current target is still missing.
+        Nominate new candidate according to external search.
+        "
+
+-   alternatives:
+    - bisecting (selector state)
+    slides116: _
+    draft03: _
+    tags:
+    - essential
+    - selector action
+    description: "
+        Both bound for the current target are available, but they are too far
+        from each other. Candidate is in the middle.
+        "
+
+-   alternatives: []
+    slides116: done (selector state)
+    draft03: _
+    tags:
+    - essential
+    - selector action
+    description: "
+        Both bounds for the current target are available and close enough together.
+        No candidate.
+        "
+
+-   alternatives: []
+    slides116: an upper bound (relative to a target)
+    draft03: upper bound?
+    tags:
+    - essential? optional?
+    description: "
+        Any load classified (according to a target) as an upper bound.
+        "
+
+-   alternatives: []
+    slides116: the tightest upper bound (relative to a target)
+    draft03: _
+    tags:
+    - essential
+    description: "
+        The lowest load that is an upper bound.
+        "
+
+-   alternatives: []
+    slides116: a lower bound (relative to a target)
+    draft03: lower bound?
+    tags:
+    - essential? optional?
+    description: "
+        Any load classified as a lower bound.
+        "
+
+-   alternatives: []
+    slides116: the tightest lower bound (relative to a target)
+    draft03: _
+    tags:
+    - essential
+    description: "
+        The highest load that is a lower bound AND lower than any upper bound.
+        "
+
+-   alternatives:
+    - bounds
+    - relevant bounds
+    slides116: _
+    draft03: current interval
+    tags:
+    - essential? optional?
+    description: "
+        A pair consisting of the tightest lower bound and the tightest upper bound.
+        This will become the target final output,
+        but only has internal uses when target is not done yet.
+        Selectors rely only on the relevant bounds
+        (as opposed to individual classification results).
+        "
+
+-   alternatives: []
+    slides116: current target (for a selector)
+    draft03: _
+    tags:
+    - essential
+    description: "
+        This is the target this selector tries to achieve.
+        "
+
+-   alternatives:
+    - previous target (for a selector)
+    - coarser?
+    slides116: preceding target
+    draft03: _
+    tags:
+    - essential
+    description: "
+        Relevant bounds for this target are used as a hint
+        when the current bound does not have enough of its relevant bounds.
+        "
+
+-   alternatives: []
+    slides116: candidate load (as chosen by selector)
+    draft03: _
+    tags:
+    - essential
+    description: "
+        In fact, this is a pair of the chosen (intended) load
+        and the current target trial duration.
+        Candidates have defined ordering, to simplify finding the winner.
+        "
+
+-   alternatives:
+    - to perform (a trial)
+    - to measure (a trial)
+    - to execute (a trial)
+    - to run (a trial, RFC2544)
+    slides116: to perform (a trial measurement)
+    draft03: to perform (a trial measurement)
+    tags:
+    - optional
+    description: "
+        Start traffic at intended load for intended duration,
+        return measured trial loss ratio.
+        "
+
+-   alternatives:
+    - trial duration (generic)
+    slides116: _
+    draft03: _
+    tags:
+    - optional? obvious?
+    description: "
+        Seems to be treated as obvious in both RFC1242 and RFC2544,
+        "
+
+-   alternatives:
+    - trial duration (intended, selected)
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        TG is told to use this value, based on input parameters.
+        "
+
+-   alternatives:
+    - trial duration (offered, measured)
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        This is the trial duration summed in load stat attributes.
+        It includes any "delays" and "overheads" from TG and TA
+        even if there was no traffic flowing during them.
+        "
+
+-   alternatives:
+    - trial load (intended, selected)
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        TG is told to use this value.
+        Bidirectional, or even multidirectional if SUT has more than 2 ports
+        (and unless the "traffic profile" does not specify otherwise).
+        TA should use this value (and intended trial duration)
+        to compute the expected "zero loss" number of frames (rounded),
+        and compute the packet loss according to that.
+        "
+
+-   alternatives:
+    - trial load (offered, measured)
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        MLRsearch is not ready to handle situations where this is visibly
+        different than intended trial load. Some discrepancy is expected,
+        as most duration*load combinations result in non-integer number
+        of frames to send.
+        Specifically, unsent frames are still counted as lost.
+        "
+
+-   alternatives:
+    - to reach (a goal)
+    - to finalize (a goal)
+    slides116: _
+    draft03: to satisfy (a goal)
+    tags:
+    - optional
+    description: "
+        A goal is reached when return values for this goal are known
+        (relevant bounds for final target exist and are close enough together).
+        Other goals may need more trials to finalize.
+        "
+
+-   alternatives:
+    - min load
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        Self-explanatory. Example of a global field.
+        MLRsearch never measures at a load lower than this.
+        MLRsearch output may contain this as the tightest lower bound
+        even if the exceed ratio was "overstepped",
+        signalizing the SUT does not even reach the minimal performance.
+        "
+
+-   alternatives:
+    - max load
+    - max rate
+    - maximal load
+    - maximal offered load
+    - maximal intended load
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        MLRsearch never measures at a load higher than this.
+        MLRsearch output may contain this as the tightest upper bound
+        even if the exceed ratio was not "overstepped",
+        signalling SUT performs weel even at max load.
+        "
+
+-   alternatives:
+    - interval
+    - load interval
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        The tightest lower bound (or min load) and the tightest upper bound
+        (or max load). Maybe both are the same (e.g. zero loss on max load).
+        Mostly internal term, but relates to relative width (goal attribute).
+        Also, currently the outputs are describes in terms of intervals.
+        "
+
+-   alternatives:
+    - search_duration_max
+    - timeout
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        Fail if whole search (maybe except the last trial) takes longer than this.
+        "
+
+-   alternatives:
+    - expansion_coefficient (of a goal)
+    slides116: _
+    draft03: expansion coefficient
+    tags:
+    - optional
+    - goal attribute
+    description: "
+        Multiply the current width by this when doing external search.
+        "
+
+-   alternatives:
+    - expansion_coefficient (of a target)
+    slides116: _
+    draft03: expansion coefficient
+    tags:
+    - optional
+    - target attribute
+    description: Same as expansion coefficient of the corresponding goal.
+
+-   alternatives:
+    - load stat
+    slides116: load classification?
+    draft03: _
+    tags:
+    - optional
+    description: "
+        The four stat attributes form a single "stat" for a single load and target.
+        Set of stats for single load and all targets is "load stats" instead.
+        "
+
+-   alternatives:
+    - classification (as a process)
+    slides116: load classification
+    draft03: _
+    tags:
+    - optional
+    # Eliminate?
+
+-   alternatives:
+    - classification (as a result)
+    slides116: load classification
+    draft03: _
+    tags:
+    - optional
+    # Eliminate?
+
+-   alternatives: []
+    slides116: load classifier
+    draft03: _
+    tags:
+    - optional
+    # Eliminate?
+
+-   alternatives:
+    - load stats
+    slides116: quantities?
+    draft03: _
+    tags:
+    - optional
+    description: "
+        Equivalent to load classifier, but described not as an actor,
+        just as a data-like object with added classification function.
+        This specific object describes a single load but all targets.
+        "
+
+-   alternatives:
+    - to nominate (a candidate)
+    slides116: to propose (a candidate)
+    draft03: _
+    tags:
+    - optional
+    description: "
+        The act of a selector, to pick its candidate.
+        "
+
+-   alternatives:
+    - chosen load (among selectors)
+    - chosen candidate
+    - winning candidate
+    - winner (as candidate)
+    slides116: _
+    draft03: _
+    tags:
+    - optional
+    description: "
+        Lowest load among candidates, longer duration if tied.
+        "
+
+-   alternatives: []
+    slides116: final target
+    draft03: _
+    tags:
+    - optional? obvious?
+    description: "
+        The target with width and main trial duration values copied from a goal.
+        "
+
+-   alternatives:
+    - (a goal) corresponding to (a final target)
+    slides116: _
+    draft03: _
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - (a final target) corresponding to (a goal)
+    slides116: _
+    draft03: _
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - (a perhaps non-final target) associated with (a goal)
+    - (a perhaps non-final target) belonging to (a goal)
+    slides116: _
+    draft03: _
+    tags:
+    - optional? obvious?
+
+-   alternatives:
+    - prev_width
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel? optional?
+    description: "
+        Width expansion in external search is tracked here,
+        because current (and previous) bounds can be changed unpredictably
+        by other selectors winning.
+        "
+
+-   alternatives:
+    - generated targets
+    slides116: derived targets?
+    draft03: _
+    tags:
+    - lowlevel? optional?
+    description: "
+        All targets used in MLRsearch.
+        Final ones from goals and non-final as chains of preceding targets.
+        "
+
+-   alternatives:
+    - non-final target
+    slides116: _
+    draft03: _
+    tags:
+    - optional? lowlevel? obvious?
+
+-   alternatives: []
+    slides116: initial target
+    draft03: _
+    tags:
+    - optional? lowlevel? obvious?
+    description: "
+        Not to be confused with initial measurements.
+        "
+
+-   alternatives:
+    - goals
+    - criteria
+    slides116: _
+    draft03: (loss ratio) goals
+    tags:
+    - optional? lowlevel? obvious?
+    description: "
+        The set/list of individual goals.
+        The same as all user inputs without global fields.
+        "
+
+-   alternatives:
+    - global field (one of them)
+    - global parameter
+    - global input parameter
+    slides116: _
+    draft03: (input) parameter?
+    tags:
+    - lowlevel
+
+-   alternatives:
+    - whole search
+    slides116: _
+    draft03: _
+    tags:
+    - obvious
+
+-   alternatives:
+    - warmup duration
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+
+-   alternatives:
+    - coarser
+    - preceding
+    slides116: preceding target
+    draft03: _
+    tags:
+    - lowlevel
+    - target attribute
+    description: "
+        Reference to a different target (non-final) belonging to the same goal.
+        If empty, the current target is an initial target.
+        The reference points to the next target in a chain,
+        the one with doubled width.
+        "
+
+-   alternatives:
+    - winner (as selector)
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    - selector flag
+    description: "
+        In current code, a selector behaved differently depending on
+        whether his previous candidate became the winner or not.
+        Possible logic error (or just inefficiencies) if other selector
+        candidate won but caused the same change in classifications
+        as if this selector cadidate won.
+        "
+
+-   alternatives:
+    - halved (as additional selector state)
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    - selector flag
+    description: "
+        In current code, a selector does not only rely on classifications
+        and its current "action" (and winner status), it also tracks
+        whether a particular action already succeeded
+        (so it is not started again when other candidate trials change
+        the classifications).
+        "
+
+-   alternatives:
+    - refined (as additional selector state) high
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - refined (as additional selector state) low
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - prev_candidate (just for winner detection)
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - prev_action (also affects selector behavior)
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    - selector flag
+
+-   alternatives:
+    - rounding (as a computation)
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    description: "
+        The code uses "rounding" to convert from float values (load or width)
+        to integers, so arithmetic has no rounding errors.
+        "
+
+-   alternatives:
+    - rounding (as a singular mutable object referenced in many places in code)
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    description: "
+        A helper object used to perform rounding computations.
+        Implemented as a growable table, as the number of possible
+        integer values is not very high in practice.
+        "
+
+-   alternatives:
+    - measurement database
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    description: "
+        A central place where trial results are added,
+        and load stats for all targets are tracked,
+        so it can be efficiently queried for tightest upper and lower bound.
+        "
+
+-   alternatives:
+    - target scaling
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    description: "
+        The process of generating targets from goals.
+        Internal code functionality, definitely too low-level for draft04.
+        "
+
+-   alternatives:
+    - trimmed load stats
+    - load stat?
+    slides116: _
+    draft03: _
+    tags:
+    - lowlevel
+    description: "
+        Database tracks "full stats", e.g. for a load it can classify
+        according to all generated targets.
+        But when queried, database responds to a single target
+        so only stats for classifying that target are useful in debugging.
+        Once again, perhaps too low level.
+        But visible in MLRsearch return object, so needs a name in docstrings.
+        "
+
+-   alternatives:
+    - MGsearch (multiple goal search)?
+    - MTsearch (multiple target search)?
+    slides116: MLRsearch
+    draft03: MLRsearch
+    tags:
+    - essential
+
+-   alternatives: []
+    slides116: contitional throughput
+    draft03: conditional throughput
+    tags:
+    - essential
+    description: "
+        For each final target, the conditional throughput
+        is the average forwarding rate (across good longer trials)
+        measured at the highest (offered load classified as) lower bound.
+        "
