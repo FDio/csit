@@ -766,7 +766,9 @@ class Topology:
         # find link
         for node_data in nodes_info.values():
             # skip self
-            if node_data[u"host"] == node[u"host"]:
+            l_hash = node_data[u"host"]+str(node_data[u"port"])
+            r_hash = node[u"host"]+str(node[u"port"])
+            if l_hash == r_hash:
                 continue
             for if_key, if_val \
                     in node_data[u"interfaces"].items():
