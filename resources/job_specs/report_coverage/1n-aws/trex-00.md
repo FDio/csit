@@ -5,19 +5,19 @@
 - AND 1518b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4base-tg
 - AND 9000b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4base-tg
 - AND imix AND ndrpdr AND nitro-50g AND - AND ethip4-ip4base-tg
-##### ethip4-ip4scale2m-tg
-- AND 64b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale2m-tg
-- AND 1518b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale2m-tg
-- AND 9000b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale2m-tg
-- AND imix AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale2m-tg
+##### ethip4-ip4scale20k-tg
+- AND 64b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale20k-tg
+- AND 1518b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale20k-tg
+- AND 9000b AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale20k-tg
+- AND imix AND ndrpdr AND nitro-50g AND - AND ethip4-ip4scale20k-tg
 ## ./ip6
 ##### ethip6-ip6base-tg
 - AND 78b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6base-tg
 - AND 1518b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6base-tg
 - AND 9000b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6base-tg
 - AND imix AND ndrpdr AND nitro-50g AND - AND ethip6-ip6base-tg
-##### ethip6-ip6scale2m-tg
-- AND 78b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale2m-tg
-- AND 1518b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale2m-tg
-- AND 9000b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale2m-tg
-- AND imix AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale2m-tg
+##### ethip6-ip6scale20k-tg
+- AND 78b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale20k-tg
+- AND 1518b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale20k-tg
+- AND 9000b AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale20k-tg
+- AND imix AND ndrpdr AND nitro-50g AND - AND ethip6-ip6scale20k-tg
