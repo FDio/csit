@@ -16,6 +16,24 @@
       "message": "The \"unit\" should be detected automatically from input data.",
       "revId": "4047989473361265ae75866ba4940e8fd30f6245",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34048844_5b53164f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-02T12:54:19Z",
+      "side": 1,
+      "message": "There is a new computation in patch set #6 now. The detection is not entirely automatic (requires another constant), but the default behavior should be good enough for now.",
+      "parentUuid": "bd941ec5_1087dc07",
+      "revId": "4047989473361265ae75866ba4940e8fd30f6245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
