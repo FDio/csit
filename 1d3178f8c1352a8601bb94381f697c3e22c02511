@@ -33,6 +33,23 @@
       "message": "csit-trex-report-cov-1n-aws-perftest trex-00",
       "revId": "1d3178f8c1352a8601bb94381f697c3e22c02511",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47abdaf3_342a59c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-06-02T11:00:09Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-1n-aws-perftest trex-ndrpdr-00",
+      "revId": "1d3178f8c1352a8601bb94381f697c3e22c02511",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
