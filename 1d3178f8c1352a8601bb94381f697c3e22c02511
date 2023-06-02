@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b575f421_76556c8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-06-02T08:07:38Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-1n-aws-perftest trex-mrr-00",
+      "revId": "1d3178f8c1352a8601bb94381f697c3e22c02511",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
