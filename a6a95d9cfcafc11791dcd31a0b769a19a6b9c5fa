@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1b72447_43b165c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-06-02T05:28:47Z",
+      "side": 1,
+      "message": "csit-trex-report-cov-1n-aws-perftest trex-00",
+      "revId": "a6a95d9cfcafc11791dcd31a0b769a19a6b9c5fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
