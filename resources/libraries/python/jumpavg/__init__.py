@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,8 @@
 __init__ file for "jumpavg" Python package.
 """
 
-from .AvgStdevStats import AvgStdevStats
-from .BitCountingStats import BitCountingStats
-from .BitCountingGroup import BitCountingGroup
-from .BitCountingGroupList import BitCountingGroupList
+from .avg_stdev_stats import AvgStdevStats
+from .bit_counting_stats import BitCountingStats
+from .bit_counting_group import BitCountingGroup
+from .bit_counting_group_list import BitCountingGroupList
 from .classify import classify

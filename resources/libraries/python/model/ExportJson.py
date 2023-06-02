@@ -30,7 +30,7 @@ from robot.libraries.BuiltIn import BuiltIn
 from zlib import compress
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.jumpavg.AvgStdevStats import AvgStdevStats
+from resources.libraries.python.jumpavg import AvgStdevStats
 from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version, export_tg_type_and_version
 )
