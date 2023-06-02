@@ -33,6 +33,7 @@ RUN apt-get -q update \
         libapr1 \
         libblas-dev \
         libffi-dev \
+        libibverbs-dev \
         liblapack-dev \
         libmbedcrypto7 \
         libmbedtls14 \
@@ -57,6 +58,7 @@ RUN apt-get -q update \
         python3-setuptools \
         python3-virtualenv \
         qemu-system \
+        rdma-core \
         rsyslog \
         screen \
         socat \

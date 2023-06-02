@@ -4,6 +4,8 @@ services:
     build:
       context: "base/"
       dockerfile: "Dockerfile"
+    cap_add:
+      - NET_RAW
     command: ["/usr/sbin/sshd","-D", "-p", "6001"]
     expose:
       - "6001"
@@ -47,6 +49,8 @@ services:
     build:
       context: "base/"
       dockerfile: "Dockerfile"
+    cap_add:
+      - NET_RAW
     command: ["/usr/sbin/sshd","-D", "-p", "6002"]
     expose:
       - "6002"
