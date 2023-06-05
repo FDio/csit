@@ -6,6 +6,8 @@ weight: 2
 # CSIT 23.06 - DPDK Performance
 
 1. TEST FRAMEWORK
+   - **CSIT test environment** version has been updated to ver. 12, see
+     [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 2. DPDK PERFORMANCE TESTS
 3. DPDK RELEASE VERSION CHANGE
 
