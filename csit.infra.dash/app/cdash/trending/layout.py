@@ -885,10 +885,9 @@ class Layout:
                             dbc.Accordion(
                                 children=acc_items,
                                 class_name="g-0 p-0",
+                                start_collapsed=True,
                                 always_open=True,
-                                flush=True,
-                                active_item=\
-                                    [f"item-{i}" for i in range(len(acc_items))]
+                                flush=True
                             ),
                             class_name="g-0 p-0"
                         ),
@@ -934,8 +933,8 @@ class Layout:
             dbc.Accordion(
                 panels,
                 class_name="g-0 p-1",
-                always_open=True,
-                active_item=[f"item-{i}" for i in range(len(panels))]
+                start_collapsed=True,
+                always_open=True
             )
         )
 
