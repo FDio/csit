@@ -16,6 +16,23 @@
       "message": "csit-dpdk-report-iter-3na-spr-perftest dpdk-ndrpdr-00",
       "revId": "3838ff5fb81beeacf4b94d5edf3f4b0031faebb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c71242d_05bf0b90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-06-05T05:25:34Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-2n-spr-perftest trex-ndrpdr-00",
+      "revId": "3838ff5fb81beeacf4b94d5edf3f4b0031faebb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
