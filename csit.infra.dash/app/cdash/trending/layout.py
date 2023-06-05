@@ -693,45 +693,38 @@ class Layout:
             style=C.STYLE_DISABLED,
         )
 
-    def _plotting_area_trending(
-            self,
-            tests: list,
-            normalize: bool
-        ) -> dbc.Col:
+    @staticmethod
+    def _plotting_area_trending(graphs: list) -> dbc.Col:
         """Generate the plotting area with all its content.
 
-        :param tests: A list of tests to be displayed in the trending graphs.
-        :param normalize: If True, the data in graphs is normalized.
-        :type tests: list
-        :type normalize: bool
+        :param graphs: A list of graphs to be displayed in the trending page.
+        :type graphs: list
         :returns: A collumn with trending graphs (tput and latency) in tabs.
         :rtype: dbc.Col
         """
-        if not tests:
+        if not graphs:
             return C.PLACEHOLDER
 
-        figs = graph_trending(self._data, tests, self._graph_layout, normalize)
-
-        if not figs[0]:
+        if not graphs[0]:
             return C.PLACEHOLDER
 
         tab_items = [
             dbc.Tab(
                 children=dcc.Graph(
                     id={"type": "graph", "index": "tput"},
-                    figure=figs[0]
+                    figure=graphs[0]
                 ),
                 label="Throughput",
                 tab_id="tab-tput"
             )
         ]
 
-        if figs[1]:
+        if graphs[1]:
             tab_items.append(
                 dbc.Tab(
                     children=dcc.Graph(
                         id={"type": "graph", "index": "lat"},
-                        figure=figs[1]
+                        figure=graphs[1]
                     ),
                     label="Latency",
                     tab_id="tab-lat"
@@ -781,7 +774,7 @@ class Layout:
                             close_button=False
                         ),
                         dbc.Spinner(
-                            dbc.ModalBody(self._get_telemetry_step_1()),
+                            dbc.ModalBody(Layout._get_telemetry_step_1()),
                             delay_show=2 * C.SPINNER_DELAY
                         ),
                         dbc.ModalFooter([
@@ -819,7 +812,7 @@ class Layout:
                             close_button=False
                         ),
                         dbc.Spinner(
-                            dbc.ModalBody(self._get_telemetry_step_2()),
+                            dbc.ModalBody(Layout._get_telemetry_step_2()),
                             delay_show=2 * C.SPINNER_DELAY
                         ),
                         dbc.ModalFooter([
@@ -856,10 +849,15 @@ class Layout:
     @staticmethod
     def _plotting_area_telemetry(graphs: list) -> dbc.Col:
         """Generate the plotting area with telemetry.
+
+        :param graphs: A list of graphs to be displayed in the telemetry page.
+        :type graphs: list
+        :returns: A collumn with telemetry trending graphs.
+        :rtype: dbc.Col
         """
         if not graphs:
             return C.PLACEHOLDER
-        
+
         def _plural(iterative):
             return "s" if len(iterative) > 1 else str()
 
@@ -1099,10 +1097,12 @@ class Layout:
                 store = {
                     "control-panel": dict(),
                     "selected-tests": list(),
+                    "trending-graphs": None,
                     "telemetry-data": dict(),
                     "selected-metrics": dict(),
                     "telemetry-panels": list(),
                     "telemetry-all-in-one": list(),
+                    "telemetry-graphs": list(),
                     "url": str()
                 }
 
@@ -1200,6 +1200,8 @@ class Layout:
                         "cl-normalize-val": normalize,
                         "btn-add-dis": False
                     })
+                    store["trending-graphs"] = None
+                    store["telemetry-graphs"] = list()
                     on_draw[0] = True
                     if telemetry:
                         tm = TelemetryData(store_sel)
@@ -1210,6 +1212,7 @@ class Layout:
                         on_draw[1] = True
             elif trigger.type == "normalize":
                 ctrl_panel.set({"cl-normalize-val": trigger.value})
+                store["trending-graphs"] = None
                 on_draw[0] = True
             elif trigger.type == "ctrl-dd":
                 if trigger.idx == "dut":
@@ -1347,14 +1350,19 @@ class Layout:
                     f"cl-{param}-val": val_sel,
                     f"cl-{param}-all-val": val_all,
                 })
-                if all((ctrl_panel.get("cl-core-val"), 
+                if all((ctrl_panel.get("cl-core-val"),
                         ctrl_panel.get("cl-frmsize-val"),
                         ctrl_panel.get("cl-tsttype-val"), )):
                     ctrl_panel.set({"btn-add-dis": False})
                 else:
                     ctrl_panel.set({"btn-add-dis": True})
             elif trigger.type == "ctrl-btn":
-                on_draw[0] = True
+                tm_panels = list()
+                tm_all_in_one = list()
+                store["trending-graphs"] = None
+                store["telemetry-graphs"] = list()
+                # on_draw[0] = True
+                on_draw = [True, True]
                 if trigger.idx == "add-test":
                     dut = ctrl_panel.get("dd-dut-val")
                     phy = ctrl_panel.get("dd-phy-val")
@@ -1500,6 +1508,7 @@ class Layout:
             elif trigger.type == "tm-btn-remove":
                 del tm_panels[trigger.idx]
                 del tm_all_in_one[trigger.idx]
+                del store["telemetry-graphs"][trigger.idx]
                 tm.from_json(tm_data)
                 on_draw = [True, True]
 
@@ -1514,20 +1523,36 @@ class Layout:
             if on_draw[0]:  # Trending
                 if store_sel:
                     lg_selected = get_list_group_items(store_sel, "sel-cl")
-                    plotting_area_trending = self._plotting_area_trending(
-                        store_sel,
-                        bool(ctrl_panel.get("cl-normalize-val"))
-                    )
-                    if on_draw[1]:  # Telemetry
-                        tm_graphs = list()
-                        for panel, aio in zip(tm_panels, tm_all_in_one):
-                            tm_graphs.append(graph_tm_trending(
-                                tm.select_tm_trending_data(panel),
+                    if store["trending-graphs"]:
+                        graphs = store["trending-graphs"]
+                    else:
+                        graphs = graph_trending(
+                            self._data,
+                            store_sel,
+                            self._graph_layout,
+                            bool(ctrl_panel.get("cl-normalize-val"))
+                        )
+                        if graphs and graphs[0]:
+                            store["trending-graphs"] = graphs
+                    plotting_area_trending = \
+                        Layout._plotting_area_trending(graphs)
+
+                    # Telemetry
+                    start_idx = len(store["telemetry-graphs"])
+                    end_idx = len(tm_panels)
+                    if not end_idx:
+                        plotting_area_telemetry = C.PLACEHOLDER
+                    elif on_draw[1] and (end_idx >= start_idx):
+                        for idx in range(start_idx, end_idx):
+                            store["telemetry-graphs"].append(graph_tm_trending(
+                                tm.select_tm_trending_data(tm_panels[idx]),
                                 self._graph_layout,
-                                bool(aio[0])
+                                bool(tm_all_in_one[idx][0])
                             ))
                         plotting_area_telemetry = \
-                            Layout._plotting_area_telemetry(tm_graphs)
+                            Layout._plotting_area_telemetry(
+                                store["telemetry-graphs"]
+                            )
                     col_plotting_area = C.STYLE_ENABLED
                     row_card_sel_tests = C.STYLE_ENABLED
                     row_btns_sel_tests = C.STYLE_ENABLED
