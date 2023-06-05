@@ -693,11 +693,8 @@ class Layout:
             style=C.STYLE_DISABLED,
         )
 
-    def _plotting_area_trending(
-            self,
-            tests: list,
-            normalize: bool
-        ) -> dbc.Col:
+    @staticmethod
+    def _plotting_area_trending(figs: list) -> dbc.Col:
         """Generate the plotting area with all its content.
 
         :param tests: A list of tests to be displayed in the trending graphs.
@@ -707,10 +704,8 @@ class Layout:
         :returns: A collumn with trending graphs (tput and latency) in tabs.
         :rtype: dbc.Col
         """
-        if not tests:
+        if not figs:
             return C.PLACEHOLDER
-
-        figs = graph_trending(self._data, tests, self._graph_layout, normalize)
 
         if not figs[0]:
             return C.PLACEHOLDER
@@ -781,7 +776,7 @@ class Layout:
                             close_button=False
                         ),
                         dbc.Spinner(
-                            dbc.ModalBody(self._get_telemetry_step_1()),
+                            dbc.ModalBody(Layout._get_telemetry_step_1()),
                             delay_show=2 * C.SPINNER_DELAY
                         ),
                         dbc.ModalFooter([
@@ -819,7 +814,7 @@ class Layout:
                             close_button=False
                         ),
                         dbc.Spinner(
-                            dbc.ModalBody(self._get_telemetry_step_2()),
+                            dbc.ModalBody(Layout._get_telemetry_step_2()),
                             delay_show=2 * C.SPINNER_DELAY
                         ),
                         dbc.ModalFooter([
@@ -1099,10 +1094,12 @@ class Layout:
                 store = {
                     "control-panel": dict(),
                     "selected-tests": list(),
+                    "trending-graphs": None,
                     "telemetry-data": dict(),
                     "selected-metrics": dict(),
                     "telemetry-panels": list(),
                     "telemetry-all-in-one": list(),
+                    "telemetry-graphs": list(),
                     "url": str()
                 }
 
@@ -1200,6 +1197,7 @@ class Layout:
                         "cl-normalize-val": normalize,
                         "btn-add-dis": False
                     })
+                    store["trending-graphs"] = None
                     on_draw[0] = True
                     if telemetry:
                         tm = TelemetryData(store_sel)
@@ -1210,6 +1208,7 @@ class Layout:
                         on_draw[1] = True
             elif trigger.type == "normalize":
                 ctrl_panel.set({"cl-normalize-val": trigger.value})
+                store["trending-graphs"] = None
                 on_draw[0] = True
             elif trigger.type == "ctrl-dd":
                 if trigger.idx == "dut":
@@ -1354,6 +1353,7 @@ class Layout:
                 else:
                     ctrl_panel.set({"btn-add-dis": True})
             elif trigger.type == "ctrl-btn":
+                store["trending-graphs"] = None
                 on_draw[0] = True
                 if trigger.idx == "add-test":
                     dut = ctrl_panel.get("dd-dut-val")
@@ -1514,10 +1514,19 @@ class Layout:
             if on_draw[0]:  # Trending
                 if store_sel:
                     lg_selected = get_list_group_items(store_sel, "sel-cl")
-                    plotting_area_trending = self._plotting_area_trending(
-                        store_sel,
-                        bool(ctrl_panel.get("cl-normalize-val"))
-                    )
+                    if store["trending-graphs"]:
+                        graphs = store["trending-graphs"]
+                    else:
+                        graphs = graph_trending(
+                            self._data,
+                            store_sel,
+                            self._graph_layout,
+                            bool(ctrl_panel.get("cl-normalize-val"))
+                        )
+                        if graphs and graphs[0]:
+                            store["trending-graphs"] = graphs
+                    plotting_area_trending = \
+                        Layout._plotting_area_trending(graphs)
                     if on_draw[1]:  # Telemetry
                         tm_graphs = list()
                         for panel, aio in zip(tm_panels, tm_all_in_one):
