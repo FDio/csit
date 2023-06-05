@@ -78,6 +78,10 @@
 1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
 2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
 4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+4c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
 ## ./ip4
 ### intel-x520-da2
 #### dpdk-vfio-pci
@@ -112,6 +116,10 @@
 1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
 2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
 4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
+##### ethip4gtpusw-ip4base-reassembly
+1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4gtpusw-ip4base-reassembly
+2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4gtpusw-ip4base-reassembly
+4c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4gtpusw-ip4base-reassembly
 ## ./ip6
 ### intel-x520-da2
 #### dpdk-vfio-pci
