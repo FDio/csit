@@ -502,7 +502,7 @@ def graph_tm_trending(
                         anomaly_color.append(C.ANOMALY_COLOR[anomaly])
                         hover_itm = (
                             f"date: {x_axis[idx].strftime('%Y-%m-%d %H:%M:%S')}"
-                            f"<br>trend: {trend_avg[idx]:,.0f}"
+                            f"<br>trend: {trend_avg[idx]:,.2f}"
                             f"<br>classification: {anomaly}"
                         )
                         hover.append(hover_itm)
@@ -576,4 +576,4 @@ def graph_tm_trending(
         graph.update_layout(graph_layout)
         tm_trending_graphs.append((graph, all_tests, ))
 
-    return tm_trending_graphs, all_metrics
+    return tm_trending_graphs, list(all_metrics)
