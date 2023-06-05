@@ -5,8 +5,10 @@ weight: 1
 
 # CSIT 23.06 - VPP Performance
 
-1. VPP PERFORMANCE TESTS
-2. TEST FRAMEWORK
+1. TEST FRAMEWORK
+   - **CSIT test environment** version has been updated to ver. 12, see
+     [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+2. VPP PERFORMANCE TESTS
 3. PRESENTATION AND ANALYTICS LAYER
 
 # Known Issues

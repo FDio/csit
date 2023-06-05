@@ -119,3 +119,12 @@ Following is the list of CSIT versions to date:
     matrix.
   - Ubuntu upgrade from 20.04.2 LTS to 22.04.1 LTS.
   - TRex version upgrade: increase from 2.97 to 3.00.
+- Ver. 12 associated with CSIT rls2306 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2306),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2306)
+  ).
+  - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
+    matrix.
+  - Mellanox 556A/MCX713106AS-VEAT series firmware upgrade based on DPDK compatibility
+    matrix.
+  - TRex version upgrade: increase from 3.00 to 3.03.
