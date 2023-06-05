@@ -6,6 +6,8 @@ weight: 3
 # CSIT 23.06 - TRex Performance
 
 1. TEST FRAMEWORK
+   - **CSIT test environment** version has been updated to ver. 12, see
+     [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 
 # Known Issues
 
