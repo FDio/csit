@@ -656,7 +656,7 @@ function prepare_topology () {
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
             terraform_init || die "Failed to call terraform init."
-            trap 'terraform_destroy' ERR || {
+            trap "terraform_destroy" ERR EXIT || {
                 die "Trap attempt failed, please cleanup manually. Aborting!"
             }
             terraform_apply || die "Failed to call terraform apply."
