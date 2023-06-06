@@ -1262,8 +1262,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - portnames:
         - s62-t34-sut1-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
         - s62-t34-sut1-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
-        - s62-t34-sut1-c8/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
-        - s62-t34-sut1-c8/p2 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s62-t34-sut1-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s62-t34-sut1-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
     - hostname: s63-t34-sut2.
@@ -1272,8 +1272,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - portnames:
         - s63-t34-sut2-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
         - s63-t34-sut2-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
-        - s63-t34-sut2-c8/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
-        - s63-t34-sut2-c8/p2 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s63-t34-sut2-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s63-t34-sut2-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
 - TG [Server-Type-E32]:
     - testbedname: testbed34.
     - hostname: s64-t34-tg1.
@@ -1312,7 +1312,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s65-t37-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s65-t37-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s65-t37-sut1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s65-t37-sut1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+        - s65-t37-sut1-c6/p2 - 100GE-port2 ConnectX6-2p100GE.
 - SUT2 [Server-Type-F3]:
     - testbedname: testbed37.
     - hostname: s66-t37-sut2.
@@ -1328,7 +1328,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s66-t37-sut2-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s66-t37-sut2-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s65-t37-sut1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s65-t37-sut1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+        - s65-t37-sut1-c6/p2 - 100GE-port2 ConnectX6-2p100GE.
 - TG [Server-Type-F3]:
     - testbedname: testbed37.
     - hostname: s67-t37-tg1.
@@ -1344,7 +1344,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s67-t37-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s67-t37-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s67-t37-tg1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s67-t37-tg1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+        - s67-t37-tg1-c6/p2 - 100GE-port2 ConnectX6-2p100GE.
 - SUT1 [Server-Type-F3]:
     - testbedname: testbed38.
     - hostname: s78-t38-sut1.
@@ -1360,7 +1360,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s78-t38-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s78-t38-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s78-t38-sut1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s78-t38-sut1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+        - s78-t38-sut1-c6/p2 - 100GE-port2 ConnectX6-2p100GE.
 - SUT2 [Server-Type-F3]:
     - testbedname: testbed38.
     - hostname: s79-t38-sut2.
@@ -1376,7 +1376,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s79-t38-sut2-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s79-t38-sut2-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s79-t38-sut2-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s79-t38-sut2-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+        - s79-t38-sut2-c6/p2 - 100GE-port2 ConnectX6-2p100GE.
 - TG [Server-Type-F3]:
     - testbedname: testbed38.
     - hostname: s80-t38-tg1.
@@ -1392,7 +1392,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s80-t38-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s80-t38-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s80-t38-tg1-c6/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s80-t38-tg1-c6/p2 - 100GE-port1 ConnectX6-2p100GE.
+        - s80-t38-tg1-c6/p2 - 100GE-port2 ConnectX6-2p100GE.
 ```
 
 ### 3-Node-SnowRidge (3n-snr)
@@ -1740,7 +1740,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s72-t212-tg1-c6/p1 to s72-t212-tg1-c6/p2.
         - s72-t212-tg1-c6/p2 to s72-t212-tg1-c6/p1.
-    - ring5 100GE-ports ConnectX7-2p100GE:
+    - ring5 200GE-ports ConnectX7-2p200GE:
         - s72-t212-tg1-c8/p1 to s71-t212-sut1-c8/p1.
         - s71-t212-sut1-c8/p2 to s72-t212-tg1-c8/p2.
 - testbed213:
@@ -1758,7 +1758,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s84-t213-tg1-c6/p1 to s84-t213-tg1-c6/p2.
         - s84-t213-tg1-c6/p2 to s84-t213-tg1-c6/p1.
-    - ring5 100GE-ports ConnectX7-2p100GE:
+    - ring5 200GE-ports ConnectX7-2p200GE:
         - s84-t213-tg1-c8/p1 to s83-t213-sut1-c8/p1.
         - s83-t213-sut1-c8/p2 to s84-t213-tg1-c8/p2.
 - testbed214:
@@ -1776,7 +1776,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s86-t214-tg1-c6/p1 to s86-t214-tg1-c6/p2.
         - s86-t214-tg1-c6/p2 to s86-t214-tg1-c6/p1.
-    - ring5 100GE-ports ConnectX7-2p100GE:
+    - ring5 200GE-ports ConnectX7-2p200GE:
         - s86-t214-tg1-c8/p1 to s85-t214-sut1-c8/p1.
         - s85-t214-sut1-c8/p2 to s86-t214-tg1-c8/p2.
 - testbed215:
@@ -1794,7 +1794,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - ring4 100GE-ports e810-2CQDA2-2p100GE:
         - s88-t215-tg1-c6/p1 to s88-t215-tg1-c6/p2.
         - s88-t215-tg1-c6/p2 to s88-t215-tg1-c6/p1.
-    - ring5 100GE-ports ConnectX7-2p100GE:
+    - ring5 200GE-ports ConnectX7-2p200GE:
         - s88-t215-tg1-c8/p1 to s87-t215-sut1-c8/p1.
         - s87-t215-sut1-c8/p2 to s88-t215-tg1-c8/p2.
 ```
@@ -1852,7 +1852,7 @@ To be completed.
         - s67-t37-tg1-c9/p1 to s65-t37-sut1-c9/p1.
         - s65-t37-sut1-c9/p2 to s66-t37-sut2-c9/p2.
         - s66-t37-sut2-c9/p1 to s67-t37-tg1-c9/p2.
-    - ring4 100GE-ports ConnectX6-2p100GE:
+    - ring4 200GE-ports ConnectX6-2p200GE:
         - s67-t37-tg1-c6/p1 - s65-t37-sut1-c6/p2.
         - s65-t37-sut1-c6/p1 - s66-t37-sut2-c6/p2.
         - s66-t37-sut2-c6/p1 - s67-t37-tg1-c9-c6/p2.
@@ -1872,7 +1872,7 @@ To be completed.
         - s80-t38-tg1-c9/p1 to s78-t38-sut1-c9/p1.
         - s78-t38-sut1-c9/p2 to s79-t38-sut2-c9/p2.
         - s79-t38-sut2-c9/p1 to s80-t38-tg1-c9/p2.
-    - ring4 100GE-ports ConnectX6-2p100GE:
+    - ring4 200GE-ports ConnectX6-2p200GE:
         - s80-t38-tg1-c6/p1 to s78-t38-sut1-c6/p1.
         - s78-t38-sut1-c6/p2 to s79-t38-sut2-c6/p2.
         - s79-t38-sut2-c6/p1 to s80-t38-tg1-c6/p2.
