@@ -1061,9 +1061,9 @@ class Layout:
             State({"type": "telemetry-btn", "index": ALL}, "disabled"),
             State({"type": "tm-container", "index": ALL}, "children"),
             State({"type": "tm-list-metrics", "index": ALL}, "value"),
+            State({"type": "tele-cl", "index": ALL}, "value"),
 
             Input("url", "href"),
-            Input({"type": "tele-cl", "index": ALL}, "value"),
             Input({"type": "tm-dd", "index": ALL}, "value"),
 
             Input("normalize", "value"),
@@ -1085,8 +1085,8 @@ class Layout:
                 tm_btns_disabled: list,
                 tm_dd: list,
                 list_metrics: list,
-                href: str,
                 cl_metrics: list,
+                href: str,
                 tm_dd_in: list,
                 *_
             ) -> tuple:
@@ -1420,10 +1420,10 @@ class Layout:
                             "tele-cl", False),
                     )
                     is_open = (True, False)
-                    tm_btns_disabled[1], tm_btns_disabled[5] = True, True
+                    tm_btns_disabled[1], tm_btns_disabled[5] = False, True
                 elif trigger.idx == "select":
-                    tm.from_json(tm_data)
                     if any(cl_metrics):
+                        tm.from_json(tm_data)
                         if not tm_user["selected_metrics"]:
                             tm_user["selected_metrics"] = \
                                 tm_user["unique_metrics"]
@@ -1441,8 +1441,7 @@ class Layout:
                             tm_btns_disabled[4] = False
                         is_open = (False, True)
                     else:
-                        tm_user = None
-                        is_open = (False, False)
+                        is_open = (True, False)
                 elif trigger.idx == "add":
                     tm.from_json(tm_data)
                     tm_panels.append(tm_user["selected_metrics_with_labels"])
@@ -1469,12 +1468,6 @@ class Layout:
                     type="tele-cl",
                     colorize=False
                 ), )
-                is_open = (True, False)
-            elif trigger.type == "tele-cl":
-                if any(cl_metrics):
-                    tm_btns_disabled[1] = False
-                else:
-                    tm_btns_disabled[1] = True
                 is_open = (True, False)
             elif trigger.type == "tm-dd":
                 tm.from_metrics_with_labels(
