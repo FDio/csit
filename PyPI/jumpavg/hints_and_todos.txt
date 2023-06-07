@@ -1,0 +1,7 @@
+toml hint: https://flit.pypa.io/en/stable/pyproject_toml.html
+md hint: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+build hint: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+TODO: Include simulator and tests.
+TODO: Test which Python versions is the code actually compatible with.
+TODO: Create a separate webpage for jumpavg library.
