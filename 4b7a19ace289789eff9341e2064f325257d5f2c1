@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaa9242f_0eb2df1c",
+        "filename": "docs/content/methodology/test/reassembly.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-07T14:00:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fb576fb_a43b321b",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 32
+      },
+      "revId": "4b7a19ace289789eff9341e2064f325257d5f2c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c26a1dd6_738b364f",
@@ -60,6 +84,54 @@
       "writtenOn": "2023-06-07T13:35:16Z",
       "side": 1,
       "message": "(e.g. IPsec)",
+      "range": {
+        "startLine": 45,
+        "startChar": 15,
+        "endLine": 45,
+        "endChar": 22
+      },
+      "revId": "4b7a19ace289789eff9341e2064f325257d5f2c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fc95145_fb409a00",
+        "filename": "docs/content/methodology/test/reassembly.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-07T14:00:15Z",
+      "side": 1,
+      "message": "Reworded.",
+      "parentUuid": "c26a1dd6_738b364f",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 79
+      },
+      "revId": "4b7a19ace289789eff9341e2064f325257d5f2c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92a678ed_9a07d996",
+        "filename": "docs/content/methodology/test/reassembly.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-07T14:00:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d04ff85_c1a1e04e",
       "range": {
         "startLine": 45,
         "startChar": 15,
