@@ -1,7 +1,7 @@
 ---
-# file: roles/cleanup/tasks/remove_package.yaml
+# file: tasks/remove_package.yaml
 
-- name: Remove Package - Fix Corrupted APT
+- name: Fix Corrupted APT
   ansible.builtin.shell: "dpkg --configure -a"
   when:
     - ansible_distribution == 'Ubuntu'

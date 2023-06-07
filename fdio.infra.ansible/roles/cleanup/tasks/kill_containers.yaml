@@ -1,16 +1,16 @@
 ---
-# file: roles/cleanup/tasks/kill_containers.yaml
+# file: tasks/kill_containers.yaml
 
 - name: Kill Docker Containers
   block:
-    - name: Kill Container - Get Running Docker Containers
+    - name: Get Running Docker Containers
       ansible.builtin.shell: "docker ps -a --filter name=DUT -q"
       register: running_containers
       changed_when: false
       tags:
         - kill-containers
 
-    - name: Kill Container - Remove All Docker Containers
+    - name: Remove All Docker Containers
       ansible.builtin.shell: "docker rm --force {{ item }}"
       with_items: "{{ running_containers.stdout_lines }}"
       tags:
@@ -24,14 +24,14 @@
 
 - name: Kill LXC Containers
   block:
-    - name: Kill Container - Get Running LXC Containers
+    - name: Get Running LXC Containers
       ansible.builtin.shell: "lxc-ls"
       register: running_containers
       changed_when: false
       tags:
         - kill-containers
 
-    - name: Kill Container - Remove All LXC Containers
+    - name: Remove All LXC Containers
       ansible.builtin.shell: "lxc-destroy --force -n {{ item }}"
       with_items: "{{ running_containers.stdout_lines }}"
       tags:

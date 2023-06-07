@@ -1,5 +1,5 @@
 ---
-# file: roles/cleanup/tasks/clean_images.yaml
+# file: tasks/clean_images.yaml
 
 - name: Clean Docker Images
   block:
