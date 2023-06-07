@@ -1,5 +1,5 @@
 ---
-# file: roles/cleanup/tasks/sut.yaml
+# file: tasks/sut.yaml
 
 - name: Host Cleanup
   block:

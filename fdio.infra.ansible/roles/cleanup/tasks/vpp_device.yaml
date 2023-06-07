@@ -1,5 +1,5 @@
 ---
-# file: roles/cleanup/tasks/vpp_device.yaml
+# file: tasks/vpp_device.yaml
 
 - name: Host Cleanup
   block:
