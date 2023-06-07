@@ -10,6 +10,8 @@ of CSIT_ (Continuous System and Integration Testing)
 project of fd.io_ (Fast Data), one of LFN_
 (Linux Foundation Networking) projects.
 
+Currently still being primarily used in PAL's successor CSIT-DASH_.
+
 In order to make this code available in PyPI_ (Python Package Index),
 the setuputils stuff has been added,
 and the code has been moved into a separate directory_,
@@ -25,6 +27,9 @@ Change log
 
 TODO: Move into separate file?
 
+0.4.0: Added "unit" and "sbps" parameters so information content
+       is reasonable even if sample values are below one.
+
 0.3.0: Considerable speedup by avoiding unneeded copy. Dataclasses used.
        Mostly API compatible, but repr looks different.
 
@@ -36,6 +41,7 @@ TODO: Move into separate file?
 
 .. _PAL: https://wiki.fd.io/view/CSIT/Design_Optimizations#Presentation_and_Analytics_Layer
 .. _CSIT: https://wiki.fd.io/view/CSIT
+.. _CSIT-DASH: https://csit.fd.io
 .. _fd.io: https://fd.io/
 .. _LFN: https://www.linuxfoundation.org/projects/networking/
 .. _PyPI: https://pypi.org/
