@@ -36,4 +36,4 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/dpdk.sh" || die "Source failed."
 common_dirs || die
-dpdk_testpmd_check || die
+dpdk_app_check "testpmd" || die
