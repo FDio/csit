@@ -215,3 +215,112 @@ class DpdkUtil:
         )
         message = f"Failed to kill dpdk at node {node['host']}"
         exec_cmd_no_error(node, command, message=message)
+
+    @staticmethod
+    def start_dpdk_app_on_all_duts(
+        start_function,
+        check_function,
+        nodes,
+        topology_info,
+        phy_cores,
+        rx_queues,
+        jumbo_frames,
+        rxd,
+        txd,
+    ):
+        """
+        Execute a dpdk app on all dut nodes.
+
+        Also set test tags related to threads.
+        Keep restarting few times if not all ports are up.
+
+        This function hosts code common for both testpmd and l3fwd.
+        The differences are only in arguments start_function and check_function.
+
+        The check_function is simple, it takes node dict as input
+        and return bool telling whether the app on the dut is ready.
+
+        The starts (without any unnecessary wait) the app, returs None,
+        and accepts the following arguments:
+        dict node: The DUT node from nodes.
+        str if1: Identifier (topology key) for the first interface to use.
+        str if2: Identifier (topology key) for the second interface to use.
+        str lcores_list: Comma-separated lcore numbers for app workers.
+        int nb_cores: Total number of worker (dataplane) threads.
+        str queue_nums: Number of RX (and also TX) queues for app to use.
+
+        Those arguments are the only ones that (in principle can) depend
+        of the DUT being processed. It is expected the real app starting
+        keywords require more arguments, but those are static (not depending
+        on DUT), so the caller should pass a closure that handles such details.
+
+        The logic in this keyword does several tries, where each try:
+        kills any running dpdk apps,
+        starts new round of apps on all duts at the same time,
+        checks if all apps are ready,
+        retry if an app is not ready.
+
+        :param start_function: To launch an app on a dut without waiting.
+        :param check_function: To check app readiness, can wait if needed.
+            Returns True if the app is ready, False otherwse.
+        :param nodes: All the nodes info from the topology file.
+        :param topology_info: All the info from the topology file.
+        :param phy_cores: Number of physical cores to use.
+        :param rx_queues: Number of RX queues.
+        :param jumbo_frames: Jumbo frames on/off.
+        :param rxd: Number of RX descriptors.
+        :param txd: Number of TX descriptors.
+        :type start_function: Callable[[dict, str, str, str, int, str], None]
+        :type check_function: Callable[[dict], bool]
+        :type nodes: dict
+        :type topology_info: dict
+        :type phy_cores: int
+        :type rx_queues: int
+        :type jumbo_frames: bool
+        :type rxd: int
+        :type txd: int
+        :raises RuntimeError: If bash return code is not 0.
+        """
+        cpu_count_int = dp_count_int = int(phy_cores)
+        if dp_count_int > 1:
+            BuiltIn().set_tags("MTHREAD")
+        else:
+            BuiltIn().set_tags("STHREAD")
+        BuiltIn().set_tags(f"{dp_count_int}T{cpu_count_int}C")
+        duts = [node for node in nodes if "DUT" in node]
+        for _ in range(3):
+            for dut in duts:
+                DpdkUtil.kill_dpdk(nodes[dut])
+            for dut in duts:
+                compute_resource_info = CpuUtils.get_affinity_vswitch(
+                    nodes,
+                    dut,
+                    phy_cores,
+                    rx_queues=rx_queues,
+                    rxd=rxd,
+                    txd=txd,
+                )
+                cpu_dp = compute_resource_info["cpu_dp"]
+                rxq_count_int = compute_resource_info["rxq_count_int"]
+                if1 = topology_info[f"{dut}_pf1"][0]
+                if2 = topology_info[f"{dut}_pf2"][0]
+                start_function(
+                    node=nodes[dut],
+                    if1=if1,
+                    if2=if2,
+                    lcores_list=cpu_dp,
+                    nb_cores=dp_count_int,
+                    queue_nums=rxq_count_int,
+                )
+            all_ready = True
+            for dut in duts:
+                if not check_function(node=nodes[dut]):
+                    all_ready = False
+                    break
+            for dut in duts:
+                exec_cmd(nodes[dut], "cat screenlog.0")
+            if all_ready:
+                return
+            # Even if one app is ready, we need to restart both
+            # to confirm link state on both DUTs again.
+        raise RuntimeError(f"L3fwd failed to start properly.")
