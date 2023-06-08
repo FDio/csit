@@ -1,5 +1,6 @@
 # 2n-spr
 ## ./ip4
+### intel-e810cq
 ### mellanox-cx7veat
 ##### ethip4-ip4base-tg
 - AND 64b AND ndrpdr AND cx7veat AND - AND ethip4-ip4base-tg
@@ -43,6 +44,7 @@
 ##### ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
 - AND 100b AND ndrpdr AND e810cq AND - AND ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
 ## ./ip6
+### intel-e810cq
 ### mellanox-cx7veat
 ##### ethip6-ip6base-tg
 - AND 78b AND ndrpdr AND cx7veat AND - AND ethip6-ip6base-tg
@@ -54,6 +56,7 @@
 ##### ethip6-ip6scale2m-tg
 - AND 78b AND ndrpdr AND e810cq AND - AND ethip6-ip6scale2m-tg
 ## ./l2
+### intel-e810cq
 ### mellanox-cx7veat
 ##### eth-l2bdscale1mmaclrn-tg
 - AND 64b AND ndrpdr AND cx7veat AND - AND eth-l2bdscale1mmaclrn-tg
