@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4c mrrANDnic_*ANDdrv_*AND64bANDethip4-ip4base-l3fwdNOT4c",
       "revId": "7a5186be207d4ad81104b1fb4f4effedde915584",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0107171a_2cd68e0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-08T08:16:38Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-clx-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4c mrrANDnic_*ANDdrv_*AND64bANDethip4-ip4base-l3fwdNOT4c",
+      "revId": "7a5186be207d4ad81104b1fb4f4effedde915584",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
