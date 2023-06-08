@@ -1,5 +1,6 @@
 # 2n-icx
 ## ./ip4
+### intel-e810cq
 ##### ethip4-ip4base-tg
 - AND 64b AND mrr AND e810cq AND - AND ethip4-ip4base-tg
 ##### ethip4-ip4scale2m-tg
@@ -21,10 +22,12 @@
 ##### ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
 - AND 100b AND mrr AND e810cq AND - AND ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
 ## ./ip6
+### intel-e810cq
 ##### ethip6-ip6base-tg
 - AND 78b AND mrr AND e810cq AND - AND ethip6-ip6base-tg
 ##### ethip6-ip6scale2m-tg
 - AND 78b AND mrr AND e810cq AND - AND ethip6-ip6scale2m-tg
 ## ./l2
+### intel-e810cq
 ##### eth-l2bdscale1mmaclrn-tg
 - AND 64b AND mrr AND e810cq AND - AND eth-l2bdscale1mmaclrn-tg

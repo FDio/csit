@@ -81,20 +81,36 @@ nodes:
         link: link8
         model: Intel-XXV710
       port9:
+        # s86-t214-tg1-c8/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:f9:c3:46"
+        pci_address: "0000:b1:00.0"
+        ip4_address: "172.16.90.2"
+        driver: mlx5_core
+        link: link9
+        model: Mellanox-CX7VEAT
+      port10:
+        # s86-t214-tg1-c8/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:f9:c3:47"
+        pci_address: "0000:b1:00.1"
+        ip4_address: "172.16.100.2"
+        driver: mlx5_core
+        link: link10
+        model: Mellanox-CX7VEAT
+      port11:
         # s86-t214-tg1-c6/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:26:70"
         pci_address: "0000:ca:00.0"
-        ip4_address: "172.16.90.2"
+        ip4_address: "172.16.100.2"
         driver: ice
-        link: link9
+        link: link11
         model: Intel-E810CQ
-      port10:
+      port12:
         # s86-t214-tg1-c6/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:26:74"
         pci_address: "0000:cc:00.0"
-        ip4_address: "172.16.100.2"
+        ip4_address: "172.16.110.2"
         driver: ice
-        link: link9
+        link: link11
         model: Intel-E810CQ
   DUT1:
     type: DUT
@@ -169,3 +185,19 @@ nodes:
         driver: i40e
         link: link8
         model: Intel-XXV710
+      port9:
+        # s85-t214-sut1-c8/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:38"
+        pci_address: "0000:b1:00.0"
+        ip4_address: "172.16.90.1"
+        driver: mlx5_core
+        link: link9
+        model: Mellanox-CX7VEAT
+      port10:
+        # s85-t214-sut1-c8/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:39"
+        pci_address: "0000:b1:00.1"
+        ip4_address: "172.16.100.1"
+        driver: mlx5_core
+        link: link10
+        model: Mellanox-CX7VEAT
