@@ -90,7 +90,8 @@ class TestpmdTest:
                     try:
                         nic_model = nodes[node]["interfaces"][if1]["model"]
                         if "Mellanox-CX7VEAT" in nic_model:
-                            # Does not support lsc interrupt.
+                            break
+                        if "Mellanox-CX6DX" in nic_model:
                             break
                         TestpmdTest.check_testpmd(nodes[node])
                         break
