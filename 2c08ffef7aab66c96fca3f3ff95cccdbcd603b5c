@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03e1a725_8d608383",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-06-09T05:33:16Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-2n-icx-perftest dpdk-ndrpdr-00",
+      "revId": "2c08ffef7aab66c96fca3f3ff95cccdbcd603b5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
