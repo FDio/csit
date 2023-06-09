@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce6ebac_330a9de2",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-06-09T06:50:24Z",
+      "side": 0,
+      "message": "leave it there",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "86becaba7e838298d23ab368daebcb179defae35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
