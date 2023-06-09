@@ -23,3 +23,4 @@ inventory_ipmi_hostname: "10.30.50.73"
 cpu_microarchitecture: "altra"
 
 intel_700_matrix: "dpdk23.03"
+mellanox_matrix: "dpdk23.03"
