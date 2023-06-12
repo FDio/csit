@@ -68,7 +68,7 @@ class L3fwdTest:
         else:
             BuiltIn().set_tags("STHREAD")
         BuiltIn().set_tags(f"{dp_count_int}T{cpu_count_int}C")
-        tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
+        tg_flip = topology_info["tg_if1_pci"] > topology_info["tg_if2_pci"]
         duts = [node for node in nodes if "DUT" in node]
         for _ in range(3):
             for dut in duts:
@@ -108,7 +108,7 @@ class L3fwdTest:
             if all_ready:
                 return
             # Restart all testpmds.
-        raise RuntimeError(f"L3fwd failed to start properly.")
+        raise RuntimeError("L3fwd failed to start properly.")
 
     @staticmethod
     def start_l3fwd(
@@ -175,7 +175,7 @@ class L3fwdTest:
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
                     eal_in_memory=True,
-                    pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
+                    pmd_config=f'\\"{port_config.rstrip(",")}\\"',
                     pmd_eth_dest_0=f'\\"0,{adj_mac0}\\"',
                     pmd_eth_dest_1=f'\\"1,{adj_mac1}\\"',
                     pmd_parse_ptype=True,
@@ -188,7 +188,7 @@ class L3fwdTest:
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
                     eal_in_memory=True,
-                    pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
+                    pmd_config=f'\\"{port_config.rstrip(",")}\\"',
                     pmd_eth_dest_0=f'\\"0,{adj_mac0}\\"',
                     pmd_eth_dest_1=f'\\"1,{adj_mac1}\\"',
                     pmd_parse_ptype=True,
@@ -270,9 +270,9 @@ class L3fwdTest:
         """
         command = (
             f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
-            f"/entry/patch_l3fwd.sh "
+            "/entry/patch_l3fwd.sh "
             f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
-            f"/entry/{patch}"
+            "/entry/{patch}"
         )
         message = f"Failed to patch l3fwd at node {node['host']}"
         ret_code, stdout, _ = exec_cmd(node, command, timeout=1800)
@@ -292,6 +292,6 @@ class L3fwdTest:
         :rtype: bool
         """
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
-        command += f"/entry/check_l3fwd.sh"
+        command += "/entry/check_l3fwd.sh"
         return_code, _, _ = exec_cmd(node, command)
         return return_code == 0
