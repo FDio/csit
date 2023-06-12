@@ -4,8 +4,8 @@
 ### mellanox-cx7veat
 ##### ethip4-ip4base-tg
 - AND 64b AND ndrpdr AND cx7veat AND - AND ethip4-ip4base-tg
-##### ethip4-ip4scale2m-tg
-- AND 64b AND ndrpdr AND cx7veat AND - AND ethip4-ip4scale2m-tg
+##### ethip4-ip4scale20k-tg
+- AND 64b AND ndrpdr AND cx7veat AND - AND ethip4-ip4scale20k-tg
 ##### ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
 - AND 64b AND ndrpdr AND cx7veat AND - AND ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
 ##### ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
@@ -25,8 +25,8 @@
 ### intel-e810cq
 ##### ethip4-ip4base-tg
 - AND 64b AND ndrpdr AND e810cq AND - AND ethip4-ip4base-tg
-##### ethip4-ip4scale2m-tg
-- AND 64b AND ndrpdr AND e810cq AND - AND ethip4-ip4scale2m-tg
+##### ethip4-ip4scale20k-tg
+- AND 64b AND ndrpdr AND e810cq AND - AND ethip4-ip4scale20k-tg
 ##### ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
 - AND 64b AND ndrpdr AND e810cq AND - AND ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
 ##### ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
@@ -48,13 +48,13 @@
 ### mellanox-cx7veat
 ##### ethip6-ip6base-tg
 - AND 78b AND ndrpdr AND cx7veat AND - AND ethip6-ip6base-tg
-##### ethip6-ip6scale2m-tg
-- AND 78b AND ndrpdr AND cx7veat AND - AND ethip6-ip6scale2m-tg
+##### ethip6-ip6scale20k-tg
+- AND 78b AND ndrpdr AND cx7veat AND - AND ethip6-ip6scale20k-tg
 ### intel-e810cq
 ##### ethip6-ip6base-tg
 - AND 78b AND ndrpdr AND e810cq AND - AND ethip6-ip6base-tg
-##### ethip6-ip6scale2m-tg
-- AND 78b AND ndrpdr AND e810cq AND - AND ethip6-ip6scale2m-tg
+##### ethip6-ip6scale20k-tg
+- AND 78b AND ndrpdr AND e810cq AND - AND ethip6-ip6scale20k-tg
 ## ./l2
 ### intel-e810cq
 ### mellanox-cx7veat
