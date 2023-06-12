@@ -102,7 +102,7 @@ class TestpmdTest:
             all_ready = True
             for dut in duts:
                 if1 = topology_info[f"{dut}_pf1"][0]
-                if not TestpmdTest.is_testpmd_ready(nodes[dut], if1):
+                if not TestpmdTest.is_testpmd_ready(nodes[dut]):
                     all_ready = False
                     break
             for dut in duts:
@@ -184,7 +184,7 @@ class TestpmdTest:
             exec_cmd_no_error(node, command, timeout=5, message=message)
 
     @staticmethod
-    def is_testpmd_ready(node, if1):
+    def is_testpmd_ready(node):
         """Execute the testpmd check on the DUT node.
 
         See description in dpdk_testpmd_check bash function for more details.
@@ -194,11 +194,6 @@ class TestpmdTest:
         :returns: False if testpmd is not ready for traffic yet.
         :rtype: bool
         """
-        nic_model = node["interfaces"][if1]["model"]
-        logger.debug(f"NIC model: {nic_model}")
-        if nic_model in ("Mellanox-CX7VEAT", "Mellanox-CX6DX"):
-            logger.debug("Skipping check for mellanox NICs.")
-            return True
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
         command += f"/entry/check_testpmd.sh"
         return_code, _, _ = exec_cmd(node, command)
