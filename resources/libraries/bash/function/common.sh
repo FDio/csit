@@ -867,7 +867,7 @@ function select_tags () {
             default_nic="nic_intel-x520-da2"
             ;;
         *"3n-icx"* | *"2n-icx"*)
-            default_nic="nic_intel-xxv710"
+            default_nic="nic_intel-e810cq"
             ;;
         *"3na-spr"*)
             default_nic="nic_mellanox-cx7veat"
