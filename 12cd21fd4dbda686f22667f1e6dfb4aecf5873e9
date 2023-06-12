@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9314870_9f8a5090",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-12T16:35:39Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-dpdk-perf-verify-master-3n-icx/69/ : FAILURE\n\nTrex initialization failed (before the new app logic was applied):\nSTDOUT Error while determining OS type: module \u0027platform\u0027 has no attribute \u0027dist\u0027\nOFED /usr/bin/ofed_info is not installed on this setup.\nERROR encountered while configuring TRex system\n\ncsit-dpdk-3n-alt-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4c",
+      "revId": "12cd21fd4dbda686f22667f1e6dfb4aecf5873e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
