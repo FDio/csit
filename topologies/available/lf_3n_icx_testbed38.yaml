@@ -80,6 +80,22 @@ nodes:
         driver: i40e
         link: link8
         model: Intel-XXV710
+      port9:
+        # s80-t38-tg1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:13:0f:ae"
+        pci_address: "0000:e3:00.0"
+        ip4_address: "172.16.90.1"
+        driver: mlx5_core
+        link: link9
+        model: Mellanox-CX6DX
+      port10:
+        # s80-t38-tg1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:13:0f:af"
+        pci_address: "0000:e3:00.1"
+        ip4_address: "172.16.100.1"
+        driver: mlx5_core
+        link: link10
+        model: Mellanox-CX6DX
   DUT1:
     type: DUT
     host: "10.30.51.78"
@@ -153,6 +169,22 @@ nodes:
         driver: i40e
         link: link88
         model: Intel-XXV710
+      port9:
+        # s78-t38-sut1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:13:4b:2e"
+        pci_address: "0000:e3:00.0"
+        ip4_address: "172.16.90.2"
+        driver: mlx5_core
+        link: link1010
+        model: Mellanox-CX6DX
+      port10:
+        # s78-t38-sut1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:13:4b:2f"
+        pci_address: "0000:e3:00.1"
+        ip4_address: "172.16.100.2"
+        driver: mlx5_core
+        link: link9
+        model: Mellanox-CX6DX
   DUT2:
     type: DUT
     host: "10.30.51.79"
@@ -226,3 +258,19 @@ nodes:
         driver: i40e
         link: link88
         model: Intel-XXV710
+      port9:
+        # s79-t38-sut2-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:13:0f:8a"
+        pci_address: "0000:e3:00.0"
+        ip4_address: "172.16.90.3"
+        driver: mlx5_core
+        link: link10
+        model: Mellanox-CX6DX
+      port10:
+        # s79-t38-sut2-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:13:0f:8b"
+        pci_address: "0000:e3:00.1"
+        ip4_address: "172.16.100.3"
+        driver: mlx5_core
+        link: link1010
+        model: Mellanox-CX6DX
