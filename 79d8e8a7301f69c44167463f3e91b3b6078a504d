@@ -35,6 +35,23 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "943552ac_e749991a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-06-12T06:57:09Z",
+      "side": 1,
+      "message": "We agreed to reduce the amount of tests by eliminating XL710. You did increase the amount by adding more.",
+      "revId": "79d8e8a7301f69c44167463f3e91b3b6078a504d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b7c9d75_940aaf16",
