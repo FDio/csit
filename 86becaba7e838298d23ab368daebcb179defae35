@@ -22,6 +22,30 @@
       },
       "revId": "86becaba7e838298d23ab368daebcb179defae35",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9cf2161_3b1d151c",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-12T15:12:39Z",
+      "side": 0,
+      "message": "In patch set #22 I implemented an equivalent skip, and removed the skip in [1].\nWith the skip, the startup looks like this [2] and the first trial of MRR shows zero traffic. With the skip removed, the traffic is there and startup works [3] exactly as on Intel NICs.\n\n[1] https://gerrit.fd.io/r/c/csit/+/39028/1\n[2] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-verify-master-2n-icx/15/log.html.gz#s1-s1-s1-s3-t1-k2-k4\n[3] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-verify-master-2n-icx/16/log.html.gz#s1-s1-s1-s3-t1-k2-k4",
+      "parentUuid": "5ce6ebac_330a9de2",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "86becaba7e838298d23ab368daebcb179defae35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
