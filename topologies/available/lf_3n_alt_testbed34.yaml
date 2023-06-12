@@ -34,7 +34,7 @@ nodes:
         model: Intel-XL710
       port3:
         # s64-t34-tg1-c8/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "40:a6:b7:67:1c:e0"
+        mac_address: "40:a6:b7:67:1c:e4"
         pci_address: "0000:b1:00.0"
         ip4_address: "172.16.30.2"
         driver: ice
@@ -42,7 +42,7 @@ nodes:
         model: Intel-E810CQ
       port4:
         # s64-t34-tg1-c8/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
-        mac_address: "40:a6:b7:67:1c:e4"
+        mac_address: "40:a6:b7:67:1c:e0"
         pci_address: "0000:b3:00.0"
         ip4_address: "172.16.40.2"
         driver: ice
