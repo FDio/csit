@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abb98b9d_98842a13",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-06-12T05:04:58Z",
+      "side": 1,
+      "message": "I do not like this.",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "86becaba7e838298d23ab368daebcb179defae35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
