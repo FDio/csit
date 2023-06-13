@@ -13,6 +13,7 @@
 
 """Dpdk Utilities Library."""
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 
@@ -85,7 +86,13 @@ class DpdkUtil:
         options.add_equals_from_dict("portmask", "pmd_portmask", kwargs)
         # Disable link status check.
         options.add_if_from_dict(
-            "disable-link-check", "pmd_disable_link_check", kwargs, True
+            "disable-link-check", "pmd_disable_link_check", kwargs
+        )
+        # Disable LSC interrupts for all ports.
+        # Stops link state even notifications, but (unless disable-link-check)
+        # allows full 9s wait period (for links to come up) on startup.
+        options.add_if_from_dict(
+            "no-lsc-interrupt", "pmd_no_lsc_interrupt", kwargs
         )
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
         options.add_equals_from_dict("eth-peer", "pmd_eth_peer_0", kwargs)
@@ -193,3 +200,18 @@ class DpdkUtil:
         options.add("--")
         options.extend(DpdkUtil.get_l3fwd_pmd_options(**kwargs))
         return options
+
+    @staticmethod
+    def kill_dpdk(node: dict) -> None:
+        """Kill any dpdk app in the node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises RuntimeError: If the script "kill_dpdk.sh" fails.
+        """
+        command = (
+            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
+            f"/entry/kill_dpdk.sh"
+        )
+        message = f"Failed to kill dpdk at node {node['host']}"
+        exec_cmd_no_error(node, command, message=message)
