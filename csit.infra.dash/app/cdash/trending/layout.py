@@ -985,13 +985,23 @@ class Layout:
                 children=["Add content here."]
             ),
             dbc.Row(
-                class_name="g-0 p-2",
-                children=[
-                    dbc.Checkbox(
-                        id={"type": "cb-all-in-one", "index": 0},
-                        label="All Metrics in one Graph"
+                [
+                    dbc.Col(
+                        dbc.Checkbox(
+                            id={"type": "cb-all-in-one", "index": 0},
+                            label="All Metrics in one Graph"
+                        ),
+                        width=6
                     ),
-                ]
+                    dbc.Col(
+                        dbc.Checkbox(
+                            id={"type": "cb-ignore-host", "index": 0},
+                            label="Ignore Host"
+                        ),
+                        width=6
+                    )
+                ],
+                class_name="g-0 p-2"
             ),
             dbc.Row(
                 class_name="g-0 p-1",
@@ -1056,6 +1066,7 @@ class Layout:
             State("store", "data"),
             State({"type": "sel-cl", "index": ALL}, "value"),
             State({"type": "cb-all-in-one", "index": ALL}, "value"),
+            State({"type": "cb-ignore-host", "index": ALL}, "value"),
             State({"type": "telemetry-search-out", "index": ALL}, "children"),
             State({"type": "plot-mod-telemetry", "index": ALL}, "is_open"),
             State({"type": "telemetry-btn", "index": ALL}, "disabled"),
@@ -1080,6 +1091,7 @@ class Layout:
                 store: dict,
                 lst_sel: list,
                 all_in_one: list,
+                ignore_host: list,
                 search_out: list,
                 is_open: list,
                 tm_btns_disabled: list,
@@ -1102,6 +1114,7 @@ class Layout:
                     "selected-metrics": dict(),
                     "telemetry-panels": list(),
                     "telemetry-all-in-one": list(),
+                    "telemetry-ignore-host": list(),
                     "telemetry-graphs": list(),
                     "url": str()
                 }
@@ -1115,6 +1128,7 @@ class Layout:
             tm_user = store["selected-metrics"]
             tm_panels = store["telemetry-panels"]
             tm_all_in_one = store["telemetry-all-in-one"]
+            tm_ignore_host = store["telemetry-ignore-host"]
 
             plotting_area_telemetry = no_update
             on_draw = [False, False]  # 0 --> trending, 1 --> telemetry
@@ -1154,10 +1168,12 @@ class Layout:
                     store_sel = literal_eval(url_params["store_sel"][0])
                     normalize = literal_eval(url_params["norm"][0])
                     telemetry = literal_eval(url_params["telemetry"][0])
-                    tm_all_in_one = literal_eval(url_params["all-in-one"][0])
+                    url_p = url_params.get("all-in-one", ["[[None]]"])
+                    tm_all_in_one = literal_eval(url_p[0])
+                    url_p = url_params.get("ignore-host", ["[[None]]"])
+                    tm_ignore_host = literal_eval(url_p[0])
                     if not isinstance(telemetry, list):
                         telemetry = [telemetry, ]
-                        tm_all_in_one = [tm_all_in_one, ]
                 except (KeyError, IndexError, AttributeError, ValueError):
                     pass
                 if store_sel:
@@ -1359,6 +1375,7 @@ class Layout:
             elif trigger.type == "ctrl-btn":
                 tm_panels = list()
                 tm_all_in_one = list()
+                tm_ignore_host = list()
                 store["trending-graphs"] = None
                 store["telemetry-graphs"] = list()
                 # on_draw[0] = True
@@ -1446,6 +1463,7 @@ class Layout:
                     tm.from_json(tm_data)
                     tm_panels.append(tm_user["selected_metrics_with_labels"])
                     tm_all_in_one.append(all_in_one)
+                    tm_ignore_host.append(ignore_host)
                     is_open = (False, False)
                     tm_btns_disabled[1], tm_btns_disabled[5] = True, True
                     on_draw = [True, True]
@@ -1455,6 +1473,7 @@ class Layout:
                 elif trigger.idx == "rm-all":
                     tm_panels = list()
                     tm_all_in_one = list()
+                    tm_ignore_host = list()
                     tm_user = None
                     is_open = (False, False)
                     tm_btns_disabled[1], tm_btns_disabled[5] = True, True
@@ -1501,6 +1520,7 @@ class Layout:
             elif trigger.type == "tm-btn-remove":
                 del tm_panels[trigger.idx]
                 del tm_all_in_one[trigger.idx]
+                del tm_ignore_host[trigger.idx]
                 del store["telemetry-graphs"][trigger.idx]
                 tm.from_json(tm_data)
                 on_draw = [True, True]
@@ -1512,6 +1532,7 @@ class Layout:
             if tm_panels:
                 new_url_params["telemetry"] = tm_panels
                 new_url_params["all-in-one"] = tm_all_in_one
+                new_url_params["ignore-host"] = tm_ignore_host
 
             if on_draw[0]:  # Trending
                 if store_sel:
@@ -1538,7 +1559,10 @@ class Layout:
                     elif on_draw[1] and (end_idx >= start_idx):
                         for idx in range(start_idx, end_idx):
                             store["telemetry-graphs"].append(graph_tm_trending(
-                                tm.select_tm_trending_data(tm_panels[idx]),
+                                tm.select_tm_trending_data(
+                                    tm_panels[idx],
+                                    ignore_host=bool(tm_ignore_host[idx][0])
+                                ),
                                 self._graph_layout,
                                 bool(tm_all_in_one[idx][0])
                             ))
@@ -1561,6 +1585,7 @@ class Layout:
                     store_sel = list()
                     tm_panels = list()
                     tm_all_in_one = list()
+                    tm_ignore_host = list()
                     tm_user = None
             else:
                 plotting_area_trending = no_update
@@ -1577,6 +1602,7 @@ class Layout:
             store["selected-metrics"] = tm_user
             store["telemetry-panels"] = tm_panels
             store["telemetry-all-in-one"] = tm_all_in_one
+            store["telemetry-ignore-host"] = tm_ignore_host
             ret_val = [
                 store,
                 plotting_area_trending,
