@@ -575,13 +575,10 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dbc.Spinner(
-                    dbc.Row(
-                        id="plotting-area-trending",
-                        class_name="g-0 p-0",
-                        children=C.PLACEHOLDER
-                    ),
-                    delay_show=C.SPINNER_DELAY
+                dbc.Row(
+                    id="plotting-area-trending",
+                    class_name="g-0 p-0",
+                    children=C.PLACEHOLDER
                 ),
                 dbc.Row(
                     id="plotting-area-telemetry",
