@@ -54,6 +54,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5a40296_ae1eabfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2023-06-13T10:56:43Z",
+      "side": 1,
+      "message": "Per my 1st original comment and comments above: We need to reduce, that\u0027s clear. Waiting for view from Lijian and Juraj from Arm team before we collectively decide how to proceed.",
+      "parentUuid": "943552ac_e749991a",
+      "revId": "79d8e8a7301f69c44167463f3e91b3b6078a504d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5b1f09_6105d41c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2023-06-13T10:56:43Z",
+      "side": 1,
+      "message": "Agreed. Sent email to Lijian and Juraj about reducing the number of tests, in line with my original comment in this patch. Also added Lijian and Juraj as reviewers to this patch.",
+      "parentUuid": "61f8b726_84399464",
+      "revId": "79d8e8a7301f69c44167463f3e91b3b6078a504d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b7c9d75_940aaf16",
         "filename": "resources/job_specs/report_iterative/3n-alt/vpp-ndrpdr-00.md",
         "patchSetId": 1
@@ -65,6 +101,24 @@
       "writtenOn": "2023-06-12T05:02:04Z",
       "side": 1,
       "message": "522 tests is too many, it would take more than 72 hours.",
+      "revId": "79d8e8a7301f69c44167463f3e91b3b6078a504d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cd2bd5a_82b0e38f",
+        "filename": "resources/job_specs/report_iterative/3n-alt/vpp-ndrpdr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2023-06-13T10:56:43Z",
+      "side": 1,
+      "message": "Agreed. See my comment above. We need to reduce, that\u0027s clear. Waiting for view from Lijian and Juraj from Arm team before we collectively decide how to proceed.",
+      "parentUuid": "6b7c9d75_940aaf16",
       "revId": "79d8e8a7301f69c44167463f3e91b3b6078a504d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
