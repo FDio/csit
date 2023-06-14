@@ -321,7 +321,10 @@ class HoststackUtil():
 
         cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
         try:
-            exec_cmd(node, cmd, sudo=True)
+            sleep(1)
+            _, stdout, stderr = exec_cmd(node, cmd, sudo=True)
+            logger.debug(stdout)
+            logger.debug(stderr)
         except:
             sleep(180)
             if u"client" in program[u"args"]:
