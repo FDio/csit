@@ -319,11 +319,11 @@ class HoststackUtil():
         if other_node[u"type"] != u"DUT":
             raise RuntimeError(u"Other node type is not a DUT!")
 
-        cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
+        cmd = f"sh -c 'strace -o /tmp/strace-logfile -qqe trace=none -p {program_pid}'"
         try:
             exec_cmd(node, cmd, sudo=True)
         except:
-            sleep(180)
+            #sleep(180)
             if u"client" in program[u"args"]:
                 role = u"client"
             else:
