@@ -5,17 +5,17 @@ weight: 2
 
 # Structure
 
-Our presentation layer named “CSIT-Dash” provides customizable views on
-performance data. We can split it into two groups. The first one is performance
-trending, which displays data collected on daily basis. The other one presents
-data coming from release testing. In addition, we publish also information and
-statistics about our test jobs, failures and anomalies and the CSIT
-documentation.
+CSIT-Dash provides customizable views on performance data. We can split it into
+two groups. The first one is performance trending, which displays data collected
+on daily (MRR) or weekly (NDRPDR) basis.
+The other one presents data coming from release testing. In addition, we publish
+also information and statistics about our test jobs, failures and anomalies and
+the CSIT documentation.
 The screen of CSIT-Dash is divided in two parts. On the left side, there is the
 control panel which makes possible to select required information. The right
 side then displays the user-selected data in graphs or tables.
 
-The structure of C-Docs consist of:
+The structure of CSIT-Dash consist of:
 
 - Performance Trending
 - Per Release Performance
