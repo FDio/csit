@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "454d1f10_9fb9005f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-06-14T12:05:40Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3na-spr-perftest vpp-hoststack-00",
+      "revId": "369b09437387c8df8afc75492395d2dacdf5645e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
