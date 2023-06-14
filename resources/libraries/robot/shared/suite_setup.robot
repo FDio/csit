@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -279,6 +279,7 @@
 | | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
 | | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
 | | ... | '${crypto_type}' == 'HW_C4xxx' | ${128}
+| | ... | '${crypto_type}' == 'HW_4xxx' | ${16}
 | | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
 | | ... | force_init=${True}
 | | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
