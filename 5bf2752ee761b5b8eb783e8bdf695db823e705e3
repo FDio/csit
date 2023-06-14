@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac492438_d74cf5fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-14T13:59:37Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/277/ : SUCCESS\n\nWorks as expected in ordinary circumstances.\nAs CSIT-1901 is hard to reproduce in verify jobs,\nI propose to merge this and fix any issues from daily job if they happen.",
+      "revId": "5bf2752ee761b5b8eb783e8bdf695db823e705e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
