@@ -211,6 +211,22 @@ class DUTSetup:
         exec_cmd_no_error(node, cmd, message=f"{program} is not installed")
 
     @staticmethod
+    def _get_pid_internal(node, process):
+        """Get PID of running process. Allow failure (no process detected).
+
+        :param node: DUT node.
+        :param process: Process name.
+        :type node: dict
+        :type process: str
+        :returns: Unprocessed string with PIDs.
+            Empty if no processes found, or any error happened.
+        :rtype: str
+        """
+        cmd = f"pidof {process}"
+        _, stdout, _ = exec_cmd(node, cmd)
+        return stdout
+
+    @staticmethod
     def get_pid(node, process, retries=3):
         """Get PID of running process.
 
@@ -220,16 +236,38 @@ class DUTSetup:
         :type node: dict
         :type process: str
         :type retries: int
-        :returns: PID
-        :rtype: int
+        :returns: List of PIDs found.
+        :rtype: List[int]
         :raises RuntimeError: If it is not possible to get the PID.
         """
-        cmd = f"pidof {process}"
-        stdout, _ = exec_cmd_no_error(
-            node, cmd, retries=retries,
-            message=f"No {process} PID found on node {node[u'host']}")
+        for _ in range(retries):
+            stdout = DUTSetup._get_pid_internal(node, process)
+            if stdout:
+                break
+            sleep(1)
+        else:
+            raise RuntimeError(f"No {process} PIDs found on {node[u'host']}")
         pid_list = stdout.split()
         return [int(pid) for pid in pid_list]
+
+    @staticmethod
+    def verify_no_pid(node, process, retries=3):
+        """Raise if given process has any PIDs even after retries.
+
+        :param node: DUT node.
+        :param process: process name.
+        :param retries: How many times to retry on failure.
+        :type node: dict
+        :type process: str
+        :type retries: int
+        :raises RuntimeError: If any PIDs were present after retries.
+        """
+        for _ in range(retries):
+            stdout = DUTSetup._get_pid_internal(node, process)
+            if not stdout:
+                return
+            sleep(1)
+        raise RuntimeError(f"Unwanted {process} PIDs found: {stdout}")
 
     @staticmethod
     def get_vpp_pids(nodes):

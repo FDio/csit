@@ -82,11 +82,11 @@ class VPPUtil:
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         command = "pkill vpp"
         exec_cmd(node, command, timeout=180, sudo=True)
+        DUTSetup.verify_no_pid(node, "vpp")
         command = (
             "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
         )
         exec_cmd(node, command, timeout=180, sudo=True)
-
         if node_key:
             if Topology.get_node_sockets(node, socket_type=SocketType.PAPI):
                 Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
