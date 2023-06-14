@@ -458,6 +458,7 @@ class Constants:
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
+        u"Intel-E810CQ": u"HW_4xxx",
         u"Intel-E822CQ": u"HW_C4xxx",
         u"Intel-X710": u"HW_DH895xcc",
         u"Intel-XL710": u"HW_DH895xcc",
