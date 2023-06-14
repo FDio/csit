@@ -253,7 +253,8 @@ class DUTSetup:
         initialize or remove VFs on QAT.
 
         :param node: DUT node.
-        :crypto_type: Crypto device type - HW_DH895xcc, HW_C3xxx or HW_C4xxx.
+        :crypto_type: Crypto device type - HW_DH895xcc, HW_C3xxx, HW_C4xxx
+                      or HW_4xxx.
         :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
         :param force_init: If True then try to initialize to specific value.
         :type node: dict
@@ -281,7 +282,8 @@ class DUTSetup:
         """Init Crypto QAT device virtual functions on DUT.
 
         :param node: DUT node.
-        :crypto_type: Crypto device type - HW_DH895xcc, HW_C3xxx or HW_C4xxx.
+        :crypto_type: Crypto device type - HW_DH895xcc, HW_C3xxx, HW_C4xxx
+                      or HW_4xxx.
         :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
         :type node: dict
         :type crypto_type: string
@@ -298,6 +300,9 @@ class DUTSetup:
         elif crypto_type == u"HW_C4xxx":
             kernel_mod = u"qat_c4xxx"
             kernel_drv = u"c4xxx"
+        elif crypto_type == u"HW_4xxx":
+            kernel_mod = u"qat_4xxx"
+            kernel_drv = u"4xxx"
         else:
             raise RuntimeError(
                 f"Unsupported crypto device type on {node[u'host']}"
