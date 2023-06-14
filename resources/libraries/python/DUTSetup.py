@@ -224,6 +224,8 @@ class DUTSetup:
         :rtype: int
         :raises RuntimeError: If it is not possible to get the PID.
         """
+        cmd = f"man pidof"
+        exec_cmd_no_error(node, cmd)
         cmd = f"pidof {process}"
         stdout, _ = exec_cmd_no_error(
             node, cmd, retries=retries,
