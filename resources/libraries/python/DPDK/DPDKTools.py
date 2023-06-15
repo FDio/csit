@@ -28,8 +28,9 @@ class DPDKTools:
     """
 
     @staticmethod
-    def initialize_dpdk_framework(node: dict, if1: str, if2: str,
-            nic_driver: str) -> None:
+    def initialize_dpdk_framework(
+        node: dict, if1: str, if2: str, nic_driver: str
+    ) -> None:
         """
         Initialize the DPDK framework on the DUT node. Bind interfaces to
         driver.
@@ -44,14 +45,16 @@ class DPDKTools:
         :type nic_driver: str
         :raises RuntimeError: If it fails to bind the interfaces to driver.
         """
-        if node[u"type"] == NodeType.DUT:
+        if node["type"] == NodeType.DUT:
             pci_address1 = Topology.get_interface_pci_addr(node, if1)
             pci_address2 = Topology.get_interface_pci_addr(node, if2)
 
-            command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-                f"/entry/init_dpdk.sh " \
+            command = (
+                f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
+                f"/entry/init_dpdk.sh "
                 f"{nic_driver} {pci_address1} {pci_address2}"
-            message = u"Initialize the DPDK failed!"
+            )
+            message = "Initialize the DPDK failed!"
             exec_cmd_no_error(node, command, timeout=600, message=message)
 
     @staticmethod
@@ -68,16 +71,18 @@ class DPDKTools:
         :type if2: str
         :raises RuntimeError: If it fails to cleanup the dpdk.
         """
-        if node[u"type"] == NodeType.DUT:
+        if node["type"] == NodeType.DUT:
             pci_address1 = Topology.get_interface_pci_addr(node, if1)
             pci_address2 = Topology.get_interface_pci_addr(node, if2)
             # We are not supporting more than one driver yet.
             nic_driver = Topology.get_interface_driver(node, if1)
 
-            command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-                f"/entry/cleanup_dpdk.sh " \
+            command = (
+                f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
+                f"/entry/cleanup_dpdk.sh "
                 f"{nic_driver} {pci_address1} {pci_address2}"
-            message = u"Cleanup the DPDK failed!"
+            )
+            message = "Cleanup the DPDK failed!"
             exec_cmd_no_error(node, command, timeout=1200, message=message)
 
     @staticmethod
@@ -93,7 +98,7 @@ class DPDKTools:
         :raises RuntimeError: If command returns nonzero return code.
         """
         command = f"cat {Constants.REMOTE_FW_DIR}/dpdk*/VERSION"
-        message = u"Get DPDK version failed!"
+        message = "Get DPDK version failed!"
         stdout, _ = exec_cmd_no_error(node, command, message=message)
         # TODO: PAL should already tolerate stripped value in the log.
         logger.info(f"DPDK Version: {stdout}")
@@ -108,9 +113,11 @@ class DPDKTools:
         :type node: dict
         :raises RuntimeError: If command returns nonzero return code.
         """
-        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
+        command = (
+            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
             f"/entry/install_dpdk.sh"
-        message = u"Install the DPDK failed!"
+        )
+        message = "Install the DPDK failed!"
         exec_cmd_no_error(node, command, timeout=3600, message=message)
         DPDKTools.get_dpdk_version(node)
 
@@ -123,5 +130,5 @@ class DPDKTools:
         :type nodes: dict
         """
         for node in list(nodes.values()):
-            if node[u"type"] == NodeType.DUT:
+            if node["type"] == NodeType.DUT:
                 DPDKTools.install_dpdk_framework(node)
