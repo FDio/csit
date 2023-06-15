@@ -306,21 +306,34 @@
 | | ${running}= | Is TRex running | ${tg}
 | | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
 | | ${curr_driver}= | Get PCI dev driver | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
 | | Run keyword if | '${curr_driver}'!='${None}'
 | | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
+| | ${driver}= | Get Variable Value
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['driver']}
 | | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']} | ${driver}
 | | ${intf_name}= | Get Linux interface name | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
 | | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
 | | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
 | | | ... | ${ip_addr} | ${ab_ip_prefix}
 | | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
 | | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
 | | END
+| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
+| | ${driver}= | Get Variable Value
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']} | ${driver}
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
 | | Set Linux interface up | ${nodes}[TG] | ${intf_name}
 | | Check AB | ${tg}
 | | ${type} = | Get AB Type | ${nodes}[TG]
