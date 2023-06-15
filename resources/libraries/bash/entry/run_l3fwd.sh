@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,6 +14,8 @@
 # limitations under the License.
 
 # Helper functions for starting l3fwd.
+# Any previous dpdk app is assumed to have been killed already,
+# by kill_dpdk.sh script.
 
 set -exuo pipefail
 
@@ -36,5 +38,4 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/dpdk.sh" || die "Source failed."
 common_dirs || die
-dpdk_kill || die
 dpdk_l3fwd "${@}" || die
