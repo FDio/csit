@@ -30,8 +30,10 @@ class TestpmdTest:
 
     @staticmethod
     def start_testpmd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
-            rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None):
+            nodes: dict, topology_info: dict, phy_cores: int,
+            rx_queues: int = None, jumbo_frames: bool = False,
+            rxd: int = None, txd: int = None,
+            nic_rxq_size: int = None, nic_txq_size: int = None) -> None:
         """
         Start the testpmd with M worker threads and rxqueues N and jumbo
         support frames on/off on all DUTs.
@@ -109,8 +111,9 @@ class TestpmdTest:
 
     @staticmethod
     def start_testpmd(
-            node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames, rxq_size=1024, txq_size=1024):
+            node: dict, if1: str, if2: str, lcores_list: str,
+            nb_cores: int, queue_nums: str, jumbo_frames: bool,
+            rxq_size: int = 1024, txq_size: int = 1024) -> None:
         """
         Execute the testpmd on the DUT node.
 
@@ -168,7 +171,7 @@ class TestpmdTest:
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def check_testpmd(node):
+    def check_testpmd(node: dict) -> None:
         """
         Execute the testpmd check on the DUT node.
 

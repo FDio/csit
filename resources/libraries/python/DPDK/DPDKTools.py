@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,7 +28,8 @@ class DPDKTools:
     """
 
     @staticmethod
-    def initialize_dpdk_framework(node, if1, if2, nic_driver):
+    def initialize_dpdk_framework(node: dict, if1: str, if2: str,
+            nic_driver: str) -> None:
         """
         Initialize the DPDK framework on the DUT node. Bind interfaces to
         driver.
@@ -54,7 +55,7 @@ class DPDKTools:
             exec_cmd_no_error(node, command, timeout=600, message=message)
 
     @staticmethod
-    def cleanup_dpdk_framework(node, if1, if2):
+    def cleanup_dpdk_framework(node: dict, if1: str, if2: str) -> None:
         """
         Cleanup the DPDK framework on the DUT node. Bind interfaces to
         default driver specified in topology.
@@ -80,7 +81,7 @@ class DPDKTools:
             exec_cmd_no_error(node, command, timeout=1200, message=message)
 
     @staticmethod
-    def get_dpdk_version(node):
+    def get_dpdk_version(node: dict) -> str:
         """Log and return the installed DPDK version.
 
         The logged string ends with newline, the returned one is stripped.
@@ -99,7 +100,7 @@ class DPDKTools:
         return stdout.strip()
 
     @staticmethod
-    def install_dpdk_framework(node):
+    def install_dpdk_framework(node: dict) -> None:
         """
         Prepare the DPDK framework on the DUT node.
 
@@ -114,7 +115,7 @@ class DPDKTools:
         DPDKTools.get_dpdk_version(node)
 
     @staticmethod
-    def install_dpdk_framework_on_all_duts(nodes):
+    def install_dpdk_framework_on_all_duts(nodes: dict) -> None:
         """
         Prepare the DPDK framework on all DUTs.
 
