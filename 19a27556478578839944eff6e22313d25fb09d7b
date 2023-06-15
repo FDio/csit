@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f549ed_3bbbf0ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-06-15T05:03:36Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-clx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-ndrpdr-00",
+      "revId": "19a27556478578839944eff6e22313d25fb09d7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
