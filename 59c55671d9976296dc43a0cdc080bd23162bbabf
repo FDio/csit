@@ -16,6 +16,23 @@
       "message": "csit-dpdk-2n-icx-perftest mrrANDnic_*ANDdrv_*AND64bANDeth-l2xcbase-testpmdNOT4c mrrANDnic_*ANDdrv_*AND64bANDethip4-ip4base-l3fwdNOT4c",
       "revId": "59c55671d9976296dc43a0cdc080bd23162bbabf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ba0a486_8b4716fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-15T08:01:46Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "59c55671d9976296dc43a0cdc080bd23162bbabf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
