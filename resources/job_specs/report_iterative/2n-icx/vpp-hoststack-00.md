@@ -1,13 +1,13 @@
 # 2n-icx
 ## ./hoststack
 ### mellanox-cx7veat
-#### rdma-core
+#### mlx5-core
 ##### eth-ip4tcphttp-ldpreload-nginx-1_21_5
-1c AND 0b AND cps AND cx7veat AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
-2c AND 0b AND cps AND cx7veat AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
+1c AND 0b AND cps AND cx7veat AND drv_mlx5_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
+2c AND 0b AND cps AND cx7veat AND drv_mlx5_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
 ##### eth-ip4tcphttp-ldpreload-nginx-1_21_5
-1c AND 0b AND rps AND cx7veat AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
-2c AND 0b AND rps AND cx7veat AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
+1c AND 0b AND rps AND cx7veat AND drv_mlx5_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
+2c AND 0b AND rps AND cx7veat AND drv_mlx5_core AND eth-ip4tcphttp-ldpreload-nginx-1_21_5
 ### intel-e810xxv
 #### dpdk-vfio-pci
 ##### eth-ip4tcphttp-ldpreload-nginx-1_21_5
