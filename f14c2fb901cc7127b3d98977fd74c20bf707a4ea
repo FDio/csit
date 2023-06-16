@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "349f38f3_3115f1f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-06-16T13:55:57Z",
+      "side": 1,
+      "message": "The mrr/ndrpdr test case list should be good enough for now. We\u0027ll probably add some more tests when we test this list as the current number of test cases is a bit lower than previously.\n\nThe number of coverage tests is now a bit higher I think. We can trim those if needed.",
+      "revId": "f14c2fb901cc7127b3d98977fd74c20bf707a4ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
