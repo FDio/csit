@@ -1,6 +1,10 @@
 ---
 bookCollapseSection: true
 bookFlatSection: false
-title: "Test"
+title: "Tests"
 weight: 3
 ---
+
+# Tests
+
+text
