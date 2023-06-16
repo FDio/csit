@@ -1,6 +1,11 @@
 ---
 bookCollapseSection: true
 bookFlatSection: false
-title: "C-Dash"
+title: "CSIT-Dash"
 weight: 1
 ---
+
+# CSIT-Dash
+
+- [Design](design)
+- [Structure](structure)
