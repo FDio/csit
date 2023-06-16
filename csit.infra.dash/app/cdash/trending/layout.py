@@ -1452,6 +1452,10 @@ class Layout:
                     if not end_idx:
                         plotting_area_telemetry = C.PLACEHOLDER
                     elif on_draw[1] and (end_idx >= start_idx):
+                        if len(tm_all_in_one) != end_idx:
+                            tm_all_in_one = [[None], ] * end_idx
+                        if len(tm_ignore_host) != end_idx:
+                            tm_ignore_host = [[None], ] * end_idx
                         for idx in range(start_idx, end_idx):
                             store["telemetry-graphs"].append(graph_tm_trending(
                                 tm.select_tm_trending_data(
