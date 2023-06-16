@@ -1,6 +1,6 @@
 ---
 title: "TRex Traffic Generator"
-weight: 7
+weight: 6
 ---
 
 # TRex Traffic Generator
@@ -9,7 +9,7 @@ weight: 7
 
 [TRex traffic generator](https://trex-tgn.cisco.com) is used for majority of
 CSIT performance tests. TRex is used in multiple types of performance tests,
-see [Data Plane Throughtput]({{< ref "../methodology/measurements/data_plane_throughput/data_plane_throughput/#Data Plane Throughtput" >}})
+see [Data Plane Throughtput]({{< ref "../measurements/data_plane_throughput/data_plane_throughput/#Data Plane Throughtput" >}})
 for more details.
 
 ## Traffic modes

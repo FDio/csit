@@ -5,6 +5,6 @@ weight: 3
 
 # Releases
 
-## C-Dash v1
+## CSIT-Dash v1
 
 Initial release.
