@@ -69,7 +69,7 @@ A brief bottom-up description is provided here:
      - DPDK-L3Fwd;
      - TRex
    - Tools:
-     - C-Dash
+     - CSIT-Dash
      - Testbed environment setup ansible playbooks;
      - Operational debugging scripts;
 
