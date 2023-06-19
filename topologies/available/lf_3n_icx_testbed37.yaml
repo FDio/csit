@@ -171,7 +171,7 @@ nodes:
         model: Intel-XXV710
       port9:
         # s67-t37-sut1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
-        mac_address: "b8:3f:d2:13:0f:a6"
+        mac_address: "b8:3f:d2:13:0f:2e"
         pci_address: "0000:e3:00.0"
         ip4_address: "172.16.90.2"
         driver: mlx5_core
@@ -179,7 +179,7 @@ nodes:
         model: Mellanox-CX6DX
       port10:
         # s67-t37-sut1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
-        mac_address: "b8:3f:d2:13:0f:a7"
+        mac_address: "b8:3f:d2:13:0f:2f"
         pci_address: "0000:e3:00.1"
         ip4_address: "172.16.100.2"
         driver: mlx5_core
