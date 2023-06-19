@@ -127,7 +127,7 @@ nodes:
         pci_address: "0000:17:00.0"
         ip4_address: "172.16.10.1"
         driver: ice
-        link: link1
+        link: link2
         model: Intel-E810CQ
       port2:
         # s85-t214-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
@@ -135,7 +135,7 @@ nodes:
         pci_address: "0000:19:00.0"
         ip4_address: "172.16.20.1"
         driver: ice
-        link: link2
+        link: link1
         model: Intel-E810CQ
       port3:
         # s85-t214-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
