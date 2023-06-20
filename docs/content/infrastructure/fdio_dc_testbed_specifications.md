@@ -711,9 +711,9 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot4 3b:00.xx: e810-2CQDA2-2p100GE Intel.
-            - PCIe Slot10 5e:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot2 3d:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot4 2c:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot10 17:00.xx: e810-XXVDA4-4p25GE Intel.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot7 86:00.xx: empty.
             - PCIe Slot9 af:00.xx: empty.
