@@ -1024,7 +1024,6 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             ;;
         *"3nb-spr"*)
-            test_tag_array+=("!ipsechw")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!drv_avf")
