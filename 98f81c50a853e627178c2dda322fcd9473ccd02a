@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc",
       "revId": "98f81c50a853e627178c2dda322fcd9473ccd02a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f85006a3_8f9388ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-06-20T08:22:42Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc",
+      "revId": "98f81c50a853e627178c2dda322fcd9473ccd02a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
