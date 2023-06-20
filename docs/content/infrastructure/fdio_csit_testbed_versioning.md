@@ -125,6 +125,12 @@ Following is the list of CSIT versions to date:
   ).
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
+<<<<<<< HEAD   (355ad2 feat(infra): update 3n-alt cx6 iterative tests)
   - Mellanox 556A/MCX713106AS-VEAT series firmware upgrade based on DPDK compatibility
     matrix.
   - TRex version upgrade: increase from 3.00 to 3.03.
+=======
+  - Mellanox 556A/CX6-DX/MCX713106AS-VEAT series firmware upgrade based on DPDK
+    compatibility matrix.
+  - TRex version upgrade: increase from 3.00 to 3.03.
+>>>>>>> CHANGE (b5027b docs(infra): Corrections)
