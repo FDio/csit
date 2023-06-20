@@ -244,6 +244,14 @@
 | | VPP IPSec Crypto SW Scheduler Set Worker on all DUTs
 | | ... | ${nodes} | workers=${cpu_dp} | crypto_enable=${False}
 
+| Enable SPD flow cache IPv4 Inbound
+| | [Documentation]
+| | ... | Enable IPv4 Inbound SPD flow cache in VPP configuration file.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Inbound | on
+| | END
+
 | Enable SPD flow cache IPv4 Outbound
 | | [Documentation]
 | | ... | Enable IPv4 Outbound SPD flow cache in VPP configuration file.
