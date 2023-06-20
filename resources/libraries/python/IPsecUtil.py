@@ -36,6 +36,7 @@ from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.FlowUtil import FlowUtil
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 IPSEC_UDP_PORT_NONE = 0xffff
@@ -1883,6 +1884,11 @@ class IPsecUtil:
         :type raddr_range: int
         :type tunnel_addr_incr: bool
         """
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"lspci -vvv", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"ls /etc", timeout=100, sudo=True, message=u"Fail")
+
         spd_id = 1
         p_hi = 100
         p_lo = 10
