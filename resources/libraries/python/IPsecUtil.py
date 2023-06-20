@@ -36,6 +36,7 @@ from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.FlowUtil import FlowUtil
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 IPSEC_UDP_PORT_NONE = 0xffff
@@ -1895,6 +1896,35 @@ class IPsecUtil:
         :type raddr_range: int
         :type tunnel_addr_incr: bool
         """
+
+        nodes[u"DUT1"]['port']=22
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"uname -a", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"lspci -vvv", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"modinfo qat_4xxx", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"modinfo qat_4xxxvf", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"ls /etc", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"cat /etc/4xxxvf_dev10.conf", timeout=100, sudo=True,
+            message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"cat /etc/4xxx_dev0.conf", timeout=100, sudo=True,
+            message=u"Fail")
+        nodes[u"DUT1"]['port']=6001
+
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"uname -a", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"lspci -vvv", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"modinfo qat_4xxx", timeout=100, sudo=True, message=u"Fail")
+        exec_cmd_no_error(
+            nodes[u"DUT1"], u"modinfo qat_4xxxvf", timeout=100, sudo=True, message=u"Fail")
+
         spd_id = 1
         p_hi = 100
         p_lo = 10
