@@ -110,7 +110,7 @@ nodes:
         pci_address: "0000:cc:00.0"
         ip4_address: "172.16.120.2"
         driver: ice
-        link: link12
+        link: link11
         model: Intel-E810CQ
   DUT1:
     type: DUT
