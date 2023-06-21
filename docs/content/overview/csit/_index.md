@@ -7,8 +7,8 @@ weight: 2
 
 # CSIT
 
-- [Design](design)
-- [Test Scenarios](test_scenarios)
-- [Test Naming](test_naming)
-- [Test Tags](test_tags)
-- [Suite Generation](suite_generation)
+- [Design]({{< relref "/overview/csit/design" >}})
+- [Test Scenarios]({{< relref "/overview/csit/test_scenarios" >}})
+- [Test Naming]({{< relref "/overview/csit/test_naming" >}})
+- [Test Tags]({{< relref "/overview/csit/test_tags" >}})
+- [Suite Generation]({{< relref "/overview/csit/suite_generation" >}})

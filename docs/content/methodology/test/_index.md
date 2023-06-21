@@ -7,13 +7,13 @@ weight: 3
 
 # Tests
 
-- [Network Address Translation](network_address_translation)
-- [Packet Flow Ordering](packet_flow_ordering)
-- [Tunnel Encapsulations](tunnel_encapsulations)
-- [Internet Protocol Security](internet_protocol_security)
-- [Access Control Lists](access_control_lists)
-- [Hoststack](hoststack)
-- [Generic Segmentation Offload](generic_segmentation_offload)
-- [Reconfiguration](reconfiguration)
-- [VPP Device](vpp_device)
-- [Reassembly](reassembly)
+- [Network Address Translation]({{< relref "/methodology/test/network_address_translation" >}})
+- [Packet Flow Ordering]({{< relref "/methodology/test/packet_flow_ordering" >}})
+- [Tunnel Encapsulations]({{< relref "/methodology/test/tunnel_encapsulations" >}})
+- [Internet Protocol Security]({{< relref "/methodology/test/internet_protocol_security" >}})
+- [Access Control Lists]({{< relref "/methodology/test/access_control_lists" >}})
+- [Hoststack]({{< relref "/methodology/test/hoststack/" >}})
+- [Generic Segmentation Offload]({{< relref "/methodology/test/generic_segmentation_offload" >}})
+- [Reconfiguration]({{< relref "/methodology/test/reconfiguration" >}})
+- [VPP Device]({{< relref "/methodology/test/vpp_device" >}})
+- [Reassembly]({{< relref "/methodology/test/reassembly" >}})
