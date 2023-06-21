@@ -293,6 +293,18 @@ class Layout:
                             ]
                         ),
                         delay_show=C.SPINNER_DELAY
+                    ),
+                    dbc.Offcanvas(
+                        class_name="w-75",
+                        id="offcanvas-documentation",
+                        title="Documentation",
+                        placement="end",
+                        is_open=False,
+                        children=html.Iframe(
+                            src=C.URL_DOC_REL_NOTES,
+                            width="100%",
+                            height="100%"
+                        )
                     )
                 ]
             )
@@ -318,14 +330,26 @@ class Layout:
         return dbc.NavbarSimple(
             id="navbarsimple-main",
             children=[
-                dbc.NavItem(
-                    dbc.NavLink(
-                        C.REPORT_TITLE,
-                        disabled=True,
-                        external_link=True,
-                        href="#"
-                    )
-                )
+                dbc.NavItem(dbc.NavLink(
+                    C.REPORT_TITLE,
+                    active=True,
+                    external_link=True,
+                    href="/report"
+                )),
+                dbc.NavItem(dbc.NavLink(
+                    "Comparisons",
+                    external_link=True,
+                    href="/comparisons"
+                )),
+                dbc.NavItem(dbc.NavLink(
+                    "Coverage Data",
+                    external_link=True,
+                    href="/coverage"
+                )),
+                dbc.NavItem(dbc.NavLink(
+                    "Documentation",
+                    id="btn-documentation",
+                ))
             ],
             brand=C.BRAND,
             brand_href="/",
@@ -1443,3 +1467,13 @@ class Layout:
             ]
 
             return metadata, graph, True
+
+        @app.callback(
+            Output("offcanvas-documentation", "is_open"),
+            Input("btn-documentation", "n_clicks"),
+            State("offcanvas-documentation", "is_open")
+        )
+        def toggle_offcanvas_documentation(n_clicks, is_open):
+            if n_clicks:
+                return not is_open
+            return is_open

@@ -44,6 +44,10 @@ class Constants:
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
+    # URL to the documentation
+    URL_DOC_TRENDING = "https://csit.fd.io/cdocs/methodology/trending/analysis/"
+    URL_DOC_REL_NOTES = "https://csit.fd.io/cdocs/release_notes/csit_rls2306/"
+
     # Path and name of the file specifying the HTML layout of the dash
     # application.
     MAIN_HTML_LAYOUT_FILE = "base_layout.jinja2"
