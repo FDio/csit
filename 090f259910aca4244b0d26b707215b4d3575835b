@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95e5f6d5_207c538d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2023-06-21T08:23:20Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest nic_intel-e822cqANDdrv_vfio_pciANDndrpdrANDethip4udpwireguard1000tnlsw-ip4baseAND1518b\ncsit-3n-snr-perftest nic_intel-e822cqANDdrv_vfio_pciANDndrpdrANDethip4udpwireguard1000tnlsw-ip4baseANDimix",
+      "revId": "090f259910aca4244b0d26b707215b4d3575835b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
