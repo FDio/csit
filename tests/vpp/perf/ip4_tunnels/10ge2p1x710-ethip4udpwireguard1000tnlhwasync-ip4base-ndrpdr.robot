@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -65,8 +65,8 @@
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 2048
+| ${nic_txq_size}= | 2048
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
@@ -84,6 +84,9 @@
 | ${n_tunnels}= | ${1000}
 | ${listen_port}= | ${51820}
 | ${keepalive_time}= | ${256}
+# Ramp-up settings
+| ${ramp_up_rate}= | ${30000}
+| ${ramp_up_duration}= | ${40}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src${n_tunnels}ip4dst${n_tunnels}
 
@@ -118,6 +121,7 @@
 | | ... | ${DUT2_${int}1_mac}[0] | ${wg_if1_ip4} | ${wg_if2_ip4}
 | | ... | ${n_tunnels} | ${listen_port} | ${keepalive_time}
 | | ... | ${laddr_ip4} | ${raddr_ip4}
+| | Then Send ramp-up traffic
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
