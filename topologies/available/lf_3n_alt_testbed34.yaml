@@ -87,7 +87,7 @@ nodes:
         pci_address: "0007:01:00.1"
         ip4_address: "172.16.40.1"
         driver: mlx5_core
-        link: link5
+        link: link4
         model: Mellanox-CX6DX
   DUT2:
     type: DUT
@@ -120,7 +120,7 @@ nodes:
         pci_address: "0007:01:00.0"
         ip4_address: "172.16.30.3"
         driver: mlx5_core
-        link: link4
+        link: link5
         model: Mellanox-CX6DX
       port4:
         # s63-t34-sut2-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
