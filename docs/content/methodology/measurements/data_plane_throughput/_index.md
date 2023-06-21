@@ -7,7 +7,7 @@ weight: 1
 
 # Data Plane Throughput
 
-- [Overview](data_plane_throughput)
-- [MLR Search](mlr_search)
-- [PLR Search](plr_search)
-- [MRR](mrr)
+- [Overview]({{< relref "/methodology/measurements/data_plane_throughput/data_plane_throughput" >}})
+- [MLR Search]({{< relref "/methodology/measurements/data_plane_throughput/mlr_search" >}})
+- [PLR Search]({{< relref "/methodology/measurements/data_plane_throughput/plr_search" >}})
+- [MRR]({{< relref "/methodology/measurements/data_plane_throughput/mrr" >}})

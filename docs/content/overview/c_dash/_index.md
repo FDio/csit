@@ -7,5 +7,5 @@ weight: 1
 
 # CSIT-Dash
 
-- [Design](design)
-- [Structure](structure)
+- [Design]({{< relref "/overview/c_dash/design" >}})
+- [Structure]({{< relref "/overview/c_dash/structure" >}})
