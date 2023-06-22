@@ -24,6 +24,7 @@ nodes:
         pci_address: "0000:f2:01.0"
         driver: idxd
         model: Intel-DSA
+    cryptodev: "0000:76:00.0"
     interfaces:
       port1:
         # s53-t21-tg1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
@@ -97,6 +98,16 @@ nodes:
     username: testuser
     password: Csit1234
     uio_driver: vfio-pci
+    bus:
+      device1:
+        pci_address: "0000:75:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device2:
+        pci_address: "0000:f2:01.0"
+        driver: idxd
+        model: Intel-DSA
+    cryptodev: "0000:76:00.0"
     interfaces:
       port1:
         # s52-t21-sut1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
@@ -154,6 +165,16 @@ nodes:
     username: testuser
     password: Csit1234
     uio_driver: vfio-pci
+    bus:
+      device1:
+        pci_address: "0000:75:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device2:
+        pci_address: "0000:f2:01.0"
+        driver: idxd
+        model: Intel-DSA
+    cryptodev: "0000:f3:00.0"
     interfaces:
       port1:
         # s52-t21-sut2-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.

@@ -24,6 +24,7 @@ nodes:
         pci_address: "0000:f2:01.0"
         driver: idxd
         model: Intel-DSA
+    cryptodev: "0000:76:00.0"
     interfaces:
       port1:
         # s55-t22-tg1-c4/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
@@ -65,6 +66,16 @@ nodes:
     username: testuser
     password: Csit1234
     uio_driver: vfio-pci
+    bus:
+      device1:
+        pci_address: "0000:75:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device2:
+        pci_address: "0000:f2:01.0"
+        driver: idxd
+        model: Intel-DSA
+    cryptodev: "0000:76:00.0"
     interfaces:
       port1:
         # s54-t22-sut1-c4/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
@@ -106,6 +117,16 @@ nodes:
     username: testuser
     password: Csit1234
     uio_driver: vfio-pci
+    bus:
+      device1:
+        pci_address: "0000:75:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device2:
+        pci_address: "0000:f2:01.0"
+        driver: idxd
+        model: Intel-DSA
+    cryptodev: "0000:f3:00.0"
     interfaces:
       port1:
         # s54-t22-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
