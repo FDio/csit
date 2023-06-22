@@ -1,0 +1,44 @@
+---
+# file: tasks/qat.yaml
+
+- name: Get QAT Driver
+  ansible.builtin.uri:
+    url: "{{ intel_download_url }}/{{ intel_qat_url[qat] }}"
+    follow_redirects: "all"
+    force: true
+    dest: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}.tar.gz"
+    mode: "0644"
+  failed_when: false
+  tags:
+    - intel-inst
+
+- name: Create a Directory For QAT Driver
+  ansible.builtin.file:
+    path: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}/"
+    state: "directory"
+    mode: "0755"
+  tags:
+    - intel-inst
+
+- name: Extract QAT Driver
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}.tar.gz"
+    dest: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}/"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Install QAT Driver
+  ansible.builtin.command: "{{ item }}"
+  args:
+    chdir: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}"
+  become: true
+  with_items:
+    - "./configure --enable-icp-sriov=host --enable-icp-sym-only"
+    - "make"
+    - "make install"
+  when:
+    - intel_driver_extracted
+  tags:
+    - intel-inst

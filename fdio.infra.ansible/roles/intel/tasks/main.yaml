@@ -70,6 +70,14 @@
   tags:
     - intel-inst-drivers
 
+- name: Get Intel QAT driver versions
+  ansible.builtin.set_fact:
+    qat: "{{ intel_qat_compatibility_matrix['qat'] }}"
+  when: >
+    intel_qat_matrix is defined
+  tags:
+    - intel-inst-drivers
+
 - name: Driver Intel Ethernet 700 Series
   import_tasks: i40e.yaml
   when: >
@@ -101,5 +109,12 @@
   when: >
     intel_dsa_pcis.stdout_lines | length > 0 and
     intel_dsa_matrix is defined
+  tags:
+    - intel-inst-drivers
+
+- name: Driver Intel QAT
+  import_tasks: qat.yaml
+  when: >
+    intel_qat_matrix is defined
   tags:
     - intel-inst-drivers

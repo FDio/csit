@@ -32,3 +32,4 @@ docker_tg: true
 
 mellanox_matrix: "dpdk23.03"
 intel_dsa_matrix: true
+intel_qat_matrix: true
