@@ -34,6 +34,24 @@
       "parentUuid": "d9de5da4_d50595e9",
       "revId": "40c3141f86fe0d7d27276efc1cc4c30dc3c69c5f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67ded80_84078eec",
+        "filename": "resources/job_specs/report_iterative/3nb-spr/vpp-ndrpdr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2023-06-22T13:26:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f08f628_fc6cc22c",
+      "revId": "40c3141f86fe0d7d27276efc1cc4c30dc3c69c5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
