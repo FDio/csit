@@ -1544,13 +1544,16 @@ class OptimizedSearch:
         )
         if packet_loss_ratio:
             loss_ratios = [0.0, packet_loss_ratio]
+            exceed_ratio = 0.5
+            final_trial_duration = initial_trial_duration
         else:
             # Happens in reconf tests.
             loss_ratios = [0.0]
+            exceed_ratio = 0.0
         goals = [
             SearchGoal(
                 loss_ratio=loss_ratio,
-                exceed_ratio=0.0,
+                exceed_ratio=exceed_ratio,
                 relative_width=final_relative_width,
                 initial_trial_duration=initial_trial_duration,
                 final_trial_duration=final_trial_duration,
