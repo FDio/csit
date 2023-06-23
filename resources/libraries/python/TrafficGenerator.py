@@ -1551,10 +1551,10 @@ class OptimizedSearch:
         goals = [
             SearchGoal(
                 loss_ratio=loss_ratio,
-                exceed_ratio=0.0,
+                exceed_ratio=0.7 if len(loss_ratios) > 1 else 0.0,
                 relative_width=final_relative_width,
                 initial_trial_duration=initial_trial_duration,
-                final_trial_duration=final_trial_duration,
+                final_trial_duration=initial_trial_duration,
                 duration_sum=final_trial_duration,
                 preceding_targets=number_of_intermediate_phases,
                 expansion_coefficient=expansion_coefficient,
