@@ -44,6 +44,9 @@ class Constants:
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
+    # URL to Jenkins
+    URL_JENKINS = "https://jenkins.fd.io/job/"
+
     # URL to the documentation
     URL_DOC_TRENDING = "https://csit.fd.io/cdocs/methodology/trending/analysis/"
     URL_DOC_REL_NOTES = "https://csit.fd.io/cdocs/release_notes/csit_rls2306/"
