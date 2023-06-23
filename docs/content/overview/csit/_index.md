@@ -12,3 +12,4 @@ weight: 2
 - [Test Naming]({{< relref "/overview/csit/test_naming" >}})
 - [Test Tags]({{< relref "/overview/csit/test_tags" >}})
 - [Suite Generation]({{< relref "/overview/csit/suite_generation" >}})
+- [Branching Strategy]({{< relref "/overview/csit/branching_strategy" >}})
