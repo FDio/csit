@@ -1422,22 +1422,34 @@ class Layout:
                 if len(graph_data) == 1:
                     hdrh_data = graph_data[0].get("customdata", None)
                     if hdrh_data:
+                        name = hdrh_data.pop("name")
                         graph = [dbc.Card(
                             class_name="gy-2 p-0",
                             children=[
-                                dbc.CardHeader(hdrh_data.pop("name")),
-                                dbc.CardBody(children=[
-                                    dcc.Graph(
-                                        id="hdrh-latency-graph",
-                                        figure=graph_hdrh_latency(
-                                            hdrh_data, self._graph_layout
-                                        )
+                                dbc.CardHeader(html.A(
+                                    name,
+                                    href=f"{C.URL_JENKINS}{name}",
+                                    target="_blank"
+                                )),
+                                dbc.CardBody(dcc.Graph(
+                                    id="hdrh-latency-graph",
+                                    figure=graph_hdrh_latency(
+                                        hdrh_data, self._graph_layout
                                     )
-                                ])
+                                ))
                             ])
                         ]
             else:
                 raise PreventUpdate
+            list_group_items = list()
+            for k, v in _process_stats(graph_data, trigger.idx):
+                list_group_items.append(dbc.ListGroupItem([dbc.Badge(k), v]))
+            if trigger.idx == "tput" and len(list_group_items) == 1:
+                job = graph_data[0].get("customdata", "")
+                list_group_items.append(dbc.ListGroupItem([
+                    dbc.Badge("csit-ref"),
+                    html.A(job, href=f"{C.URL_JENKINS}{job}", target="_blank")
+                ]))
             metadata = [
                 dbc.Card(
                     class_name="gy-2 p-0",
@@ -1451,16 +1463,9 @@ class Layout:
                             title
                         ]),
                         dbc.CardBody(
+                            dbc.ListGroup(list_group_items, flush=True),
                             id="tput-lat-metadata",
-                            class_name="p-0",
-                            children=[dbc.ListGroup(
-                                [
-                                    dbc.ListGroupItem([dbc.Badge(k), v])
-                                        for k, v in _process_stats(
-                                            graph_data, trigger.idx)
-                                ],
-                                flush=True)
-                            ]
+                            class_name="p-0"
                         )
                     ]
                 )

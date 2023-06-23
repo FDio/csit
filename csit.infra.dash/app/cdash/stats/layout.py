@@ -194,7 +194,11 @@ class Layout:
             "ri-ttypes-value": self._default["ttype"],
             "ri-cadences-value": self._default["cadence"],
             "dd-tbeds-value": self._default["tbed"],
-            "al-job-children": self._default["job"]
+            "al-job-children": html.A(
+                self._default["job"],
+                href=f"{C.URL_JENKINS}{self._default['job']}",
+                target="_blank"
+            )
         }
 
         # Callbacks:
@@ -671,7 +675,14 @@ class Layout:
                                 "ri-ttypes-value": job_params["ttype"],
                                 "ri-cadences-value": job_params["cadence"],
                                 "dd-tbeds-value": job_params["tbed"],
-                                "al-job-children": job_params["job"]
+                                "al-job-children": html.A(
+                                    self._default["job"],
+                                    href=(
+                                        f"{C.URL_JENKINS}"
+                                        f"{self._default['job']}"
+                                    ),
+                                    target="_blank"
+                                )
                             },
                             None
                         )
@@ -686,7 +697,15 @@ class Layout:
                 ctrl_panel.get("dd-tbeds-value")
             )
 
-            ctrl_panel.set({"al-job-children": job})
+            ctrl_panel.set(
+                {
+                    "al-job-children": html.A(
+                        self._default["job"],
+                        href=f"{C.URL_JENKINS}{self._default['job']}",
+                        target="_blank"
+                    )
+                }
+            )
             plotting_area = self._get_plotting_area(
                 job,
                 gen_new_url(parsed_url, {"job": job})
@@ -804,11 +823,29 @@ class Layout:
                     fail_tests = None
 
                 # Create the content of the offcanvas:
+                list_group_items = list()
+                for itm in lst_graph_data:
+                    lst_itm = itm.split(": ")
+                    if lst_itm[0] == "csit-ref":
+                        list_group_item = dbc.ListGroupItem([
+                            dbc.Badge(lst_itm[0]),
+                            html.A(
+                                lst_itm[1],
+                                href=f"{C.URL_JENKINS}{lst_itm[1]}",
+                                target="_blank"
+                            )
+                        ])
+                    else:
+                        list_group_item = dbc.ListGroupItem([
+                            dbc.Badge(lst_itm[0]),
+                            lst_itm[1]
+                        ])
+                    list_group_items.append(list_group_item)
                 metadata = [
                     dbc.Card(
                         class_name="gy-2 p-0",
                         children=[
-                            dbc.CardHeader(children=[
+                            dbc.CardHeader([
                                 dcc.Clipboard(
                                     target_id="metadata",
                                     title="Copy",
@@ -817,21 +854,9 @@ class Layout:
                                 title
                             ]),
                             dbc.CardBody(
+                                dbc.ListGroup(list_group_items, flush=True),
                                 id="metadata",
-                                class_name="p-0",
-                                children=[dbc.ListGroup(
-                                    children=[
-                                        dbc.ListGroupItem(
-                                            [
-                                                dbc.Badge(
-                                                    x.split(":")[0]
-                                                ),
-                                                x.split(": ")[1]
-                                            ]
-                                        ) for x in lst_graph_data
-                                    ],
-                                    flush=True),
-                                ]
+                                class_name="p-0"
                             )
                         ]
                     )

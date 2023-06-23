@@ -128,6 +128,9 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             y_tput_max = max(max(y_data), y_tput_max)
 
         nr_of_samples = len(y_data)
+        c_data = list()
+        for _, row in itm_data.iterrows():
+            c_data.append(f"{row['job']}/{row['build']}")
         tput_kwargs = dict(
             y=y_data,
             name=(
@@ -139,7 +142,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             hoverinfo=u"y+name",
             boxpoints="all",
             jitter=0.3,
-            marker=dict(color=get_color(idx))
+            marker=dict(color=get_color(idx)),
+            customdata=c_data
         )
         tput_traces.append(go.Box(**tput_kwargs))
         show_tput = True

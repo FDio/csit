@@ -1698,11 +1698,27 @@ class Layout:
             metadata = no_update
             graph = list()
 
-            children = [
-                dbc.ListGroupItem(
-                    [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
-                ) for x in graph_data.get("text", "").split("<br>")
-            ]
+            list_group_items = list()
+            for itm in graph_data.get("text", None).split("<br>"):
+                if not itm:
+                    continue
+                lst_itm = itm.split(": ")
+                if lst_itm[0] == "csit-ref":
+                    list_group_item = dbc.ListGroupItem([
+                        dbc.Badge(lst_itm[0]),
+                        html.A(
+                            lst_itm[1],
+                            href=f"{C.URL_JENKINS}{lst_itm[1]}",
+                            target="_blank"
+                        )
+                    ])
+                else:
+                    list_group_item = dbc.ListGroupItem([
+                        dbc.Badge(lst_itm[0]),
+                        lst_itm[1]
+                    ])
+                list_group_items.append(list_group_item)
+
             if trigger.idx == "tput":
                 title = "Throughput"
             elif trigger.idx == "lat":
@@ -1713,14 +1729,14 @@ class Layout:
                         class_name="gy-2 p-0",
                         children=[
                             dbc.CardHeader(hdrh_data.pop("name")),
-                            dbc.CardBody(children=[
+                            dbc.CardBody(
                                 dcc.Graph(
                                     id="hdrh-latency-graph",
                                     figure=graph_hdrh_latency(
                                         hdrh_data, self._graph_layout
                                     )
                                 )
-                            ])
+                            )
                         ])
                     ]
             else:
@@ -1739,9 +1755,9 @@ class Layout:
                             title
                         ]),
                         dbc.CardBody(
+                            dbc.ListGroup(list_group_items, flush=True),
                             id="tput-lat-metadata",
                             class_name="p-0",
-                            children=[dbc.ListGroup(children, flush=True), ]
                         )
                     ]
                 )
