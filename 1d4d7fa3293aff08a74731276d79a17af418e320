@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4ipsec4tnlhwasync-ip4base-int-aes256gcm\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4udpwireguard1tnlhwasync-ip4base\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4udpwireguard4tnlhwasync-ip4base\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4udpwireguard100tnlhwasync-ip4base\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00.mdANDethip4udpwireguard1000tnlhwasync-ip4base",
       "revId": "1d4d7fa3293aff08a74731276d79a17af418e320",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f82dd251_bd1b1048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2023-06-25T01:16:56Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDndrpdrANDethip4ipsec4tnlhwasync-ip4base-int-aes256gcmAND1518bAND1c",
+      "revId": "1d4d7fa3293aff08a74731276d79a17af418e320",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
