@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a58fbcb_ebea4b7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-28T12:09:31Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-icx-perftest ndrpdrANDnic_*ANDdrv_mlx5_coreAND4cAND64bANDeth-l2xcbase-testpmd",
+      "revId": "4695a12020216f6cbcbee00997f2dd1790cd836f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
