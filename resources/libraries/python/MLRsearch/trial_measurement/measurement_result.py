@@ -17,6 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from robot.api import logger
 
 @dataclass
 class MeasurementResult:
@@ -111,6 +112,8 @@ class MeasurementResult:
         else:
             self.intended_count = int(self.intended_count)
             # TODO: Handle (somehow) situations where offered > intended?
+        logger.debug(f"Created {self!r}")
+        logger.debug(f"uc {self.unsent_count} lr {self.loss_ratio} rfr {self.relative_forwarding_rate}")
 
     @property
     def unsent_count(self) -> int:
