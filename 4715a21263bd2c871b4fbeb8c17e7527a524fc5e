@@ -33,6 +33,23 @@
       "message": "csit-dpdk-2n-clx2-perftest mrrANDnic_x710ANDdrv_*AND1cAND64bANDeth-l2xcbase-testpmd",
       "revId": "4715a21263bd2c871b4fbeb8c17e7527a524fc5e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4eb556f_6cfcffa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-06-28T11:33:40Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-clx-perftest mrrANDnic_x710ANDdrv_*AND1cAND64bANDeth-l2xcbase-testpmd",
+      "revId": "4715a21263bd2c871b4fbeb8c17e7527a524fc5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
