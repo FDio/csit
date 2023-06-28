@@ -1,4 +1,9 @@
-## CSIT-2306 Release Report
+---
+bookHidden: true
+title: "CSIT-2306 Release Report"
+---
+
+# CSIT-2306 Release Report
 
 The format of FD.io CSIT reports has now changed is no longer available
 in the static html format.
@@ -6,7 +11,7 @@ in the static html format.
 Instead current CSIT release information can be found in csit.fd.io.
 Previous CSIT releases are also linked from there.
 
-### CSIT-2306 Release Data
+## CSIT-2306 Release Data
 
 To access CSIT-2306 Release data please use following web resources:
 
@@ -16,7 +21,7 @@ To access CSIT-2306 Release data please use following web resources:
 - [CSIT Per Release Comparisons](https://csit.fd.io/comparisons/)
 - ... _add more references with links_
 
-### CSIT-2306 Selected Performance Tests
+## CSIT-2306 Selected Performance Tests
 
 CSIT-2306 VPP v23.06 Performance Tests:
 
@@ -34,12 +39,12 @@ CSIT-2306 VPP v23.06 Performance Tests:
 - reassembly
 - ... _add more references with links_
 
-### CSIT-2306 Selected Performance Comparisons
+## CSIT-2306 Selected Performance Comparisons
 
 Comparisons 23.06 vs 23.02
 - [2n-icx e810 2p100ge](http://cuts2.com/UBwMY)
 
-### Further Information
+## Further Information
 
 For further information including instructions how to access the needed
 information with user selectable options, please refer to csit.fd.io
