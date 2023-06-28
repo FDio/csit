@@ -13,6 +13,8 @@
 
 """Module defining ReceiveRateMeasurement class."""
 
+from robot.api import logger
+
 
 class ReceiveRateMeasurement:
     """Structure defining the result of single Rr measurement."""
@@ -108,6 +110,8 @@ class ReceiveRateMeasurement:
         self.relative_receive_rate = (
             self.target_tr * self.receive_count / self.transmit_count
         )
+        logger.debug(f"DEBUG {self} {self!r}")
+        logger.debug(f"DEBUG prr {self.partial_receive_rate}")
 
     def __str__(self):
         """Return string reporting input and loss ratio."""

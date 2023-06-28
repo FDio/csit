@@ -1221,6 +1221,7 @@ class TrafficGenerator(AbstractMeasurer):
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
             packet_rate = transmit_rate * self.ppta
+            logger.debug(f"sent {self._sent} ppta {self.ppta} tr {transmit_rate} pr {packet_rate}")
             # We have a float. TRex way of rounding it is not obvious.
             # The biggest source of mismatch is Inter Stream Gap.
             # So the code tolerates 10 usec of missing packets.
@@ -1231,6 +1232,7 @@ class TrafficGenerator(AbstractMeasurer):
             unsent = expected_attempt_count - self._sent
             pass_count = self._received
             fail_count = expected_attempt_count - pass_count
+            logger.debug(f"expected_attempt_count {expected_attempt_count} fail count {fail_count}")
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
