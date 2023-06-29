@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "758f3139_1e6df6ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-06-29T05:30:34Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-hoststack-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-hoststack-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-hoststack-00\ncsit-vpp-report-iter-3nb-spr-perftest vpp-hoststack-00",
+      "revId": "6c06663574bd47636ae72d10d09754bf8cde1218",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
