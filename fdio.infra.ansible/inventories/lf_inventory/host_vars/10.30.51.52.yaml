@@ -33,3 +33,8 @@ docker_sut: true
 mellanox_matrix: "dpdk23.03"
 intel_dsa_matrix: true
 intel_qat_matrix: true
+
+kernel_version_by_distro:
+  ubuntu:
+    jammy:
+      - "5.15.0-72"
