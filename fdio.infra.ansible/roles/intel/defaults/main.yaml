@@ -32,9 +32,9 @@ packages_by_distro:
     - "gnupg"
     - "patch"
     - "patchutils"
-    - "libboost-all-dev"
-    - "libudev-dev"
-    - "yasm"
+#    - "libboost-all-dev"
+#    - "libudev-dev"
+#    - "yasm"
 
 packages_by_arch:
   aarch64:

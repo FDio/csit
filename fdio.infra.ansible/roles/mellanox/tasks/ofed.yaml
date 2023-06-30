@@ -35,10 +35,3 @@
   changed_when: false
   tags:
     - mellanox-inst-drivers
-
-- name: FIX qemu-system removal
-  ansible.builtin.package:
-    name: "qemu-system"
-    state: "latest"
-  tags:
-    - mellanox-inst-drivers
