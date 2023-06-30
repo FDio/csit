@@ -17,27 +17,64 @@ To access CSIT-2306 Release data please use following web resources:
 
 - [CSIT-2306 Release Notes](https://csit.fd.io/cdocs/release_notes/csit_rls2306/)
 - [CSIT Documentation](https://csit.fd.io/cdocs/)
-- [CSIT Per Release Performance](https://csit.fd.io/report/) > rls2306
-- [CSIT Per Release Comparisons](https://csit.fd.io/comparisons/)
-- ... _add more references with links_
+- [CSIT Per Release Performance](https://csit.fd.io/report/)
+  - `CSIT Release` > `rls2306`
+  - `DUT` > `vpp`
+  - `DUT Version` > `23.06-release`
+  - `Infra` > <testbed-nic-driver of choice>
+  - `Area` > `IPv4 Routing` `IPv4 Tunnels` `IPv6 Routing` `Hoststack` ...
+  - `Test` > ...
+  - `Frame Size` > `64B` `78B`
+  - `Number of Cores` > `1C` `2C` `4C`
+  - `Test Type` > `MRR` `NDR` `PDR`
+- [CSIT Per Release Comparisons](https://csit.fd.io/comparisons/) for VPP v23.06 vs v23.02
+  - `REFERENCE VALUE`
+    - `DUT` > `vpp`
+    - `CSIT and DUT version` > `rls2306-23.02-release`
+    - `Infra` > <testbed-nic-driver of choice>
+    - `Frame Size` > `64B` `78B`
+    - `Number of Cores` > `1C` `2C` `4C`
+    - `Measurement` > `Latency` `MRR` `NDR` `PDR`
+  - `COMPARED VALUE`
+    - `Parameter` > `Release and Version`
+    - `Value` > `rls2306-23.06-release`
+- [CSIT Per Release Coverage Data](https://csit.fd.io/coverage/)
+  - `CSIT Release` > `rls2306`
 
 ## CSIT-2306 Selected Performance Tests
 
 CSIT-2306 VPP v23.06 Performance Tests:
 
 - ip4
-  - [2n-aws c5n.4xl](http://cuts2.com/gFObL)
-  - [2n-icx](http://cuts2.com/CJmlu)
-  - [3n-icx](...)
-  - [2n-spr](http://cuts2.com/kGVeC)
-  - [3n-spr](http://cuts2.com/PxQLl)
+  - [2n-icx 100ge e810cq avf ip4scale20k](http://cuts2.com/sIfjo)
+  - [2n-spr 100ge e810cq avf ip4scale20k](http://cuts2.com/ExMRU)
+  - [2n-spr 100ge e810cq dpdk ip4scale20k](http://cuts2.com/snSJi)
+  - [2n-spr 200ge cx7 dpdk ip4scale20k](http://cuts2.com/bVpvF)
+  - [2n-aws c5n.4xl 50ge ena dpdk ip4scale20k](http://cuts2.com/HrpyC)
 - ip6
+  - [2n-icx 100ge e810cq avf ip6scale20k](http://cuts2.com/zgxlu)
+  - [2n-spr 100ge e810cq avf ip6scale20k](http://cuts2.com/HqEsk)
+  - [2n-spr 100ge e810cq dpdk ip6scale20k](http://cuts2.com/mLZWm)
+  - [2n-spr 200ge cx7 dpdk ip6scale20k](http://cuts2.com/eCVsx)
+  - [2n-aws c5n.4xl 50ge ena dpdk ip6scale20k](http://cuts2.com/gsExR)
 - ipsec
-- hoststack
+  - [3n-icx 100ge e810cq avf 40tnlsw](http://cuts2.com/weFIh)
+  - [3n-icx 100ge cx6 dpdk 40tnlsw](http://cuts2.com/zNVVn)
+  - [3n-spr 100ge e810cq avf 40tnlsw](http://cuts2.com/JFUvT)
+  - [3n-spr 200ge cx7 dpdk 40tnlsw](http://cuts2.com/ihwxD)
+- hoststack quic
+  - [3n-icx 100ge e810cq dpdk ip4udpquic](http://cuts2.com/PRcZr)
+  - [3n-icx 100ge cx6 dpdk ip4udpquic](http://cuts2.com/JJKBv)
+  - [3n-spr 100ge e810cq dpdk ip4udpquic](http://cuts2.com/IqRxg)
+  - [3n-spr 200ge cx7 dpdk ip4udpquic](http://cuts2.com/Orzya)
+- hoststack tcp udp
+  - [3n-icx 100ge e810cq dpdk ip4tcp ipudp](http://cuts2.com/cECAK)
+  - [3n-icx 100ge cx6 dpdk ip4tcp ipudp](http://cuts2.com/sCjKI)
+  - [3n-spr 100ge e810cq dpdk ip4tcp ipudp](http://cuts2.com/HvNmE)
+  - [3n-spr 200ge cx7 dpdk ip4tcp ipudp](http://cuts2.com/nAFDH)
 - nat44
 - tunnels (gnv, vxlan, gtpu)
 - reassembly
-- ... _add more references with links_
 
 ## CSIT-2306 Selected Performance Comparisons
 
