@@ -6,12 +6,12 @@ type: "docs"
 # Documentation Structure
 
 1. OVERVIEW: General introduction to CSIT Performance Dashboard and CSIT itself.
-   - **[CSIT-Dash]({{< relref "/overview/c_dash/" >}})**: The design and the
-     structure of CSIT-Dash dashboard.
-   - **[CSIT]({{< relref "/overview/csit/" >}})**: The design of the
+   - **[CSIT-Dash]({{< relref "/overview/c_dash/design" >}})**: The design and
+     the structure of CSIT-Dash dashboard.
+   - **[CSIT]({{< relref "/overview/csit/design" >}})**: The design of the
      [FD.io](https://fd.io/) CSIT system, and the description of the test
      scenarios, test naming and test tags.
-1. METHODOLOGY
+2. METHODOLOGY
    - **[Overview]({{< relref "/methodology/overview/" >}})**: Terminology,
      per-thread resources, multi-core speedup, VPP forwarding modes and DUT
      state considerations.
@@ -26,12 +26,12 @@ type: "docs"
    - **[Per-patch Testing]({{< relref "/methodology/per_patch_testing" >}})**:
      A methodology similar to trending analysis is used for comparing
      performance before a DUT code change is merged.
-2. RELEASE NOTES: Performance tests executed in physical FD.io testbeds.
+3. RELEASE NOTES: Performance tests executed in physical FD.io testbeds.
    - **[CSIT rls2306]({{< relref "/release_notes/csit_rls2306/" >}})**: The
      release notes of the current CSIT release.
    - **[Previous]({{< relref "/release_notes/previous/" >}})**: Archived release
      notes for the past releases.
-3. INFRASTRUCTURE
+4. INFRASTRUCTURE
    - **[FD.io DC Vexxhost Inventory]({{< relref "/infrastructure/fdio_dc_vexxhost_inventory" >}})**:
      Physical testbeds location.
    - **[FD.io DC Testbed Specifications]({{< relref "/infrastructure/fdio_dc_testbed_specifications" >}})**:
