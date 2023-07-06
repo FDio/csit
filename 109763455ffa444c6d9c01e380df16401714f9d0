@@ -16,6 +16,23 @@
       "message": "csit-2n-aws-pefrtest ndrpdrANDnic_amazon-nitro-50gAND1cAND64bANDethip4-ip4base",
       "revId": "109763455ffa444c6d9c01e380df16401714f9d0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9bbf175_77032730",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-07-06T09:25:17Z",
+      "side": 1,
+      "message": "csit-2n-aws-perftest ndrpdrANDnic_amazon-nitro-50gAND1cAND64bANDethip4-ip4base",
+      "revId": "109763455ffa444c6d9c01e380df16401714f9d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
