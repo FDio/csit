@@ -38,7 +38,7 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-098a7a7d220d31850"
+  default     = "ami-07430bfa17fd4e597"
 }
 
 variable "tg_associate_public_ip_address" {
@@ -56,7 +56,7 @@ variable "tg_instance_initiated_shutdown_behavior" {
 variable "tg_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c6in.4xlarge"
 }
 
 variable "tg_private_ip" {
@@ -74,7 +74,7 @@ variable "tg_source_dest_check" {
 variable "sut1_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-08f78d81d21cdaf14"
+  default     = "ami-0a890555652963ec2"
 }
 
 variable "sut1_associate_public_ip_address" {
@@ -92,7 +92,7 @@ variable "sut1_instance_initiated_shutdown_behavior" {
 variable "sut1_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c6in.4xlarge"
 }
 
 variable "sut1_private_ip" {
