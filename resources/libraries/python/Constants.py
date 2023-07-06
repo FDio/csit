@@ -333,7 +333,7 @@ class Constants:
         u"Mellanox-CX556A": 148809523,
         u"Mellanox-CX6DX": 148809523,
         u"Mellanox-CX7VEAT": 297619046,
-        u"Amazon-Nitro-50G": 1200000,
+        u"Amazon-Nitro-50G": 4000000,
         u"virtual": 14880952,
     }
 
