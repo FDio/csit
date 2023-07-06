@@ -38,7 +38,7 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-098a7a7d220d31850"
+  default     = "ami-0b6d3a3ce6e13d46a"
 }
 
 variable "tg_associate_public_ip_address" {
@@ -74,7 +74,7 @@ variable "tg_source_dest_check" {
 variable "sut1_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-08f78d81d21cdaf14"
+  default     = "ami-06946396a27d67c3e"
 }
 
 variable "sut1_associate_public_ip_address" {

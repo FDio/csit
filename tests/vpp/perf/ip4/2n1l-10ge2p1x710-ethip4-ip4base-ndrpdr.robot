@@ -64,6 +64,7 @@
 | ${overhead}= | ${0}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
+#| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
