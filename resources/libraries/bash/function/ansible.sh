@@ -28,7 +28,7 @@ function ansible_adhoc () {
     set -exuo pipefail
 
     case "$FLAVOR" in
-        "aws")
+        "aws" | "c6in" | "c6gn")
             INVENTORY_PATH="cloud_inventory"
             ;;
         *)
@@ -70,7 +70,7 @@ function ansible_playbook () {
     set -exuo pipefail
 
     case "$FLAVOR" in
-        "aws")
+        "aws" | "c6in" | "c6gn")
             INVENTORY_PATH="cloud_inventory"
             ;;
         *)
