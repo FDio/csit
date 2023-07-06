@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ead2e84_5e5c7dde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-07-06T09:19:32Z",
+      "side": 1,
+      "message": "csit-2n-aws-pefrtest ndrpdrANDnic_amazon-nitro-50gAND1cAND64bANDethip4-ip4base",
+      "revId": "109763455ffa444c6d9c01e380df16401714f9d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
