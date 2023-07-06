@@ -137,6 +137,9 @@ class VPPUtil:
                 command = "dpkg -l | grep vpp"
                 exec_cmd_no_error(node, command, sudo=True)
 
+                command = "modinfo ena"
+                exec_cmd_no_error(node, command, sudo=True)
+
     @staticmethod
     def verify_vpp_installed(node):
         """Verify that VPP is installed on the specified topology node.
