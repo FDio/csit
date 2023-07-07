@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,7 +21,7 @@ function gather_nginx () {
     # Ensure stable NGINX archive is downloaded.
     #
     # Variables read:
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - DOWNLOAD_DIR - Path to directory robot takes the build to test from.
     # - NGINX_VER - Version number of Nginx.
     set -exuo pipefail
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
@@ -53,7 +53,7 @@ function common_dirs () {
     # Variables set:
     # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
     # - CSIT_DIR - Path to CSIT framework.
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - DOWNLOAD_DIR - Path to directory robot takes the build to test from.
     # - NGINX_DIR - Path to NGINX framework.
     # - NGINX_VER - Version number of Nginx.
     # Functions called:
@@ -121,7 +121,7 @@ function nginx_extract () {
     # Variables read:
     # - NGINX_DIR - Path to NGINX framework.
     # - CSIT_DIR - Path to CSIT framework.
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - DOWNLOAD_DIR - Path to directory robot takes the build to test from.
     # - NGINX_VER - Version number of Nginx.
     # Functions called:
     # - die - Print to stderr and exit.

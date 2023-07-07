@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -47,9 +47,9 @@ prepare_topology || die
 select_topology || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_pybot_arguments || die
+compose_robot_arguments || die
 set_environment_variables || die
-run_pybot || die
+run_robot || die
 untrap_and_unreserve_testbed || die
 move_archives || die
-die_on_pybot_error || die
+die_on_robot_error || die
