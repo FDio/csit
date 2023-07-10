@@ -36,64 +36,27 @@ environment versioning include:
 
 Following is the list of CSIT versions to date:
 
-- Ver. 1 associated with CSIT rls1908 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls1908),
-  [Linux](https://docs.fd.io/csit/rls1908/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://docs.fd.io/csit/rls1908/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls1908)
-  ).
-- Ver. 2 associated with CSIT rls2001 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2001),
-  [Linux](https://docs.fd.io/csit/rls2001/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://docs.fd.io/csit/rls2001/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2001)
-  ).
-- Ver. 4 associated with CSIT rls2005 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2005),
-  [Linux](https://docs.fd.io/csit/rls2005/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://docs.fd.io/csit/rls2005/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2005)
-  ).
-- Ver. 5 associated with CSIT rls2009 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2009),
-  [Linux](https://docs.fd.io/csit/rls2009/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://docs.fd.io/csit/rls2009/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2009)
-  ).
-  - The main change is TRex data-plane core resource adjustments:
-    [increase from 7 to 8 cores and pinning cores to interfaces](https://gerrit.fd.io/r/c/csit/+/28184)
-    for better TRex performance with symmetric traffic profiles.
-- Ver. 6 associated with CSIT rls2101 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2101),
-  [Linux](https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2101)
-  ).
-  - The main change is TRex version upgrade: increase from 2.82 to 2.86.
-- Ver. 7 associated with CSIT rls2106 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2106),
-  [Linux](https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2106)
-  ).
-  - TRex version upgrade: increase from 2.86 to 2.88.
-  - Ubuntu upgrade from 18.04 LTS to 20.04.2 LTS.
-- Ver. 8 associated with CSIT rls2110 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2110),
-  [Linux](https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2110)
+- Ver. 12 associated with CSIT rls2306 branch (
+  [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2306),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2306)
   ).
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
-- Ver. 9 associated with CSIT rls2202 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2202),
-  [Linux](https://s3-docs.fd.io/csit/rls2202/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://s3-docs.fd.io/csit/rls2202/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2202)
+  - Mellanox 556A/CX6-DX/MCX713106AS-VEAT series firmware upgrade based on DPDK
+    compatibility matrix.
+  - TRex version upgrade: increase from 3.00 to 3.03.
+- Ver. 11 associated with CSIT rls2210 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2210),
+  [Linux](https://s3-docs.fd.io/csit/rls2210/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://s3-docs.fd.io/csit/rls2210/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2210)
   ).
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
+  - Mellanox 556A series firmware upgrade based on DPDK compatibility
+    matrix.
+  - Ubuntu upgrade from 20.04.2 LTS to 22.04.1 LTS.
+  - TRex version upgrade: increase from 2.97 to 3.00.
 - Ver. 10 associated with CSIT rls2206 branch (
   [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2206),
   [Linux](https://s3-docs.fd.io/csit/rls2206/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
@@ -107,24 +70,61 @@ Following is the list of CSIT versions to date:
   - Intel IceLake all core turbo frequency turned off. Current base frequency
     is 2.6GHz.
   - TRex version upgrade: increase from 2.88 to 2.97.
-- Ver. 11 associated with CSIT rls2210 branch (
-  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2210),
-  [Linux](https://s3-docs.fd.io/csit/rls2210/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
-  [TRex](https://s3-docs.fd.io/csit/rls2210/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2210)
+- Ver. 9 associated with CSIT rls2202 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2202),
+  [Linux](https://s3-docs.fd.io/csit/rls2202/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://s3-docs.fd.io/csit/rls2202/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2202)
   ).
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
-  - Mellanox 556A series firmware upgrade based on DPDK compatibility
-    matrix.
-  - Ubuntu upgrade from 20.04.2 LTS to 22.04.1 LTS.
-  - TRex version upgrade: increase from 2.97 to 3.00.
-- Ver. 12 associated with CSIT rls2306 branch (
-  [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2306),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2306)
+- Ver. 8 associated with CSIT rls2110 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2110),
+  [Linux](https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2110)
   ).
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
-  - Mellanox 556A/CX6-DX/MCX713106AS-VEAT series firmware upgrade based on DPDK
-    compatibility matrix.
-  - TRex version upgrade: increase from 3.00 to 3.03.
+- Ver. 7 associated with CSIT rls2106 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2106),
+  [Linux](https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2106)
+  ).
+  - TRex version upgrade: increase from 2.86 to 2.88.
+  - Ubuntu upgrade from 18.04 LTS to 20.04.2 LTS.
+- Ver. 6 associated with CSIT rls2101 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2101),
+  [Linux](https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2101)
+  ).
+  - The main change is TRex version upgrade: increase from 2.82 to 2.86.
+- Ver. 5 associated with CSIT rls2009 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2009),
+  [Linux](https://docs.fd.io/csit/rls2009/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://docs.fd.io/csit/rls2009/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2009)
+  ).
+  - The main change is TRex data-plane core resource adjustments:
+    [increase from 7 to 8 cores and pinning cores to interfaces](https://gerrit.fd.io/r/c/csit/+/28184)
+    for better TRex performance with symmetric traffic profiles.
+- Ver. 4 associated with CSIT rls2005 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2005),
+  [Linux](https://docs.fd.io/csit/rls2005/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://docs.fd.io/csit/rls2005/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2005)
+  ).
+- Ver. 2 associated with CSIT rls2001 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls2001),
+  [Linux](https://docs.fd.io/csit/rls2001/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://docs.fd.io/csit/rls2001/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2001)
+  ).
+- Ver. 1 associated with CSIT rls1908 branch (
+  [HW](https://git.fd.io/csit/tree/docs/lab?h=rls1908),
+  [Linux](https://docs.fd.io/csit/rls1908/report/vpp_performance_tests/test_environment.html#sut-settings-linux),
+  [TRex](https://docs.fd.io/csit/rls1908/report/vpp_performance_tests/test_environment.html#tg-settings-trex),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls1908)
+  ).
