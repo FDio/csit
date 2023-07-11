@@ -58,13 +58,13 @@ CSIT-2306 VPP v23.06 Performance Tests:
   - [2n-spr 100ge e810cq avf ip4scale20k](http://cuts2.com/ahfvO)
   - [2n-spr 100ge e810cq dpdk ip4scale20k](http://cuts2.com/yQCqU)
   - [2n-spr 200ge cx7 dpdk ip4scale20k](http://cuts2.com/ZRERf)
-  - [2n-aws c5n.4xl 50ge ena dpdk ip4scale20k](http://cuts2.com/cwXOI)
+  - [2n-aws 50ge c5n.4xl ena dpdk ip4scale20k](http://cuts2.com/cwXOI)
 - ip6
   - [2n-icx 100ge e810cq avf ip6scale20k](http://cuts2.com/QjBlW)
   - [2n-spr 100ge e810cq avf ip6scale20k](http://cuts2.com/OmkQy)
   - [2n-spr 100ge e810cq dpdk ip6scale20k](http://cuts2.com/qbpWI)
   - [2n-spr 200ge cx7 dpdk ip6scale20k](http://cuts2.com/OtOzQ)
-  - [2n-aws c5n.4xl 50ge ena dpdk ip6scale20k](http://cuts2.com/Uopiv)
+  - [2n-aws 50ge c5n.4xl ena dpdk ip6scale20k](http://cuts2.com/Uopiv)
 - ipsec
   - [3n-icx 100ge e810cq avf 40tnlsw](http://cuts2.com/XFLrM)
   - [3n-icx 100ge cx6 dpdk 40tnlsw](http://cuts2.com/gzpDB)
@@ -97,7 +97,7 @@ CSIT-2306 VPP v23.06 Performance Tests:
 ## CSIT-2306 Selected Performance Comparisons
 
 Comparisons 23.06 vs 23.02
-- [2n-icx e810 2p100ge](http://cuts2.com/UBwMY)
+- [2n-icx 100ge e810cq avf 1c 64B PDR](http://cuts2.com/UBwMY)
 
 ## CSIT-2306 Selected Performance Coverage Data
 
@@ -108,4 +108,4 @@ CSIT-2306 VPP v23.06 coverage data
 
 For further information including instructions how to access the needed
 information with user selectable options, please refer to
-[csit.fd.io documentation]({{< relref "/overview/c_dash/" >}}).
+[csit.fd.io documentation]({{< relref "/" >}}).
