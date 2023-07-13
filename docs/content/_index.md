@@ -8,7 +8,7 @@ type: "docs"
 1. OVERVIEW: General introduction to CSIT Performance Dashboard and CSIT itself.
    - **[CSIT-Dash]({{< relref "/overview/c_dash/design" >}})**: The design and
      the structure of CSIT-Dash dashboard.
-   - **[CSIT]({{< relref "/overview/csit/design" >}})**: The design of the
+   - **[CSIT]({{< relref "/overview/csit/" >}})**: The design of the
      [FD.io](https://fd.io/) CSIT system, and the description of the test
      scenarios, test naming and test tags.
 2. METHODOLOGY
@@ -27,7 +27,7 @@ type: "docs"
      A methodology similar to trending analysis is used for comparing
      performance before a DUT code change is merged.
 3. RELEASE NOTES: Performance tests executed in physical FD.io testbeds.
-   - **[CSIT rls2306]({{< relref "/release_notes/csit_rls2306/" >}})**: The
+   - **[CSIT rls2306]({{< relref "/release_notes/current/" >}})**: The
      release notes of the current CSIT release.
    - **[Previous]({{< relref "/release_notes/previous/" >}})**: Archived release
      notes for the past releases.

@@ -7,7 +7,7 @@ weight: 1
 
 # CSIT rls2302
 
-- [VPP Performance]({{< relref "/release_notes/previous/csit_rls2302/vpp_performance" >}})
-- [DPDK Performance]({{< relref "/release_notes/previous/csit_rls2302/dpdk_performance" >}})
-- [TRex Performance]({{< relref "/release_notes/previous/csit_rls2302/trex_performance" >}})
-- [VPP Device]({{< relref "/release_notes/previous/csit_rls2302/vpp_device" >}})
+- [VPP Performance]({{< relref "vpp_performance" >}})
+- [DPDK Performance]({{< relref "dpdk_performance" >}})
+- [TRex Performance]({{< relref "trex_performance" >}})
+- [VPP Device]({{< relref "vpp_device" >}})
