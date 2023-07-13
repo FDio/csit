@@ -47,6 +47,7 @@ def main():
     checker = VppApiCrcChecker(api_dir)
     try:
         checker.report_initial_conflicts(report_missing=True)
+        checker.print_warnings()
     except RuntimeError as err:
         stderr_lines = [
             f"{err!r}",

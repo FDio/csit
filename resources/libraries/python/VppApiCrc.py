@@ -380,3 +380,18 @@ class VppApiCrcChecker:
         if options:
             self._reported[api_name] = crc
             logger.console(f"{api_name} used but has options {options}")
+
+    def print_warnings(self):
+        """Call check_api_name for every API name in surviving collections.
+
+        Useful for VPP CRC checking job.
+
+        Even though there usually is only one surviving collection,
+        the implementation has to be prepared for multiple collections,
+        and it should de-duplicate api names.
+        """
+        api_name_to_crc_maps = self._expected.values()
+        api_name_sets = [set(n2c.keys()) for n2c in api_name_to_crc_maps]
+        api_names = set().union(*api_name_sets)
+        for api_name in sorted(api_names):
+            self.check_api_name(api_name)
