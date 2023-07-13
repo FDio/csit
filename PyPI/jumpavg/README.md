@@ -23,6 +23,8 @@ TODO.
 
 TODO: Move into a separate file?
 
++ 0.4.1: Fixed bug of not penalizing large stdev enough (at all for size 2 stats).
+
 + 0.4.0: Added "unit" and "sbps" parameters so information content
   is reasonable even if sample values are below one.
 
