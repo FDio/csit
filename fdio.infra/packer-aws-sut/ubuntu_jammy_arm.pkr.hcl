@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     amazon = {
-      version = ">= 1.0.1"
+      version = ">= 1.2.6"
       source  = "github.com/hashicorp/amazon"
     }
   }
@@ -47,11 +47,11 @@ variable "ansible_provision_pwd" {
   default     = "Csit1234"
 }
 
-source "amazon-ebs" "csit_c5n_ubuntu_jammy_sut" {
-  ami_name        = "csit_c5n_ubuntu_jammy_sut"
-  ami_description = "CSIT SUT image based on Ubuntu Jammy"
+source "amazon-ebs" "csit_c6gn_ubuntu_jammy_sut" {
+  ami_name        = "csit_c6gn_ubuntu_jammy_sut"
+  ami_description = "CSIT SUT image based on Ubuntu jammy"
   ena_support     = true
-  instance_type   = "c5n.4xlarge"
+  instance_type   = "c6gn.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
@@ -60,15 +60,15 @@ source "amazon-ebs" "csit_c5n_ubuntu_jammy_sut" {
   force_deregister = true
   region           = "eu-central-1"
   skip_create_ami  = false
-  source_ami       = "ami-065deacbcaac64cf2"
+  source_ami       = "ami-0a875db8a031a9efb"
   ssh_username     = "ubuntu"
 }
 
-source "amazon-ebs" "csit_c5n_ubuntu_jammy_tg" {
-  ami_name        = "csit_c5n_ubuntu_jammy_tg"
-  ami_description = "CSIT TG image based on Ubuntu Jammy"
+source "amazon-ebs" "csit_c6gn_ubuntu_jammy_tg" {
+  ami_name        = "csit_c6gn_ubuntu_jammy_tg"
+  ami_description = "CSIT TG image based on Ubuntu jammy"
   ena_support     = true
-  instance_type   = "c5n.4xlarge"
+  instance_type   = "c6gn.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
@@ -77,14 +77,14 @@ source "amazon-ebs" "csit_c5n_ubuntu_jammy_tg" {
   force_deregister = true
   region           = "eu-central-1"
   skip_create_ami  = false
-  source_ami       = "ami-065deacbcaac64cf2"
+  source_ami       = "ami-0a875db8a031a9efb"
   ssh_username     = "ubuntu"
 }
 
 build {
-  name = "csit_c5n_ubuntu_jammy_sut-packer"
+  name = "csit_c6gn_ubuntu_jammy_sut-packer"
   sources = [
-    "source.amazon-ebs.csit_c5n_ubuntu_jammy_sut"
+    "source.amazon-ebs.csit_c6gn_ubuntu_jammy_sut"
   ]
   provisioner "shell" {
     inline = var.first_run_commands
@@ -105,9 +105,9 @@ build {
 }
 
 build {
-  name = "csit_c5n_ubuntu_jammy_tg-packer"
+  name = "csit_c6gn_ubuntu_jammy_tg-packer"
   sources = [
-    "source.amazon-ebs.csit_c5n_ubuntu_jammy_tg"
+    "source.amazon-ebs.csit_c6gn_ubuntu_jammy_tg"
   ]
   provisioner "shell" {
     inline = var.first_run_commands

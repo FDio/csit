@@ -58,12 +58,12 @@
       tags: common
     - role: python_env
       tags: python_env
-    - role: dpdk
-      tags: dpdk
     - role: docker
       tags: docker
     - role: iperf
       tags: iperf
+#    - role: dpdk
+#      tags: dpdk
     - role: aws
       tags: aws
     - role: trex

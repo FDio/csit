@@ -60,12 +60,12 @@
       tags: python_env
     - role: vpp
       tags: vpp
-    - role: dpdk
-      tags: dpdk
     - role: iperf
       tags: iperf
     - role: docker
       tags: docker
+#    - role: dpdk
+#      tags: dpdk
     - role: aws
       tags: aws
     - role: cleanup
