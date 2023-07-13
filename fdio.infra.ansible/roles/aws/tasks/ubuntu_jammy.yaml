@@ -1,5 +1,5 @@
 ---
-# file: roles/aws/tasks/ubuntu_jammy.yaml
+# file: tasks/ubuntu_jammy.yaml
 
 - name: Enable deb-src APT Repository
   ansible.builtin.apt_repository:
@@ -9,7 +9,7 @@
   tags:
     - aws-enable-src-repo
 
-- name: Enable deb-src APT Repository Focal
+- name: Enable deb APT Repository Focal
   ansible.builtin.apt_repository:
     repo: "deb http://archive.ubuntu.com/ubuntu focal main"
     state: "present"

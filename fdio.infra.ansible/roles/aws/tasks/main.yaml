@@ -1,5 +1,5 @@
 ---
-# file: roles/aws/tasks/main.yaml
+# file: tasks/main.yaml
 
 - name: Edit repositories
   include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
