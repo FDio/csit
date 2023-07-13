@@ -49,7 +49,7 @@ class Constants:
 
     # URL to the documentation
     URL_DOC_TRENDING = "https://csit.fd.io/cdocs/methodology/trending/analysis/"
-    URL_DOC_REL_NOTES = "https://csit.fd.io/cdocs/release_notes/csit_rls2306/"
+    URL_DOC_REL_NOTES = "https://csit.fd.io/cdocs/release_notes/current/"
 
     # Path and name of the file specifying the HTML layout of the dash
     # application.
