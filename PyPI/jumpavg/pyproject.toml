@@ -1,6 +1,6 @@
 [project]
 name = "jumpavg"
-version = "0.4.0"
+version = "0.4.1"
 description = "Library for locating changes in time series by grouping results."
 authors = [
     { name = "Cisco Systems Inc. and/or its affiliates", email = "csit-dev@lists.fd.io" },

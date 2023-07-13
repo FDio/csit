@@ -97,10 +97,13 @@ class BitCountingStats(AvgStdevStats):
         if self.size < 2:
             return
         stdev = self.stdev / self.unit
-        # Stdev is considered to be uniformly distributed
-        # from zero to max_value. That is quite a bad expectation,
-        # but resilient to negative samples etc.
-        self.bits += math.log(max_value + 1, 2)
+        # Stdev can be anything between zero and max value.
+        # For size==2, sphere surface is 2 points regardless of radius,
+        # we need to penalize large stdev already when encoding the stdev.
+        # The simplest way is to use the same distribution as with size...
+        self.bits += math.log((stdev + 1) * (stdev + 2), 2)
+        # .. just with added normalization from the max value cut-off.
+        self.bits += math.log(1 - 1 / (max_value + 2), 2)
         # Now we know the samples lie on sphere in size-1 dimensions.
         # So it is (size-2)-sphere, with radius^2 == stdev^2 * size.
         # https://en.wikipedia.org/wiki/N-sphere
