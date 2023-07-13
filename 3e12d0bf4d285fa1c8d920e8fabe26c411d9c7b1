@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6b9f57a_d7aef572",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-07-13T14:07:58Z",
+      "side": 1,
+      "message": "Looks good [0] but maybe this should be chained after CSIT side bumps (so only the warnings unavoidable from CSIT side are reported).\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-csit-verify-api-crc-master-ubuntu2204-x86_64/2020/console.log.gz",
+      "revId": "3e12d0bf4d285fa1c8d920e8fabe26c411d9c7b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
