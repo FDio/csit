@@ -11,7 +11,7 @@ variable "region" {
 variable "resource_prefix" {
   description = "Resources name prefix."
   type        = string
-  default     = "csit-2n-aws-c5n"
+  default     = "csit-2n-c6gn"
 }
 
 variable "testbed_name" {
@@ -24,7 +24,19 @@ variable "testbed_name" {
 variable "private_key_algorithm" {
   description = "The name of the algorithm to use for the key."
   type        = string
-  default     = "ED25519"
+  default     = "RSA"
+}
+
+variable "private_key_ecdsa_curve" {
+  description = "When algorithm is ECDSA, the name of the elliptic curve to use."
+  type        = string
+  default     = "P521"
+}
+
+variable "private_key_rsa_bits" {
+  description = "When algorithm is RSA, the size of the generated RSA key in bits."
+  type        = number
+  default     = 4096
 }
 
 # Variables for Placement Group
@@ -56,7 +68,7 @@ variable "tg_instance_initiated_shutdown_behavior" {
 variable "tg_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c6in.4xlarge"
 }
 
 variable "tg_private_ip" {
@@ -92,7 +104,7 @@ variable "sut1_instance_initiated_shutdown_behavior" {
 variable "sut1_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c6in.4xlarge"
 }
 
 variable "sut1_private_ip" {
@@ -102,42 +114,6 @@ variable "sut1_private_ip" {
 }
 
 variable "sut1_source_dest_check" {
-  description = "Controls if traffic is routed to the instance when the destination address does not match the instance."
-  type        = bool
-  default     = false
-}
-
-variable "sut2_ami" {
-  description = "AMI to use for the instance."
-  type        = string
-  default     = "ami-07898402cb1fd6561"
-}
-
-variable "sut2_associate_public_ip_address" {
-  description = "Whether to associate a public IP address with an instance in a VPC."
-  type        = bool
-  default     = true
-}
-
-variable "sut2_instance_initiated_shutdown_behavior" {
-  description = "Shutdown behavior for the instance."
-  type        = string
-  default     = "terminate"
-}
-
-variable "sut2_instance_type" {
-  description = "The instance type to use for the instance."
-  type        = string
-  default     = "c5n.4xlarge"
-}
-
-variable "sut2_private_ip" {
-  description = "Private IP address to associate with the instance in a VPC."
-  type        = string
-  default     = "192.168.0.12"
-}
-
-variable "sut2_source_dest_check" {
   description = "Controls if traffic is routed to the instance when the destination address does not match the instance."
   type        = bool
   default     = false
@@ -175,18 +151,6 @@ variable "sut1_if1_private_ip" {
 }
 
 variable "sut1_if2_private_ip" {
-  description = "List of private IPs to assign to the ENI without regard to order."
-  type        = string
-  default     = "200.0.0.101"
-}
-
-variable "sut2_if1_private_ip" {
-  description = "List of private IPs to assign to the ENI without regard to order."
-  type        = string
-  default     = "200.0.0.102"
-}
-
-variable "sut2_if2_private_ip" {
   description = "List of private IPs to assign to the ENI without regard to order."
   type        = string
   default     = "192.168.20.11"
