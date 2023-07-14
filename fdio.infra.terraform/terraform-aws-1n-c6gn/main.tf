@@ -12,7 +12,7 @@ locals {
   placement_group_name      = "${var.resource_prefix}-${var.testbed_name}-pg"
   security_group_name       = "${var.resource_prefix}-${var.testbed_name}-sg"
   testbed_name              = "testbed1"
-  topology_name             = "1n-aws-c5n"
+  topology_name             = "1n-c6gn"
   tg_name                   = "${var.resource_prefix}-${var.testbed_name}-tg"
   sut1_name                 = "${var.resource_prefix}-${var.testbed_name}-sut1"
 }

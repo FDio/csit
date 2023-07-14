@@ -59,17 +59,24 @@ module "subnet_d" {
 }
 
 # Create Private Key
-resource "tls_private_key" "private_key" {
-  algorithm   = var.private_key_algorithm
+module "private_key" {
+  source  = "pmikus/private-key/tls"
+  version = "4.0.4"
+
+  private_key_algorithm = var.private_key_algorithm
 }
 
 # Create Key Pair
-resource "aws_key_pair" "key_pair" {
-  depends_on = [
-    tls_private_key.private_key
-  ]
-  key_name   = local.key_pair_key_name
-  public_key = tls_private_key.private_key.public_key_openssh
+module "key_pair" {
+  source  = "pmikus/key-pair/aws"
+  version = "5.7.0"
+
+  key_pair_key_name   = local.key_pair_key_name
+  key_pair_public_key = module.private_key.public_key_openssh
+
+  key_pair_tags = {
+    "Environment" = local.environment
+  }
 }
 
 # Create Placement Group
@@ -89,7 +96,7 @@ resource "aws_instance" "tg" {
   associate_public_ip_address          = var.tg_associate_public_ip_address
   instance_initiated_shutdown_behavior = var.tg_instance_initiated_shutdown_behavior
   instance_type                        = var.tg_instance_type
-  key_name                             = aws_key_pair.key_pair.key_name
+  key_name                             = module.key_pair.key_pair_key_name
   placement_group                      = aws_placement_group.placement_group.id
   private_ip                           = var.tg_private_ip
   source_dest_check                    = var.tg_source_dest_check
@@ -187,7 +194,7 @@ resource "aws_instance" "sut1" {
   associate_public_ip_address          = var.sut1_associate_public_ip_address
   instance_initiated_shutdown_behavior = var.sut1_instance_initiated_shutdown_behavior
   instance_type                        = var.sut1_instance_type
-  key_name                             = aws_key_pair.key_pair.key_name
+  key_name                             = module.key_pair.key_pair_key_name
   placement_group                      = aws_placement_group.placement_group.id
   private_ip                           = var.sut1_private_ip
   source_dest_check                    = var.sut1_source_dest_check
@@ -266,7 +273,7 @@ resource "aws_instance" "sut2" {
   associate_public_ip_address          = var.sut2_associate_public_ip_address
   instance_initiated_shutdown_behavior = var.sut2_instance_initiated_shutdown_behavior
   instance_type                        = var.sut2_instance_type
-  key_name                             = aws_key_pair.key_pair.key_name
+  key_name                             = module.key_pair.key_pair_key_name
   placement_group                      = aws_placement_group.placement_group.id
   private_ip                           = var.sut2_private_ip
   source_dest_check                    = var.sut2_source_dest_check
@@ -351,7 +358,7 @@ resource "null_resource" "deploy_tg" {
   connection {
     user        = "ubuntu"
     host        = aws_instance.tg.public_ip
-    private_key = tls_private_key.private_key.private_key_pem
+    private_key = module.private_key.private_key_pem
   }
 
   provisioner "remote-exec" {
@@ -375,7 +382,7 @@ resource "null_resource" "deploy_sut1" {
   connection {
     user        = "ubuntu"
     host        = aws_instance.sut1.public_ip
-    private_key = tls_private_key.private_key.private_key_pem
+    private_key = module.private_key.private_key_pem
   }
 
   provisioner "remote-exec" {
@@ -399,7 +406,7 @@ resource "null_resource" "deploy_sut2" {
   connection {
     user        = "ubuntu"
     host        = aws_instance.sut2.public_ip
-    private_key = tls_private_key.private_key.private_key_pem
+    private_key = module.private_key.private_key_pem
   }
 
   provisioner "remote-exec" {
