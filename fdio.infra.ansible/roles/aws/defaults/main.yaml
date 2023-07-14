@@ -1,7 +1,14 @@
 ---
-# file: roles/aws/defaults/main.yaml
+# file: defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower] + packages_by_arch[ansible_machine] }}"
+
+packages_repo:
+  ubuntu:
+    aarch64:
+      "http://ports.ubuntu.com/"
+    x86_64:
+      "http://archive.ubuntu.com/ubuntu"
 
 packages_base:
   - []

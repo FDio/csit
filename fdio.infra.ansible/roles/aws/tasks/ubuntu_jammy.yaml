@@ -3,7 +3,7 @@
 
 - name: Enable deb-src APT Repository
   ansible.builtin.apt_repository:
-    repo: "deb-src http://archive.ubuntu.com/ubuntu jammy main"
+    repo: "deb-src {{ packages_repo[ansible_distribution|lower][ansible_machine] }} jammy main"
     state: "present"
     update_cache: true
   tags:
@@ -11,7 +11,7 @@
 
 - name: Enable deb APT Repository Focal
   ansible.builtin.apt_repository:
-    repo: "deb http://archive.ubuntu.com/ubuntu focal main"
+    repo: "deb {{ packages_repo[ansible_distribution|lower][ansible_machine] }} focal main"
     state: "present"
     update_cache: true
   tags:
@@ -19,7 +19,7 @@
 
 - name: Enable deb-src APT Repository Focal Src
   ansible.builtin.apt_repository:
-    repo: "deb-src http://archive.ubuntu.com/ubuntu focal main"
+    repo: "deb-src {{ packages_repo[ansible_distribution|lower][ansible_machine] }} focal main"
     state: "present"
     update_cache: true
   tags:

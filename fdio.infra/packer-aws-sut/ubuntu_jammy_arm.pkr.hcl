@@ -47,8 +47,8 @@ variable "ansible_provision_pwd" {
   default     = "Csit1234"
 }
 
-source "amazon-ebs" "csit_c6gn_ubuntu_jammy_sut" {
-  ami_name        = "csit_c6gn_ubuntu_jammy_sut"
+source "amazon-ebs" "csit_ubuntu_jammy_arm_sut" {
+  ami_name        = "csit_ubuntu_jammy_arm_sut"
   ami_description = "CSIT SUT image based on Ubuntu jammy"
   ena_support     = true
   instance_type   = "c6gn.4xlarge"
@@ -60,12 +60,12 @@ source "amazon-ebs" "csit_c6gn_ubuntu_jammy_sut" {
   force_deregister = true
   region           = "eu-central-1"
   skip_create_ami  = false
-  source_ami       = "ami-0a875db8a031a9efb"
+  source_ami       = "ami-0329d3839379bfd15"
   ssh_username     = "ubuntu"
 }
 
-source "amazon-ebs" "csit_c6gn_ubuntu_jammy_tg" {
-  ami_name        = "csit_c6gn_ubuntu_jammy_tg"
+source "amazon-ebs" "csit_ubuntu_jammy_arm_tg" {
+  ami_name        = "csit_ubuntu_jammy_arm_tg"
   ami_description = "CSIT TG image based on Ubuntu jammy"
   ena_support     = true
   instance_type   = "c6gn.4xlarge"
@@ -77,37 +77,37 @@ source "amazon-ebs" "csit_c6gn_ubuntu_jammy_tg" {
   force_deregister = true
   region           = "eu-central-1"
   skip_create_ami  = false
-  source_ami       = "ami-0a875db8a031a9efb"
+  source_ami       = "ami-0329d3839379bfd15"
   ssh_username     = "ubuntu"
 }
 
-build {
-  name = "csit_c6gn_ubuntu_jammy_sut-packer"
-  sources = [
-    "source.amazon-ebs.csit_c6gn_ubuntu_jammy_sut"
-  ]
-  provisioner "shell" {
-    inline = var.first_run_commands
-  }
-  provisioner "ansible" {
-    playbook_file = var.ansible_file_path
-    user          = "ubuntu"
-    groups        = ["sut_aws"]
-    extra_arguments = [
-      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
-      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
-      "--extra-vars", "aws=true"
-    ]
-  }
-  provisioner "shell" {
-    inline = var.last_run_commands
-  }
-}
+#build {
+#  name = "csit_ubuntu_jammy_arm_sut-packer"
+#  sources = [
+#    "source.amazon-ebs.csit_ubuntu_jammy_arm_sut"
+#  ]
+#  provisioner "shell" {
+#    inline = var.first_run_commands
+#  }
+#  provisioner "ansible" {
+#    playbook_file = var.ansible_file_path
+#    user          = "ubuntu"
+#    groups        = ["sut_aws"]
+#    extra_arguments = [
+#      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
+#      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
+#      "--extra-vars", "aws=true"
+#    ]
+#  }
+#  provisioner "shell" {
+#    inline = var.last_run_commands
+#  }
+#}
 
 build {
-  name = "csit_c6gn_ubuntu_jammy_tg-packer"
+  name = "csit_ubuntu_jammy_arm_tg-packer"
   sources = [
-    "source.amazon-ebs.csit_c6gn_ubuntu_jammy_tg"
+    "source.amazon-ebs.csit_ubuntu_jammy_arm_tg"
   ]
   provisioner "shell" {
     inline = var.first_run_commands

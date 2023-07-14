@@ -10,7 +10,7 @@ packages_by_distro:
   ubuntu:
     jammy:
       - "build-essential"
-      - "lib32z1"
+      #- "lib32z1"
 
 packages_by_arch:
   aarch64:
