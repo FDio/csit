@@ -212,8 +212,7 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses SRv6.
 | |
-| | Run Keyword If Test Failed
-| | ... | Show SR Policies on all DUTs | ${nodes}
+| | Show SR Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
