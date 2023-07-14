@@ -74,7 +74,7 @@ class Memif:
             includes only retval.
         :rtype: dict
         """
-        cmd = u"memif_socket_filename_add_del"
+        cmd = u"memif_socket_filename_add_del_v2"
         err_msg = f"Failed to create memif socket on host {node[u'host']}"
         args = dict(
             is_add=is_add,
@@ -85,7 +85,7 @@ class Memif:
             return papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def _memif_create(node, mid, sid, rxq=1, txq=1, role=1):
+    def _memif_create(node, mid, sid, rxq=1, txq=1, role=1, use_dma=False):
         """Create Memif interface on the given node, return its sw_if_index.
 
         :param node: Given node to create Memif interface on.
@@ -94,16 +94,18 @@ class Memif:
         :param rxq: Number of RX queues; 0 means do not set.
         :param txq: Number of TX queues; 0 means do not set.
         :param role: Memif interface role [master=0|slave=1]. Default is slave.
+        :param use_dma: Use DMA acceleration. Requires hardware support.
         :type node: dict
         :type mid: str
         :type sid: str
         :type rxq: int
         :type txq: int
         :type role: int
+        :type use_dma: bool
         :returns: sw_if_index
         :rtype: int
         """
-        cmd = u"memif_create"
+        cmd = u"memif_create_v2"
         err_msg = f"Failed to create memif interface on host {node[u'host']}"
         args = dict(
             role=role,
@@ -111,7 +113,8 @@ class Memif:
             tx_queues=int(txq),
             socket_id=int(sid),
             id=int(mid),
-            secret=u""
+            secret=u"",
+            use_dma=use_dma,
         )
 
         with PapiSocketExecutor(node) as papi_exec:
@@ -119,7 +122,8 @@ class Memif:
 
     @staticmethod
     def create_memif_interface(
-            node, filename, mid, sid, rxq=1, txq=1, role=u"SLAVE"):
+        node, filename, mid, sid, rxq=1, txq=1, role=u"SLAVE", use_dma=False
+    ):
         """Create Memif interface on the given node.
 
         :param node: Given node to create Memif interface on.
@@ -129,6 +133,7 @@ class Memif:
         :param rxq: Number of RX queues; 0 means do not set.
         :param txq: Number of TX queues; 0 means do not set.
         :param role: Memif interface role [master=0|slave=1]. Default is master.
+        :param use_dma: Use DMA acceleration. Requires hardware support.
         :type node: dict
         :type filename: str
         :type mid: str
@@ -136,6 +141,7 @@ class Memif:
         :type rxq: int
         :type txq: int
         :type role: str
+        :type use_dma: bool
         :returns: SW interface index.
         :rtype: int
         :raises ValueError: If command 'create memif' fails.
@@ -147,7 +153,7 @@ class Memif:
 
         # Create memif
         sw_if_index = Memif._memif_create(
-            node, mid, sid, rxq=rxq, txq=txq, role=role
+            node, mid, sid, rxq=rxq, txq=txq, role=role, use_dma=use_dma
         )
 
         # Update Topology
