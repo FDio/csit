@@ -81,28 +81,28 @@ source "amazon-ebs" "csit_ubuntu_jammy_arm_tg" {
   ssh_username     = "ubuntu"
 }
 
-#build {
-#  name = "csit_ubuntu_jammy_arm_sut-packer"
-#  sources = [
-#    "source.amazon-ebs.csit_ubuntu_jammy_arm_sut"
-#  ]
-#  provisioner "shell" {
-#    inline = var.first_run_commands
-#  }
-#  provisioner "ansible" {
-#    playbook_file = var.ansible_file_path
-#    user          = "ubuntu"
-#    groups        = ["sut_aws"]
-#    extra_arguments = [
-#      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
-#      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
-#      "--extra-vars", "aws=true"
-#    ]
-#  }
-#  provisioner "shell" {
-#    inline = var.last_run_commands
-#  }
-#}
+build {
+  name = "csit_ubuntu_jammy_arm_sut-packer"
+  sources = [
+    "source.amazon-ebs.csit_ubuntu_jammy_arm_sut"
+  ]
+  provisioner "shell" {
+    inline = var.first_run_commands
+  }
+  provisioner "ansible" {
+    playbook_file = var.ansible_file_path
+    user          = "ubuntu"
+    groups        = ["sut_aws"]
+    extra_arguments = [
+      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
+      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
+      "--extra-vars", "aws=true"
+    ]
+  }
+  provisioner "shell" {
+    inline = var.last_run_commands
+  }
+}
 
 build {
   name = "csit_ubuntu_jammy_arm_tg-packer"
