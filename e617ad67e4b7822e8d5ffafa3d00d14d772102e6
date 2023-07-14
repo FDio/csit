@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2863202d_5e78b4c7",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-07-14T15:02:31Z",
+      "side": 1,
+      "message": "Looks good when made unconditional: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu2204-x86_64-1n-skx/1766/log.html.gz#s1-s1-s1-s12-s1-t1-k3-k7-k3-k1-k1-k1-k1-k1-k1",
+      "range": {
+        "startLine": 324,
+        "startChar": 44,
+        "endLine": 324,
+        "endChar": 56
+      },
+      "revId": "e617ad67e4b7822e8d5ffafa3d00d14d772102e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
