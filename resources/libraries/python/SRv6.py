@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -222,6 +222,8 @@ class SRv6:
         :type sid_list: list
         :type mode: str
         """
+        # TODO: Convert to use sr_policy_add_v2.
+        # The conversion is not straightforward so it was not done when bumping.
         cmd = u"sr_policy_add"
         args = dict(
             bsid_addr=IPv6Address(bsid).packed,
@@ -243,7 +245,7 @@ class SRv6:
         :param node: Given node to show SRv6 policies on.
         :type node: dict
         """
-        cmd = u"sr_policies_dump"
+        cmd = u"sr_policies_v2_dump"
         PapiSocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
