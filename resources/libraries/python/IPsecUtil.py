@@ -23,6 +23,7 @@ from random import choice
 from string import ascii_letters
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
@@ -357,32 +358,31 @@ class IPsecUtil:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_ipsec_crypto_sw_scheduler_set_worker_on_all_duts(
-            nodes, workers, crypto_enable=False):
-        """Enable or disable crypto on specific vpp worker threads.
+    def vpp_ipsec_crypto_sw_scheduler_set_worker_on_all_duts(nodes):
+        """Disable crypto on specific dataplane vpp worker threads.
+
+        As worker threads are numbered differently than CPUs,
+        a conversion based on vpp_show_threads is needed.
 
         :param node: VPP node to enable or disable crypto for worker threads.
-        :param workers: List of VPP thread numbers.
-        :param crypto_enable: Disable or enable crypto work.
         :type node: dict
-        :type workers: Iterable[int]
-        :type crypto_enable: bool
-        :raises RuntimeError: If failed to enable or disable crypto for worker
-            thread or if no API reply received.
+        :raises RuntimeError: If failed to disable crypto for worker thread,
+            or if no API reply received.
         """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                thread_data = VPPUtil.vpp_show_threads(node)
+        for node_name, node_dict in nodes.items():
+            if node_dict[u"type"] == NodeType.DUT:
+                thread_data = VPPUtil.vpp_show_threads(node_dict)
                 worker_cnt = len(thread_data) - 1
                 if not worker_cnt:
                     return None
                 worker_ids = list()
+                cpus = CpuInfo.get_cpu_dp_for_dut(node_name)
                 for item in thread_data:
-                    if str(item.cpu_id) in workers.split(u","):
+                    if item.cpu_id in cpus:
                         worker_ids.append(item.id)
 
                 IPsecUtil.vpp_ipsec_crypto_sw_scheduler_set_worker(
-                    node, workers=worker_ids, crypto_enable=crypto_enable
+                    node_dict, workers=worker_ids
                 )
 
     @staticmethod
