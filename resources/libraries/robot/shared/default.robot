@@ -212,7 +212,7 @@
 | | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
 | | | ... | rxd=${rxd} | txd=${txd}
 | | | Set Test Variable | &{compute_resource_info}
-| | | Create compute resources variables
+| | | Create compute resources variables | ${dut}
 | | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
@@ -221,15 +221,26 @@
 
 | Create compute resources variables
 | | [Documentation]
-| | ... | Create compute resources variables
+| | ... | Create compute resources variables.
 | |
-| | ... | _NOTE:_ This KW sets various suite variables based on computed
-| | ... | resources.
+| | ... | This KW sets various test variables based on computed resources.
+| | ... | Some values may differ between DUTs, some may not.
+| | ... | For that reason, this keyword sets two test variables
+| | ... | for the same value, one containing DUT name.
+| | ... | This gives the tests the opportunity to decide
+| | ... | whether they want a DUT specific value
+| | ... | or a common (easier accessed but possibly wrong) one.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - Prefix for variable names which depend on DUT.
+| |
+| | [Arguments] | ${dut}
 | |
 | | ${variables}= | Get Dictionary Keys | ${compute_resource_info}
 | | FOR | ${variable} | IN | @{variables}
 | | | ${value}= | Get From Dictionary | ${compute_resource_info} | ${variable}
-| | | Set Test Variable | ${${variable}} | ${value}
+| | | Set Test Variable | \${${variable}} | ${value}
+| | | Set Test Variable | \${${dut}_${variable}} | ${value}
 | | END
 | | Run Keyword If | ${dp_count_int} > 1
 | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
