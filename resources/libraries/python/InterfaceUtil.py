@@ -1968,32 +1968,32 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_round_robin_rx_placement(
-            node, prefix, workers=None):
-        """Set Round Robin interface RX placement on all worker threads
-        on node.
+    def vpp_round_robin_rx_placement(node, prefix, dp_cpus=None):
+        """Set Round Robin interface RX placement on worker threads of a node.
 
-        If specified, workers limits the number of physical cores used
+        If specified, only workers on the listed physical cores are used
         for data plane I/O work. Other cores are presumed to do something else,
         e.g. asynchronous crypto processing.
-        None means all workers are used for data plane work.
+        None means all VPP workers are used for data plane work.
 
-        :param node: Topology nodes.
+        If no workers are available, nothing is done,
+        presumably leaving all RX work assigned to the main thread.
+
+        :param node: Topology node of DUT type.
         :param prefix: Interface name prefix.
-        :param workers: Comma separated worker index numbers intended for
-            dataplane work.
+        :param dp_cpus: CPU numbers intended for dataplane work.
         :type node: dict
         :type prefix: str
-        :type workers: str
+        :type dp_cpus: Optional[Iterable[int]]
         """
         thread_data = VPPUtil.vpp_show_threads(node)
         worker_cnt = len(thread_data) - 1
         if not worker_cnt:
             return
         worker_ids = list()
-        if workers:
+        if dp_cpus:
             for item in thread_data:
-                if str(item.cpu_id) in workers.split(u","):
+                if item.cpu_id in dp_cpus:
                     worker_ids.append(item.id)
         else:
             for item in thread_data:
@@ -2003,8 +2003,10 @@ class InterfaceUtil:
         worker_idx = 0
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
             for interface in node[u"interfaces"].values():
-                if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
-                    and prefix in interface[u"name"]:
+                if (
+                    placement[u"sw_if_index"] == interface[u"vpp_sw_index"]
+                    and prefix in interface[u"name"]
+                ):
                     InterfaceUtil.vpp_sw_interface_set_rx_placement(
                         node, placement[u"sw_if_index"], placement[u"queue_id"],
                         worker_ids[worker_idx % len(worker_ids)] - 1
@@ -2013,25 +2015,30 @@ class InterfaceUtil:
 
     @staticmethod
     def vpp_round_robin_rx_placement_on_all_duts(
-            nodes, prefix, workers=None):
-        """Set Round Robin interface RX placement on worker threads
-        on all DUTs.
+        nodes, prefix, restrict_to_cpu_dp=False
+    ):
+        """Set Round Robin interface RX placement among workers on all DUTs.
 
-        If specified, workers limits the number of physical cores used
-        for data plane I/O work. Other cores are presumed to do something else,
+        If specified, workers are limited to cores assigned to dataplane work.
+        Other cores are presumed to do something else,
         e.g. asynchronous crypto processing.
-        None means all cores are used for data plane work.
+        Otherwise, all available VPP workers (not main) are used for RX.
+
+        If no workers are available, nothing is done,
+        presumably leaving all RX work assigned to the main thread.
 
         :param nodes: Topology nodes.
         :param prefix: Interface name prefix.
-        :param workers: Comma separated worker index numbers intended for
-            dataplane work.
+        :param restrict_to_cpu_dp: Whether to limit cores for dataplane workers.
         :type nodes: dict
         :type prefix: str
-        :type workers: str
+        :type restrict_to_cpu_dp: bool
         """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
+        for node_name, node_dict in nodes.items():
+            if node_dict[u"type"] == NodeType.DUT:
+                cpus = None
+                if restrict_to_cpu_dp:
+                    cpus = CpuUtils.get_cpu_dp_for_dut(node_name)
                 InterfaceUtil.vpp_round_robin_rx_placement(
-                    node, prefix, workers
+                    node_dict, prefix, dp_cpus=cpus
                 )
