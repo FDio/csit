@@ -590,3 +590,17 @@ class CpuUtils:
         compute_resource_info[u"dp_count_int"] = dp_count_int
 
         return compute_resource_info
+
+    @staticmethod
+    def get_cpu_dp_for_dut(node_name):
+        """Read the value stored by Create Compute Resources Variables.
+
+        For convenience, parse the result into a tuple of integers.
+
+        :param node_name: DUT1 or DUT2.
+        :type node_name: str
+        :returns: List of CPU numbers for dataplane (not crypto) work.
+        :rtype: Tuple[int, ...]
+        """
+        str_cpus = BuiltIn().get_variable_value(f"\\${{{node_name}_cpu_dp}}")
+        return tuple(int(cpu) for cpu in cpus.split(","))
