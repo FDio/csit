@@ -23,8 +23,7 @@ packages_by_distro:
 
 packages_by_arch:
   aarch64:
-    - "libibverbs-dev"
-    - "libibverbs1"
+    - []
   x86_64:
     - []
 
