@@ -64,23 +64,6 @@ source "amazon-ebs" "csit_ubuntu_jammy_arm_sut" {
   ssh_username     = "ubuntu"
 }
 
-source "amazon-ebs" "csit_ubuntu_jammy_arm_tg" {
-  ami_name        = "csit_ubuntu_jammy_arm_tg"
-  ami_description = "CSIT TG image based on Ubuntu jammy"
-  ena_support     = true
-  instance_type   = "c6gn.4xlarge"
-  launch_block_device_mappings {
-    device_name = "/dev/sda1"
-    volume_size = 40
-    volume_type = "gp2"
-  }
-  force_deregister = true
-  region           = "eu-central-1"
-  skip_create_ami  = false
-  source_ami       = "ami-0329d3839379bfd15"
-  ssh_username     = "ubuntu"
-}
-
 build {
   name = "csit_ubuntu_jammy_arm_sut-packer"
   sources = [
@@ -93,29 +76,6 @@ build {
     playbook_file = var.ansible_file_path
     user          = "ubuntu"
     groups        = ["sut_aws"]
-    extra_arguments = [
-      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
-      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
-      "--extra-vars", "aws=true"
-    ]
-  }
-  provisioner "shell" {
-    inline = var.last_run_commands
-  }
-}
-
-build {
-  name = "csit_ubuntu_jammy_arm_tg-packer"
-  sources = [
-    "source.amazon-ebs.csit_ubuntu_jammy_arm_tg"
-  ]
-  provisioner "shell" {
-    inline = var.first_run_commands
-  }
-  provisioner "ansible" {
-    playbook_file = var.ansible_file_path
-    user          = "ubuntu"
-    groups        = ["tg_aws"]
     extra_arguments = [
       "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
       "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
