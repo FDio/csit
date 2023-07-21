@@ -98,6 +98,14 @@ descriptions.
 
     2x1,000,000 entries in single fib table.
 
+**PLEN_30**
+
+    Prefix length 30, each fib entry matches four destination IPv4 addresses.
+
+**PLEN_32**
+
+    Prefix length 32, each fib entry matches a single destination IPv4 address.
+
 **L2BD_1**
 
     Test with 1 L2 bridge domain.
