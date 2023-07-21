@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP6FWD | BASE | DOT1Q | IP6BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | DOT1Q | IP6FWD | IP6BASE | BASE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | dot1q-ip6base
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -69,7 +69,7 @@
 # TG subnets used by T-Rex
 | ${tg_if1_net}= | 2001:1::0
 | ${tg_if2_net}= | 2001:2::0
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-dot1qip6asym-ip6src253
 
 *** Keywords ***

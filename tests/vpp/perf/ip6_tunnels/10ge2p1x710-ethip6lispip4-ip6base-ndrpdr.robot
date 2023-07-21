@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,9 +18,8 @@
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP4UNRLAY | ENCAP | LISP | IP6OVRLAY | IP6FWD
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip6lispip4-ip6base
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -62,7 +61,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${48}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
 
 *** Keywords ***

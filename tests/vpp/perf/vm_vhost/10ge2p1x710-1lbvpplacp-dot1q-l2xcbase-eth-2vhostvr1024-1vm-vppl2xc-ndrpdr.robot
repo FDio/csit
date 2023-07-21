@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
-| ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_1L | NF_VPPL2XC | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | LBOND | DOT1Q | L2XCFWD | VHOST
+| ... | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34 | LBOND_1L
+| ... | NF_VPPL2XC | 1VM | VHOST_1024
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | 1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -79,7 +79,7 @@
 # Link bonding config
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
 
 *** Keywords ***

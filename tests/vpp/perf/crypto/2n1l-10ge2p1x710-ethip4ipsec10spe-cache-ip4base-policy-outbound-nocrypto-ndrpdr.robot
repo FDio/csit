@@ -1,4 +1,4 @@
-# Copyright (c) 2022 PANTHEON.tech s.r.o.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
-| ... | SCALE | IPSEC | IPSECSW | IPSECSPD | SPD_OUTBOUND | SPD_FLOW_CACHE
-| ... | SPE_10 | NOCRYPTO
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECSPD | SCALE
+| ... | NOCRYPTO | SPD_OUTBOUND | SPE_10 | SPD_FLOW_CACHE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec10spe-cache-ip4base-policy-outbound-nocrypto
 |
 | Suite Setup | Setup suite topology interfaces | performance

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024 | VTS | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP4UNRLAY | L2OVRLAY | L2BDMACLRN | VTS | VHOST
+| ... | ENCAP | VXLAN | VM | VHOST_1024
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -73,7 +73,7 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}=
 | ... | trex-stl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
 | ${acl_type}= | ${EMPTY}

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,9 +16,9 @@
 | Resource | resources/libraries/robot/ip/geneve.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | ENCAP | GENEVE_L3MODE
-| ... | SCALE | GENEVE4_1024TUN | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | SCALE
+| ... | ENCAP | GENEVE_L3MODE | GENEVE4_1024TUN
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4--ethip4udpgeneve-1024tun-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance

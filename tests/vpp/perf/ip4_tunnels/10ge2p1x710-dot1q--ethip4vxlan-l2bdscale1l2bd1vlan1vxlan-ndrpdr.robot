@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2BDMACLRN | SCALE | L2BD_1 | DOT1Q | VLAN_1
-| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_1 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | DOT1Q | IP4UNRLAY | L2OVRLAY | L2BDMACLRN | BASE
+| ... | ENCAP | VXLAN | VLAN_1 | L2BD_1 | VXLAN_1
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -67,7 +67,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${50}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-dot1qip4-vlan1ip4src254ip4dst254
 # Number of VXLAN tunnels
 | ${vxlan_count}= | ${1}

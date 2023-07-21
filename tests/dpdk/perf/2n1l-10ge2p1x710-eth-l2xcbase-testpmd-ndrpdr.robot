@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,10 +16,9 @@
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Library | resources.libraries.python.DPDK.TestpmdTest
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR
 | ... | NIC_Intel-X710 | DPDK | ETH | L2XCFWD | BASE
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
+| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024 | DRV_VFIO_PCI
 | ... | eth-l2xcbase-testpmd
 |
 | Suite Setup | Setup suite topology interfaces | performance | dpdk
@@ -62,7 +61,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
 
 *** Keywords ***

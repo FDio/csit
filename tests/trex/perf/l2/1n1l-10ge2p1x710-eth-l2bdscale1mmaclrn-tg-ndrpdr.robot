@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,10 +14,10 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 1_NODE_SINGLE_LINK_TOPO | 2_NODE_SINGLE_LINK_TOPO
-| ... | 3_NODE_SINGLE_LINK_TOPO
-| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | L2BDMACLRN
-| ... | N2N | SCALE | L2BDSCALE | FIB_1M | TG_DRV_IGB_UIO
+| Force Tags | 1_NODE_SINGLE_LINK_TOPO
+| ... | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
+| ... | PERFTEST | HW_ENV | TREX | N2N | ETH | L2BDMACLRN | SCALE | NDRPDR
+| ... | NIC_Intel-X710 | L2BDSCALE | FIB_1M | TG_DRV_IGB_UIO
 | ... | eth-l2bdscale1mmaclrn-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
@@ -58,7 +58,7 @@
 | ${nic_pfs}= | 2
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-macsrc500kdst500k
 
 *** Keywords ***

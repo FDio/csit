@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,10 +14,10 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 1_NODE_SINGLE_LINK_TOPO | 2_NODE_SINGLE_LINK_TOPO
-| ... | 3_NODE_SINGLE_LINK_TOPO
-| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | N2N
-| ... | IP4BASE | TCP | TCP_CPS | TG_DRV_IGB_UIO | SCALE | HOSTS_262144
+| Force Tags | 1_NODE_SINGLE_LINK_TOPO
+| ... | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
+| ... | PERFTEST | HW_ENV | TREX | N2N | ETH | IP4FWD | TCP | SCALE | NDRPDR
+| ... | NIC_Intel-X710 | IP4BASE | TCP_CPS | HOSTS_262144 | TG_DRV_IGB_UIO
 | ... | ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic

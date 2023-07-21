@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
-| ... | HOSTSTACK | 10CLIENT | 10STREAM | 1280B
+| ... | NIC_Intel-X710 | UDP | QUIC | VPPECHO | HOSTSTACK
+| ... | 10CLIENT | 10STREAM
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-ip4udpquicscale10cl10s-vppecho
 |
 | Suite Setup | Setup suite topology interfaces with no TG | vppecho
@@ -70,5 +70,5 @@
 
 *** Test Cases ***
 | 1280B-1c-eth-ip4udpquicscale10cl10s-vppecho-bps
-| | [Tags] | 1C
+| | [Tags] | 1280B | 1C
 | | phy_cores=${1}

@@ -16,8 +16,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_1M | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP6FWD | FIB_1M | SCALE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip6-ip6scale1m
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -65,7 +65,7 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${500000}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_per_flow}
 
 *** Keywords ***

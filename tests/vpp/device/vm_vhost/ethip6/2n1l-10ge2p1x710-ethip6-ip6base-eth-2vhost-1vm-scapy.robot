@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP6FWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | EXPECTED_FAILING
+| ... | NIC_Intel-X710 | ETH | IP6FWD | VHOST | 1VM | BASE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI | EXPECTED_FAILING
 | ... | ethip6-ip6base-eth-2vhost-1vm
 |
 | Suite Setup | Setup suite topology interfaces | scapy

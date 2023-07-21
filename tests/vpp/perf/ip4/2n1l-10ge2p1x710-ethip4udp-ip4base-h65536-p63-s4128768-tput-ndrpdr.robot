@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_TPUT | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_65536 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | SCALE
+| ... | HOSTS_65536 | UDP | UDP_TPUT
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4udp-ip4base-h65536-p63-s4128768-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -67,7 +68,7 @@
 | ${n_ports}= | ${63}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 | ${packets_per_transaction_and_direction}= | ${ASTF_N_DATA_FRAMES}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
 | ${transaction_type}= | udp_pps
 | ${disable_latency}= | ${True}

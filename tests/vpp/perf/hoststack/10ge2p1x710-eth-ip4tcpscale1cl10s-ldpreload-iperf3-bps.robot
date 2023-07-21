@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
-| ... | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
+| ... | NIC_Intel-X710 | TCP | LDPRELOAD | IPERF3 | HOSTSTACK
+| ... | 1CLIENT | 10STREAM
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-ip4tcpscale1cl10s-ldpreload-iperf3
 |
 | Suite Setup | Setup suite topology interfaces with no TG | iPerf3
@@ -66,5 +66,5 @@
 
 *** Test Cases ***
 | 1460B-1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps
-| | [Tags] | 1C
+| | [Tags] | 1460B | 1C
 | | phy_cores=${1}

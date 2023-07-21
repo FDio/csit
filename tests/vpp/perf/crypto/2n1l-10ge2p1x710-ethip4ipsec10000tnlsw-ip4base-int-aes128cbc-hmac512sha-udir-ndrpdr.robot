@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,9 +16,9 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | UDIR | PERFTEST | HW_ENV | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | TNL_10000
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECINT | SCALE
+| ... | AES | HMAC | AES_128_CBC | HMAC_SHA_512 | TNL_10000
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -77,7 +77,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${10000}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4dst${n_tunnels}-udir
 | ${traffic_directions}= | ${1}
 

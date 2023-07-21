@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF | TNL_40
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | AES_128_GCM | AES | 1_ADDED_TUNNEL | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECINT | SCALE
+| ... | AES | AES_128_GCM | TNL_40 | 1_ADDED_TUNNEL
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec40tnlsw-1atnl-ip4base-int-aes128gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -79,7 +79,7 @@
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${40}
 | ${n_added_tunnels}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***

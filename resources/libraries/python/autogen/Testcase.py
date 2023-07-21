@@ -118,7 +118,8 @@ class Testcase:
         else:
             template_string = f'''
 | ${{frame_str}}-${{cores_str}}c-{suite_id[:-4]}-{suite_id[-3:]}
-| | [Tags] | ${{cores_str}}C\n| | phy_cores=${{cores_num}}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
 

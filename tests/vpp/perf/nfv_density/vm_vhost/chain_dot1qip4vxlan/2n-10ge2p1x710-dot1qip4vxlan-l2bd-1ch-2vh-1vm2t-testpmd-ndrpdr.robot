@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
-| ... | CHAIN | 1R1C | 1VM2T | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | L2BDMACLRN | VHOST | VM | VHOST_1024
+| ... | DOT1Q | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
+| ... | NF_DENSITY | NF_TESTPMD | CHAIN | 1R1C | 1VM2T
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | dot1qip4vxlan-l2bd-1ch-2vh-1vm2t-testpmd
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -73,7 +73,7 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}=
 | ... | trex-stl-dot1qip4vxlan-ip4src${nf_chains}udpsrcrnd
 

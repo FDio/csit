@@ -1,5 +1,5 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,10 +16,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECINT | NIC_Intel-X710 | TNL_1000
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECHW | IPSECINT | SCALE
+| ... | AES | AES_256_GCM | TNL_1000 | ASYNC
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1000tnlhwasync-ip4base-int-aes256gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance | cryptohw
@@ -82,7 +82,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${1000}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***

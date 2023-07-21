@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 8R1C | 8VM1T
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | VHOST | VM | VHOST_1024
+| ... | NF_DENSITY | NF_VPPIP4 | CHAIN | 8R1C | 8VM1T
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2bd-8ch-16vh-8vm1t-vppip4
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -70,7 +70,7 @@
 | ${nf_dtc}= | ${0.5}
 | ${nf_chains}= | ${8}
 | ${nf_nodes}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n3n-ethip4-ip4src254-8c1n
 
 *** Keywords ***

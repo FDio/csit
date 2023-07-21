@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | BASE
-| ... | AES_256_GCM | AES | REASSEMBLY | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECTUN | BASE
+| ... | AES | AES_256_GCM | TNL_1 | REASSEMBLY
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-reassembly
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -82,7 +82,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
