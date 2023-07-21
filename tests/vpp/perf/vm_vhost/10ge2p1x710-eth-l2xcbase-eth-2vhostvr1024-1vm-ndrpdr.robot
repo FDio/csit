@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | VHOST | 1VM | VHOST_1024
-| ... | NF_TESTPMD | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | L2XCFWD | VHOST
+| ... | NF_TESTPMD | 1VM | VHOST_1024
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2xcbase-eth-2vhostvr1024-1vm
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -69,7 +69,7 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
 
 *** Keywords ***

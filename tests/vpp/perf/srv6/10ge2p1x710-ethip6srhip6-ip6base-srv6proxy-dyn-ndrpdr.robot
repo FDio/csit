@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
-| ... | SRv6_PROXY_DYN | MEMIF | DOCKER | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP6FWD | MEMIF | DOCKER
+| ... | FEATURE | SRV6 | SRV6_PROXY | SRV6_PROXY_DYN
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip6srhip6-ip6base-srv6proxy-dyn
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -98,7 +98,7 @@
 | ${dut2_nh}= | 4001::
 | ${prefix}= | ${64}
 | ${mem_prefix}= | ${128}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
 # Container
 | ${container_engine}= | Docker

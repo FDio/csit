@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | VIRTIO | 1VM | VIRTIO_1024
-| ... | NF_VPPL2XC_VIRTIO | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | L2XCFWD | VIRTIO
+| ... | NF_VPPL2XC_VIRTIO | 1VM | VIRTIO_1024
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2xcbase-eth-2virtiovr1024-1vm-vppl2xc
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -68,7 +68,7 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src254
 
 *** Keywords ***

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATELESS
-| ... | IACL | ACL1 | 100_FLOWS | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | SCALE
+| ... | FEATURE | ACL | ACL_STATELESS | IACL | ACL1 | 100_FLOWS
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2bdbasemaclrn-iacl1sl-100flows
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -81,7 +81,7 @@
 | ${port_step}= | ${1}
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4udp-10u10p-conc
 
 *** Keywords ***

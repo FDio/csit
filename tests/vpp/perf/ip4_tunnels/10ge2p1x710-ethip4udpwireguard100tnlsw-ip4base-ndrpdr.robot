@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/wireguard/wireguard.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_100
-| ... | IP4FWD |  NIC_Intel-X710 | WIREGUARD | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | WIREGUARD | TNL_100
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4udpwireguard100tnlsw-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -84,7 +84,7 @@
 | ${n_tunnels}= | ${100}
 | ${listen_port}= | ${51820}
 | ${keepalive_time}= | ${256}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src${n_tunnels}ip4dst${n_tunnels}
 
 *** Keywords ***

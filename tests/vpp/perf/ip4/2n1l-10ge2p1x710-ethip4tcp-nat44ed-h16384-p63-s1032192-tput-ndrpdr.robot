@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | NAT44 | TCP | TCP_TPUT | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_16384 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | NAT44 | SCALE
+| ... | FEATURE | NAT44_ENDPOINT_DEPENDENT | HOSTS_16384 | TCP | TCP_TPUT
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4tcp-nat44ed-h16384-p63-s1032192-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance

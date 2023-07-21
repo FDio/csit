@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,11 +14,11 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1000
-| ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 4DCR
-| ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | DOCKER | IPSEC | IPSECSW | IPSECINT | SCALE | TNL_1000
+| ... | NF_DENSITY | CHAIN | NF_VPPIP4 | 2R1C | 1DCR1T | 4DCR
+| ... | AES_256_GCM | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -76,7 +76,7 @@
 | ${n_tunnels}= | ${1000}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}-${n_instances}cnf
 # Container
 | ${container_engine}= | Docker

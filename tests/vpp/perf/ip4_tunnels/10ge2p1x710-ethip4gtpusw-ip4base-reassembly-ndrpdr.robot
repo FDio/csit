@@ -16,8 +16,8 @@
 | Resource | resources/libraries/robot/overlay/gtpu.robot
 
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | IP4FWD | IP4BASE | ENCAP | GTPU | DRV_VFIO_PCI
-| ... | REASSEMBLY | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ENCAP | GTPU | IP4FWD | IP4BASE | REASSEMBLY
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4gtpusw-ip4base-reassembly
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -64,7 +64,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${36}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src253
 
 *** Keywords ***

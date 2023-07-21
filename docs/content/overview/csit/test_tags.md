@@ -36,13 +36,13 @@ descriptions.
 
 **SKIP_PATCH**
 
-    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP
-    patch) and csit-vpp-verify jobs (i.e. CSIT patch).
+    Test case(s) marked to not run in case of vpp-csit-verify
+    (i.e. VPP patch) and csit-vpp-verify jobs (i.e. CSIT patch).
 
 **SKIP_VPP_PATCH**
 
-    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP
-    patch).
+    Test case(s) marked to not run in case of vpp-csit-verify
+    (i.e. VPP patch).
 
 ## Environment Tags
 
@@ -76,14 +76,6 @@ descriptions.
 
     Intel XXV710 NIC.
 
-**NIC_Cisco-VIC-1227**
-
-    VIC-1227 by Cisco.
-
-**NIC_Cisco-VIC-1385**
-
-    VIC-1385 by Cisco.
-
 **NIC_Amazon-Nitro-50G**
 
     Amazon EC2 ENA NIC.
@@ -92,19 +84,19 @@ descriptions.
 
 **FIB_20K**
 
-    2x10,000 entries in single fib table
+    2x10,000 entries in single fib table.
 
 **FIB_200K**
 
-    2x100,000 entries in single fib table
+    2x100,000 entries in single fib table.
 
 **FIB_1M**
 
-    2x500,000 entries in single fib table
+    2x500,000 entries in single fib table.
 
 **FIB_2M**
 
-    2x1,000,000 entries in single fib table
+    2x1,000,000 entries in single fib table.
 
 **L2BD_1**
 
@@ -165,18 +157,18 @@ descriptions.
 
 **100_FLOWS**
 
-    Traffic stream with 100 unique flows (10 IPs/users x 10 UDP ports) in
-    one direction.
+    Traffic stream with 100 unique flows (10 IPs/users x 10 UDP ports)
+    in one direction.
 
-**10k_FLOWS**
+**10K_FLOWS**
 
     Traffic stream with 10 000 unique flows (10 IPs/users x 1000 UDP ports)
     in one direction.
 
-**100k_FLOWS**
+**100K_FLOWS**
 
-    Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP
-    ports) in one direction.
+    Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports)
+    in one direction.
 
 **HOSTS_{h}**
 
@@ -275,8 +267,8 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **L2PATCH**
 
-    L2PATCH baseline test cases, no encapsulation, no feature(s) configured
-    in tests.
+    L2PATCH baseline test cases, no encapsulation, no feature(s) configured in
+    tests.
 
 **SCALE**
 
@@ -302,8 +294,7 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **TREX**
 
-    Tests which test trex traffic without any software DUTs in the
-    traffic path.
+    Tests which test trex traffic without any software DUTs in the traffic path.
 
 **UDP_UDIR**
 
@@ -372,14 +363,13 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 **{r}R{c}C**
 
     Service density matrix locator {r}R{c}C, {r}Row denoting number of
-    service instances, {c}Column denoting number of NFs per service
-    instance.
+    service instances, {c}Column denoting number of NFs per service instance.
     {r}=(1,2,4,6,8,10), {c}=(1,2,4,6,8,10).
 
 **{n}VM{t}T**
 
-    Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of
-    threads per NF.
+    Service density {n}VM{t}T, {n}Number of NF Qemu VMs,
+    {t}Number of threads per NF.
 
 **{n}DCR{t}T**
 
@@ -482,23 +472,23 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     All test cases with LISP-GPE.
 
-**LISP_IP4o4**
+**LISP_IP4O4**
 
     All test cases with LISP_IP4o4.
 
-**LISPGPE_IP4o4**
+**LISPGPE_IP4O4**
 
     All test cases with LISPGPE_IP4o4.
 
-**LISPGPE_IP6o4**
+**LISPGPE_IP6O4**
 
     All test cases with LISPGPE_IP6o4.
 
-**LISPGPE_IP4o6**
+**LISPGPE_IP4O6**
 
     All test cases with LISPGPE_IP4o6.
 
-**LISPGPE_IP6o6**
+**LISPGPE_IP6O6**
 
     All test cases with LISPGPE_IP6o6.
 
@@ -530,19 +520,19 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     All test cases with WIREGUARD.
 
-**SRv6**
+**SRV6**
 
     All test cases with Segment routing over IPv6 dataplane.
 
-**SRv6_1SID**
+**SRV6_1SID**
 
     All SRv6 test cases with single SID.
 
-**SRv6_2SID_DECAP**
+**SRV6_2SID_DECAP**
 
     All SRv6 test cases with two SIDs and with decapsulation.
 
-**SRv6_2SID_NODECAP**
+**SRV6_2SID_NODECAP**
 
     All SRv6 test cases with two SIDs and without decapsulation.
 
@@ -714,13 +704,11 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **ACL_STATELESS**
 
-    ACL plugin configured and tested in stateless mode
-    (permit action).
+    ACL plugin configured and tested in stateless mode (permit action).
 
 **ACL_STATEFUL**
 
-    ACL plugin configured and tested in stateful mode
-    (permit+reflect action).
+    ACL plugin configured and tested in stateful mode (permit+reflect action).
 
 **ACL1**
 
@@ -734,19 +722,19 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     ACL plugin configured and tested with 50 not-hitting ACEs.
 
-**SRv6_PROXY**
+**SRV6_PROXY**
 
     SRv6 endpoint to SR-unaware appliance via proxy.
 
-**SRv6_PROXY_STAT**
+**SRV6_PROXY_STAT**
 
     SRv6 endpoint to SR-unaware appliance via static proxy.
 
-**SRv6_PROXY_DYN**
+**SRV6_PROXY_DYN**
 
     SRv6 endpoint to SR-unaware appliance via dynamic proxy.
 
-**SRv6_PROXY_MASQ**
+**SRV6_PROXY_MASQ**
 
     SRv6 endpoint to SR-unaware appliance via masquerading proxy.
 

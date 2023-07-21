@@ -1,5 +1,5 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,10 +16,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECTUN | NIC_Intel-X710 | TNL_10000
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECHW | IPSECTUN | SCALE
+| ... | AES | AES_256_GCM | TNL_10000 | ASYNC
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec10000tnlhwasync-ip4base-policy-aes256gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance | cryptohw
@@ -84,7 +84,7 @@
 | ${n_tunnels}= | ${10000}
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${2}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***

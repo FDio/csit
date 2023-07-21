@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_VHOST
-| ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | GSO_TRUE
+| ... | NIC_Intel-X710 | IP4FWD | IP4BASE | GSO_TRUE | BASE
+| ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | DRV_VHOST
 | ... | ethip4-ip4base-2vhost-gso-iperf3
 |
 | Suite Setup | Setup suite topology interfaces | iPerf3
