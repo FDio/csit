@@ -12,9 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | resources.libraries.python.HoststackUtil
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | UDP | QUIC | VPPECHO | HOSTSTACK

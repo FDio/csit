@@ -13,8 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.DPDK.DPDKTools
-| Library | resources.libraries.python.DPDK.L3fwdTest
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DPDK | ETH | IP4FWD | BASE

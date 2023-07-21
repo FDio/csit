@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/overlay/lisp.robot
 |
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 |
