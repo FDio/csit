@@ -131,32 +131,32 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
-                  STLVmFlowVar(
+                STLVmFlowVar(
                     name=u"mac_dst",
-                      min_value=self.nf_nodes,
-                      max_value=self.nf_chains*self.nf_nodes,
-                      size=1,
-                      step=self.nf_nodes,
-                      op=u"inc"
-                  ),
-                  STLVmWrFlowVar(
-                      fv_name=u"mac_dst",
-                      pkt_offset=4
-                  ),
-                  STLVmFlowVar(
-                      name=u"src",
-                      min_value=self.p2_src_start_ip,
-                      max_value=self.p2_src_end_ip,
-                      size=4,
-                      op=u"inc"
-                  ),
-                  STLVmWrFlowVar(
-                      fv_name=u"src",
-                      pkt_offset=u"IP.src"
-                  ),
-                  STLVmFixIpv4(
-                      offset=u"IP"
-                  )
+                    min_value=self.nf_nodes,
+                    max_value=self.nf_chains*self.nf_nodes,
+                    size=1,
+                    step=self.nf_nodes,
+                    op=u"inc"
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"mac_dst",
+                    pkt_offset=4
+                ),
+                STLVmFlowVar(
+                    name=u"src",
+                    min_value=self.p2_src_start_ip,
+                    max_value=self.p2_src_end_ip,
+                    size=4,
+                    op=u"inc"
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"src",
+                    pkt_offset=u"IP.src"
+                ),
+                STLVmFixIpv4(
+                    offset=u"IP"
+                )
             ]
         )
 

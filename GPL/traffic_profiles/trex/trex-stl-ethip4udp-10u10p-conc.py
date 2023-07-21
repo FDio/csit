@@ -101,7 +101,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 src=self.p2_src_start_ip,
                 dst=self.p2_dst_start_ip,
                 proto=17
-              ) /
+            ) /
             UDP(
                 sport=self.p2_src_start_udp_port,
                 dport=self.p2_dst_start_udp_port
