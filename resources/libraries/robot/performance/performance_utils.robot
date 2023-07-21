@@ -552,7 +552,7 @@
 | | ... | Add Default Route To Namespace
 | | ... | ${nodes['${iperf_client_node}']}
 | | ... | namespace=${iperf_client_namespace}
-| | ... | default_route=${iperf_client_bind_gw}
+| | ... | default_rt=${iperf_client_bind_gw}
 | | ${stat_runtime}= | Create List
 | | ... | vpp-runtime-iperf3
 | | ${stat_pre_trial}= | Create List
