@@ -81,7 +81,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
             UDP(
                 sport=self.p1_src_udp_port,
                 dport=self.p1_dst_udp_port
-             )
+            )
         )
         # Direction 1 --> 0
         base_pkt_b = (
@@ -90,11 +90,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 src=self.p2_src_start_ip,
                 dst=self.p2_dst_start_ip,
                 proto=17
-             ) /
+            ) /
             UDP(
                 sport=self.p2_src_udp_port,
                 dport=self.p2_dst_udp_port
-             )
+            )
         )
 
         # Direction 0 --> 1

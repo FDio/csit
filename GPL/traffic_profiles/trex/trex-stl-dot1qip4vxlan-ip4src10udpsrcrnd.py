@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -60,7 +60,7 @@ _VXLAN_FLAGS = list(u"R"*24 + u"RRRIRRRRR")
 
 
 class VXLAN(Packet):
-    name=u"VXLAN"
+    name = u"VXLAN"
     fields_desc = [
         FlagsField(u"flags", 0x08000000, 32, _VXLAN_FLAGS),
         ThreeBytesField(u"vni", 0),
@@ -294,4 +294,3 @@ def register():
     :rtype: Object
     """
     return TrafficStreams()
-
