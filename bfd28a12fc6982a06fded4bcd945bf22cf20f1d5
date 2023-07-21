@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7e6cba7_41410570",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-07-21T14:11:53Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cANDimixANDplen_*",
+      "revId": "bfd28a12fc6982a06fded4bcd945bf22cf20f1d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
