@@ -13,8 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/geneve.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP
