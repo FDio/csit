@@ -89,7 +89,7 @@
 | ${ramp_up_rate}= | ${66061.0}
 | ${ramp_up_duration}= | ${2.0}
 # Traffic profile
-| ${traffic_profile}= | trex-stl-2n-ethip4udp-${n_hosts}u${n_ports}p
+| ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
 | Local Template

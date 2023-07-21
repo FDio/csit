@@ -84,7 +84,7 @@
 | ${listen_port}= | ${51820}
 | ${keepalive_time}= | ${256}
 # Traffic profile
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src${n_tunnels}ip4dst${n_tunnels}
+| ${traffic_profile}= | trex-stl-ethip4-ip4src${n_tunnels}ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template
