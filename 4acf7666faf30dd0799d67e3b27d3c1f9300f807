@@ -67,6 +67,23 @@
       "message": "csit-3na-spr-perftest mrrANDnic_*ANDdrv_mlx5_coreAND2cAND64bANDethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm",
       "revId": "4acf7666faf30dd0799d67e3b27d3c1f9300f807",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "268bbe1a_a03c8c53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-07-25T12:41:37Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest mrrANDnic_*ANDdrv_mlx5_coreAND2cAND64bANDethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm",
+      "revId": "4acf7666faf30dd0799d67e3b27d3c1f9300f807",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
