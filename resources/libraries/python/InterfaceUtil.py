@@ -18,6 +18,7 @@ from enum import IntEnum
 
 from ipaddress import ip_address
 from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -2013,7 +2014,7 @@ class InterfaceUtil:
 
     @staticmethod
     def vpp_round_robin_rx_placement_on_all_duts(
-            nodes, prefix, workers=None):
+            nodes, prefix, use_dp_cores=False):
         """Set Round Robin interface RX placement on worker threads
         on all DUTs.
 
@@ -2024,14 +2025,18 @@ class InterfaceUtil:
 
         :param nodes: Topology nodes.
         :param prefix: Interface name prefix.
-        :param workers: Comma separated worker index numbers intended for
-            dataplane work.
+        :param use_dp_cores: Limit to dataplane cores.
         :type nodes: dict
         :type prefix: str
-        :type workers: str
+        :type use_dp_cores: bool
         """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
+        for node_name, node in nodes.items():
+            if node["type"] == NodeType.DUT:
+                workers = None
+                if use_dp_cores:
+                    workers = BuiltIn().get_variable_value(
+                        f"${{{node_name}_cpu_dp}}"
+                    )
                 InterfaceUtil.vpp_round_robin_rx_placement(
                     node, prefix, workers
                 )

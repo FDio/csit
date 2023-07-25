@@ -17,7 +17,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import Topology, NodeType
 
 __all__ = [u"CpuUtils"]
 
@@ -499,17 +499,15 @@ class CpuUtils:
 
     @staticmethod
     def get_affinity_vswitch(
-            nodes, node, phy_cores, rx_queues=None, rxd=None, txd=None):
-        """Get affinity for vswitch.
+            nodes, phy_cores, rx_queues=None, rxd=None, txd=None):
+        """Get affinity for vswitch on all DUTs.
 
         :param nodes: Topology nodes.
-        :param node: Topology node string.
         :param phy_cores: Number of physical cores to allocate.
         :param rx_queues: Number of RX queues. (Optional, Default: None)
         :param rxd: Number of RX descriptors. (Optional, Default: None)
         :param txd: Number of TX descriptors. (Optional, Default: None)
         :type nodes: dict
-        :type node: str
         :type phy_cores: int
         :type rx_queues: int
         :type rxd: int
@@ -517,76 +515,82 @@ class CpuUtils:
         :returns: Compute resource information dictionary.
         :rtype: dict
         """
-        # Number of Data Plane physical cores.
-        dp_cores_count = BuiltIn().get_variable_value(
-            f"${{dp_cores_count}}", phy_cores
-        )
-        # Number of Feature Plane physical cores.
-        fp_cores_count = BuiltIn().get_variable_value(
-            f"${{fp_cores_count}}", phy_cores - dp_cores_count
-        )
-        # Ratio between RX queues and data plane threads.
-        rxq_ratio = BuiltIn().get_variable_value(
-            f"${{rxq_ratio}}", 1
-        )
-
-        dut_pf_keys = BuiltIn().get_variable_value(
-            f"${{{node}_pf_keys}}"
-        )
-        # SMT override in case of non standard test cases.
-        smt_used = BuiltIn().get_variable_value(
-            f"${{smt_used}}", CpuUtils.is_smt_enabled(nodes[node][u"cpuinfo"])
-        )
-
-        cpu_node = Topology.get_interfaces_numa_node(nodes[node], *dut_pf_keys)
-        skip_cnt = Constants.CPU_CNT_SYSTEM
-        cpu_main = CpuUtils.cpu_list_per_node_str(
-            nodes[node], cpu_node,
-            skip_cnt=skip_cnt,
-            cpu_cnt=Constants.CPU_CNT_MAIN,
-            smt_used=False
-        )
-        skip_cnt += Constants.CPU_CNT_MAIN
-        cpu_dp = CpuUtils.cpu_list_per_node_str(
-            nodes[node], cpu_node,
-            skip_cnt=skip_cnt,
-            cpu_cnt=int(dp_cores_count),
-            smt_used=smt_used
-        ) if int(dp_cores_count) else u""
-        skip_cnt = skip_cnt + int(dp_cores_count)
-        cpu_fp = CpuUtils.cpu_list_per_node_str(
-            nodes[node], cpu_node,
-            skip_cnt=skip_cnt,
-            cpu_cnt=int(fp_cores_count),
-            smt_used=smt_used
-        ) if int(fp_cores_count) else u""
-
-        fp_count_int = \
-            int(fp_cores_count) * CpuUtils.NR_OF_THREADS if smt_used \
-            else int(fp_cores_count)
-        dp_count_int = \
-            int(dp_cores_count) * CpuUtils.NR_OF_THREADS if smt_used \
-            else int(dp_cores_count)
-
-        rxq_count_int = rx_queues if rx_queues else int(dp_count_int/rxq_ratio)
-        rxq_count_int = 1 if not rxq_count_int else rxq_count_int
-
         compute_resource_info = dict()
-        compute_resource_info[u"buffers_numa"] = 215040 if smt_used else 107520
-        compute_resource_info[u"smt_used"] = smt_used
-        compute_resource_info[u"cpu_main"] = cpu_main
-        compute_resource_info[u"cpu_dp"] = cpu_dp
-        compute_resource_info[u"cpu_fp"] = cpu_fp
-        compute_resource_info[u"cpu_wt"] = \
-            u",".join(filter(None, [cpu_dp, cpu_fp]))
-        compute_resource_info[u"cpu_alloc_str"] = \
-            u",".join(filter(None, [cpu_main, cpu_dp, cpu_fp]))
-        compute_resource_info[u"cpu_count_int"] = \
-            int(dp_cores_count) + int(fp_cores_count)
-        compute_resource_info[u"rxd_count_int"] = rxd
-        compute_resource_info[u"txd_count_int"] = txd
-        compute_resource_info[u"rxq_count_int"] = rxq_count_int
-        compute_resource_info[u"fp_count_int"] = fp_count_int
-        compute_resource_info[u"dp_count_int"] = dp_count_int
+        for node_name, node in nodes.items():
+            if node["type"] != NodeType.DUT:
+                continue
+            # Number of Data Plane physical cores.
+            dp_cores_count = BuiltIn().get_variable_value(
+                f"${{dp_cores_count}}", phy_cores
+            )
+            # Number of Feature Plane physical cores.
+            fp_cores_count = BuiltIn().get_variable_value(
+                f"${{fp_cores_count}}", phy_cores - dp_cores_count
+            )
+            # Ratio between RX queues and data plane threads.
+            rxq_ratio = BuiltIn().get_variable_value(
+                f"${{rxq_ratio}}", 1
+            )
+
+            dut_pf_keys = BuiltIn().get_variable_value(
+                f"${{{node_name}_pf_keys}}"
+            )
+            # SMT override in case of non standard test cases.
+            smt_used = BuiltIn().get_variable_value(
+                f"${{smt_used}}", CpuUtils.is_smt_enabled(node["cpuinfo"])
+            )
+
+            cpu_node = Topology.get_interfaces_numa_node(node, *dut_pf_keys)
+            skip_cnt = Constants.CPU_CNT_SYSTEM
+            cpu_main = CpuUtils.cpu_list_per_node_str(
+                node, cpu_node,
+                skip_cnt=skip_cnt,
+                cpu_cnt=Constants.CPU_CNT_MAIN,
+                smt_used=False
+            )
+            skip_cnt += Constants.CPU_CNT_MAIN
+            cpu_dp = CpuUtils.cpu_list_per_node_str(
+                node, cpu_node,
+                skip_cnt=skip_cnt,
+                cpu_cnt=int(dp_cores_count),
+                smt_used=smt_used
+            ) if int(dp_cores_count) else ""
+            skip_cnt = skip_cnt + int(dp_cores_count)
+            cpu_fp = CpuUtils.cpu_list_per_node_str(
+                node, cpu_node,
+                skip_cnt=skip_cnt,
+                cpu_cnt=int(fp_cores_count),
+                smt_used=smt_used
+            ) if int(fp_cores_count) else ""
+
+            fp_count_int = \
+                int(fp_cores_count) * CpuUtils.NR_OF_THREADS if smt_used \
+                else int(fp_cores_count)
+            dp_count_int = \
+                int(dp_cores_count) * CpuUtils.NR_OF_THREADS if smt_used \
+                else int(dp_cores_count)
+
+            rxq_count_int = \
+                int(rx_queues) if rx_queues \
+                else int(dp_count_int/rxq_ratio)
+            rxq_count_int = 1 if not rxq_count_int else rxq_count_int
+
+            compute_resource_info["buffers_numa"] = \
+                215040 if smt_used else 107520
+            compute_resource_info["smt_used"] = smt_used
+            compute_resource_info[f"{node_name}_cpu_main"] = cpu_main
+            compute_resource_info[f"{node_name}_cpu_dp"] = cpu_dp
+            compute_resource_info[f"{node_name}_cpu_fp"] = cpu_fp
+            compute_resource_info[f"{node_name}_cpu_wt"] = \
+                ",".join(filter(None, [cpu_dp, cpu_fp]))
+            compute_resource_info[f"{node_name}_cpu_alloc_str"] = \
+                ",".join(filter(None, [cpu_main, cpu_dp, cpu_fp]))
+            compute_resource_info["cpu_count_int"] = \
+                int(dp_cores_count) + int(fp_cores_count)
+            compute_resource_info["rxd_count_int"] = rxd
+            compute_resource_info["txd_count_int"] = txd
+            compute_resource_info["rxq_count_int"] = rxq_count_int
+            compute_resource_info["fp_count_int"] = fp_count_int
+            compute_resource_info["dp_count_int"] = dp_count_int
 
         return compute_resource_info
