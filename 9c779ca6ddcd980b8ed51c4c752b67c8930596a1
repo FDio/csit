@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f58098e7_04182c97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-07-25T08:51:28Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-spr-perftest l2-10",
+      "revId": "9c779ca6ddcd980b8ed51c4c752b67c8930596a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
