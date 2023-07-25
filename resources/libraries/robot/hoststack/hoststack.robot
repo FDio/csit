@@ -595,7 +595,7 @@
 | | ${core_list}= | Cpu list per node str | ${dut} | ${numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${nginx_server_attr}[cpu_cnt]
 | | ${cpu_idle_list}= | Get cpu idle list | ${dut} | ${numa}
-| | ... | ${smt_used} | ${cpu_alloc_str}
+| | ... | ${smt_used} | ${${dut}_cpu_alloc_str}
 | | ${nginx_server}= | Get Nginx Command | ${nginx_server_attr}
 | | ... | ${nginx_version} | ${packages_dir}
 | | ${server_pid}= | Start Hoststack Test Program

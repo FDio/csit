@@ -60,12 +60,11 @@ class TestpmdTest:
 
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int+1
-        for node in nodes:
-            if u"DUT" in node:
-                compute_resource_info = CpuUtils.get_affinity_vswitch(
-                    nodes, node, phy_cores, rx_queues=rx_queues,
-                    rxd=rxd, txd=txd
-                )
+        compute_resource_info = CpuUtils.get_affinity_vswitch(
+            nodes, phy_cores, rx_queues=rx_queues, rxd=rxd, txd=txd
+        )
+        for node_name, node in nodes.items():
+            if node["type"] == NodeType.DUT:
                 if dp_count_int > 1:
                     BuiltIn().set_tags('MTHREAD')
                 else:
@@ -74,12 +73,12 @@ class TestpmdTest:
                     f"{dp_count_int}T{cpu_count_int}C"
                 )
 
-                cpu_dp = compute_resource_info[u"cpu_dp"]
-                rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1 = topology_info[f"{node}_pf1"][0]
-                if2 = topology_info[f"{node}_pf2"][0]
+                cpu_dp = compute_resource_info[f"{node_name}_cpu_dp"]
+                rxq_count_int = compute_resource_info["rxq_count_int"]
+                if1 = topology_info[f"{node_name}_pf1"][0]
+                if2 = topology_info[f"{node_name}_pf2"][0]
                 TestpmdTest.start_testpmd(
-                    nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
+                    node, if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
                     jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
                     txq_size=nic_txq_size

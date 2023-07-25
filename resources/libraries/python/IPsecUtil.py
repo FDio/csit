@@ -22,6 +22,8 @@ from ipaddress import ip_network, ip_address
 from random import choice
 from string import ascii_letters
 
+from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
@@ -358,25 +360,26 @@ class IPsecUtil:
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker_on_all_duts(
-            nodes, workers, crypto_enable=False):
+            nodes, crypto_enable=False):
         """Enable or disable crypto on specific vpp worker threads.
 
         :param node: VPP node to enable or disable crypto for worker threads.
-        :param workers: List of VPP thread numbers.
         :param crypto_enable: Disable or enable crypto work.
         :type node: dict
-        :type workers: Iterable[int]
         :type crypto_enable: bool
         :raises RuntimeError: If failed to enable or disable crypto for worker
             thread or if no API reply received.
         """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
+        for node_name, node in nodes.items():
+            if node["type"] == NodeType.DUT:
                 thread_data = VPPUtil.vpp_show_threads(node)
                 worker_cnt = len(thread_data) - 1
                 if not worker_cnt:
                     return None
                 worker_ids = list()
+                workers = BuiltIn().get_variable_value(
+                    f"${{{node_name}_cpu_dp}}"
+                )
                 for item in thread_data:
                     if str(item.cpu_id) in workers.split(u","):
                         worker_ids.append(item.id)
