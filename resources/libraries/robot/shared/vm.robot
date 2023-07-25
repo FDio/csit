@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -116,8 +116,9 @@
 | | ... | rxq_count_int=${rxq_count_int}
 | | ... | virtio_feature_mask=${virtio_feature_mask} | page_size=${page_size}
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
-| | Set Test Variable | ${cpu_alloc_str}
+| | ${${node}_cpu_alloc_str}= | Catenate | SEPARATOR=,
+| | ... | ${${node}_cpu_alloc_str} | ${cpu_wt}
+| | Set Test Variable | ${${node}_cpu_alloc_str}
 | | Run Keyword If | ${validate}
 | | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
