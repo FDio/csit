@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47e2a0c_feea96c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-07-25T06:59:58Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-spr-perftest memif-00",
+      "revId": "3ba7283844507ac71d20e52aba91b53c71e953db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
