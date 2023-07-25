@@ -240,9 +240,9 @@
 | | ... | on all DUT nodes (leaving feature plane workers disabled).
 | |
 | | VPP Round Robin Rx Placement on all DUTs
-| | ... | ${nodes} | prefix=${EMPTY} | workers=${cpu_dp}
+| | ... | ${nodes} | prefix=${EMPTY} | use_dp_cores=${True}
 | | VPP IPSec Crypto SW Scheduler Set Worker on all DUTs
-| | ... | ${nodes} | workers=${cpu_dp} | crypto_enable=${False}
+| | ... | ${nodes} | crypto_enable=${False}
 
 | Enable SPD flow cache IPv4 Inbound
 | | [Documentation]
