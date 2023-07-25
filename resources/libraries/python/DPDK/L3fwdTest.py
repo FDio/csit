@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -56,12 +56,11 @@ class L3fwdTest:
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int+1
         tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
-        for node in nodes:
-            if u"DUT" in node:
-                compute_resource_info = CpuUtils.get_affinity_vswitch(
-                    nodes, node, phy_cores, rx_queues=rx_queues,
-                    rxd=rxd, txd=txd
-                )
+        compute_resource_info = CpuUtils.get_affinity_vswitch(
+            nodes, phy_cores, rx_queues=rx_queues, rxd=rxd, txd=txd
+        )
+        for node_name, node in nodes.items():
+            if node["type"] == NodeType.DUT:
                 if dp_count_int > 1:
                     BuiltIn().set_tags('MTHREAD')
                 else:
@@ -70,12 +69,12 @@ class L3fwdTest:
                     f"{dp_count_int}T{cpu_count_int}C"
                 )
 
-                cpu_dp = compute_resource_info[u"cpu_dp"]
-                rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1 = topology_info[f"{node}_pf1"][0]
-                if2 = topology_info[f"{node}_pf2"][0]
+                cpu_dp = compute_resource_info[f"{node_name}_cpu_dp"]
+                rxq_count_int = compute_resource_info["rxq_count_int"]
+                if1 = topology_info[f"{node_name}_pf1"][0]
+                if2 = topology_info[f"{node_name}_pf2"][0]
                 L3fwdTest.start_l3fwd(
-                    nodes, nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
+                    nodes, node, if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
                     jumbo_frames=jumbo_frames, tg_flip=tg_flip
                 )

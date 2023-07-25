@@ -207,15 +207,12 @@
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
 | | ... | ${txd}=${None}
 | |
+| | Create compute resources variables
+| | ... | ${phy_cores} | rx_queues=${rx_queues} | rxd=${rxd} | txd=${txd}
 | | FOR | ${dut} | IN | @{duts}
-| | | &{compute_resource_info}= | Get Affinity Vswitch
-| | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
-| | | ... | rxd=${rxd} | txd=${txd}
-| | | Set Test Variable | &{compute_resource_info}
-| | | Create compute resources variables
-| | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
+| | | Run Keyword | ${dut}.Add CPU Main Core | ${${dut}_cpu_main}
 | | | Run Keyword If | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
+| | | ... | ${dut}.Add CPU Corelist Workers | ${${dut}_cpu_wt}
 | | | Run Keyword | ${dut}.Add Buffers Per Numa | ${buffers_numa}
 | | END
 
@@ -226,6 +223,22 @@
 | | ... | _NOTE:_ This KW sets various suite variables based on computed
 | | ... | resources.
 | |
+| | ... | *Arguments:*
+| | ... | - phy_cores - Number of physical cores to use. Type: integer
+| | ... | - rx_queues - Number of RX queues. Type: integer
+| | ... | - rxd - Number of RX descriptors. Type: integer
+| | ... | - txd - Number of TX descriptors. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Create compute resources variables \| ${1} \| ${1} \|
+| |
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None}
+| | ... | ${rxd}=${None} | ${txd}=${None}
+| |
+| | &{compute_resource_info}= | Get Affinity Vswitch
+| | ... | ${nodes} | ${phy_cores} | rx_queues=${rx_queues}
+| | ... | rxd=${rxd} | txd=${txd}
 | | ${variables}= | Get Dictionary Keys | ${compute_resource_info}
 | | FOR | ${variable} | IN | @{variables}
 | | | ${value}= | Get From Dictionary | ${compute_resource_info} | ${variable}
