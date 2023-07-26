@@ -282,7 +282,6 @@
 | | ... | '${crypto_type}' == 'HW_4xxx' | ${16}
 | | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
 | | ... | force_init=${True}
-| | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
 | Additional Suite Setup Action For nginx
 | | [Documentation]
