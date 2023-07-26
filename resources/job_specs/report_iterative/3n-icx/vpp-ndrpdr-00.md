@@ -260,10 +260,6 @@
 1c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4gtpusw-ip4base
 2c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4gtpusw-ip4base
 4c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4gtpusw-ip4base
-##### ethip4gtpuhw-ip4base
-1c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4gtpuhw-ip4base
-2c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4gtpuhw-ip4base
-4c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4gtpuhw-ip4base
 ##### ethip4udpwireguard1tnlsw-ip4base
 1c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4udpwireguard1tnlsw-ip4base
 2c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND ethip4udpwireguard1tnlsw-ip4base
