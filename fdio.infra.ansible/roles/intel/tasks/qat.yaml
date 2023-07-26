@@ -42,3 +42,13 @@
     - intel_driver_extracted
   tags:
     - intel-inst
+
+- name: Load Kernel Modules By Default
+  ansible.builtin.lineinfile:
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "qat_4xxx"
+  tags:
+    - intel-inst
