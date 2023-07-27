@@ -36,11 +36,11 @@
   become: true
   with_items:
     - "wget http://security.ubuntu.com/ubuntu/pool/main/s/systemd/libudev-dev_249.11-0ubuntu3.7_amd64.deb"
-    - "dpkg-deb -xv libudev-dev_249.11-0ubuntu3.9_amd64.deb ."
-    - "cp ./usr/include/libudev.h /usr/include/libudev.h"
+    - "dpkg -i ./libudev-dev_249.11-0ubuntu3.7_amd64.deb"
     - "./configure --enable-icp-sriov=host --enable-icp-sym-only"
     - "make"
     - "make install"
+    - "apt remove -y libudev-dev"
   when:
     - intel_driver_extracted
   tags:
