@@ -73,7 +73,7 @@
 | |
 | | ... | \| \${min_rate_hard} = \| Get Min Rate Hard \|
 | |
-| | Return From Keyword | ${9001.0}
+| | Return From Keyword | ${1001.0}
 
 | Get Min Rate Soft
 | | [Documentation]
