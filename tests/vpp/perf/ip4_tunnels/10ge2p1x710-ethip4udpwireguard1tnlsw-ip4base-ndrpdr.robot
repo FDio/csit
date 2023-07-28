@@ -86,6 +86,7 @@
 | ${keepalive_time}= | ${256}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src${n_tunnels}ip4dst${n_tunnels}
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -117,6 +118,7 @@
 | | ... | ${DUT2_${int}1_mac}[0] | ${wg_if1_ip4} | ${wg_if2_ip4}
 | | ... | ${n_tunnels} | ${listen_port} | ${keepalive_time}
 | | ... | ${laddr_ip4} | ${raddr_ip4}
+| | Fail | triggering teardown
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
