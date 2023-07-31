@@ -700,8 +700,8 @@ class Layout:
             ctrl_panel.set(
                 {
                     "al-job-children": html.A(
-                        self._default["job"],
-                        href=f"{C.URL_JENKINS}{self._default['job']}",
+                        job,
+                        href=f"{C.URL_JENKINS}{job}",
                         target="_blank"
                     )
                 }
