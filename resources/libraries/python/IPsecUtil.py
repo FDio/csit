@@ -383,6 +383,9 @@ class IPsecUtil:
                 for item in thread_data:
                     if str(item.cpu_id) in workers.split(u","):
                         worker_ids.append(item.id)
+                if not crypto_enable:
+                    # Workaround VPP-2083. Prevent crypto work on vpp_main.
+                    worker_ids.append(0)
 
                 IPsecUtil.vpp_ipsec_crypto_sw_scheduler_set_worker(
                     node, workers=worker_ids, crypto_enable=crypto_enable
