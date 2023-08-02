@@ -18,12 +18,16 @@ import logging
 import resource
 import awswrangler as wr
 import pandas as pd
+import pyarrow as pa
 
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 from time import time
 from pytz import UTC
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
+from pyarrow.lib import ArrowInvalid, ArrowNotImplementedError
+
+from ..utils.constants import Constants as C
 
 
 class Data:
@@ -125,7 +129,8 @@ class Data:
             validate_schema=False,
             last_modified_begin=None,
             last_modified_end=None,
-            days=None
+            days=None,
+            schema=None
         ) -> pd.DataFrame:
         """Read parquet stored in S3 compatible storage and returns Pandas
         Dataframe.
@@ -150,6 +155,7 @@ class Data:
         :param last_modified_end: Filter the s3 files by the Last modified date
             of the object. The filter is applied only after list all s3 files.
         :param days: Number of days to filter.
+        :param schema: Path to schema to use when reading data from the parquet.
         :type path: Union[str, List[str]]
         :type partition_filter: Callable[[Dict[str, str]], bool], optional
         :type columns: List[str], optional
@@ -157,6 +163,7 @@ class Data:
         :type last_modified_begin: datetime, optional
         :type last_modified_end: datetime, optional
         :type days: integer, optional
+        :type schema: string
         :returns: Pandas DataFrame or None if DataFrame cannot be fetched.
         :rtype: DataFrame
         """
@@ -169,18 +176,22 @@ class Data:
                 path=path,
                 path_suffix="parquet",
                 ignore_empty=True,
+                schema=schema,
                 validate_schema=validate_schema,
                 use_threads=True,
                 dataset=True,
                 columns=columns,
                 partition_filter=partition_filter,
                 last_modified_begin=last_modified_begin,
-                last_modified_end=last_modified_end
+                last_modified_end=last_modified_end,
+                dtype_backend="pyarrow"
             )
             df.info(verbose=True, memory_usage="deep")
             logging.debug(
                 f"\nCreation of dataframe {path} took: {time() - start}\n"
             )
+        except (ArrowInvalid, ArrowNotImplementedError) as err:
+            logging.error(repr(err))
         except NoFilesFound as err:
             logging.error(
                 f"No parquets found in specified time period.\n"
@@ -218,6 +229,18 @@ class Data:
                 f"Reading data for {data_set['data_type']} "
                 f"{data_set['partition_name']} {data_set.get('release', '')}"
             )
+            schema_file = data_set.get("schema", None)
+            if schema_file:
+                try:
+                    schema = pa.parquet.read_schema(
+                        f"{C.PATH_TO_SCHEMAS}{schema_file}"
+                    )
+                except FileNotFoundError as err:
+                    logging.error(repr(err))
+                    logging.error("Proceeding without schema.")
+                    schema = None
+            else:
+                schema = None
             partition_filter = lambda part: True \
                 if part[data_set["partition"]] == data_set["partition_name"] \
                     else False
@@ -229,7 +252,8 @@ class Data:
                 path=data_set["path"],
                 partition_filter=partition_filter,
                 columns=data_set.get("columns", None),
-                days=time_period
+                days=time_period,
+                schema=schema
             )
 
             if data_set["data_type"] == "statistics":
