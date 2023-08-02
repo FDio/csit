@@ -2,15 +2,17 @@
   partition: stats_type
   partition_name: sra
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/stats
+  schema: statistics
   columns:
     - job
     - build
     - start_time
     - duration
-- data_type: trending
+- data_type: trending  # ArrowNotImplementedError('Unsupported cast from string to null using function cast_null')
   partition: test_type
   partition_name: mrr
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  schema: trending_mrr
   columns:
     - job
     - build
@@ -29,6 +31,7 @@
   partition: test_type
   partition_name: ndrpdr
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  schema: trending_ndrpdr
   columns:
     - job
     - build
@@ -54,10 +57,11 @@
     - result_latency_forward_pdr_10_hdrh
     - result_latency_forward_pdr_0_hdrh
     - telemetry
-- data_type: trending
+- data_type: trending  # ArrowNotImplementedError('Unsupported cast from string to null using function cast_null')
   partition: test_type
   partition_name: hoststack
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  schema: trending_hoststack
   columns:
     - job
     - build
@@ -67,9 +71,9 @@
     - tg_type
     - result_bandwidth_unit
     - result_bandwidth_value
-    - result_rate_unit
+    - result_rate_unit  # -
     - result_rate_value
-    - result_latency_unit
+    - result_latency_unit  # -
     - result_latency_value
     - start_time
     - passed
@@ -81,50 +85,12 @@
   partition_name: mrr
   release: rls2210
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
+  schema: iterative_rls2210_mrr
   columns:
     - job
     - build
     - dut_type
     - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
-- data_type: iterative
-  partition: test_type
-  partition_name: mrr
-  release: rls2302
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
-- data_type: iterative
-  partition: test_type
-  partition_name: mrr
-  release: rls2306
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2306
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
     - start_time
     - passed
     - test_id
@@ -138,12 +104,12 @@
   partition_name: ndrpdr
   release: rls2210
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
+  schema: iterative_rls2210_ndrpdr
   columns:
     - job
     - build
     - dut_type
     - dut_version
-    - hosts
     - start_time
     - passed
     - test_id
@@ -164,15 +130,34 @@
     - result_latency_forward_pdr_0_hdrh
 - data_type: iterative
   partition: test_type
-  partition_name: ndrpdr
+  partition_name: mrr
   release: rls2302
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+  schema: iterative_rls2302_mrr
   columns:
     - job
     - build
     - dut_type
     - dut_version
-    - hosts
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_receive_rate_rate_avg
+    - result_receive_rate_rate_stdev
+    - result_receive_rate_rate_unit
+    - result_receive_rate_rate_values
+- data_type: iterative
+  partition: test_type
+  partition_name: ndrpdr
+  release: rls2302
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+  schema: iterative_rls2302_ndrpdr
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
     - start_time
     - passed
     - test_id
@@ -196,19 +181,17 @@
   partition_name: hoststack
   release: rls2302
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+  schema: iterative_rls2302_hoststack
   columns:
     - job
     - build
     - dut_type
     - dut_version
-    - hosts
     - tg_type
     - result_bandwidth_unit
     - result_bandwidth_value
     - result_rate_unit
     - result_rate_value
-    # - result_latency_unit
-    # - result_latency_value
     - start_time
     - passed
     - test_id
@@ -218,13 +201,13 @@
   partition_name: ndrpdr
   release: rls2302
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2302
+  schema: coverage_rls2302_ndrpdr
   columns:
     - job
     - build
     - dut_type
     - dut_version
     - tg_type
-    - hosts
     - start_time
     - passed
     - test_id
@@ -245,6 +228,7 @@
   partition_name: device
   release: rls2302
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2302
+  schema: coverage_rls2302_device
   columns:
     - job
     - build
@@ -255,15 +239,34 @@
     - version
 - data_type: iterative
   partition: test_type
-  partition_name: ndrpdr
+  partition_name: mrr
   release: rls2306
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2306
+  schema: iterative_rls2306_mrr
   columns:
     - job
     - build
     - dut_type
     - dut_version
-    - hosts
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_receive_rate_rate_avg
+    - result_receive_rate_rate_stdev
+    - result_receive_rate_rate_unit
+    - result_receive_rate_rate_values
+- data_type: iterative
+  partition: test_type
+  partition_name: ndrpdr
+  release: rls2306
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2306
+  schema: iterative_rls2306_ndrpdr
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
     - start_time
     - passed
     - test_id
@@ -282,24 +285,22 @@
     - result_latency_forward_pdr_50_unit
     - result_latency_forward_pdr_10_hdrh
     - result_latency_forward_pdr_0_hdrh
-- data_type: iterative
+- data_type: iterative  # ArrowNotImplementedError('Unsupported cast from string to null using function cast_null')
   partition: test_type
   partition_name: hoststack
   release: rls2306
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2306
+  schema: iterative_rls2306_hoststack
   columns:
     - job
     - build
     - dut_type
     - dut_version
-    - hosts
     - tg_type
     - result_bandwidth_unit
     - result_bandwidth_value
-    - result_rate_unit
+    - result_rate_unit  # -
     - result_rate_value
-    # - result_latency_unit
-    # - result_latency_value
     - start_time
     - passed
     - test_id
@@ -309,13 +310,13 @@
   partition_name: ndrpdr
   release: rls2306
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2306
+  schema: coverage_rls2306_ndrpdr
   columns:
     - job
     - build
     - dut_type
     - dut_version
     - tg_type
-    - hosts
     - start_time
     - passed
     - test_id
@@ -336,6 +337,7 @@
   partition_name: device
   release: rls2306
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2306
+  schema: coverage_rls2306_device
   columns:
     - job
     - build
