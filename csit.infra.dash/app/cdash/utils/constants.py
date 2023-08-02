@@ -65,6 +65,9 @@ class Constants:
     # Data to be downloaded from the parquets specification file.
     DATA_SPEC_FILE = "cdash/data/data.yaml"
 
+    # Path to schemas to use when reading data from the parquet.
+    PATH_TO_SCHEMAS = "cdash/data/_metadata/"
+
     # The file with tooltips.
     TOOLTIP_FILE = "cdash/utils/tooltips.yaml"
 
