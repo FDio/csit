@@ -1,5 +1,5 @@
 ---
-# file: roles/python_env/defaults/main.yaml
+# file: defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
