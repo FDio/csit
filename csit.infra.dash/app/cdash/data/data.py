@@ -24,6 +24,7 @@ from datetime import datetime, timedelta
 from time import time
 from pytz import UTC
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
+from pyarrow.lib import ArrowInvalid
 
 
 class Data:
@@ -175,12 +176,15 @@ class Data:
                 columns=columns,
                 partition_filter=partition_filter,
                 last_modified_begin=last_modified_begin,
-                last_modified_end=last_modified_end
+                last_modified_end=last_modified_end,
+                dtype_backend="pyarrow"
             )
             df.info(verbose=True, memory_usage="deep")
             logging.debug(
                 f"\nCreation of dataframe {path} took: {time() - start}\n"
             )
+        except ArrowInvalid as err:
+            logging.error(repr(err))
         except NoFilesFound as err:
             logging.error(
                 f"No parquets found in specified time period.\n"
