@@ -67,43 +67,58 @@ def init_app():
         ).read_all_data(days=time_period)
 
         # Import Dash applications.
-        from .news.news import init_news
-        app = init_news(
-            app,
-            data_stats=data["statistics"],
-            data_trending=data["trending"]
-        )
+        if data["statistics"].empty or data["trending"].empty:
+            logging.error(
+                f'"{C.NEWS_TITLE}" application not loaded, no data available.'
+            )
+            logging.error(
+                f'"{C.STATS_TITLE}" application not loaded, no data available.'
+            )
+        else:
+            from .news.news import init_news
+            app = init_news(
+                app,
+                data_stats=data["statistics"],
+                data_trending=data["trending"]
+            )
 
-        from .stats.stats import init_stats
-        app = init_stats(
-            app,
-            data_stats=data["statistics"],
-            data_trending=data["trending"]
-        )
+            from .stats.stats import init_stats
+            app = init_stats(
+                app,
+                data_stats=data["statistics"],
+                data_trending=data["trending"]
+            )
 
-        from .trending.trending import init_trending
-        app = init_trending(
-            app,
-            data_trending=data["trending"]
-        )
+        if data["trending"].empty:
+            logging.error(
+                f'"{C.TREND_TITLE}" application not loaded, no data available.'
+            )
+        else:
+            from .trending.trending import init_trending
+            app = init_trending(app, data_trending=data["trending"])
 
-        from .report.report import init_report
-        app = init_report(
-            app,
-            data_iterative=data["iterative"]
-        )
+        if data["iterative"].empty:
+            logging.error(
+                f'"{C.REPORT_TITLE}" application not loaded, no data available.'
+            )
+            logging.error(
+                f'"{C.COMP_TITLE}" application not loaded, no data available.'
+            )
+        else:
+            from .report.report import init_report
+            app = init_report(app, data_iterative=data["iterative"])
 
-        from .comparisons.comparisons import init_comparisons
-        app = init_comparisons(
-            app,
-            data_iterative=data["iterative"]
-        )
+            from .comparisons.comparisons import init_comparisons
+            app = init_comparisons(app, data_iterative=data["iterative"])
 
-        from .coverage.coverage import init_coverage
-        app = init_coverage(
-            app,
-            data_coverage=data["coverage"]
-        )
+        if data["coverage"].empty:
+            logging.error((
+                f'"{C.COVERAGE_TITLE}" application not loaded, '
+                'no data available.'
+            ))
+        else:
+            from .coverage.coverage import init_coverage
+            app = init_coverage(app, data_coverage=data["coverage"])
 
     return app
 
