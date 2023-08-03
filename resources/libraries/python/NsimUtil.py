@@ -21,6 +21,17 @@ class NsimUtil():
     """VPP NSIM Plugin Keywords."""
 
     @staticmethod
+    def experiment_xc_nsim(node, ifc0, ifc1):
+        attrs = dict(
+            xc_nsim_enable=True,
+            delay_in_usec=100000,
+            bw_in_bits_per_second=100e9,
+            packets_per_drop=0.0,
+        )
+        NsimUtil.configure_vpp_nsim(node, attrs, ifc0, ifc1)
+
+
+    @staticmethod
     def configure_vpp_nsim(node, vpp_nsim_attr, interface0, interface1=None):
         """Configure nsim on the specified VPP node.
 
