@@ -18,7 +18,6 @@ from typing import Optional
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DPDK.DpdkUtil import DpdkUtil
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
@@ -66,47 +65,39 @@ class TestpmdTest:
         :type nic_txq_size: int
         :raises RuntimeError: If still not ready for traffic after the restarts.
         """
-        cpu_count_int = dp_count_int = int(phy_cores)
-        compute_resource_info = CpuUtils.get_affinity_vswitch(
-            nodes, phy_cores, rx_queues=rx_queues, rxd=rxd, txd=txd
+
+        def start_function(dut_name: str) -> None:
+            """Call start_testpmd with added static arguments.
+
+            FIXME: params, types.
+            """
+            dut_node, if1, if2, cpu_dp, dp_count, rxq_count = DpdkUtil.get_vals(
+                nodes=nodes,
+                dut_name=dut_name,
+                topology_info=topology_info,
+                phy_cores=phy_cores,
+                rx_queues=rx_queues,
+                rxd=rxd,
+                txd=txd,
+            )
+            TestpmdTest.start_testpmd(
+                node=dut_node,
+                if1=if1,
+                if2=if2,
+                lcores_list=cpu_dp,
+                nb_cores=dp_count,
+                queue_nums=rxq_count,
+                jumbo_frames=jumbo_frames,
+                rxq_size=nic_rxq_size,
+                txq_size=nic_txq_size,
+            )
+
+        DpdkUtil.start_dpdk_app_on_all_duts(
+            start_function=start_function,
+            check_function=TestpmdTest.is_testpmd_ready,
+            nodes=nodes,
+            phy_cores=phy_cores,
         )
-        if dp_count_int > 1:
-            BuiltIn().set_tags("MTHREAD")
-        else:
-            BuiltIn().set_tags("STHREAD")
-        BuiltIn().set_tags(f"{dp_count_int}T{cpu_count_int}C")
-        duts = [node for node in nodes if "DUT" in node]
-        for _ in range(3):
-            for dut in duts:
-                DpdkUtil.kill_dpdk(nodes[dut])
-            for dut in duts:
-                cpu_dp = compute_resource_info[f"{node_name}_cpu_dp"]
-                rxq_count_int = compute_resource_info["rxq_count_int"]
-                if1 = topology_info[f"{dut}_pf1"][0]
-                if2 = topology_info[f"{dut}_pf2"][0]
-                TestpmdTest.start_testpmd(
-                    node=nodes[dut],
-                    if1=if1,
-                    if2=if2,
-                    lcores_list=cpu_dp,
-                    nb_cores=dp_count_int,
-                    queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames,
-                    rxq_size=nic_rxq_size,
-                    txq_size=nic_txq_size,
-                )
-            all_ready = True
-            for dut in duts:
-                if not TestpmdTest.is_testpmd_ready(nodes[dut]):
-                    all_ready = False
-                    break
-            for dut in duts:
-                exec_cmd(nodes[dut], "cat screenlog.0")
-            if all_ready:
-                return
-            # Even if one app is ready, we need to restart both
-            # to confirm link state on both DUTs again.
-        raise RuntimeError("Testpmd failed to start properly.")
 
     @staticmethod
     def start_testpmd(

@@ -13,9 +13,14 @@
 
 """Dpdk Utilities Library."""
 
+from typing import Callable, Optional, Tuple, Union
+
+from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.OptionString import OptionString
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 
 class DpdkUtil:
@@ -215,3 +220,102 @@ class DpdkUtil:
         )
         message = f"Failed to kill dpdk at node {node['host']}"
         exec_cmd_no_error(node, command, message=message)
+
+    @staticmethod
+    def get_vals(
+        nodes: dict,
+        dut_name: str,
+        topology_info: dict,
+        phy_cores: str,
+        rx_queues: Optional[int],
+        rxd: Optional[int],
+        txd: Optional[int],
+    ) -> Tuple[dict, str, str, str, int, int]:
+        """FIXME"""
+        compute_resource_info = CpuUtils.get_affinity_vswitch(
+            nodes=nodes,
+            phy_cores=phy_cores,
+            rx_queues=rx_queues,
+            rxd=rxd,
+            txd=txd,
+        )
+        cpu_dp = compute_resource_info[f"{dut_name}_cpu_dp"]
+        rxq_count = compute_resource_info["rxq_count_int"]
+        if1 = topology_info[f"{dut_name}_pf1"][0]
+        if2 = topology_info[f"{dut_name}_pf2"][0]
+        return nodes[dut_name], if1, if2, cpu_dp, int(phy_cores), rxq_count
+
+    @staticmethod
+    def start_dpdk_app_on_all_duts(
+        start_function: Callable[[str], None],
+        check_function: Callable[[dict], None],
+        nodes: dict,
+        phy_cores: Union[int, str],
+    ) -> None:
+        """
+        Execute a dpdk app on all dut nodes.
+
+        Also set test tags related to threads.
+        Keep restarting few times if not all ports are up.
+
+        This function hosts code common for both testpmd and l3fwd.
+        The differences are only in arguments start_function and check_function.
+
+        The check_function is simple, it takes node dict as input
+        and return bool telling whether the app on the dut is ready.
+
+        The starts (without any unnecessary wait) the app, returs None,
+        and accepts the following arguments:
+        dict node: The DUT node from nodes.
+        str if1: Identifier (topology key) for the first interface to use.
+        str if2: Identifier (topology key) for the second interface to use.
+        str lcores_list: Comma-separated lcore numbers for app workers.
+        int nb_cores: Total number of worker (dataplane) threads.
+        str queue_nums: Number of RX (and also TX) queues for app to use.
+
+        Those arguments are the only ones that (in principle can) depend
+        of the DUT being processed. It is expected the real app starting
+        keywords require more arguments, but those are static (not depending
+        on DUT), so the caller should pass a closure that handles such details.
+
+        The logic in this keyword does several tries, where each try:
+        kills any running dpdk apps,
+        starts new round of apps on all duts at the same time,
+        checks if all apps are ready,
+        retry if an app is not ready.
+
+        :param start_function: To launch an app on a dut without waiting.
+        :param check_function: To check app readiness, can wait if needed.
+            Returns True if the app is ready, False otherwse.
+        :param nodes: All the nodes info from the topology file.
+        :param phy_cores: Number of physical cores to use.
+        :type start_function: Callable[[dict, str, str, str, int, str], None]
+        :type check_function: Callable[[dict], bool]
+        :type nodes: dict
+        :type phy_cores: int
+        :raises RuntimeError: If bash return code is not 0.
+        """
+        phy_cores = int(phy_cores)
+        if phy_cores > 1:
+            BuiltIn().set_tags("MTHREAD")
+        else:
+            BuiltIn().set_tags("STHREAD")
+        BuiltIn().set_tags(f"{phy_cores}T{phy_cores}C")
+        dut_names_nodes = [(nam, nodes[nam]) for nam in nodes if "DUT" in nam]
+        for _ in range(3):
+            for _, dut_node in dut_names_nodes:
+                DpdkUtil.kill_dpdk(dut_node)
+            for dut_name, _ in dut_names_nodes:
+                start_function(dut_name)
+            not_ready = []
+            for dut_name, dut_node in dut_names_nodes:
+                if not check_function(node=dut_node):
+                    not_ready.append(dut_name)
+                    break
+            for _, dut_nodes in dut_names_nodes:
+                exec_cmd(dut_nodes, "cat screenlog.0")
+            if not not_ready:
+                return
+            # Even if one app is ready, we need to restart both
+            # to confirm link state on both DUTs again.
+        raise RuntimeError(f"Dpdk app still not ready on {not_ready[0]}")
