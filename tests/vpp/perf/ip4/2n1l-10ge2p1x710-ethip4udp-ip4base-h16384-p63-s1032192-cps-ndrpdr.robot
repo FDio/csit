@@ -52,7 +52,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | nsim_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
@@ -102,8 +102,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding in circular topology
-| | ... | 192.168.0.0 | 20.0.0.0 | ${18}
+| | experiment_xc_nsim | ${nodes}[DUT1] | ${DUT1_vf1_1} | ${DUT1_vf2_1}
+| | ... | ${avg_directional_frame_size}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
