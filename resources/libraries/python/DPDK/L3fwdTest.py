@@ -62,7 +62,7 @@ class L3fwdTest:
         """
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int + 1
-        tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
+        tg_flip = topology_info["tg_if1_pci"] > topology_info["tg_if2_pci"]
         compute_resource_info = CpuUtils.get_affinity_vswitch(
             nodes, phy_cores, rx_queues=rx_queues, rxd=rxd, txd=txd
         )
@@ -176,7 +176,7 @@ class L3fwdTest:
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
                     eal_in_memory=True,
-                    pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
+                    pmd_config=f'\\"{port_config.rstrip(",")}\\"',
                     pmd_eth_dest_0=f'\\"0,{adj_mac0}\\"',
                     pmd_eth_dest_1=f'\\"1,{adj_mac1}\\"',
                     pmd_parse_ptype=True,
@@ -189,7 +189,7 @@ class L3fwdTest:
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
                     eal_in_memory=True,
-                    pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
+                    pmd_config=f'\\"{port_config.rstrip(",")}\\"',
                     pmd_eth_dest_0=f'\\"0,{adj_mac0}\\"',
                     pmd_eth_dest_1=f'\\"1,{adj_mac1}\\"',
                     pmd_parse_ptype=True,
@@ -214,7 +214,7 @@ class L3fwdTest:
         if node["type"] == NodeType.DUT:
             command = (
                 f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
-                f"/entry/check_l3fwd.sh"
+                "/entry/check_l3fwd.sh"
             )
             message = "L3fwd not started properly"
             exec_cmd_no_error(node, command, timeout=1800, message=message)
@@ -290,8 +290,8 @@ class L3fwdTest:
         """
         command = (
             f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
-            f"/entry/patch_l3fwd.sh "
-            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
+            "/entry/patch_l3fwd.sh"
+            f" {Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
             f"/entry/{patch}"
         )
         message = f"Failed to patch l3fwd at node {node['host']}"
