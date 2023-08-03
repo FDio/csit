@@ -97,11 +97,6 @@ class TestpmdTest:
                 )
             all_ready = True
             for dut in duts:
-                nic_model = nodes[dut]["interfaces"][if1]["model"]
-                if "Mellanox-CX7VEAT" in nic_model:
-                    break
-                if "Mellanox-CX6DX" in nic_model:
-                    break
                 if not TestpmdTest.is_testpmd_ready(nodes[dut]):
                     all_ready = False
                     break
