@@ -102,8 +102,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding in circular topology
-| | ... | 192.168.0.0 | 20.0.0.0 | ${18}
+| | experiment_xc_nsim | ${nodes[DUT1]} | ${DUT1_vf1_1} | ${DUT1_vf2_1}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
