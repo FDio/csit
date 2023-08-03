@@ -70,7 +70,6 @@ class L3fwdTest:
         else:
             BuiltIn().set_tags("STHREAD")
         BuiltIn().set_tags(f"{dp_count_int}T{cpu_count_int}C")
-        tg_flip = topology_info["tg_if1_pci"] > topology_info["tg_if2_pci"]
         compute_resource_info = CpuUtils.get_affinity_vswitch(
             nodes, phy_cores, rx_queues=rx_queues, rxd=rxd, txd=txd
         )
@@ -92,7 +91,6 @@ class L3fwdTest:
                     nb_cores=dp_count_int,
                     queue_nums=rxq_count_int,
                     jumbo_frames=jumbo_frames,
-                    tg_flip=tg_flip,
                 )
                 # TODO: Add nic_rxq_size, and nic_txq_size.
             all_ready = True
@@ -117,16 +115,11 @@ class L3fwdTest:
         nb_cores: str,
         queue_nums: str,
         jumbo_frames: bool,
-        tg_flip: bool,
     ) -> None:
         """
-        Launch the l3fwd app on the dut_node.
-
-        L3fwd uses default IP forwarding table, but sorts ports by API address.
-        When that does not match the traffic profile (depends on topology),
-        the only way to fix is is to patch and recompile l3fwd app.
-
+        Launch the (perhaps patched) l3fwd app on the dut_node.
         Readiness is not checked, so apps on all DUTs can start concurrently.
+        See get_adj_mac for details on where to patch.
 
         :param nodes: All the nodes info in the topology file.
         :param node: DUT node.
@@ -136,8 +129,7 @@ class L3fwdTest:
         :param nb_cores: The cores number for the forwarding
         :param queue_nums: The queues number for the NIC
         :param jumbo_frames: Indication if the jumbo frames are used (True) or
-                             not (False).
-        :param tg_flip: Whether TG ports are reordered.
+            not (False).
         :type nodes: dict
         :type node: dict
         :type if1: str
@@ -146,11 +138,10 @@ class L3fwdTest:
         :type nb_cores: str
         :type queue_nums: str
         :type jumbo_frames: bool
-        :type tg_flip: bool
         """
         if node["type"] == NodeType.DUT:
             adj_mac0, adj_mac1, if_pci0, if_pci1 = L3fwdTest.get_adj_mac(
-                nodes, node, if1, if2, tg_flip
+                nodes, node, if1, if2
             )
 
             lcores = [int(item) for item in lcores_list.split(",")]
@@ -202,61 +193,56 @@ class L3fwdTest:
 
     @staticmethod
     def get_adj_mac(
-        nodes: dict, node: dict, if1: str, if2: str, tg_flip: bool
+        nodes: dict, node: dict, if1: str, if2: str
     ) -> Tuple[str, str, str, str]:
         """
-        Get adjacency MAC addresses of the DUT node.
+        Get MAC addresses adjacent to interfaces (by PCI address) of the DUT.
 
-        Interfaces are re-ordered according to PCI address,
-        but the need to patch and recompile also depends on TG port order.
-        "tg_flip" signals whether TG ports are reordered.
+        Also the mentioned PCI addresses are returned.
+
+        L3fwd uses default IP forwarding table, but sorts ports by PCI address.
+        When that does not match the traffic profile (depends on topology),
+        the only way to fix is is to patch and recompile l3fwd app.
+
+        This is done here, so that the caller does not need to care
+        about port flipping.
 
         :param nodes: All the nodes info in the topology file.
         :param node: DUT node.
         :param if1: The test link interface 1.
         :param if2: The test link interface 2.
-        :param tg_flip: Whether tg ports are reordered.
         :type nodes: dict
         :type node: dict
         :type if1: str
         :type if2: str
-        :type tg_flip: bool
-        :returns: Returns MAC addresses of adjacency DUT nodes and PCI
-            addresses.
+        :returns: Returns MAC addresses of adjacency DUT/TG nodes
+            and PCI addresses (of this DUT node), sorted by PCI address.
         :rtype: str
         """
         if_key0 = if1
         if_key1 = if2
         if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
         if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
-
-        # Flipping routes logic:
-        # If TG and DUT ports are reordered -> flip
-        # If TG reordered and DUT not reordered -> don't flip
-        # If DUT reordered and TG not reordered -> don't flip
-        # If DUT and TG not reordered -> flip
-
-        # Detect which is the port 0.
-        dut_flip = if_pci0 > if_pci1
-        if dut_flip:
-            if_key0, if_key1 = if_key1, if_key0
-            if tg_flip:
-                L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
-        elif not tg_flip:
-            L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
-
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key0
         )
         adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key1
         )
-        if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
         adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
         adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
 
-        return adj_mac0, adj_mac1, if_pci0, if_pci1
+        if if_pci0 < if_pci1:
+            # Normal port ordering.
+            # But we want 0->1 traffic routed to port 1.
+            L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
+            return adj_mac0, adj_mac1, if_pci0, if_pci1
+        # Route table is ok, but caller needs MAC adresses
+        # in order given by PCI addresses.
+        return adj_mac1, adj_mac0, if_pci1, if_pci0
+        # TG flip does not matter as TrafficGenerator reverses flows then,
+        # so 0->1 traffic always goes TG->DUT1->DUT2->TG,
+        # arriving first at dut1_if1 regardless of PCI addresses.
 
     @staticmethod
     def patch_l3fwd(node: dict, patch: str) -> None:
