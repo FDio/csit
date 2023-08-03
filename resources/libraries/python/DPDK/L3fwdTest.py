@@ -18,9 +18,10 @@ This module exists to start l3fwd on topology nodes.
 from typing import Optional, Tuple
 
 from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.DPDK.DpdkUtil import DpdkUtil
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -43,6 +44,9 @@ class L3fwdTest:
         """
         Execute the l3fwd on all dut nodes.
 
+        Also set test tags related to threads.
+        Keep restarting few times if not all ports are up.
+
         :param nodes: All the nodes info from the topology file.
         :param topology_info: All the info from the topology file.
         :param phy_cores: Number of physical cores to use.
@@ -61,26 +65,27 @@ class L3fwdTest:
         :raises RuntimeError: If bash return code is not 0.
         """
         cpu_count_int = dp_count_int = int(phy_cores)
-        dp_cores = cpu_count_int + 1
+        if dp_count_int > 1:
+            BuiltIn().set_tags("MTHREAD")
+        else:
+            BuiltIn().set_tags("STHREAD")
+        BuiltIn().set_tags(f"{dp_count_int}T{cpu_count_int}C")
         tg_flip = topology_info["tg_if1_pci"] > topology_info["tg_if2_pci"]
         compute_resource_info = CpuUtils.get_affinity_vswitch(
             nodes, phy_cores, rx_queues=rx_queues, rxd=rxd, txd=txd
         )
-        for node_name, node in nodes.items():
-            if node["type"] == NodeType.DUT:
-                if dp_count_int > 1:
-                    BuiltIn().set_tags("MTHREAD")
-                else:
-                    BuiltIn().set_tags("STHREAD")
-                BuiltIn().set_tags(f"{dp_count_int}T{cpu_count_int}C")
-
+        duts = [node for node in nodes if "DUT" in node]
+        for _ in range(3):
+            for dut in duts:
+                DpdkUtil.kill_dpdk(nodes[dut])
+            for dut in duts:
                 cpu_dp = compute_resource_info[f"{node_name}_cpu_dp"]
                 rxq_count_int = compute_resource_info["rxq_count_int"]
-                if1 = topology_info[f"{node_name}_pf1"][0]
-                if2 = topology_info[f"{node_name}_pf2"][0]
+                if1 = topology_info[f"{dut}_pf1"][0]
+                if2 = topology_info[f"{dut}_pf2"][0]
                 L3fwdTest.start_l3fwd(
                     nodes,
-                    node,
+                    nodes[dut],
                     if1=if1,
                     if2=if2,
                     lcores_list=cpu_dp,
@@ -89,27 +94,18 @@ class L3fwdTest:
                     jumbo_frames=jumbo_frames,
                     tg_flip=tg_flip,
                 )
-        for node in nodes:
-            if "DUT" in node:
-                for i in range(3):
-                    try:
-                        L3fwdTest.check_l3fwd(nodes[node])
-                        break
-                    except RuntimeError:
-                        L3fwdTest.start_l3fwd(
-                            nodes,
-                            nodes[node],
-                            if1=if1,
-                            if2=if2,
-                            lcores_list=cpu_dp,
-                            nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int,
-                            jumbo_frames=jumbo_frames,
-                            tg_flip=tg_flip,
-                        )
-                else:
-                    message = f"Failed to start l3fwd at node {node}"
-                    raise RuntimeError(message)
+                # TODO: Add nic_rxq_size, and nic_txq_size.
+            all_ready = True
+            for dut in duts:
+                if not L3fwdTest.is_l3fwd_ready(nodes[dut]):
+                    all_ready = False
+                    break
+            for dut in duts:
+                exec_cmd(nodes[dut], "cat screenlog.0")
+            if all_ready:
+                return
+            # Restart all testpmds.
+        raise RuntimeError("L3fwd failed to start properly.")
 
     @staticmethod
     def start_l3fwd(
@@ -124,11 +120,13 @@ class L3fwdTest:
         tg_flip: bool,
     ) -> None:
         """
-        Execute the l3fwd on the dut_node.
+        Launch the l3fwd app on the dut_node.
 
         L3fwd uses default IP forwarding table, but sorts ports by API address.
         When that does not match the traffic profile (depends on topology),
-        the only way to fix is is to latch and recompile l3fwd app.
+        the only way to fix is is to patch and recompile l3fwd app.
+
+        Readiness is not checked, so apps on all DUTs can start concurrently.
 
         :param nodes: All the nodes info in the topology file.
         :param node: DUT node.
@@ -199,25 +197,8 @@ class L3fwdTest:
                 f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
                 f'/entry/run_l3fwd.sh "{l3fwd_args} -P -L -p 0x3"'
             )
-            message = f"Failed to execute l3fwd test at node {node['host']}"
-            exec_cmd_no_error(node, command, timeout=1800, message=message)
-
-    @staticmethod
-    def check_l3fwd(node: dict) -> None:
-        """
-        Execute the l3fwd check on the DUT node.
-
-        :param node: DUT node.
-        :type node: dict
-        :raises RuntimeError: If the script "check_l3fwd.sh" fails.
-        """
-        if node["type"] == NodeType.DUT:
-            command = (
-                f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
-                "/entry/check_l3fwd.sh"
-            )
-            message = "L3fwd not started properly"
-            exec_cmd_no_error(node, command, timeout=1800, message=message)
+            message = f"Failed to launch l3fwd app at node {node['host']}"
+            exec_cmd_no_error(node, command, timeout=5, message=message)
 
     @staticmethod
     def get_adj_mac(
@@ -298,3 +279,20 @@ class L3fwdTest:
         ret_code, stdout, _ = exec_cmd(node, command, timeout=1800)
         if ret_code != 0 and "Skipping patch." not in stdout:
             raise RuntimeError(message)
+
+    @staticmethod
+    def is_l3fwd_ready(node: dict) -> bool:
+        """Execute the l3fwd check on the DUT node.
+
+        As the current l3fwd never reports any link state change events,
+        we only wait for Done and fail if there was a port down.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: False if l3fwd is not ready for traffic yet.
+        :rtype: bool
+        """
+        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
+        command += "/entry/check_l3fwd.sh"
+        return_code, _, _ = exec_cmd(node, command)
+        return return_code == 0
