@@ -31,8 +31,9 @@ class L3fwdTest:
 
     @staticmethod
     def start_l3fwd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
-            rxd=None, txd=None):
+            nodes: dict, topology_info: dict, phy_cores: int,
+            rx_queues: int = None, jumbo_frames: bool = False,
+            rxd: int = None, txd: int = None) -> None:
         """
         Execute the l3fwd on all dut nodes.
 
@@ -97,8 +98,9 @@ class L3fwdTest:
 
     @staticmethod
     def start_l3fwd(
-            nodes, node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames, tg_flip):
+            nodes: dict, node: dict, if1: str, if2: str, lcores_list: str,
+            nb_cores: str, queue_nums: str, jumbo_frames: bool,
+            tg_flip: bool) -> None:
         """
         Execute the l3fwd on the dut_node.
 
@@ -176,7 +178,7 @@ class L3fwdTest:
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def check_l3fwd(node):
+    def check_l3fwd(node: dict) -> None:
         """
         Execute the l3fwd check on the DUT node.
 
@@ -191,7 +193,8 @@ class L3fwdTest:
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def get_adj_mac(nodes, node, if1, if2, tg_flip):
+    def get_adj_mac(
+            nodes: dict, node: dict, if1: str, if2: str, tg_flip: bool) -> None:
         """
         Get adjacency MAC addresses of the DUT node.
 
@@ -247,7 +250,7 @@ class L3fwdTest:
         return adj_mac0, adj_mac1, if_pci0, if_pci1
 
     @staticmethod
-    def patch_l3fwd(node, patch):
+    def patch_l3fwd(node: dict, patch: str) -> None:
         """
         Patch l3fwd application and recompile.
 

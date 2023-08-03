@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,7 +21,7 @@ class DpdkUtil:
     """Utilities for DPDK."""
 
     @staticmethod
-    def get_eal_options(**kwargs):
+    def get_eal_options(**kwargs: dict) -> OptionString:
         """Create EAL parameters options (including -v).
 
         :param kwargs: Dict of testpmd parameters.
@@ -52,7 +52,7 @@ class DpdkUtil:
         return options
 
     @staticmethod
-    def get_testpmd_pmd_options(**kwargs):
+    def get_testpmd_pmd_options(**kwargs: dict) -> OptionString:
         """Create PMD parameters options for testpmd (without --).
 
         :param kwargs: List of testpmd parameters.
@@ -137,7 +137,7 @@ class DpdkUtil:
         return options
 
     @staticmethod
-    def get_testpmd_args(**kwargs):
+    def get_testpmd_args(**kwargs: dict) -> OptionString:
         """Get DPDK testpmd command line arguments.
 
         :param kwargs: Key-value testpmd parameters.
@@ -152,7 +152,7 @@ class DpdkUtil:
         return options
 
     @staticmethod
-    def get_testpmd_cmdline(**kwargs):
+    def get_testpmd_cmdline(**kwargs: dict) -> OptionString:
         """Get DPDK testpmd command line arguments with testpmd command.
 
         :param kwargs: Key-value testpmd parameters.
@@ -168,7 +168,7 @@ class DpdkUtil:
         return options
 
     @staticmethod
-    def dpdk_testpmd_start(node, **kwargs):
+    def dpdk_testpmd_start(node: dict, **kwargs: dict) -> None:
         """Start DPDK testpmd app on VM node.
 
         :param node: VM Node to start testpmd on.
@@ -184,7 +184,7 @@ class DpdkUtil:
         exec_cmd_no_error(node, cmd_options, sudo=True, disconnect=True)
 
     @staticmethod
-    def dpdk_testpmd_stop(node):
+    def dpdk_testpmd_stop(node: dict) -> None:
         """Stop DPDK testpmd app on node.
 
         :param node: Node to stop testpmd on.
@@ -195,7 +195,7 @@ class DpdkUtil:
         exec_cmd_no_error(node, cmd, sudo=True, disconnect=True)
 
     @staticmethod
-    def get_l3fwd_pmd_options(**kwargs):
+    def get_l3fwd_pmd_options(**kwargs: dict) -> OptionString:
         """Create PMD parameters options for l3fwd (without --).
 
         :param kwargs: List of l3fwd parameters.
@@ -226,7 +226,7 @@ class DpdkUtil:
         return options
 
     @staticmethod
-    def get_l3fwd_args(**kwargs):
+    def get_l3fwd_args(**kwargs: dict) -> OptionString:
         """Get DPDK l3fwd command line arguments.
 
         :param kwargs: Key-value l3fwd parameters.
