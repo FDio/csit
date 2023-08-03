@@ -21,6 +21,19 @@ class NsimUtil():
     """VPP NSIM Plugin Keywords."""
 
     @staticmethod
+    def experiment_xc_nsim(node, ifc0, ifc1, avg_siz):
+        attrs = dict(
+            xc_nsim_enable=True,
+            output_nsim_enable=False,
+            delay_in_usec=100000,
+            average_packet_size=int(avg_siz),
+            bw_in_bits_per_second=int(100e9),
+            packets_per_drop=0,
+        )
+        NsimUtil.configure_vpp_nsim(node, attrs, ifc0, ifc1)
+
+
+    @staticmethod
     def configure_vpp_nsim(node, vpp_nsim_attr, interface0, interface1=None):
         """Configure nsim on the specified VPP node.
 
@@ -66,7 +79,7 @@ class NsimUtil():
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
         elif vpp_nsim_attr[u"xc_nsim_enable"]:
-            cmd = u"nsim_cross_connect_feature_enable_disable"
+            cmd = u"nsim_cross_connect_enable_disable"
             args = dict(
                 enable_disable=vpp_nsim_attr[u"xc_nsim_enable"],
                 sw_if_index0=InterfaceUtil.get_interface_index(node,
