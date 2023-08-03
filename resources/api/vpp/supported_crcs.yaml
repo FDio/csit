@@ -289,6 +289,8 @@
     # plugins/nsim/nsim.api
     nsim_configure2: '0x64de8ed3'  # perf
     nsim_configure2_reply: '0xe8d4e804'  # perf
+    nsim_cross_connect_enable_disable: '0x9c3ead86'
+    nsim_cross_connect_enable_disable_reply: '0xe8d4e804'
     nsim_output_feature_enable_disable: '0x3865946c'  # perf
     nsim_output_feature_enable_disable_reply: '0xe8d4e804'  # perf
     # 4x^ 1280B-1c-eth-ip4udpquicscale10cl1s-vppecho-bps
