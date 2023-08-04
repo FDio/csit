@@ -22,7 +22,7 @@ class QATUtil:
     """Contains methods for setting up QATs."""
 
     @staticmethod
-    def crypto_device_verify(node, crypto_type, numvfs, force_init=False):
+    def crypto_device_verify(node, crypto_type, numvfs, force_init=True):
         """Verify if Crypto QAT device virtual functions are initialized on all
         DUTs. If parameter force initialization is set to True, then try to
         initialize or remove VFs on QAT.
@@ -41,16 +41,20 @@ class QATUtil:
                               to False.
         """
         pci_addr = Topology.get_cryptodev(node)
-        sriov_numvfs = DUTSetup.get_sriov_numvfs(node, pci_addr)
 
-        if sriov_numvfs != numvfs:
-            if force_init:
-                # QAT is not initialized and we want to initialize with numvfs
-                QATUtil.crypto_device_init(node, crypto_type, numvfs)
-            else:
-                raise RuntimeError(
-                    f"QAT device failed to create VFs on {node[u'host']}"
-                )
+        if force_init:
+            # QAT is not initialized and we want to initialize with numvfs.
+            QATUtil.crypto_device_init(node, crypto_type, numvfs)
+        else:
+            raise RuntimeError(
+                f"QAT device failed to create VFs on {node[u'host']}"
+            )
+
+        # QAT VF devices must be re-bound to vfio-pci driver before use.
+        pci_addr = Topology.get_cryptodev(node)
+        for i in range(numvfs):
+            DUTSetup.pci_vf_driver_unbind(node, pci_addr, i)
+            DUTSetup.pci_vf_driver_bind(node, pci_addr, i, "vfio-pci")
 
     @staticmethod
     def crypto_device_init(node, crypto_type, numvfs):

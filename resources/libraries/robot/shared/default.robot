@@ -112,7 +112,7 @@
 | |
 | | ... | \| Configure crypto device on all DUTs \| HW_DH895xcc \| ${32} \|
 | |
-| | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${False}
+| | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${True}
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Crypto Device Verify | ${nodes['${dut}']} | ${crypto_type}
