@@ -88,7 +88,8 @@ intel_dsa_compatibility_matrix:
   dsa: "4.0"
 
 intel_qat_compatibility_matrix:
-  qat: "1.0.20-00008"
+  qat2: "1.0.20-00008"
+  qat1: "4.22.0-00001"
 
 intel_i40e_url:
   "2.17.15": "i40e%20stable/2.17.15/i40e-2.17.15.tar.gz/download"
@@ -114,3 +115,4 @@ intel_dsa_url:
 
 intel_qat_url:
   "1.0.20-00008": "777529/QAT20.L.1.0.20-00008.tar.gz"
+  "4.22.0-00001": "780675/QAT.L.4.22.0-00001.tar.gz"

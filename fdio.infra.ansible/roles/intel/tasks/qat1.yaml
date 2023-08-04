@@ -1,46 +1,43 @@
 ---
-# file: tasks/qat.yaml
+# file: tasks/qat1.yaml
 
-- name: Get QAT Driver
+- name: Get QAT 1.x Driver
   ansible.builtin.uri:
-    url: "{{ intel_download_url }}/{{ intel_qat_url[qat] }}"
+    url: "{{ intel_download_url }}/{{ intel_qat_url[qat1] }}"
     follow_redirects: "all"
     force: true
-    dest: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}.tar.gz"
+    dest: "{{ intel_extract_dir }}/QAT.L.{{ qat1 }}.tar.gz"
     mode: "0644"
   failed_when: false
   tags:
     - intel-inst
 
-- name: Create a Directory For QAT Driver
+- name: Create a Directory For QAT 1.x Driver
   ansible.builtin.file:
-    path: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}/"
+    path: "{{ intel_extract_dir }}/QAT.L.{{ qat1 }}/"
     state: "directory"
     mode: "0755"
   tags:
     - intel-inst
 
-- name: Extract QAT Driver
+- name: Extract QAT 1.x Driver
   ansible.builtin.unarchive:
     remote_src: true
-    src: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}.tar.gz"
-    dest: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}/"
+    src: "{{ intel_extract_dir }}/QAT.L.{{ qat1 }}.tar.gz"
+    dest: "{{ intel_extract_dir }}/QAT.L.{{ qat1 }}/"
   register: intel_driver_extracted
   tags:
     - intel-inst
 
-- name: Install QAT Driver
+- name: Install QAT1.x Driver
   ansible.builtin.command: "{{ item }}"
   args:
-    chdir: "{{ intel_extract_dir }}/QAT20.L.{{ qat }}"
+    chdir: "{{ intel_extract_dir }}/QAT.L.{{ qat1 }}"
   become: true
   with_items:
-    - "wget http://security.ubuntu.com/ubuntu/pool/main/s/systemd/libudev-dev_249.11-0ubuntu3.7_amd64.deb"
-    - "dpkg -i ./libudev-dev_249.11-0ubuntu3.7_amd64.deb"
     - "./configure --enable-icp-sriov=host --enable-icp-sym-only"
     - "make"
     - "make install"
-    - "apt remove -y libudev-dev"
   when:
     - intel_driver_extracted
   tags:
@@ -52,6 +49,6 @@
     state: "present"
     line: "{{ item }}"
   with_items:
-    - "qat_4xxx"
+    - "qat_c4xxx"
   tags:
     - intel-inst

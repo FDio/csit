@@ -41,6 +41,22 @@
   tags:
     - intel-inst-drivers
 
+- name: Check Presence of Intel C4XXX
+  ansible.builtin.shell: "lspci -d 8086:18a0"
+  register: intel_qat1_pcis
+  failed_when: false
+  changed_when: false
+  tags:
+    - intel-inst-drivers
+
+- name: Check Presence of Intel 4XXX
+  ansible.builtin.shell: "lspci -d 8086:4942"
+  register: intel_qat2_pcis
+  failed_when: false
+  changed_when: false
+  tags:
+    - intel-inst-drivers
+
 - name: Get Intel Ethernet 700 Series driver versions
   ansible.builtin.set_fact:
     i40e: "{{ intel_700_compatibility_matrix[intel_700_matrix]['i40e'] }}"
@@ -72,7 +88,8 @@
 
 - name: Get Intel QAT driver versions
   ansible.builtin.set_fact:
-    qat: "{{ intel_qat_compatibility_matrix['qat'] }}"
+    qat1: "{{ intel_qat_compatibility_matrix['qat1'] }}"
+    qat2: "{{ intel_qat_compatibility_matrix['qat2'] }}"
   when: >
     intel_qat_matrix is defined
   tags:
@@ -112,9 +129,18 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel QAT
-  import_tasks: qat.yaml
+- name: Driver Intel QAT 1.x
+  import_tasks: qat1.yaml
   when: >
+    intel_qat1_pcis.stdout_lines | length > 0 and
+    intel_qat_matrix is defined
+  tags:
+    - intel-inst-drivers
+
+- name: Driver Intel QAT 2.x
+  import_tasks: qat2.yaml
+  when: >
+    intel_qat2_pcis.stdout_lines | length > 0 and
     intel_qat_matrix is defined
   tags:
     - intel-inst-drivers
