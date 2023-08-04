@@ -53,7 +53,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | det44_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | det44_plugin.so | nsim_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
@@ -116,6 +116,8 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 deterministic mode in circular topology
+| | experiment_xc_nsim | ${nodes}[DUT1] | ${dut1_if1} | ${dut1_if2}
+| | ... | ${avg_directional_frame_size}
 | | Then Send ramp-up traffic
 | | And Verify DET44 sessions number on DUT1 node
 | | And Find NDR and PDR intervals using optimized search

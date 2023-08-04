@@ -34,6 +34,7 @@
 | Library | resources.libraries.python.model.ExportJson
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Namespaces
+| Library | resources.libraries.python.NsimUtil
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.QATUtil
 | Library | resources.libraries.python.SchedUtils
