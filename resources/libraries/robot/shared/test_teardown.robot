@@ -202,11 +202,11 @@
 | | Set Test Variable | ${telemetry_rate} | ${EMPTY}
 | | Set Test Variable | ${telemetry_export} | ${False}
 | | Send traffic at specified rate
-| | ... | trial_duration=${1.0}
-| | ... | rate=${rate_for_teardown}
+| | ... | trial_duration=${600.0}
+| | ... | rate=${0.1}
 | | ... | trial_multiplicity=${1}
-| | ... | use_latency=${use_latency}
-| | ... | duration_limit=${1.0}
+| | ... | use_latency=${False}
+| | ... | duration_limit=${601.0}
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
