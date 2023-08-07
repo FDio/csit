@@ -253,6 +253,11 @@ class Constants:
     # This MTU value is used to force VPP to fragment 1518B packet into two.
     MTU_FOR_FRAGMENTATION = 1043
 
+    # How many seconds between wireguard keepalive packets.
+    # We want this to be high enough so even in soak tests
+    # no additional packets are sent.
+    WIREGUARD_PERSISTENT_KEEPALIVE = 1
+
     # Number of trials to execute in MRR test.
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
