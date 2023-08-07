@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9fe8ba0_662958be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-08-07T08:12:55Z",
+      "side": 1,
+      "message": "Two minor points, otherwise it looks good.",
+      "revId": "3a8512cf9d4d99435cb985b432422efb80d44fe4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527df260_35c7d0dc",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-08-07T08:12:55Z",
+      "side": 1,
+      "message": "The different quotes feel a bit inconsistent, it may look better if we used single quotes for both string of the whole string.\nAnother thing is don\u0027t linters complain that the first string is an f-string even though there aren\u0027t any substitutions?",
+      "range": {
+        "startLine": 197,
+        "startChar": 17,
+        "endLine": 197,
+        "endChar": 18
+      },
+      "revId": "3a8512cf9d4d99435cb985b432422efb80d44fe4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cfa5c8c_573004c1",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-08-07T08:12:55Z",
+      "side": 1,
+      "message": "The same as the other comment.",
+      "range": {
+        "startLine": 180,
+        "startChar": 16,
+        "endLine": 180,
+        "endChar": 18
+      },
+      "revId": "3a8512cf9d4d99435cb985b432422efb80d44fe4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
