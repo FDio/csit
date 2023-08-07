@@ -405,6 +405,7 @@
     wireguard_interface_create_reply: '0x5383d31f'
     wireguard_peer_add: '0x9b8aad61'
     wireguard_peer_add_reply: '0x084a0cd3'
+    wireguard_peers_dump: '0x3b74607a'
     wg_set_async_mode: '0xa6465f7c'
     wg_set_async_mode_reply: '0xe8d4e804'
 
