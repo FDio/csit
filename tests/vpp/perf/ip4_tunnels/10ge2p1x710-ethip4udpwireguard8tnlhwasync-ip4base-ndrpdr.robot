@@ -118,7 +118,7 @@
 | | ... | ${DUT2_${int}1_mac}[0] | ${wg_if1_ip4} | ${wg_if2_ip4}
 | | ... | ${n_tunnels} | ${listen_port} | ${keepalive_time}
 | | ... | ${laddr_ip4} | ${raddr_ip4}
-| | Then Find NDR and PDR intervals using optimized search
+| | Fail | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udpwireguard8tnlhwasync-ip4base-ndrpdr
