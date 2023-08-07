@@ -235,3 +235,12 @@
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
+
+| Additional Test Tear Down Action For wireguard
+| | [Documentation]
+| | ... | Additional teardown for tests which uses GENEVE IPv4 tunnel.
+| |
+| | FOR | ${dut} | IN | @{duts}
+#| | | Run Keyword If Test Failed
+| | | Show Wireguard Tunnel Data | ${nodes['${dut}']}
+| | END

@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+| Test Teardown | Tear down test | performance | wireguard
 |
 | Test Template | Local Template
 |
@@ -118,6 +118,7 @@
 | | ... | ${DUT2_${int}1_mac}[0] | ${wg_if1_ip4} | ${wg_if2_ip4}
 | | ... | ${n_tunnels} | ${listen_port} | ${keepalive_time}
 | | ... | ${laddr_ip4} | ${raddr_ip4}
+| | Additional Test Tear Down Action For wireguard
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
