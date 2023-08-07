@@ -296,3 +296,8 @@ class WireGuardUtil:
                 dut2_allowed_ips, 1, wg_if2_ipaddr, port,
                 keepalive_time, dut2_privatekey, dut1_pubkey
             )
+
+    @staticmethod
+    def show_wireguard_tunnel_data(node):
+        """FIXME"""
+        PapiSocketExecutor.dump_and_log(node, ["wireguard_peers_dump"])
