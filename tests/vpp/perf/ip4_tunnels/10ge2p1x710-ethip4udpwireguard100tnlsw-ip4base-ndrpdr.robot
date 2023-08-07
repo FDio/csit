@@ -83,7 +83,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${n_tunnels}= | ${100}
 | ${listen_port}= | ${51820}
-| ${keepalive_time}= | ${256}
+| ${keepalive_time}= | ${WIREGUARD_PERSISTENT_KEEPALIVE}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src${n_tunnels}ip4dst${n_tunnels}
 
