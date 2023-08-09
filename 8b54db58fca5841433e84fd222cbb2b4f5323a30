@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f470955f_7316cbfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-08-09T14:01:43Z",
+      "side": 1,
+      "message": "terraform-cdash-deploy",
+      "revId": "8b54db58fca5841433e84fd222cbb2b4f5323a30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
