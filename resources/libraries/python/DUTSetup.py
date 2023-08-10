@@ -300,19 +300,21 @@ class DUTSetup:
                 return sriov_numvfs
 
     @staticmethod
-    def set_sriov_numvfs(node, pf_pci_addr, numvfs=0):
+    def set_sriov_numvfs(node, pf_pci_addr, type="devices", numvfs=0):
         """Init or reset SR-IOV virtual functions by setting its number on PCI
         device on DUT. Setting to zero removes all VFs.
 
         :param node: DUT node.
         :param pf_pci_addr: Physical Function PCI device address.
+        :param type: Either device or driver.
         :param numvfs: Number of VFs to initialize, 0 - removes the VFs.
         :type node: dict
         :type pf_pci_addr: str
+        :type type: str
         :type numvfs: int
         :raises RuntimeError: Failed to create VFs on PCI.
         """
-        cmd = f"test -f /sys/bus/pci/devices/{pf_pci_addr}/sriov_numvfs"
+        cmd = f"test -f /sys/bus/pci/{type}/{pf_pci_addr}/sriov_numvfs"
         sriov_unsupported, _, _ = exec_cmd(node, cmd)
         # if sriov_numvfs doesn't exist, then sriov_unsupported != 0
         if int(sriov_unsupported):
@@ -328,7 +330,7 @@ class DUTSetup:
 
         pci = pf_pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {numvfs} | " \
-            f"tee /sys/bus/pci/devices/{pci}/sriov_numvfs\""
+            f"tee /sys/bus/pci/{type}/{pci}/sriov_numvfs\""
         message = f"Failed to create {numvfs} VFs on {pf_pci_addr} device " \
             f"on {node[u'host']}"
 

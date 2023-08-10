@@ -275,13 +275,7 @@
 | | [Documentation]
 | | ... | Additional Setup for suites which uses QAT HW.
 | |
-| | ${numvfs}= | Set Variable If
-| | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
-| | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
-| | ... | '${crypto_type}' == 'HW_C4xxx' | ${128}
-| | ... | '${crypto_type}' == 'HW_4xxx' | ${16}
-| | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
-| | ... | force_init=${True}
+| | Crypto Device Verify on all DUTs | ${nodes}
 
 | Additional Suite Setup Action For nginx
 | | [Documentation]

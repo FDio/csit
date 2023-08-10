@@ -96,29 +96,6 @@
 | | # Parens are there to perform the call.
 | | Run Keyword If | $resetter | Evaluate | $resetter()
 
-| Configure crypto device on all DUTs
-| | [Documentation] | Verify if Crypto QAT device virtual functions are
-| | ... | initialized on all DUTs. If parameter force_init is set to True, then
-| | ... | try to initialize/disable.
-| |
-| | ... | *Arguments:*
-| | ... | - crypto_type - Crypto device type - HW_DH895xcc, HW_C3xxx, HW_C4xxx
-| | ... | or HW_4xxx; default value: HW_DH895xcc. Type: string
-| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs; default
-| | ... | value: ${32} Type: integer
-| | ... | - force_init - Force to initialize. Type: boolean
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Configure crypto device on all DUTs \| HW_DH895xcc \| ${32} \|
-| |
-| | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${True}
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Crypto Device Verify | ${nodes['${dut}']} | ${crypto_type}
-| | | ... | ${numvfs} | force_init=${force_init}
-| | END
-
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
 | | ... | If parameter force_load is set to True, then try to load.
