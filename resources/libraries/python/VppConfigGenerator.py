@@ -259,12 +259,13 @@ class VppConfigGenerator:
         :param count: Number of HW crypto devices to add.
         :type count: int
         """
-        cryptodev = Topology.get_cryptodev(self._node)
-        for i in range(count):
-            cryptodev_config = re.sub(r"\d.\d$", f"1.{str(i)}", cryptodev)
-            path = [u"dpdk", f"dev {cryptodev_config}"]
-            self.add_config_item(self._nodeconfig, u"", path)
-        self.add_dpdk_uio_driver(u"vfio-pci")
+        cryptodevs = Topology.get_cryptodev(self._node)
+        for device in cryptodevs.values():
+            for i in range(int(count/len(cryptodevs))):
+                addr = re.sub(r"\d.\d$", f"0.{i+1}", device["pci_address"])
+                path = ["dpdk", f"dev {addr}"]
+                self.add_config_item(self._nodeconfig, "", path)
+        self.add_dpdk_uio_driver("vfio-pci")
 
     def add_dpdk_sw_cryptodev(self, sw_pmd_type, socket_id, count):
         """Add DPDK SW Crypto device configuration.
