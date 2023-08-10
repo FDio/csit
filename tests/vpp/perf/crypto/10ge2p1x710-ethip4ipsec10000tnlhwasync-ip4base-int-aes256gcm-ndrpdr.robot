@@ -63,8 +63,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ... | crypto_native_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
-| ${crypto_type}= | HW_DH895xcc
-| ${nic_name}= | Intel-X710
+| ${crypto_type}= | HW_4xxx
+| ${nic_name}= | Intel-E810CQ
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
@@ -122,7 +122,7 @@
 
 *** Test Cases ***
 | 64B-1c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
