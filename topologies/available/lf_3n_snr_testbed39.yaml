@@ -55,7 +55,13 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
-    cryptodev: "0000:f4:00.0"
+    cryptodev:
+      device1:
+        pci_address: "0000:f4:00.0"
+        driver: "c4xxx"
+        model: "HW_C4xxx"
+        module: "qat_c4xxx"
+        numvfs: 8
     uio_driver: vfio-pci
     interfaces:
       port1:
@@ -97,7 +103,13 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
-    cryptodev: "0000:f4:00.0"
+    cryptodev:
+      device1:
+        pci_address: "0000:f4:00.0"
+        driver: "c4xxx"
+        model: "HW_C4xxx"
+        module: "qat_c4xxx"
+        numvfs: 8
     uio_driver: vfio-pci
     interfaces:
       port1:
