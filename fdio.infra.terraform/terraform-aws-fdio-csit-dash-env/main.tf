@@ -13,7 +13,7 @@ module "elastic_beanstalk_application" {
   # application
   application_description                    = "FD.io CDASH"
   application_name                           = "fdio-csit-dash-app"
-  appversion_lifecycle_service_role_arn      = "AWSServiceRoleForElasticBeanstalk"
+  appversion_lifecycle_service_role_arn      = "arn:aws:iam::407116685360:role/aws-service-role/elasticbeanstalk.amazonaws.com/AWSServiceRoleForElasticBeanstalk"
   appversion_lifecycle_max_count             = 10
   appversion_lifecycle_delete_source_from_s3 = false
 }
@@ -37,7 +37,7 @@ module "elastic_beanstalk_environment" {
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env"
-  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.0.0 running Python 3.11"
+  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.0.3 running Python 3.11"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
