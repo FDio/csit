@@ -178,9 +178,9 @@
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${packet_loss_ratio}
 | | ... | final_relative_width=${0.005}
-| | ... | final_trial_duration=${30.0}
+| | ... | final_trial_duration=${5.0}
 | | ... | initial_trial_duration=${1.0}
-| | ... | number_of_intermediate_phases=${2}
+| | ... | number_of_intermediate_phases=${1}
 | | ... | timeout=${1200.0}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
