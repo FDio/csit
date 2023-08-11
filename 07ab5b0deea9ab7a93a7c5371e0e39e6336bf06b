@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127d9f64_0cb86999",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2023-08-11T02:33:58Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDmrrANDipsechwANDethip4ipsec4tnlhwasync-ip4base-policy-aes256gcmAND64bAND1c",
+      "revId": "07ab5b0deea9ab7a93a7c5371e0e39e6336bf06b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
