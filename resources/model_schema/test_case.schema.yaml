@@ -96,16 +96,16 @@ allOf:
                 required:
                 -   type
             -   oneOf:
-                -   description: >-
-                        Result type for unknown case.
-                        This case represents a test with no specific result
-                        (outside message), e.g. device test;
-                        or a test with result not parsed into
-                        this version of model yet, e.g. GSO test.
-                    additionalProperties: false
-                    properties:
-                        type:
-                            const: unknown
+                # -   description: >-
+                #         Result type for unknown case.
+                #         This case represents a test with no specific result
+                #         (outside message), e.g. device test;
+                #         or a test with result not parsed into
+                #         this version of model yet, e.g. GSO test.
+                #     additionalProperties: false
+                #     properties:
+                #         type:
+                #             const: unknown
                 -   description: >-
                         Result type MRR case.
                     additionalProperties: false
@@ -132,150 +132,150 @@ allOf:
                     required:
                     -   type
                     -   receive_rate
-                -   description: >-
-                        Result type NDRPDR case.
-                    additionalProperties: false
-                    properties:
-                        type:
-                            const: ndrpdr
-                        ndr:
-                            description: >-
-                                The results refer to search for NDR
-                                (Non Drop Rate). For PPS, this is aggregate
-                                (bidirectional) rate.
-                                Each bound was used as the target load value
-                                in a full-duration trial measurement.
-                                The accepted loss ratio for NDR is exact zero.
-                                Note that packets the Traffic Generator
-                                did not send are also counted as lost packets.
-                            $ref: "#/$defs/macros/lower_and_upper_rate"
-                        pdr:
-                            description: >-
-                                The results refer to search for PDR
-                                (Partial Drop Rate). For PPS, this is aggregate
-                                (bidirectional) rate.
-                                Each bound was used as the target load value
-                                in a full-duration trial measurement.
-                                The accepted loss ratio for PDR is 0.5%.
-                                Note that packets the Traffic Generator
-                                did not send are also counted as lost packets.
-                            $ref: "#/$defs/macros/lower_and_upper_rate"
-                        latency_forward:
-                            description: >-
-                                Object with results related to latency part
-                                of NDRPDR test, for forward traffic direction.
-                                It is the direction used in unidirectional
-                                traffic profiles.
-                                ASTF profiles and IMIX STL profiles
-                                do not support latency information,
-                                so for those tests this object is missing.
-                                It is also missing if Traffic Generator
-                                fails to return valid latency results
-                                for any other reasons,
-                                e.g. latency rate is too high for CPU/NIC used.
-                            $ref: "#/$defs/macros/latency_for_loads"
-                        latency_reverse:
-                            description: >-
-                                Object with results related to latency part
-                                of NDRPDR test, for reverse traffic diration.
-                                This object is not present
-                                when unidirectional traffic profiles are used.
-                                ASTF profiles and IMIX STL profiles
-                                do not support latency information,
-                                so for those tests this object is missing.
-                                It is also missing if Traffic Generator
-                                fails to return valid latency results
-                                for any other reasons,
-                                e.g. latency rate is too high for CPU/NIC used.
-                            $ref: "#/$defs/macros/latency_for_loads"
-                    required:
-                    -   type
-                    -   ndr
-                    -   pdr
-                -   description: >-
-                        Result type SOAK case.
-                    additionalProperties: false
-                    properties:
-                        type:
-                            const: soak
-                        critical_rate:
-                            description: >-
-                                The results refer to bayesian estimate
-                                of critical rate corresponding to
-                                average loss ratio of 10^-7.
-                                For PPS, this is aggregate (bidirectional) rate.
-                                The bounds are computed from
-                                trial measurement results,
-                                but are not equal to any target load used.
-                                Note that packets the Traffic Generator
-                                did not send are also counted as lost packets.
-                            $ref: "#/$defs/macros/lower_and_upper_rate"
-                    required:
-                    -   type
-                    -   critical_rate
-                -   description: >-
-                        Result type RECONF case.
-                    additionalProperties: false
-                    properties:
-                        type:
-                            const: reconf
-                        aggregate_rate:
-                            description: >-
-                                Load used when reconfiguring, found as NDR lower
-                                bound. This is an aggregate (bidirectional)
-                                rate. Note that packets which the Traffic
-                                Generator did not send, are also counted as lost
-                                packets.
-                            $ref: "#/$defs/types/rate_with_bandwidth"
-                        loss:
-                            description: >-
-                                Number of packets lost during reconfiguration,
-                                with the time that equals packet loss divided by
-                                packet rate.
-                            $ref: "#/$defs/types/packet_with_time"
-                    required:
-                    -   type
-                    -   loss
-                    -   aggregate_rate
-                -   description: >-
-                        Result type HOSTSTACK case.
-                    additionalProperties: false
-                    properties:
-                        type:
-                            const: hoststack
-                        bandwidth:
-                            description: >-
-                                Goodput measured in bits per second.
-                            $ref: "#/$defs/types/bandwidth"
-                        completed_requests:
-                            description: >-
-                                Number of completed requests.
-                            $ref: "#/$defs/types/count_requests"
-                        failed_requests:
-                            description: >-
-                                Number of failed requests.
-                            $ref: "#/$defs/types/count_requests"
-                        retransmits:
-                            description: >-
-                                Number of retransmits.
-                            $ref: "#/$defs/types/count_packets"
-                        latency:
-                            description: >-
-                                Value and unit of latency.
-                            $ref: "#/$defs/types/value_with_unit"
-                        duration:
-                            description: >-
-                                The relative time difference (in seconds)
-                                between program start and end.
-                            $ref: "#/$defs/types/time_quantity"
-                        rate:
-                            description: >-
-                                RPS or CPS rate, with corresponding unit, as
-                                reported by TG.
-                            $ref: "#/$defs/types/rate_without_bandwidth"
-                    required:
-                    -   type
-                    -   bandwidth
+                # -   description: >-
+                #         Result type NDRPDR case.
+                #     additionalProperties: false
+                #     properties:
+                #         type:
+                #             const: ndrpdr
+                #         ndr:
+                #             description: >-
+                #                 The results refer to search for NDR
+                #                 (Non Drop Rate). For PPS, this is aggregate
+                #                 (bidirectional) rate.
+                #                 Each bound was used as the target load value
+                #                 in a full-duration trial measurement.
+                #                 The accepted loss ratio for NDR is exact zero.
+                #                 Note that packets the Traffic Generator
+                #                 did not send are also counted as lost packets.
+                #             $ref: "#/$defs/macros/lower_and_upper_rate"
+                #         pdr:
+                #             description: >-
+                #                 The results refer to search for PDR
+                #                 (Partial Drop Rate). For PPS, this is aggregate
+                #                 (bidirectional) rate.
+                #                 Each bound was used as the target load value
+                #                 in a full-duration trial measurement.
+                #                 The accepted loss ratio for PDR is 0.5%.
+                #                 Note that packets the Traffic Generator
+                #                 did not send are also counted as lost packets.
+                #             $ref: "#/$defs/macros/lower_and_upper_rate"
+                #         latency_forward:
+                #             description: >-
+                #                 Object with results related to latency part
+                #                 of NDRPDR test, for forward traffic direction.
+                #                 It is the direction used in unidirectional
+                #                 traffic profiles.
+                #                 ASTF profiles and IMIX STL profiles
+                #                 do not support latency information,
+                #                 so for those tests this object is missing.
+                #                 It is also missing if Traffic Generator
+                #                 fails to return valid latency results
+                #                 for any other reasons,
+                #                 e.g. latency rate is too high for CPU/NIC used.
+                #             $ref: "#/$defs/macros/latency_for_loads"
+                #         latency_reverse:
+                #             description: >-
+                #                 Object with results related to latency part
+                #                 of NDRPDR test, for reverse traffic diration.
+                #                 This object is not present
+                #                 when unidirectional traffic profiles are used.
+                #                 ASTF profiles and IMIX STL profiles
+                #                 do not support latency information,
+                #                 so for those tests this object is missing.
+                #                 It is also missing if Traffic Generator
+                #                 fails to return valid latency results
+                #                 for any other reasons,
+                #                 e.g. latency rate is too high for CPU/NIC used.
+                #             $ref: "#/$defs/macros/latency_for_loads"
+                #     required:
+                #     -   type
+                #     -   ndr
+                #     -   pdr
+                # -   description: >-
+                #         Result type SOAK case.
+                #     additionalProperties: false
+                #     properties:
+                #         type:
+                #             const: soak
+                #         critical_rate:
+                #             description: >-
+                #                 The results refer to bayesian estimate
+                #                 of critical rate corresponding to
+                #                 average loss ratio of 10^-7.
+                #                 For PPS, this is aggregate (bidirectional) rate.
+                #                 The bounds are computed from
+                #                 trial measurement results,
+                #                 but are not equal to any target load used.
+                #                 Note that packets the Traffic Generator
+                #                 did not send are also counted as lost packets.
+                #             $ref: "#/$defs/macros/lower_and_upper_rate"
+                #     required:
+                #     -   type
+                #     -   critical_rate
+                # -   description: >-
+                #         Result type RECONF case.
+                #     additionalProperties: false
+                #     properties:
+                #         type:
+                #             const: reconf
+                #         aggregate_rate:
+                #             description: >-
+                #                 Load used when reconfiguring, found as NDR lower
+                #                 bound. This is an aggregate (bidirectional)
+                #                 rate. Note that packets which the Traffic
+                #                 Generator did not send, are also counted as lost
+                #                 packets.
+                #             $ref: "#/$defs/types/rate_with_bandwidth"
+                #         loss:
+                #             description: >-
+                #                 Number of packets lost during reconfiguration,
+                #                 with the time that equals packet loss divided by
+                #                 packet rate.
+                #             $ref: "#/$defs/types/packet_with_time"
+                #     required:
+                #     -   type
+                #     -   loss
+                #     -   aggregate_rate
+                # -   description: >-
+                #         Result type HOSTSTACK case.
+                #     additionalProperties: false
+                #     properties:
+                #         type:
+                #             const: hoststack
+                #         bandwidth:
+                #             description: >-
+                #                 Goodput measured in bits per second.
+                #             $ref: "#/$defs/types/bandwidth"
+                #         completed_requests:
+                #             description: >-
+                #                 Number of completed requests.
+                #             $ref: "#/$defs/types/count_requests"
+                #         failed_requests:
+                #             description: >-
+                #                 Number of failed requests.
+                #             $ref: "#/$defs/types/count_requests"
+                #         retransmits:
+                #             description: >-
+                #                 Number of retransmits.
+                #             $ref: "#/$defs/types/count_packets"
+                #         latency:
+                #             description: >-
+                #                 Value and unit of latency.
+                #             $ref: "#/$defs/types/value_with_unit"
+                #         duration:
+                #             description: >-
+                #                 The relative time difference (in seconds)
+                #                 between program start and end.
+                #             $ref: "#/$defs/types/time_quantity"
+                #         rate:
+                #             description: >-
+                #                 RPS or CPS rate, with corresponding unit, as
+                #                 reported by TG.
+                #             $ref: "#/$defs/types/rate_without_bandwidth"
+                #     required:
+                #     -   type
+                #     -   bandwidth
         start_time:
             description: >-
                 UTC date and time in RFC 3339 format, specifying calendar time
@@ -429,12 +429,14 @@ $defs:
             description: >-
                 Packets per second (pps),
                 connections per second (cps),
-                requests per second (rps).
+                requests per second (rps),
+                bits per second (bps).
             type: string
             enum:
             -   pps
             -   cps
             -   rps
+            -   bps
         bandwidth_unit:
             description: >-
                 Unit of measurement for bandwidth values.
