@@ -128,7 +128,7 @@ allOf:
                                 (due to various time overheads).
                                 Bandwidth values are supported, but currently
                                 Robot does not export them.
-                            $ref: "#/$defs/types/rate_list_with_bandwidth"
+                            $ref: "#/$defs/types/rate_list"
                     required:
                     -   type
                     -   receive_rate
@@ -429,12 +429,14 @@ $defs:
             description: >-
                 Packets per second (pps),
                 connections per second (cps),
-                requests per second (rps).
+                requests per second (rps),
+                bits per second (bps).
             type: string
             enum:
             -   pps
             -   cps
             -   rps
+            -   bps
         bandwidth_unit:
             description: >-
                 Unit of measurement for bandwidth values.
@@ -603,7 +605,7 @@ $defs:
             -   avg
             -   stdev
             -   unit
-        rate_list_without_bandwidth:
+        rate_list:
             description: >-
                 Reusable composite type, multiple rate values.
             allOf:
@@ -649,7 +651,7 @@ $defs:
             additionalProperties: false
             properties:
                 rate:
-                    $ref: "#/$defs/types/rate_list_without_bandwidth"
+                    $ref: "#/$defs/types/rate_list"
                 bandwidth:
                     $ref: "#/$defs/types/bandwidth_list"
             required:
