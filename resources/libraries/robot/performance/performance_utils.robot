@@ -486,6 +486,7 @@
 | | ${results}= | Send iPerf3 traffic at specified rate
 | | ... | ${trial_duration} | ${None} | ${None}
 | | ... | ${trial_multiplicity} | ${traffic_directions}
+| | ... | export_mrr_unit=bps
 | | Set Test Message | ${\n}iPerf3 trial results
 | | Set Test Message | in Gbits per second: ${results}
 | | ... | append=yes
@@ -510,6 +511,9 @@
 | | ... | Type: integer
 | | ... | - extended_debug - True to enable extended debug.
 | | ... | Type: boolean
+| | ... | - export_mrr_unit - Use this unit when exporting MRR values,
+| | ... | or empty string for no export.
+| | ... | Type: string
 | |
 | | ... | *Example:*
 | |
@@ -519,6 +523,7 @@
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${1} | ${extended_debug}=${extended_debug}
+| | ... | ${export_mrr_unit}=${Empty}
 | |
 | | Set Test Variable | ${extended_debug}
 | | Set Test Variable | ${rate}
@@ -579,6 +584,7 @@
 | | | ... | bind=${iperf_client_bind}
 | | | ... | affinity=${iperf_client_affinity}
 | | | ${conv} = | Convert To Number | ${rr['sum_received']['bits_per_second']}
+| | | Append Mrr Value | ${conv} | ${export_mrr_unit}
 | | | ${conv} = | Evaluate | ${conv} / ${1000} / ${1000} / ${1000}
 | | | ${conv} = | Evaluate | "{:.3f}".format(${conv})
 | | | Append To List
