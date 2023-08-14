@@ -56,6 +56,7 @@ def validate(file_path, validator):
     """
     with open(file_path, "rt", encoding="utf-8") as file_in:
         instance = json.load(file_in)
+        print(json.dumps(instance))
     error = jsonschema.exceptions.best_match(validator.iter_errors(instance))
     if error is not None:
         raise error
