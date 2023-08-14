@@ -306,11 +306,11 @@ class DUTSetup:
 
         :param node: DUT node.
         :param pf_pci_addr: Physical Function PCI device address.
-        :param type: Either device or driver.
+        :param path: Either device or driver.
         :param numvfs: Number of VFs to initialize, 0 - removes the VFs.
         :type node: dict
         :type pf_pci_addr: str
-        :type type: str
+        :type path: str
         :type numvfs: int
         :raises RuntimeError: Failed to create VFs on PCI.
         """
