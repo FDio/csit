@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "960e5c1e_84b93a9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-08-14T12:12:46Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest nic_intel-xxv710AND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base",
+      "revId": "97e20b6ccf99f0d7b2042cbbd03ffa02b44faf4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
