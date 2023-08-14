@@ -61,7 +61,7 @@ class QATUtil:
         # Initialize QAT VFs.
         if int(device["numvfs"]) > 0:
             DUTSetup.set_sriov_numvfs(
-                node, device["pci_address"], type="drivers/4xxx",
+                node, device["pci_address"], path="drivers/4xxx",
                 numvfs=device["numvfs"]
             )
 
