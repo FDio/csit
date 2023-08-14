@@ -71,7 +71,7 @@ class ExportJson():
         elif u"HOSTSTACK" in tags:
             test_type = u"hoststack"
         elif u"GSO_TRUE" in tags or u"GSO_FALSE" in tags:
-            test_type = u"gso"
+            test_type = u"mrr"
         elif u"RECONF" in tags:
             test_type = u"reconf"
         # The remaining 3 options could also apply to DPDK and TRex tests.
