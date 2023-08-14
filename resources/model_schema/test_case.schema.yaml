@@ -429,12 +429,14 @@ $defs:
             description: >-
                 Packets per second (pps),
                 connections per second (cps),
-                requests per second (rps).
+                requests per second (rps),
+                bits per second (bps).
             type: string
             enum:
             -   pps
             -   cps
             -   rps
+            -   bps
         bandwidth_unit:
             description: >-
                 Unit of measurement for bandwidth values.
