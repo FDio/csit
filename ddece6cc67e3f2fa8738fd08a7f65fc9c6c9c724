@@ -16,6 +16,23 @@
       "message": "csit-2n-zn2-perftest nic_intel-xxv710ANDethip4-ip4base-2tap-gso-iperf3",
       "revId": "ddece6cc67e3f2fa8738fd08a7f65fc9c6c9c724",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fa8d459_1af8046a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-08-14T13:52:26Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest nic_intel-xxv710AND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base",
+      "revId": "ddece6cc67e3f2fa8738fd08a7f65fc9c6c9c724",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
