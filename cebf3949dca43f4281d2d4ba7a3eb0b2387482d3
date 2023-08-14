@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb408bf3_419d3336",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-08-14T11:02:08Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest nic_intel-xxv710ANDethip4-ip4base-2tap-gso-iperf3",
+      "revId": "cebf3949dca43f4281d2d4ba7a3eb0b2387482d3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
