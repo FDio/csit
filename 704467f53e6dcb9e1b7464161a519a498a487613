@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdb5d8ef_3754a1cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-08-14T09:05:13Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest 1cAND128kbANDmrrANDxxv710ANDdrv_tapANDethip4-ip4base-2tap-gso-iperf3",
+      "revId": "704467f53e6dcb9e1b7464161a519a498a487613",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
