@@ -262,7 +262,7 @@ nodes:
         # s66-t37-sut2-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:16"
         pci_address: "0000:e3:00.0"
-        ip4_address: "172.16.90.3"
+        ip4_address: "172.16.100.3"
         driver: mlx5_core
         link: link10
         model: Mellanox-CX6DX
@@ -270,7 +270,7 @@ nodes:
         # s66-t37-sut2-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:17"
         pci_address: "0000:e3:00.1"
-        ip4_address: "172.16.100.3"
+        ip4_address: "172.16.90.3"
         driver: mlx5_core
         link: link1010
         model: Mellanox-CX6DX
