@@ -16,6 +16,7 @@
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class QATUtil:
@@ -57,6 +58,17 @@ class QATUtil:
             DUTSetup.pci_driver_unbind(node, device["pci_address"])
         # Bind to kernel driver.
         DUTSetup.pci_driver_bind(node, device["pci_address"], device["driver"])
+
+        cmd = f"adf_ctl status | grep {device['pci_address']} | "
+        cmd += u"awk '{print $1}'"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, timeout=10, sudo=True,
+            message=u"Failed to check crypto device status."
+        )
+        exec_cmd_no_error(
+            node, f"adf_ctl {stdout.strip()} restart", timeout=10, sudo=True,
+            message=u"Failed to restart crypto device."
+        )
 
         # Initialize QAT VFs.
         if int(device["numvfs"]) > 0:
