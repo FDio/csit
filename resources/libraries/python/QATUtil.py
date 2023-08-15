@@ -58,6 +58,16 @@ class QATUtil:
         # Bind to kernel driver.
         DUTSetup.pci_driver_bind(node, device["pci_address"], device["driver"])
 
+        cmd = f"adf_ctl status | grep {device['pci_address']} | "+ u"awk '{print $1}'"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, timeout=10, sudo=True,
+            message=u"Failed to check crypto device status."
+        )
+        exec_cmd_no_error(
+            node, f"adf_ctl {stdout.strip()} restart", timeout=10, sudo=True,
+            message=u"Failed to restart crypto device."
+        )
+
         # Initialize QAT VFs.
         if int(device["numvfs"]) > 0:
             DUTSetup.set_sriov_numvfs(
