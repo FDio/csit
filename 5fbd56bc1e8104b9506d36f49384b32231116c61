@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce7723f_1b522862",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-08-16T12:39:51Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest ndrpdrANDnic_*ANDdrv_mlx5_coreAND1518bANDethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm",
+      "revId": "5fbd56bc1e8104b9506d36f49384b32231116c61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
