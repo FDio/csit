@@ -424,9 +424,9 @@
 | | ${transaction_type} = | Get Transaction Type
 | | Set Test Variable | \${rate_for_teardown} | ${rate}
 | | Set Test Variable | \${runtime_rate} | ${rate}
-| | FOR | ${action} | IN | @{stat_runtime}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
+#| | FOR | ${action} | IN | @{stat_runtime}
+#| | | Run Keyword | Additional Statistics Action For ${action}
+#| | END
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
