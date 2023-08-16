@@ -375,7 +375,11 @@ class VppApiCrcChecker:
             self.log_and_raise(
                 f"No active collection has API {api_name!r} with CRC {crc!r}"
             )
-        options = self._options[api_name]
+        options = self._options.get(api_name, None)
+        if not options:
+            # This VPP build does not have that message yet.
+            # Some other collection confirmed it will be fine on later VPPs.
+            return
         options.pop(u"vat_help", None)
         if options:
             self._reported[api_name] = crc
