@@ -338,6 +338,8 @@ class IPsecUtil:
             node, workers, crypto_enable=False):
         """Enable or disable crypto on specific vpp worker threads.
 
+        Unconditionally, attempt to switch crypto dispatch into polling mode.
+
         :param node: VPP node to enable or disable crypto for worker threads.
         :param workers: List of VPP thread numbers.
         :param crypto_enable: Disable or enable crypto work.
@@ -347,15 +349,24 @@ class IPsecUtil:
         :raises RuntimeError: If failed to enable or disable crypto for worker
             thread or if no API reply received.
         """
-        for worker in workers:
-            cmd = u"crypto_sw_scheduler_set_worker"
-            err_msg = f"Failed to disable/enable crypto for worker thread " \
-                f"on host {node[u'host']}"
-            args = dict(
-                worker_index=worker - 1,
-                crypto_enable=crypto_enable
-            )
-            with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
+            cmd = "crypto_set_async_dispatch_v2"
+            err_msg = "Failed to set dispatch mode."
+            args = dict(mode=0, adaptive=False)
+            try:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+            except AssertionError:
+                pass
+                # This is expected for builds without the _v2 call.
+                # TODO: Fail here when testing of pre-23.10 is finished.
+            for worker in workers:
+                cmd = u"crypto_sw_scheduler_set_worker"
+                err_msg = f"Failed to disable/enable crypto for worker thread " \
+                    f"on host {node[u'host']}"
+                args = dict(
+                    worker_index=worker - 1,
+                    crypto_enable=crypto_enable
+                )
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
