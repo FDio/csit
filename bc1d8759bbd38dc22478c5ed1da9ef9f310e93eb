@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDndrpdrANDipsechwANDethip4ipsec4tnlhwasync-ip4base-int-aes256gcm-udirAND64b",
       "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c232de64_b1e651fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2023-08-17T04:56:28Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest nic_intel-e822cqANDdrv_vfio_pciANDmrrANDipsechwANDethip4ipsec4tnlhwasync-ip4base-int-aes256gcmAND64b",
+      "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
