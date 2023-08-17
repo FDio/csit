@@ -38,7 +38,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Configure chains of VMs connected via vhost-user
+| | ... | \| Configure chains of NFs connected via vhost-user
 | | ... | \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp \| True \|
 | |
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
@@ -116,9 +116,9 @@
 | | ... | rxq_count_int=${rxq_count_int}
 | | ... | virtio_feature_mask=${virtio_feature_mask} | page_size=${page_size}
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
-| | ${${node}_cpu_alloc_str}= | Catenate | SEPARATOR=,
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=,
 | | ... | ${${node}_cpu_alloc_str} | ${cpu_wt}
-| | Set Test Variable | ${${node}_cpu_alloc_str}
+| | Set Test Variable | ${${node}_cpu_alloc_str} | ${cpu_alloc_str}
 | | Run Keyword If | ${validate}
 | | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
@@ -144,7 +144,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Configure chains of VMs connected via passtrough
+| | ... | \| Configure chains of NFs connected via passtrough
 | | ... | \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp \| True \|
 | |
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
