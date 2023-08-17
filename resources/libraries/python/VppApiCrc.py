@@ -75,8 +75,9 @@ class VppApiCrcChecker:
 
         Starts the same as _expected, but each time an encountered api,crc pair
         fits the expectation, the pair is removed from all collections
-        within this mapping. Ideally, the active mappings will become empty.
-        If not, it is an error, VPP removed or renamed a message CSIT needs."""
+        within this mapping. It is fine if an api is missing
+        from some collections, as long as it is not missing from all collections
+        that remained in _expected."""
 
         self._found = dict()
         """Mapping from API name to CRC string.
@@ -325,12 +326,15 @@ class VppApiCrcChecker:
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
-        if missing:
-            missing_indented = json.dumps(
-                missing, indent=1, sort_keys=True, separators=[u",", u":"])
-            self.log_and_raise(
-                f"API CRCs missing from .api.json:\n{missing_indented}"
-            )
+        if set(missing.keys()) < set(self._expected.keys()):
+            # There is a collection where nothing is missing.
+            return
+        missing_indented = json.dumps(
+            missing, indent=1, sort_keys=True, separators=[u",", u":"]
+        )
+        self.log_and_raise(
+            f"API CRCs missing from .api.json:\n{missing_indented}"
+        )
 
     def check_api_name(self, api_name):
         """Fail if the api_name has no, or different from known CRC associated.
@@ -375,7 +379,11 @@ class VppApiCrcChecker:
             self.log_and_raise(
                 f"No active collection has API {api_name!r} with CRC {crc!r}"
             )
-        options = self._options[api_name]
+        options = self._options.get(api_name, None)
+        if not options:
+            # This VPP build does not have that message yet.
+            # Some other collection confirmed it will be fine on later VPPs.
+            return
         options.pop(u"vat_help", None)
         if options:
             self._reported[api_name] = crc
