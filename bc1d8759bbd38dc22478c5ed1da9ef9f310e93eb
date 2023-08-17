@@ -67,6 +67,23 @@
       "message": "This is not stable per my testing. adf_ctl reset can cause device to be busy for infinite time until restart of box.",
       "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2c723d2_028322af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-08-17T11:31:43Z",
+      "side": 1,
+      "message": "Please do not run any adf_ctl commands on box as it will cause cryptodev busy",
+      "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
