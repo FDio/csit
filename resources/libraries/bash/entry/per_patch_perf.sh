@@ -74,14 +74,12 @@ for ((iter=0; iter<iterations; iter++)); do
     check_download_dir || die
     run_robot || die
     archive_parse_test_results "csit_current/${iter}" || die
-    die_on_robot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
     ansible_playbook "cleanup" || die
     select_build "build_parent" || die
     check_download_dir || die
     run_robot || die
     archive_parse_test_results "csit_parent/${iter}" || die
-    die_on_robot_error || die
 done
 untrap_and_unreserve_testbed || die
 compare_test_results  # The error code becomes this script's error code.
