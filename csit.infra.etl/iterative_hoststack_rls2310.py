@@ -141,9 +141,10 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-iterative-2306" in path]
+filtered_paths = [path for path in paths if "report-iterative-2310" in path]
 
-out_sdf = process_json_to_dataframe("mrr", filtered_paths)
+out_sdf = process_json_to_dataframe("hoststack", filtered_paths)
+out_sdf.show(truncate=False)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
@@ -154,7 +155,7 @@ out_sdf = out_sdf \
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/iterative_rls2306",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/iterative_rls2310",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",

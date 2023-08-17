@@ -3,14 +3,14 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.4 |
-| <a name="requirement_nomad"></a> [nomad](#requirement\_nomad) | >= 1.4.16 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.4 |
+| <a name="requirement_nomad"></a> [nomad](#requirement\_nomad) | >= 1.4.20 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_nomad"></a> [nomad](#provider\_nomad) | >= 1.4.16 |
+| <a name="provider_nomad"></a> [nomad](#provider\_nomad) | >= 1.4.20 |
 
 ## Modules
 
@@ -20,7 +20,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [nomad_job.nomad_job_etl](https://registry.terraform.io/providers/hashicorp/nomad/latest/docs/resources/job) | resource |
+| [nomad_job.nomad_job](https://registry.terraform.io/providers/hashicorp/nomad/latest/docs/resources/job) | resource |
 
 ## Inputs
 
@@ -35,7 +35,7 @@ No modules.
 | <a name="input_envs"></a> [envs](#input\_envs) | Specifies ETL environment variables. | `list(string)` | `[]` | no |
 | <a name="input_image"></a> [image](#input\_image) | Specifies the Docker image to run. | `string` | `"pmikus/docker-ubuntu-focal-aws-glue:latest"` | no |
 | <a name="input_job_name"></a> [job\_name](#input\_job\_name) | Specifies a name for the job. | `string` | `"etl"` | no |
-| <a name="input_memory"></a> [memory](#input\_memory) | Specifies the memory required in MB. | `number` | `20000` | no |
+| <a name="input_memory"></a> [memory](#input\_memory) | Specifies the memory required in MB. | `number` | `50000` | no |
 | <a name="input_out_aws_access_key_id"></a> [out\_aws\_access\_key\_id](#input\_out\_aws\_access\_key\_id) | AWS access key. | `string` | `"aws"` | no |
 | <a name="input_out_aws_default_region"></a> [out\_aws\_default\_region](#input\_out\_aws\_default\_region) | AWS region | `string` | `"aws"` | no |
 | <a name="input_out_aws_secret_access_key"></a> [out\_aws\_secret\_access\_key](#input\_out\_aws\_secret\_access\_key) | AWS secret key | `string` | `"aws"` | no |

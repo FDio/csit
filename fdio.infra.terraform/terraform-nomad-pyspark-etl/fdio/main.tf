@@ -74,7 +74,7 @@ module "etl-trending-ndrpdr" {
   job_name                  = "etl-trending-ndrpdr"
 }
 
-module "etl-iterative-hoststack-rls2306" {
+module "etl-iterative-hoststack-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -88,10 +88,10 @@ module "etl-iterative-hoststack-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-iterative-hoststack-rls2306"
+  job_name                  = "etl-iterative-hoststack-rls2310"
 }
 
-module "etl-iterative-mrr-rls2306" {
+module "etl-iterative-mrr-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -105,10 +105,10 @@ module "etl-iterative-mrr-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-iterative-mrr-rls2306"
+  job_name                  = "etl-iterative-mrr-rls2310"
 }
 
-module "etl-iterative-ndrpdr-rls2306" {
+module "etl-iterative-ndrpdr-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -122,10 +122,10 @@ module "etl-iterative-ndrpdr-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-iterative-ndrpdr-rls2306"
+  job_name                  = "etl-iterative-ndrpdr-rls2310"
 }
 
-module "etl-iterative-reconf-rls2306" {
+module "etl-iterative-reconf-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -139,10 +139,10 @@ module "etl-iterative-reconf-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-iterative-reconf-rls2306"
+  job_name                  = "etl-iterative-reconf-rls2310"
 }
 
-module "etl-iterative-soak-rls2306" {
+module "etl-iterative-soak-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -156,10 +156,10 @@ module "etl-iterative-soak-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-iterative-soak-rls2306"
+  job_name                  = "etl-iterative-soak-rls2310"
 }
 
-module "etl-coverage-device-rls2306" {
+module "etl-coverage-device-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -173,10 +173,10 @@ module "etl-coverage-device-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-coverage-device-rls2306"
+  job_name                  = "etl-coverage-device-rls2310"
 }
 
-module "etl-coverage-hoststack-rls2306" {
+module "etl-coverage-hoststack-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -190,10 +190,10 @@ module "etl-coverage-hoststack-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-coverage-hoststack-rls2306"
+  job_name                  = "etl-coverage-hoststack-rls2310"
 }
 
-module "etl-coverage-mrr-rls2306" {
+module "etl-coverage-mrr-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -207,10 +207,10 @@ module "etl-coverage-mrr-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-coverage-mrr-rls2306"
+  job_name                  = "etl-coverage-mrr-rls2310"
 }
 
-module "etl-coverage-ndrpdr-rls2306" {
+module "etl-coverage-ndrpdr-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -224,10 +224,10 @@ module "etl-coverage-ndrpdr-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-coverage-ndrpdr-rls2306"
+  job_name                  = "etl-coverage-ndrpdr-rls2310"
 }
 
-module "etl-coverage-reconf-rls2306" {
+module "etl-coverage-reconf-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -241,10 +241,10 @@ module "etl-coverage-reconf-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-coverage-reconf-rls2306"
+  job_name                  = "etl-coverage-reconf-rls2310"
 }
 
-module "etl-coverage-soak-rls2306" {
+module "etl-coverage-soak-rls2310" {
   providers = {
     nomad = nomad.yul1
   }
@@ -258,5 +258,5 @@ module "etl-coverage-soak-rls2306" {
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
   cron                      = "@daily"
   datacenters               = ["yul1"]
-  job_name                  = "etl-coverage-soak-rls2306"
+  job_name                  = "etl-coverage-soak-rls2310"
 }
