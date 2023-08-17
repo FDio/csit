@@ -75,8 +75,9 @@ class VppApiCrcChecker:
 
         Starts the same as _expected, but each time an encountered api,crc pair
         fits the expectation, the pair is removed from all collections
-        within this mapping. Ideally, the active mappings will become empty.
-        If not, it is an error, VPP removed or renamed a message CSIT needs."""
+        within this mapping. It is fine if an api is missing
+        from some collections, as long as it is not missing from all collections
+        that remained in _expected."""
 
         self._found = dict()
         """Mapping from API name to CRC string.
@@ -325,12 +326,15 @@ class VppApiCrcChecker:
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
-        if missing:
-            missing_indented = json.dumps(
-                missing, indent=1, sort_keys=True, separators=[u",", u":"])
-            self.log_and_raise(
-                f"API CRCs missing from .api.json:\n{missing_indented}"
-            )
+        if set(missing.keys()) < set(self._expected.keys()):
+            # There is a collection where nothing is missing.
+            return
+        missing_indented = json.dumps(
+            missing, indent=1, sort_keys=True, separators=[u",", u":"]
+        )
+        self.log_and_raise(
+            f"API CRCs missing from .api.json:\n{missing_indented}"
+        )
 
     def check_api_name(self, api_name):
         """Fail if the api_name has no, or different from known CRC associated.
@@ -375,23 +379,25 @@ class VppApiCrcChecker:
             self.log_and_raise(
                 f"No active collection has API {api_name!r} with CRC {crc!r}"
             )
-        options = self._options[api_name]
+        options = self._options.get(api_name, None)
+        if not options:
+            # None means CSIT is attempting a new API on an old VPP build.
+            # If that is an issue, the API has been reported as missing already.
+            return
         options.pop(u"vat_help", None)
         if options:
             self._reported[api_name] = crc
             logger.console(f"{api_name} used but has options {options}")
 
     def print_warnings(self):
-        """Call check_api_name for every API name in surviving collections.
+        """Call check_api_name for API names in surviving collections.
 
         Useful for VPP CRC checking job.
-
-        Even though there usually is only one surviving collection,
-        the implementation has to be prepared for multiple collections,
-        and it should de-duplicate api names.
+        The API name is only checked when it appears
+        in all surviving collections.
         """
         api_name_to_crc_maps = self._expected.values()
-        api_name_sets = [set(n2c.keys()) for n2c in api_name_to_crc_maps]
-        api_names = set().union(*api_name_sets)
+        api_name_sets = (set(n2c.keys()) for n2c in api_name_to_crc_maps)
+        api_names = set.intersection(*api_name_sets)
         for api_name in sorted(api_names):
             self.check_api_name(api_name)

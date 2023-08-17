@@ -995,6 +995,7 @@ class PapiSocketExecutor:
         :returns: Papi replies parsed into a dict-like object,
             with fields due to API (possibly including retval).
         :rtype: List[UserDict]
+        :raises AttributeError: If VPP does not know the command.
         :raises RuntimeError: If the replies are not all correct.
         """
         vpp_instance = self.get_connected_client()
