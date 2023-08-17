@@ -84,6 +84,23 @@
       "message": "Please do not run any adf_ctl commands on box as it will cause cryptodev busy",
       "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfde620_7618fc2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-08-17T11:34:36Z",
+      "side": 1,
+      "message": "device was reset (by adf_ctl restart/reset) many times by me, and it has no impact on the issue with \"no traffic forwarded\"",
+      "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
