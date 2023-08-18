@@ -153,7 +153,7 @@
 ##### ethip4udp-ip4base-h16384-p63-s1032192-tput
 1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h16384-p63-s1032192-tput
 ##### ethip4udp-ip4base-h65536-p63-s4128768-tput
-1c AND 100b AND mrr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND e810cq AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
 ##### ethip4tcp-nat44ed-h1024-p63-s64512-cps
 1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
 2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
