@@ -31,6 +31,8 @@ job "${job_name}" {
         args = [
           "--driver-memory", "30g",
           "--executor-memory", "30g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
           "trending_ndrpdr.py"
         ]
         work_dir = "/local/csit/csit.infra.etl"

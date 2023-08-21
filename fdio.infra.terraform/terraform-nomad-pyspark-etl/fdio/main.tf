@@ -18,7 +18,7 @@ module "etl-stats" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-stats"
 }
@@ -35,7 +35,7 @@ module "etl-trending-hoststack" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-trending-hoststack"
 }
@@ -52,9 +52,10 @@ module "etl-trending-mrr" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-trending-mrr"
+  memory                    = 60000
 }
 
 module "etl-trending-ndrpdr" {
@@ -69,9 +70,10 @@ module "etl-trending-ndrpdr" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-trending-ndrpdr"
+  memory                    = 60000
 }
 
 module "etl-iterative-hoststack-rls2310" {
@@ -86,7 +88,7 @@ module "etl-iterative-hoststack-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-iterative-hoststack-rls2310"
 }
@@ -103,7 +105,7 @@ module "etl-iterative-mrr-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-iterative-mrr-rls2310"
 }
@@ -120,7 +122,7 @@ module "etl-iterative-ndrpdr-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-iterative-ndrpdr-rls2310"
 }
@@ -137,7 +139,7 @@ module "etl-iterative-reconf-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-iterative-reconf-rls2310"
 }
@@ -154,7 +156,7 @@ module "etl-iterative-soak-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-iterative-soak-rls2310"
 }
@@ -171,7 +173,7 @@ module "etl-coverage-device-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-coverage-device-rls2310"
 }
@@ -188,7 +190,7 @@ module "etl-coverage-hoststack-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-coverage-hoststack-rls2310"
 }
@@ -205,7 +207,7 @@ module "etl-coverage-mrr-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-coverage-mrr-rls2310"
 }
@@ -222,7 +224,7 @@ module "etl-coverage-ndrpdr-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-coverage-ndrpdr-rls2310"
 }
@@ -239,7 +241,7 @@ module "etl-coverage-reconf-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-coverage-reconf-rls2310"
 }
@@ -256,7 +258,7 @@ module "etl-coverage-soak-rls2310" {
   out_aws_access_key_id     = data.vault_generic_secret.fdio_docs.data["access_key"]
   out_aws_secret_access_key = data.vault_generic_secret.fdio_docs.data["secret_key"]
   out_aws_default_region    = data.vault_generic_secret.fdio_docs.data["region"]
-  cron                      = "@daily"
+  cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = "etl-coverage-soak-rls2310"
 }
