@@ -16,6 +16,10 @@ is only a symlink to the original place of tightly coupled CSIT code.
 Change log
 ----------
 
+1.0.0: Logic improvements: Ratios before phases, better width rounding.
+Implementation relies more on dataclasses.
+API changed considerably, mainly to avoid long argument lists.
+
 0.4.0: Considarable logic improvements, more than two target ratios supported.
 API is not backward compatible with previous versions.
 
