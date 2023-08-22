@@ -33,8 +33,7 @@
 | |
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | |
-| | ${lower_bound} = | Convert To Number | ${interval.low_end}
-| | Return From Keyword | FIXME
+| | ${lower_bound} = | Set Variable | ${interval.low_end}
 | | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
 | | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
 | | Set Test Variable | \${rate_for_teardown} | ${lower_bound.intended_load}

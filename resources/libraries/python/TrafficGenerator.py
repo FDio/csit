@@ -530,7 +530,7 @@ class TrafficGenerator(AbstractMeasurer):
         """Compute duration for profile driver.
 
         The final result is influenced by transaction scale and duration limit.
-        It is assumed a higher level function has already set those to self.
+        It is assumed a higher level function has already set those on self.
         The duration argument is the target value from search point of view,
         before the overrides are applied here.
 
@@ -1007,7 +1007,7 @@ class TrafficGenerator(AbstractMeasurer):
         trial_end = time.monotonic()
         if self.ramp_up_rate:
             # Optimization: No loss acts as a good ramp-up, if it was complete.
-            if complete and result is not None and result.loss_count == 0:
+            if complete and result is not None and result.loss_ratio == 0.0:
                 logger.debug(u"Good trial acts as a ramp-up")
                 self.ramp_up_start = trial_start
                 self.ramp_up_stop = trial_end
@@ -1232,7 +1232,7 @@ class TrafficGenerator(AbstractMeasurer):
             expected_attempt_count = max(expected_attempt_count, self._sent)
             unsent = expected_attempt_count - self._sent
             pass_count = self._received
-            fail_count = expected_attempt_count - pass_count
+            loss_count = self._loss
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
@@ -1241,7 +1241,7 @@ class TrafficGenerator(AbstractMeasurer):
             expected_attempt_count = self.transaction_scale
             unsent = expected_attempt_count - partial_attempt_count
             pass_count = self._l7_data[u"client"][u"received"]
-            fail_count = expected_attempt_count - pass_count
+            loss_count = partial_attempt_count - pass_count
         elif self.transaction_type == u"tcp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit tcp_cps.")
@@ -1254,14 +1254,14 @@ class TrafficGenerator(AbstractMeasurer):
             # but we are testing NAT session so client/connects counts that
             # (half connections from TCP point of view).
             pass_count = self._l7_data[u"client"][u"tcp"][u"connects"]
-            fail_count = expected_attempt_count - pass_count
+            loss_count = partial_attempt_count - pass_count
         elif self.transaction_type == u"udp_pps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_pps.")
             partial_attempt_count = self._sent
             expected_attempt_count = self.transaction_scale * self.ppta
             unsent = expected_attempt_count - self._sent
-            fail_count = self._loss + unsent
+            loss_count = self._loss
         elif self.transaction_type == u"tcp_pps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit tcp_pps.")
@@ -1275,22 +1275,22 @@ class TrafficGenerator(AbstractMeasurer):
             # Probability of retransmissions exactly cancelling
             # packets unsent due to duration stretching is quite low.
             unsent = abs(expected_attempt_count - self._sent)
-            fail_count = self._loss + unsent
+            loss_count = self._loss
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
         if unsent and isinstance(self._approximated_duration, float):
             # Do not report unsent for "manual".
             logger.debug(f"Unsent packets/transactions: {unsent}")
-        if fail_count < 0 and not self.negative_loss:
-            fail_count = 0
+        if loss_count < 0 and not self.negative_loss:
+            loss_count = 0
         measurement = MeasurementResult(
             intended_duration=target_duration,
             intended_load=transmit_rate,
-            offered_count=expected_attempt_count,
-            loss_count=fail_count,
+            offered_count=partial_attempt_count,
+            loss_count=loss_count,
             offered_duration=approximated_duration,
             duration_with_overheads=duration_with_overheads,
-            intended_count=partial_attempt_count,
+            intended_count=expected_attempt_count,
         )
         measurement.latency = self.get_latency_int()
         return measurement
@@ -1331,8 +1331,7 @@ class TrafficGenerator(AbstractMeasurer):
         logger.debug(f"trial measurement result: {result!r}")
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
-            sleeptime = time_stop - time.monotonic()
-            if sleeptime > 0.0:
+            while (sleeptime := time_stop - time.monotonic()) > 0.0:
                 time.sleep(sleeptime)
         return result
 
@@ -1402,7 +1401,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.resetter = resetter
-        self.ppta = ppta
+        self.ppta = int(ppta)
         self.traffic_directions = int(traffic_directions)
         self.transaction_duration = float(transaction_duration)
         self.transaction_scale = int(transaction_scale)
