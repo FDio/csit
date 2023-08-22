@@ -57,11 +57,14 @@ class MeasurementResult:
     intended_duration: float
     """Intended trial measurement duration [s]."""
     intended_load: float
-    """Intended load [tps]. If bidirectional packet traffic is measured,
-    this is usually the bidirectional rate."""
+    """Intended load [tps]. If bidirectional (or multi-port) traffic is used,
+    most users will put unidirectional (single-port) value here,
+    as bandwidth and pps limits are usually per-port."""
     # Two of the next three primary quantities are required.
     offered_count: int = None
-    """Number of packets actually transmitted (transactions attempted)."""
+    """Number of packets actually transmitted (transactions attempted).
+    This should be the aggregate (bidirectional, multi-port) value,
+    so that asymmetric trafic profiles are supported."""
     loss_count: int = None
     """Number of packets transmitted but not received (transactions failed)."""
     forwarding_count: int = None
@@ -73,7 +76,8 @@ class MeasurementResult:
     """Estimate of the time [s] it took to get the trial result
     since the measurement started."""
     intended_count: int = None
-    """Expected number of packets to transmit."""
+    """Expected number of packets to transmit. If not known,
+    the value of offered_count is used."""
 
     def __post_init__(self):
         """Convert types, compute missing values.
@@ -141,7 +145,7 @@ class MeasurementResult:
         :rtype: float
         """
         overall = max(self.offered_count, self.intended_count)
-        bad = self.loss_count + abs(self.unsent_count)
+        bad = abs(self.loss_count) + abs(self.unsent_count)
         return bad / overall if overall else 0.0
 
     @property
