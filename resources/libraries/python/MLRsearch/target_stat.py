@@ -52,23 +52,21 @@ class TargetStat:
         """Take into account one more trial result.
 
         Use intended duration for deciding between long and short trials,
-        but use offered duation with overheads to increase the duration sums.
+        but use offered duation (with overheads) to increase the duration sums.
 
         :param result: The trial result to add to the stats.
         :type result: DiscreteResult
         """
-        intended = result.intended_duration
-        overall = result.duration_with_overheads
-        if intended >= self.target.trial_duration:
+        if result.intended_duration >= self.target.trial_duration:
             if result.loss_ratio > self.target.loss_ratio:
-                self.bad_long += overall
+                self.bad_long += result.duration_with_overheads
             else:
-                self.good_long += overall
+                self.good_long += result.duration_with_overheads
         else:
             if result.loss_ratio > self.target.loss_ratio:
-                self.bad_short += overall
+                self.bad_short += result.duration_with_overheads
             else:
-                self.good_short += overall
+                self.good_short += result.duration_with_overheads
 
     def estimates(self):
         """Return whether this load can become a lower bound.

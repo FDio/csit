@@ -19,33 +19,24 @@
 *** Keywords ***
 | Check NDRPDR interval validity
 | | [Documentation]
-| | ... | Extract loss ratio of lower bound of the interval.
-| | ... | Fail if it does not reach the allowed value.
+| | ... | Instead of verifying both loss ratio and exceed ratio,
+| | ... | use the fact that invalid intervals have upper bound at min load.
 | |
 | | ... | *Arguments:*
 | | ... | - interval - Measured interval. Type: ReceiveRateInterval
-| | ... | - packet_loss_ratio - Accepted loss (0.0 for NDR). Type: float
+| | ... | - min_load - Initial lower bound provided for MLRsearch. Type: float
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Check NDRPDR interval validity \| \${result.pdr_interval} \
-| | ... | \| \${0.005} \|
+| | ... | \| \${9000.1} \|
 | |
-| | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
+| | [Arguments] | ${interval} | ${min_load}
 | |
-| | ${lower_bound} = | Convert To Number | ${interval.low_end}
-| | Return From Keyword | FIXME
-| | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
-| | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
-| | Set Test Variable | \${rate_for_teardown} | ${lower_bound.intended_load}
-| | ${message}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Minimal rate loss ratio ${lower_bound_lr}
-| | ... | does not reach target ${packet_loss_ratio}.
-| | ${message_zero} = | Set Variable | Zero packets forwarded!
-| | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
-| | ${message} = | Set Variable If | ${lower_bound_lr} >= 1.0
-| | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
-| | Fail | ${message}
+| | ${upper_bound_load} = | Convert To Number | ${interval.high_end}
+| | Return From Keyword If | ${upper_bound_load} > ${min_load}
+| | Set Test Variable | \${rate_for_teardown} | ${min_load}
+| | Fail | Minimal load is an upper bound: ${interval.high_end}
 
 | Compute Bandwidth
 | | [Documentation]

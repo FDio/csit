@@ -192,9 +192,8 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Display result of NDRPDR search | ${result}
-| | Check NDRPDR interval validity | ${result[1]}
-| | ... | ${packet_loss_ratio}
-| | Check NDRPDR interval validity | ${result[0]}
+| | Check NDRPDR interval validity | ${result[1]} | ${min_rate_soft}
+| | Check NDRPDR interval validity | ${result[0]} | ${min_rate_soft}
 | | ${pdr} = | Convert To Number | ${result[1].low_end}
 | | ${ndr} = | Convert To Number | ${result[0].low_end}
 | | # We expect NDR and PDR to have different-looking stats.
@@ -282,7 +281,7 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | Check NDRPDR interval validity | ${result[0]}
+| | Check NDRPDR interval validity | ${result[0]} | ${min_rate_soft}
 | | ${ret} = | Convert To Number | ${result[0].low_end}
 | | Return From Keyword | ${ret}
 
