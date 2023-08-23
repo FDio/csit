@@ -16,7 +16,7 @@ packages_by_arch:
     - []
 
 # Package
-nomad_version: "{{ lookup('env','NOMAD_VERSION') | default('1.3.1', true) }}"
+nomad_version: "1.4.3"
 nomad_architecture_map:
   amd64: "amd64"
   x86_64: "amd64"
@@ -28,12 +28,6 @@ nomad_architecture: "{{ nomad_architecture_map[ansible_architecture] }}"
 nomad_pkg: "nomad_{{ nomad_version }}_linux_{{nomad_architecture}}.zip"
 nomad_zip_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/nomad_{{ nomad_version }}_linux_{{nomad_architecture}}.zip"
 nomad_checksum_file_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/nomad_{{ nomad_version}}_SHA256SUMS"
-nomad_podman_enable: false
-nomad_podman_version: "{{ lookup('env','NOMAD_PODMAN_VERSION') | default('0.1.0', true) }}"
-nomad_podman_pkg: "nomad-driver-podman_{{ nomad_podman_version }}_linux_{{nomad_architecture}}.zip"
-nomad_podman_url: "https://releases.hashicorp.com/nomad-driver-podman/{{ nomad_podman_version }}"
-nomad_podman_zip_url: "{{ nomad_podman_url }}/{{ nomad_podman_pkg }}"
-nomad_podman_checksum_file_url: "{{ nomad_podman_url }}/nomad-driver-podman_{{ nomad_podman_version }}_SHA256SUMS"
 nomad_force_update: false
 
 # Paths
@@ -47,23 +41,20 @@ nomad_run_dir: "/var/run/nomad"
 nomad_ssl_dir: "/etc/nomad.d/ssl"
 
 # Initialization and startup script templates
-nomad_restart_handler_state: "restarted"
 nomad_service_mgr: ""
 
 # System user and group
 nomad_group: "nomad"
-nomad_group_state: "present"
 nomad_user: "nomad"
-nomad_user_state: "present"
 
 # Nomad settings
 nomad_datacenter: "dc1"
 nomad_region: "global"
 nomad_log_level: "INFO"
 nomad_syslog_enable: true
-nomad_iface: "{{ lookup('env','NOMAD_IFACE') | default(ansible_default_ipv4.interface, true) }}"
+nomad_iface: "{{ ansible_default_ipv4.interface }}"
 nomad_node_name: "{{ inventory_hostname }}"
-nomad_node_role: "{{ lookup('env','NOMAD_NODE_ROLE') | default('server', true) }}"
+nomad_node_role: "server"
 nomad_leave_on_terminate: true
 nomad_leave_on_interrupt: false
 nomad_disable_update_check: true
@@ -88,7 +79,7 @@ nomad_eval_gc_threshold: "1h"
 # Specifies the minimum time a deployment must be in the terminal state before
 # it is eligible for garbage collection.
 nomad_deployment_gc_threshold: "1h"
-nomad_encrypt_enable: "{{ lookup('env','NOMAD_ENCRYPT_ENABLE') | default('false', true) }}"
+nomad_encrypt_enable: false
 nomad_raft_protocol: 2
 
 # Client settings
@@ -127,7 +118,7 @@ nomad_servers: "\
     {% set _nomad_servers = [] %}\
     {% for host in groups[nomad_group_name] %}\
       {% set _nomad_node_role = hostvars[host]['nomad_node_role'] | default('client', true) %}\
-      {% if ( _nomad_node_role == 'server' or _nomad_node_role == 'both') %}\
+      {% if (_nomad_node_role == 'server' or _nomad_node_role == 'both') %}\
         {% if _nomad_servers.append(host) %}{% endif %}\
       {% endif %}\
     {% endfor %}\
@@ -144,56 +135,59 @@ nomad_consul_token: ""
 nomad_consul_servers_service_name: "nomad"
 nomad_consul_clients_service_name: "nomad-client"
 nomad_consul_tags: {}
+nomad_consul_use_ssl: false
 
 # ACLs
-nomad_acl_enabled: "{{ lookup('env', 'NOMAD_ACL_ENABLED') | default('no', true) }}"
+nomad_acl_enabled: false
 nomad_acl_token_ttl: "30s"
 nomad_acl_policy_ttl: "30s"
 nomad_acl_replication_token: ""
 
-# Vault
-nomad_vault_enabled: "{{ lookup('env', 'NOMAD_VAULT_ENABLED') | default('no', true) }}"
-nomad_vault_address: "{{ vault_address | default('0.0.0.0', true) }}"
-nomad_vault_allow_unauthenticated: true
-nomad_vault_create_from_role: ""
-nomad_vault_task_token_ttl: ""
-nomad_vault_ca_file: ""
-nomad_vault_ca_path: ""
-nomad_vault_cert_file: ""
-nomad_vault_key_file: ""
-nomad_vault_tls_server_name: ""
-nomad_vault_tls_skip_verify: false
-nomad_vault_token: ""
-nomad_vault_namespace: ""
-
 # Docker
-nomad_docker_enable: "{{ lookup('env','NOMAD_DOCKER_ENABLE') | default('false', true) }}"
+nomad_docker_enable: false
 nomad_docker_dmsetup: true
 
-# TLS
-nomad_tls_enable: true
-nomad_ca_file: "{{ nomad_ssl_dir }}/nomad-ca.pem"
-nomad_cert_file: "{{ nomad_ssl_dir }}/nomad.pem"
-nomad_key_file: "{{ nomad_ssl_dir }}/nomad-key.pem"
-nomad_cli_cert_file: "{{ nomad_ssl_dir }}/nomad-cli.pem"
-nomad_cli_key_file: "{{ nomad_ssl_dir }}/nomad-cli-key.pem"
-nomad_http: false
-nomad_rpc: false
-nomad_rpc_upgrade_mode: false
-nomad_verify_server_hostname: false
-nomad_verify_https_client: false
-
-# Conf - autopilot.hcl
+# Autopilot
 nomad_autopilot_cleanup_dead_servers: true
 nomad_autopilot_last_contact_threshold: "200ms"
 nomad_autopilot_max_trailing_logs: 250
 nomad_autopilot_server_stabilization_time: "10s"
 
-# Telemetry
-nomad_telemetry: true
+# Telemetry.
+nomad_use_telemetry: true
 nomad_telemetry_disable_hostname: false
-nomad_telemetry_collection_interval: 60s
+nomad_telemetry_collection_interval: "1s"
 nomad_telemetry_use_node_name: false
 nomad_telemetry_publish_allocation_metrics: true
 nomad_telemetry_publish_node_metrics: true
 nomad_telemetry_prometheus_metrics: true
+
+# TLS.
+nomad_use_tls: true
+nomad_tls_ca_file: "{{ nomad_ssl_dir }}/nomad-ca.pem"
+nomad_tls_cert_file: "{{ nomad_ssl_dir }}/nomad.pem"
+nomad_tls_key_file: "{{ nomad_ssl_dir }}/nomad-key.pem"
+nomad_tls_cli_cert_file: "{{ nomad_ssl_dir }}/nomad-cli.pem"
+nomad_tls_cli_key_file: "{{ nomad_ssl_dir }}/nomad-cli-key.pem"
+nomad_tls_http: false
+nomad_tls_rpc: false
+nomad_tls_rpc_upgrade_mode: false
+nomad_tls_verify_https_client: false
+nomad_tls_verify_server_hostname: false
+
+# Vault
+nomad_use_vault: false
+nomad_vault_address: "http://vault.service.consul:8200"
+nomad_vault_allow_unauthenticated: true
+nomad_vault_enabled: false
+nomad_vault_create_from_role: ""
+nomad_vault_task_token_ttl: "72h"
+nomad_vault_use_ssl: false
+nomad_vault_ca_file: ""
+nomad_vault_ca_path: ""
+nomad_vault_cert_file: ""
+nomad_vault_key_file: ""
+nomad_vault_namespace: ""
+nomad_vault_tls_server_name: ""
+nomad_vault_tls_skip_verify: false
+nomad_vault_token: ""

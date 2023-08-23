@@ -1,7 +1,7 @@
 ---
 # file: tasks/main.yaml
 
-- name: Inst - Update Repositories Cache
+- name: Update Repositories Cache
   ansible.builtin.apt:
     update_cache: true
   when:
@@ -9,7 +9,7 @@
   tags:
     - nomad-inst-package
 
-- name: Inst - Dependencies
+- name: Dependencies
   ansible.builtin.apt:
     name: "{{ packages | flatten(levels=1) }}"
     state: "present"
@@ -20,30 +20,31 @@
   tags:
     - nomad-inst-dependencies
 
-- name: Conf - Add Nomad Group
+- name: Add Nomad Group
   ansible.builtin.group:
     name: "{{ nomad_group }}"
-    state: "{{ nomad_user_state }}"
+    state: "present"
   tags:
     - nomad-conf-user
 
-- name: Conf - Add Nomad user
+- name: Add Nomad user
   ansible.builtin.user:
     name: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
-    state: "{{ nomad_group_state }}"
+    state: "present"
     system: true
   tags:
     - nomad-conf-user
 
-- name: Inst - Download Nomad
+- name: Download Nomad
   ansible.builtin.get_url:
     url: "{{ nomad_zip_url }}"
     dest: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
+    mode: 0644
   tags:
     - nomad-inst-package
 
-- name: Inst - Clean Nomad
+- name: Clean Nomad
   ansible.builtin.file:
     path: "{{ nomad_inst_dir }}/nomad"
     state: "absent"
@@ -52,7 +53,7 @@
   tags:
     - nomad-inst-package
 
-- name: Inst - Unarchive Nomad
+- name: Unarchive Nomad
   ansible.builtin.unarchive:
     src: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
     dest: "{{ nomad_inst_dir }}/"
@@ -60,7 +61,7 @@
   tags:
     - nomad-inst-package
 
-- name: Inst - Nomad
+- name: Nomad
   ansible.builtin.copy:
     src: "{{ nomad_inst_dir }}/nomad"
     dest: "{{ nomad_bin_dir }}"
@@ -72,97 +73,35 @@
   tags:
     - nomad-inst-package
 
-- name: Conf - Create Directories "{{ nomad_data_dir }}"
+- name: Create Directories
   ansible.builtin.file:
-    dest: "{{ nomad_data_dir }}"
-    state: directory
+    dest: "{{ item }}"
+    state: "directory"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0755
+  with_items:
+    - "{{ nomad_data_dir }}"
+    - "{{ nomad_config_dir }}"
+    - "{{ nomad_ssl_dir }}"
   tags:
     - nomad-conf
 
-- name: Conf - Create Directories "{{ nomad_ssl_dir }}"
-  ansible.builtin.file:
-    dest: "{{ nomad_ssl_dir }}"
-    state: directory
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0755
-  tags:
-    - nomad-conf
-
-- name: Conf - Create Config Directory
-  ansible.builtin.file:
-    dest: "{{ nomad_config_dir }}"
-    state: directory
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0755
-  tags:
-    - nomad-conf
-
-- name: Conf - Base Configuration
+- name: Base Configuration
   ansible.builtin.template:
-    src: base.hcl.j2
-    dest: "{{ nomad_config_dir }}/base.hcl"
+    src: "{{ item }}.hcl.j2"
+    dest: "{{ nomad_config_dir }}/{{ item }}.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
-  tags:
-    - nomad-conf
-
-- name: Conf - Server Configuration
-  ansible.builtin.template:
-    src: server.hcl.j2
-    dest: "{{ nomad_config_dir }}/server.hcl"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0644
-  when:
-    - nomad_node_server | bool
-  tags:
-    - nomad-conf
-
-- name: Conf - Client Configuration
-  ansible.builtin.template:
-    src: client.hcl.j2
-    dest: "{{ nomad_config_dir }}/client.hcl"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0644
-  when:
-    - nomad_node_client | bool
-  tags:
-    - nomad-conf
-
-- name: Conf - TLS Configuration
-  ansible.builtin.template:
-    src: tls.hcl.j2
-    dest: "{{ nomad_config_dir }}/tls.hcl"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0644
-  tags:
-    - nomad-conf
-
-- name: Conf - Telemetry Configuration
-  ansible.builtin.template:
-    src: telemetry.hcl.j2
-    dest: "{{ nomad_config_dir }}/telemetry.hcl"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0644
-  tags:
-    - nomad-conf
-
-- name: Conf - Consul Configuration
-  ansible.builtin.template:
-    src: consul.hcl.j2
-    dest: "{{ nomad_config_dir }}/consul.hcl"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0644
+  with_items:
+    - "base"
+    - "consul"
+    - "client"
+    - "server"
+    - "telemetry"
+    - "tls"
+    - "vault"
   tags:
     - nomad-conf
 
@@ -180,20 +119,21 @@
   tags:
     - nomad-conf
 
-- name: Conf - Nomad CLI Environment Variables
+- name: Nomad CLI Environment Variables
   ansible.builtin.lineinfile:
     path: "/etc/profile.d/nomad.sh"
     line: "{{ item }}"
+    mode: 0644
     create: true
   loop:
-    - "export NOMAD_ADDR=http://nomad.service.consul:4646"
-    - "export NOMAD_CACERT={{ nomad_ca_file }}"
-#    - "export NOMAD_CLIENT_CERT={{ nomad_cli_cert_file }}"
-#    - "export NOMAD_CLIENT_KEY={{ nomad_cli_key_file }}"
+    - "export NOMAD_ADDR=https://nomad-server.service.consul:4646"
+    - "export NOMAD_CACERT={{ nomad_tls_ca_file }}"
+    - "export NOMAD_CLIENT_CERT={{ nomad_tls_cli_cert_file }}"
+    - "export NOMAD_CLIENT_KEY={{ nomad_tls_cli_key_file }}"
   tags:
     - nomad-conf
 
-- name: Conf - System.d Script
+- name: System.d Script
   ansible.builtin.template:
     src: "nomad_systemd.service.j2"
     dest: "/lib/systemd/system/nomad.service"

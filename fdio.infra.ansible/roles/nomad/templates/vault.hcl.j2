@@ -1,0 +1,69 @@
+{% if nomad_use_tls | bool == True %}
+vault {
+    # Specifies the address to the Vault server. This must include the protocol,
+    # host/ip, and port given in the format protocol://host:port. If your Vault
+    # installation is behind a load balancer, this should be the address of the
+    # load balancer.
+    address = "{{ nomad_vault_address }}"
+
+    # Specifies if users submitting jobs to the Nomad server should be required
+    # to provide their own Vault token, proving they have access to the policies
+    # listed in the job. This option should be disabled in an untrusted
+    # environment.
+    allow_unauthenticated = {{ nomad_vault_allow_unauthenticated | bool | lower }}
+
+    # Specifies if the Vault integration should be activated.
+    enabled = {{ nomad_vault_enabled | bool | lower }}
+
+    # Specifies the role to create tokens from. The token given to Nomad does
+    # not have to be created from this role but must have "update" capability
+    # on "auth/token/create/<create_from_role>" path in Vault. If this value is
+    # unset and the token is created from a role, the value is defaulted to the
+    # role the token is from. This is largely for backwards compatibility. It
+    # is recommended to set the create_from_role field if Nomad is deriving
+    # child tokens from a role.
+    create_from_role = "{{ nomad_vault_create_from_role }}"
+
+    # Specifies the TTL of created tokens when using a root token. This is
+    # specified using a label suffix like "30s" or "1h".
+    task_token_ttl = "{{ nomad_vault_task_token_ttl }}"
+
+    {% if nomad_vault_use_ssl | bool == True -%}
+    # Specifies an optional path to the CA certificate used for Vault
+    # communication. If unspecified, this will fallback to the default system
+    # CA bundle, which varies by OS and version.
+    ca_file = "{{ nomad_vault_ca_file }}"
+
+    # Specifies an optional path to a folder containing CA certificates to be
+    # used for Vault communication. If unspecified, this will fallback to the
+    # default system CA bundle, which varies by OS and version.
+    ca_path = "{{ nomad_vault_ca_path }}"
+
+    # Specifies the path to the certificate used for Vault communication. This
+    # must be set if tls_require_and_verify_client_cert is enabled in Vault.
+    cert_file = "{{ nomad_vault_cert_file }}"
+
+    # Specifies the path to the private key used for Vault communication. If
+    # this is set then you need to also set cert_file. This must be set if
+    # tls_require_and_verify_client_cert is enabled in Vault.
+    key_file = "{{ nomad_vault_key_file }}"
+
+    # Specifies the Vault namespace used by the Vault integration. If non-empty,
+    # this namespace will be used on all Vault API calls.
+    namespace = "{{ nomad_vault_namespace }}"
+
+    # Specifies an optional string used to set the SNI host when connecting to
+    # Vault via TLS.
+    tls_server_name = "{{ nomad_vault_tls_server_name }}"
+
+    # Specifies if SSL peer validation should be enforced.
+    tls_skip_verify = {{ nomad_vault_tls_skip_verify | bool | lower }}
+    {% endif %}
+
+    # Specifies the parent Vault token to use to derive child tokens for jobs
+    # requesting tokens. Only required on Nomad servers. Nomad client agents
+    # use the allocation's token when contacting Vault. Visit the Vault
+    # Integration Guide to see how to generate an appropriate token in Vault.
+    token = "{{ nomad_vault_token }}"
+}
+{% endif %}

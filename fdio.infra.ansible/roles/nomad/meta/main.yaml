@@ -1,18 +1,21 @@
 ---
-# file: roles/nomad/meta/main.yaml
+# file: meta/main.yaml
 
-dependencies: [docker]
+dependencies: ["docker"]
 
 galaxy_info:
-  role_name: nomad
-  author: fd.io
-  description: Hashicorp Nomad.
-  company: none
+  role_name: "nomad"
+  author: "pmikus"
+  description: "Hashicorp Nomad."
+  company: "none"
   license: "license (Apache)"
-  min_ansible_version: 2.9
+  min_ansible_version: "2.9"
   platforms:
-    - name: Ubuntu
-      versions:
-        - jammy
+    - name: "Ubuntu"
+      release:
+        - "focal"
+        - "jammy"
+        - "kinetic"
   galaxy_tags:
-    - nomad
+    - "nomad"
+    - "hashicorp"

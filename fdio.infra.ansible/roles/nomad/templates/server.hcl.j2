@@ -1,3 +1,4 @@
+{% if nomad_node_server | bool == True %}
 server {
     enabled = {{ nomad_node_server | bool | lower }}
 
@@ -54,3 +55,4 @@ server {
     {%- endif %}
 
 }
+{% endif %}

@@ -18,13 +18,14 @@ users:
 sshd_disable_password_login: true
 
 # Nomad settings.
+nomad_version: "1.6.1"
 nomad_certificates:
   - src: "{{ file_nomad_ca_pem }}"
-    dest: "{{ nomad_ca_file }}"
+    dest: "{{ nomad_tls_ca_file }}"
   - src: "{{ file_nomad_client_pem }}"
-    dest: "{{ nomad_cert_file }}"
+    dest: "{{ nomad_tls_cert_file }}"
   - src: "{{ file_nomad_client_key_pem }}"
-    dest: "{{ nomad_key_file }}"
+    dest: "{{ nomad_tls_key_file }}"
 nomad_datacenter: "yul1"
 nomad_node_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
@@ -36,29 +37,37 @@ nomad_options:
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
 nomad_service_mgr: "systemd"
+nomad_consul_use_ssl: false
+nomad_use_tls: false
+nomad_tls_http: false
+nomad_tls_rpc: false
+nomad_use_vault: false
 nomad_retry_servers:
   - "10.30.51.23"
   - "10.30.51.24"
-  - "10.30.51.25"
+  - "10.30.51.25"s
 nomad_servers:
   - "10.30.51.23:4647"
   - "10.30.51.24:4647"
   - "10.30.51.25:4647"
 
 # Consul settigs.
-consul_nomad_integration: true
+nomad_use_consul: true
 consul_certificates:
   - src: "{{ file_consul_ca_pem }}"
     dest: "{{ consul_ca_file }}"
 consul_datacenter: "yul1"
 consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
-consul_node_name: "{{ hostname }}"
+consul_node_name: "{{ ansible_hostname }}"
 consul_node_role: "client"
 consul_retry_servers:
   - "10.30.51.23"
   - "10.30.51.24"
   - "10.30.51.25"
 consul_service_mgr: "systemd"
+
+# Vault settings.
+vault_version: "1.13.1"
 
 # Docker daemon settings.
 docker_daemon:
