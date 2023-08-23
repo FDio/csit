@@ -1,9 +1,9 @@
 ---
-# file roles/nomad/handlers/main.yaml
+# file handlers/main.yaml
 
 - name: Restart Nomad
   ansible.builtin.systemd:
     daemon_reload: true
     enabled: true
     name: "nomad"
-    state: "{{ nomad_restart_handler_state }}"
+    state: "restarted"

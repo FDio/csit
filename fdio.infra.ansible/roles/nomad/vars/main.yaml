@@ -1,5 +1,5 @@
 ---
-# file: roles/nomad/vars/main.yaml
+# file: vars/main.yaml
 
 nomad_node_client: "{{ (nomad_node_role == 'client') or (nomad_node_role == 'both') }}"
 nomad_node_server: "{{ (nomad_node_role == 'server') or (nomad_node_role == 'both') }}"
