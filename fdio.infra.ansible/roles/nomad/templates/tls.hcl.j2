@@ -1,12 +1,36 @@
-{% if nomad_tls_enable | bool %}
+{% if nomad_use_tls | bool %}
 tls {
-    http = {{ nomad_http | bool | lower }}
-    rpc = {{ nomad_rpc | bool | lower }}
-    ca_file = "{{ nomad_ca_file }}"
-    cert_file = "{{ nomad_cert_file }}"
-    key_file = "{{ nomad_key_file }}"
-    rpc_upgrade_mode = {{ nomad_rpc_upgrade_mode | bool | lower }}
-    verify_server_hostname = {{ nomad_verify_server_hostname | bool | lower }}
-    verify_https_client = {{ nomad_verify_https_client | bool | lower }}
+    # Specifies the path to the CA certificate to use for Nomad's TLS
+    # communication.
+    ca_file = "{{ nomad_tls_ca_file }}"
+
+    # Specifies the path to the certificate file used for Nomad's TLS
+    # communication.
+    cert_file = "{{ nomad_tls_cert_file }}"
+
+    # Specifies the path to the key file to use for Nomad's TLS communication.
+    key_file = "{{ nomad_tls_key_file }}"
+
+    # Specifies if TLS should be enabled on the HTTP endpoints on the Nomad
+    # agent, including the API.
+    http = {{ nomad_tls_http | bool | lower }}
+
+    # Specifies if TLS should be enabled on the RPC endpoints and Raft traffic
+    # between the Nomad servers. Enabling this on a Nomad client makes the
+    # client use TLS for making RPC requests to the Nomad servers.
+    rpc = {{ nomad_tls_rpc | bool | lower }}
+
+    # This option should be used only when the cluster is being upgraded to
+    # TLS, and removed after the migration is complete. This allows the agent
+    # to accept both TLS and plaintext traffic.
+    rpc_upgrade_mode = {{ nomad_tls_rpc_upgrade_mode | bool | lower }}
+
+    # Specifies agents should require client certificates for all incoming
+    # HTTPS requests. The client certificates must be signed by the same CA
+    # as Nomad.
+    verify_https_client = {{ nomad_tls_verify_https_client | bool | lower }}
+
+    # Specifies if outgoing TLS connections should verify the server's hostname.
+    verify_server_hostname = {{ nomad_tls_verify_server_hostname | bool | lower }}
 }
 {% endif %}
