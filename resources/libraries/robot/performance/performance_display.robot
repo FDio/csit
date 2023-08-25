@@ -19,32 +19,24 @@
 *** Keywords ***
 | Check NDRPDR interval validity
 | | [Documentation]
-| | ... | Extract loss ratio of lower bound of the interval.
-| | ... | Fail if it does not reach the allowed value.
+| | ... | Instead of verifying both loss ratio and exceed ratio,
+| | ... | use the fact that invalid intervals have upper bound at min load.
 | |
 | | ... | *Arguments:*
 | | ... | - interval - Measured interval. Type: ReceiveRateInterval
-| | ... | - packet_loss_ratio - Accepted loss (0.0 for NDR). Type: float
+| | ... | - min_load - Initial lower bound provided for MLRsearch. Type: float
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Check NDRPDR interval validity \| \${result.pdr_interval} \
-| | ... | \| \${0.005} \|
+| | ... | \| \${9000.1} \|
 | |
-| | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
+| | [Arguments] | ${interval} | ${min_load}
 | |
-| | ${lower_bound} = | Set Variable | ${interval.measured_low}
-| | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
-| | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
-| | Set Test Variable | \${rate_for_teardown} | ${lower_bound.target_tr}
-| | ${message}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Minimal rate loss ratio ${lower_bound_lr}
-| | ... | does not reach target ${packet_loss_ratio}.
-| | ${message_zero} = | Set Variable | Zero packets forwarded!
-| | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
-| | ${message} = | Set Variable If | ${lower_bound_lr} >= 1.0
-| | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
-| | Fail | ${message}
+| | ${upper_bound_load} = | Convert To Number | ${interval.high_end}
+| | Return From Keyword If | ${upper_bound_load} > ${min_load}
+| | Set Test Variable | \${rate_for_teardown} | ${min_load}
+| | Fail | Minimal load is an upper bound: ${interval.high_end}
 
 | Compute Bandwidth
 | | [Documentation]
@@ -86,7 +78,7 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | ${bandwidth} | ${packet_rate}= | Compute Bandwidth | ${result.target_tr}
+| | ${bandwidth} | ${packet_rate}= | Compute Bandwidth | ${result.intended_load}
 | | ${packet_loss} = | Set Variable | ${result.loss_count}
 | | ${time_loss} = | Evaluate | ${packet_loss} / ${packet_rate}
 | | Set Test Message | Packets lost due to reconfig: ${packet_loss}
@@ -124,16 +116,10 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | Display single bound | NDR_LOWER
-| | ... | ${result[0].measured_low.target_tr}
-| | ... | ${result[0].measured_low.latency}
-| | Display single bound | NDR_UPPER
-| | ... | ${result[0].measured_high.target_tr}
-| | Display single bound | PDR_LOWER
-| | ... | ${result[1].measured_low.target_tr}
-| | ... | ${result[1].measured_low.latency}
-| | Display single bound | PDR_UPPER
-| | ... | ${result[1].measured_high.target_tr}
+| | Display single bound | NDR_LOWER | ${result[0].low_end}
+| | Display single bound | NDR_UPPER | ${result[0].high_end}
+| | Display single bound | PDR_LOWER | ${result[1].low_end}
+| | Display single bound | PDR_UPPER | ${result[1].high_end}
 
 | Display result of soak search
 | | [Documentation]
@@ -200,6 +186,8 @@
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
 | | ${transaction_type} = | Get Transaction Type
+| | # Convert from LoadStat.
+| | ${tps} = | Convert To Number | ${tps}
 | | Run Keyword And Return If | """_cps""" in """${transaction_type}"""
 | | ... | Display Single CPS Bound | ${text} | ${tps} | ${latency}
 | | Display Single PPS Bound | ${text} | ${tps} | ${latency}
