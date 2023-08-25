@@ -241,26 +241,18 @@
 | | ${type} = | Get TG Type | ${nodes}[TG]
 | | ${version} = | Get TG Version | ${nodes}[TG]
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator
-| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
-| | ... | ${dut1} | ${DUT1_${int}1}[0]
-| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
-| | ... | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} | loop=${False}
 
 | Additional Suite Setup Action For performance_tg_nic
 | | [Documentation]
 | | ... | Additional Setup for suites which uses performance measurement
-| | ... | for L1 cross connect tests
+| | ... | for L1 cross connect tests.
 | |
 | | ${type} = | Get TG Type | ${nodes}[TG]
 | | ${version} = | Get TG Version | ${nodes}[TG]
 | | Export Dut Type And Version | ${type} | ${version}
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator
-| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
-| | ... | ${tg} | ${TG_pf2}[0]
-| | ... | ${tg} | ${TG_pf1}[0]
-| | ... | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} | loop=${True}
 
 | Additional Suite Setup Action For iPerf3
 | | [Documentation]
