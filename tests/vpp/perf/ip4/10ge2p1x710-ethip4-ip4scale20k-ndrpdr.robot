@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,7 +62,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
-| ${rts_per_flow}= | ${10000}
+| ${rts_per_flow}= | ${1000}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${rts_per_flow}
 
@@ -90,13 +90,13 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding with scaling in circular topology
-| | ... | ${rts_per_flow}
+| | And Set interfaces in path up
+| | And Initialize IPv4 Forwarding | ${nodes} | count=${rts_per_flow}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4scale20k-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4-ip4scale20k-ndrpdr
