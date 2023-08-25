@@ -12,9 +12,6 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPUtil
-|
 | Documentation | IPv4 keywords
 
 *** Keywords ***
@@ -97,65 +94,6 @@
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | ${remote_host_mask}
 | | ... | gateway=1.1.1.1 | interface=${DUT2_${int}1}[0]
-
-| Initialize IPv4 forwarding with scaling in circular topology
-| | [Documentation]
-| | ... | Custom setup of IPv4 topology with scalability of ip routes on all
-| | ... | DUT nodes in 2-node / 3-node circular topology
-| |
-| | ... | *Arguments:*
-| | ... | - count - IP route count. Type: integer
-| |
-| | ... | *Return:*
-| | ... | - No value returned
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Initialize IPv4 forwarding with scaling in 3-node circular \
-| | ... | topology \| 100000 \|
-| |
-| | [Arguments] | ${count}
-| |
-| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut2}
-| |
-| | Set interfaces in path up
-| |
-| | VPP Add IP Neighbor
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.1 | ${TG_pf1_mac}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.2 | ${DUT2_${int}1_mac}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2.2.2.1 | ${DUT1_${int}2_mac}[0]
-| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2}
-| | ... | ELSE | Set Variable | ${dut1}
-| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${DUT2_${int}2}[0]
-| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
-| | VPP Add IP Neighbor
-| | ... | ${dut} | ${dut_if2} | 3.3.3.1 | ${TG_pf2_mac}[0]
-| | VPP Interface Set IP Address
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.2 | 30
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.1
-| | ... | 30
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut2} | ${DUT2_${int}1}[0] | 2.2.2.2
-| | ... | 30
-| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 3.3.3.2 | 30
-| | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | gateway=1.1.1.1
-| | ... | interface=${DUT1_${int}1}[0] | count=${count}
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | gateway=2.2.2.2
-| | ... | interface=${DUT1_${int}2}[0] | count=${count}
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | gateway=2.2.2.1
-| | ... | interface=${DUT2_${int}1}[0] | count=${count}
-| | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | gateway=3.3.3.1
-| | ... | interface=${dut_if2} | count=${count}
 
 | Initialize IPv4 routing with memif pairs
 | | [Documentation]

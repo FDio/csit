@@ -91,8 +91,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding with scaling in circular topology
-| | ... | ${rts_per_flow}
+| | And Set interfaces in path up
+| | And Initialize IPv4 Forwarding | count=${rts_per_flow}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

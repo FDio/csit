@@ -29,7 +29,6 @@ from .OptionString import OptionString
 from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
-from .topology import Topology
 from .TRexConfigGenerator import TrexInitConfig
 from .DUTSetup import DUTSetup as DS
 
@@ -278,64 +277,59 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             return "none"
 
-    def initialize_traffic_generator(
-            self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
-            tg_if2_adj_node, tg_if2_adj_if, osi_layer, tg_if1_dst_mac=None,
-            tg_if2_dst_mac=None):
+    def initialize_traffic_generator(self, osi_layer, parallel_links=1):
         """TG initialization.
 
-        :param tg_node: Traffic generator node.
-        :param tg_if1: TG - name of first interface.
-        :param tg_if2: TG - name of second interface.
-        :param tg_if1_adj_node: TG if1 adjecent node.
-        :param tg_if1_adj_if: TG if1 adjecent interface.
-        :param tg_if2_adj_node: TG if2 adjecent node.
-        :param tg_if2_adj_if: TG if2 adjecent interface.
         :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
-        :param tg_if1_dst_mac: Interface 1 destination MAC address.
-        :param tg_if2_dst_mac: Interface 2 destination MAC address.
-        :type tg_node: dict
-        :type tg_if1: str
-        :type tg_if2: str
-        :type tg_if1_adj_node: dict
-        :type tg_if1_adj_if: str
-        :type tg_if2_adj_node: dict
-        :type tg_if2_adj_if: str
+        :param parallel_links: Number of parallel links to configure.
         :type osi_layer: str
-        :type tg_if1_dst_mac: str
-        :type tg_if2_dst_mac: str
-        :returns: nothing
-        :raises RuntimeError: In case of issue during initialization.
+        :type parallel_links: int
+        :raises ValueError: If OSI layer is unknown.
         """
-        subtype = check_subtype(tg_node)
+        if osi_layer not in ("L2", "L3", "L7"):
+            raise ValueError("Unknown OSI layer!")
+
+        topology = BuiltIn().get_variable_value("&{topology_info}")
+        self._node = topology["TG"]
+        subtype = check_subtype(self._node)
+
         if subtype == NodeSubTypeTG.TREX:
-            self._node = tg_node
+            trex_topology = list()
             self._mode = TrexMode.ASTF if osi_layer == "L7" else TrexMode.STL
 
-            if osi_layer == "L2":
-                tg_if1_adj_addr = Topology().get_interface_mac(tg_node, tg_if2)
-                tg_if2_adj_addr = Topology().get_interface_mac(tg_node, tg_if1)
-            elif osi_layer in ("L3", "L7"):
-                tg_if1_adj_addr = Topology().get_interface_mac(
-                    tg_if1_adj_node, tg_if1_adj_if
-                )
-                tg_if2_adj_addr = Topology().get_interface_mac(
-                    tg_if2_adj_node, tg_if2_adj_if
-                )
-            else:
-                raise ValueError("Unknown OSI layer!")
+            for l in range(1, paralel_links*2, 2):
+                tg_if1_adj_addr = topology[f"TG_pf{l+1}_mac"][0]
+                tg_if2_adj_addr = topology[f"TG_pf{l}_mac"][0]
+                if osi_layer in ("L3", "L7"):
+                    ifl = BuiltIn().get_variable_value("${int}")
+                    last = topology["duts_count"]
+                    tg_if1_adj_addr = topology[f"DUT1_{ifl}{l}_mac"][0]
+                    tg_if2_adj_addr = topology[f"DUT{last}_{ifl}{l+1}_mac"][0]
 
-            tg_topology = list()
-            tg_topology.append(dict(interface=tg_if1, dst_mac=tg_if1_adj_addr))
-            tg_topology.append(dict(interface=tg_if2, dst_mac=tg_if2_adj_addr))
-            if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
-            if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
-            if min(if1_pci, if2_pci) != if1_pci:
-                self._ifaces_reordered = True
-                tg_topology.reverse()
+                trex_topology.append(
+                    dict(
+                        interface=topology[f"TG_pf{l}"][0],
+                        dst_mac=tg_if1_adj_addr
+                    )
+                )
+                trex_topology.append(
+                    dict(
+                        interface=topology[f"TG_pf{l+1}"][0],
+                        dst_mac=tg_if2_adj_addr
+                    )
+                )
+                if1_pci = topology["TG_pf{l}_pci"][0]
+                if2_pci = topology["TG_pf{l+1}_pci"][0]
+                if min(if1_pci, if2_pci) != if1_pci:
+                    self._ifaces_reordered = True
+                    trex_topology.reverse()
 
-            TrexInitConfig.init_trex_startup_configuration(tg_node, tg_topology)
-            TrafficGenerator.startup_trex(tg_node, osi_layer, subtype=subtype)
+            TrexInitConfig.init_trex_startup_configuration(
+                self._node, trex_topology
+            )
+            TrafficGenerator.startup_trex(
+                self._node, osi_layer, subtype=subtype
+            )
 
     @staticmethod
     def startup_trex(tg_node, osi_layer, subtype=None):
