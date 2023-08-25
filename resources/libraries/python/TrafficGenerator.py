@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1223,6 +1223,7 @@ class TrafficGenerator(AbstractMeasurer):
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
             packet_rate = transmit_rate * self.ppta
+            logger.debug(f"sent {self._sent} ppta {self.ppta} tr {transmit_rate} pr {packet_rate}")
             # We have a float. TRex way of rounding it is not obvious.
             # The biggest source of mismatch is Inter Stream Gap.
             # So the code tolerates 10 usec of missing packets.
@@ -1541,19 +1542,23 @@ class OptimizedSearch:
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
+        duration_sum = final_trial_duration
         if packet_loss_ratio:
             loss_ratios = [0.0, packet_loss_ratio]
+            exceed_ratio = 0.5
+            final_trial_duration = initial_trial_duration
         else:
             # Happens in reconf tests.
             loss_ratios = [0.0]
+            exceed_ratio = 0.0
         goals = [
             SearchGoal(
                 loss_ratio=loss_ratio,
-                exceed_ratio=0.0,
+                exceed_ratio=exceed_ratio,
                 relative_width=final_relative_width,
                 initial_trial_duration=initial_trial_duration,
                 final_trial_duration=final_trial_duration,
-                duration_sum=final_trial_duration,
+                duration_sum=duration_sum,
                 preceding_targets=number_of_intermediate_phases,
                 expansion_coefficient=expansion_coefficient,
             ) for loss_ratio in loss_ratios

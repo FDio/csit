@@ -259,10 +259,12 @@ class MultipleLossRatioSearch:
         self.debug(f"First trial at max rate: {max_load}")
         result0 = self.measure(duration, max_load)
         rfr = result0.relative_forwarding_rate
+        self.debug(f"DEBUG rfr {rfr}")
         corrected_rfr = (self.from_float(rfr) / (1.0 - ratio)).rounded_down()
         if corrected_rfr >= max_load:
             self.debug("Small loss, no other initial trials are needed.")
             return result0, result0
+        self.debug(f"DEBUG corrected_rfr {corrected_rfr}")
         mrr = self.limit_handler.handle(corrected_rfr, width, None, max_load)
         self.debug(f"Second trial at (corrected) mrr: {mrr}")
         result1 = self.measure(duration, mrr)
