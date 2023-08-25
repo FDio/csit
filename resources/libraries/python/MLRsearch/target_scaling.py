@@ -43,17 +43,11 @@ class TargetScaling:
         repr=False, init=False
     )
     """Mapping from a goal to its corresponding final target."""
-    goal_to_increasing_target: Dict[SearchGoal, Tuple[TargetSpec, ...]] = field(
-        repr=False, init=False
-    )
-    """Mapping from a goal to a sequence of its corresponding targets,
-    starting from initial target."""
 
     def __post_init__(self) -> None:
         """For each goal create final, and non-final targets and link them."""
         linked_targets = []
         self.goal_to_final_target = {}
-        self.goal_to_increasing_targets = {}
         for goal in self.goals:
             standalone_targets = []
             # Final target.
@@ -108,6 +102,5 @@ class TargetScaling:
                 preceding_target = linked_target
             # Associate final target to the goal.
             self.goal_to_final_target[goal] = per_goal_targets[-1]
-            self.goal_to_increasing_targets[goal] = tuple(per_goal_targets)
         # Store all targets as a tuple.
         self.targets = tuple(linked_targets)

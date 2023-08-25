@@ -21,7 +21,6 @@ import time
 from dataclasses import dataclass, field
 from typing import Callable, Optional, Tuple
 
-from .candidate_selector import CandidateSelector
 from .config import Config
 from .discrete_interval import DiscreteInterval
 from .discrete_load import DiscreteLoad
@@ -32,6 +31,7 @@ from .load_rounding import LoadRounding
 from .measurement_database import MeasurementDatabase
 from .pep3140 import Pep3140Dict
 from .search_goal import SearchGoal
+from .strategy.selector import CandidateSelector
 from .target_scaling import TargetScaling
 from .target_spec import TargetSpec
 from .trial_measurement import AbstractMeasurer
@@ -188,10 +188,10 @@ class MultipleLossRatioSearch:
         return ret_dict
 
     def measure(self, duration: float, load: DiscreteLoad) -> DiscreteResult:
-        """Call measurer and put the result to appropriate form.
+        """Call measurer and put the result to appropriate form in database.
 
         Also check the argument types and load roundness,
-        and add the result to the measurement database.
+        and return the result to the caller.
 
         :param duration: Intended duration for the trial measurement.
         :param load: Intended load for the trial measurement:
@@ -322,37 +322,27 @@ class MultipleLossRatioSearch:
         :type result_pair: Tuple[DiscreteResult, DiscreteResult]
         :raises RuntimeError: If the search takes too long.
         """
-        prev_width = DiscreteInterval(load0, load1).discrete_width
-        selector_sequences = []
-        for target_sequence in self.scaling.goal_to_increasing_targets.values():
-            selectors_per_target = []
-            for target in target_sequence:
-                selector = CandidateSelector(
-                    target=target,
-                    database=self.database,
-                    handler=self.limit_handler,
-                    debug=self.wrap_debug(target),
-                    prev_width=None if target.preceding else prev_width,
-                )
-                selectors_per_target.append(selector)
-            selector_sequences.append(selectors_per_target)
-        measured = None
+        selectors = []
+        for target in self.scaling.goal_to_final_target.values():
+            selector = CandidateSelector(
+                final_target=target,
+                initial_lower_load=load0,
+                initial_upper_load=load1,
+                database=self.database,
+                handler=self.limit_handler,
+                debug=self.wrap_debug(target),
+            )
+            selectors.append(selector)
         while time.monotonic() < self.stop_time:
             winner = LoadCandidate(load=None, duration=None)
-            for selector_sequence in selector_sequences:
-                no_sequence_candidate = True
-                for selector in selector_sequence:
-                    candidate = selector.candidate_after(measured)
-                    if no_sequence_candidate and candidate < winner:
-                        winner = candidate
-                    if candidate and no_sequence_candidate:
-                        no_sequence_candidate = False
+            for selector in selectors:
+                winner = min(winner, next(selector))
             if not winner:
                 break
             # We do not check duration versus stop_time here,
             # as some measurers can be unpredictably faster
             # than their intended duration suggests.
-            measured = self.measure(duration=winner.duration, load=winner.load)
+            self.measure(duration=winner.duration, load=winner.load)
         else:
             raise RuntimeError("Optimized search takes too long.")
         self.debug("Search done.")
