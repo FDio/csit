@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -90,8 +90,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding with scaling in circular topology
-| | ... | ${rts_per_flow}
+| | And Set interfaces in path up
+| | And Initialize IPv4 Forwarding | count=${rts_per_flow}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
