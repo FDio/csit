@@ -18,6 +18,8 @@
       tags: python_env
     - role: docker
       tags: docker
+    # - role: docker_images
+    #   tags: docker_images
     - role: vpp
       tags: vpp
     - role: vagrant

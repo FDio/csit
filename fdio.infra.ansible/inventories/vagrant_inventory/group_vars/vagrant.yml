@@ -1,2 +1,7 @@
 ---
 # file: vagrant_inventory/group_vars/all.yaml
+# Docker daemon settings.
+docker_daemon:
+  dns: ["172.17.0.1"]
+  dns-opts: []
+  dns-search: ["{{ansible_hostname}}"]

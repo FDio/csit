@@ -4,22 +4,24 @@
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
-  - "gdb"
-  - "libtool"
-  - "lxc"
-  - "pkg-config"
-  - "screen"
+  - []
+  # - "gdb"
+  # - "libtool"
+  # - "lxc"
+  # - "pkg-config"
+  # - "screen"
 
 packages_by_distro:
   ubuntu:
     jammy:
-      - "build-essential"
-      - "libglib2.0-dev"
-      - "libmbedcrypto7"
-      - "libmbedtls14"
-      - "libmbedx509-1"
-      - "libnuma-dev"
-      - "libpixman-1-dev"
+      - []
+      # - "build-essential"
+      # - "libglib2.0-dev"
+      # - "libmbedcrypto7"
+      # - "libmbedtls14"
+      # - "libmbedx509-1"
+      # - "libnuma-dev"
+      # - "libpixman-1-dev"
 
 packages_by_arch:
   aarch64:
