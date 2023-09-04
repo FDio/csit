@@ -51,13 +51,13 @@ nomad_tls_http: false
 nomad_tls_rpc: false
 nomad_use_vault: false
 nomad_retry_servers:
-  - "10.32.8.15"
-  - "10.32.8.16"
-  - "10.32.8.17"
+  - "10.30.51.23"
+  - "10.30.51.24"
+  - "10.30.51.25"
 nomad_servers:
-  - "10.32.8.15:4647"
-  - "10.32.8.16:4647"
-  - "10.32.8.17:4647"
+  - "10.30.51.23:4647"
+  - "10.30.51.24:4647"
+  - "10.30.51.25:4647"
 
 # Consul settigs.
 nomad_use_consul: true
@@ -69,9 +69,9 @@ consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ ansible_hostname }}"
 consul_node_role: "client"
 consul_retry_servers:
-  - "10.32.8.15"
-  - "10.32.8.16"
-  - "10.32.8.17"
+  - "10.30.51.23"
+  - "10.30.51.24"
+  - "10.30.51.25"
 consul_service_mgr: "systemd"
 
 # Vault settings.
