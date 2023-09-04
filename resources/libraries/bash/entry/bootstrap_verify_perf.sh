@@ -50,6 +50,6 @@ select_tags || die
 compose_robot_arguments || die
 set_environment_variables || die
 run_robot || die
-untrap_and_unreserve_testbed || die
 move_archives || die
+untrap_and_unreserve_testbed || die
 die_on_robot_error || die
