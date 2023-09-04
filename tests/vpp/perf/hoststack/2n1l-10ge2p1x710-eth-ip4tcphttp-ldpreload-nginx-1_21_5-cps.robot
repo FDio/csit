@@ -88,7 +88,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Set up LDP or VCL Nginx on DUT node | ${dut1} | ${mode}
+| | And Set up LDP or VCL Nginx on DUT1 node | ${mode}
 | | ... | ${rps_cps} | ${phy_cores} | ${qat} | ${tls_tcp}
 | | And Additional Suite Setup Action For ab
 | | Then Measure TLS requests or connections per second

@@ -557,13 +557,14 @@
 | | Then Set test message | ${client_output}
 | | Return From Keyword | ${client_defer_fail}
 
-| Set up LDP or VCL Nginx on DUT node
+| Set up LDP or VCL Nginx on DUT1 node
 | | [Documentation]
-| | ... | Setup for suites which uses VCL or LDP Nginx on DUT.
+| | ... | Setup for suites which uses VCL or LDP Nginx on DUT1.
+| |
+| | ... | Currently hardcoded to work on DUT1, assuming its node dict
+| | ... | and similar values like \${DUT1_cpu_alloc_str} are already defined.
 | |
 | | ... | *Arguments:*
-| | ... | - dut - DUT node.
-| | ... | Type: string
 | | ... | - mode - VCL Nginx or LDP Nginx.
 | | ... | Type: string
 | | ... | - rps_cps - Test request or connect.
@@ -576,32 +577,31 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Set up LDP or VCL NGINX on DUT node \| ${dut} |${mode}\
+| | ... | \| Set up LDP or VCL NGINX on DUT1 node \| ${mode}\
 | | ... | \| ${rps_cps} \| ${phy_cores} \| ${qat} \| ${tls_tcp} \|
 | |
-| | [Arguments] | ${dut} | ${mode} | ${rps_cps} | ${phy_cores} | ${qat}
-| | ... | ${tls_tcp}
+| | [Arguments] | ${mode} | ${rps_cps} | ${phy_cores} | ${qat} | ${tls_tcp}
 | |
 | | Set Interface State | ${dut} | ${DUT1_${int}1}[0] | up
-| | VPP Interface Set IP Address | ${dut} | ${DUT1_${int}1}[0]
+| | VPP Interface Set IP Address | ${DUT1} | ${DUT1_${int}1}[0]
 | | ... | ${dut_ip_addrs}[0] | ${dut_ip_prefix}
-| | Vpp Node Interfaces Ready Wait | ${dut}
+| | Vpp Node Interfaces Ready Wait | ${DUT1}
 | | ${skip_cnt}= | Evaluate
 | | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
-| | ${numa}= | Get interfaces numa node | ${dut} | ${DUT1_${int}1}[0]
-| | Apply Nginx configuration on DUT | ${dut} | ${phy_cores}
+| | ${numa}= | Get interfaces numa node | ${DUT1} | ${DUT1_${int}1}[0]
+| | Apply Nginx configuration on DUT | ${DUT1} | ${phy_cores}
 | | Set To Dictionary | ${nginx_server_attr} | ip_address
 | | ... | ${dut_ip_addrs}[0]
-| | ${core_list}= | Cpu list per node str | ${dut} | ${numa}
+| | ${core_list}= | Cpu list per node str | ${DUT1} | ${numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${nginx_server_attr}[cpu_cnt]
-| | ${cpu_idle_list}= | Get cpu idle list | ${dut} | ${numa}
-| | ... | ${smt_used} | ${${dut}_cpu_alloc_str}
+| | ${cpu_idle_list}= | Get cpu idle list | ${DUT1} | ${numa}
+| | ... | ${smt_used} | ${DUT1_cpu_alloc_str}
 | | ${nginx_server}= | Get Nginx Command | ${nginx_server_attr}
 | | ... | ${nginx_version} | ${packages_dir}
 | | ${server_pid}= | Start Hoststack Test Program
-| | ... | ${dut} | ${nginx_server_attr}[namespace] | ${core_list}
+| | ... | ${DUT1} | ${nginx_server_attr}[namespace] | ${core_list}
 | | ... | ${nginx_server}
-| | Taskset Nginx PID to idle cores | ${dut} | ${cpu_idle_list}
+| | Taskset Nginx PID to idle cores | ${DUT1} | ${cpu_idle_list}
 
 | Measure TLS requests or connections per second
 | | [Documentation]
