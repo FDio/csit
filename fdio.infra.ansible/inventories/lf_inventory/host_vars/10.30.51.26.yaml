@@ -66,10 +66,15 @@ consul_certificates:
     dest: "{{ consul_cert_file }}"
   - src: "{{ file_consul_server_3_key_pem }}"
     dest: "{{ consul_key_file }}"
+consul_verify_incoming: false
+consul_verify_outgoing: false
+consul_vefify_server_hostname: false
+consul_allow_tls: true
 consul_datacenter: "yul1"
+consul_node_role: "both"
 consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ ansible_hostname }}"
-consul_node_role: "both"
+consul_retry_join: true
 consul_retry_servers:
   - "10.30.51.23"
   - "10.30.51.24"

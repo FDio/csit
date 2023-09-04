@@ -65,12 +65,21 @@ nomad_cpu_total_compute: "40000"
 # Consul settigs.
 nomad_use_consul: true
 consul_certificates:
-  - src: "{{ file_consul_ca_pem }}"
+  - src: "{{ file_consul_agent_ca_pem }}"
     dest: "{{ consul_ca_file }}"
+  - src: "{{ file_consul_server_0_pem }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ file_consul_server_0_key_pem }}"
+    dest: "{{ consul_key_file }}"
+consul_verify_incoming: false
+consul_verify_outgoing: false
+consul_vefify_server_hostname: false
+consul_allow_tls: false
 consul_datacenter: "yul1"
+consul_node_role: "client"
 consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ ansible_hostname }}"
-consul_node_role: "client"
+consul_retry_join: true
 consul_retry_servers:
   - "10.30.51.23"
   - "10.30.51.24"

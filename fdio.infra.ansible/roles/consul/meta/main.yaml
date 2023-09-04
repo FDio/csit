@@ -1,17 +1,21 @@
 ---
-# file: roles/consul/meta/main.yaml
+# file: meta/main.yaml
 
 dependencies: []
+
 galaxy_info:
-  role_name: consul
-  author: fd.io
-  description: Hashicrop Consul.
-  company: none
+  role_name: "consul"
+  author: "pmikus"
+  description: "Hashicorp Consul."
+  company: "none"
   license: "license (Apache)"
-  min_ansible_version: 2.9
+  min_ansible_version: "2.9"
   platforms:
-    - name: Ubuntu
+    - name: "Ubuntu"
       versions:
-        - jammy
+        - "focal"
+        - "jammy"
+        - "kinetic"
   galaxy_tags:
-    - consul
+    - "consul"
+    - "hashicorp"

@@ -1,5 +1,5 @@
 ---
-# file: roles/consul/defaults/main.yaml
+# file: defaults/main.yaml
 
 # Inst - Prerequisites.
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
@@ -24,7 +24,7 @@ consul_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
-consul_version: "1.12.2"
+consul_version: "1.16.1"
 consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
 consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
 consul_force_update: false
@@ -47,41 +47,32 @@ consul_service_mgr: ""
 
 # Conf - User and group.
 consul_group: "consul"
-consul_group_state: "present"
 consul_user: "consul"
-consul_user_state: "present"
 
 # Conf - base.hcl
+consul_allow_tls: true
 consul_bind_addr: "{{ ansible_default_ipv4.address }}"
+consul_bootstrap_expect: 1
 consul_client_addr: "0.0.0.0"
 consul_datacenter: "dc1"
 consul_disable_update_check: true
 consul_enable_debug: false
 consul_enable_syslog: true
+consul_encrypt: ""
 consul_log_level: "INFO"
 consul_node_name: "{{ inventory_hostname }}"
-consul_retry_join: true
-consul_bootstrap_expect: 2
-consul_encrypt: ""
-consul_ca_file: "{{ consul_ssl_dir }}/ca.pem"
-consul_cert_file: "{{ consul_ssl_dir }}/consul.pem"
-consul_key_file: "{{ consul_ssl_dir }}/consul-key.pem"
-consul_verify_incoming: false
-consul_verify_outgoing: false
-consul_vefify_server_hostname: false
-consul_allow_tls: false
-consul_ui_config:
-  enabled: true
 consul_recursors:
   - 1.1.1.1
   - 8.8.8.8
-consul_certificates:
-  - src: "{{ file_consul_ca_pem }}"
-    dest: "{{ consul_ca_file }}"
-  - src: "{{ file_consul_server_0_pem }}"
-    dest: "{{ consul_cert_file }}"
-  - src: "{{ file_consul_server_0_key_pem }}"
-    dest: "{{ consul_key_file }}"
+consul_retry_join: false
+consul_ui_config:
+  enabled: true
+consul_verify_incoming: true
+consul_verify_outgoing: true
+consul_vefify_server_hostname: false
+consul_ca_file: "{{ consul_ssl_dir }}/ca.pem"
+consul_cert_file: "{{ consul_ssl_dir }}/consul.pem"
+consul_key_file: "{{ consul_ssl_dir }}/consul-key.pem"
 
 # Conf - ports.hcl
 consul_port_dns: 53
