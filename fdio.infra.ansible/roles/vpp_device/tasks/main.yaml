@@ -1,15 +1,15 @@
 ---
-# file: roles/vpp_device/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: ThunderX2 Kernel Modules Config
-  import_tasks: thunderx2.yaml
+- name: "ThunderX2 Kernel Modules Config"
+  import_tasks: "thunderx2.yaml"
   when:
     - cpu_microarchitecture == "thunderx2"
   tags:
     - conf-kernel-modules
 
-- name: Disable IPv6 Router Advertisement
-  sysctl:
+- name: "Disable IPv6 Router Advertisement"
+  ansible.builtin.sysctl:
     name: "net.ipv6.conf.default.accept_ra"
     value: "0"
     state: "present"
@@ -18,8 +18,8 @@
   tags:
     - set-sysctl
 
-- name: Disable IPv6 Router Advertisement
-  sysctl:
+- name: "Disable IPv6 Router Advertisement"
+  ansible.builtin.sysctl:
     name: "net.ipv6.conf.all.accept_ra"
     value: "0"
     state: "present"
@@ -28,8 +28,8 @@
   tags:
     - set-sysctl
 
-- name: Disable IPv6 MLDv1 interval
-  sysctl:
+- name: "Disable IPv6 MLDv1 interval"
+  ansible.builtin.sysctl:
     name: "net.ipv6.conf.all.mldv1_unsolicited_report_interval"
     value: "0"
     state: "present"
@@ -38,8 +38,8 @@
   tags:
     - set-sysctl
 
-- name: Disable IPv6 MLDv2 interval
-  sysctl:
+- name: "Disable IPv6 MLDv2 interval"
+  ansible.builtin.sysctl:
     name: "net.ipv6.conf.all.mldv2_unsolicited_report_interval"
     value: "0"
     state: "present"
@@ -48,8 +48,8 @@
   tags:
     - set-sysctl
 
-- name: Disable IPv6 Autoconf
-  sysctl:
+- name: "Disable IPv6 Autoconf"
+  ansible.builtin.sysctl:
     name: "net.ipv6.conf.all.autoconf"
     value: "0"
     state: "present"
@@ -58,8 +58,8 @@
   tags:
     - set-sysctl
 
-- name: Disable IPv6 MC Forwarding
-  sysctl:
+- name: "Disable IPv6 MC Forwarding"
+  ansible.builtin.sysctl:
     name: "net.ipv6.conf.all.mc_forwarding"
     value: "0"
     state: "present"
@@ -68,8 +68,8 @@
   tags:
     - set-sysctl
 
-- name: Copy csit-initialize-vfs.sh
-  copy:
+- name: "Copy csit-initialize-vfs.sh"
+  ansible.builtin.copy:
     src: "files/csit-initialize-vfs.sh"
     dest: "/usr/local/bin/"
     owner: "root"
@@ -78,8 +78,8 @@
   tags:
     - copy-vf-script
 
-- name: Copy csit-initialize-vfs-data.sh
-  copy:
+- name: "Copy csit-initialize-vfs-data.sh"
+  ansible.builtin.copy:
     src: "files/{{ vfs_data_file }}"
     dest: "/usr/local/bin/csit-initialize-vfs-data.sh"
     owner: "root"
@@ -89,8 +89,8 @@
   when:
     - vfs_data_file is defined
 
-- name: Copy Default csit-initialize-vfs-data.sh
-  copy:
+- name: "Copy Default csit-initialize-vfs-data.sh"
+  ansible.builtin.copy:
     src: "files/csit-initialize-vfs-default.sh"
     dest: "/usr/local/bin/csit-initialize-vfs-data.sh"
     owner: "root"
@@ -100,8 +100,8 @@
   when:
     - vfs_data_file is not defined
 
-- name: Start csit-initialize-vfs.service
-  copy:
+- name: "Start csit-initialize-vfs.service"
+  ansible.builtin.copy:
     src: "files/csit-initialize-vfs.service"
     dest: "/etc/systemd/system/"
     owner: "root"
@@ -112,10 +112,10 @@
   tags:
     - start-vf-service
 
-- meta: flush_handlers
+- ansible.builtin.meta: "flush_handlers"
 
-- name: Set Hugepages In GRUB
-  lineinfile:
+- name: "Set Hugepages In GRUB"
+  ansible.builtin.lineinfile:
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
