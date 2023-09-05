@@ -1,5 +1,5 @@
 ---
-# file: roles/vpp_device/defaults/main.yaml
+# file: defaults/main.yaml
 
 iavf_target_dir: "/opt"
 iavf_version: "4.1.1"
