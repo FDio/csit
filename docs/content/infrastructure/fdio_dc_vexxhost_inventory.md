@@ -82,20 +82,24 @@ Captured inventory data:
 
 ### Rack YUL1-11 (3016.11)
 
- **name**              | **oper-status** | **testbed-id** | **role**   | **model**      | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
------------------------|-----------------|----------------|------------|----------------|-----------------|--------------|--------------|------------|--------------
- yul1-11-lb6m          | up              | switch         | arm-uplink | ?              | ?               | ?            | ?            | 3016.11    | u48
- yul1-11-lf-tor-switch | up              | switch         | uplink     | ?              | ?               | ?            | ?            | 3016.11    | u47
- mtl1-6-7050QX-32      | up              | switch         | uplink     | ?              | ?               | ?            | ?            | 3016.11    | u46
- fdio-marvell-dev      | up              | N/A            | dev        | ThunderX-88XX  | N/A             | 10.30.51.38  | 10.30.50.38  | 3016.11    | u45
- s56-t14-sut1          | up              | t14            | 1n-tx2     | ThunderX2-9980 | N/A             | 10.30.51.71  | 10.30.50.71  | 3016.11    | u41-u42
- s78-t38-sut1          | up              | t38            | 3n-icx     | SYS-740GP-TNRT | C7470KL03P50450 | 10.30.51.78  | 10.30.50.78  | 3016.11    | u31-u34
- s79-t38-sut2          | up              | t38            | 3n-icx     | SYS-740GP-TNRT | C7470KL07P50297 | 10.30.51.79  | 10.30.50.79  | 3016.11    | u27-u30
- s80-t38-tg1           | up              | t38            | 3n-icx     | SYS-740GP-TNRT | C7470KL03P50454 | 10.30.51.80  | 10.30.50.80  | 3016.11    | u23-u26
- s55-t13-sut1          | up              | t13            | 1n-tx2     | ThunderX2-9980 | N/A             | 10.30.51.70  | 10.30.50.70  | 3016.11    | u11-u12
- s62-t34-sut1          | up              | t34            | 3n-alt     | WIWYNN         | 04000059N0SC    | 10.30.51.72  | 10.30.50.72  | 3016.11    | u9-u10
- s63-t34-sut2          | up              | t34            | 3n-alt     | WIWYNN         | 0390003EN0SC    | 10.30.51.73  | 10.30.50.73  | 3016.11    | u7-u8
- s64-t34-tg1           | up              | t34            | 3n-alt     | SYS-740GP-TNRT | C7470KK40P50249 | 10.30.51.74  | 10.30.50.74  | 3016.11    | u3-u6
+ **name**              | **oper-status** | **testbed-id** | **role**     | **model**      | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
+-----------------------|-----------------|----------------|--------------|----------------|-----------------|--------------|--------------|------------|--------------
+ yul1-11-lb6m          | up              | switch         | arm-uplink   | ?              | ?               | ?            | ?            | 3016.11    | u48
+ yul1-11-lf-tor-switch | up              | switch         | uplink       | ?              | ?               | ?            | ?            | 3016.11    | u47
+ mtl1-6-7050QX-32      | up              | switch         | uplink       | ?              | ?               | ?            | ?            | 3016.11    | u46
+ fdio-marvell-dev      | up              | N/A            | dev          | ThunderX-88XX  | N/A             | 10.30.51.38  | 10.30.50.38  | 3016.11    | u45
+ s21-nomad             | up              | nomad          | nomad-client | SYS-741GE-TNRT | ??              | 10.30.51.21  | 10.30.50.21  | 3016.11    | u41-u44
+ s22-nomad             | up              | nomad          | nomad-client | SYS-741GE-TNRT | ??              | 10.30.51.22  | 10.30.50.22  | 3016.11    | u37-u40
+ s78-t38-sut1          | up              | t38            | 3n-icx       | SYS-740GP-TNRT | C7470KL03P50450 | 10.30.51.78  | 10.30.50.78  | 3016.11    | u31-u34
+ s79-t38-sut2          | up              | t38            | 3n-icx       | SYS-740GP-TNRT | C7470KL07P50297 | 10.30.51.79  | 10.30.50.79  | 3016.11    | u27-u30
+ s80-t38-tg1           | up              | t38            | 3n-icx       | SYS-740GP-TNRT | C7470KL03P50454 | 10.30.51.80  | 10.30.50.80  | 3016.11    | u23-u26
+ s30-t15-sut1          | up              | nomad          | nomad-client | SYS-741GE-TNRT | ??              | 10.30.51.30  | 10.30.50.30  | 3016.11    | u19-u22
+ s31-t16-sut1          | up              | nomad          | nomad-client | SYS-741GE-TNRT | ??              | 10.30.51.31  | 10.30.50.31  | 3016.11    | u15-u18
+ s56-t14-sut1          | up              | t14            | 1n-tx2       | ThunderX2-9980 | N/A             | 10.30.51.71  | 10.30.50.71  | 3016.11    | u13-u14
+ s55-t13-sut1          | up              | t13            | 1n-tx2       | ThunderX2-9980 | N/A             | 10.30.51.70  | 10.30.50.70  | 3016.11    | u11-u12
+ s62-t34-sut1          | up              | t34            | 3n-alt       | WIWYNN         | 04000059N0SC    | 10.30.51.72  | 10.30.50.72  | 3016.11    | u9-u10
+ s63-t34-sut2          | up              | t34            | 3n-alt       | WIWYNN         | 0390003EN0SC    | 10.30.51.73  | 10.30.50.73  | 3016.11    | u7-u8
+ s64-t34-tg1           | up              | t34            | 3n-alt       | SYS-740GP-TNRT | C7470KK40P50249 | 10.30.51.74  | 10.30.50.74  | 3016.11    | u3-u6
 
 ### Rack YUL1-12 (3016.12)
 

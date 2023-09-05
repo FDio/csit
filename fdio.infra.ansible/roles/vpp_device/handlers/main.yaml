@@ -1,21 +1,21 @@
 ---
-# file: roles/vpp_device/handlers/main.yaml
+# file: handlers/main.yaml
 
-- name: Start csit-initialize-vfs.service
-  systemd:
+- name: "Start csit-initialize-vfs.service"
+  ansible.builtin.systemd:
     enabled: true
-    state: started
-    name: csit-initialize-vfs.service
+    state: "started"
+    name: "csit-initialize-vfs.service"
   tags:
     - start-vf-service
 
-- name: Update GRUB
-  command: update-grub
+- name: "Update GRUB"
+  ansible.builtin.command: "update-grub"
   tags:
     - update-grub
 
-- name: Reboot server
-  reboot:
+- name: "Reboot server"
+  ansible.builtin.reboot:
     reboot_timeout: 3600
   tags:
     - reboot-server
