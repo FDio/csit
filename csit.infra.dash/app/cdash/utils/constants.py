@@ -359,6 +359,10 @@ class Constants:
     # Default name of downloaded file with selected data.
     STATS_DOWNLOAD_FILE_NAME = "stats.csv"
 
+    # The width of the bar in the graph in miliseconds.
+    STATS_BAR_WIDTH_DAILY = 1000 * 3600 * 15
+    STATS_BAR_WIDTH_WEEKLY = 1000 * 3600 * 24
+
     ############################################################################
     # Trending.
 

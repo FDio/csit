@@ -17,8 +17,10 @@
 import plotly.graph_objects as go
 import pandas as pd
 
+from ..utils.constants import Constants as C
 
-def select_data(data: pd.DataFrame, itm:str) -> pd.DataFrame:
+
+def select_data(data: pd.DataFrame, itm: str) -> pd.DataFrame:
     """Select the data for graphs from the provided data frame.
 
     :param data: Data frame with data for graphs.
@@ -37,7 +39,7 @@ def select_data(data: pd.DataFrame, itm:str) -> pd.DataFrame:
     return df
 
 
-def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
+def graph_statistics(df: pd.DataFrame, job: str, layout: dict) -> tuple:
     """Generate graphs:
     1. Passed / failed tests,
     2. Job durations
@@ -60,7 +62,6 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
 
     hover = list()
     for _, row in data.iterrows():
-        d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
             f"duration: "
@@ -68,7 +69,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
             f"{((int(row['duration']) % 3600) // 60):02d}<br>"
             f"passed: {row['passed']}<br>"
             f"failed: {row['failed']}<br>"
-            f"{d_type}-ref: {row['dut_version']}<br>"
+            f"{row['dut_type']}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
             f"hosts: {', '.join(row['hosts'])}"
         )
@@ -79,9 +80,9 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
         data=go.Scatter(
             x=data["start_time"],
             y=data["duration"],
-            name=u"Duration",
+            name="Duration",
             text=hover,
-            hoverinfo=u"text"
+            hoverinfo="text"
         )
     )
 
@@ -99,21 +100,25 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
         fig_duration.update_layout(layout_duration)
 
     # Passed / failed:
+    bar_width = C.STATS_BAR_WIDTH_WEEKLY \
+        if "weekly" in job else C.STATS_BAR_WIDTH_DAILY
     fig_passed = go.Figure(
         data=[
             go.Bar(
                 x=data["start_time"],
                 y=data["passed"],
-                name=u"Passed",
+                name="Passed",
                 hovertext=hover,
-                hoverinfo=u"text"
+                hoverinfo="text",
+                width=bar_width
             ),
             go.Bar(
                 x=data["start_time"],
                 y=data["failed"],
-                name=u"Failed",
+                name="Failed",
                 hovertext=hover,
-                hoverinfo=u"text"
+                hoverinfo="text",
+                width=bar_width
             )
         ]
     )
