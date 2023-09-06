@@ -135,13 +135,12 @@ def graph_trending(
         customdata = list()
         customdata_samples = list()
         for idx, (_, row) in enumerate(df.iterrows()):
-            d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
             hover_itm = (
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"<prop> [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
                 f"<stdev>"
                 f"<additional-info>"
-                f"{d_type}-ref: {row['dut_version']}<br>"
+                f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
             )
@@ -176,12 +175,11 @@ def graph_trending(
 
         hover_trend = list()
         for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
-            d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
             hover_itm = (
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"trend [{row[C.UNIT[ttype]]}]: {avg:,.0f}<br>"
                 f"stdev [{row[C.UNIT[ttype]]}]: {stdev:,.0f}<br>"
-                f"{d_type}-ref: {row['dut_version']}<br>"
+                f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
             )
