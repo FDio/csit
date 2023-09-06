@@ -583,8 +583,8 @@ class Layout:
             Input("dd-tbeds", "value"),
             Input("url", "href")
         )
-        def _update_ctrl_panel(cp_data: dict, dut: str, ttype: str, cadence:str,
-                tbed: str, href: str) -> tuple:
+        def _update_ctrl_panel(cp_data: dict, dut: str, ttype: str,
+                cadence: str, tbed: str, href: str) -> tuple:
             """Update the application when the event is detected.
 
             :param cp_data: Current status of the control panel stored in
