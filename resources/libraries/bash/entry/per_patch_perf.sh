@@ -44,6 +44,8 @@ source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
+git revert --no-edit "09c0e8fac288bd09f21fda33096ec033f807271f" || die
+git revert --no-edit "0242d30fc717aeacb758281dad8e5b2e56bf6709" || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
 initialize_csit_dirs || die
