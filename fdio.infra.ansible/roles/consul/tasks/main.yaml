@@ -80,6 +80,8 @@
     group: "{{ consul_group }}"
     mode: 0755
   with_items:
+    - "{{ consul_config_dir }}"
+    - "{{ consul_ssl_dir }}"
     - "{{ consul_data_dir }}"
     - "{{ nomad_config_dir }}"
     - "{{ nomad_ssl_dir }}"
