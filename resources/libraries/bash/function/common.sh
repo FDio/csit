@@ -45,7 +45,7 @@ function activate_docker_topology () {
     device_image="$(< ${CSIT_DIR}/${IMAGE_VER_FILE})"
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_skx" | "1n_tx2")
+        "1n_skx" | "1n_tx2" | "1n_spr")
             # We execute reservation over csit-shim-dcr (ssh) which runs sourced
             # script's functions. Env variables are read from ssh output
             # back to localhost for further processing.
@@ -316,7 +316,7 @@ function deactivate_docker_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_skx" | "1n_tx2")
+        "1n_skx" | "1n_tx2" | "1n_spr")
             ssh="ssh root@172.17.0.1 -p 6022"
             env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
             # The "declare -f" output is long and boring.
@@ -435,6 +435,10 @@ function get_test_code () {
         *"1n-skx"*)
             NODENESS="1n"
             FLAVOR="skx"
+            ;;
+        *"1n-spr"*)
+            NODENESS="1n"
+            FLAVOR="spr"
             ;;
         *"1n-tx2"*)
             NODENESS="1n"
@@ -1133,7 +1137,7 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "1n_skx" | "1n_tx2")
+        "1n_skx" | "1n_tx2" | "1n_spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -319,6 +319,14 @@ function get_available_interfaces () {
             tg_netdev=(enp5)
             dut1_netdev=(enp145)
             ports_per_nic=2
+            ;;
+        "1n_spr")
+            # Add Intel Corporation E810 Virtual Function to the
+            # whitelist.
+            pci_id="0x1889"
+            tg_netdev=(ens2)
+            dut1_netdev=(ens4)
+            ports_per_nic=1
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
