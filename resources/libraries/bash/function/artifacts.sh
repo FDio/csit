@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
-# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -26,8 +25,6 @@ function download_artifacts () {
     # - REPO_URL - FD.io Packagecloud repository.
     # Functions conditionally called (see their documentation for side effects):
     # - download_ubuntu_artifacts
-    # - download_centos_artifacts
-    # - download_opensuse_artifacts
 
     set -exuo pipefail
 
@@ -46,10 +43,6 @@ function download_artifacts () {
 
     if [ "${os_id}" == "ubuntu" ]; then
         download_ubuntu_artifacts || die
-    elif [ "${os_id}" == "centos" ]; then
-        download_centos_artifacts || die
-    elif [ "${os_id}" == "opensuse" ]; then
-        download_opensuse_artifacts || die
     else
         die "${os_id} is not yet supported."
     fi
@@ -125,76 +118,6 @@ function download_ubuntu_artifacts () {
         }
     else
         apt-get -y download "${artifacts[@]}" || {
-            die "Download VPP artifacts failed."
-        }
-    fi
-}
-
-function download_centos_artifacts () {
-
-    # Download or install CentOS VPP artifacts from packagecloud.io.
-    #
-    # Variables read:
-    # - REPO_URL - FD.io Packagecloud repository.
-    # - VPP_VERSION - VPP version.
-    # - INSTALL - Whether install packages (if set to "true") or download only.
-    #             Default: "false".
-
-    set -exuo pipefail
-
-    curl -s "${REPO_URL}"/script.rpm.sh | sudo -E bash || {
-        die "Packagecloud FD.io repo fetch failed."
-    }
-    # If version is set we will add suffix.
-    artifacts=()
-    pkgs=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins vpp-api-python)
-    if [ -z "${VPP_VERSION-}" ]; then
-        artifs+=(${pkgs[@]})
-    else
-        artifs+=(${pkgs[@]/%/-${VPP_VERSION-}})
-    fi
-
-    if [[ "${INSTALL:-false}" == "true" ]]; then
-        sudo yum -y install "${artifs[@]}" || {
-            die "Install VPP artifact failed."
-        }
-    else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifs[@]}" || {
-            die "Download VPP artifacts failed."
-        }
-    fi
-}
-
-function download_opensuse_artifacts () {
-
-    # Download or install OpenSuSE VPP artifacts from packagecloud.io.
-    #
-    # Variables read:
-    # - REPO_URL - FD.io Packagecloud repository.
-    # - VPP_VERSION - VPP version.
-    # - INSTALL - Whether install packages (if set to "true") or download only.
-    #             Default: "false".
-
-    set -exuo pipefail
-
-    curl -s "${REPO_URL}"/script.rpm.sh | sudo -E bash || {
-        die "Packagecloud FD.io repo fetch failed."
-    }
-    # If version is set we will add suffix.
-    artifs=()
-    pkgs=(vpp vpp-devel vpp-lib vpp-plugins libvpp0)
-    if [ -z "${VPP_VERSION-}" ]; then
-        artifs+=(${pkgs[@]})
-    else
-        artifs+=(${pkgs[@]/%/-${VPP_VERSION-}})
-    fi
-
-    if [[ "${INSTALL:-false}" == "true" ]]; then
-        sudo yum -y install "${artifs[@]}" || {
-            die "Install VPP artifact failed."
-        }
-    else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifs[@]}" || {
             die "Download VPP artifacts failed."
         }
     fi
