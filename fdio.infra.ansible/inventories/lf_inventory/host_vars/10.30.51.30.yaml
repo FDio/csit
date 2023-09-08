@@ -63,7 +63,7 @@ nomad_servers:
 # Consul settigs.
 nomad_use_consul: true
 consul_certificates:
-  - src: "{{ file_consul_agent_ca_pem }}"
+  - src: "{{ file_consul_ca_pem }}"
     dest: "{{ consul_ca_file }}"
   - src: "{{ file_consul_server_0_pem }}"
     dest: "{{ consul_cert_file }}"
