@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,8 @@
 
 """Script for determining whether per-patch perf test votes -1.
 
+FIXME
+
 This script assumes there exist two text files with processed BMRR results,
 located at hardcoded relative paths (subdirs thereof), having several lines
 of json-parseable lists of float values, corresponding to testcase results.
@@ -23,9 +25,45 @@ this script votes -1 (by exiting with code 1), otherwise it votes +1 (exit 0).
 """
 
 import json
+import os
 import sys
 
 from resources.libraries.python import jumpavg
+
+
+def parse(dirpath):
+    """FIXME"""
+    results = {}
+    for root, _, files in os.walk(dirpath):
+        for filename in files:
+            if not filename.endswith(".json"):
+                continue
+            filepath = os.path.join(root, filename)
+            with open(filepath, "rt", encoding="utf8") as file_in:
+                data = json.load(file_in)
+            if "test_name_long" not in data:
+                continue
+            name = data["test_name_long"]
+            if not data["passed"]:
+                results[name] = [2.0]
+                continue
+            result_object = data["result"]
+            result_type = result_object["type"]
+            if result_type == "mrr":
+                results[name] = result_object["receive_rate"]["rate"]["values"]
+            elif result_type == "ndrpdr":
+                results[name] = [result_object["pdr"]["lower"]["rate"]["value"]]
+            elif result_type == "soak":
+                results[name] = [
+                    result_object["critical_rate"]["lower"]["rate"]["value"]
+                ]
+            elif result_type == "reconf":
+                results[name] = [result_object["loss"]["time"]["value"]]
+            elif result_type == "hoststack":
+                results[name] = [result_object["bandwidth"]["value"]]
+            else:
+                raise RuntimeError(f"Unknown result type: {result_type}")
+    return results
 
 
 def main():
@@ -35,50 +73,38 @@ def main():
     :rtype: int
     """
     iteration = -1
-    parent_iterations = list()
-    current_iterations = list()
-    num_tests = None
+    parent_aggregate = {}
+    current_aggregate = {}
+    test_names = None
     while 1:
         iteration += 1
-        parent_lines = list()
-        current_lines = list()
-        filename = f"csit_parent/{iteration}/results.txt"
-        try:
-            with open(filename) as parent_file:
-                parent_lines = parent_file.readlines()
-        except IOError:
+        parent_results = {}
+        current_results = {}
+        parent_results = parse(f"csit_parent/{iteration}")
+        parent_names = set(parent_results.keys())
+        if test_names is None:
+            test_names = parent_names
+        if not parent_names:
+            # No more iterations.
             break
-        num_lines = len(parent_lines)
-        filename = f"csit_current/{iteration}/results.txt"
-        with open(filename) as current_file:
-            current_lines = current_file.readlines()
-        if num_lines != len(current_lines):
-            print(
-                f"Number of tests does not match within iteration {iteration}",
-                file=sys.stderr
-            )
-            return 1
-        if num_tests is None:
-            num_tests = num_lines
-        elif num_tests != num_lines:
-            print(
-                f"Number of tests does not match previous at iteration "
-                f"{iteration}", file=sys.stderr
-            )
-            return 1
-        parent_iterations.append(parent_lines)
-        current_iterations.append(current_lines)
+        assert parent_names == test_names, f"{parent_names} != {test_names}"
+        current_results = parse(f"csit_current/{iteration}")
+        current_names = set(current_results.keys())
+        assert (
+            current_names == parent_names
+        ), f"{current_names} != {parent_names}"
+        for name in test_names:
+            if name not in parent_aggregate:
+                parent_aggregate[name] = []
+            if name not in current_aggregate:
+                current_aggregate[name] = []
+            parent_aggregate[name].extend(parent_results)
+            current_aggregate[name].extend(current_results)
     exit_code = 0
-    for test_index in range(num_tests):
-        parent_values = list()
-        current_values = list()
-        for iteration_index, _ in enumerate(parent_iterations):
-            parent_values.extend(
-                json.loads(parent_iterations[iteration_index][test_index])
-            )
-            current_values.extend(
-                json.loads(current_iterations[iteration_index][test_index])
-            )
+    for name in test_names:
+        print(f"Test name: {name}")
+        parent_values = parent_aggregate[name]
+        current_values = current_aggregate[name]
         print(f"Time-ordered MRR values for parent build: {parent_values}")
         print(f"Time-ordered MRR values for current build: {current_values}")
         parent_values = sorted(parent_values)
@@ -87,11 +113,14 @@ def main():
         parent_stats = jumpavg.AvgStdevStats.for_runs(parent_values)
         current_stats = jumpavg.AvgStdevStats.for_runs(current_values)
         parent_group_list = jumpavg.BitCountingGroupList(
-            max_value=max_value).append_group_of_runs([parent_stats])
-        combined_group_list = parent_group_list.copy(
-            ).extend_runs_to_last_group([current_stats])
+            max_value=max_value
+        ).append_group_of_runs([parent_stats])
+        combined_group_list = (
+            parent_group_list.copy().extend_runs_to_last_group([current_stats])
+        )
         separated_group_list = parent_group_list.append_group_of_runs(
-            [current_stats])
+            [current_stats]
+        )
         print(f"Value-ordered MRR values for parent build: {parent_values}")
         print(f"Value-ordered MRR values for current build: {current_values}")
         avg_diff = (current_stats.avg - parent_stats.avg) / parent_stats.avg
@@ -103,7 +132,7 @@ def main():
             f" {combined_group_list[0].stats}"
         )
         bits_diff = separated_group_list.bits - combined_group_list.bits
-        compared = u"longer" if bits_diff >= 0 else u"shorter"
+        compared = "longer" if bits_diff >= 0 else "shorter"
         print(
             f"Separate groups are {compared} than single group"
             f" by {abs(bits_diff)} bits"
@@ -112,16 +141,17 @@ def main():
         # That matters if only stats (not list of floats) are given.
         classified_list = jumpavg.classify([parent_values, current_values])
         if len(classified_list) < 2:
-            print(f"Test test_index {test_index}: normal (no anomaly)")
+            print(f"Test {name}: normal (no anomaly)")
             continue
         anomaly = classified_list[1].comment
-        if anomaly == u"regression":
-            print(f"Test test_index {test_index}: anomaly regression")
+        if anomaly == "regression":
+            print(f"Test {name}: anomaly regression")
             exit_code = 3  # 1 or 2 can be caused by other errors
             continue
-        print(f"Test test_index {test_index}: anomaly {anomaly}")
+        print(f"Test {name}: anomaly {anomaly}")
     print(f"Exit code: {exit_code}")
     return exit_code
 
-if __name__ == u"__main__":
+
+if __name__ == "__main__":
     sys.exit(main())
