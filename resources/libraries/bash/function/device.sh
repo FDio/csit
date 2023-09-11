@@ -326,7 +326,7 @@ function get_available_interfaces () {
             pci_id="0x1889"
             tg_netdev=(ens2)
             dut1_netdev=(ens4)
-            ports_per_nic=1
+            ports_per_nic=2
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
