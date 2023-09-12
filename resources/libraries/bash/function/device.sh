@@ -325,7 +325,7 @@ function get_available_interfaces () {
             # whitelist.
             pci_id="0x1889"
             tg_netdev=(enp42s0 enp44s0)
-            dut1_netdev=(enp61s0 enp63s0)
+            dut1_netdev=(enp63s0 enp61s0)
             ports_per_nic=1
             ;;
        "1n_vbox")
