@@ -324,9 +324,9 @@ function get_available_interfaces () {
             # Add Intel Corporation E810 Virtual Function to the
             # whitelist.
             pci_id="0x1889"
-            tg_netdev=(ens2)
-            dut1_netdev=(ens4)
-            ports_per_nic=2
+            tg_netdev=(enp42s0 enp44s0)
+            dut1_netdev=(enp61s0 enp63s0)
+            ports_per_nic=1
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
