@@ -23,4 +23,6 @@ PCI_WHITELIST+=($(lspci -Dmmd ':1592:0200' | cut -f1 -d' '))
 declare -A PF_INDICES
 # Intel NICs
 PF_INDICES["0000:2a:00.0"]=0
+PF_INDICES["0000:2c:00.0"]=1
 PF_INDICES["0000:3d:00.0"]=0
+PF_INDICES["0000:3f:00.0"]=1

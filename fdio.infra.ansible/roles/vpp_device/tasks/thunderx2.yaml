@@ -1,5 +1,5 @@
 ---
-# file: roles/vpp_device/tasks/thunderx2.yaml
+# file: tasks/thunderx2.yaml
 
 - name: Load Kernel Modules On Startup (vfio-pci)
   ansible.builtin.lineinfile:
