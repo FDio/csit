@@ -108,6 +108,9 @@ def append_mrr_value(mrr_value, unit):
     """
     if not unit:
         return
+    if mrr_value < 0:
+        # TODO: Remove this workaround when CSIT-1901 is fixed.
+        return
     data = get_export_data()
     data["result"]["type"] = "mrr"
     rate_node = descend(descend(data["result"], "receive_rate"), "rate")
