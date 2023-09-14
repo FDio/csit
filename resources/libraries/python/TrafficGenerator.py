@@ -1320,11 +1320,15 @@ class TrafficGenerator(AbstractMeasurer):
         time_stop = time_start + duration
         if self.resetter:
             self.resetter()
-        result = self._send_traffic_on_tg_with_ramp_up(
-            duration=duration,
-            rate=transmit_rate,
-            async_call=False,
-        )
+        while 1:
+            result = self._send_traffic_on_tg_with_ramp_up(
+                duration=duration,
+                rate=transmit_rate,
+                async_call=False,
+            )
+            if result.transmit_count >= 0:
+                break
+            logger.debug("Negative forwarding count, retrying.")
         logger.debug(f"trial measurement result: {result!r}")
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
