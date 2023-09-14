@@ -250,6 +250,7 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Inbound | on
+| | | Run Keyword | ${dut}.Add IPsec SPD Fast Path IPv4 Inbound | on
 | | END
 
 | Enable SPD flow cache IPv4 Outbound
@@ -258,6 +259,7 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Outbound | on
+| | | Run Keyword | ${dut}.Add IPsec SPD Fast Path IPv4 Outbound | on
 | | END
 
 | Enable IPsec SPD Fast Path IPv4 Inbound and Outbound
