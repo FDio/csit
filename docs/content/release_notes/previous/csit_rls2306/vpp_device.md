@@ -1,37 +1,25 @@
 ---
-title: "DPDK Performance"
-weight: 2
+title: "VPP Device"
+weight: 4
 ---
 
-# CSIT 23.10 - DPDK Performance
+# CSIT 23.06 - VPP Device
 
 1. TEST FRAMEWORK
-   - **CSIT test environment** version has been updated to ver. 13, see
+   - **CSIT test environment** version has been updated to ver. 12, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
-2. DPDK PERFORMANCE TESTS
-   - .
-3. DPDK RELEASE VERSION CHANGE
-   - Version 23.07 is now tested.
 
 # Known Issues
 
-List of known issues in CSIT 23.10 for DPDK performance tests:
+List of known issues in CSIT 23.06 for VPP functional tests in VPP Device:
+
+**#** | **JiraID**                                       | **Issue Description**
+------|--------------------------------------------------|--------------------------------------------------------------
+ 1    |                                                  |
 
 ## New
 
-List of new issues in CSIT 23.10 for DPDK performance tests:
-
-**#** | **JiraID**                                       | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
-
-## Previous
-
-**#** | **JiraID**                                       | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
-
-## Fixed
+List of new issues in CSIT 23.06 for VPP functional tests in VPP Device:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
