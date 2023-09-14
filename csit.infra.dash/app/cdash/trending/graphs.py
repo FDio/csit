@@ -134,8 +134,12 @@ def graph_trending(
         hover = list()
         customdata = list()
         customdata_samples = list()
+        name_lst = name.split("-")
         for idx, (_, row) in enumerate(df.iterrows()):
             hover_itm = (
+                f"dut: {name_lst[0]}<br>"
+                f"infra: {'-'.join(name_lst[1:5])}<br>"
+                f"test: {'-'.join(name_lst[5:])}<br>"
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"<prop> [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
                 f"<stdev>"
@@ -176,6 +180,9 @@ def graph_trending(
         hover_trend = list()
         for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
             hover_itm = (
+                f"dut: {name_lst[0]}<br>"
+                f"infra: {'-'.join(name_lst[1:5])}<br>"
+                f"test: {'-'.join(name_lst[5:])}<br>"
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"trend [{row[C.UNIT[ttype]]}]: {avg:,.0f}<br>"
                 f"stdev [{row[C.UNIT[ttype]]}]: {stdev:,.0f}<br>"
@@ -199,7 +206,7 @@ def graph_trending(
                     "symbol": "circle",
                 },
                 text=hover,
-                hoverinfo="text+name",
+                hoverinfo="text",
                 showlegend=True,
                 legendgroup=name,
                 customdata=customdata_samples
@@ -215,7 +222,7 @@ def graph_trending(
                     "color": color,
                 },
                 text=hover_trend,
-                hoverinfo="text+name",
+                hoverinfo="text",
                 showlegend=False,
                 legendgroup=name,
                 customdata=customdata
@@ -233,6 +240,9 @@ def graph_trending(
                     anomaly_y.append(trend_avg[idx])
                     anomaly_color.append(C.ANOMALY_COLOR[anomaly])
                     hover_itm = (
+                        f"dut: {name_lst[0]}<br>"
+                        f"infra: {'-'.join(name_lst[1:5])}<br>"
+                        f"test: {'-'.join(name_lst[5:])}<br>"
                         f"date: {x_axis[idx].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                         f"trend [pps]: {trend_avg[idx]:,.0f}<br>"
                         f"classification: {anomaly}"
@@ -247,7 +257,7 @@ def graph_trending(
                     y=anomaly_y,
                     mode="markers",
                     text=hover,
-                    hoverinfo="text+name",
+                    hoverinfo="text",
                     showlegend=False,
                     legendgroup=name,
                     name=name,
