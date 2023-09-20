@@ -210,6 +210,7 @@ class MultipleLossRatioSearch:
             intended_duration=duration,
             intended_load=float(load),
         )
+        self.debug(f"Detailed result: {result!r}")
         self.debug(f"Measured lr={result.loss_ratio}")
         result = DiscreteResult.with_load(result=result, load=load)
         self.database.add(result)
