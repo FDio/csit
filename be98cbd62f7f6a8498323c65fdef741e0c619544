@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84364e9_5ef03d7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-09-21T11:25:37Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-2n-clx-perftest dpdk-ndrpdr-00",
+      "revId": "be98cbd62f7f6a8498323c65fdef741e0c619544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
