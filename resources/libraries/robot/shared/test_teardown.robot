@@ -36,6 +36,8 @@
 | | Run Keyword If Test Failed
 | | ... | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
+| | ... | Show Error On All Duts | ${nodes}
+| | Run Keyword If Test Failed
 | | ... | Get Core Files on All Nodes | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Verify VPP PID in Teardown
@@ -85,6 +87,7 @@
 | | ... | Additional teardown for tests which uses containers.
 | |
 | | FOR | ${container_group} | IN | @{container_groups}
+| | | Show Log On All containers
 | | | Destroy all '${container_group}' containers
 | | END
 
