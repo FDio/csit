@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f25cfd9_5415c802",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-09-21T07:36:44Z",
+      "side": 1,
+      "message": "csit-vpp-report-dev-1n-spr\ncsit-vpp-report-dev-1n-tx2",
+      "revId": "4ec7c6d9fb3a42723cf723c6eede5d5fe6074710",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
