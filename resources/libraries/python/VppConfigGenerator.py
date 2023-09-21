@@ -670,6 +670,16 @@ class VppConfigGenerator:
         path = [u"session", u"local-endpoints-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dma_dev(self, devices):
+        """Add DMA devices configuration.
+
+        :param devices: DMA devices or work queues.
+        :type devices: list
+        """
+        for device in devices:
+            path = [u"dsa", f"dev {device}"]
+            self.add_config_item(self._nodeconfig, u"", path)
+
     def write_config(self, filename=None):
         """Generate and write VPP startup configuration to file.
 
