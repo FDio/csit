@@ -240,6 +240,9 @@
 | | ... | ${container_chain_topology}
 | | ... | dut1_if=${DUT1_${int}2}[0]
 | | ... | dut2_if=${DUT2_${int}2}[0]
+| | ... | ELSE IF | '${container_chain_topology}' == 'chain_dma'
+| | ... | ${group}.Configure VPP In All Containers
+| | ... | ${container_chain_topology}
 | | ... | ELSE
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
