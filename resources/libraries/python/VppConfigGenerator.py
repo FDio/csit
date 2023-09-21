@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -669,6 +669,16 @@ class VppConfigGenerator:
         """
         path = [u"session", u"local-endpoints-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_dma_dev(self, devices):
+        """Add DMA devices configuration.
+
+        :param devices: DMA devices or work queues.
+        :type devices: list
+        """
+        for device in devices:
+            path = [u"dsa", f"dev {device}"]
+            self.add_config_item(self._nodeconfig, u"", path)
 
     def write_config(self, filename=None):
         """Generate and write VPP startup configuration to file.
