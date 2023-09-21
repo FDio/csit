@@ -319,7 +319,7 @@ class Constants:
         u"Mellanox-CX7VEAT": 200000000000,
         u"Amazon-Nitro-50G": 10000000000,
         u"Amazon-Nitro-100G": 10000000000,
-        u"Amazon-Nitro-200G": 20000000000,
+        u"Amazon-Nitro-200G": 16000000000,
         u"virtual": 100000000,
     }
 
