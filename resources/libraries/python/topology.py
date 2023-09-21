@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1084,6 +1084,19 @@ class Topology:
         """
         try:
             return node[u"cryptodev"]
+        except KeyError:
+            return None
+
+    def get_bus(node):
+        """Return bus configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: bus configuration string.
+        :rtype: str
+        """
+        try:
+            return node[u"bus"]
         except KeyError:
             return None
 
