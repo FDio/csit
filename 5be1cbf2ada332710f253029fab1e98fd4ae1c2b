@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-2n-aws-perftest vpp-ndrpdr-00",
       "revId": "5be1cbf2ada332710f253029fab1e98fd4ae1c2b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa124ea7_0d4bb645",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-09-21T09:06:34Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-2n-icx-perftest dpdk-ndrpdr-00",
+      "revId": "5be1cbf2ada332710f253029fab1e98fd4ae1c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
