@@ -389,6 +389,26 @@ class VPPUtil:
                 VPPUtil.show_log(node)
 
     @staticmethod
+    def show_error(node):
+        """Show error on the specified topology node.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(node, u"show error")
+
+    @staticmethod
+    def show_error_on_all_duts(nodes):
+        """Show error on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                VPPUtil.show_error(node)
+
+    @staticmethod
     def vpp_show_threads(node):
         """Show VPP threads on node.
 
