@@ -85,6 +85,7 @@
 | | ... | Additional teardown for tests which uses containers.
 | |
 | | FOR | ${container_group} | IN | @{container_groups}
+| | | VPP Show Interfaces | ${container_group}
 | | | Destroy all '${container_group}' containers
 | | END
 

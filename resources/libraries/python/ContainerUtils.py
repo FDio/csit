@@ -28,6 +28,7 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 from resources.libraries.python.VPPUtil import VPPUtil
+from resources.libraries.python.DMAUtil import DMAUtil
 
 
 __all__ = [
@@ -256,6 +257,11 @@ class ContainerManager:
                 self._configure_vpp_chain_ipsec(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, nf_instance=idx, **kwargs)
+            elif chain_topology == u"chain_dma":
+                self._configure_vpp_chain_dma(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
             else:
                 raise RuntimeError(
                     f"Container topology {chain_topology} not implemented"
@@ -270,6 +276,31 @@ class ContainerManager:
         self.engine.create_vpp_startup_config()
         self.engine.create_vpp_exec_config(
             u"memif_create_chain_l2xc.exec",
+            mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
+            sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
+            socket1=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid1']}",
+            socket2=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid2']}"
+        )
+
+    def _configure_vpp_chain_dma(self, **kwargs):
+        """Configure VPP in chain topology with l2xc (dma).
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+
+        cpuset_cpus = self.engine.container.cpuset_cpus
+        workers_num = len(cpuset_cpus) - 1
+
+        enabled_wqs = DMAUtil.enable_dmas_and_wqs_on_dut(
+                self.engine.container.node, workers_num)
+
+        self.engine.create_vpp_startup_config_dma(enabled_wqs)
+
+        self.engine.create_vpp_exec_config(
+            u"memif_create_chain_dma.exec",
             mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
             sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
             socket1=f"{kwargs[u'guest_dir']}/memif-"
@@ -761,6 +792,22 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
         vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
+
+        # Apply configuration
+        self.execute(u"mkdir -p /etc/vpp/")
+        self.execute(
+            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
+        )
+
+    def create_vpp_startup_config_dma(self, dma_devices):
+        """Create startup configuration of VPP DMA.
+
+        :param dma_devices: DMA devices list.
+        :type dma_devices: list
+        """
+        vpp_config = self.create_base_vpp_startup_config()
+        vpp_config.add_plugin(u"enable", u"dma_intel_plugin.so")
+        vpp_config.add_dma_dev(dma_devices)
 
         # Apply configuration
         self.execute(u"mkdir -p /etc/vpp/")
