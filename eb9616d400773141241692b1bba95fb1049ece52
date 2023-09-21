@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-c6in-perftest vpp-mrr-00",
       "revId": "eb9616d400773141241692b1bba95fb1049ece52",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b397fd05_68802237",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-09-21T12:16:51Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-1n-aws-perftest trex-ndrpdr-00",
+      "revId": "eb9616d400773141241692b1bba95fb1049ece52",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
