@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,8 @@ from resources.libraries.python.model.ExportResult import append_telemetry
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
+from resources.libraries.python.VPPUtil import VPPUtil
+
 
 __all__ = ["TelemetryUtil"]
 
@@ -74,6 +76,8 @@ class TelemetryUtil:
                 append_telemetry(
                     prefix.join(line.rsplit("{", 1)).replace("\"", "'")
                 )
+
+        VPPUtil.vpp_show_interfaces(node)
 
     def run_telemetry_on_all_duts(self, nodes, profile, rate="", export=False):
         """Get telemetry read on all DUTs.

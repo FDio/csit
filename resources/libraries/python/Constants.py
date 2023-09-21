@@ -257,7 +257,7 @@ class Constants:
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
     # Duration [s] of one trial in MRR test.
-    PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
+    PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 5.0)
 
     # Whether to use latency streams in main search trials.
     PERF_USE_LATENCY = get_pessimistic_bool_from_env(u"PERF_USE_LATENCY")
@@ -269,7 +269,7 @@ class Constants:
     # For some testbeds TG takes longer than usual to start sending traffic.
     # This constant [s] allows longer wait, without affecting
     # the approximate duration. For example, use 0.098 for AWS.
-    PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0.0)
+    PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0)
 
     # ASTF usually needs a different value for the delay.
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
