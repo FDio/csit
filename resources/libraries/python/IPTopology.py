@@ -61,7 +61,7 @@ class IPTopology:
                 )
             IPUtil.vpp_add_ip_neighbor(
                 topology[dut], dut_int2, f"2.{l}.2.1",
-                topology[f"TG_pf{i}_mac"][0]
+                topology[f"TG_pf{i+1}_mac"][0]
             )
 
             IPUtil.vpp_interface_set_ip_address(
