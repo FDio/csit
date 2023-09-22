@@ -301,7 +301,7 @@ class TrafficGenerator(AbstractMeasurer):
             for l in range(1, parallel_links*2, 2):
                 tg_if1_adj_addr = topology[f"TG_pf{l+1}_mac"][0]
                 tg_if2_adj_addr = topology[f"TG_pf{l}_mac"][0]
-                if osi_layer in ("L3", "L7"):
+                if osi_layer in ("L3", "L7") and "DUT1" in topology.keys():
                     ifl = BuiltIn().get_variable_value("${int}")
                     last = topology["duts_count"]
                     tg_if1_adj_addr = Topology().get_interface_mac(
