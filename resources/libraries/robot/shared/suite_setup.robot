@@ -252,7 +252,7 @@
 | | ${version} = | Get TG Version | ${nodes}[TG]
 | | Export Dut Type And Version | ${type} | ${version}
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | L2
+| | Initialize traffic generator | ${osi_layer}
 
 | Additional Suite Setup Action For iPerf3
 | | [Documentation]
