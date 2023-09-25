@@ -27,7 +27,8 @@ Vagrant.configure("2") do |config|
     config.vm.network :private_network, type: "dhcp", auto_config: false, virtualbox__intnet: "link2", nic_type: "82545em", mac: "080027e3f542"
     config.vm.network :private_network, type: "dhcp", auto_config: false, virtualbox__intnet: "link3", nic_type: "82545em", mac: "0800274f7c63"
 
-    config.vm.synced_folder "../", "/vagrant/csit"
+    # config.vm.synced_folder "../", "/vagrant/csit"
+    config.vm.synced_folder "../", "/home/vagrant/csit"
 
     # Provision the box using ansible local (no Ansible installation needed
     # on host).
@@ -36,8 +37,8 @@ Vagrant.configure("2") do |config|
         ansible.become = true
         ansible.verbose = false
         ansible.limit = "vagrant"
-        ansible.inventory_path = "csit/fdio.infra.ansible/inventories/vagrant_inventory/hosts"
-        ansible.playbook = "csit/fdio.infra.ansible/site.yaml"
+        ansible.inventory_path = "/home/vagrant/csit/fdio.infra.ansible/inventories/vagrant_inventory/hosts"
+        ansible.playbook = "/home/vagrant/csit/fdio.infra.ansible/site.yaml"
     end
 
     config.vm.post_up_message = <<-MESSAGE
@@ -62,19 +63,23 @@ Vagrant.configure("2") do |config|
 
     MESSAGE
 
-    config.vm.define "focal", primary: true do |focal|
+    config.vm.define "jammy", primary: true do |jammy|
         # Base box definition, currently using
-        #  Official Ubuntu 20.04 LTS (Focal) Daily Build
-        focal.vm.box = "ubuntu/focal64"
-        focal.vm.box_version = "20210415.0.0"
-        focal.vm.box_check_update = false
+        # Official Ubuntu 22.04 LTS (Jammy) Daily Build
+        jammy.vm.box = "ubuntu/jammy64"
+        # jammy.vm.disk :disk, size: "100GB", primary: true
+        jammy.vm.box_version = "20221229.0.0"
+        # jammy.vm.box = "bento/ubuntu-22.04"
+        # jammy.vm.box_version = "20230828.0.0"
+        # jammy.vm.box_check_update = false
 
         # Virtualbox machine configuration
-        focal.vm.provider "virtualbox" do |vb|
-            vb.name = "vppdevice-focal"
+        jammy.vm.provider "virtualbox" do |vb|
+            vb.name = "vppdevice-jammy"
             vb.gui = false
-            vb.memory = "8192"
+            vb.memory = "4096"
             vb.cpus = "4"
+            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
             vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
             vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]

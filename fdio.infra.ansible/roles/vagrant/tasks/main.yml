@@ -26,13 +26,13 @@
 - name: Reload groups for current session
   command: "/usr/bin/newgrp docker"
 
-- name: Clone CSIT repository
-  become_user: vagrant
-  git:
-    repo: "{{ csit.repository.url }}"
-    dest: "{{ csit.home }}"
-    accept_hostkey: true
-    version: "{{ csit.repository.version }}"
+# - name: Clone CSIT repository
+#   become_user: vagrant
+#   git:
+#     repo: "{{ csit.repository.url }}"
+#     dest: "{{ csit.home }}"
+#     accept_hostkey: true
+#     version: "{{ csit.repository.version }}"
 
 - name: Load csit docker image from local path if exists (/vagrant/csit-sut.tar)
   shell: |
