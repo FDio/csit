@@ -705,7 +705,7 @@ function set_env_variables () {
     CSIT_TG_HOST="$(hostname --all-ip-addresses | awk '{print $1}')" || {
         die "Reading hostname IP address failed!"
     }
-    CSIT_TG_PORT="${DCR_PORTS[tg]#*:}"
+    CSIT_TG_PORT="${DCR_PORTS[tg]##*:}"
     CSIT_TG_UUID="${DCR_UUIDS[tg]}"
     CSIT_TG_ARCH="$(uname -i)" || {
         die "Reading machine architecture failed!"
@@ -713,7 +713,7 @@ function set_env_variables () {
     CSIT_DUT1_HOST="$(hostname --all-ip-addresses | awk '{print $1}')" || {
         die "Reading hostname IP address failed!"
     }
-    CSIT_DUT1_PORT="${DCR_PORTS[dut1]#*:}"
+    CSIT_DUT1_PORT="${DCR_PORTS[dut1]##*:}"
     CSIT_DUT1_UUID="${DCR_UUIDS[dut1]}"
     CSIT_DUT1_ARCH="$(uname -i)" || {
         die "Reading machine architecture failed!"
