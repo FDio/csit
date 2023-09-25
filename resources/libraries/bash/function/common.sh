@@ -311,31 +311,37 @@ function deactivate_docker_topology () {
     # Variables read:
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
+    # - CSIT_NO_CLEANUP - Variable to disable cleaning up the environment.
 
     set -exuo pipefail
-
-    case_text="${NODENESS}_${FLAVOR}"
-    case "${case_text}" in
-        "1n_skx" | "1n_tx2" | "1n_spr")
-            ssh="ssh root@172.17.0.1 -p 6022"
-            env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
-            # The "declare -f" output is long and boring.
-            set +x
-            ${ssh} "$(declare -f); deactivate_wrapper ${env_vars}" || {
-                die "Topology cleanup via shim-dcr failed!"
-            }
-            set -x
-            ;;
-        "1n_vbox")
-            enter_mutex || die
-            clean_environment || {
-                die "Topology cleanup locally failed!"
-            }
-            exit_mutex || die
-            ;;
-        *)
-            die "Unknown specification: ${case_text}!"
-    esac
+    
+    if [[ ${CSIT_NO_CLEANUP:-0} -eq 0 ]]; then
+        case_text="${NODENESS}_${FLAVOR}"
+        case "${case_text}" in
+            "1n_skx" | "1n_tx2" | "1n_spr")
+                ssh="ssh root@172.17.0.1 -p 6022"
+                env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
+                # The "declare -f" output is long and boring.
+                set +x
+                ${ssh} "$(declare -f); deactivate_wrapper ${env_vars}" || {
+                    die "Topology cleanup via shim-dcr failed!"
+                }
+                set -x
+                ;;
+            "1n_vbox")
+                enter_mutex || die
+                clean_environment || {
+                    die "Topology cleanup locally failed!"
+                }
+                exit_mutex || die
+                ;;
+            *)
+                die "Unknown specification: ${case_text}!"
+        esac
+    else
+        echo "CSIT_NO_CLEANUP environment variable is set"
+        echo "Environment Cleanup Abandoned"
+    fi
 }
 
 
@@ -939,6 +945,7 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("nitro-50g","50ge1p1ENA");'
     awk_nics_sub_cmd+='gsub("nitro-100g","100ge1p1ENA");'
     awk_nics_sub_cmd+='gsub("nitro-200g","200ge1p1ENA");'
+    awk_nics_sub_cmd+='gsub("virtual","1ge1p82540em");'
     awk_nics_sub_cmd+='if ($9 =="drv_avf") drv="avf-";'
     awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'
     awk_nics_sub_cmd+='else if ($9 =="drv_mlx5_core") drv ="mlx5-";'

@@ -106,7 +106,7 @@ def extract_tarball_at_node(tarball, node):
         node, cmd,
         message=f"Failed to extract {tarball} at node {node[u'type']} "
         f"host {node[u'host']}, port {node[u'port']}",
-        timeout=240, include_reason=True
+        timeout=600, include_reason=True
     )
     logger.console(
         f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
@@ -170,7 +170,8 @@ def setup_node(node, tarball, remote_tarball, results=None, logs=None):
             if isinstance(logs, list):
                 logs.append(f"{node[u'host']} Env stdout: {stdout}")
                 logs.append(f"{node[u'host']} Env stderr: {stderr}")
-    except Exception:
+    except Exception as exc:
+        logger.console(exc)
         # any exception must result in result = False
         # since this runs in a thread and can't be caught anywhere else
         err_msg = f"Node {node[u'type']} host {node[u'host']}, " \
