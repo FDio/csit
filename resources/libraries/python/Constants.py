@@ -365,6 +365,7 @@ class Constants:
         u"Mellanox-CX556A": u"100ge2p1cx556a",
         u"Mellanox-CX6DX": u"100ge2p1cx6dx",
         u"Mellanox-CX7VEAT": u"200ge2p1cx7veat",
+        "virtual": "1ge1p82540em",
     }
 
     # Shortened lowercase NIC model name, useful for presentation.
@@ -382,6 +383,8 @@ class Constants:
         u"100ge2p1cx556a": u"cx556a",
         u"100ge2p1cx6dx": u"cx6dx",
         u"200ge2p1cx7veat": u"cx7veat",
+        "1ge1p82540em": "8250em",
+
     }
 
     # Not each driver is supported by each NIC.
@@ -399,6 +402,7 @@ class Constants:
         u"Mellanox-CX556A": [u"rdma-core", u"mlx5_core", u"af_xdp"],
         u"Mellanox-CX6DX": [u"rdma-core", u"mlx5_core", u"af_xdp"],
         u"Mellanox-CX7VEAT": [u"rdma-core", u"mlx5_core", u"af_xdp"],
+        "virtual": ["vfio-pci"],
     }
 
     # Each driver needs different plugin to work.
@@ -452,6 +456,7 @@ class Constants:
         u"Mellanox-CX556A": [u"mlx5_core"],
         u"Mellanox-CX6DX": [u"mlx5_core"],
         u"Mellanox-CX7VEAT": [u"mlx5_core"],
+        "virtual": ["vfio-pci"],
     }
 
     # Tags to differentiate tests for different NIC driver.
