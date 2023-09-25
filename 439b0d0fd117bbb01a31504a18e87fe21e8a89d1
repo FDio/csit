@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b357c20_868e14e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-09-25T05:03:19Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-2n-icx-perftest trex-ndrpdr-00",
+      "revId": "439b0d0fd117bbb01a31504a18e87fe21e8a89d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
