@@ -27,7 +27,7 @@ type: "docs"
      A methodology similar to trending analysis is used for comparing
      performance before a DUT code change is merged.
 3. RELEASE NOTES: Performance tests executed in physical FD.io testbeds.
-   - **[CSIT rls2310]({{< relref "/release_notes/current/" >}})**: The
+   - **[{{< release_csit >}}]({{< relref "/release_notes/current/" >}})**: The
      release notes of the current CSIT release.
    - **[Previous]({{< relref "/release_notes/previous/" >}})**: Archived release
      notes for the past releases.
