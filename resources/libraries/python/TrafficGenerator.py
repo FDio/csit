@@ -21,9 +21,10 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from .Constants import Constants
 from .DropRateSearch import DropRateSearch
-from .MLRsearch.AbstractMeasurer import AbstractMeasurer
-from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
-from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
+from .MLRsearch import (
+    AbstractMeasurer, Config, MeasurementResult,
+    MultipleLossRatioSearch, SearchGoal, SearchGoalSet
+)
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
 from .ssh import exec_cmd_no_error, exec_cmd
@@ -514,7 +515,7 @@ class TrafficGenerator(AbstractMeasurer):
         """Stop all traffic on TG.
 
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: MeasurementResult
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
@@ -534,7 +535,7 @@ class TrafficGenerator(AbstractMeasurer):
         """Compute duration for profile driver.
 
         The final result is influenced by transaction scale and duration limit.
-        It is assumed a higher level function has already set those to self.
+        It is assumed a higher level function has already set those on self.
         The duration argument is the target value from search point of view,
         before the overrides are applied here.
 
@@ -858,7 +859,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type state_timeout: float
         :type ramp_up_only: bool
         :returns: TG results.
-        :rtype: ReceiveRateMeasurement or None
+        :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
         """
         self.set_rate_provider_defaults(
@@ -905,7 +906,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type rate: float
         :type async_call: bool
         :returns: TG results.
-        :rtype: ReceiveRateMeasurement or None
+        :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
@@ -956,7 +957,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type async_call: bool
         :type ramp_up_only: bool
         :returns: TG results.
-        :rtype: ReceiveRateMeasurement or None
+        :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
         """
         complete = False
@@ -1011,7 +1012,7 @@ class TrafficGenerator(AbstractMeasurer):
         trial_end = time.monotonic()
         if self.ramp_up_rate:
             # Optimization: No loss acts as a good ramp-up, if it was complete.
-            if complete and result is not None and result.loss_count == 0:
+            if complete and result is not None and result.loss_ratio == 0.0:
                 logger.debug(u"Good trial acts as a ramp-up")
                 self.ramp_up_start = trial_start
                 self.ramp_up_stop = trial_end
@@ -1183,19 +1184,20 @@ class TrafficGenerator(AbstractMeasurer):
                         int(self._result.get(u"server_tcp_rx_bytes", 0))
 
     def _get_measurement_result(self):
-        """Return the result of last measurement as ReceiveRateMeasurement.
+        """Return the result of last measurement as MeasurementResult.
 
         Separate function, as measurements can end either by time
         or by explicit call, this is the common block at the end.
 
-        The target_tr field of ReceiveRateMeasurement is in
+        The intended_load field of MeasurementResult is in
         transactions per second. Transmit count and loss count units
         depend on the transaction type. Usually they are in transactions
         per second, or aggregated packets per second.
 
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: MeasurementResult
         """
+        duration_with_overheads = time.monotonic() - self._start_time
         try:
             # Client duration seems to include a setup period
             # where TRex does not send any packets yet.
@@ -1235,7 +1237,7 @@ class TrafficGenerator(AbstractMeasurer):
             expected_attempt_count = max(expected_attempt_count, self._sent)
             unsent = expected_attempt_count - self._sent
             pass_count = self._received
-            fail_count = expected_attempt_count - pass_count
+            loss_count = self._loss
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
@@ -1244,7 +1246,7 @@ class TrafficGenerator(AbstractMeasurer):
             expected_attempt_count = self.transaction_scale
             unsent = expected_attempt_count - partial_attempt_count
             pass_count = self._l7_data[u"client"][u"received"]
-            fail_count = expected_attempt_count - pass_count
+            loss_count = partial_attempt_count - pass_count
         elif self.transaction_type == u"tcp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit tcp_cps.")
@@ -1257,14 +1259,14 @@ class TrafficGenerator(AbstractMeasurer):
             # but we are testing NAT session so client/connects counts that
             # (half connections from TCP point of view).
             pass_count = self._l7_data[u"client"][u"tcp"][u"connects"]
-            fail_count = expected_attempt_count - pass_count
+            loss_count = partial_attempt_count - pass_count
         elif self.transaction_type == u"udp_pps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_pps.")
             partial_attempt_count = self._sent
             expected_attempt_count = self.transaction_scale * self.ppta
             unsent = expected_attempt_count - self._sent
-            fail_count = self._loss + unsent
+            loss_count = self._loss
         elif self.transaction_type == u"tcp_pps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit tcp_pps.")
@@ -1278,29 +1280,30 @@ class TrafficGenerator(AbstractMeasurer):
             # Probability of retransmissions exactly cancelling
             # packets unsent due to duration stretching is quite low.
             unsent = abs(expected_attempt_count - self._sent)
-            fail_count = self._loss + unsent
+            loss_count = self._loss
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
         if unsent and isinstance(self._approximated_duration, float):
             # Do not report unsent for "manual".
             logger.debug(f"Unsent packets/transactions: {unsent}")
-        if fail_count < 0 and not self.negative_loss:
-            fail_count = 0
-        measurement = ReceiveRateMeasurement(
-            duration=target_duration,
-            target_tr=transmit_rate,
-            transmit_count=expected_attempt_count,
-            loss_count=fail_count,
-            approximated_duration=approximated_duration,
-            partial_transmit_count=partial_attempt_count,
+        if loss_count < 0 and not self.negative_loss:
+            loss_count = 0
+        measurement = MeasurementResult(
+            intended_duration=target_duration,
+            intended_load=transmit_rate,
+            offered_count=partial_attempt_count,
+            loss_count=loss_count,
+            offered_duration=approximated_duration,
+            duration_with_overheads=duration_with_overheads,
+            intended_count=expected_attempt_count,
         )
         measurement.latency = self.get_latency_int()
         return measurement
 
-    def measure(self, duration, transmit_rate):
+    def measure(self, intended_duration, intended_load):
         """Run trial measurement, parse and return results.
 
-        The input rate is for transactions. Stateles bidirectional traffic
+        The intended load is for transactions. Stateles bidirectional traffic
         is understood as sequence of (asynchronous) transactions,
         two packets each.
 
@@ -1308,33 +1311,32 @@ class TrafficGenerator(AbstractMeasurer):
         the count either transactions or packets (aggregated over directions).
 
         Optionally, this method sleeps if measurement finished before
-        the time specified as duration.
+        the time specified as intended_duration (PLRsearch needs time for math).
 
-        :param duration: Trial duration [s].
-        :param transmit_rate: Target rate in transactions per second.
-        :type duration: float
-        :type transmit_rate: float
+        :param intended_duration: Trial duration [s].
+        :param intended_load: Target rate in transactions per second.
+        :type intended_duration: float
+        :type intended_load: float
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: MeasurementResult
         :raises RuntimeError: If TG is not set or if node is not TG
             or if subtype is not specified.
         :raises NotImplementedError: If TG is not supported.
         """
-        duration = float(duration)
+        intended_duration = float(intended_duration)
         time_start = time.monotonic()
-        time_stop = time_start + duration
+        time_stop = time_start + intended_duration
         if self.resetter:
             self.resetter()
         result = self._send_traffic_on_tg_with_ramp_up(
-            duration=duration,
-            rate=transmit_rate,
+            duration=intended_duration,
+            rate=intended_load,
             async_call=False,
         )
         logger.debug(f"trial measurement result: {result!r}")
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
-            sleeptime = time_stop - time.monotonic()
-            if sleeptime > 0.0:
+            while (sleeptime := time_stop - time.monotonic()) > 0.0:
                 time.sleep(sleeptime)
         return result
 
@@ -1404,7 +1406,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.resetter = resetter
-        self.ppta = ppta
+        self.ppta = int(ppta)
         self.traffic_directions = int(traffic_directions)
         self.transaction_duration = float(transaction_duration)
         self.transaction_scale = int(transaction_scale)
@@ -1447,7 +1449,7 @@ class OptimizedSearch:
             ramp_up_rate=None,
             ramp_up_duration=None,
             state_timeout=240.0,
-            expansion_coefficient=4.0,
+            expansion_coefficient=4,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1527,6 +1529,7 @@ class OptimizedSearch:
             initial_trial_duration = 1.0
             final_trial_duration = 1.0
             number_of_intermediate_phases = 0
+            # TODO: Move the value to Constants.py?
             timeout += transaction_scale * 3e-4
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
@@ -1543,27 +1546,32 @@ class OptimizedSearch:
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
-        algorithm = MultipleLossRatioSearch(
-            measurer=tg_instance,
-            final_trial_duration=final_trial_duration,
-            final_relative_width=final_relative_width,
-            number_of_intermediate_phases=number_of_intermediate_phases,
-            initial_trial_duration=initial_trial_duration,
-            timeout=timeout,
-            debug=logger.debug,
-            expansion_coefficient=expansion_coefficient,
-        )
         if packet_loss_ratio:
-            packet_loss_ratios = [0.0, packet_loss_ratio]
+            loss_ratios = [0.0, packet_loss_ratio]
         else:
             # Happens in reconf tests.
-            packet_loss_ratios = [packet_loss_ratio]
-        results = algorithm.narrow_down_intervals(
-            min_rate=minimum_transmit_rate,
-            max_rate=maximum_transmit_rate,
-            packet_loss_ratios=packet_loss_ratios,
-        )
-        return results
+            loss_ratios = [0.0]
+        goals = [
+            SearchGoal(
+                loss_ratio=loss_ratio,
+                exceed_ratio=0.0,
+                relative_width=final_relative_width,
+                initial_trial_duration=initial_trial_duration,
+                final_trial_duration=final_trial_duration,
+                duration_sum=final_trial_duration,
+                preceding_targets=number_of_intermediate_phases,
+                expansion_coefficient=expansion_coefficient,
+            ) for loss_ratio in loss_ratios
+        ]
+        config = Config()
+        config.goals = SearchGoalSet(goals)
+        config.min_load = minimum_transmit_rate
+        config.max_load = maximum_transmit_rate
+        config.search_duration_max = timeout
+        config.warmup_duration = 1.0
+        algorithm = MultipleLossRatioSearch(config)
+        results = algorithm.search(measurer=tg_instance, debug=logger.debug)
+        return [results[goal] for goal in goals]
 
     @staticmethod
     def perform_soak_search(
