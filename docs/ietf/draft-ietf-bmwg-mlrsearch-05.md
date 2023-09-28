@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-04
-date: 2023-07-10
+docname: draft-ietf-bmwg-mlrsearch-05
+date: 2023-10-xx
 
 ipr: trust200902
 area: ops
@@ -95,6 +95,8 @@ results in a number of problems:
 MLRsearch aims to address these problems by applying the following set
 of enhancements:
 
+- Allow multiple shorter trials instead of one big trial per load.
+  - Optionally, tolerate a percentage of trial result with higher loss.
 - Allow searching for multiple search goals, with differing goal loss ratios.
   - Each trial result can affect any search goal in principle
     (trial reuse).
@@ -116,6 +118,23 @@ settings (shorter search duration and better repeatability but not
 compliant with [RFC2544]).
 
 No part of [RFC2544] is intended to be obsoleted by this document.
+
+# Introduction
+
+While the breadth of configuration options allow MLRsearch to be quite flexible,
+it makes the precise description of MLRsearch quite complicated.
+
+Frequently, any single term used in description of RFC 2544 throughput
+can be understood as a collection of different notions,
+which only happen to coincide in specific configurations.
+For continuity, the familiar term can only be used in the specific configuration,
+while the more general notions need new unfamiliar terms.
+
+This section describes how RFC 2544 notions are split into
+old specific ones and new general ones.
+
+TODO: What is the best order of notions to split?
+TODO: Move more RFC2544 comparisons out of terminology.
 
 # Terminology
 
@@ -143,7 +162,7 @@ General notions are the terms defined in this section.
 It is useful to define the following notions
 before delving into MLRsearch architecture,
 as the notions appear in multiple places
-with no place being special enough to host definition.
+with no place being special enough to host the definition.
 
 ### General and specific quantities
 
@@ -179,13 +198,12 @@ When reporting, it is REQUIRED to state the units used.
 ### Composite
 
 A composite is a set of named attributes.
-Each attribute is either a specific quantity or a composite.
+Each attribute is either a specific quantity or another composite.
 
 MLRsearch specification frequently groups multiple specific quantities
 into a composite. Description of such a composite brings an insight
 to motivations why this or other terms are defined as they are.
-Such insight will be harder to communicate
-with the specific quantities alone.
+Such insight would be harder to communicate with the specific quantities alone.
 
 Also, it simplifies naming of specific quantities, as they usually can
 share a noun or adjective referring to their common composite.
@@ -217,7 +235,7 @@ A trial is the part of test described in RFC 2544 section 23.
 
 When traffic has been sent and SUT response has been observed,
 we say the trial has been performed, or the trial has been measured.
-Before that happens, multiple possibilities for upcoming trial
+Before that happens, multiple possibilities for the upcoming trial
 may be under consideration.
 
 ### Load
@@ -252,7 +270,7 @@ Intended duration of the traffic for a trial, usually in seconds.
 This general quantity does not include any preparation nor waiting
 described in section 23 of RFC 2544.
 Section 24 of RFC 2544 places additional restrictions on duration,
-but those restriction apply only to some of the specific quantities based
+but those restrictions apply only to some of the specific quantities based
 on duration.
 
 Duration is always positive in MLRsearch.
@@ -266,6 +284,9 @@ without a specific set of trials to sum their durations.
 
 Duration sum is never negative in MLRsearch.
 
+As RFC 2544 assumes only one trial (at final trial duration) per load,
+it does not distinguish between trial duration and trial duration sum.
+
 ### Width
 
 General quantity defined for an ordered pair (lower and higher)
@@ -277,17 +298,17 @@ by repeatedly bisecting an interval of possible values,
 until the interval becomes narrow enough.
 Width of the interval is a specific quantity
 and the termination condition compares that
-to another specific quantity acting as the threshold.
+to another specific quantity acting as the threshold value.
 The threshold value does not have a specific interval associated,
 but corresponds to a 'size' of the compared interval.
 As size is a word already used in definition of frame size,
-a more natural word describing interval is width.
+so a more natural word describing interval is width.
 
 The MLRsearch specification does use (analogues of) upper bound
 and lower bound, but does not actually need to talk about intervals.
 Still, the intervals are implicitly there, so width is the natural name.
 
-Actually, there are two popular options for defining width.
+In practice, there are two popular options for defining width.
 Absolute width is based on load, the value is the higher load
 minus the lower load.
 Relative width is dimensionless, the value is the absolute width
@@ -302,6 +323,9 @@ MLRsearch specification does not prescribe which width has to be used,
 but widths MUST be either all absolute or all relative,
 and it MUST be clear from report which option was used
 (it is implied from the unit of measurement of any width value).
+
+RFC 2544 does not specify any stopping conditions,
+so there is no analogue of width there.
 
 ### Loss ratio
 
@@ -326,6 +350,8 @@ resources.
 (RFC2544 restricts Frame Loss Rate to a type of benchmark,
 for loads 100% of 'maximum rate', 90% and so on.)
 
+RFC 2544 througput requires zero loss, corresponding to zero loss ratio here.
+
 ### Exceed ratio
 
 This general quantity is a dimensionless floating point value,
@@ -339,6 +365,9 @@ the exceed ratio is undefined.
 As there are no negative duration sums in MLRsearch,
 exceed ratio values are between 0.0 and 1.0 (both including).
 
+RFC 2544 throughput can be understood as using zero exceed ratio
+(although with only one treial per load any ratio below one works).
+
 ## Architecture
 
 MLRsearch architecture consists of three main components:
@@ -348,7 +377,7 @@ The search algorithm is implemented in the controller,
 and it is the main focus of this document.
 
 Most implementation details of the manager and the measurer are
-out of scope of this document, except when describing
+outside of scope of this document, except when describing
 how do those components interface with the controller.
 
 ### Manager
@@ -361,7 +390,7 @@ to the controller and receives its result.
 Managers can range from simple CLI utilities to complex
 Continuous Integration systems. From the controller point of view
 it is important that no additional configuration (nor warmup)
-is needed for SUT and the measurer to perform trials.
+is needed for SUT and the measurer before performing trials.
 
 The interface between the manager and the controller
 is defined in the controller section.
@@ -374,7 +403,7 @@ but in this document only one invocation is concerned
 
 Creation of reports of appropriate format can also be understood
 as the responsibility of the manager. This document places requirements
-on which information has to be reported.
+on which information has to be included in such reports.
 
 ### Measurer
 
@@ -382,7 +411,7 @@ The measurer is the component which performs one trial
 as described in RFC 2544 section 23, when requested by the controller.
 
 From the controller point of view, it is a function that accepts
-trial input and returns trial output.
+a trial input and returns a trial output.
 
 This is the only way the controller can interact with SUT.
 In practice, the measurer has to do subtle decisions
@@ -394,7 +423,7 @@ On software implementation level, the measurer is a callable,
 injected by the manager into the controller instance.
 
 The act of performing one trial (act of turning trial input
-to trial output) is called a measurement, or trial measurement.
+into trial output) is called a measurement, or trial measurement.
 This way we can talk about trials that were measured already
 and trials that are merely planned (not measured yet).
 
@@ -440,11 +469,10 @@ and in the test report. (See other IETF documents.)
 
 #### Trial ouput
 
-A composite consisting of trial loss ratio
-and trial forwarding rate.
+A composite consisting of trial loss ratio and trial forwarding rate.
 
 Those are the only two specific quantities (among other quantities
-possibly measured in the trial, for example offered load)
+possibly measured in the trial, for example the offered load)
 that are important for MLRsearch.
 
 ##### Trial loss ratio
@@ -500,16 +528,17 @@ The ability of conditional throughput to be less sensitive
 to performance variance, and the ability of the controller
 to find conditional throughputs for multiple search goals
 within one search (and in short overall search time)
-are strong enough motivations for the need of increased complexity.
+are strong enough motivations for the increased complexity.
 
 ### Controller input
 
-A composite of max load, min load, and a set of search goals.
+A composite of max load, min load, and a list of search goals.
 
-The search goals (as elements of the set of search goals)
-are usually not named and unordered.
+The search goals (as elements of the list of search goals)
+are usually not named. They may be ordered,
+but the impact of ordering is usually negligible.
 
-It is fine if all search goals of the set have the same value
+It is fine if all search goals of the list have the same value
 of a particular attribute. In that case, the common value
 may be treated as a global attribute (similarly to max and min load).
 
@@ -535,7 +564,7 @@ for examples resources available to traffic generator.
 The manager is expected to provide a value that is not greater
 than any known limitation. Alternatively, the measurer
 is expected to work at max load, possibly reporting as lost
-any frames that were not able to leave Traffic Generator.
+any frames that were not able to leave Traffic Generator during the trial.
 
 From the controller point of view, this is merely a global upper limit
 for any trial load candidates.
@@ -548,7 +577,7 @@ No trial load is ever lower than this value.
 The motivation of this quantity is to prevent trials
 with too few frames sent to SUT.
 
-Also, practically if a SUT is able to reach only very small
+Also, practically, if a SUT is able to reach only very small
 forwarding rates (min load indirectly serves as a threshold for how small),
 it may be considered faulty (or perhaps the test is misconfigured).
 
@@ -565,6 +594,8 @@ goal loss ratio was the only attribute allowed to vary between goals.
 
 Each goal will get its conditional throughput discovered
 and reported at the end of the search.
+It is possible for multiple different goals to share
+the same conditional throughput value.
 
 The definitions of the 7 attributes are not very informative by themselves.
 Their motivation (and naming) becomes more clear
@@ -593,12 +624,8 @@ MUST be positive.
 
 MLRsearch is allowed to use trials as short as this when focusing
 on this goal.
-The conditional throughput may be influenced by shorter trials,
-(measured when focusing on other search goals).
-
-{::comment}
-    FIXME: Should shorter trials be explicitly ignored?
-{:/comment}
+The conditional throughput may be influenced by even shorter trials,
+measured when focusing on other search goals.
 
 ##### Goal final trial duration
 
@@ -618,7 +645,7 @@ A threshold value for a particular duration sum.
 MLRsearch requires at least this amount of (effective) trials
 for a particular load to become part of MLRsearch outputs.
 
-It is possible (though maybe not prectical) for goal min duration sum
+It is possible (though not prectical) for goal min duration sum
 to be smaller than goal final trial duration.
 
 In practice, the sum of durations actually spent on trial measurement
@@ -629,15 +656,12 @@ If the sum of all (good and bad) long trials is at least this,
 and there are no short trials, then the load is guaranteed
 to be classified as either an upper or a lower bound.
 
-In some cases, the classification is known sooner,
-when the 'missing' trials cannot change the outcome.
-
 When short trials are present, the logic is more complicated.
 
 ##### Goal exceed ratio
 
 A specific quantity based on exceed ratio.
-A threshold value for particulat sets of trials.
+A threshold value for particular sets of trials.
 
 An attribute used for classifying loads into upper and lower bounds.
 
@@ -686,8 +710,7 @@ Following these definitions specifies virtually all of the controller
 
 Up to three special trials executed at the start of the search.
 The first trial load is max load,
-subsequent trial load are computed from preceding trial
-forwarding rate.
+subsequent trial load are computed from preceding trial forwarding rate.
 
 The main loop of the controller logic needs at least one trial result,
 and time is saved if the trial results are close to future conditional
@@ -714,7 +737,7 @@ Frequently called just target.
 Similar to (but distinct from) the search goal.
 
 Each search goal prescribes a final target,
-probably with a chain of preceding targets.
+usually with a chain of preceding targets.
 
 More details in the Derived targets section.
 
@@ -793,7 +816,7 @@ sooner (than with the next target min duration sum).
 
 This way an approximation of the conditional throughput is found,
 with the next target needing not as much time to improve the approximation
-(compared to not starting with the approximation).
+(compared to not starting with comparably good approximation).
 
 ##### Initial target
 
@@ -802,6 +825,10 @@ Initial target min duration sum is equal to the corresponding goal's
 initial trial duration.
 
 As a consequence, initial target trial duration is equal to its min duration sum.
+
+Inputs of pre-initial trials are chosen so that the trials are considered long
+by each initial target. this guarantees the main loop
+starts (and keeps) making progress along each target chain.
 
 #### Trial classification
 
@@ -851,10 +878,17 @@ we need a way to classify a set of trial results at the same load.
 
 As the logic is not as straightforward as in other parts
 of MLRsearch algorithm, it is best defined using the following
-derived quantities.
+derived quantities (see subsections).
+Only the result of load classification (upper bound, lower bound, or undefined)
+is important, implementations do not need to track all 8 attributes.
 
-Load stat is the composite for one load and one target.
-Set of load stats for one load an all targets is commonly called load stats.
+Load stat is the composite defined for one load and one target.
+Set of load stats for one load an all targets is called load stats.
+
+Additional trial results may flip the load classification
+(between upper and lower bound). Changing from lower bound to undefined
+is not possible. Changing from upper bound to undefined is possible,
+but unlikely.
 
 ##### Long good duration sum
 
@@ -902,8 +936,8 @@ A typical example of why a goal needs higher final trial duration
 than initial trial duration is when SUT is expected to have large buffers,
 so a trial may be too short to see frame losses due to
 a buffer becoming full. So a short good trial does not give strong information.
-On the other hand, short bad trial is a strong hint SUT would lose many frames
-at that load and long duration.
+On the other hand, short bad trial is a strong hint SUT would also lose frames
+at that load and longer duration.
 But if there is a mix of short bad and short good trials,
 MLRsearch should not cherry-pick only the short bad ones.
 
@@ -929,7 +963,7 @@ the effective bad duration sum, and good duration sum is
 the long good duration sum plus the missing duration sum.
 
 This is the value MLRsearch would compare to target exceed ratio
-assuming all of the missing duration sum ends up consisting of long good trials.
+assuming all of the missing duration sum ends up consisting of good long trials.
 
 If there was a bad long trial, optimistic exceed ratio
 becomes larger than zero.
@@ -943,7 +977,7 @@ the effective bad duration sum plus the missing duration sum,
 and good duration sum is the long good duration sum.
 
 This is the value MLRsearch would compare to target exceed ratio
-assuming all of the missing duration sum ends up consisting of bad good trials.
+assuming all of the missing duration sum ends up consisting of bad long trials.
 
 Note that if the missing duration sum is zero,
 optimistic exceed ratio becomes equal to pessimistic exceed ratio.
@@ -1000,7 +1034,7 @@ than an upper bound.
 
 For a target, a load is the relevant upper bound,
 if and only if it is an upper bound, and all other upper bounds
-are larger (as loads).
+are larger (as loads) than this load.
 
 In some cases, the max load when classified as a lower bound
 is also effectively treated as the relevant upper bound.
@@ -1016,19 +1050,20 @@ is the smallest load where a bad trial (short or long) has been measured.
 
 ##### Relevant lower bound
 
-For a target, a load is the relevant lower bound if two conditions hold.
-Both optimistic exceed ratio and pessimstic load exceed ratio
-are no larger than the target exceed ratio,
-and there is no smaller load classified as an upper bound.
+For a target, a load is the relevant lower bound if it is a lower bound,
+it is smaller than the relevant upper bound,
+and all other lower bounds smaller than the relevant upper bounds
+are also smaller than this load.
+
+Effectively, any load larger than the relevant upper bound is ignored,
+thus hiding possible lower bounds larger than the relevant upper bound.
+
+While it is possible for a lower bound to be be larger than an upper bound,
+the relevant lower bound is always smaller than the relevant upper bound
+(if both exist).
 
 This is a second place where MLRsearch is not symmetric
 (the first place was effective bad duration sum).
-
-While it is not likely for a MLRsearch to find a smaller upper bound
-and a larger load satisfying first condition for the lower bound,
-it still may happen and MLRsearch has to deal with it.
-The second condition makes sure the relevant lower bound
-is smaller than the relevant upper bound.
 
 In some cases, the min load when classified as an upper bound
 is also effectively treated as the relevant lower bound.
@@ -1050,147 +1085,153 @@ The pair of the relevant lower bound and the relevant upper bound.
 Useful for determining the width of the relevant bounds.
 Any of the bounds may be the effective one (max load or min load).
 
+During the search, one or both bounds may be missing.
+
 A goal is achieved (at the end of the search) when the final target's
 relevant bounds have width no larger than the goal width.
 
+Additional trial results may affect current relevant bounds
+so a target achieved at one moment may stop being achieved later.
+
 #### Candidate selector
 
-A stateful object (a finite state machine)
-focusing on a single target, used to determine next trial input.
+A stateful object focusing on a single goal (whole target chain),
+used to determine next trial input.
 
-Initialized for a pair of targets:
-the current target and its preceding target (if any).
+Internally, a single selector may be using different strategies,
+switching between them according to information available.
 
-Private state (not shared with other selectors) consists of mode and flags.
-Public state (shared with all selectors) is the actual relevant bounds
-for both targets (current and precedinig).
+Public state (shared with all selectors) is the database of all trial results
+measured so far and a global width (to avoid interleaving external searches).
 
-After accepting a trial result, each selector can nominate
-one candidate (or no candidate) for the next trial measurement.
-
-##### Current target
-
-This is the target this selector tries to achieve.
-
-##### Preceding target
-
-The target (if any) preceding to the current target.
-
-While this selector does not focus on the preceding target,
-the relevant bounds for the preceding target are used as hints
-when the current bound does not have enough of its relevant bounds.
+Private state (not shared with other selectors) consists of current target,
+current strategy (including its private state), current width
+(shared by all strategies belonging to the same selector),
+and at least two load values (to guarantee progress between targets,
+one value may be missing) called initial bounds.
 
 ##### Candidate
 
-The trial input (if any) this selecor nominates.
+The trial input (if any) this selector nominates.
+
+Each selector can nominate one candidate (or no candidate)
+for the next trial measurement inputs. One candidate is chosen by the controller
+(becoming a winner), the selector which nominated the winner may
+get prioritized in next nomination round.
 
 The trial duration attribute is always the current target trial duration.
-The trial load attribute depends on the selector state.
-
-Candidates have defined ordering, to simplify finding the winner.
-If load differs, the candidate with lower load is preferred.
-If load is the same but duration differs, the candidate
-with larger duration is preferred.
-
-##### Selector mode
-
-During its lifetime, selector proceeds through the following modes.
-In order, but some modes may be skipped or revisited.
-
-Each mode has its own strategy of determining the candidate load (if any).
-
-###### Waiting
-
-Not enough relevant bounds (even for the preceding target).
-In this mode, the selector abstains from nominating a candidate.
-
-This selector leaves this mode when preceding target's selector is done.
-
-###### Halving
-
-Candidate is in the middle of the relevant bounds of the preceding target.
-
-If the relevant bounds are narrow enough already, this mode is skipped.
-As the preceding target had double width, just one halving load
-needs to be measured.
-
-Selector uses a flag to avoid re-entering this mode
-once it finished measuring the halved load.
-
-###### Upgrading
-
-This mode activates when one relevant bound for the current target is present
-and there is a matching relevant bound of the preceding target
-within the current target width.
-Candidate is the load of the matching bound from the preceding target.
-
-At most one bound load is measured, depending on halving outcome.
-Private flags are used to avoid upgrading at later times
-once selector finished measuring the upgraded load.
-
-###### Extending
-
-Refined already but the other relevant bound for the current target
-is still missing.
-Nominate new candidate according to external search.
-Initial target selectors skip all previous modes.
-
-A private value is used to track the width to be used in next load extension
-(increasing geometrically).
-For initial target selectors, the starting width may be chosen
-based on pre-initial trial results.
-
-If both relevant bounds are present at the current load,
-but the lower bound is far away (compared to tracked width),
-the candidate from this mode is preferred (as long as the load
-is larger than the candidate load of bisecting mode).
-
-###### Bisecting
-
-Both relevant bounds for the current target are available, but they are too far
-from each other. Candidate is in the middle.
-
-Contrary to halving, the candidate load does not need to be at the exact middle.
-For example if the width of the current relevant bounds
-is three times as large as the target width,
-it is advantageous to split the interval in 1:2 ratio
-(choosing the lower candidate load), as it can save one bisect.
-
-###### Done
-
-Both relevant bounds for the current target are available,
-the width is no larger than the target width.
-No candidate.
-
-If a selector reaches the done state,
-it is still possible later trials invalidate its relevant lower bound
-(by proving a lower load is in fact a new uper bound),
-making the selector transition into extending or bisecting mode.
-
-##### Active selector
-
-Derived from a common goal, the earliest selector which nominates a candidate
-is considered to be the active selector for this goal.
-Candidates from other selectors of the same goal are ignored.
-
-It is quite possible selectors focusing on other goals
-have already found a lower bound relevant to multiple targets in a chain.
-In that case, we want the most-initial of the target selectors
-(not already in done mode) to have the nomination.
-
-Otherwise (when in extending mode and missun relevant upper bound)
-the closer-to-final selectors would nominate candidates
-at lower load but at too high duration sum,
-preventing some of the time savings.
+The trial load attribute depends on the current selector strategy.
 
 ##### Winner
 
 If the candidate previously nominated by a selector was the one
 that got measured, the candidate is called a winner.
 
-A selector observing its previous candidate was a winer
-can use simplified logic when determining the mode,
-as it knows no other selectors may have changed the relevant loads unexpectedly.
+Candidates have defined ordering, to simplify finding the winner.
+If load differs, the candidate with lower load is preferred.
+If load is the same but duration differs, the candidate
+with larger duration is preferred.
+In case of tie, the selector nominating the previous winner
+may ask for preferrence. Otherwise, the goal earlier in the list is preferred.
+
+In most cases, the last two conditions have zero impact on results,
+but they make it easier to follow the internal logic.
+
+##### Current target
+
+This is the target this selector tries to achieve currently.
+
+Each selector starts focusing on its initial target.
+When a target is reached, its subsequent target becomes the new current,
+up until the final target is achieved.
+
+Strategies are designed in such a way each selector always nominates a candidate,
+unless the final target (and hence its goal) is achieved.
+
+In principle, it is possible for a goal to stop being achieved
+(when subsequent trials change the classification of a relevant bound),
+in which case the selector starts nominating a candidate again.
+Only when no selector nominates a load, the MLRsearch main loop is done.
+
+A selector never needs to revert its focus to a preceding target,
+as it retains enough private state to always make progress.
+
+##### Initial bounds
+
+Two load values used to guarantee progress. One of them may be missing.
+
+At the time the selector is created for the first time,
+the two values are computed from forwarding rates of pre-initial trials
+(only one is guaranteed to be a relevant bound for the initial target).
+
+When the current target (that the selector is focusing on)
+changes from preceding to next, the relevant bounds of the preceding target
+become the new initial bounds.
+
+##### Selector strategy
+
+Strategy is a piece of logic for nominating a candidate.
+When focusing on current target, selector tries to apply strategies
+in a fixed order, nominating the first candidate load a strategy nominates.
+
+Each strategy has its specific conditions on when to nominate a load,
+hat global width to set if the candidate becomes a winner,
+and when to request a precedence upon winning.
+
+If no strategy wants to nominate, it means the current target is reached.
+If it is not the final target, its next target becomes the new current
+and the list of strategies is queried again (after resetting any internal state
+conditioned on the old target, such as initial bounds).
+
+There is some logic common to all strategies.
+If a load is nominated, it must be higher than the relevant lower bound
+(if it exists) of the current target, and lower than the relevant upper bound
+(if it exists) of the current target.
+If, after measuring a trial based on winner candidate, the load does not become
+either the new lower relevant bound or the new upper relevant bound
+(of the current target), the selector requests to get a precedence.
+
+FIXME: Is precedence needed? Perhaps only for external search expansion?
+
+###### Halve Strategy
+
+Candidate is in the middle of the initial bounds,
+if their width is more than one but no more than two target widths.
+
+As the preceding target had double width, just one halving load
+needs to be measured.
+
+###### Refine Strategy
+
+Nominate any initial bound that is not an upper bound or a lower bound yet.
+
+The intent is to add more trial result to increase duration sum,
+so the load (which was probably a relevant bound of the treceding target)
+becomes a relevant bound of the current target.
+
+###### Extend Strategy
+
+Nominate new candidate according to external search.
+This strategy activates when one relevant bound is missing.
+
+If the load moves the original relevant bound (not creating the missing bound),
+both pre-strategy and global widths are expanded according to goal expansion
+coefficient.
+
+An analogous strategy is also queried when both relevant bounds exist,
+and its candidate is nominated if it is closer to initial bound
+than the candidate of bisect strategy.
+
+###### Bisecting
+
+If both relevant bounds exist for the current target, but they are more than
+current target width apart, nominate a middle load.
+
+Contrary to halving, the candidate load does not need to be at the exact middle.
+For example if the width of the current relevant bounds
+is three times as large as the target width,
+it is advantageous to split the interval in 1:2 ratio
+(choosing the lower candidate load), as it can save one bisect.
 
 ### Controller output
 
@@ -1204,7 +1245,7 @@ There MAY be several ways how to communicate the fact a conditional output
 does not exist (e.g. min load is classified as an upper bound).
 The manager MUST NOT present min load as a conditional output in that case.
 
-If max load is a lower bound, it leads to a valid conditional output value.
+If max load is a lower bound, it leads to a valid conditional throughput value.
 
 #### Conditional throughput
 
