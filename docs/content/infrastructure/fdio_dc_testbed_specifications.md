@@ -39,23 +39,24 @@ To access these hosts, VPN connection is required.
 ### Summary List
 
 ```
- #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr
- 1. 1-Node-Skylake         nomad  skx   na    5    5    0    5    0    0    0    0    0    0    0    0    0    0
- 2. 1-Node-Cascadelake     nomad  clx   na    1    1    0    0    0    0    0    0    0    1    0    0    0    0
- 3. 1-Node-AmpereAltra     nomad  alt   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0
- 4. 2-Node-IxiaPS1L47      tcp    skx   ps1   1    1    1    1    1    0    0    0    0    0    0    0    0    0
- 5. 2-Node-Cascadelake     perf   clx   clx   3    3    3    0    0    0    0    0    0    6    0    0    0    0
- 6. 2-Node-ThunderX2       perf   tx2   skx   1    1    .5   .5   0    0    1    0    0    0    0    0    0    0
- 7. 2-Node-Icelake         perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    8    0    0
- 8. 3-Node-Rangeley        perf   rng   skx   1    3    1    0    0    2    0    0    0    0    0    0    0    0
- 9. 3-Node-Taishan         perf   tsh   skx   1    2    .5   .5   0    0    0    2    0    0    0    0    0    0
-10. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0
-11. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0
-12. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0
-13. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    .5   2    0
-14. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8
-15. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4
-                                     Totals: 32   39  18.5   7    1    2    1    2    4    7    2   15.5  2   12
+ #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd
+ 1. 1-Node-Skylake         nomad  skx   na    5    5    0    5    0    0    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0
+ 3. 1-Node-AmpereAltra     nomad  alt   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0    0
+ 4. 2-Node-IxiaPS1L47      tcp    skx   ps1   1    1    1    1    1    0    0    0    0    0    0    0    0    0    0
+ 5. 2-Node-Cascadelake     perf   clx   clx   3    3    3    0    0    0    0    0    0    6    0    0    0    0    0
+ 6. 2-Node-ThunderX2       perf   tx2   skx   1    1    .5   .5   0    0    1    0    0    0    0    0    0    0    0
+ 7. 2-Node-Icelake         perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    8    0    0    0
+ 8. 3-Node-Rangeley        perf   rng   skx   1    3    1    0    0    2    0    0    0    0    0    0    0    0    0
+ 9. 3-Node-Taishan         perf   tsh   skx   1    2    .5   .5   0    0    0    2    0    0    0    0    0    0    0
+10. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0
+11. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0
+12. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0
+13. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    .5   2    0    0
+14. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0
+15. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0
+16. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4
+                                     Totals: 37   46  19.5   7    1    2    1    2    4   10    2   16.5  2   12    4
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -142,6 +143,13 @@ Used for FD.io performance tests.
 ### 3-Node-Icelake Xeon Intel (3n-icx)
 
 Each 3-Node-Icelake testbed includes two SUTs (Server-Type-F3) and one
+TG (Server-Type-F3) connected in a 3-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
+### 3-Node-IcelakeD Xeon Intel (3n-icxd)
+
+Each 3-Node-IcelakeD testbed includes two SUTs (Server-Type-I1) and one numa of
 TG (Server-Type-F3) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
@@ -766,6 +774,21 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot7 86:00.xx: empty.
             - PCIe Slot9 af:00.xx: empty.
             - PCIe Slot11 d8:00.xx: empty.
+
+31. **Server-Type-I1**: Purpose - IcelakeD Xeon SUT for FD.io performance testing.
+    - Quantity: 4
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 3-node testbed topology.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-110D-20C-FRDN8TP.
+        - Motherboard: Super X12SDV-20C-SPT8F.
+        - Processors: 1* Intel Xeon D-2796NT.
+        - RAM Memory: 4* 16GB DDR4-2933.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, PCIe4.0 lane)
+            - PCIe BuiltIn ??:00.xx: e810-XXVDA2-2p25GE Intel.
 
 ## Testbeds Configuration
 
@@ -1625,6 +1648,61 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s59-t24-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
+### 3-Node-IcelakeD (3n-icxd)
+
+{{< figure src="/cdocs/testbed-3n-icxd.svg" >}}
+
+```
+- ServerI1 [Server-Type-I1]:
+    - testbedname: testbed31.
+    - hostname: s32-t31-sut1.
+    - IPMI IP: 10.30.50.32
+    - Host IP: 10.30.51.32
+    - portnames:
+        - s32-t31-sut1-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s32-t31-sut1-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+- ServerI1 [Server-Type-I1]:
+    - testbedname: testbed31.
+    - hostname: s33-t31-sut2.
+    - IPMI IP: 10.30.50.33
+    - Host IP: 10.30.51.33
+    - portnames:
+        - s33-t31-sut2-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s33-t31-sut2-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+- ServerF3 [Server-Type-F3]:
+    - testbedname: testbed31.
+    - hostname: s89-t31t32-tg1.
+    - IPMI IP: 10.30.50.89
+    - Host IP: 10.30.51.89
+    - portnames:
+        - s89-t31t32-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s89-t31t32-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+- ServerI1 [Server-Type-I1]:
+    - testbedname: testbed32.
+    - hostname: s34-t32-sut1.
+    - IPMI IP: 10.30.50.34
+    - Host IP: 10.30.51.34
+    - portnames:
+        - s34-t32-sut1-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s34-t32-sut1-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+- ServerI1 [Server-Type-I1]:
+    - testbedname: testbed32.
+    - hostname: s35-t32-sut2.
+    - IPMI IP: 10.30.50.35
+    - Host IP: 10.30.51.35
+    - portnames:
+        - s35-t32-sut2-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s35-t32-sut2-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+- ServerF3 [Server-Type-F3]:
+    - testbedname: testbed32.
+    - hostname: s89-t31t32-tg1.
+    - IPMI IP: 10.30.50.89
+    - Host IP: 10.30.51.89
+    - portnames:
+        - s89-t31t32-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s89-t31t32-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+```
+
 ## Testbed Wiring
 
 ### 1-Node-Skylake (1n-skx)
@@ -2024,3 +2102,19 @@ To be completed.
     - ring5 100GE-ports e810-2CQDA2-2p100GE:
         - s59-t24-tg1-c9/p1 to s59-t24-tg1-c9/p2.
 ```
+
+### 3-Node-IcelakeD (3n-icxd)
+
+```
+- testbed31:
+    - ring1 25GE-ports e810-XXVDA2-2p25GE:
+        - s89-t31t32-tg1-c6/p1 to s32-t31-sut1-c1/p1.
+        - s32-t31-sut1-c1/p2 to s33-t31-sut2-c1/p2.
+        - s33-t31-sut2-c1/p1 to s89-t31t32-tg1-c6/p2.
+- testbed32:
+    - ring1 25GE-ports e810-XXVDA2-2p25GE:
+        - s89-t31t32-tg1-c6/p1 to s34-t32-sut1-c1/p1.
+        - s34-t32-sut1-c1/p2 to s35-t32-sut2-c1/p2.
+        - s35-t32-sut2-c1/p1 to s89-t31t32-tg1-c6/p2.
+```
+
