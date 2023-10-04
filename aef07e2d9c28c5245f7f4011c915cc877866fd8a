@@ -33,6 +33,23 @@
       "message": "csit-2n-icx-perftest nic_*ANDdrv_mlx5_coreAND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-*",
       "revId": "aef07e2d9c28c5245f7f4011c915cc877866fd8a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feaee10b_4bd0a0d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-04T14:44:49Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND1cAND1518bANDethip4ipsec1000tnlsw-ip4base-int-aes256gcm",
+      "revId": "aef07e2d9c28c5245f7f4011c915cc877866fd8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
