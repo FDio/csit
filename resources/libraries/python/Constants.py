@@ -362,6 +362,7 @@ class Constants:
     NIC_CODE_TO_SHORT_NAME = {
         u"10ge2p1x520": u"x520",
         u"10ge2p1x710": u"x710",
+        u"10ge6p1x710": u"x710",
         u"40ge2p1xl710": u"xl710",
         u"25ge2p1xxv710": u"xxv710",
         u"25ge2p1e810xxv": u"e810xxv",
