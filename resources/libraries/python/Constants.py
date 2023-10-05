@@ -188,37 +188,46 @@ class Constants:
     # Docker container arm SUT image
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu2204:local"
 
-    # TRex install directory
+    # TRex install directory.
     TREX_INSTALL_DIR = u"/opt/trex-core-3.03"
 
-    # TRex pcap files directory
+    # TRex pcap files directory.
     TREX_PCAP_DIR = f"{TREX_INSTALL_DIR}/scripts/avl"
 
     # TRex limit memory.
-    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
+    TREX_LIMIT_MEMORY = get_int_from_env("TREX_LIMIT_MEMORY", 8192)
 
-    # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 16)
+    # TRex limit memory in case multiple dual interfaces configurations.
+    TREX_LIMIT_MEMORY_MULTI = get_int_from_env("TREX_LIMIT_MEMORY_MULTI", 16384)
 
-    # TRex set number of RX/TX descriptors
-    # Set to 0 to use default values
+    # TRex number of cores.
+    TREX_CORE_COUNT = get_int_from_env("TREX_CORE_COUNT", 16)
+
+    # TRex number of cores in case multiple dual interface configurations.
+    TREX_CORE_COUNT_MULTI = get_int_from_env("TREX_CORE_COUNT_MULTI", 8)
+
+    # TRex set number of RX/TX descriptors.
+    # Set to 0 to use default values.
     TREX_TX_DESCRIPTORS_COUNT = get_int_from_env(
-        u"TREX_TX_DESCRIPTORS_COUNT", 0
+        "TREX_TX_DESCRIPTORS_COUNT", 0
     )
+
     TREX_RX_DESCRIPTORS_COUNT = get_int_from_env(
-        u"TREX_RX_DESCRIPTORS_COUNT", 0
+        "TREX_RX_DESCRIPTORS_COUNT", 0
     )
 
-    # Trex force start regardless ports state
-    TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
+    # Trex force start regardless ports state.
+    TREX_SEND_FORCE = get_pessimistic_bool_from_env("TREX_SEND_FORCE")
 
-    # TRex extra commandline arguments
+    # TRex extra commandline arguments.
     TREX_EXTRA_CMDLINE = get_str_from_env(
-        u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32")
+        "TREX_EXTRA_CMDLINE", "--mbuf-factor 32"
+    )
 
-    # TRex port driver default vfio-pci or set to igb_uio
+    # TRex port driver default vfio-pci or set to igb_uio.
     TREX_PORT_DRIVER = get_str_from_env(
-        u"TREX_PORT_DRIVER", u"vfio-pci")
+        "TREX_PORT_DRIVER", "vfio-pci"
+    )
 
     # Graph node variant value
     GRAPH_NODE_VARIANT = get_str_from_env(u"GRAPH_NODE_VARIANT", u"")

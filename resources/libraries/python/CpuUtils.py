@@ -388,7 +388,7 @@ class CpuUtils:
 
     @staticmethod
     def get_affinity_trex(
-            node, if_key, tg_mtc=1, tg_dtc=1, tg_ltc=1):
+            node, if_key, tg_mtc=1, tg_dtc=1, tg_ltc=1, tg_dtc_offset=0):
         """Get affinity for T-Rex. Result will be used to pin T-Rex threads.
 
         :param node: TG node.
@@ -396,11 +396,13 @@ class CpuUtils:
         :param tg_mtc: TG main thread count.
         :param tg_dtc: TG dataplane thread count.
         :param tg_ltc: TG latency thread count.
+        :param tg_dtc_offset: TG dataplane thread offset.
         :type node: dict
         :type if_key: str
         :type tg_mtc: int
         :type tg_dtc: int
         :type tg_ltc: int
+        :type tg_dtc_offset: int
         :returns: List of CPUs allocated to T-Rex including numa node.
         :rtype: int, int, int, list
         """
@@ -412,12 +414,11 @@ class CpuUtils:
             smt_used=False)
 
         threads = CpuUtils.cpu_slice_of_list_per_node(
-            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_dtc,
-            smt_used=False)
+            node, cpu_node, skip_cnt=tg_mtc + tg_ltc + tg_dtc_offset,
+            cpu_cnt=tg_dtc, smt_used=False)
 
         latency_thread_id = CpuUtils.cpu_slice_of_list_per_node(
-            node, cpu_node, skip_cnt=tg_mtc + tg_dtc, cpu_cnt=tg_ltc,
-            smt_used=False)
+            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_ltc, smt_used=False)
 
         return master_thread_id[0], latency_thread_id[0], cpu_node, threads
 
