@@ -30,7 +30,7 @@ from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
-from .TRexConfigGenerator import TrexInitConfig
+from .TRexConfigGenerator import TrexConfig
 from .DUTSetup import DUTSetup as DS
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
@@ -335,7 +335,7 @@ class TrafficGenerator(AbstractMeasurer):
                     self._ifaces_reordered = True
                     trex_topology.reverse()
 
-            TrexInitConfig.init_trex_startup_configuration(
+            TrexConfig.add_startup_configuration(
                 self._node, trex_topology
             )
             TrafficGenerator.startup_trex(
