@@ -1963,6 +1963,7 @@ class IPsecUtil:
             sa_id=ObjIncrement(sa_id_2, 1),
             raddr_range=NetworkIncrement(ip_network(raddr_ip1))
         )
+        run_cli_cmd(nodes[u"DUT1"], "show crypto handlers")
 
         if u"DUT2" in nodes.keys():
             rmac = Topology.get_interface_mac(nodes[u"DUT1"], interface1)
