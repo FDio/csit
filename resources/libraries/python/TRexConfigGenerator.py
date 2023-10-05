@@ -225,12 +225,12 @@ class TrexConfigGenerator:
         exec_cmd_no_error(self._node, command, message=message)
 
 
-class TrexInitConfig:
-    """TRex Initial Configuration.
+class TrexConfig:
+    """TRex Configuration Class.
     """
     @staticmethod
-    def init_trex_startup_configuration(node, tg_topology):
-        """Apply initial TRex startup configuration.
+    def add_startup_configuration(node, tg_topology):
+        """Apply TRex startup configuration.
 
         :param node: TRex node in the topology.
         :param tg_topology: Ordered TRex links.
@@ -246,13 +246,22 @@ class TrexInitConfig:
         limit_memory = f"{Constants.TREX_LIMIT_MEMORY}"
         sockets = list()
 
-        for link in tg_topology:
+        for idx, link in enumerate(tg_topology):
             pci_addresses.append(
                 Topology().get_interface_pci_addr(node, link["interface"])
             )
+            if len(tg_topology) > 2:
+                # Multiple dual_ifs must not share the cores.
+                tg_dtc = Constants.TREX_CORE_COUNT // 2
+                tg_dtc_offset = tg_dtc * (idx // 2)
+            else:
+                # Single dual_if can share cores.
+                tg_dtc = Constants.TREX_CORE_COUNT
+                tg_dtc_offset = 0
             master_thread_id, latency_thread_id, socket, threads = \
                 CpuUtils.get_affinity_trex(
-                    node, link["interface"], tg_dtc=Constants.TREX_CORE_COUNT
+                    node, link["interface"], tg_dtc=tg_dtc, 
+                    tg_dtc_offset=tg_dtc_offset
                 )
             dual_if.append(dict(socket=socket, threads=threads))
             cores = len(threads)
@@ -265,9 +274,13 @@ class TrexInitConfig:
                 )
             )
             sockets.append(socket)
-        if 0 in sockets and 1 in sockets:
+        if len(tg_topology) <= 2 and 0 in sockets and 1 in sockets:
             limit_memory = (
                 f"{Constants.TREX_LIMIT_MEMORY},{Constants.TREX_LIMIT_MEMORY}"
+            )
+        elif len(tg_topology) > 2:
+            limit_memory = (
+                f"{Constants.TREX_LIMIT_MEMORY*2}"
             )
 
         trex_config = TrexConfigGenerator()

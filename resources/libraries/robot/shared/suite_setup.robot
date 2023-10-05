@@ -241,7 +241,8 @@
 | | ${type} = | Get TG Type | ${nodes}[TG]
 | | ${version} = | Get TG Version | ${nodes}[TG]
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} 
+# | parallel_links=${3}
 
 | Additional Suite Setup Action For performance_tg_nic
 | | [Documentation]
