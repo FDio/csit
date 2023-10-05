@@ -1696,6 +1696,7 @@ class IPsecUtil:
             nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg,
             integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
         )
+        PapiSocketExecutor.run_cli_cmd(nodes[u"DUT1"], "show crypto handlers")
         if u"DUT2" in nodes.keys():
             IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
                 nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
@@ -1963,6 +1964,7 @@ class IPsecUtil:
             sa_id=ObjIncrement(sa_id_2, 1),
             raddr_range=NetworkIncrement(ip_network(raddr_ip1))
         )
+        PapiSocketExecutor.run_cli_cmd(nodes[u"DUT1"], "show crypto handlers")
 
         if u"DUT2" in nodes.keys():
             rmac = Topology.get_interface_mac(nodes[u"DUT1"], interface1)
