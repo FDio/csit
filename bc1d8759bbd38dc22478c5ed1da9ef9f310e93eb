@@ -118,6 +118,24 @@
       "message": "It seems like this fix works on 2n-spr",
       "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45cd8e1_699f6132",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2832
+      },
+      "writtenOn": "2023-10-06T15:39:51Z",
+      "side": 1,
+      "message": "We should about the restart the individual VF in QAT:\n\nroot@silpixa00401012:~/dpdk# adf_ctl status\nChecking status of all devices.\nThere is 12 QAT acceleration device(s) in the system:\n qat_dev0 - type: 4xxx,  inst_id: 7,  node_id: 0,  bsf: 0000:6b:00.0,  #accel: 1 #engines: 9 state: up\n qat_dev1 - type: 4xxx,  inst_id: 7,  node_id: 0,  bsf: 0000:70:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev2 - type: 4xxx,  inst_id: 2,  node_id: 0,  bsf: 0000:75:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev3 - type: 4xxx,  inst_id: 3,  node_id: 0,  bsf: 0000:7a:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev4 - type: 4xxx,  inst_id: 7,  node_id: 1,  bsf: 0000:e8:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev5 - type: 4xxx,  inst_id: 7,  node_id: 1,  bsf: 0000:ed:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev6 - type: 4xxx,  inst_id: 6,  node_id: 1,  bsf: 0000:f2:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev7 - type: 4xxx,  inst_id: 7,  node_id: 1,  bsf: 0000:f7:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev8 - type: 4xxxvf,  inst_id: 0,  node_id: 0,  bsf: 0000:6b:00.1,  #accel: 1 #engines: 1 state: up\n qat_dev9 - type: 4xxx,  inst_id: 7,  node_id: 1,  bsf: 0000:ed:00.0,  #accel: 1 #engines: 9 state: down\n qat_dev11 - type: 4xxxvf,  inst_id: 1,  node_id: 0,  bsf: 0000:6b:00.2,  #accel: 1 #engines: 1 state: up\n\nroot@silpixa00401012:~/dpdk# adf_ctl qat_dev11 restart\nRestarting device qat_dev11\nProcessing /etc/4xxxvf_dev1.conf",
+      "parentUuid": "37386635_4661842d",
+      "revId": "bc1d8759bbd38dc22478c5ed1da9ef9f310e93eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
