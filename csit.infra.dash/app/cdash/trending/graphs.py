@@ -159,8 +159,8 @@ def graph_trending(
                 add_info = (
                     f"bandwidth [{row[C.UNIT['hoststack-bps']]}]: "
                     f"{row[C.VALUE['hoststack-bps']]:,.0f}<br>"
-                    f"latency [{row[C.UNIT['hoststack-lat']]}]: "
-                    f"{row[C.VALUE['hoststack-lat']]:,.0f}<br>"
+                    f"latency [{row[C.UNIT['hoststack-latency']]}]: "
+                    f"{row[C.VALUE['hoststack-latency']]:,.0f}<br>"
                 )
             else:
                 add_info = str()
