@@ -452,7 +452,8 @@
 | | | # the approximated receive rate is the best estimate we have.
 | | | ${value} = | Set Variable | ${result.approximated_receive_rate}
 | | | # TODO: Add correct bandwidth computation.
-| | | Append Mrr Value | ${value} | ${export_mrr_unit}
+| | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${value}
+| | | Append Mrr Value | ${value} | ${export_mrr_unit} | ${bandwidth * 1e9}
 | | | Append To List | ${results} | ${value}
 | | END
 | | FOR | ${action} | IN | @{stat_post_trial}

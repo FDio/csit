@@ -96,15 +96,17 @@ def export_tg_type_and_version(tg_type="unknown", tg_version="unknown"):
     data["tg_version"] = tg_version
 
 
-def append_mrr_value(mrr_value, unit):
+def append_mrr_value(mrr_value, unit, bandwidth=None):
     """Store mrr value to proper place so it is dumped into json.
 
     The value is appended only when unit is not empty.
 
     :param mrr_value: Forwarding rate from MRR trial.
     :param unit: Unit of measurement for the rate.
+    :param bandwidth: The same value recomputed into L1 bits per second.
     :type mrr_value: float
     :type unit: str
+    :type bandwidth: Optional[float]
     """
     if not unit:
         return
@@ -114,6 +116,13 @@ def append_mrr_value(mrr_value, unit):
     rate_node["unit"] = str(unit)
     values_list = descend(rate_node, "values", list)
     values_list.append(float(mrr_value))
+
+    if bandwidth is None:
+        return
+    rate_node = descend(descend(data["result"], "receive_rate"), "bandwidth")
+    rate_node["unit"] = "bps"
+    values_list = descend(rate_node, "values", list)
+    values_list.append(float(bandwidth))
 
 
 def export_search_bound(text, value, unit, bandwidth=None):
