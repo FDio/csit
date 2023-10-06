@@ -372,12 +372,20 @@ class ExportJson():
             # Device or something else not supported.
             return
 
-        # Compute avg and stdev for mrr.
+        # Compute avg and stdev for mrr (rate and bandwidth).
         if result_type == u"mrr":
             rate_node = result_node[u"receive_rate"][u"rate"]
             stats = AvgStdevStats.for_runs(rate_node[u"values"])
             rate_node[u"avg"] = stats.avg
             rate_node[u"stdev"] = stats.stdev
+
+            bandwidth = result_node["receive_rate"].get("bandwidth", None)
+            if bandwidth is None:
+                return
+            stats = AvgStdevStats.for_runs(bandwidth["values"])
+            bandwidth["avg"] = stats.avg
+            bandwidth["stdev"] = stats.stdev
+
             return
 
         # Multiple processing steps for ndrpdr.
