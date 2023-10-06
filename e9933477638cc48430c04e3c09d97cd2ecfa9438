@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f5cff5_29d84bb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-06T11:34:31Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest 1cAND64bANDmrrANDnic_intel-e810cqANDdrv_avfANDethip4-ip4base",
+      "revId": "e9933477638cc48430c04e3c09d97cd2ecfa9438",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
