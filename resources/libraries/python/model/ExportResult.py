@@ -96,24 +96,32 @@ def export_tg_type_and_version(tg_type="unknown", tg_version="unknown"):
     data["tg_version"] = tg_version
 
 
-def append_mrr_value(mrr_value, unit):
+def append_mrr_value(mrr_value, mrr_unit, bandwidth_value=None,
+        bandwidth_unit="bps"):
     """Store mrr value to proper place so it is dumped into json.
 
     The value is appended only when unit is not empty.
 
     :param mrr_value: Forwarding rate from MRR trial.
-    :param unit: Unit of measurement for the rate.
+    :param mrr_unit: Unit of measurement for the rate.
+    :param bandwidth_value: The same value recomputed into L1 bits per second.
     :type mrr_value: float
-    :type unit: str
+    :type mrr_unit: str
+    :type bandwidth_value: Optional[float]
+    :type bandwidth_unit: Optional[str]
     """
-    if not unit:
+    if not mrr_unit:
         return
     data = get_export_data()
     data["result"]["type"] = "mrr"
-    rate_node = descend(descend(data["result"], "receive_rate"), "rate")
-    rate_node["unit"] = str(unit)
-    values_list = descend(rate_node, "values", list)
-    values_list.append(float(mrr_value))
+
+    for node_val, node_unit, node_name in ((mrr_value, mrr_unit, "rate"),
+            (bandwidth_value, bandwidth_unit, "bandwidth")):
+        if node_val is not None:
+            node = descend(descend(data["result"], "receive_rate"), node_name)
+            node["unit"] = str(node_unit)
+            values_list = descend(node, "values", list)
+            values_list.append(float(node_val))
 
 
 def export_search_bound(text, value, unit, bandwidth=None):
