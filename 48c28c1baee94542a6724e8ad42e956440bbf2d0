@@ -84,6 +84,23 @@
       "message": "csit-2n-icx-perftest 1cANDimixANDndrpdrANDnic_intel-e810cqANDdrv_avfANDethip4-ip4base",
       "revId": "48c28c1baee94542a6724e8ad42e956440bbf2d0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fe4d27e_fbe145bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-09T09:11:35Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest 1cANDimixANDmrrANDnic_intel-e810cqANDdrv_avfANDethip4-ip4base",
+      "revId": "48c28c1baee94542a6724e8ad42e956440bbf2d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
