@@ -178,8 +178,9 @@
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${packet_loss_ratio}
 | | ... | final_relative_width=${0.005}
-| | ... | final_trial_duration=${30.0}
 | | ... | initial_trial_duration=${1.0}
+| | ... | final_trial_duration=${1.0}
+| | ... | duration_sum=${20.0}
 | | ... | number_of_intermediate_phases=${2}
 | | ... | timeout=${1200.0}
 | | ... | ppta=${ppta}
@@ -191,12 +192,7 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | Display result of NDRPDR search | ${result}
-| | Check NDRPDR interval validity | ${result[1]}
-| | ... | ${packet_loss_ratio}
-| | Check NDRPDR interval validity | ${result[0]}
-| | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
-| | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
+| | ${ndr} | ${pdr} = | Display result of NDRPDR search | ${result}
 | | # We expect NDR and PDR to have different-looking stats.
 | | Set Test Variable | ${telemetry_rate} | pdr
 | | Set Test Variable | ${telemetry_export} | ${True}
@@ -269,9 +265,10 @@
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${0.0}
 | | ... | final_relative_width=${0.001}
-| | ... | final_trial_duration=${10.0}
 | | ... | initial_trial_duration=${1.0}
-| | ... | number_of_intermediate_phases=${1}
+| | ... | final_trial_duration=${1.0}
+| | ... | duration_sum=${10.0}
+| | ... | number_of_intermediate_phases=${2}
 | | ... | timeout=${1200}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
@@ -282,8 +279,8 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | Check NDRPDR interval validity | ${result[0]}
-| | Return From Keyword | ${result[0].measured_low.target_tr}
+| | ${ret} = | Convert To Number | ${result[0].conditional_throughput}
+| | Return From Keyword | ${ret}
 
 | Measure and show latency at specified rate
 | | [Documentation]

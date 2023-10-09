@@ -12,7 +12,7 @@
 # limitations under the License.
 
 """
-__init__ file for Python package "MLRsearch".
+__init__ file for Python package "pep3140".
 """
 
 # TODO: Move submodules to separate modules.
@@ -21,10 +21,4 @@ __init__ file for Python package "MLRsearch".
 # Probably it can be done by specifying multiple directories
 # in PYTHONPATH used throughout CSIT.
 
-# Import user-facing (API) stuff, so users do not need to know submodules.
-from .config import Config
-from .search_goal import SearchGoal
-from .multiple_loss_ratio_search import MultipleLossRatioSearch
-from .pep3140 import Pep3140Dict
-from .stat_interval import StatInterval
-from .trimmed_stat import TrimmedStat
+from .classes import Pep3140Dict
