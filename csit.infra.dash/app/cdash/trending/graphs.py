@@ -162,6 +162,12 @@ def graph_trending(
                     f"latency [{row[C.UNIT['hoststack-latency']]}]: "
                     f"{row[C.VALUE['hoststack-latency']]:,.0f}<br>"
                 )
+            elif ttype in ("ndr", "pdr"):  # Add mrr
+                test_type = f"{ttype}-bandwidth"
+                add_info = (
+                    f"bandwidth [{row[C.UNIT[test_type]]}]: "
+                    f"{row[C.VALUE[test_type]]:,.0f}<br>"
+                )
             else:
                 add_info = str()
             hover_itm = hover_itm.replace(
@@ -295,6 +301,7 @@ def graph_trending(
 
     fig_tput = None
     fig_lat = None
+    fig_band = None
     y_units = set()
     for idx, itm in enumerate(sel):
         df = select_trending_data(data, itm)
@@ -326,6 +333,19 @@ def graph_trending(
                 fig_tput = go.Figure()
             fig_tput.add_traces(traces)
 
+        if ttype in ("ndr", "pdr"):  # Add mrr
+            traces, _ = _generate_trending_traces(
+                f"{ttype}-bandwidth",
+                itm["id"],
+                df,
+                get_color(idx),
+                norm_factor
+            )
+            if traces:
+                if not fig_band:
+                    fig_band = go.Figure()
+                fig_band.add_traces(traces)
+
         if itm["testtype"] == "pdr":
             traces, _ = _generate_trending_traces(
                 "latency",
@@ -346,10 +366,12 @@ def graph_trending(
         fig_layout["yaxis"]["title"] = \
             f"Throughput [{'|'.join(sorted(y_units))}]"
         fig_tput.update_layout(fig_layout)
+    if fig_band:
+        fig_band.update_layout(layout.get("plot-trending-bandwidth", dict()))
     if fig_lat:
         fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
 
-    return fig_tput, fig_lat
+    return fig_tput, fig_band, fig_lat
 
 
 def graph_tm_trending(

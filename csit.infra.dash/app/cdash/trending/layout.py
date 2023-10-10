@@ -265,7 +265,7 @@ class Layout:
                         dbc.Offcanvas(
                             class_name="w-50",
                             id="offcanvas-metadata",
-                            title="Throughput And Latency",
+                            title="Detailed Information",
                             placement="end",
                             is_open=False,
                             children=[
@@ -646,8 +646,20 @@ class Layout:
             tab_items.append(
                 dbc.Tab(
                     children=dcc.Graph(
-                        id={"type": "graph", "index": "lat"},
+                        id={"type": "graph", "index": "bandwidth"},
                         figure=graphs[1]
+                    ),
+                    label="Bandwidth",
+                    tab_id="tab-bandwidth"
+                )
+            )
+
+        if graphs[2]:
+            tab_items.append(
+                dbc.Tab(
+                    children=dcc.Graph(
+                        id={"type": "graph", "index": "lat"},
+                        figure=graphs[2]
                     ),
                     label="Latency",
                     tab_id="tab-lat"
@@ -1690,7 +1702,14 @@ class Layout:
             trigger = Trigger(callback_context.triggered)
 
             try:
-                idx = 0 if trigger.idx == "tput" else 1
+                if trigger.idx == "tput":
+                    idx = 0
+                elif trigger.idx == "bandwidth":
+                    idx = 1
+                elif trigger.idx == "lat":
+                    idx = 2
+                else:
+                    raise PreventUpdate
                 graph_data = graph_data[idx]["points"][0]
             except (IndexError, KeyError, ValueError, TypeError):
                 raise PreventUpdate
@@ -1721,6 +1740,8 @@ class Layout:
 
             if trigger.idx == "tput":
                 title = "Throughput"
+            elif trigger.idx == "bandwidth":
+                title = "Bandwidth"
             elif trigger.idx == "lat":
                 title = "Latency"
                 hdrh_data = graph_data.get("customdata", None)
