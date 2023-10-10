@@ -1677,6 +1677,10 @@ class IPsecUtil:
         :returns: Ckeys, ikeys, spi_1, spi_2.
         :rtype: Optional[List[bytes], List[bytes], int, int]
         """
+        PapiSocketExecutor.run_cli_cmd(nodes[u"DUT1"], "show crypto handlers")
+        PapiSocketExecutor.run_cli_cmd(nodes[u"DUT1"], "test crypto perf aes-256-gcm buffer-size 1500 warmup-rounds 1 rounds 500000")
+        raise RuntimeError("Intentional fail.")
+
         n_tunnels = int(n_tunnels)
         existing_tunnels = int(existing_tunnels)
         spi_d = dict(
@@ -1895,6 +1899,10 @@ class IPsecUtil:
         :type raddr_range: int
         :type tunnel_addr_incr: bool
         """
+        PapiSocketExecutor.run_cli_cmd(nodes[u"DUT1"], "show crypto handlers")
+        PapiSocketExecutor.run_cli_cmd(nodes[u"DUT1"], "test crypto perf aes-256-gcm buffer-size 1000 warmup-rounds 100 rounds 5000")
+        raise RuntimeError("Intentional fail.")
+
         spd_id = 1
         p_hi = 100
         p_lo = 10
