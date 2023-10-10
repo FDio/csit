@@ -212,7 +212,10 @@ class Data:
         for itm in df:
             try:
                 # Specify the condition or remove it:
-                if pd.api.types.is_string_dtype(itm["result_rate_unit"]):
+                if all((
+                        pd.api.types.is_string_dtype(itm[""]),
+                        pd.api.types.is_string_dtype(itm["telemetry"][0])
+                    )):
                     print(pa.Schema.from_pandas(itm))
                     pa.parquet.write_metadata(
                         pa.Schema.from_pandas(itm),
@@ -357,6 +360,16 @@ class Data:
                 time_period = days
             else:
                 time_period = None
+
+            # Use to generate schemas:
+            # Data._write_parquet_schema(
+            #     path=data_set["path"],
+            #     partition_filter=partition_filter,
+            #     columns=data_set.get("columns", None),
+            #     days=time_period
+            # )
+
+            #  Use to read data:
             data = Data._create_dataframe_from_parquet(
                 path=data_set["path"],
                 partition_filter=partition_filter,

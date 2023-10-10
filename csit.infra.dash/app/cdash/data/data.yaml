@@ -26,6 +26,9 @@
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
+    # - result_receive_rate_bandwidth_avg
+    # - result_receive_rate_bandwidth_stdev
+    # - result_receive_rate_bandwidth_unit
     - telemetry
 - data_type: trending
   partition: test_type
@@ -46,6 +49,10 @@
     - result_pdr_lower_rate_value
     - result_ndr_lower_rate_unit
     - result_ndr_lower_rate_value
+    - result_pdr_lower_bandwidth_unit
+    - result_pdr_lower_bandwidth_value
+    - result_ndr_lower_bandwidth_unit
+    - result_ndr_lower_bandwidth_value
     - result_latency_reverse_pdr_90_hdrh
     - result_latency_reverse_pdr_50_hdrh
     - result_latency_reverse_pdr_10_hdrh
