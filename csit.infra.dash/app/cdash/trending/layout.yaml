@@ -38,6 +38,46 @@ plot-trending-tput:
   hoverlabel:
     namelength: -1
 
+plot-trending-bandwidth:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Bandwidth [bps]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
 plot-trending-lat:
   autosize: True
   showlegend: False
