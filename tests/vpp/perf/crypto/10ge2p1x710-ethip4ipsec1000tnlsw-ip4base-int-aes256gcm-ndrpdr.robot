@@ -60,8 +60,7 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | unittest_plugin.so
-| ... | crypto_native_plugin.so
-| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ... | crypto_ipsecmb_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
