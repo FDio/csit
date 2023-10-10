@@ -79,7 +79,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+    TIME_PERIOD = 50  # MAX_TIME_PERIOD  # [days]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -229,6 +229,9 @@ class Constants:
         "mrr": "result_receive_rate_rate_avg",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
+        "mrr-bandwidth": "result_receive_rate_bandwidth_avg",
+        "ndr-bandwidth": "result_ndr_lower_bandwidth_value",
+        "pdr-bandwidth": "result_pdr_lower_bandwidth_value",
         "latency": "result_latency_forward_pdr_50_avg",
         "hoststack-cps": "result_rate_value",
         "hoststack-rps": "result_rate_value",
@@ -251,6 +254,9 @@ class Constants:
         "mrr": "result_receive_rate_rate_unit",
         "ndr": "result_ndr_lower_rate_unit",
         "pdr": "result_pdr_lower_rate_unit",
+        "mrr-bandwidth": "result_receive_rate_bandwidth_unit",
+        "ndr-bandwidth": "result_ndr_lower_bandwidth_unit",
+        "pdr-bandwidth": "result_pdr_lower_bandwidth_unit",
         "latency": "result_latency_forward_pdr_50_unit",
         "hoststack-cps": "result_rate_unit",
         "hoststack-rps": "result_rate_unit",
