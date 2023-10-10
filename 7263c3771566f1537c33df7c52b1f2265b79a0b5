@@ -16,6 +16,23 @@
       "message": "csit-3n-alt-perftest mrrANDnic_*ANDdrv_mlx5_coreANDethip4ipsec1000tnlsw-ip4base-*NOT9000bNOT64b",
       "revId": "7263c3771566f1537c33df7c52b1f2265b79a0b5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4232c14a_48b0ee51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-10T09:07:54Z",
+      "side": 1,
+      "message": "csit-3n-alt-perftest mrrANDnic_*ANDethip4ipsec10000tnlsw-ip4base-*NOT9000bNOT64bNOTdrv_af_xdpNOTdrv_rdma_core",
+      "revId": "7263c3771566f1537c33df7c52b1f2265b79a0b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
