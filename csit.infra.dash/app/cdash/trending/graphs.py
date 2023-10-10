@@ -349,7 +349,7 @@ def graph_trending(
     if fig_lat:
         fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
 
-    return fig_tput, fig_lat
+    return fig_tput, fig_tput, fig_lat
 
 
 def graph_tm_trending(
