@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -197,10 +197,9 @@ def simple_burst(
 
         if async_start:
             # For async stop, we need to export the current snapshot.
-            xsnap0 = client.ports[0].get_xstats().reference_stats
-            print(f"Xstats snapshot 0: {xsnap0!r}")
-            xsnap1 = client.ports[1].get_xstats().reference_stats
-            print(f"Xstats snapshot 1: {xsnap1!r}")
+            for i in range(len(client.ports)):
+                xsnap = client.ports[i].get_xstats().reference_stats
+                print(f"Xstats snapshot {i}: {xsnap!r}")
         else:
             time_start = time.monotonic()
             # wait_on_traffic fails if duration stretches by 30 seconds or more.
