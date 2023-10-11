@@ -142,37 +142,37 @@ class Layout:
 
             if tbs.get(dut, None) is None:
                 tbs[dut] = dict()
-            if tbs[dut].get(infra, None) is None:
-                tbs[dut][infra] = dict()
-            if tbs[dut][infra].get(area, None) is None:
-                tbs[dut][infra][area] = dict()
-            if tbs[dut][infra][area].get(test, None) is None:
-                tbs[dut][infra][area][test] = dict()
-                tbs[dut][infra][area][test]["core"] = list()
-                tbs[dut][infra][area][test]["frame-size"] = list()
-                tbs[dut][infra][area][test]["test-type"] = list()
-            if core.upper() not in tbs[dut][infra][area][test]["core"]:
-                tbs[dut][infra][area][test]["core"].append(core.upper())
+            if tbs[dut].get(area, None) is None:
+                tbs[dut][area] = dict()
+            if tbs[dut][area].get(test, None) is None:
+                tbs[dut][area][test] = dict()
+            if tbs[dut][area][test].get(infra, None) is None:
+                tbs[dut][area][test][infra] = dict()
+                tbs[dut][area][test][infra]["core"] = list()
+                tbs[dut][area][test][infra]["frame-size"] = list()
+                tbs[dut][area][test][infra]["test-type"] = list()
+            if core.upper() not in tbs[dut][area][test][infra]["core"]:
+                tbs[dut][area][test][infra]["core"].append(core.upper())
             if framesize.upper() not in \
-                    tbs[dut][infra][area][test]["frame-size"]:
-                tbs[dut][infra][area][test]["frame-size"].append(
+                    tbs[dut][area][test][infra]["frame-size"]:
+                tbs[dut][area][test][infra]["frame-size"].append(
                     framesize.upper()
                 )
             if row["test_type"] == "mrr":
-                if "MRR" not in tbs[dut][infra][area][test]["test-type"]:
-                    tbs[dut][infra][area][test]["test-type"].append("MRR")
+                if "MRR" not in tbs[dut][area][test][infra]["test-type"]:
+                    tbs[dut][area][test][infra]["test-type"].append("MRR")
             elif row["test_type"] == "ndrpdr":
-                if "NDR" not in tbs[dut][infra][area][test]["test-type"]:
-                    tbs[dut][infra][area][test]["test-type"].extend(
+                if "NDR" not in tbs[dut][area][test][infra]["test-type"]:
+                    tbs[dut][area][test][infra]["test-type"].extend(
                         ("NDR", "PDR")
                     )
             elif row["test_type"] == "hoststack":
                 if row["tg_type"] in ("iperf", "vpp"):
-                    if "BPS" not in tbs[dut][infra][area][test]["test-type"]:
-                        tbs[dut][infra][area][test]["test-type"].append("BPS")
+                    if "BPS" not in tbs[dut][area][test][infra]["test-type"]:
+                        tbs[dut][area][test][infra]["test-type"].append("BPS")
                 elif row["tg_type"] == "ab":
-                    if "CPS" not in tbs[dut][infra][area][test]["test-type"]:
-                        tbs[dut][infra][area][test]["test-type"].extend(
+                    if "CPS" not in tbs[dut][area][test][infra]["test-type"]:
+                        tbs[dut][area][test][infra]["test-type"].extend(
                             ("CPS", "RPS")
                         )
         self._spec_tbs = tbs
@@ -373,21 +373,6 @@ class Layout:
                 dbc.InputGroup(
                     [
                         dbc.InputGroupText(
-                            show_tooltip(self._tooltips, "help-infra", "Infra")
-                        ),
-                        dbc.Select(
-                            id={"type": "ctrl-dd", "index": "phy"},
-                            placeholder="Select a Physical Test Bed Topology..."
-                        )
-                    ],
-                    size="sm"
-                ),
-                class_name="g-0 p-1"
-            ),
-            dbc.Row(
-                dbc.InputGroup(
-                    [
-                        dbc.InputGroupText(
                             show_tooltip(self._tooltips, "help-area", "Area")
                         ),
                         dbc.Select(
@@ -408,6 +393,21 @@ class Layout:
                         dbc.Select(
                             id={"type": "ctrl-dd", "index": "test"},
                             placeholder="Select a Test..."
+                        )
+                    ],
+                    size="sm"
+                ),
+                class_name="g-0 p-1"
+            ),
+            dbc.Row(
+                dbc.InputGroup(
+                    [
+                        dbc.InputGroupText(
+                            show_tooltip(self._tooltips, "help-infra", "Infra")
+                        ),
+                        dbc.Select(
+                            id={"type": "ctrl-dd", "index": "phy"},
+                            placeholder="Select a Physical Test Bed Topology..."
                         )
                     ],
                     size="sm"
@@ -1166,24 +1166,24 @@ class Layout:
             elif trigger.type == "ctrl-dd":
                 if trigger.idx == "dut":
                     try:
-                        options = generate_options(
-                            self._spec_tbs[trigger.value].keys()
-                        )
+                        dut = self._spec_tbs[trigger.value]
+                        options = [{"label": label(v), "value": v} \
+                            for v in sorted(dut.keys())]
                         disabled = False
                     except KeyError:
                         options = list()
                         disabled = True
                     ctrl_panel.set({
                         "dd-dut-val": trigger.value,
-                        "dd-phy-val": str(),
-                        "dd-phy-opt": options,
-                        "dd-phy-dis": disabled,
                         "dd-area-val": str(),
-                        "dd-area-opt": list(),
-                        "dd-area-dis": True,
+                        "dd-area-opt": options,
+                        "dd-area-dis": disabled,
                         "dd-test-val": str(),
                         "dd-test-opt": list(),
                         "dd-test-dis": True,
+                        "dd-phy-val": str(),
+                        "dd-phy-opt": list(),
+                        "dd-phy-dis": True,
                         "cl-core-opt": list(),
                         "cl-core-val": list(),
                         "cl-core-all-val": list(),
@@ -1198,43 +1198,10 @@ class Layout:
                         "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
                         "btn-add-dis": True
                     })
-                elif trigger.idx == "phy":
+                if trigger.idx == "area":
                     try:
                         dut = ctrl_panel.get("dd-dut-val")
-                        phy = self._spec_tbs[dut][trigger.value]
-                        options = [{"label": label(v), "value": v} \
-                            for v in sorted(phy.keys())]
-                        disabled = False
-                    except KeyError:
-                        options = list()
-                        disabled = True
-                    ctrl_panel.set({
-                        "dd-phy-val": trigger.value,
-                        "dd-area-val": str(),
-                        "dd-area-opt": options,
-                        "dd-area-dis": disabled,
-                        "dd-test-val": str(),
-                        "dd-test-opt": list(),
-                        "dd-test-dis": True,
-                        "cl-core-opt": list(),
-                        "cl-core-val": list(),
-                        "cl-core-all-val": list(),
-                        "cl-core-all-opt": C.CL_ALL_DISABLED,
-                        "cl-frmsize-opt": list(),
-                        "cl-frmsize-val": list(),
-                        "cl-frmsize-all-val": list(),
-                        "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
-                        "cl-tsttype-opt": list(),
-                        "cl-tsttype-val": list(),
-                        "cl-tsttype-all-val": list(),
-                        "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
-                        "btn-add-dis": True
-                    })  
-                elif trigger.idx == "area":
-                    try:
-                        dut = ctrl_panel.get("dd-dut-val")
-                        phy = ctrl_panel.get("dd-phy-val")
-                        area = self._spec_tbs[dut][phy][trigger.value]
+                        area = self._spec_tbs[dut][trigger.value]
                         options = generate_options(area.keys())
                         disabled = False
                     except KeyError:
@@ -1245,6 +1212,9 @@ class Layout:
                         "dd-test-val": str(),
                         "dd-test-opt": options,
                         "dd-test-dis": disabled,
+                        "dd-phy-val": str(),
+                        "dd-phy-opt": list(),
+                        "dd-phy-dis": True,
                         "cl-core-opt": list(),
                         "cl-core-val": list(),
                         "cl-core-all-val": list(),
@@ -1259,25 +1229,54 @@ class Layout:
                         "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
                         "btn-add-dis": True
                     })
-                elif trigger.idx == "test":
+                if trigger.idx == "test":
+                    try:
+                        dut = ctrl_panel.get("dd-dut-val")
+                        area = ctrl_panel.get("dd-area-val")
+                        test = self._spec_tbs[dut][area][trigger.value]
+                        options = generate_options(test.keys())
+                        disabled = False
+                    except KeyError:
+                        options = list()
+                        disabled = True
+                    ctrl_panel.set({
+                        "dd-test-val": trigger.value,
+                        "dd-phy-val": str(),
+                        "dd-phy-opt": options,
+                        "dd-phy-dis": disabled,
+                        "cl-core-opt": list(),
+                        "cl-core-val": list(),
+                        "cl-core-all-val": list(),
+                        "cl-core-all-opt": C.CL_ALL_DISABLED,
+                        "cl-frmsize-opt": list(),
+                        "cl-frmsize-val": list(),
+                        "cl-frmsize-all-val": list(),
+                        "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                        "cl-tsttype-opt": list(),
+                        "cl-tsttype-val": list(),
+                        "cl-tsttype-all-val": list(),
+                        "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "btn-add-dis": True
+                    })
+                if trigger.idx == "phy":
                     dut = ctrl_panel.get("dd-dut-val")
-                    phy = ctrl_panel.get("dd-phy-val")
                     area = ctrl_panel.get("dd-area-val")
-                    if all((dut, phy, area, trigger.value, )):
-                        test = self._spec_tbs[dut][phy][area][trigger.value]
+                    test = ctrl_panel.get("dd-test-val")
+                    if all((dut, area, test, trigger.value, )):
+                        phy = self._spec_tbs[dut][area][test][trigger.value]
                         ctrl_panel.set({
-                            "dd-test-val": trigger.value,
-                            "cl-core-opt": generate_options(test["core"]),
+                            "dd-phy-val": trigger.value,
+                            "cl-core-opt": generate_options(phy["core"]),
                             "cl-core-val": list(),
                             "cl-core-all-val": list(),
                             "cl-core-all-opt": C.CL_ALL_ENABLED,
                             "cl-frmsize-opt": \
-                                generate_options(test["frame-size"]),
+                                generate_options(phy["frame-size"]),
                             "cl-frmsize-val": list(),
                             "cl-frmsize-all-val": list(),
                             "cl-frmsize-all-opt": C.CL_ALL_ENABLED,
                             "cl-tsttype-opt": \
-                                generate_options(test["test-type"]),
+                                generate_options(phy["test-type"]),
                             "cl-tsttype-val": list(),
                             "cl-tsttype-all-val": list(),
                             "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
@@ -1311,7 +1310,6 @@ class Layout:
                 tm_ignore_host = list()
                 store["trending-graphs"] = None
                 store["telemetry-graphs"] = list()
-                # on_draw[0] = True
                 on_draw = [True, True]
                 if trigger.idx == "add-test":
                     dut = ctrl_panel.get("dd-dut-val")
