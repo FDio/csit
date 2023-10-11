@@ -66,6 +66,44 @@
                             "fields": [
                                 {
                                     "metadata": {},
+                                    "name": "bandwidth",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "double"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "stdev",
+                                                "nullable": true,
+                                                "type": "double"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "values",
+                                                "nullable": true,
+                                                "type": {
+                                                    "containsNull": true,
+                                                    "elementType": "double",
+                                                    "type": "array"
+                                                }
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
                                     "name": "rate",
                                     "nullable": true,
                                     "type": {
