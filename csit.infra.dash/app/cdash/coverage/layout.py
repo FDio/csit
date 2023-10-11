@@ -113,10 +113,10 @@ class Layout:
                 tbs[rls][dut] = dict()
             if tbs[rls][dut].get(d_ver, None) is None:
                 tbs[rls][dut][d_ver] = dict()
-            if tbs[rls][dut][d_ver].get(infra, None) is None:
-                tbs[rls][dut][d_ver][infra] = list()
-            if area not in tbs[rls][dut][d_ver][infra]:
-                tbs[rls][dut][d_ver][infra].append(area)
+            if tbs[rls][dut][d_ver].get(area, None) is None:
+                tbs[rls][dut][d_ver][area] = list()
+            if infra not in tbs[rls][dut][d_ver][area]:
+                tbs[rls][dut][d_ver][area].append(infra)
 
         self._spec_tbs = tbs
 
@@ -342,11 +342,10 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Infra"),
+                            dbc.InputGroupText("Area"),
                             dbc.Select(
-                                id={"type": "ctrl-dd", "index": "phy"},
-                                placeholder=\
-                                    "Select a Physical Test Bed Topology..."
+                                id={"type": "ctrl-dd", "index": "area"},
+                                placeholder="Select an Area..."
                             )
                         ],
                         size="sm"
@@ -358,10 +357,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Area"),
+                            dbc.InputGroupText("Infra"),
                             dbc.Select(
-                                id={"type": "ctrl-dd", "index": "area"},
-                                placeholder="Select an Area..."
+                                id={"type": "ctrl-dd", "index": "phy"},
+                                placeholder=\
+                                    "Select a Physical Test Bed Topology..."
                             )
                         ],
                         size="sm"
@@ -552,21 +552,20 @@ class Layout:
                                 [selected["dut"]].keys()
                         ),
                         "dutver-dis": False,
+                        "area-val": selected["area"],
+                        "area-opt": [
+                            {"label": label(v), "value": v} \
+                                for v in sorted(self._spec_tbs[selected["rls"]]\
+                                    [selected["dut"]]\
+                                        [selected["dutver"]].keys())
+                        ],
+                        "area-dis": False,
                         "phy-val": selected["phy"],
                         "phy-opt": generate_options(
                             self._spec_tbs[selected["rls"]][selected["dut"]]\
-                                [selected["dutver"]].keys()
+                                [selected["dutver"]][selected["area"]]
                         ),
                         "phy-dis": False,
-                        "area-val": selected["area"],
-                        "area-opt": [
-                            {"label": label(v), "value": v} for v in sorted(
-                                self._spec_tbs[selected["rls"]]\
-                                    [selected["dut"]][selected["dutver"]]\
-                                        [selected["phy"]]
-                            )
-                        ],
-                        "area-dis": False,
                         "show-latency": show_latency
                     })
                     on_draw = True
@@ -623,42 +622,42 @@ class Layout:
                     try:
                         rls = ctrl_panel.get("rls-val")
                         dut = ctrl_panel.get("dut-val")
-                        dutver = self._spec_tbs[rls][dut][trigger.value]
-                        options = generate_options(dutver.keys())
-                        disabled = False
-                    except KeyError:
-                        options = list()
-                        disabled = True
-                    ctrl_panel.set({
-                        "dutver-val": trigger.value,
-                        "phy-val": str(),
-                        "phy-opt": options,
-                        "phy-dis": disabled,
-                        "area-val": str(),
-                        "area-opt": list(),
-                        "area-dis": True
-                    })
-                elif trigger.idx == "phy":
-                    try:
-                        rls = ctrl_panel.get("rls-val")
-                        dut = ctrl_panel.get("dut-val")
-                        dutver = ctrl_panel.get("dutver-val")
-                        phy = self._spec_tbs[rls][dut][dutver][trigger.value]
+                        ver = self._spec_tbs[rls][dut][trigger.value]
                         options = [
-                            {"label": label(v), "value": v} for v in sorted(phy)
+                            {"label": label(v), "value": v} for v in sorted(ver)
                         ]
                         disabled = False
                     except KeyError:
                         options = list()
                         disabled = True
                     ctrl_panel.set({
-                        "phy-val": trigger.value,
+                        "dutver-val": trigger.value,
                         "area-val": str(),
                         "area-opt": options,
-                        "area-dis": disabled
+                        "area-dis": disabled,
+                        "phy-val": str(),
+                        "phy-opt": list(),
+                        "phy-dis": True
                     })
                 elif trigger.idx == "area":
-                    ctrl_panel.set({"area-val": trigger.value})
+                    try:
+                        rls = ctrl_panel.get("rls-val")
+                        dut = ctrl_panel.get("dut-val")
+                        ver = ctrl_panel.get("dutver-val")
+                        options = generate_options(
+                            self._spec_tbs[rls][dut][ver][trigger.value])
+                        disabled = False
+                    except KeyError:
+                        options = list()
+                        disabled = True
+                    ctrl_panel.set({
+                        "area-val": trigger.value,
+                        "phy-val": str(),
+                        "phy-opt": options,
+                        "phy-dis": disabled
+                    })
+                elif trigger.idx == "phy":
+                    ctrl_panel.set({"phy-val": trigger.value})
                     selected = {
                         "rls": ctrl_panel.get("rls-val"),
                         "dut": ctrl_panel.get("dut-val"),
