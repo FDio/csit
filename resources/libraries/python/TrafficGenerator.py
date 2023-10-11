@@ -174,7 +174,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.ramp_up_duration = None
         self.state_timeout = None
         # Transient data needed for async measurements.
-        self._xstats = (None, None)
+        self._xstats = ()
 
     @property
     def node(self):
@@ -499,11 +499,11 @@ class TrafficGenerator(AbstractMeasurer):
         command_line = OptionString().add(u"python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_stl_stop.py'")
-        command_line.change_prefix(u"--")
+        command_line.add("--xstat")
         for index, value in enumerate(self._xstats):
             if value is not None:
-                value = value.replace(u"'", u"\"")
-                command_line.add_equals(f"xstat{index}", f"'{value}'")
+                value = value.replace("'", "\"")
+                command_line.add(f"'{value}'")
         stdout, _ = exec_cmd_no_error(
             node, command_line,
             message=u"T-Rex STL runtime error!"
@@ -654,7 +654,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._sent = None
             self._loss = None
             self._latency = None
-            xstats = [None, None]
+            xstats = []
             self._l7_data = dict()
             self._l7_data[u"client"] = dict()
             self._l7_data[u"client"][u"active_flows"] = None
@@ -689,8 +689,6 @@ class TrafficGenerator(AbstractMeasurer):
                 if f"Xstats snapshot {index}: " in line:
                     xstats[index] = line[19:]
                     index += 1
-                if index == 2:
-                    break
             self._xstats = tuple(xstats)
         else:
             self._target_duration = duration
@@ -761,14 +759,12 @@ class TrafficGenerator(AbstractMeasurer):
             self._loss = None
             self._latency = None
 
-            xstats = [None, None]
+            xstats = []
             index = 0
             for line in stdout.splitlines():
                 if f"Xstats snapshot {index}: " in line:
-                    xstats[index] = line[19:]
+                    xstats.append(line[19:])
                     index += 1
-                if index == 2:
-                    break
             self._xstats = tuple(xstats)
         else:
             self._target_duration = duration
