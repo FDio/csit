@@ -481,28 +481,6 @@ class Layout:
                             dbc.InputGroupText(
                                 children=show_tooltip(
                                     self._tooltips,
-                                    "help-infra",
-                                    "Infra"
-                                )
-                            ),
-                            dbc.Select(
-                                id={"type": "ctrl-dd", "index": "phy"},
-                                placeholder=\
-                                    "Select a Physical Test Bed Topology..."
-                            )
-                        ],
-                        size="sm"
-                    )
-                ]
-            ),
-            dbc.Row(
-                class_name="g-0 p-1",
-                children=[
-                    dbc.InputGroup(
-                        [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
                                     "help-area",
                                     "Area"
                                 )
@@ -531,6 +509,28 @@ class Layout:
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "test"},
                                 placeholder="Select a Test..."
+                            )
+                        ],
+                        size="sm"
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-infra",
+                                    "Infra"
+                                )
+                            ),
+                            dbc.Select(
+                                id={"type": "ctrl-dd", "index": "phy"},
+                                placeholder=\
+                                    "Select a Physical Test Bed Topology..."
                             )
                         ],
                         size="sm"
