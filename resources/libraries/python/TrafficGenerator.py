@@ -275,8 +275,7 @@ class TrafficGenerator(AbstractMeasurer):
             message = u"Get T-Rex version failed!"
             stdout, _ = exec_cmd_no_error(tg_node, command, message=message)
             return stdout.strip()
-        else:
-            return "none"
+        return "none"
 
     def initialize_traffic_generator(self, osi_layer, parallel_links=1):
         """TG initialization.
@@ -298,39 +297,39 @@ class TrafficGenerator(AbstractMeasurer):
             trex_topology = list()
             self._mode = TrexMode.ASTF if osi_layer == "L7" else TrexMode.STL
 
-            for l in range(1, parallel_links*2, 2):
-                tg_if1_adj_addr = topology[f"TG_pf{l+1}_mac"][0]
-                tg_if2_adj_addr = topology[f"TG_pf{l}_mac"][0]
+            for link in range(1, parallel_links*2, 2):
+                tg_if1_adj_addr = topology[f"TG_pf{link+1}_mac"][0]
+                tg_if2_adj_addr = topology[f"TG_pf{link}_mac"][0]
                 if osi_layer in ("L3", "L7") and "DUT1" in topology.keys():
                     ifl = BuiltIn().get_variable_value("${int}")
                     last = topology["duts_count"]
                     tg_if1_adj_addr = Topology().get_interface_mac(
-                        topology["DUT1"], 
+                        topology["DUT1"],
                         BuiltIn().get_variable_value(
-                            f"${{DUT1_{ifl}{l}}}[0]"
+                            f"${{DUT1_{ifl}{link}}}[0]"
                         )
                     )
                     tg_if2_adj_addr = Topology().get_interface_mac(
-                        topology[f"DUT{last}"], 
+                        topology[f"DUT{last}"],
                         BuiltIn().get_variable_value(
-                            f"${{DUT{last}_{ifl}{l+1}}}[0]"
+                            f"${{DUT{last}_{ifl}{link+1}}}[0]"
                         )
                     )
 
                 trex_topology.append(
                     dict(
-                        interface=topology[f"TG_pf{l}"][0],
+                        interface=topology[f"TG_pf{link}"][0],
                         dst_mac=tg_if1_adj_addr
                     )
                 )
                 trex_topology.append(
                     dict(
-                        interface=topology[f"TG_pf{l+1}"][0],
+                        interface=topology[f"TG_pf{link+1}"][0],
                         dst_mac=tg_if2_adj_addr
                     )
                 )
-                if1_pci = topology[f"TG_pf{l}_pci"][0]
-                if2_pci = topology[f"TG_pf{l+1}_pci"][0]
+                if1_pci = topology[f"TG_pf{link}_pci"][0]
+                if2_pci = topology[f"TG_pf{link+1}_pci"][0]
                 if min(if1_pci, if2_pci) != if1_pci:
                     self._ifaces_reordered = True
                     trex_topology.reverse()
@@ -500,7 +499,7 @@ class TrafficGenerator(AbstractMeasurer):
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_stl_stop.py'")
         command_line.add("--xstat")
-        for index, value in enumerate(self._xstats):
+        for value in self._xstats:
             if value is not None:
                 value = value.replace("'", "\"")
                 command_line.add(f"'{value}'")
