@@ -23,7 +23,7 @@ from resources.libraries.python.topology import NodeType, NodeSubTypeTG
 from resources.libraries.python.topology import Topology
 
 
-__all__ = ["TrexConfigGenerator", "TrexInitConfig"]
+__all__ = ["TrexConfigGenerator", "TrexConfig"]
 
 def pci_dev_check(pci_dev):
     """Check if provided PCI address is in correct format.
@@ -259,7 +259,7 @@ class TrexConfig:
                 tg_dtc_offset = 0
             master_thread_id, latency_thread_id, socket, threads = \
                 CpuUtils.get_affinity_trex(
-                    node, link["interface"], tg_dtc=tg_dtc, 
+                    node, link["interface"], tg_dtc=tg_dtc,
                     tg_dtc_offset=tg_dtc_offset
                 )
             dual_if.append(dict(socket=socket, threads=threads))
