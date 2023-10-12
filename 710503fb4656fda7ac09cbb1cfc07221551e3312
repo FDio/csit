@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "992cd3c3_e1e4610d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-12T05:10:37Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-mrr-00",
+      "revId": "710503fb4656fda7ac09cbb1cfc07221551e3312",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
