@@ -34,7 +34,7 @@ import sys
 import time
 
 sys.path.insert(
-    0, u"/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
+    0, "/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.stl.api import STLClient, STLProfile, STLError
 
@@ -66,7 +66,7 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
     except ValueError:
         t_max = int(-1)
 
-    return u"/".join(str(tmp) for tmp in (t_min, t_avg, t_max, hdrh))
+    return "/".join(str(tmp) for tmp in (t_min, t_avg, t_max, hdrh))
 
 
 def simple_burst(
@@ -126,10 +126,8 @@ def simple_burst(
     total_rcvd = 0
     total_sent = 0
     approximated_duration = 0.0
-    lost_a = 0
-    lost_b = 0
-    lat_a = u"-1/-1/-1/"
-    lat_b = u"-1/-1/-1/"
+    lat_a = "-1/-1/-1/"
+    lat_b = "-1/-1/-1/"
 
     # Read the profile:
     try:
@@ -149,11 +147,11 @@ def simple_burst(
         # Connect to server:
         client.connect()
         # Prepare our ports (the machine has 0 <--> 1 with static route):
-        client.reset(ports=[port_0, port_1])
-        client.remove_all_streams(ports=[port_0, port_1])
+        client.reset()
+        client.remove_all_streams()
 
-        if u"macsrc" in profile_file:
-            client.set_port_attr(ports=[port_0, port_1], promiscuous=True)
+        if "macsrc" in profile_file:
+            client.set_port_attr(promiscuous=True)
         if isinstance(framesize, int):
             last_stream_a = int((len(streams) - 2) / 2)
             last_stream_b = (last_stream_a * 2)
@@ -176,15 +174,13 @@ def simple_burst(
                     latency = False
             except STLError:
                 # Disable latency if NIC does not support requested stream type
-                print(u"##### FAILED to add latency streams #####")
+                print("##### FAILED to add latency streams #####")
                 latency = False
         # Even for unidir, both ports are needed to see both rx and tx.
         ports = [port_0, port_1]
 
         # Clear the stats before injecting:
         client.clear_stats()
-        lost_a = 0
-        lost_b = 0
 
         # Choose rate and start traffic:
         client.start(
@@ -216,33 +212,35 @@ def simple_burst(
             # Now finish the complete reset.
             client.reset()
 
-            print(u"##### Statistics #####")
-            print(json.dumps(stats, indent=4, separators=(u",", u": ")))
+            print("##### Statistics #####")
+            print(json.dumps(stats, indent=4, separators=(",", ": ")))
 
-            lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
-            lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
+            nr_ports = len(client.ports)
+            for i,j in zip(range(nr_ports)[0::2], range(nr_ports)[1::2]):
+                lost_r = stats[i]["opackets"] - stats[j]["ipackets"]
+                lost_l = stats[j]["opackets"] - stats[i]["ipackets"]
+                print(f"packets lost from {i} --> {j}: {lost_r} pkts")
+                print(f"packets lost from {j} --> {i}: {lost_l} pkts")
 
             # Stats index is not a port number, but "pgid".
+            # We will take latency read from only first link.
             if latency:
-                lat_obj = stats[u"latency"][0][u"latency"]
+                lat_obj = stats["latency"][0]["latency"]
                 lat_a = fmt_latency(
-                    str(lat_obj[u"total_min"]), str(lat_obj[u"average"]),
-                    str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
+                    str(lat_obj["total_min"]), str(lat_obj["average"]),
+                    str(lat_obj["total_max"]), str(lat_obj["hdrh"]))
                 # Do not bother with the other dir latency if unidir.
                 if traffic_directions > 1:
-                    lat_obj = stats[u"latency"][1][u"latency"]
+                    lat_obj = stats["latency"][1]["latency"]
                     lat_b = fmt_latency(
-                        str(lat_obj[u"total_min"]), str(lat_obj[u"average"]),
-                        str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
+                        str(lat_obj["total_min"]), str(lat_obj["average"]),
+                        str(lat_obj["total_max"]), str(lat_obj["hdrh"]))
 
-            total_sent = stats[0][u"opackets"] + stats[1][u"opackets"]
-            total_rcvd = stats[0][u"ipackets"] + stats[1][u"ipackets"]
-
-            print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
-            print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
+            total_rcvd = stats["total"]["ipackets"]
+            total_sent = stats["total"]["opackets"]
 
     except STLError:
-        print(u"T-Rex STL runtime error!", file=sys.stderr)
+        print("T-Rex STL runtime error!", file=sys.stderr)
         raise
 
     finally:
@@ -256,7 +254,7 @@ def simple_burst(
                 f"rate={rate!r}; "
                 f"total_received={total_rcvd}; "
                 f"total_sent={total_sent}; "
-                f"frame_loss={lost_a + lost_b}; "
+                f"frame_loss={total_sent - total_rcvd}; "
                 f"target_duration={duration!r}; "
                 f"approximated_duration={approximated_duration!r}; "
                 f"latency_stream_0(usec)={lat_a}; "
@@ -272,48 +270,48 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        u"-p", u"--profile", required=True, type=str,
-        help=u"Python traffic profile."
+        "-p", "--profile", required=True, type=str,
+        help="Python traffic profile."
     )
     parser.add_argument(
-        u"-d", u"--duration", required=True, type=float,
-        help=u"Duration of traffic run."
+        "-d", "--duration", required=True, type=float,
+        help="Duration of traffic run."
     )
     parser.add_argument(
-        u"-s", u"--frame_size", required=True,
-        help=u"Size of a Frame without padding and IPG."
+        "-s", "--frame_size", required=True,
+        help="Size of a Frame without padding and IPG."
     )
     parser.add_argument(
-        u"-r", u"--rate", required=True,
-        help=u"Traffic rate with included units (pps)."
+        "-r", "--rate", required=True,
+        help="Traffic rate with included units (pps)."
     )
     parser.add_argument(
-        u"--port_0", required=True, type=int,
-        help=u"Port 0 on the traffic generator."
+        "--port_0", required=True, type=int,
+        help="Port 0 on the traffic generator."
     )
     parser.add_argument(
-        u"--port_1", required=True, type=int,
-        help=u"Port 1 on the traffic generator."
+        "--port_1", required=True, type=int,
+        help="Port 1 on the traffic generator."
     )
     parser.add_argument(
-        u"--async_start", action=u"store_true", default=False,
-        help=u"Non-blocking call of the script."
+        "--async_start", action="store_true", default=False,
+        help="Non-blocking call of the script."
     )
     parser.add_argument(
-        u"--latency", action=u"store_true", default=False,
-        help=u"Add latency stream."
+        "--latency", action="store_true", default=False,
+        help="Add latency stream."
     )
     parser.add_argument(
-        u"--traffic_directions", type=int, default=2,
-        help=u"Send bi- (2) or uni- (1) directional traffic."
+        "--traffic_directions", type=int, default=2,
+        help="Send bi- (2) or uni- (1) directional traffic."
     )
     parser.add_argument(
-        u"--force", action=u"store_true", default=False,
-        help=u"Force start regardless of ports state."
+        "--force", action="store_true", default=False,
+        help="Force start regardless of ports state."
     )
     parser.add_argument(
-        u"--delay", required=True, type=float, default=0.0,
-        help=u"Delay assumed for traffic, sleep time is increased by this [s]."
+        "--delay", required=True, type=float, default=0.0,
+        help="Delay assumed for traffic, sleep time is increased by this [s]."
     )
 
     args = parser.parse_args()
@@ -338,5 +336,5 @@ def main():
     )
 
 
-if __name__ == u"__main__":
+if __name__ == "__main__":
     main()
