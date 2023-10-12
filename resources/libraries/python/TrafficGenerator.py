@@ -687,7 +687,7 @@ class TrafficGenerator(AbstractMeasurer):
             index = 0
             for line in stdout.splitlines():
                 if f"Xstats snapshot {index}: " in line:
-                    xstats[index] = line[19:]
+                    xstats.append(line[19:])
                     index += 1
             self._xstats = tuple(xstats)
         else:
