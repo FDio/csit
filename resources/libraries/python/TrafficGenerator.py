@@ -278,7 +278,7 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             return "none"
 
-    def initialize_traffic_generator(self, osi_layer, parallel_links=1):
+    def initialize_traffic_generator(self, osi_layer, parallel_links=3):
         """TG initialization.
 
         :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
