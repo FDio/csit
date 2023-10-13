@@ -143,6 +143,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._mode = None
         # TG interface order mapping
         self._ifaces_reordered = False
+        self._ifaces = []
         # Result holding fields, to be removed.
         self._result = None
         self._loss = None
@@ -177,7 +178,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.ramp_up_duration = None
         self.state_timeout = None
         # Transient data needed for async measurements.
-        self._xstats = ()
+        self._xstats = []
 
     @property
     def node(self):
@@ -319,23 +320,38 @@ class TrafficGenerator(AbstractMeasurer):
                         )
                     )
 
-                trex_topology.append(
-                    dict(
-                        interface=topology[f"TG_pf{link}"][0],
-                        dst_mac=tg_if1_adj_addr
-                    )
-                )
-                trex_topology.append(
-                    dict(
-                        interface=topology[f"TG_pf{link+1}"][0],
-                        dst_mac=tg_if2_adj_addr
-                    )
-                )
                 if1_pci = topology[f"TG_pf{link}_pci"][0]
                 if2_pci = topology[f"TG_pf{link+1}_pci"][0]
                 if min(if1_pci, if2_pci) != if1_pci:
-                    self._ifaces_reordered = True
-                    trex_topology.reverse()
+                    self._ifaces.append(str(link))
+                    self._ifaces.append(str(link-1))
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link+1}"][0],
+                            dst_mac=tg_if2_adj_addr
+                        )
+                    )
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link}"][0],
+                            dst_mac=tg_if1_adj_addr
+                        )
+                    )
+                else:
+                    self._ifaces.append(str(link-1))
+                    self._ifaces.append(str(link))
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link}"][0],
+                            dst_mac=tg_if1_adj_addr
+                        )
+                    )
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link+1}"][0],
+                            dst_mac=tg_if2_adj_addr
+                        )
+                    )
 
             TrexConfig.add_startup_configuration(
                 self._node, trex_topology
@@ -362,18 +378,18 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             for _ in range(0, 3):
                 # Kill TRex only if it is already running.
-                cmd = u"sh -c \"pgrep t-rex && pkill t-rex && sleep 3 || true\""
+                cmd = "sh -c \"pgrep t-rex && pkill t-rex && sleep 3 || true\""
                 exec_cmd_no_error(
-                    tg_node, cmd, sudo=True, message=u"Kill TRex failed!"
+                    tg_node, cmd, sudo=True, message="Kill TRex failed!"
                 )
 
                 # Prepare interfaces for TRex.
                 tg_port_drv = Constants.TREX_PORT_DRIVER
-                mlx_driver = u""
-                for port in tg_node[u"interfaces"].values():
-                    if u"Mellanox" in port.get(u"model"):
-                        mlx_driver = port.get(u"driver")
-                        pci_addr = port.get(u'pci_address')
+                mlx_driver = ""
+                for port in tg_node["interfaces"].values():
+                    if "Mellanox" in port.get("model"):
+                        mlx_driver = port.get("driver")
+                        pci_addr = port.get("pci_address")
                         cur_driver = DS.get_pci_dev_driver(tg_node, pci_addr)
                         if cur_driver == mlx_driver:
                             pass
@@ -383,7 +399,7 @@ class TrafficGenerator(AbstractMeasurer):
                             DS.pci_driver_unbind(tg_node, pci_addr)
                             DS.pci_driver_bind(tg_node, pci_addr, mlx_driver)
                     else:
-                        pci_addr = port.get(u'pci_address')
+                        pci_addr = port.get("pci_address")
                         cur_driver = DS.get_pci_dev_driver(tg_node, pci_addr)
                         if cur_driver:
                             DS.pci_driver_unbind(tg_node, pci_addr)
@@ -391,12 +407,12 @@ class TrafficGenerator(AbstractMeasurer):
 
                 # Start TRex.
                 cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
-                trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
-                trex_cmd.add(u"-i")
-                trex_cmd.add(u"--prefix $(hostname)")
-                trex_cmd.add(u"--hdrh")
-                trex_cmd.add(u"--no-scapy-server")
-                trex_cmd.add_if(u"--astf", osi_layer == u"L7")
+                trex_cmd = OptionString(["nohup", "./t-rex-64"])
+                trex_cmd.add("-i")
+                trex_cmd.add("--prefix $(hostname)")
+                trex_cmd.add("--hdrh")
+                trex_cmd.add("--no-scapy-server")
+                trex_cmd.add_if("--astf", osi_layer == "L7")
                 # OptionString does not create double space if extra is empty.
                 trex_cmd.add(f"{Constants.TREX_EXTRA_CMDLINE}")
                 inner_command = f"{cd_cmd} && {trex_cmd} > /tmp/trex.log 2>&1 &"
@@ -404,33 +420,33 @@ class TrafficGenerator(AbstractMeasurer):
                 try:
                     exec_cmd_no_error(tg_node, cmd, sudo=True)
                 except RuntimeError:
-                    cmd = u"sh -c \"cat /tmp/trex.log\""
+                    cmd = "sh -c \"cat /tmp/trex.log\""
                     exec_cmd_no_error(
                         tg_node, cmd, sudo=True,
-                        message=u"Get TRex logs failed!"
+                        message="Get TRex logs failed!"
                     )
-                    raise RuntimeError(u"Start TRex failed!")
+                    raise RuntimeError("Start TRex failed!")
 
                 # Test T-Rex API responsiveness.
                 cmd = f"python3 {Constants.REMOTE_FW_DIR}/GPL/tools/trex/"
-                if osi_layer in (u"L2", u"L3"):
-                    cmd += u"trex_stl_assert.py"
-                elif osi_layer == u"L7":
-                    cmd += u"trex_astf_assert.py"
+                if osi_layer in ("L2", "L3"):
+                    cmd += "trex_stl_assert.py"
+                elif osi_layer == "L7":
+                    cmd += "trex_astf_assert.py"
                 else:
-                    raise ValueError(u"Unknown OSI layer!")
+                    raise ValueError("Unknown OSI layer!")
                 try:
                     exec_cmd_no_error(
                         tg_node, cmd, sudo=True,
-                        message=u"T-Rex API is not responding!", retries=20
+                        message="T-Rex API is not responding!", retries=20
                     )
                 except RuntimeError:
                     continue
                 return
             # After max retries TRex is still not responding to API critical
             # error occurred.
-            exec_cmd(tg_node, u"cat /tmp/trex.log", sudo=True)
-            raise RuntimeError(u"Start T-Rex failed after multiple retries!")
+            exec_cmd(tg_node, "cat /tmp/trex.log", sudo=True)
+            raise RuntimeError("Start T-Rex failed after multiple retries!")
 
     @staticmethod
     def is_trex_running(node):
@@ -441,7 +457,7 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: True if T-Rex is running otherwise False.
         :rtype: bool
         """
-        ret, _, _ = exec_cmd(node, u"pgrep t-rex", sudo=True)
+        ret, _, _ = exec_cmd(node, "pgrep t-rex", sudo=True)
         return bool(int(ret) == 0)
 
     @staticmethod
@@ -718,38 +734,36 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.STL)
-        p_0, p_1 = (1, 0) if self._ifaces_reordered else (0, 1)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
 
         duration, _ = self._compute_duration(duration=duration, multiplier=rate)
 
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add("python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_stl_profile.py'")
-        command_line.change_prefix(u"--")
+        command_line.change_prefix("--")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/traffic_profiles/trex"
         command_line.add_with_value(
-            u"profile", f"'{dirname}/{self.traffic_profile}.py'"
+            "profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
-        command_line.add_with_value(u"duration", f"{duration!r}")
-        command_line.add_with_value(u"frame_size", self.frame_size)
-        command_line.add_with_value(u"rate", f"{rate!r}")
-        command_line.add_with_value(u"port_0", p_0)
-        command_line.add_with_value(u"port_1", p_1)
+        command_line.add_with_value("duration", f"{duration!r}")
+        command_line.add_with_value("frame_size", self.frame_size)
+        command_line.add_with_value("rate", f"{rate!r}")
+        command_line.add_with_value("ports", " ".join(self._ifaces))
         command_line.add_with_value(
-            u"traffic_directions", self.traffic_directions
+            "traffic_directions", self.traffic_directions
         )
-        command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", self.use_latency)
-        command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
-        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY)
+        command_line.add_if("async_start", async_call)
+        command_line.add_if("latency", self.use_latency)
+        command_line.add_if("force", Constants.TREX_SEND_FORCE)
+        command_line.add_with_value("delay", Constants.PERF_TRIAL_STL_DELAY)
 
         self._start_time = time.monotonic()
-        self._rate = float(rate[:-3]) if u"pps" in rate else float(rate)
+        self._rate = float(rate[:-3]) if "pps" in rate else float(rate)
         stdout, _ = exec_cmd_no_error(
             self._node, command_line, timeout=int(duration) + 60,
-            message=u"T-Rex STL runtime error"
+            message="T-Rex STL runtime error"
         )
 
         if async_call:
