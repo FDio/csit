@@ -54,11 +54,11 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_name}= | Mellanox-CX7VEAT
+| ${nic_driver}= | mlx5_core
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
-| ${nic_pfs}= | 2
+| ${nic_pfs}= | 6
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
@@ -91,7 +91,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Set interfaces in path up
-| | And Initialize IPv4 Forwarding | count=${rts_per_flow}
+| | And Initialize IPv4 Forwarding | count=${rts_per_flow} | parallel_links=${1}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
@@ -132,7 +132,7 @@
 | | frame_size=${9000} | phy_cores=${4}
 
 | IMIX-1c-ethip4-ip4scale20k-ndrpdr
-| | [Tags] | IMIX | 1C
+| | [Tags] | IMIX | 1C | THIS
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
 | IMIX-2c-ethip4-ip4scale20k-ndrpdr
