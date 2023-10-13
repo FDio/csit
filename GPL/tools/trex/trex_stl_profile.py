@@ -74,8 +74,7 @@ def simple_burst(
         duration,
         framesize,
         rate,
-        port_0,
-        port_1,
+        ports,
         latency,
         async_start=False,
         traffic_directions=2,
@@ -103,8 +102,7 @@ def simple_burst(
     :param framesize: Frame size.
     :param duration: Duration of traffic run in seconds (-1=infinite).
     :param rate: Traffic rate [percentage, pps, bps].
-    :param port_0: Port 0 on the traffic generator.
-    :param port_1: Port 1 on the traffic generator.
+    :param ports: Port list on the traffic generator.
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
@@ -114,8 +112,7 @@ def simple_burst(
     :type framesize: int or str
     :type duration: float
     :type rate: str
-    :type port_0: int
-    :type port_1: int
+    :type ports: list
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
@@ -155,36 +152,34 @@ def simple_burst(
         if isinstance(framesize, int):
             last_stream_a = int((len(streams) - 2) / 2)
             last_stream_b = (last_stream_a * 2)
-            client.add_streams(streams[0:last_stream_a], ports=[port_0])
+            client.add_streams(streams[0:last_stream_a], ports=ports[0:1])
             if traffic_directions > 1:
                 client.add_streams(
-                    streams[last_stream_a:last_stream_b], ports=[port_1])
+                    streams[last_stream_a:last_stream_b], ports=ports[1:2])
         elif isinstance(framesize, str):
-            client.add_streams(streams[0:3], ports=[port_0])
+            client.add_streams(streams[0:3], ports=ports[0:1])
             if traffic_directions > 1:
-                client.add_streams(streams[3:6], ports=[port_1])
+                client.add_streams(streams[3:6], ports=ports[1:2])
         if latency:
             try:
                 if isinstance(framesize, int):
-                    client.add_streams(streams[last_stream_b], ports=[port_0])
+                    client.add_streams(streams[last_stream_b], ports=ports[0:1])
                     if traffic_directions > 1:
                         client.add_streams(
-                            streams[last_stream_b + 1], ports=[port_1])
+                            streams[last_stream_b + 1], ports=ports[1:2])
                 elif isinstance(framesize, str):
                     latency = False
             except STLError:
                 # Disable latency if NIC does not support requested stream type
                 print("##### FAILED to add latency streams #####")
                 latency = False
-        # Even for unidir, both ports are needed to see both rx and tx.
-        ports = [port_0, port_1]
 
         # Clear the stats before injecting:
         client.clear_stats()
 
         # Choose rate and start traffic:
         client.start(
-            ports=ports[:traffic_directions],
+            ports=ports[::] if traffic_directions == 2 else ports[::2],
             mult=rate,
             duration=duration,
             force=force,
@@ -286,12 +281,8 @@ def main():
         help="Traffic rate with included units (pps)."
     )
     parser.add_argument(
-        "--port_0", required=True, type=int,
-        help="Port 0 on the traffic generator."
-    )
-    parser.add_argument(
-        "--port_1", required=True, type=int,
-        help="Port 1 on the traffic generator."
+        "--ports", required=True, type=int, nargs="+",
+        help="Port list on the traffic generator."
     )
     parser.add_argument(
         "--async_start", action="store_true", default=False,
@@ -326,8 +317,7 @@ def main():
         duration=args.duration,
         framesize=framesize,
         rate=args.rate,
-        port_0=args.port_0,
-        port_1=args.port_1,
+        ports=args.ports,
         latency=args.latency,
         async_start=args.async_start,
         traffic_directions=args.traffic_directions,
