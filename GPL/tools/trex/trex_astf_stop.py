@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -30,11 +30,6 @@ Requirements:
  - compiled and running T-REX process (eg. ./t-rex-64 -i)
  - trex.astf.api library
 - Script must be executed on a node with T-REX instance
-
-Functionality:
-1. Stop any running traffic
-2. Optionally restore reference counter values.
-3. Return conter differences.
 """
 
 import argparse
@@ -44,7 +39,7 @@ import sys
 from collections import OrderedDict  # Needed to parse xstats representation.
 
 sys.path.insert(
-    0, u"/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
+    0, "/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.astf.api import ASTFClient
 
@@ -53,60 +48,48 @@ def main():
     """Stop traffic if any is running. Report xstats."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        u"--xstat0", type=str, default=u"",
-        help=u"Reference xstat object if any."
-    )
-    parser.add_argument(
-        u"--xstat1", type=str, default=u"",
-        help=u"Reference xstat object if any."
+        "--xstat", type=str, nargs="*", help="Reference xstat object if any."
     )
     args = parser.parse_args()
 
     client = ASTFClient()
     try:
-        # connect to server
         client.connect()
-
         client.acquire(force=True)
         client.stop()
 
+        xstats = list()
         # Read the stats after the test,
         # we need to update values before the last trial started.
-        if args.xstat0:
-            snapshot = eval(args.xstat0)
-            client.ports[0].get_xstats().reference_stats = snapshot
-        if args.xstat1:
-            snapshot = eval(args.xstat1)
-            client.ports[1].get_xstats().reference_stats = snapshot
-        # Now we can call the official method to get differences.
-        xstats0 = client.get_xstats(0)
-        xstats1 = client.get_xstats(1)
-
-    # If TRexError happens, let the script fail with stack trace.
+        for i in range(len(client.ports)):
+            if args.xstat[i]:
+                snapshot = eval(args.xstat[i])
+                client.ports[i].get_xstats().reference_stats = snapshot
+            # Now we can call the official method to get differences.
+            xstats.append(client.get_xstats(i))
+            print(f"##### statistics port {i} #####")
+            print(json.dumps(xstats[i], indent=4, separators=(",", ": ")))
     finally:
         client.reset()
         client.disconnect()
 
-    # TODO: check xstats format
-    print(u"##### statistics port 0 #####")
-    print(json.dumps(xstats0, indent=4, separators=(u",", u": ")))
-    print(u"##### statistics port 1 #####")
-    print(json.dumps(xstats1, indent=4, separators=(u",", u": ")))
+    for idx,stat in enumerate(zip(xstats[0::2], xstats[1::2])):
+        lost_r = stat[0]["tx_good_packets"] - stat[1]["rx_good_packets"]
+        lost_l = stat[1]["tx_good_packets"] - stat[0]["rx_good_packets"]
+        print(f"packets lost from {idx*2} --> {idx*2+1}:   {lost_r} pkts")
+        print(f"packets lost from {idx*2+1} --> {idx*2}:   {lost_l} pkts")
 
-    tx_0, rx_0 = xstats0[u"tx_good_packets"], xstats0[u"rx_good_packets"]
-    tx_1, rx_1 = xstats1[u"tx_good_packets"], xstats1[u"rx_good_packets"]
-    lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
+    total_rcvd = 0
+    total_sent = 0
+    for stat in xstats:
+        total_rcvd += stat["rx_good_packets"]
+        total_sent += stat["tx_good_packets"]
 
-    print(f"packets lost from 0 --> 1:   {lost_a} pkts")
-    print(f"packets lost from 1 --> 0:   {lost_b} pkts")
-
-    total_rcvd, total_sent = rx_0 + rx_1, tx_0 + tx_1
-    total_lost = total_sent - total_rcvd
     print(
         f"cps='unknown'; "
         f"total_received={total_rcvd}; "
         f"total_sent={total_sent}; "
-        f"frame_loss={total_lost}; "
+        f"frame_loss={total_sent - total_rcvd}; "
         f"latency_stream_0(usec)=-1/-1/-1; "
         f"latency_stream_1(usec)=-1/-1/-1; "
         f"latency_hist_stream_0=; "
@@ -114,5 +97,5 @@ def main():
     )
 
 
-if __name__ == u"__main__":
+if __name__ == "__main__":
     main()

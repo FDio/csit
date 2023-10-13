@@ -471,17 +471,17 @@ class TrafficGenerator(AbstractMeasurer):
         :type node: dict
         :raises RuntimeError: If stop traffic script fails.
         """
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add("python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_astf_stop.py'")
-        command_line.change_prefix(u"--")
-        for index, value in enumerate(self._xstats):
+        command_line.add("--xstat")
+        for value in self._xstats:
             if value is not None:
-                value = value.replace(u"'", u"\"")
-                command_line.add_equals(f"xstat{index}", f"'{value}'")
+                value = value.replace("'", "\"")
+                command_line.add(f"'{value}'")
         stdout, _ = exec_cmd_no_error(
             node, command_line,
-            message=u"T-Rex ASTF runtime error!"
+            message="T-Rex ASTF runtime error!"
         )
         self._parse_traffic_results(stdout)
 
@@ -495,7 +495,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type node: dict
         :raises RuntimeError: If stop traffic script fails.
         """
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add("python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_stl_stop.py'")
         command_line.add("--xstat")
@@ -505,7 +505,7 @@ class TrafficGenerator(AbstractMeasurer):
                 command_line.add(f"'{value}'")
         stdout, _ = exec_cmd_no_error(
             node, command_line,
-            message=u"T-Rex STL runtime error!"
+            message="T-Rex STL runtime error!"
         )
         self._parse_traffic_results(stdout)
 
