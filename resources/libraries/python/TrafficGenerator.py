@@ -143,6 +143,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._mode = None
         # TG interface order mapping
         self._ifaces_reordered = False
+        self._ifaces = ()
         # Result holding fields, to be removed.
         self._result = None
         self._loss = None
@@ -177,7 +178,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.ramp_up_duration = None
         self.state_timeout = None
         # Transient data needed for async measurements.
-        self._xstats = ()
+        self._xstats = []
 
     @property
     def node(self):
@@ -319,23 +320,38 @@ class TrafficGenerator(AbstractMeasurer):
                         )
                     )
 
-                trex_topology.append(
-                    dict(
-                        interface=topology[f"TG_pf{link}"][0],
-                        dst_mac=tg_if1_adj_addr
-                    )
-                )
-                trex_topology.append(
-                    dict(
-                        interface=topology[f"TG_pf{link+1}"][0],
-                        dst_mac=tg_if2_adj_addr
-                    )
-                )
                 if1_pci = topology[f"TG_pf{link}_pci"][0]
                 if2_pci = topology[f"TG_pf{link+1}_pci"][0]
                 if min(if1_pci, if2_pci) != if1_pci:
-                    self._ifaces_reordered = True
-                    trex_topology.reverse()
+                    self._ifaces.append(str(link+1))
+                    self._ifaces.append(str(link))
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link+1}"][0],
+                            dst_mac=tg_if2_adj_addr
+                        )
+                    )
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link}"][0],
+                            dst_mac=tg_if1_adj_addr
+                        )
+                    )
+                else:
+                    self._ifaces.append(str(link))
+                    self._ifaces.append(str(link+1))
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link}"][0],
+                            dst_mac=tg_if1_adj_addr
+                        )
+                    )
+                    trex_topology.append(
+                        dict(
+                            interface=topology[f"TG_pf{link+1}"][0],
+                            dst_mac=tg_if2_adj_addr
+                        )
+                    )
 
             TrexConfig.add_startup_configuration(
                 self._node, trex_topology
@@ -718,38 +734,36 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.STL)
-        p_0, p_1 = (1, 0) if self._ifaces_reordered else (0, 1)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
 
         duration, _ = self._compute_duration(duration=duration, multiplier=rate)
 
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add("python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_stl_profile.py'")
-        command_line.change_prefix(u"--")
+        command_line.change_prefix("--")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/traffic_profiles/trex"
         command_line.add_with_value(
-            u"profile", f"'{dirname}/{self.traffic_profile}.py'"
+            "profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
-        command_line.add_with_value(u"duration", f"{duration!r}")
-        command_line.add_with_value(u"frame_size", self.frame_size)
-        command_line.add_with_value(u"rate", f"{rate!r}")
-        command_line.add_with_value(u"port_0", p_0)
-        command_line.add_with_value(u"port_1", p_1)
+        command_line.add_with_value("duration", f"{duration!r}")
+        command_line.add_with_value("frame_size", self.frame_size)
+        command_line.add_with_value("rate", f"{rate!r}")
+        command_line.add_with_value("ports", " ".join(self._ifaces))
         command_line.add_with_value(
-            u"traffic_directions", self.traffic_directions
+            "traffic_directions", self.traffic_directions
         )
-        command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", self.use_latency)
-        command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
-        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY)
+        command_line.add_if("async_start", async_call)
+        command_line.add_if("latency", self.use_latency)
+        command_line.add_if("force", Constants.TREX_SEND_FORCE)
+        command_line.add_with_value("delay", Constants.PERF_TRIAL_STL_DELAY)
 
         self._start_time = time.monotonic()
-        self._rate = float(rate[:-3]) if u"pps" in rate else float(rate)
+        self._rate = float(rate[:-3]) if "pps" in rate else float(rate)
         stdout, _ = exec_cmd_no_error(
             self._node, command_line, timeout=int(duration) + 60,
-            message=u"T-Rex STL runtime error"
+            message="T-Rex STL runtime error"
         )
 
         if async_call:
