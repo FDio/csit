@@ -16,7 +16,6 @@
 from time import sleep
 from robot.api import logger
 
-from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -35,11 +34,10 @@ class DUTSetup:
         """
         if DUTSetup.running_in_container(node):
             return
-        else:
-            command = (
-                f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl "
-                f"show -p InvocationID --value {service})"
-            )
+        command = (
+            f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl "
+            f"show -p InvocationID --value {service})"
+        )
         message = f"Node {node[u'host']} failed to get logs from unit {service}"
 
         exec_cmd_no_error(
