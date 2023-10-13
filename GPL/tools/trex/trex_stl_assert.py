@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -30,15 +30,12 @@ Requirements:
  - compiled and running T-Rex process (eg. ./t-rex-64 -i)
  - trex.stl.api library
 - Script must be executed on a node with T-Rex instance.
-
-Functionality:
-1. Verify the API functionality and get server information.
 """
 
 import sys
 
 sys.path.insert(
-    0, u"/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
+    0, "/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.stl.api import STLClient, STLError
 
@@ -59,5 +56,5 @@ def main():
         client.disconnect()
 
 
-if __name__ == u"__main__":
+if __name__ == "__main__":
     main()
