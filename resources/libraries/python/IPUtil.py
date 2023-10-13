@@ -15,7 +15,6 @@
 """Common IP utilities library."""
 
 import re
-import os
 
 from enum import IntEnum
 

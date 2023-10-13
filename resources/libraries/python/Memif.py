@@ -122,7 +122,7 @@ class Memif:
 
     @staticmethod
     def create_memif_interface(
-        node, filename, mid, sid, rxq=1, txq=1, role=u"SLAVE", use_dma=False
+            node, filename, mid, sid, rxq=1, txq=1, role=u"SLAVE", use_dma=False
     ):
         """Create Memif interface on the given node.
 

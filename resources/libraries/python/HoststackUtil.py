@@ -445,7 +445,7 @@ class HoststackUtil():
             program_json = json.loads(program_stdout)[u"intervals"][0][u"sum"]
             try:
                 retransmits = program_json["retransmits"]
-            except(KeyError):
+            except KeyError:
                 retransmits = None
             export_hoststack_results(
                 bandwidth=program_json["bits_per_second"],

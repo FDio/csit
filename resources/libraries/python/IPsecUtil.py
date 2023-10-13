@@ -14,8 +14,6 @@
 
 """IPsec utilities library."""
 
-import os
-
 from enum import Enum, IntEnum
 from io import open
 from ipaddress import ip_network, ip_address
@@ -483,7 +481,7 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_add_sad_entries(
             node, n_entries, sad_id, spi, crypto_alg, crypto_key,
-            integ_alg=None, integ_key=u"", tunnel_src=None,tunnel_dst=None,
+            integ_alg=None, integ_key=u"", tunnel_src=None, tunnel_dst=None,
             tunnel_addr_incr=True):
         """Create multiple Security Association Database entries on VPP node.
 
@@ -1925,10 +1923,10 @@ class IPsecUtil:
         for i in range(n_tunnels//(addr_incr**2)+1):
             dut1_local_outbound_range = \
                 ip_network(f"{ip_address(tunnel_ip1) + i*(addr_incr**3)}/8",
-                False).with_prefixlen
+                           False).with_prefixlen
             dut1_remote_outbound_range = \
                 ip_network(f"{ip_address(tunnel_ip2) + i*(addr_incr**3)}/8",
-                False).with_prefixlen
+                           False).with_prefixlen
 
             IPsecUtil.vpp_ipsec_add_spd_entry(
                 nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
@@ -1975,19 +1973,21 @@ class IPsecUtil:
             for i in range(n_tunnels//(addr_incr**2)+1):
                 dut2_local_outbound_range = \
                     ip_network(f"{ip_address(tunnel_ip1) + i*(addr_incr**3)}/8",
-                    False).with_prefixlen
+                               False).with_prefixlen
                 dut2_remote_outbound_range = \
                     ip_network(f"{ip_address(tunnel_ip2) + i*(addr_incr**3)}/8",
-                    False).with_prefixlen
+                               False).with_prefixlen
 
                 IPsecUtil.vpp_ipsec_add_spd_entry(
                     nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
-                    inbound=False, proto=50, laddr_range=dut2_remote_outbound_range,
+                    inbound=False, proto=50,
+                    laddr_range=dut2_remote_outbound_range,
                     raddr_range=dut2_local_outbound_range
                 )
                 IPsecUtil.vpp_ipsec_add_spd_entry(
                     nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
-                    inbound=True, proto=50, laddr_range=dut2_local_outbound_range,
+                    inbound=True, proto=50,
+                    laddr_range=dut2_local_outbound_range,
                     raddr_range=dut2_remote_outbound_range
                 )
 
@@ -2082,8 +2082,7 @@ class IPsecUtil:
 
         for i in range(0, n_flows):
             rx_queue = i%rx_queues
-
             spi = spi_start + i
             flow_index = FlowUtil.vpp_create_ip4_ipsec_flow(
-                    node, "ESP", spi, "redirect-to-queue", value=rx_queue)
+                node, "ESP", spi, "redirect-to-queue", value=rx_queue)
             FlowUtil.vpp_flow_enable(node, interface, flow_index)

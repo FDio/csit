@@ -259,7 +259,7 @@
 | | ... | Additional Setup for suites which uses performance measurement over
 | | ... | iPerf3.
 | |
-| | ${type} = | Get iPerf Type | ${nodes}[TG]
+| | ${type} = | Get iPerf Type
 | | ${version} = | Get iPerf Version | ${nodes}[TG]
 | | Export TG Type And Version | ${type} | ${version}
 
