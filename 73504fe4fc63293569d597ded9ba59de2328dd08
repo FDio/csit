@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a11ca350_098ec3b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 70
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-16T16:46:19Z",
+      "side": 1,
+      "message": "\u003e Uploaded patch set 70.\n\nPrevious patchsets were wrong at setting load for telemetry trials (should be unidir intended load, was bidir conditional throughput).",
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
