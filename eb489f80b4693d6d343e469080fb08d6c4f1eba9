@@ -16,6 +16,75 @@
       "message": "Good enough for now.",
       "revId": "eb489f80b4693d6d343e469080fb08d6c4f1eba9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c97b4f00_b1c80bd3",
+        "filename": "pylint.cfg",
+        "patchSetId": 14
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-16T11:51:02Z",
+      "side": 1,
+      "message": "10",
+      "range": {
+        "startLine": 293,
+        "startChar": 15,
+        "endLine": 293,
+        "endChar": 16
+      },
+      "revId": "eb489f80b4693d6d343e469080fb08d6c4f1eba9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1bedda7_f296213c",
+        "filename": "pylint.cfg",
+        "patchSetId": 14
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-16T11:51:02Z",
+      "side": 1,
+      "message": "20",
+      "range": {
+        "startLine": 302,
+        "startChar": 11,
+        "endLine": 302,
+        "endChar": 13
+      },
+      "revId": "eb489f80b4693d6d343e469080fb08d6c4f1eba9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ab51655_1b5661dd",
+        "filename": "pylint.cfg",
+        "patchSetId": 14
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-16T11:51:02Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 10
+      },
+      "revId": "eb489f80b4693d6d343e469080fb08d6c4f1eba9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
