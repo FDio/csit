@@ -16,6 +16,11 @@ is only a symlink to the original place of tightly coupled CSIT code.
 Change log
 ----------
 
+1.0.0: Logic improvements, independent selectors, exceed ratio support,
+better width rounding, conditional throughput as output.
+Implementation relies more on dataclasses, code split into smaller files.
+API changed considerably, mainly to avoid long argument lists.
+
 0.4.0: Considarable logic improvements, more than two target ratios supported.
 API is not backward compatible with previous versions.
 
@@ -33,12 +38,12 @@ TODO.
 Operation logic
 ---------------
 
-The latest published `IETF draft`_ describes logic of version 0.3,
-version 0.4 logic will be descibed in next draft version.
+The currently published `IETF draft`_ describes logic of version 0.4,
+version 1.0 logic will be better descibed in next draft version.
 
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
 .. _LFN: https://www.linuxfoundation.org/projects/networking/
 .. _PyPI: https://pypi.org/project/MLRsearch/
 .. _directory: https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/MLRsearch;hb=refs/heads/master
-.. _IETF draft: https://tools.ietf.org/html/draft-ietf-bmwg-mlrsearch-00
+.. _IETF draft: https://tools.ietf.org/html/draft-ietf-bmwg-mlrsearch-04
