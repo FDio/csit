@@ -93,8 +93,8 @@
 | | ${average} | ${stdev} = | Perform soak search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate_soft}
-| | ... | maximum_transmit_rate=${max_rate}
+| | ... | min_load=${min_rate_soft}
+| | ... | max_load=${max_rate}
 | | ... | plr_target=${1e-7}
 | | ... | tdpt=${0.1}
 | | ... | initial_count=${50}
@@ -160,8 +160,7 @@
 | | ${disable_latency} = | Get Disable Latency
 | | ${max_rate} = | Get Max Rate
 | | ${min_rate_soft} = | Get Min Rate Soft
-| | # \${packet_loss_ratio} is used twice so it is worth a variable.
-| | ${packet_loss_ratio} = | Get Packet Loss Ratio
+| | ${loss_ratio} = | Get Packet Loss Ratio
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${ramp_up_duration} = | Get Ramp Up Duration
 | | ${ramp_up_rate} = | Get Ramp Up Rate
@@ -171,17 +170,18 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | ${result} = | Perform optimized ndrpdr search
+| | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate_soft}
-| | ... | maximum_transmit_rate=${max_rate}
-| | ... | packet_loss_ratio=${packet_loss_ratio}
-| | ... | final_relative_width=${0.005}
-| | ... | final_trial_duration=${30.0}
+| | ... | min_load=${min_rate_soft}
+| | ... | max_load=${max_rate}
+| | ... | loss_ratio=${loss_ratio}
+| | ... | relative_width=${0.005}
 | | ... | initial_trial_duration=${1.0}
-| | ... | number_of_intermediate_phases=${2}
-| | ... | timeout=${1200.0}
+| | ... | final_trial_duration=${1.0}
+| | ... | duration_sum=${20.0}
+| | ... | preceding_targets=${2}
+| | ... | search_duration_max=${1200.0}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
@@ -191,12 +191,7 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | Display result of NDRPDR search | ${result}
-| | Check NDRPDR interval validity | ${result[1]}
-| | ... | ${packet_loss_ratio}
-| | Check NDRPDR interval validity | ${result[0]}
-| | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
-| | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
+| | ${ndr} | ${pdr} = | Display result of NDRPDR search | ${result}
 | | # We expect NDR and PDR to have different-looking stats.
 | | Set Test Variable | ${telemetry_rate} | pdr
 | | Set Test Variable | ${telemetry_export} | ${True}
@@ -262,17 +257,18 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | ${result} = | Perform optimized ndrpdr search
+| | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate_soft}
-| | ... | maximum_transmit_rate=${max_rate}
-| | ... | packet_loss_ratio=${0.0}
-| | ... | final_relative_width=${0.001}
-| | ... | final_trial_duration=${10.0}
+| | ... | min_load=${min_rate_soft}
+| | ... | max_load=${max_rate}
+| | ... | loss_ratio=${0.0}
+| | ... | relative_width=${0.001}
 | | ... | initial_trial_duration=${1.0}
-| | ... | number_of_intermediate_phases=${1}
-| | ... | timeout=${1200}
+| | ... | final_trial_duration=${1.0}
+| | ... | duration_sum=${10.0}
+| | ... | preceding_targets=${1}
+| | ... | search_duration_max=${1200}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
@@ -282,8 +278,8 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | Check NDRPDR interval validity | ${result[0]}
-| | Return From Keyword | ${result[0].measured_low.target_tr}
+| | ${ret} = | Convert To Number | ${result[0]}
+| | Return From Keyword | ${ret}
 
 | Measure and show latency at specified rate
 | | [Documentation]
@@ -450,7 +446,8 @@
 | | | ... | ramp_up_rate=${ramp_up_rate}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
-| | | ${value} = | Set Variable | ${result.approximated_receive_rate}
+| | | ${value} = | Set Variable | ${result.forwarding_count}
+| | | ${value} = | Evaluate | ${value} / ${result.offered_duration}
 | | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${value} / ${ppta}
 | | | Append Mrr Value | ${value} | ${export_mrr_unit} | ${bandwidth * 1e9}
 | | | Append To List | ${results} | ${value}

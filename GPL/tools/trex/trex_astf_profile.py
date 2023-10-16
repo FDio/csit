@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -222,7 +222,7 @@ def simple_burst(
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
-            approximated_duration = list(sorted(stats.keys()))[-1]
+            approximated_duration = duration + list(sorted(stats.keys()))[-1]
             stats = stats[sorted(stats.keys())[-1]]
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
             lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
