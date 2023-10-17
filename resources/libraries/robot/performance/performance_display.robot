@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,35 +17,6 @@
 | ... | This includes checks to fail test.
 
 *** Keywords ***
-| Check NDRPDR interval validity
-| | [Documentation]
-| | ... | Extract loss ratio of lower bound of the interval.
-| | ... | Fail if it does not reach the allowed value.
-| |
-| | ... | *Arguments:*
-| | ... | - interval - Measured interval. Type: ReceiveRateInterval
-| | ... | - packet_loss_ratio - Accepted loss (0.0 for NDR). Type: float
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Check NDRPDR interval validity \| \${result.pdr_interval} \
-| | ... | \| \${0.005} \|
-| |
-| | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
-| |
-| | ${lower_bound} = | Set Variable | ${interval.measured_low}
-| | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
-| | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
-| | Set Test Variable | \${rate_for_teardown} | ${lower_bound.target_tr}
-| | ${message}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Minimal rate loss ratio ${lower_bound_lr}
-| | ... | does not reach target ${packet_loss_ratio}.
-| | ${message_zero} = | Set Variable | Zero packets forwarded!
-| | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
-| | ${message} = | Set Variable If | ${lower_bound_lr} >= 1.0
-| | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
-| | Fail | ${message}
-
 | Compute Bandwidth
 | | [Documentation]
 | | ... | Compute (bidir) bandwidth from given (unidir) transaction rate.
@@ -77,8 +48,8 @@
 | | ... | due to reconfiguration under traffic.
 | |
 | | ... | *Arguments:*
-| | ... | - result - Result of bidirectional measurement.
-| | ... | Type: ReceiveRateMeasurement
+| | ... | - result - Result of MLRsearch invocation for one search goal.
+| | ... | Type: StatInterval
 | |
 | | ... | *Example:*
 | |
@@ -86,7 +57,7 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | ${bandwidth} | ${packet_rate}= | Compute Bandwidth | ${result.target_tr}
+| | ${bandwidth} | ${packet_rate}= | Compute Bandwidth | ${result.intended_load}
 | | ${packet_loss} = | Set Variable | ${result.loss_count}
 | | ${time_loss} = | Evaluate | ${packet_loss} / ${packet_rate}
 | | Set Test Message | Packets lost due to reconfig: ${packet_loss}
@@ -95,14 +66,11 @@
 
 | Display result of NDRPDR search
 | | [Documentation]
-| | ... | Display result of NDR+PDR search, both quantities, both bounds,
-| | ... | aggregated, in units given by trasaction type, e.g. by default
-| | ... | in packet per seconds and Gbps total bandwidth
+| | ... | Display result of NDR+PDR search, both quantities, aggregated,
+| | ... | conditional throughput only, in units given by trasaction type,
+| | ... | e.g. by default in packet per seconds and Gbps total bandwidth
 | | ... | (for initial packet size).
-| | ... |
-| | ... | The bound to display is encoded as target rate, it is assumed
-| | ... | it is in transactions per second. Bidirectional traffic
-| | ... | transaction is understood as having 2 packets, for this purpose.
+| | ... | The lower bounds in the result are assumed to be valid.
 | | ... |
 | | ... | Througput is calculated as:
 | | ... | Sum of measured rate over streams
@@ -115,8 +83,8 @@
 | | ... | - transaction_type - String identifier to determine how to count
 | | ... | transactions. Default is "packet".
 | | ... | *Arguments:*
-| | ... | - result - Measured result data. Aggregated rate, tps or pps.
-| | ... | Type: NdrPdrResult
+| | ... | - result - Measured result data Tps. Type: List[TrimmedStat]
+| | ... | *Returns:* NDR and PDR: Unidirectional intended load as tps float.
 | |
 | | ... | *Example:*
 | |
@@ -124,21 +92,18 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | Display single bound | NDR_LOWER
-| | ... | ${result[0].measured_low.target_tr}
-| | ... | ${result[0].measured_low.latency}
-| | Display single bound | NDR_UPPER
-| | ... | ${result[0].measured_high.target_tr}
-| | Display single bound | PDR_LOWER
-| | ... | ${result[1].measured_low.target_tr}
-| | ... | ${result[1].measured_low.latency}
-| | Display single bound | PDR_UPPER
-| | ... | ${result[1].measured_high.target_tr}
+| | ${ndr} = | Convert To Number | ${result[0]}
+| | ${pdr} = | Convert To Number | ${result[1]}
+| | Display single bound | NDR | ${result[0].conditional_throughput}
+| | Display single bound | PDR | ${result[1].conditional_throughput}
+| | Return From Keyword | ${ndr} | ${pdr}
 
 | Display result of soak search
 | | [Documentation]
 | | ... | Display result of soak search, avg+-stdev, as upper/lower bounds.
 | | ... | See Display single bound for units used.
+| | ... | The displayed values are bidirectional, based on conditional
+| | ... | throughput. The returned
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
@@ -148,7 +113,6 @@
 | | ... | *Arguments:*
 | | ... | - avg - Estimated average critical load [pps]. Type: float
 | | ... | - stdev - Standard deviation of critical load [pps]. Type: float
-| |
 | | ... | *Returns:*
 | | ... | - Lower and upper bound of critical load [pps]. Type: 2-tuple of float
 | |
@@ -169,14 +133,14 @@
 | Display single bound
 | | [Documentation]
 | | ... | Compute and display one bound of NDR+PDR (or soak) search result.
-| | ... | If the latency string is present, it is displayed as well.
 | | ... |
 | | ... | The bound to display is given as target transfer rate, it is assumed
-| | ... | it is in transactions per second. Bidirectional traffic
+| | ... | valid and in transactions per second. Bidirectional traffic
 | | ... | transaction is understood as having 2 packets, for this purpose.
 | | ... |
 | | ... | Pps values are aggregated, in packet per seconds
 | | ... | and Gbps total bandwidth (for initial packet size).
+| | ... | If the latency string is present, it is displayed as well.
 | | ... |
 | | ... | Througput is calculated as:
 | | ... | Sum of measured rate over streams
@@ -189,20 +153,22 @@
 | | ... | transactions. Default is "packet".
 | | ... | *Arguments:*
 | | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - tps - Transaction rate [tps]. Type: float
+| | ... | - tps - Conditional throughput [tps]. Type: Union[float, DiscreteLoad]
 | | ... | - latency - Latency data to display if non-empty. Type: string
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Display single bound \| NDR lower bound \| \${12345.67} \
+| | ... | \| Display single bound \| NDR \| \${12345.67} \
 | | ... | \| latency=\${EMPTY} \|
 | |
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
+| | ${tps} = | Convert To Number | ${tps}
 | | ${transaction_type} = | Get Transaction Type
 | | Run Keyword And Return If | """_cps""" in """${transaction_type}"""
 | | ... | Display Single CPS Bound | ${text} | ${tps} | ${latency}
-| | Display Single PPS Bound | ${text} | ${tps} | ${latency}
+| | Run Keyword And Return
+| | ... | Display Single PPS Bound | ${text} | ${tps} | ${latency}
 
 | Display Single CPS Bound
 | | [Documentation]
@@ -225,9 +191,8 @@
 | | Set Test Message | ${\n}${text}: ${tps} CPS | append=yes
 | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${tps}
 | | Export Search Bound | ${text} | ${tps} | cps | ${bandwidth * 1e9}
-| | Return From Keyword If | not """${latency}"""
-| | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
-| | ... | append=yes
+| | Run Keyword If | """${latency}""" | Set Test Message
+| | ... | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency} | append=yes
 
 | Display Single PPS Bound
 | | [Documentation]
@@ -261,6 +226,5 @@
 | | Set Test Message | ${\n}${text}: ${pps} pps, | append=yes
 | | Set Test Message | ${bandwidth} Gbps (initial) | append=yes
 | | Export Search Bound | ${text} | ${pps} | pps | ${bandwidth * 1e9}
-| | Return From Keyword If | not """${latency}"""
-| | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
-| | ... | append=yes
+| | Run Keyword If | """${latency}""" | Set Test Message
+| | ... | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency} | append=yes
