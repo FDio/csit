@@ -13,7 +13,7 @@
 
 ---
 
-$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.4.0
+$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.5.0
 $schema: https://json-schema.org/draft/2020-12/schema
 description: >-
     Schema for output of test case.
@@ -141,25 +141,27 @@ allOf:
                         ndr:
                             description: >-
                                 The results refer to search for NDR
-                                (Non Drop Rate). For PPS, this is aggregate
-                                (bidirectional) rate.
-                                Each bound was used as the target load value
-                                in a full-duration trial measurement.
+                                For PPS, lowerbound is aggregate
+                                (bidirectional) conditional throughput
+                                (forwarding rate across good long trials),
+                                upperbound is missing.
                                 The accepted loss ratio for NDR is exact zero.
+                                Exceed ratio is 50%.
                                 Note that packets the Traffic Generator
                                 did not send are also counted as lost packets.
-                            $ref: "#/$defs/macros/lower_and_upper_rate"
+                            $ref: "#/$defs/macros/lower_and_maybe_upper_rate"
                         pdr:
                             description: >-
-                                The results refer to search for PDR
-                                (Partial Drop Rate). For PPS, this is aggregate
-                                (bidirectional) rate.
-                                Each bound was used as the target load value
-                                in a full-duration trial measurement.
+                                The results refer to search for PDR.
+                                For PPS, lowerbound is aggregate
+                                (bidirectional) conditional throughput
+                                (forwarding rate across good long trials),
+                                upperbound is missing.
                                 The accepted loss ratio for PDR is 0.5%.
+                                Exceed ratio is 50%.
                                 Note that packets the Traffic Generator
                                 did not send are also counted as lost packets.
-                            $ref: "#/$defs/macros/lower_and_upper_rate"
+                            $ref: "#/$defs/macros/lower_and_maybe_upper_rate"
                         latency_forward:
                             description: >-
                                 Object with results related to latency part
@@ -209,7 +211,7 @@ allOf:
                                 but are not equal to any target load used.
                                 Note that packets the Traffic Generator
                                 did not send are also counted as lost packets.
-                            $ref: "#/$defs/macros/lower_and_upper_rate"
+                            $ref: "#/$defs/macros/lower_and_maybe_upper_rate"
                     required:
                     -   type
                     -   critical_rate
@@ -657,7 +659,7 @@ $defs:
             required:
             - rate
     macros:
-        lower_and_upper_rate:
+        lower_and_maybe_upper_rate:
             type: object
             additionalProperties: false
             properties:
@@ -673,7 +675,6 @@ $defs:
                     $ref: "#/$defs/types/rate_with_bandwidth"
             required:
             -   lower
-            -   upper
         latency_numbers:
             type: object
             additionalProperties: false
