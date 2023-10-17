@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4163acda_60e2c2e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 76
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-17T13:30:30Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciANDethip4gtpusw-ip4base-reassembly",
+      "revId": "8f619e8f7ca99fca8ffbfefed6d2fd10dd51c563",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
