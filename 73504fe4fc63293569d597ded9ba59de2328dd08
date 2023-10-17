@@ -16,6 +16,811 @@
       "message": "\u003e Uploaded patch set 70.\n\nPrevious patchsets were wrong at setting load for telemetry trials (should be unidir intended load, was bidir conditional throughput).",
       "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0399a9b5_7bee74d4",
+        "filename": "PyPI/MLRsearch/README.rst",
+        "patchSetId": 70
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "input",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 18
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9bbad8_38a378cb",
+        "filename": "PyPI/MLRsearch/README.rst",
+        "patchSetId": 70
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "in the next",
+      "range": {
+        "startLine": 147,
+        "startChar": 42,
+        "endLine": 147,
+        "endChar": 49
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5a77840_3d55b75b",
+        "filename": "PyPI/MLRsearch/README.rst",
+        "patchSetId": 70
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "logic of version 1.0",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 17
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac5c7a1b_162af704",
+        "filename": "resources/libraries/python/MLRsearch/candidate.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "choosing",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "612ffddf_add118b8",
+        "filename": "resources/libraries/python/MLRsearch/candidate.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "false",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f82e64b_fde8b883",
+        "filename": "resources/libraries/python/MLRsearch/candidate.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "false/faulty ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 20,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21381b36_2b106a68",
+        "filename": "resources/libraries/python/MLRsearch/candidate.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "What does it return?",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d16ee455_3221bad8",
+        "filename": "resources/libraries/python/MLRsearch/candidate.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "choose ?",
+      "range": {
+        "startLine": 124,
+        "startChar": 11,
+        "endLine": 124,
+        "endChar": 16
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e4ed88_355e0e6d",
+        "filename": "resources/libraries/python/MLRsearch/config.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "in the next",
+      "range": {
+        "startLine": 42,
+        "startChar": 31,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38accbf2_c6498576",
+        "filename": "resources/libraries/python/MLRsearch/config.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "the goal",
+      "range": {
+        "startLine": 81,
+        "startChar": 30,
+        "endLine": 81,
+        "endChar": 36
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "932f52d9_5bdf3654",
+        "filename": "resources/libraries/python/MLRsearch/dataclass/dc_property.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "raising RuntimeError",
+      "range": {
+        "startLine": 71,
+        "startChar": 27,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea58537_8861c508",
+        "filename": "resources/libraries/python/MLRsearch/dataclass/dc_property.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 110,
+        "startChar": 25,
+        "endLine": 110,
+        "endChar": 28
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d973b5e8_91e37e50",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "of the given goal",
+      "range": {
+        "startLine": 71,
+        "startChar": 58,
+        "endLine": 71,
+        "endChar": 71
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a566e3fa_efc09f3c",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "I do not understand.",
+      "range": {
+        "startLine": 74,
+        "startChar": 32,
+        "endLine": 74,
+        "endChar": 77
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63558ba6_da4c944b",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "The result is float",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 30
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08dd0f55_53d7908a",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "multiplied by",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a09981_0fea3cee",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "multiplication ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 49,
+        "endLine": 79,
+        "endChar": 57
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4ee1314_ed776e01",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 99,
+        "startChar": 53,
+        "endLine": 99,
+        "endChar": 62
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c315f84_b8ff53a4",
+        "filename": "resources/libraries/python/MLRsearch/discrete_interval.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "of the goal",
+      "range": {
+        "startLine": 101,
+        "startChar": 51,
+        "endLine": 101,
+        "endChar": 58
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95327ecb_e838ecca",
+        "filename": "resources/libraries/python/MLRsearch/global_width.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "width ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 46,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c091029c_824dfd30",
+        "filename": "resources/libraries/python/MLRsearch/limit_handler.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "If this can appear in the log, be more specific.",
+      "range": {
+        "startLine": 164,
+        "startChar": 32,
+        "endLine": 164,
+        "endChar": 72
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56dcd9e3_d0350ef5",
+        "filename": "resources/libraries/python/MLRsearch/load_rounding.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "it is important that \u003c- it is better for readability",
+      "range": {
+        "startLine": 28,
+        "startChar": 49,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a729979_38009cc9",
+        "filename": "resources/libraries/python/MLRsearch/load_stats.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "Add to doc string.",
+      "range": {
+        "startLine": 75,
+        "startChar": 18,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df70b61_c7a56f98",
+        "filename": "resources/libraries/python/MLRsearch/multiple_loss_ratio_search.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "Add to doc",
+      "range": {
+        "startLine": 175,
+        "startChar": 18,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "671bfec9_1b33f7b6",
+        "filename": "resources/libraries/python/MLRsearch/multiple_loss_ratio_search.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "values",
+      "range": {
+        "startLine": 210,
+        "startChar": 36,
+        "endLine": 210,
+        "endChar": 41
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad2139f2_7ab3d335",
+        "filename": "resources/libraries/python/MLRsearch/pep3140/classes.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "which",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 43
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c93aa9_5e8a420a",
+        "filename": "resources/libraries/python/MLRsearch/pep3140/classes.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 21,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0a1f2bb_7ddd7e02",
+        "filename": "resources/libraries/python/MLRsearch/relevant_bounds.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "some targets OR a target",
+      "range": {
+        "startLine": 26,
+        "startChar": 68,
+        "endLine": 26,
+        "endChar": 79
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69fb0602_b2a59ffc",
+        "filename": "resources/libraries/python/MLRsearch/search_goal.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "Not necessary, it looks good as it is.",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 73
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2d3d4b3_c51770a1",
+        "filename": "resources/libraries/python/MLRsearch/search_goal.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "Use the same structure of doc string as elsewhere.",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 64
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ddbae3d_bf9f1225",
+        "filename": "resources/libraries/python/MLRsearch/search_goal.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "Use the same structure of doc string as elsewhere.",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 75
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f94a5c7_cd59f005",
+        "filename": "resources/libraries/python/MLRsearch/selector.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "not to",
+      "range": {
+        "startLine": 142,
+        "startChar": 30,
+        "endLine": 142,
+        "endChar": 36
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7054d9ea_485524a1",
+        "filename": "resources/libraries/python/MLRsearch/strategy/base.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "bounds",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e55a4fa0_90c54525",
+        "filename": "resources/libraries/python/MLRsearch/target_spec.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "it",
+      "range": {
+        "startLine": 30,
+        "startChar": 41,
+        "endLine": 30,
+        "endChar": 43
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d29dcc1e_26ec6c90",
+        "filename": "resources/libraries/python/MLRsearch/target_spec.py",
+        "patchSetId": 70
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-17T12:14:37Z",
+      "side": 1,
+      "message": "count in ???",
+      "range": {
+        "startLine": 48,
+        "startChar": 74,
+        "endLine": 48,
+        "endChar": 79
+      },
+      "revId": "73504fe4fc63293569d597ded9ba59de2328dd08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
