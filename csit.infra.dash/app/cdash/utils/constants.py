@@ -235,6 +235,8 @@ class Constants:
         "latency": "result_latency_forward_pdr_50_avg",
         "hoststack-cps": "result_rate_value",
         "hoststack-rps": "result_rate_value",
+        "hoststack-cps-bandwidth": "result_bandwidth_value",
+        "hoststack-rps-bandwidth": "result_bandwidth_value",
         "hoststack-bps": "result_bandwidth_value",
         "hoststack-latency": "result_latency_value"
     }
@@ -260,6 +262,8 @@ class Constants:
         "latency": "result_latency_forward_pdr_50_unit",
         "hoststack-cps": "result_rate_unit",
         "hoststack-rps": "result_rate_unit",
+        "hoststack-cps-bandwidth": "result_bandwidth_unit",
+        "hoststack-rps-bandwidth": "result_bandwidth_unit",
         "hoststack-bps": "result_bandwidth_unit",
         "hoststack-latency": "result_latency_unit"
     }
