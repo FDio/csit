@@ -44,6 +44,9 @@ jsonschema==4.18.4
 rfc3339-validator==0.1.4
 rfc3987==1.3.8
 
+# Dependencies for some tox checkers (not tox setup itself).
+pylint==3.0.1
+
 # Other PIP freeze dependencies.
 attrs==23.1.0
 bcrypt==4.0.1
