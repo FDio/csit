@@ -14,8 +14,11 @@
 """Implementation of graphs for trending data.
 """
 
+import logging
 import plotly.graph_objects as go
 import pandas as pd
+
+# from numpy import isnan
 
 from ..utils.constants import Constants as C
 from ..utils.utils import get_color, get_hdrh_latencies
@@ -127,52 +130,87 @@ def graph_trending(
             y_data = [(v * norm_factor) for v in df[C.VALUE[ttype]].tolist()]
         units = df[C.UNIT[ttype]].unique().tolist()
 
-        anomalies, trend_avg, trend_stdev = classify_anomalies(
-            {k: v for k, v in zip(x_axis, y_data)}
-        )
+        try:
+            anomalies, trend_avg, trend_stdev = classify_anomalies(
+                {k: v for k, v in zip(x_axis, y_data)}
+            )
+        except ValueError as err:
+            logging.error(err)
+            return list(), list()
 
         hover = list()
         customdata = list()
         customdata_samples = list()
         name_lst = name.split("-")
         for idx, (_, row) in enumerate(df.iterrows()):
+            h_tput, h_band, h_lat = str(), str(), str()
+            if ttype in ("mrr", "mrr-bandwidth"):
+                h_tput = (
+                    f"tput avg [{row['result_receive_rate_rate_unit']}]: "
+                    f"{row['result_receive_rate_rate_avg']:,.0f}<br>"
+                    f"tput stdev [{row['result_receive_rate_rate_unit']}]: "
+                    f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
+                )
+                if pd.notna(row["result_receive_rate_bandwidth_avg"]):
+                    h_band = (
+                        f"bandwidth avg "
+                        f"[{row['result_receive_rate_bandwidth_unit']}]: "
+                        f"{row['result_receive_rate_bandwidth_avg']:,.0f}<br>"
+                        f"bandwidth stdev "
+                        f"[{row['result_receive_rate_bandwidth_unit']}]: "
+                        f"{row['result_receive_rate_bandwidth_stdev']:,.0f}<br>"
+                    )
+            elif ttype in ("ndr", "ndr-bandwidth"):
+                h_tput = (
+                    f"tput [{row['result_ndr_lower_rate_unit']}]: "
+                    f"{row['result_ndr_lower_rate_value']:,.0f}<br>"
+                )
+                if pd.notna(row["result_ndr_lower_bandwidth_value"]):
+                    h_band = (
+                        f"bandwidth [{row['result_ndr_lower_bandwidth_unit']}]:"
+                        f" {row['result_ndr_lower_bandwidth_value']:,.0f}<br>"
+                    )
+            elif ttype in ("pdr", "pdr-bandwidth", "latency"):
+                h_tput = (
+                    f"tput [{row['result_pdr_lower_rate_unit']}]: "
+                    f"{row['result_pdr_lower_rate_value']:,.0f}<br>"
+                )
+                if pd.notna(row["result_pdr_lower_bandwidth_value"]):
+                    h_band = (
+                        f"bandwidth [{row['result_pdr_lower_bandwidth_unit']}]:"
+                        f" {row['result_pdr_lower_bandwidth_value']:,.0f}<br>"
+                    )
+                if pd.notna(row["result_latency_forward_pdr_50_avg"]):
+                    h_lat = (
+                        f"latency "
+                        f"[{row['result_latency_forward_pdr_50_unit']}]: "
+                        f"{row['result_latency_forward_pdr_50_avg']:,.0f}<br>"
+                    )
+            elif ttype in ("hoststack-cps", "hoststack-rps"):
+                h_tput = f"tput [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
+                h_band = (
+                    f"bandwidth [{row['result_bandwidth_unit']}]: "
+                    f"{row['result_bandwidth_value']:,.0f}<br>"
+                )
+                h_lat = (
+                    f"latency [{row['result_latency_unit']}]: "
+                    f"{row['result_latency_value']:,.0f}<br>"
+                )
+            elif ttype in ("hoststack-bps", ):
+                h_band = (
+                    f"bandwidth [{row['result_bandwidth_unit']}]: "
+                    f"{row['result_bandwidth_value']:,.0f}<br>"
+                )
             hover_itm = (
                 f"dut: {name_lst[0]}<br>"
                 f"infra: {'-'.join(name_lst[1:5])}<br>"
                 f"test: {'-'.join(name_lst[5:])}<br>"
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-                f"<prop> [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
-                f"<stdev>"
-                f"<additional-info>"
+                f"{h_tput}{h_band}{h_lat}"
                 f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
             )
-            if ttype == "mrr":
-                stdev = (
-                    f"stdev [{row['result_receive_rate_rate_unit']}]: "
-                    f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
-                )
-            else:
-                stdev = str()
-            if ttype in ("hoststack-cps", "hoststack-rps"):
-                add_info = (
-                    f"bandwidth [{row[C.UNIT['hoststack-bps']]}]: "
-                    f"{row[C.VALUE['hoststack-bps']]:,.0f}<br>"
-                    f"latency [{row[C.UNIT['hoststack-latency']]}]: "
-                    f"{row[C.VALUE['hoststack-latency']]:,.0f}<br>"
-                )
-            elif ttype in ("ndr", "pdr"):  # Add mrr
-                test_type = f"{ttype}-bandwidth"
-                add_info = (
-                    f"bandwidth [{row[C.UNIT[test_type]]}]: "
-                    f"{row[C.VALUE[test_type]]:,.0f}<br>"
-                )
-            else:
-                add_info = str()
-            hover_itm = hover_itm.replace(
-                "<prop>", "latency" if ttype == "latency" else "average"
-            ).replace("<stdev>", stdev).replace("<additional-info>", add_info)
             hover.append(hover_itm)
             if ttype == "latency":
                 customdata_samples.append(get_hdrh_latencies(row, name))
@@ -333,7 +371,7 @@ def graph_trending(
                 fig_tput = go.Figure()
             fig_tput.add_traces(traces)
 
-        if ttype in ("ndr", "pdr"):  # Add mrr
+        if ttype in ("ndr", "pdr", "mrr"):
             traces, _ = _generate_trending_traces(
                 f"{ttype}-bandwidth",
                 itm["id"],
