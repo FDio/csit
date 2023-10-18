@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f29d1b5_1c81bfd2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-18T05:29:57Z",
+      "side": 1,
+      "message": "There must be cleanup executed. Remove the condition to previous code.",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 318,
+        "endChar": 46
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222f13e8_d17a52d3",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-18T05:29:57Z",
+      "side": 1,
+      "message": "I cannot accept head n -1 solution. Investigate why docker is returning 2 lines. Also variable selection #*: should pick the correct one.",
+      "range": {
+        "startLine": 720,
+        "startChar": 4,
+        "endLine": 720,
+        "endChar": 62
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95208fc1_40c4ca2c",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-18T05:29:57Z",
+      "side": 1,
+      "message": "remove console logging",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 27
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
