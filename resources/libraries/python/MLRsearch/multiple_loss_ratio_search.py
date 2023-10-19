@@ -38,7 +38,10 @@ from .trimmed_stat import TrimmedStat
 
 @dataclass
 class MultipleLossRatioSearch:
-    """Optimized binary search algorithm for finding conditional throughputs.
+    """Implementation of the controller part of MLRsearch algorithm.
+
+    The manager part is creating and calling this,
+    the measurer part is injected.
 
     Traditional binary search algorithm needs initial interval
     (lower and upper bound), and returns final narrow bounds
@@ -88,6 +91,14 @@ class MultipleLossRatioSearch:
 
     There are also subtle optimizations related to candidate selection
     and uneven splitting of intervals, too numerous to list here.
+
+    The return values describe performance at the relevant lower bound
+    as "conditional throughput", which is based on loss ratio of one of trials
+    selected as a quantile based on exceed ratio parameter.
+    Usually this value may be quite pessimistic, as MLRsearch stops
+    measuring a load as soon as it becomes a lower bound,
+    so conditional throughput is usually based on forwarding rate
+    of the worst on the good long trials.
     """
 
     config: Config
@@ -123,11 +134,11 @@ class MultipleLossRatioSearch:
 
         :param measurer: Measurement provider to use by this search object.
         :param debug: Callable to optionally use instead of logging.debug().
-        :returns: Structure containing conditional throughputs and other stats,
-            one for each search goal.
         :type measurer: AbstractMeasurer
         :type debug: Optional[Callable[[str], None]]
-        :returns: Mapping from goal to lower bound (none if min load is hit).
+        :returns: Structure containing conditional throughputs and other stats,
+            one for each search goal. If a value is None it means there is
+            no lower bound (min load turned out to be an upper bound).
         :rtype: Pep3140Dict[SearchGoal, Optional[TrimmedStat]]
         :raises RuntimeError: If total duration is larger than timeout,
             or if min load becomes an upper bound for a search goal

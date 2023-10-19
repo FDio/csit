@@ -1434,7 +1434,7 @@ class OptimizedSearch:
         relative_width: float = 0.005,
         initial_trial_duration: float = 1.0,
         final_trial_duration: float = 1.0,
-        duration_sum: float = 20.0,
+        duration_sum: float = 21.0,
         expansion_coefficient: int = 2,
         preceding_targets: int = 2,
         search_duration_max: float = 1200.0,

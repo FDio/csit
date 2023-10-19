@@ -14,7 +14,7 @@
 """Module defining LoadStat class."""
 
 from dataclasses import dataclass, field
-from typing import Tuple
+from typing import Dict, Tuple
 
 from .target_spec import TargetSpec
 from .discrete_result import DiscreteResult
@@ -31,12 +31,9 @@ class TargetStat:
     or an upper bound. For additional logic for dealing with loss inversion
     see MeasurementDatabase.
 
-    Besides the duration sums needed for determining upper and lower bound,
-    a field useful for computing the conditional throughput is also included.
-    The conditional throughput is average of the (relative) forwarding rates
-    of good long trials weighted by gool long trial durations.
-    As the intended load is stored elsewhere, the one additional field here
-    has a peculiar unit, it is a sum of products of seconds and loss ratios.
+    Also, data needed for conditional throughput is gathered here,
+    exposed only as a pessimistic loss ratio
+    (as the load value is not stored here).
     """
 
     target: TargetSpec = field(repr=False)
@@ -49,8 +46,8 @@ class TargetStat:
     """Sum of durations of shorter trials satisfying target loss ratio."""
     bad_short: float = 0.0
     """Sum of durations of shorter trials not satisfying target loss ratio."""
-    dur_rat_sum: float = 0.0
-    """Sum over good long trials, of duration multiplied by loss ratio."""
+    long_losses: Dict[float, float] = field(repr=False, default_factory=dict)
+    """If a loss ratio value occured in a long trial, map it to duration sum."""
 
     def __str__(self) -> str:
         """Convert into a short human-readable string.
@@ -73,14 +70,18 @@ class TargetStat:
         :type result: DiscreteResult
         """
         dwo = result.duration_with_overheads
+        rlr = result.loss_ratio
         if result.intended_duration >= self.target.trial_duration:
-            if result.loss_ratio > self.target.loss_ratio:
+            if rlr not in self.long_losses:
+                self.long_losses[rlr] = 0.0
+                self.long_losses = dict(sorted(self.long_losses.items()))
+            self.long_losses[rlr] += dwo
+            if rlr > self.target.loss_ratio:
                 self.bad_long += dwo
             else:
                 self.good_long += dwo
-                self.dur_rat_sum += dwo * result.loss_ratio
         else:
-            if result.loss_ratio > self.target.loss_ratio:
+            if rlr > self.target.loss_ratio:
                 self.bad_short += dwo
             else:
                 self.good_short += dwo
@@ -115,3 +116,37 @@ class TargetStat:
         optimistic = effective_excess <= limit_dursum
         pessimistic = (effective_dursum - self.good_long) <= limit_dursum
         return optimistic, pessimistic
+
+    def pessimistic_loss_ratio(self) -> float:
+        """Return the loss ratio for conditional throughput computation.
+
+        It adds missing dursum as full-loss trials to long_losses
+        and returns a quantile corresponding to exceed ratio.
+        In case of tie (as in median for even number of samples),
+        this returns the lower value (as being equal to goal exceed ratio
+        is allowed).
+
+        For loads classified as a lower bound, the return value
+        ends up being no larger than the target loss ratio.
+        This is because the excess short bad trials would only come
+        after the quantile in question (as would full-loss missing trials).
+        For other loads, anything can happen, but conditional throughput
+        should not be computed for those anyway.
+        Those two facts allow the logic here be simpler than in estimates().
+
+        :returns: Effective loss ratio based on long trial results.
+        :rtype: float
+        """
+        all_long = max(self.target.duration_sum, self.good_long + self.bad_long)
+        remaining = all_long * (1.0 - self.target.exceed_ratio)
+        ret = None
+        for ratio, dursum in self.long_losses.items():
+            if ret is None or remaining > 0.0:
+                ret = ratio
+                remaining -= dursum
+            else:
+                break
+        else:
+            if remaining > 0.0:
+                ret = 1.0
+        return ret

@@ -179,7 +179,7 @@
 | | ... | relative_width=${0.005}
 | | ... | initial_trial_duration=${1.0}
 | | ... | final_trial_duration=${1.0}
-| | ... | duration_sum=${20.0}
+| | ... | duration_sum=${21.0}
 | | ... | preceding_targets=${2}
 | | ... | search_duration_max=${1200.0}
 | | ... | ppta=${ppta}
@@ -266,7 +266,7 @@
 | | ... | relative_width=${0.001}
 | | ... | initial_trial_duration=${1.0}
 | | ... | final_trial_duration=${1.0}
-| | ... | duration_sum=${10.0}
+| | ... | duration_sum=${11.0}
 | | ... | preceding_targets=${1}
 | | ... | search_duration_max=${1200}
 | | ... | ppta=${ppta}
