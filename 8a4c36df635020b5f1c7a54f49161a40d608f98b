@@ -73,6 +73,30 @@
       },
       "revId": "8a4c36df635020b5f1c7a54f49161a40d608f98b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0b8078_ecb61984",
+        "filename": "resources/libraries/python/MLRsearch/multiple_loss_ratio_search.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-19T08:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d0d0cdc_b29c4df9",
+      "range": {
+        "startLine": 141,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 20
+      },
+      "revId": "8a4c36df635020b5f1c7a54f49161a40d608f98b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
