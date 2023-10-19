@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fc28d13_0e933b47",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-10-19T05:41:38Z",
+      "side": 1,
+      "message": "this is very critical part of code for production environment (vpp_device CSIT/VPP jenkins jobs). We cannot leave leftovers in production.",
+      "parentUuid": "5f29d1b5_1c81bfd2",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 318,
+        "endChar": 46
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "222f13e8_d17a52d3",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 3
