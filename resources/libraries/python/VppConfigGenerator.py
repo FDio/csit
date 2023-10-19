@@ -332,6 +332,11 @@ class VppConfigGenerator:
         path = ["dpdk", "dev default", "num-tx-desc"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_dev_default_tso(self):
+        """Add DPDK dev default tso configuration."""
+        path = [u"dpdk", u"dev default", u"tso"]
+        self.add_config_item(self._nodeconfig, "on", path)
+
     def add_dpdk_log_level(self, value):
         """Add DPDK log-level configuration.
 
@@ -374,6 +379,11 @@ class VppConfigGenerator:
 
         path = ["dpdk", "max-simd-bitwidth"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_dpdk_enable_tcp_udp_checksum(self):
+        """Add DPDK enable-tcp-udp-checksum configuration."""
+        path = [u"dpdk", u"enable-tcp-udp-checksum"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_cpu_main_core(self, value):
         """Add CPU main core configuration.
@@ -587,6 +597,11 @@ class VppConfigGenerator:
         path = ["tcp", "preallocated-half-open-connections"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_tcp_tso(self):
+        """Add TCP tso configuration."""
+        path = [u"tcp", u"tso"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
     def add_session_enable(self):
         """Add session enable."""
         path = ["session", "enable"]
@@ -682,6 +697,11 @@ class VppConfigGenerator:
         """
         path = ["session", "local-endpoints-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_use_dma(self):
+        """Add session use-dma configuration."""
+        path = [u"session", u"use-dma"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dma_dev(self, devices):
         """Add DMA devices configuration.
