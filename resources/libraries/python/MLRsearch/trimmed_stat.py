@@ -57,22 +57,21 @@ class TrimmedStat(LoadStats):
     def conditional_throughput(self) -> Optional[DiscreteLoad]:
         """Compute conditional throughput from the load.
 
-        Target stat has dur_rat_sum and good_long.
-        The code here adds intended load and handles the case min load is hit.
-        If min load is not a lower bound, None is returned.
+        The conditional throughput has the same semantics as load,
+        so if load is unicirectional and user wants bidirectional
+        throughput, the manager has to compensate.
+
+        This only works correctly if the self load is a lower bound
+        for the self target, but this method does not check that.
+        Its should not matter, as MLRsearch controller only returns
+        the relevant lower bounds to the manager.
 
         :return: Conditional throughput assuming self is a relevant lower bound.
         :rtype: Optional[DiscreteLoad]
         :raises RuntimeError: If target is unclear or load is spurious.
         """
         target = list(self.target_to_stat.keys())[0]
-        _, pes = self.estimates(target)
-        if not pes:
-            if int(self):
-                raise RuntimeError(f"Not a lower bound: {self}")
-            return None
-        # TODO: Verify self is really the clo?
         stat = self.target_to_stat[target]
-        loss_ratio = stat.dur_rat_sum / stat.good_long
+        loss_ratio = stat.pessimistic_loss_ratio()
         ret = self * (1.0 - loss_ratio)
         return ret
