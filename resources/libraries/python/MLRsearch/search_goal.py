@@ -18,7 +18,9 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True, eq=True)
 class SearchGoal:
-    """This is the part of controller inputs that can be repeated
+    """Storage class for search goal attributes.
+
+    This is the part of controller inputs that can be repeated
     with different values. MLRsearch saves time by searching
     for conditional throughput for each goal at the same time,
     compared to repeated calls with separate goals.
@@ -44,7 +46,7 @@ class SearchGoal:
     """Shortest trial duration employed when searching for this goal."""
     final_trial_duration: float = 1.0
     """Longest trial duration employed when searching for this goal."""
-    duration_sum: float = 20.0
+    duration_sum: float = 21.0
     """Minimal sum of durations of relevant trials sufficient to declare a load
     to be upper or lower bound for this goal."""
     preceding_targets: int = 2

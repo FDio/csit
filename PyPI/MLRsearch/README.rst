@@ -16,7 +16,7 @@ is only a symlink to the original place of tightly coupled CSIT code.
 Change log
 ----------
 
-1.0.0: Logic improvements, independent selectors, exceed ratio support,
+1.1.0: Logic improvements, independent selectors, exceed ratio support,
 better width rounding, conditional throughput as output.
 Implementation relies more on dataclasses, code split into smaller files.
 API changed considerably, mainly to avoid long argument lists.
@@ -106,7 +106,7 @@ This is the screen capture of interactive python interpreter
     ...     relative_width=0.005,
     ...     initial_trial_duration=1.0,
     ...     final_trial_duration=1.0,
-    ...     duration_sum=61.0,
+    ...     duration_sum=21.0,
     ...     preceding_targets=2,
     ...     expansion_coefficient=2,
     ... )
@@ -122,29 +122,27 @@ This is the screen capture of interactive python interpreter
     >>> result = controller.search(measurer=Hard1MppsMeasurer(), debug=print_dot)
     ....................................................................................
     ....................................................................................
-    ....................................................................................
-    ....................................................................................
-    ....................................................................................
-    ....................................................................................
-    ...>>> print(result)
+    ...................>>> print(result)
     {SearchGoal(loss_ratio=0.0, exceed_ratio=0.005, relative_width=0.005, initial_trial_
-    duration=1.0, final_trial_duration=1.0, duration_sum=61.0, preceding_targets=2, expa
-    nsion_coefficient=2): fl=997497.6029392382,s=(gl=61.0,bl=0.0,gs=0.0,bs=0.0), SearchG
-    oal(loss_ratio=0.005, exceed_ratio=0.005, relative_width=0.005, initial_trial_durati
-    on=1.0, final_trial_duration=1.0, duration_sum=61.0, preceding_targets=2, expansion_
-    coefficient=2): fl=1002508.6747611101,s=(gl=61.0,bl=0.0,gs=0.0,bs=0.0)}
+    duration=1.0, final_trial_duration=1.0, duration_sum=21.0, preceding_targets=2, expa
+    nsion_coefficient=2, fail_fast=True): fl=997497.6029392382,s=(gl=21.0,bl=0.0,gs=0.0,
+    bs=0.0), SearchGoal(loss_ratio=0.005, exceed_ratio=0.005, relative_width=0.005, init
+    ial_trial_duration=1.0, final_trial_duration=1.0, duration_sum=21.0, preceding_targe
+    ts=2, expansion_coefficient=2, fail_fast=True): fl=1002508.6747611101,s=(gl=21.0,bl=
+    0.0,gs=0.0,bs=0.0)}
     >>> print(f"NDR conditional throughput: {float(result[ndr_goal].conditional_throughp
     ut)}")
     NDR conditional throughput: 997497.6029392382
     >>> print(f"PDR conditional throughput: {float(result[pdr_goal].conditional_throughp
     ut)}")
     PDR conditional throughput: 1000000.6730730429
+    >>>
 
 Operation logic
 ---------------
 
 The currently published `IETF draft`_ describes the logic of version 0.4,
-the logic of version 1.0 will be descibed better in the next draft version (-05).
+the logic of version 1.1 will be descibed better in the next draft version (-05).
 
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
