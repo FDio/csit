@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb5c8cc5_dd67df12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-19T10:20:19Z",
+      "side": 1,
+      "message": "1n-spr passed, so 1n-tx2 is unlikely to fail.",
+      "revId": "382b362a165982218e3c6cc61b721391bb50c6b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
