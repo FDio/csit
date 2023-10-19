@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,10 @@
 | Library | resources.libraries.python.HoststackUtil
 | Library | resources.libraries.python.NginxUtil
 | Library | resources.libraries.python.NsimUtil
+| Library | resources.libraries.python.DMAUtil
 | Library | resources.tools.ab.ABTools
 | Variables | resources/libraries/python/Constants.py
+| Resource | resources/libraries/robot/features/dma.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/nsim/nsim.robot
 | Resource | resources/libraries/robot/nginx/default.robot
@@ -117,6 +119,16 @@
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_nginx.conf
+| ... | ld_preload=${True}
+| ... | transparent_tls=${False}
+| ... | json=${True}
+| ... | ip_version=${4}
+| &{nginx_server_with_dma_attr}=
+| ... | role=server
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${Empty}
+| ... | namespace=default
+| ... | vcl_config=vcl_dma.conf
 | ... | ld_preload=${True}
 | ... | transparent_tls=${False}
 | ... | json=${True}
@@ -565,15 +577,12 @@
 | | ... | and similar values like \${DUT1_cpu_alloc_str} are already defined.
 | |
 | | ... | *Arguments:*
-| | ... | - mode - VCL Nginx or LDP Nginx.
-| | ... | Type: string
-| | ... | - rps_cps - Test request or connect.
-| | ... | Type: string
-| | ... | - core_num - Nginx work processes number.
-| | ... | Type: int
-| | ... | - qat - Whether to use the qat engine.
-| | ... | Type: string
-| | ... | - tls_tcp - TLS or TCP.
+| | ... | - mode - VCL Nginx or LDP Nginx. Type: string
+| | ... | - rps_cps - Test rps or cps. Type: string
+| | ... | - core_num - Nginx work processes number. Type: int
+| | ... | - qat - Whether to use the qat engine. Type: string
+| | ... | - tls_tcp - TLS or TCP. Type: string
+| | ... | - use_dma - Whether to use DMA, Default: False. Type: bool
 | |
 | | ... | *Example:*
 | |
@@ -581,6 +590,7 @@
 | | ... | \| ${rps_cps} \| ${phy_cores} \| ${qat} \| ${tls_tcp} \|
 | |
 | | [Arguments] | ${mode} | ${rps_cps} | ${phy_cores} | ${qat} | ${tls_tcp}
+| | | ... | ${use_dma}=${False}
 | |
 | | Set Interface State | ${DUT1} | ${DUT1_${int}1}[0] | up
 | | VPP Interface Set IP Address | ${DUT1} | ${DUT1_${int}1}[0]
@@ -590,17 +600,23 @@
 | | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
 | | ${numa}= | Get interfaces numa node | ${DUT1} | ${DUT1_${int}1}[0]
 | | Apply Nginx configuration on DUT | ${DUT1} | ${phy_cores}
-| | Set To Dictionary | ${nginx_server_attr} | ip_address
+| | ${attr}= | Run Keyword If | ${use_dma} == ${True}
+| | ... | Set Variable | ${nginx_server_with_dma_attr}
+| | ... | ELSE | Set Variable | ${nginx_server_attr}
+| | Set To Dictionary | ${attr} | ip_address
 | | ... | ${dut_ip_addrs}[0]
 | | ${core_list}= | Cpu list per node str | ${DUT1} | ${numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${nginx_server_attr}[cpu_cnt]
-| | ${cpu_idle_list}= | Get cpu idle list | ${DUT1} | ${numa}
-| | ... | ${smt_used} | ${DUT1_cpu_alloc_str}
-| | ${nginx_server}= | Get Nginx Command | ${nginx_server_attr}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${attr}[cpu_cnt]
+| | ... | smt_used=${smt_used}
+| | ${cpu_idle}= | Cpu List per node | ${DUT1} | ${numa}
+| | ${cpu_idle_list}= | Get Slice From List | ${cpu_idle}
+| | ... | ${${skip_cnt} + ${attr}[cpu_cnt]}
+| | ${nginx_server}= | Get Nginx Command | ${attr}
 | | ... | ${nginx_version} | ${packages_dir}
-| | ${server_pid}= | Start Hoststack Test Program
-| | ... | ${DUT1} | ${nginx_server_attr}[namespace] | ${core_list}
+| | Start Hoststack Test Program
+| | ... | ${DUT1} | ${attr}[namespace] | ${core_list}
 | | ... | ${nginx_server}
+| | Get Hoststack Test Program Logs | ${DUT1} | ${nginx_server}
 | | Taskset Nginx PID to idle cores | ${DUT1} | ${cpu_idle_list}
 
 | Measure TLS requests or connections per second
@@ -620,7 +636,9 @@
 | |
 | | [Arguments] | ${ciphers} | ${files} | ${tls_tcp} | ${mode}
 | |
-| | ${output}= | Run ab | ${tg} | ${dut_ip_addrs}[0] | ${ab_ip_addrs}[0]
+| | ${dut_ip_addrs_str} | Evaluate | ','.join(${dut_ip_addrs})
+| | ${ad_ip_addrs_str} | Evaluate | ','.join(${ab_ip_addrs})
+| | ${output}= | Run ab | ${tg} | ${dut_ip_addrs_str} | ${ad_ip_addrs_str}
 | | ... | ${tls_tcp} | ${ciphers} | ${files} | ${mode} | ${r_total} | ${c_total}
 | | ... | ${listen_port}
 | | Set test message | ${output}
@@ -655,4 +673,30 @@
 | | | ... | ${tcp_prealloc_conns}
 | | | Run keyword | ${dut}.Add tcp preallocated half open connections
 | | | ... | ${tcp_prealloc_ho_conns}
+| | END
+
+| Add Additional Startup Configuration For DMA On All DUTs
+| | [Documentation]
+| | ... | Add additional startup configuration for DMA on all DUTs
+| |
+| | [Arguments] | ${use_dma}=${True}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}
+| | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
+| | | Run keyword | ${dut}.Add TCP Congestion Control Algorithm
+| | | Run keyword | ${dut}.Add TCP Tso
+| | | Run keyword | ${dut}.Add Session Enable
+| | | Run keyword If | ${use_dma} == ${True}
+| | | ... | ${dut}.Add Session Use Dma
+| | | Run keyword If | ${use_dma} == ${True}
+| | | ... | Enable DMA WQs on all DUTs
+| | | Run keyword If | ${use_dma} == ${True}
+| | | ... | ${dut}.Add DMA Dev | ${${dut}_dma_wqs}
+| | | Run keyword If | '${nic_driver}' == 'vfio-pci'
+| | | ... | ${dut}.Add DPDK Dev Default Tso
+| | | Run keyword If | '${nic_driver}' == 'vfio-pci'
+| | | ... | ${dut}.Add DPDK Enable Tcp Udp Checksum
+| | | Run keyword | ${dut}.Add Api Trace
 | | END
