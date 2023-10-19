@@ -51,13 +51,13 @@ informative:
 
 This document proposes improvements to [RFC2544] throughput search by
 defining a new methodology called Multiple Loss Ratio search
-(MLRsearch). The main objectives for MLRsearch are to minimize the
-total test duration, search for multiple loss ratios and improve
+(MLRsearch). The main objectives of MLRsearch are to minimize the
+total search test duration, search for throughputs at multiple loss ratios and substantially improve
 results repeatibility and comparability.
 
-The main motivation behind MLRsearch is the new set of challenges and
-requirements posed by testing Network Function Virtualization
-(NFV) systems and other software based network data planes.
+The motivation behind updating [RFC2544] with MLRsearch is the set of challenges and
+requirements posed by evaluating and testing software based networking
+systems, specifically their data planes.
 
 MLRsearch offers several ways to address these challenges, giving user
 configuration options to select their preferred way.
@@ -75,30 +75,30 @@ configuration options to select their preferred way.
 # Purpose and Scope
 
 The purpose of this document is to describe Multiple Loss Ratio search
-(MLRsearch), a throughput search methodology optimized for software
-DUTs.
+(MLRsearch), a data plane throughput search methodology optimized for software
+networking DUTs.
 
 Applying vanilla [RFC2544] throughput bisection to software DUTs
 results in a number of problems:
 
 - Binary search takes too long as most of trials are done far from the
   eventually found throughput.
-- The required final trial duration (and pauses between trials) also
+- The required final trial duration and pauses between trials
   prolong the overall search duration.
 - Software DUTs show noisy trial results (noisy neighbor problem),
-  leading to big spread of possible discovered throughput values.
+  leading to a big spread of possible discovered throughput values.
 - Throughput requires loss of exactly zero packets, but the industry
-  frequently allows for small but non-zero losses.
+  frequently allows for small but non-zero packet losses.
 - The definition of throughput is not clear when trial results are
   inconsistent.
 
 MLRsearch aims to address these problems by applying the following set
 of enhancements:
 
-- Allow searching for multiple search goals, with differing goal loss ratios.
+- Allow searching for multiple search goals, with differing packet loss ratios.
   - Each trial result can affect any search goal in principle
     (trial reuse).
-- Multiple preceding targets for each search goal, earlier ones need
+- Set multiple preceding targets for each search goal, with earlier ones needing
   to spend less time on trials.
   - Earlier targets also aim at lesser precision.
   - Use Forwarding Rate (FR) at maximum offered load
@@ -112,7 +112,7 @@ of enhancements:
 MLRsearch configuration options are flexible enough to
 support both conservative settings (unconditionally compliant with [RFC2544],
 but longer search duration and worse repeatability) and aggressive
-settings (shorter search duration and better repeatability but not
+settings (shorter search duration and better repeatability but not fully
 compliant with [RFC2544]).
 
 No part of [RFC2544] is intended to be obsoleted by this document.
@@ -1226,9 +1226,9 @@ with RFC 2544 throughput.
 
 ## Long Test Duration
 
-Emergence of software DUTs, with frequent software updates and a
-number of different packet processing modes and configurations, drives
-the requirement of continuous test execution and bringing down the test
+Emergence of software networking DUTs, with very frequent software updates and a
+number of different packet processing modes and configurations, drive
+the requirements of continuous test execution as part of i) continuous integration and continuous developmetn pipeline (CI/CD) and ii) bringing down the test
 execution time.
 
 In the context of characterising particular DUT's network performance, this
@@ -1239,10 +1239,10 @@ eventual throughput.
 
 [RFC2544] does not specify any stopping condition for throughput search,
 so users can trade-off between search duration and achieved precision.
-But, due to exponential behavior of bisection, small improvement
-in search duration needs relatively big sacrifice in the throughput precision.
+But, due to an exponential behavior of bisection, small improvement
+in search duration needs relatively big sacrifice in the discovered throughput precision.
 
-## DUT within SUT
+## A DUT within an SUT (DUT-in-SUT)
 
 [RFC2285] defines:
 - *DUT* as
@@ -1260,13 +1260,13 @@ In case of software networking, the SUT consists of a software program
 processing packets (device of interest, the DUT),
 running on a server hardware and using operating system functions as appropriate,
 with server hardware resources shared across all programs
-and the operating system.
+and the operating system running on that same server.
 
-DUT is effectively "nested" within SUT.
+A DUT is effectively "nested" within an SUT.
 
 Due to a shared multi-tenant nature of SUT, DUT is subject to
 interference (noise) coming from the operating system and any other
-software running on the same server. Some sources of noise can be
+software running on the same server. Some sources of noise can be to some degree
 eliminated (e.g. by pinning DUT program threads to specific CPU cores
 and isolating those cores to avoid context switching). But some
 noise remains after all such reasonable precautions are applied. This
@@ -1287,24 +1287,28 @@ The noise varies in time, sometimes wildly. The noise can sometimes be negligibl
 but frequently it lowers the observed SUT performance in a trial.
 
 In this model, SUT does not have a single performance value, it has a spectrum.
-One end of the spectrum is the noiseless baseline,
+One end of the spectrum is the noiseless performance (baseline),
 the other end is a *noiseful performance*. In practice, trial results
 close to the noiseful end of the spectrum happen only rarely.
 The worse performance, the more rarely it is seen in a trial.
 
 Focusing on DUT, the benchmarking effort should aim
 at eliminating only the SUT noise from SUT measurement.
-But that is not really possible, as there are no realistic enough models
+In practice that is not really possible, as
+based on authors experience and available literature
+there are no realistic enough models
 able to distinguish SUT noise from DUT fluctuations.
 
 However, assuming that a well-constructed SUT has the DUT as its
-performance bottleneck, the "DUT noiseless performance" can be defined
-as the noiseless end of SUT performance spectrum. (At least for
-throughput. For other quantities such as latency there will be an
-additive difference.) By this definition, DUT noiseless performance
+performance bottleneck, the DUT *noiseless performance* can be defined
+as the noiseless end of SUT performance spectrum. At least for
+throughput. For other performance quantities such as latency there will be an
+additive difference.
+
+Note that by this definition, DUT *noiseless performance*
 also minimizes the impact of DUT fluctuations.
 
-In this document, we reduce the "DUT within SUT" problem to estimating
+In this document, we reduce the "DUT within an SUT" problem to estimating
 the noiseless end of SUT performance spectrum from a limited number of
 trial results.
 
@@ -1316,23 +1320,23 @@ at different levels of sensitivity to SUT noise.
 
 ## Repeatability and Comparability
 
-[RFC2544] does not suggest to repeat throughput search. And from just one
+[RFC2544] does not suggest to repeat throughput search. And from just one discovered
 throughput value, it cannot be determined how repeatable that value is.
 In practice, poor repeatability is also the main cause of poor
-comparability, e.g. different benchmarking teams can test the same SUT
+comparability, that is different benchmarking teams can test the same SUT,
 but get different throughput values.
 
-[RFC2544] throughput requirements (60s trial, no tolerance to single frame loss)
-force the search to fluctuate close the noiseful end of SUT performance
-spectrum. As that end is affected by rare trials of significantly low
+[RFC2544] throughput requirements (60 seconds trial, no tolerance of a single frame loss)
+force the search to fluctuate close to the noiseful end of SUT performance
+spectrum. And as that end is affected by rare trials of significantly low
 performance, the resulting throughput repeatability is poor.
 
-The repeatability problem is the problem of defining a search procedure
-which reports more stable results
-(even if they can no longer be called "throughput" in [RFC2544] sense).
-According to baseline (noiseless) and noiseful model, better repeatability
+The repeatability problem can be addressed by defining a search procedure
+which reports more stable results,
+even if they can no longer be called "throughput" in [RFC2544] sense.
+According to the *noiseless performance* and *noiseful performance* model, better repeatability
 will be at the noiseless end of the spectrum.
-Therefore, solutions to the "DUT within SUT" problem
+Therefore, solutions to the "DUT within an SUT" problem
 will help also with the repeatability problem.
 
 Conversely, any alteration to [RFC2544] throughput search
@@ -1340,7 +1344,7 @@ that improves repeatability should be considered
 as less dependent on the SUT noise.
 
 An alternative option is to simply run a search multiple times, and report some
-statistics (e.g. average and standard deviation). This can be used
+statistics (e.g. average and standard deviation), an approach adopted by [TST009]. This can be used
 for "important" tests, but it makes the search duration problem even
 more pronounced.
 
@@ -1360,25 +1364,29 @@ and then it says:
 Contrary to that, many benchmarking teams settle with non-zero
 (small) loss ratio as the goal for a "throughput rate".
 
-Motivations are many: modern protocols tolerate frame loss better;
-trials nowadays send way more frames within the same duration;
-impact of rare noise bursts is smaller as the baseline performance
-can compensate somewhat by keeping the loss ratio below the goal;
-if SUT noise with "ideal DUT" is known, it can be set as the loss ratio goal.
+Motivations are many: i) modern protocols tolerate frame loss better then it was the case at the time when [RFC1242] and [RFC2544] were specified;
+ii) trials nowadays send way more frames within the same duration;
+iii) impact of rare noise bursts is smaller as the baseline performance
+iv) can compensate somewhat by keeping the loss ratio below the goal and
+v) if SUT noise with "an ideal DUT" is known, it can be set as the packet loss ratio goal.
 
 Regardless of validity of any and all similar motivations,
 support for non-zero loss goals makes any search algorithm more user-friendly.
-[RFC2544] throughput is not friendly in this regard.
+[RFC2544] throughput is not user friendly in this regard.
 
-Searching for multiple goal loss ratios also helps to describe the SUT
-performance better than a single goal result. Repeated wide gap between
+Searching for conditional throughputs with multiple packet loss ratios also helps to describe the SUT and DUT
+performance better than a single loss ratio goal result. Repeated wide gap between
 zero and non-zero loss conditional throughputs indicates
-the noise has a large impact on the overall SUT performance.
+the noise has a large impact on the overall DUT-in-SUT performance.
 
 It is easy to modify the vanilla bisection to find a lower bound
-for intended load that satisfies a non-zero-loss goal,
-but it is not that obvious how to search for multiple goals at once,
+for intended load that satisfies a non-zero-loss goal.
+But it is not that obvious how to search for multiple goals at once,
 hence the support for multiple loss goals remains a problem.
+
+{::comment}
+    mkonstan: The last paragraph is somewhat ambiguous. Are multiple goals explained before this pragraph? Where?
+{:/comment}
 
 ## Inconsistent Trial Results
 
@@ -1387,7 +1395,7 @@ measurement trials, there is a risk of encountering inconsistencies
 between trial results.
 
 The plain bisection never encounters inconsistent trials.
-But [RFC2544] hints about possibility if inconsistent trial results in two places.
+But [RFC2544] hints about possibility of inconsistent trial results in two places in its text.
 The first place is section 24 where full trial durations are required, presumably
 because they can be inconsistent with results from shorter trial durations.
 The second place is section 26.3 where two successive zero-loss trials
@@ -1410,15 +1418,30 @@ Ideally, there will be a definition of a quantity which both generalizes
 throughput for non-zero-loss (and other possible repeatibility enhancements),
 while being precise enough to force a specific way to resolve trial
 inconsistencies.
+{::comment}
+    mkonstan: The last paragraph is full of ambiguity. It needs to be more precise what is meant by quantity or quantities.
+{:/comment}
+
 But until such definition is agreed upon, the correct way to handle
 inconsistent trial results remains an open problem.
 
+{::comment}
+    mkonstan: Isn't MLRsearch an attempt to address this, and if so, this should be stated. If not, that should be stated too.
+{:/comment}
+
 # How the problems are addressed
 
+{::comment}
+    mkonstan: Paragraph-1 (Pgph-1)
+{:/comment}
 Configurable loss ratio in MLRsearch search goals are there
 in direct support for non-zero-loss conditional throughput.
 In practice the conditional throughput results' stability
 increases with higher loss ratio goals.
+
+{::comment}
+    mkonstan: Pgph-2
+{:/comment}
 
 Multiple trials with noise tolerance enhancement,
 as implemented in MLRsearch using non-zero goal exceed ratio value,
@@ -1428,16 +1451,28 @@ of Binary Search with Loss Verification,
 as recommended in [RFC9004] (section 6.2)
 and specified in [TST009] (section 12.3.3).
 
+{::comment}
+    mkonstan: Pgph-3
+{:/comment}
+
 The main factor improving the overall search time is the introduction
 of preceding targets. Less impactful time savings
 are achieved by pre-initial trials, halving mode
 and smart splitting in bisecting mode.
+
+{::comment}
+    mkonstan: Pgph-4
+{:/comment}
 
 In several places, MLRsearch is "conservative" when handling
 (potentially) inconsistent results. This includes the requirement
 for the relevant lower bound to be smaller than any upper bound,
 the unequal handling of good and bad short trials,
 and preference to lower load when choosing the winner among candidates.
+
+{::comment}
+    mkonstan: Pgph-5
+{:/comment}
 
 While this does no guarantee good search stability
 (goals focusing on higher loads may still invalidate existing bounds
@@ -1447,6 +1482,15 @@ below the reported conditional througput loads.
 In any case, the definition of conditional throughput
 is precise enough to dictate "conservative" handling
 of trial inconsistencies.
+
+{::comment}
+    mkonstan: Pgph-1 to Pgph-5 should:
+
+    1. Call out which problem is solved, strategy chosen and why.
+    2. Arranged in a sequence that is corresponding, or best the same, to the problem statement secion.
+
+    This is required to aid the reader to easily follow the content of the draft and relate it to the their experience and requirements.
+{:/comment}
 
 # IANA Considerations
 
@@ -1475,5 +1519,12 @@ networks.
 
 Many thanks to Alec Hothan of OPNFV NFVbench project for thorough
 review and numerous useful comments and suggestions.
+
+Special wholehearted gratitude and thanks to late Al Morton for his
+thorough reviews filled with very specific feedback and constructive
+guidelines. Thank you Al for the close collaboration over the years,
+for your continuous unwavering encouragements full of empathy and
+positive attitude.
+Al, you are dearly missed.
 
 --- back
