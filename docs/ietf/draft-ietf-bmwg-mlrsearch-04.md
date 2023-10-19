@@ -51,13 +51,13 @@ informative:
 
 This document proposes improvements to [RFC2544] throughput search by
 defining a new methodology called Multiple Loss Ratio search
-(MLRsearch). The main objectives for MLRsearch are to minimize the
-total test duration, search for multiple loss ratios and improve
+(MLRsearch). The main objectives of MLRsearch are to minimize the
+total search test duration, search for throughputs at multiple loss ratios and substantially improve
 results repeatibility and comparability.
 
-The main motivation behind MLRsearch is the new set of challenges and
-requirements posed by testing Network Function Virtualization
-(NFV) systems and other software based network data planes.
+The motivation behind updating [RFC2544] with MLRsearch is the set of challenges and
+requirements posed by evaluating and testing software based networking
+systems, specifically their data planes.
 
 MLRsearch offers several ways to address these challenges, giving user
 configuration options to select their preferred way.
@@ -75,8 +75,8 @@ configuration options to select their preferred way.
 # Purpose and Scope
 
 The purpose of this document is to describe Multiple Loss Ratio search
-(MLRsearch), a throughput search methodology optimized for software
-DUTs.
+(MLRsearch), a data plane throughput search methodology optimized for software
+networking DUTs.
 
 Applying vanilla [RFC2544] throughput bisection to software DUTs
 results in a number of problems:
