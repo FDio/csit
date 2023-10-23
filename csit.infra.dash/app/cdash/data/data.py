@@ -222,12 +222,15 @@ class Data:
                         pd.api.types.is_string_dtype(itm["<column_name>"]),
                         pd.api.types.is_string_dtype(itm["telemetry"][0])
                     )):
-                    print(pa.Schema.from_pandas(itm))
+                    schema = pa.Schema.from_pandas(itm)
                     pa.parquet.write_metadata(
-                        pa.Schema.from_pandas(itm),
-                        f"{C.PATH_TO_SCHEMAS}_tmp_schema"
+                        schema, f"{C.PATH_TO_SCHEMAS}_tmp_schema"
                     )
-                    print(itm)
+                    logging.info(schema.to_string(
+                        truncate_metadata=False,
+                        show_field_metadata=True,
+                        show_schema_metadata=True
+                    ))
                     break
             except KeyError:
                 pass
