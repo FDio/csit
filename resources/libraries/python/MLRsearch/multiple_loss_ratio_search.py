@@ -25,6 +25,7 @@ from .dataclass import secondary_field
 from .discrete_load import DiscreteLoad
 from .discrete_result import DiscreteResult
 from .expander import GlobalWidth
+from .goal_result import GoalResult
 from .limit_handler import LimitHandler
 from .load_rounding import LoadRounding
 from .measurement_database import MeasurementDatabase
@@ -33,7 +34,6 @@ from .search_goal import SearchGoal
 from .selector import Selector
 from .target_scaling import TargetScaling
 from .trial_measurement import AbstractMeasurer
-from .trimmed_stat import TrimmedStat
 
 
 @dataclass
@@ -126,7 +126,7 @@ class MultipleLossRatioSearch:
         self,
         measurer: AbstractMeasurer,
         debug: Optional[Callable[[str], None]] = None,
-    ) -> Pep3140Dict[SearchGoal, Optional[TrimmedStat]]:
+    ) -> Pep3140Dict[SearchGoal, GoalResult]:
         """Perform initial trials, create state object, proceed with main loop.
 
         Stateful arguments (measurer and debug) are stored.
@@ -139,7 +139,7 @@ class MultipleLossRatioSearch:
         :returns: Structure containing conditional throughputs and other stats,
             one for each search goal. If a value is None it means there is
             no lower bound (min load turned out to be an upper bound).
-        :rtype: Pep3140Dict[SearchGoal, Optional[TrimmedStat]]
+        :rtype: Pep3140Dict[SearchGoal, GoalResult]
         :raises RuntimeError: If total duration is larger than timeout,
             or if min load becomes an upper bound for a search goal
             that has fail fast true.
@@ -168,7 +168,7 @@ class MultipleLossRatioSearch:
         for goal in self.config.goals:
             target = self.scaling.goal_to_final_target[goal]
             bounds = self.database.get_relevant_bounds(target=target)
-            ret_dict[goal] = bounds.clo
+            ret_dict[goal] = GoalResult.from_bounds(bounds=bounds)
         return ret_dict
 
     def measure(self, duration: float, load: DiscreteLoad) -> DiscreteResult:

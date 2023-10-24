@@ -23,8 +23,8 @@ __init__ file for Python package "MLRsearch".
 
 # Import user-facing (API) stuff, so users do not need to know submodules.
 from .config import Config
-from .search_goal import SearchGoal
+from .goal_result import GoalResult
 from .multiple_loss_ratio_search import MultipleLossRatioSearch
 from .pep3140 import Pep3140Dict
+from .search_goal import SearchGoal
 from .trial_measurement import AbstractMeasurer, MeasurementResult
-from .trimmed_stat import TrimmedStat
