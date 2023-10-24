@@ -278,7 +278,7 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | ${ret} = | Convert To Number | ${result[0]}
+| | ${ret} = | Convert To Number | ${result[0].relevant_lower_bound}
 | | Return From Keyword | ${ret}
 
 | Measure and show latency at specified rate
