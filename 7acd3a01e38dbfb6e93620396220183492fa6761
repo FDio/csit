@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a53dffd3_79a8be7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-10-24T11:12:53Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDeth-l2xcbase-eth-2memif-1dcr ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4-ip4scale2m-rnd ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4udp-nat44det-h65536-p63-s4128758 ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4tcp-nat44ed-h65536-p63-s4128768-cps ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4tcp-nat44ed-h65536-p63-s4128768-tput ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4--ethip4udpgeneve-16tun-ip4base ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4-loadbalancer-maglev ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip6-ip6scale2m-rnd ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDeth-l2xcbase-eth-2vhostvr1024-1vm ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDdot1q-l2bdbasemaclrn-eth-2virtiovr1024-1vm-vppl2xc ndrpdrANDnic_*ANDdrv_rdma_coreAND1cANDethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm !1518b !9000b !imix",
+      "revId": "7acd3a01e38dbfb6e93620396220183492fa6761",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
