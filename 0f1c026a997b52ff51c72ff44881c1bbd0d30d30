@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "778881ce_1d951cd8",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-10-24T04:19:26Z",
+      "side": 1,
+      "message": "This is required for test development, so that the container state can be examined after a failure.  Running the virtual box environment is very slow, thus it is much more efficient time-wise for the developer to be able to disable clean up and inspect the container rather than add logging output and re-running the test.\n\nI don\u0027t see any reason why this code would cause any issues in production.",
+      "parentUuid": "5f29d1b5_1c81bfd2",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 318,
+        "endChar": 46
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "222f13e8_d17a52d3",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 3
@@ -61,6 +85,30 @@
       "writtenOn": "2023-10-18T05:29:57Z",
       "side": 1,
       "message": "I cannot accept head n -1 solution. Investigate why docker is returning 2 lines. Also variable selection #*: should pick the correct one.",
+      "range": {
+        "startLine": 720,
+        "startChar": 4,
+        "endLine": 720,
+        "endChar": 62
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d61bb415_d00c2ce7",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-10-24T04:19:26Z",
+      "side": 1,
+      "message": "From the production log [0], the docker command also shows it producing 2 lines:\n\nCSIT_DUT1_PORT\u003d\u002750696\n2222/tcp -\u003e :::50696\u0027\n\nThe difference is that per the comment the vagrant docker command output includes braces and/or extra colons for some reason.\n\nThe variable selection \u0027#*\u0027 is insufficient to consume all of the extra colons, thus IMHO the fix should be to use the \u0027##*\u0027 bash variable construct:\n\nCSIT_DUT1_PORT\u003d\"${DCR_PORTS[dut1]##*:}\"\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-csit-verify-device-master-ubuntu2204-aarch64-1n-tx2/2862/console.log.gz",
+      "parentUuid": "222f13e8_d17a52d3",
       "range": {
         "startLine": 720,
         "startChar": 4,
