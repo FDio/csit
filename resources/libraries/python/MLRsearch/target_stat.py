@@ -117,6 +117,7 @@ class TargetStat:
         pessimistic = (effective_dursum - self.good_long) <= limit_dursum
         return optimistic, pessimistic
 
+    @property
     def pessimistic_loss_ratio(self) -> float:
         """Return the loss ratio for conditional throughput computation.
 

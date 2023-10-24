@@ -92,8 +92,8 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | ${ndr} = | Convert To Number | ${result[0]}
-| | ${pdr} = | Convert To Number | ${result[1]}
+| | ${ndr} = | Convert To Number | ${result[0].relevant_lower_bound}
+| | ${pdr} = | Convert To Number | ${result[1].relevant_lower_bound}
 | | Display single bound | NDR | ${result[0].conditional_throughput}
 | | Display single bound | PDR | ${result[1].conditional_throughput}
 | | Return From Keyword | ${ndr} | ${pdr}
