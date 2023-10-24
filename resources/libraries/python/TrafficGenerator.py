@@ -24,8 +24,8 @@ from robot.libraries.BuiltIn import BuiltIn
 from .Constants import Constants
 from .DropRateSearch import DropRateSearch
 from .MLRsearch import (
-    AbstractMeasurer, Config, MeasurementResult,
-    MultipleLossRatioSearch, SearchGoal, TrimmedStat,
+    AbstractMeasurer, Config, GoalResult, MeasurementResult,
+    MultipleLossRatioSearch, SearchGoal,
 )
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
@@ -1448,7 +1448,7 @@ class OptimizedSearch:
         ramp_up_rate: float = 0.0,
         ramp_up_duration: float = 0.0,
         state_timeout: float = 240.0,
-    ) -> List[TrimmedStat]:
+    ) -> List[GoalResult]:
         """Setup initialized TG, perform optimized search, return intervals.
 
         If transaction_scale is nonzero, all init and non-init trial durations
@@ -1514,9 +1514,10 @@ class OptimizedSearch:
         :type ramp_up_rate: float
         :type ramp_up_duration: float
         :type state_timeout: float
-        :returns: Structure containing narrowed down NDR and PDR intervals
-            and their measurements.
-        :rtype: List[TrimmedStat]
+        :returns: Goal result (based on unidirectional tps) for each goal.
+            The result contains both the offered load for stat trial,
+            and the conditional throughput for display.
+        :rtype: List[GoalResult]
         :raises RuntimeError: If search duration exceeds search_duration_max
             or if min load becomes an upper bound for any search goal.
         """

@@ -16,9 +16,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
-from .discrete_load import DiscreteLoad
 from .load_stats import LoadStats
 from .target_spec import TargetSpec
 
@@ -52,26 +50,3 @@ class TrimmedStat(LoadStats):
             int_load=stats.int_load,
             target_to_stat={target: stats.target_to_stat[target]},
         )
-
-    @property
-    def conditional_throughput(self) -> Optional[DiscreteLoad]:
-        """Compute conditional throughput from the load.
-
-        The conditional throughput has the same semantics as load,
-        so if load is unicirectional and user wants bidirectional
-        throughput, the manager has to compensate.
-
-        This only works correctly if the self load is a lower bound
-        for the self target, but this method does not check that.
-        Its should not matter, as MLRsearch controller only returns
-        the relevant lower bounds to the manager.
-
-        :return: Conditional throughput assuming self is a relevant lower bound.
-        :rtype: Optional[DiscreteLoad]
-        :raises RuntimeError: If target is unclear or load is spurious.
-        """
-        target = list(self.target_to_stat.keys())[0]
-        stat = self.target_to_stat[target]
-        loss_ratio = stat.pessimistic_loss_ratio()
-        ret = self * (1.0 - loss_ratio)
-        return ret
