@@ -50,6 +50,23 @@
       "message": "csit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00",
       "revId": "710503fb4656fda7ac09cbb1cfc07221551e3312",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "febddb21_12eb2fe7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-25T08:16:40Z",
+      "side": 1,
+      "message": "csit-trex-report-cov-1n-aws-perftest trex-00\ncsit-trex-report-cov-2n-icx-perftest trex-00\ncsit-trex-report-cov-2n-spr-perftest trex-00",
+      "revId": "710503fb4656fda7ac09cbb1cfc07221551e3312",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
