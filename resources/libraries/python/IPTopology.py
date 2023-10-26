@@ -22,21 +22,21 @@ class IPTopology:
     """IP Topology Library."""
 
     @staticmethod
-    def initialize_ipv4_forwarding(count=1, parallel_links=1):
+    def initialize_ipv4_forwarding(count=1, pfs=2):
         """
         Custom setup of IPv4 forwarding with scalability of IP routes on all
         DUT nodes in 2-node / 3-node circular topology.
 
         :param count: Number of routes to configure.
-        :param parallel_links: Number of parallel links to configure.
+        :param pfs: Number of physical interfaces to configure.
         :type count: int
-        :type parallel_links: int
+        :type pfs: int
         """
         topology = BuiltIn().get_variable_value("&{topology_info}")
         dut = topology["duts"][-1]
         ifl = BuiltIn().get_variable_value("${int}")
 
-        for l, i in zip(range(parallel_links), range(1, parallel_links*2, 2)):
+        for l, i in zip(range(pfs // 2), range(1, pfs, 2)):
             dut1_int1 = BuiltIn().get_variable_value(f"${{DUT1_{ifl}{i}}}[0]")
             dut1_int2 = BuiltIn().get_variable_value(f"${{DUT1_{ifl}{i+1}}}[0]")
             dut_int1 = BuiltIn().get_variable_value(f"${{{dut}_{ifl}{i}}}[0]")
