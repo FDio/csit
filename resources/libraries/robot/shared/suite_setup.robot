@@ -240,8 +240,9 @@
 | | END
 | | ${type} = | Get TG Type | ${nodes}[TG]
 | | ${version} = | Get TG Version | ${nodes}[TG]
+| | ${parallel_links}= | Get Variable Value | ${parallel_links} | ${1}
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} | ${parallel_links}
 
 | Additional Suite Setup Action For performance_tg_nic
 | | [Documentation]
@@ -250,9 +251,10 @@
 | |
 | | ${type} = | Get TG Type | ${nodes}[TG]
 | | ${version} = | Get TG Version | ${nodes}[TG]
+| | ${parallel_links}= | Get Variable Value | ${parallel_links} | ${1}
 | | Export Dut Type And Version | ${type} | ${version}
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} | ${parallel_links}
 
 | Additional Suite Setup Action For iPerf3
 | | [Documentation]
