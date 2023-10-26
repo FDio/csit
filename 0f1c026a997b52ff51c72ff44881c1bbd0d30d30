@@ -72,6 +72,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33d39e25_719d97ff",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-10-26T18:17:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "778881ce_1d951cd8",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 318,
+        "endChar": 46
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "222f13e8_d17a52d3",
@@ -119,6 +143,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b60dab_1449634d",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-10-26T18:17:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d61bb415_d00c2ce7",
+      "range": {
+        "startLine": 720,
+        "startChar": 4,
+        "endLine": 720,
+        "endChar": 62
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95208fc1_40c4ca2c",
@@ -132,6 +180,30 @@
       "writtenOn": "2023-10-18T05:29:57Z",
       "side": 1,
       "message": "remove console logging",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 27
+      },
+      "revId": "0f1c026a997b52ff51c72ff44881c1bbd0d30d30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a438267e_79d65b14",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-10-26T18:17:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95208fc1_40c4ca2c",
       "range": {
         "startLine": 174,
         "startChar": 0,
