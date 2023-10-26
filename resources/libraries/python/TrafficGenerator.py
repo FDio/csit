@@ -281,13 +281,13 @@ class TrafficGenerator(AbstractMeasurer):
             return stdout.strip()
         return "none"
 
-    def initialize_traffic_generator(self, osi_layer, parallel_links=1):
+    def initialize_traffic_generator(self, osi_layer, pfs=2):
         """TG initialization.
 
         :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
-        :param parallel_links: Number of parallel links to configure.
+        :param pfs: Number of physical interfaces to configure.
         :type osi_layer: str
-        :type parallel_links: int
+        :type pfs: int
         :raises ValueError: If OSI layer is unknown.
         """
         if osi_layer not in ("L2", "L3", "L7"):
@@ -301,7 +301,7 @@ class TrafficGenerator(AbstractMeasurer):
             trex_topology = list()
             self._mode = TrexMode.ASTF if osi_layer == "L7" else TrexMode.STL
 
-            for link in range(1, parallel_links*2, 2):
+            for link in range(1, pfs, 2):
                 tg_if1_adj_addr = topology[f"TG_pf{link+1}_mac"][0]
                 tg_if2_adj_addr = topology[f"TG_pf{link}_mac"][0]
                 if osi_layer in ("L3", "L7") and "DUT1" in topology.keys():

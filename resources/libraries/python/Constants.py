@@ -365,6 +365,7 @@ class Constants:
         u"Mellanox-CX556A": u"100ge2p1cx556a",
         u"Mellanox-CX6DX": u"100ge2p1cx6dx",
         u"Mellanox-CX7VEAT": u"200ge2p1cx7veat",
+        u"Mellanox-CX7VEAT": u"200ge6p3cx7veat",
     }
 
     # Shortened lowercase NIC model name, useful for presentation.
@@ -382,6 +383,7 @@ class Constants:
         u"100ge2p1cx556a": u"cx556a",
         u"100ge2p1cx6dx": u"cx6dx",
         u"200ge2p1cx7veat": u"cx7veat",
+        u"200ge6p3cx7veat": u"cx7veat",
     }
 
     # Not each driver is supported by each NIC.
@@ -435,6 +437,24 @@ class Constants:
         u"rdma-core": u"nic_vfs}= | 0",
         u"mlx5_core": u"nic_vfs}= | 0",
         u"af_xdp": u"nic_vfs}= | 0",
+    }
+
+    # Number of physical interfaces of physical nic.
+    NIC_CODE_TO_PFS = {
+        "10ge2p1x520": "nic_pfs}= | 2",
+        "10ge2p1x710": "nic_pfs}= | 2",
+        "40ge2p1xl710": "nic_pfs}= | 2",
+        "25ge2p1xxv710": "nic_pfs}= | 2",
+        "25ge2p1e810xxv": "nic_pfs}= | 2",
+        "25ge2p1e822cq": "nic_pfs}= | 2",
+        "100ge2p1e810cq": "nic_pfs}= | 2",
+        "50ge1p1ena": "nic_pfs}= | 2",
+        "100ge1p1ena": "nic_pfs}= | 2",
+        "200ge1p1ena": "nic_pfs}= | 2",
+        "100ge2p1cx556a": "nic_pfs}= | 2",
+        "100ge2p1cx6dx": "nic_pfs}= | 2",
+        "200ge2p1cx7veat": "nic_pfs}= | 2",
+        "200ge6p3cx7veat": "nic_pfs}= | 6",
     }
 
     # Not each driver is supported by each NIC.
