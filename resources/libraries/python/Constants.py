@@ -352,37 +352,39 @@ class Constants:
 
     # Suite file names use codes for NICs.
     NIC_NAME_TO_CODE = {
-        u"Intel-X520-DA2": u"10ge2p1x520",
-        u"Intel-X710": u"10ge2p1x710",
-        u"Intel-XL710": u"40ge2p1xl710",
-        u"Intel-XXV710": u"25ge2p1xxv710",
-        u"Intel-E810XXV": u"25ge2p1e810xxv",
-        u"Intel-E822CQ": u"25ge2p1e822cq",
-        u"Intel-E810CQ": u"100ge2p1e810cq",
-        u"Amazon-Nitro-50G": u"50ge1p1ena",
-        u"Amazon-Nitro-100G": u"100ge1p1ena",
-        u"Amazon-Nitro-200G": u"200ge1p1ena",
-        u"Mellanox-CX556A": u"100ge2p1cx556a",
-        u"Mellanox-CX6DX": u"100ge2p1cx6dx",
-        u"Mellanox-CX7VEAT": u"200ge2p1cx7veat",
+        "Intel-X520-DA2": "10ge2p1x520",
+        "Intel-X710": "10ge2p1x710",
+        "Intel-XL710": "40ge2p1xl710",
+        "Intel-XXV710": "25ge2p1xxv710",
+        "Intel-E810XXV": "25ge2p1e810xxv",
+        "Intel-E822CQ": "25ge2p1e822cq",
+        "Intel-E810CQ": "100ge2p1e810cq",
+        "Amazon-Nitro-50G": "50ge1p1ena",
+        "Amazon-Nitro-100G": "100ge1p1ena",
+        "Amazon-Nitro-200G": "200ge1p1ena",
+        "Mellanox-CX556A": "100ge2p1cx556a",
+        "Mellanox-CX6DX": "100ge2p1cx6dx",
+        "Mellanox-CX7VEAT": "200ge2p1cx7veat",
+        "Mellanox-CX7VEAT": "200ge6p3cx7veat",
         "virtual": "1ge1p82540em",
     }
 
     # Shortened lowercase NIC model name, useful for presentation.
     NIC_CODE_TO_SHORT_NAME = {
-        u"10ge2p1x520": u"x520",
-        u"10ge2p1x710": u"x710",
-        u"40ge2p1xl710": u"xl710",
-        u"25ge2p1xxv710": u"xxv710",
-        u"25ge2p1e810xxv": u"e810xxv",
-        u"25ge2p1e822cq": u"e822cq",
-        u"100ge2p1e810cq": u"e810cq",
-        u"50ge1p1ena": u"ena",
-        u"100ge1p1ena": u"ena100",
-        u"200ge1p1ena": u"ena200",
-        u"100ge2p1cx556a": u"cx556a",
-        u"100ge2p1cx6dx": u"cx6dx",
-        u"200ge2p1cx7veat": u"cx7veat",
+        "10ge2p1x520": "x520",
+        "10ge2p1x710": "x710",
+        "40ge2p1xl710": "xl710",
+        "25ge2p1xxv710": "xxv710",
+        "25ge2p1e810xxv": "e810xxv",
+        "25ge2p1e822cq": "e822cq",
+        "100ge2p1e810cq": "e810cq",
+        "50ge1p1ena": "ena",
+        "100ge1p1ena": "ena100",
+        "200ge1p1ena": "ena200",
+        "100ge2p1cx556a": "cx556a",
+        "100ge2p1cx6dx": "cx6dx",
+        "200ge2p1cx7veat": "cx7veat",
+        "200ge6p3cx7veat": "cx7veat",
         "1ge1p82540em": "8250em",
 
     }
@@ -439,6 +441,24 @@ class Constants:
         u"rdma-core": u"nic_vfs}= | 0",
         u"mlx5_core": u"nic_vfs}= | 0",
         u"af_xdp": u"nic_vfs}= | 0",
+    }
+
+    # Number of physical interfaces of physical nic.
+    NIC_CODE_TO_PFS = {
+        "10ge2p1x520": "nic_pfs}= | 2",
+        "10ge2p1x710": "nic_pfs}= | 2",
+        "40ge2p1xl710": "nic_pfs}= | 2",
+        "25ge2p1xxv710": "nic_pfs}= | 2",
+        "25ge2p1e810xxv": "nic_pfs}= | 2",
+        "25ge2p1e822cq": "nic_pfs}= | 2",
+        "100ge2p1e810cq": "nic_pfs}= | 2",
+        "50ge1p1ena": "nic_pfs}= | 2",
+        "100ge1p1ena": "nic_pfs}= | 2",
+        "200ge1p1ena": "nic_pfs}= | 2",
+        "100ge2p1cx556a": "nic_pfs}= | 2",
+        "100ge2p1cx6dx": "nic_pfs}= | 2",
+        "200ge2p1cx7veat": "nic_pfs}= | 2",
+        "200ge6p3cx7veat": "nic_pfs}= | 6",
     }
 
     # Not each driver is supported by each NIC.
