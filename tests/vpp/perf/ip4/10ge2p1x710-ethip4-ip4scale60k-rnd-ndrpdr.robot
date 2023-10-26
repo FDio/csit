@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_20K | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_60k | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | IP4_RND
-| ... | ethip4-ip4scale20k-rnd
+| ... | ethip4-ip4scale60k-rnd
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -95,50 +95,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4-ip4scale20k-rnd-ndrpdr
+| 64B-1c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4-ip4scale20k-rnd-ndrpdr
+| 64B-2c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4-ip4scale20k-rnd-ndrpdr
+| 64B-4c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4-ip4scale20k-rnd-ndrpdr
+| 1518B-1c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4-ip4scale20k-rnd-ndrpdr
+| 1518B-2c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4-ip4scale20k-rnd-ndrpdr
+| 1518B-4c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4-ip4scale20k-rnd-ndrpdr
+| 9000B-1c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4-ip4scale20k-rnd-ndrpdr
+| 9000B-2c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4-ip4scale20k-rnd-ndrpdr
+| 9000B-4c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4-ip4scale20k-rnd-ndrpdr
+| IMIX-1c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4-ip4scale20k-rnd-ndrpdr
+| IMIX-2c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4-ip4scale20k-rnd-ndrpdr
+| IMIX-4c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

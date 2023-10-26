@@ -351,6 +351,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                         )
                 continue
             for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+                nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
                 out_filename = replace_defensively(
                     tmp2_filename, old_suite_id,
                     Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -375,6 +376,12 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     Constants.NIC_DRIVER_TO_VFS[driver], 1,
                     u"NIC VFs argument should appear once.", in_filename
                 )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
+                    Constants.NIC_CODE_TO_PFS[nic_code], 1,
+                    "NIC PFs argument should appear once.", in_filename
+                )
+
                 iface, suite_id, suite_tag = get_iface_and_suite_ids(
                     out_filename
                 )
@@ -435,6 +442,7 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
             tmp_filename
         )
         for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+            nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
             out_filename = replace_defensively(
                 tmp_filename, old_suite_id,
                 Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -459,6 +467,12 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
                 Constants.NIC_DRIVER_TO_VFS[driver], 1,
                 u"NIC VFs argument should appear once.", in_filename
             )
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
+                Constants.NIC_CODE_TO_PFS[nic_code], 1,
+                "NIC PFs argument should appear once.", in_filename
+            )
+
             iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
             out_prolog = replace_defensively(
                 out_prolog, old_suite_tag, suite_tag, 1,
@@ -502,6 +516,7 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             tmp_filename
         )
         for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+            nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
             out_filename = replace_defensively(
                 tmp_filename, old_suite_id,
                 Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -526,6 +541,12 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
                 Constants.NIC_DRIVER_TO_VFS[driver], 1,
                 u"NIC VFs argument should appear once.", in_filename
             )
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
+                Constants.NIC_CODE_TO_PFS[nic_code], 1,
+                "NIC PFs argument should appear once.", in_filename
+            )
+
             iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
             out_prolog = replace_defensively(
                 out_prolog, old_suite_tag, suite_tag, 1,
@@ -657,6 +678,7 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
                 tmp2_filename
             )
             for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+                nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
                 out_filename = replace_defensively(
                     tmp2_filename, old_suite_id,
                     Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -681,6 +703,12 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
                     Constants.NIC_DRIVER_TO_VFS[driver], 1,
                     u"NIC VFs argument should appear once.", in_filename
                 )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
+                    Constants.NIC_CODE_TO_PFS[nic_code], 1,
+                    "NIC PFs argument should appear once.", in_filename
+                )
+
                 iface, suite_id, suite_tag = get_iface_and_suite_ids(
                     out_filename
                 )

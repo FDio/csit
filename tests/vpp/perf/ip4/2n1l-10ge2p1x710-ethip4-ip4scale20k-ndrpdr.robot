@@ -64,7 +64,7 @@
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${10000}
 # Traffic profile
-| ${traffic_profile}= | trex-stl-ethip4-ip4dst${rts_per_flow}
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${rts_per_flow}-${nic_pfs}p
 
 *** Keywords ***
 | Local Template
@@ -91,7 +91,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Set interfaces in path up
-| | And Initialize IPv4 Forwarding | count=${rts_per_flow}
+| | And Initialize IPv4 Forwarding | count=${rts_per_flow} | pfs=${nic_pfs}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
