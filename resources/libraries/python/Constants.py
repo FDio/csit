@@ -365,6 +365,7 @@ class Constants:
         u"Mellanox-CX556A": u"100ge2p1cx556a",
         u"Mellanox-CX6DX": u"100ge2p1cx6dx",
         u"Mellanox-CX7VEAT": u"200ge2p1cx7veat",
+        u"Mellanox-CX7VEAT": u"200ge6p3cx7veat",
     }
 
     # Shortened lowercase NIC model name, useful for presentation.
@@ -382,6 +383,7 @@ class Constants:
         u"100ge2p1cx556a": u"cx556a",
         u"100ge2p1cx6dx": u"cx6dx",
         u"200ge2p1cx7veat": u"cx7veat",
+        u"200ge6p3cx7veat": u"cx7veat",
     }
 
     # Not each driver is supported by each NIC.
