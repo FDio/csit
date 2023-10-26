@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -63,7 +63,7 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst253_l3fwd
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst253_l3fwd
 
 *** Keywords ***
 | Local Template

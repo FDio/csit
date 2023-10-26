@@ -1,4 +1,4 @@
-# Copyright (c) 2022 PANTHEON.tech s.r.o.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,7 +73,7 @@
 | ${local_addr_range_ip4}= | 10.10.10.0/24
 | ${rule_amount}= | ${1}
 # Traffic profile
-| ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
+| ${traffic_profile}= | trex-stl-ethip4-ip4src253
 
 *** Keywords ***
 | Local Template

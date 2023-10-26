@@ -85,7 +85,7 @@
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${2}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template

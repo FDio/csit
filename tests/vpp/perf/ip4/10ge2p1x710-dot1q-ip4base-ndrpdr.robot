@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -71,7 +71,7 @@
 | ${tg_if1_net}= | 10.10.10.0
 | ${tg_if2_net}= | 20.20.20.0
 # Traffic profile
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-stl-ethip4-ip4src254
 
 *** Keywords ***
 | Local Template

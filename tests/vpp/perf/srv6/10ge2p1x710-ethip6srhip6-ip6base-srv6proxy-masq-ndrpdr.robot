@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -99,7 +99,7 @@
 | ${prefix}= | ${64}
 | ${mem_prefix}= | ${128}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
+| ${traffic_profile}= | trex-stl-ethip6-ip6src253
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain

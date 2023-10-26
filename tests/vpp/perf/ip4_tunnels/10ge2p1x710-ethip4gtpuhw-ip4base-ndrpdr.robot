@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -65,7 +65,7 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${36}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-stl-ethip4-ip4src253
 
 *** Keywords ***
 | Local Template

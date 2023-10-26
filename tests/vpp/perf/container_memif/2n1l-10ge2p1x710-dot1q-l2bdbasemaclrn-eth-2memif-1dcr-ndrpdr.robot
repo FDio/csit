@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -27,7 +27,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **RFC2544: Pkt throughput L2BD with memif and IEEE 802.1Q 
+| Documentation | **RFC2544: Pkt throughput L2BD with memif and IEEE 802.1Q
 | ... | test cases**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
@@ -74,7 +74,7 @@
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-2n-dot1qip4asym-ip4src254
+| ${traffic_profile}= | trex-stl-dot1qip4asym-ip4src254
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain

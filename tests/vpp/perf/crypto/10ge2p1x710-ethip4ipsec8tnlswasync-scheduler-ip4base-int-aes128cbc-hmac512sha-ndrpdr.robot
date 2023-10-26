@@ -1,5 +1,5 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -86,7 +86,7 @@
 | ${n_tunnels}= | ${8}
 | ${dp_cores_count}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template

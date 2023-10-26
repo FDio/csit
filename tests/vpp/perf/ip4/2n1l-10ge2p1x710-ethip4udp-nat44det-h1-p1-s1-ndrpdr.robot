@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -91,7 +91,7 @@
 | ${ramp_up_rate}= | ${66061.0}
 | ${ramp_up_duration}= | ${2.0}
 # Traffic profile
-| ${traffic_profile}= | trex-stl-2n-ethip4udp-${n_hosts}u${n_ports}p
+| ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
 | Local Template

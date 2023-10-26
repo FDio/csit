@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,7 +67,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-2n-ethip4-macsrc5kdst5k
+| ${traffic_profile}= | trex-stl-ethip4-macsrc5kdst5k
 
 *** Keywords ***
 | Local Template
