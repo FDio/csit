@@ -241,7 +241,7 @@
 | | ${type} = | Get TG Type | ${nodes}[TG]
 | | ${version} = | Get TG Version | ${nodes}[TG]
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
 
 | Additional Suite Setup Action For performance_tg_nic
 | | [Documentation]
@@ -252,7 +252,7 @@
 | | ${version} = | Get TG Version | ${nodes}[TG]
 | | Export Dut Type And Version | ${type} | ${version}
 | | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer}
+| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
 
 | Additional Suite Setup Action For iPerf3
 | | [Documentation]
