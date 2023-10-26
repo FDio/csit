@@ -15,14 +15,16 @@ Two loss ratio goals are of interest in FD.io CSIT, leading to Non-Drop Rate
 (NDR, loss ratio goal is exact zero) and Partial Drop Rate
 (PDR, 0.5% loss ratio goal).
 Instead of a single long trial, a sequence of short (1s) trials is done.
-Thus, instead of final trial duration, a duration sum (20s) is prescribed.
+Thus, instead of final trial duration, a duration sum (21s) is prescribed.
 This allows the algorithm to make a decision sooner,
 when the results are quite one-sided.
 Also, only one half of the trial results is required to meet
 the loss ratio requirement, making the conditional throughput more stable.
-The conditional throughput in this case is the median forwarding rate
-among all full-length trials (including imaginary missing ones with high loss)
-at the relevant lower bound intended load.
+The conditional throughput in this case is in principle the median forwarding rate
+among all trials at the relevant lower bound intended load.
+In practice, the search stops when missing trial results cannot
+disprove the load as a lower bound, so conditional throughput
+is the worst forwarding rate among the measured good trials.
 
 MLRsearch discovers all the loads in single search, reducing required time
 duration compared to separate `binary search`es[^1] for each rate. Overall
@@ -62,6 +64,8 @@ For every loss ratio goal, the relevant upper and lower bound
 Exit condition is given by that interval reaching low enough relative width.
 Small enough width is achieved by bisecting the current interval.
 The bisection can be uneven, to save measurements based on information theory.
+The width value is 0.5%, the same as PDR goal loss ratio,
+as smaller values may report PDR conditional throughput smaller than NDR.
 
 Switching to higher trial duration sum generally requires additional trials
 at a load from previous duration sum target.
