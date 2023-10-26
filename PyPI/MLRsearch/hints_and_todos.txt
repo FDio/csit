@@ -1,8 +1,7 @@
 toml hint: https://flit.pypa.io/en/stable/pyproject_toml.html
-md hint: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+rst hint: https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html
 build hint: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
-TODO: Copy improvements from MLRsearch metadata (readme and license extensions).
 TODO: Include simulator and tests.
 TODO: Test which Python versions is the code actually compatible with.
-TODO: Create a separate webpage for jumpavg library.
+TODO: Create a separate webpage for MLRsearch library.

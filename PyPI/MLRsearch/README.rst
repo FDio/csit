@@ -16,6 +16,10 @@ is only a symlink to the original place of tightly coupled CSIT code.
 Change log
 ----------
 
+1.2.1: Updated the readme document.
+
+1.2.0: Changed the output structure to use Goal Result as described in draft-05.
+
 1.1.0: Logic improvements, independent selectors, exceed ratio support,
 better width rounding, conditional throughput as output.
 Implementation relies more on dataclasses, code split into smaller files.
@@ -138,15 +142,15 @@ This is the screen capture of interactive python interpreter
     PDR conditional throughput: 1000000.6730730429
     >>>
 
-Operation logic
----------------
+IETF documents
+--------------
 
-The currently published `IETF draft`_ describes the logic of version 0.4,
-the logic of version 1.1 will be descibed better in the next draft version (-05).
+The currently published `IETF draft`_ describes the logic of version 1.2.0,
+earlier library and draft versions do not match each other that well.
 
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
 .. _LFN: https://www.linuxfoundation.org/projects/networking/
 .. _PyPI: https://pypi.org/project/MLRsearch/
-.. _directory: https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/MLRsearch;hb=refs/heads/master
-.. _IETF draft: https://tools.ietf.org/html/draft-ietf-bmwg-mlrsearch-04
+.. _directory: https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/MLRsearch
+.. _IETF draft: https://tools.ietf.org/html/draft-ietf-bmwg-mlrsearch-05

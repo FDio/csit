@@ -1,0 +1,31 @@
+[project]
+name = "MLRsearch"
+version = "1.2.1"
+description = "Library for extending and speeding up througput search."
+license = { file = "LICENSE.txt" }
+readme = { file = "README.rst", content-type = "text/x-rst" }
+requires-python = "~=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Telecommunications Industry",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: System :: Networking",
+]
+keywords = [
+    "binary search", "throughput", "networking", "RFC 2544",
+    "conditional throughput",
+]
+authors = [
+    { name = "Cisco Systems Inc. and/or its affiliates", email = "csit-dev@lists.fd.io" },
+]
+maintainers = [
+    { name = "Vratko Polak", email = "vrpolak@cisco.com" },
+    { name = "Tibor Frank", email = "tifrank@cisco.com" },
+]
+
+[project.urls]
+"Bug Tracker" = "https://jira.fd.io/projects/CSIT/issues"
+"Source" = "https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/MLRsearch"
