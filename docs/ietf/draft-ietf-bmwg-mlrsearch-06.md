@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-05
-date: 2023-10-23
+docname: draft-ietf-bmwg-mlrsearch-06
+date: 2023-11-xx
 
 ipr: trust200902
 area: ops
@@ -43,9 +43,9 @@ informative:
     title: "FD.io CSIT Test Methodology - MLRsearch"
     date: 2023-10
   PyPI-MLRsearch:
-    target: https://pypi.org/project/MLRsearch/0.4.1/
-    title: "MLRsearch 0.4.1, Python Package Index"
-    date: 2021-07
+    target: https://pypi.org/project/MLRsearch/1.2.1/
+    title: "MLRsearch 1.2.1, Python Package Index"
+    date: 2023-10
 
 --- abstract
 
@@ -129,9 +129,6 @@ This chapter describes the problems affecting usability
 of various preformance testing methodologies,
 mainly a binary search for [RFC2544] unconditionally compliant throughput.
 
-The last chapter will summarize how the problems are addressed,
-the middle chapters provide explanations and definitions needed for that.
-
 ## Long Search Duration
 
 Emergence of software DUTs, with frequent software updates and a
@@ -166,7 +163,7 @@ discovered throughput.
 networking system, treating it either as a single DUT, or as a system
 of devices, an SUT.
 
-In case of software networking, the SUT consists nt only of the DUT
+In case of software networking, the SUT consists of not only the DUT
 as a software program processing frames, but also of
 a server hardware and operating system functions,
 with server hardware resources shared across all programs
@@ -180,9 +177,9 @@ software running on the same server. Some sources of such interference
 can be to some degree eliminated, e.g. by pinning DUT program threads
 to specific CPU cores and isolating those cores to avoid context switching.
 But some level of adverse effects may remain even after
-all such reasonable precautions are applied.
-These effects affect DUT's network performance negatively.
-As the effects are hard to predict in general, they have impact similar to
+all such reasonable precautions are applied,
+negatively impacting DUT's network performance.
+As the effects are hard to predict in general, they have an impact similar to
 what other engineering disciplines define as a noise.
 Thus, all such effects are called an SUT noise.
 
@@ -893,8 +890,8 @@ especially with non-zero goal exceed ratio.
 
 MLRsearch defines one such generalization, called the conditional throughput.
 It is the forwarding rate from one of the trials performed at the load
-in question. Specification of which trial exactly is quite technical.
-More detailed explanations are given in the next chapter.
+in question. Specification of which trial exactly is quite technical,
+see the Definitions chapter and Appendix B.
 
 Conditional throughput is partially related to load classification.
 If a load is classified as a lower bound for a goal,
@@ -1045,7 +1042,7 @@ cannot become the relevant lower bound yet.
 
 Third example. Exceed ratio 50%, goal duration sum two seconds,
 one trial present with duration one second and zero loss.
-An imaginary trial is added with duration one second and zero forwarding rate.
+Imaginary trial is added with duration one second and zero forwarding rate.
 Median would touch both trials, so the conditional throughput
 is the forwarding rate of the one non-imaginary trial.
 As that had zero loss, the value is equal to the offered load.
