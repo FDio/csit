@@ -32,7 +32,9 @@ the loss count divided by the offered load.
 Each reconf suite is based on a similar MLRsearch performance suite.
 
 MLRsearch parameters are changed to speed up the throughput discovery.
-For example, PDR is not searched for, and the final trial duration is shorter.
+For example, PDR is not searched for, and the goal duration sum is shorter.
+Contrary to usual NDR, exceed ratio is set to zero in reconf tests
+as load stability is less important than attribution of losses.
 
 The MLRsearch suite has to contain a configuration parameter
 that can be scaled up, e.g. number of tunnels or number of service chains.
