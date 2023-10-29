@@ -67,6 +67,23 @@
       "message": "csit-vpp-report-cov-2n-clx-perftest ip4-06",
       "revId": "5f38128afd957ad2144f6542a6e2a3c0d022ea80",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf8f1650_caefb163",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-10-29T21:23:03Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-icx-perftest vhost-00",
+      "revId": "5f38128afd957ad2144f6542a6e2a3c0d022ea80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
