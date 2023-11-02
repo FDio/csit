@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5973b119_f6a2deea",
+        "filename": "resources/job_specs/vpp_device/vpp-1n-vbox.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-11-02T05:55:02Z",
+      "side": 1,
+      "message": "how do you want to test e810 features on virtual nics? \n\ndoes anybody even review this file? @Dave?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 72
+      },
+      "revId": "4e0ee1b55e6db6d54ad468df42044e853c9272c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
