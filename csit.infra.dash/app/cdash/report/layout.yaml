@@ -94,8 +94,7 @@ plot-hdrh-latency:
   xaxis:
     type: "log"
     title: "Percentile [%]"
-    autorange: False
-    fixedrange: True
+    autorange: True
     gridcolor: "rgb(230, 230, 230)"
     linecolor: "rgb(220, 220, 220)"
     linewidth: 1

@@ -3,7 +3,7 @@ title: "VPP Device"
 weight: 4
 ---
 
-# CSIT 23.06 - VPP Device
+# CSIT 23.10 - VPP Device
 
 1. TEST FRAMEWORK
    - **CSIT test environment** version has been updated to ver. 13, see
