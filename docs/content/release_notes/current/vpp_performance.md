@@ -8,8 +8,12 @@ weight: 1
 1. TEST FRAMEWORK
    - **CSIT test environment** version has been updated to ver. 13, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+   - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-   - .
+   - Added 2n-c6in testbed.
+3. PRESENTATION AND ANALYTICS LAYER
+   - [Performance dashboard](https://csit.fd.io/) got updated with graphs
+     presenting bandwidth in bits per second for MRR and NDRPDR tests.
 
 # Known Issues
 

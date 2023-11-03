@@ -9,7 +9,7 @@ weight: 3
    - **CSIT test environment** version has been updated to ver. 13, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 2. TREX TESTS
-   - .
+   - No updates
 3. TREX VERSION
    - Currently using v3.03 of TRex.
 
