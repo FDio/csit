@@ -322,6 +322,23 @@
       "message": "csit-vpp-report-cov-3na-spr-perftest ip4tun-05",
       "revId": "5e3964fe406bc0c9b114063ee24719704935b561",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be9f6c6d_80b4d7e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-11-03T20:40:27Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-alt-perftest ip4-12",
+      "revId": "5e3964fe406bc0c9b114063ee24719704935b561",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
