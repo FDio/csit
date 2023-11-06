@@ -54,55 +54,55 @@ To access CSIT-2306 Release data please use following web resources:
 CSIT-2306 VPP v23.06 Performance Tests:
 
 - ip4
-  - [2n-icx 100ge e810cq avf ip4scale20k](http://cuts2.com/zMwtS)
-  - [2n-spr 100ge e810cq avf ip4scale20k](http://cuts2.com/ahfvO)
-  - [2n-spr 100ge e810cq dpdk ip4scale20k](http://cuts2.com/yQCqU)
-  - [2n-spr 200ge cx7 dpdk ip4scale20k](http://cuts2.com/ZRERf)
-  - [2n-aws 50ge c5n.4xl ena dpdk ip4scale20k](http://cuts2.com/cwXOI)
+  - [2n-icx 100ge e810cq avf ip4scale20k](https://csit.fd.io/report/#eNrtVstuwjAQ_JpwqRbZG4f00gM0_4FcZylRQ3BtEwFfX4OQNlFbiUpQLj74pRlrxzsayT5sHS09tS9ZscjKRYZlU8cpy-dPcXGtx1zMoLcWMJ_GnaOWtCfADhqzBynEO6GV9CyF-QTdr6CxCmbqDaQBCuvTKQ5vdEsoPsB1NXS1O5XA10uJb_UYrXeB0ahihPTkGBzJY5pdHwac30QzXzvSfCEqZyiQH4j5-W3MXjm9Id8cia_ErjBuYuMZkmZcJxzsAL00rKzOjH9yySaX_uaSvZ9LmLJ0vUv4qCxhytKtXLpjllTK0vUuqUdlSaUs3colzlJRTbqt25z_ekX1BWCVro4)
+  - [2n-spr 100ge e810cq avf ip4scale20k](https://csit.fd.io/report/#eNrtVstOwzAQ_JpwQYvsjdNw4UDJfyDjbGlEmpq1iVS-HreqtIkAqUgtvfjgl2asHe9oJIe4ZXoO1D8U1bKolwXWXZumony8TQv3AUu1gNF7wPIu7Zh6soEABwieQSv1Sug13Wvl3sGOK-i8gYV5Ae2A4np_SiM42xOqN-ChhaHlfQl8Opb4Vk_Q9iMKmlTMkJFYwJk8ofn1bsL5TbTwLZOVC0m5QJHCRMzPbxP2iu2GQvdJciV1RXCXGi-QdvM6cecn6LFhdXNg_JNLPrv0N5f85VzCnKXTXcJrZQlzls7l0gWzZHKWTnfJXCtLJmfpXC5JlqrmZtjy5vDXq5ovlPOvWg)
+  - [2n-spr 100ge e810cq dpdk ip4scale20k](https://csit.fd.io/report/#eNrtVkFOwzAQfE24oEXOxmm4cGjJP5CxFxo1Tc3aVCqvx60qbSLgEKmlFx_i2JpdzXhHIznEHdNLoP6pqFdFsyqw6Vxaimp5n37cB6zUAvbeA1YPacfUkwkEOEDwDKVS74S-pMdS2Q9w3m2g8xoW-hVKCxTXx1P6gjU9odoADw4Gx0cOfD5z_CAU1H1GQZOMCbInFnCiT8r8-jCq-VO1NBgmIx1JukCRwkjN75eT6jc2WwrdF0lLGovgNo1eoNJOeeLBj9DzxJr2VPFfPvns00yf_BV9wpynGT7hzfKEOU8X8-maedI5TzN80jfLk855uphPkqe6vRt2vD29--r2GxR2tCI)
+  - [2n-spr 200ge cx7 mlx5 ip4scale20k](https://csit.fd.io/report/#eNrtVkFqwzAQfI17KVvstRyfemjqfwRV3jamsiNWqkny-iohsDZtD4akuehgWWJ2mdEOA_Jhx7TxZJ-zap3V6wzrro1LVr48xh9bj2W-gtE5wPIp7pgsaU-AA3jHgHn-QegKs69H0gF6u6-gcwpW6g0KAxS2p1P8vNGWMP8EHloYWj6R4OuF5AejoO1XEDTqmCEjsYAzgVLmtodJzd-ypUMzaWmJ2gUK5Cdyfr-dVL-z7sl3R5KWOBfBTRy-QIWZ84SDm6CXkdXNueLfnHLJqaVOuVs6hSlTS5zC-2UKU6au59RNM6VSppY4pe6XKZUydT2nJFNV8zDsuD-_AavmGw0uvhI)
+  - [2n-aws 50ge c5n.4xl ena dpdk ip4scale20k](https://csit.fd.io/report/#eNrtl01OwzAQhU8TNmhQ7NQNGxYtuUdl4oFGTd2RbVqV0-NElSaBChWpJSy8yJ_ei2Yyn55G8WHncOWxfcrUMiuXmSwbE09ZsbiPF9d6WeRz2BOBLB7incMWtUeQFvTBg8rfUJBAq8GQ2UBDMxBKPL6AqAHDunuOh691izLfgLMGrHFdBfl8qvCtHKvmPbAamxgpe3QsjrpjG62PA8_ZntmsHWp2x7ZZCugHnZz_MHa_Or1F33wgv9IPhR11HPtArMeVwpEG6mleZdU7_oYRJUa_YkQ3YyRTji5mJCfKkUw5uhKjW-RoPkvb6AuhOJL_s4t-5kOJz8R7qOOTttClfOQk-Ukb6Dp8OD-qurM7t-3_i1T1CXgFjgk)
 - ip6
-  - [2n-icx 100ge e810cq avf ip6scale20k](http://cuts2.com/QjBlW)
-  - [2n-spr 100ge e810cq avf ip6scale20k](http://cuts2.com/OmkQy)
-  - [2n-spr 100ge e810cq dpdk ip6scale20k](http://cuts2.com/qbpWI)
-  - [2n-spr 200ge cx7 dpdk ip6scale20k](http://cuts2.com/OtOzQ)
-  - [2n-aws 50ge c5n.4xl ena dpdk ip6scale20k](http://cuts2.com/Uopiv)
+  - [2n-icx 100ge e810cq avf ip6scale20k](https://csit.fd.io/report/#eNrtVstqwzAQ_Br3UrZIazvOpYcm_o-iypvG1HHUlWKafn2VEFibtpBC0lx00IsZsaMdBuTDlunZU_eYlYusWmRYtU2csvzpPi7ceczVDAbnAPOHuGPqyHgC7KG1H6CVeiV0muZa2XcwwwpaN4Nq_gLaAoX14RSHt6YjVG_AfQN9w4cSuDyV-FZP0GYXBI0qJshALOBEntDcej_i_CZa-IbJyIWoXKBAfiTm57cJe8VmQ779JLkSuyK4jY0XSNtpnbB3I_TUsKo-Mv7JJZdc-ptL7nouYcrS-S7hrbKEKUuXcumKWSpSls53qbhVloqUpUu5JFkq67t-y5vjX6-svwD4Z68S)
+  - [2n-spr 100ge e810cq avf ip6scale20k](https://csit.fd.io/report/#eNrtVstqwzAQ_Br3UrZIazvOpYek_o-gypvG1HHUlWJIv75KCKxNW0ghaS466MWM2NEOA_Jhx7Ty1D1n5TKrlhlWbROnLF88xoU7j7maweAcYP4Ud0wdGU-APXjHoJV6I3Sa5lrZDzDDGlo3g2r-CtoChc3xFIe3piNU78B9A33DxxL4ci7xrZ6gzT4IGlVMkIFYwIk8obnNYcT5TbTwDZORC1G5QIH8SMzPbxP2ms2WfPtJciV2RXAbGy-QttM64eBG6LlhVX1i_JNLLrn0N5fc7VzClKXLXcJ7ZQlTlq7l0g2zVKQsXe5Sca8sFSlL13JJslTWD_2Ot6e_Xll_ASzUr94)
+  - [2n-spr 100ge e810cq dpdk ip6scale20k](https://csit.fd.io/report/#eNrtVkFOwzAQfE24oEX2Jml64UDJP5CxFxo1TRfbVCqvx60qbSLgEKmlFx_i2JpdzXhHIznEnaeXQP1jUa-KZlVg07m0FOXTffr5PmCpFrBnBiwf0s5TTyYQ4ACBPWil3glZ01Ir-wGO3QY6XkCzfAVtgeL6eEpfsKYnVBvwg4PB-SMHPp85fhAK6j6joEnGBNmTF3CiT8p4fRjV_KlaGownIx1JukCRwkjN75eT6jdvthS6L5KWNBbBbRq9QNpOeeKBR-h5Yk17qvgvnzj7NNMnvqJPmPM0wye8WZ4w5-liPl0zT1XO0wyfqpvlqcp5uphPkqe6vRt2fnt699XtN68etKY)
+  - [2n-spr 200ge cx7 mlx5 ip6scale20k](https://csit.fd.io/report/#eNrtVkFOwzAQfE24oEXJJqm5cGjJP5BxFhrhpNbaRC2vx60qbSLgEKmlFx_i2JpdzXhHI9mHHdOLJ_uU1ZtMbTJUXRuXrFzfxx9bj2W-gtE5wPIh7pgsaU-AA3jHgHn-TugKs1cj6QC93dfQuRWox1coDFDYHk_x80ZbwvwDeGhhaPlIgs9nkh-MgrafQdCoY4aMxALOBEqZ2x4mNX_Llg7NpKUlahcokJ_I-f12Uv3GuifffZG0xLkIbuLwBSrMnCcc3AQ9j0w1p4p_c8olp5Y65a7pFKZMLXEKb5cpTJm6nFNXzVSVMrXEqep2mapSpi7nlGSqbu6GHfenN2DdfAOqrL6W)
+  - [2n-aws 50ge c5n.4xl ena dpdk ip6scale20k](https://csit.fd.io/report/#eNrtV8tOwzAQ_JpwQYvijVxz4UDJfyATLzRq6lq2KWq_vm5UaRPooUgJ5eBDXpqJdrKj0Sghbj29BuqeCrks1LJA1Zp0Kqrn-3TxXcCqXMDOOcDqId156kgHArSgvwLI8oOEE2Q1GGfW0LoFCCke30A0QHF1ek5HaHRHWK7BWwPW-NMEfDlP-DGOUfMZGU0iRsiOPIMjdUxzq_2Ac1Ezk7Unzewkm6FIYaDk8ocx-93rDYX2QPxKvxRmNGntA7AZT4p7N0DP-1J1z_gbj1z26Fceudk8wpyjqz3CG-UIc44m8miOHKncRt8dUv-pi1Ruosn8mSs_uYWu9Qdvkp_cQNP4w_mR9Z3d-k3_XyTrI3nWjpE``)
 - ipsec
-  - [3n-icx 100ge e810cq avf 40tnlsw](http://cuts2.com/XFLrM)
-  - [3n-icx 100ge cx6 dpdk 40tnlsw](http://cuts2.com/gzpDB)
-  - [3n-spr 100ge e810cq avf 40tnlsw](http://cuts2.com/NJeBW)
-  - [3n-spr 200ge cx7 dpdk 40tnlsw](http://cuts2.com/fUiMC)
+  - [3n-icx 100ge e810cq avf 40tnlsw](https://csit.fd.io/report/#eNrtmEtuwyAQQE_jbqqpbIzjbLpI6ntUBE8SJH8oUDfu6YvdSNiqKrVVsLtg449mgIGnJ43QplX4rLF6jLJ9lO8jkovSPqJ0d29fqtIkjTfQSQkkfbBfCitkGiFtQPALJHF8QiIT3CYxfwHWHYGrXpoWkizZHiDhgOYsJBVSI6exaSr9Bvb_MEwiGgMMNck2J15DU6phZfJ0XflLGS5avhoXtcXNIh0qF5xV7dLkuXc53-7F5TOFzA343KKLGtSTen66YTf-qFiNWryjm2Q8PpfBLaZJkM_XNr2cRK_nmBdjxrpMZWB6E6bSM1MSPPXAlKzqKQmeLs7Ut6c0eOqBKV3VUxo8XZypP09FLS6h7f0r0uH0_lvX-2uiQdKbEPXsaGh5PRAlazoaGt7FiXp2NLS7HojSNR0Nze7iRJ2jWXHXtKoe73qz4gMoCiw-)
+  - [3n-icx 100ge cx6 mlx5 40tnlsw](https://csit.fd.io/report/#eNrtmM1OhDAQgJ8GL2YMlMJ68eDKexi2jLtN-GnauoJPb8FNBmJM1GzBQy_8ZKbttF--ZFJjO43PBuuHKNtHu33EdrJyjyh9vHUvXRuWxjmclQKW3rkvjTWWBiFtQYoekjg-IlOJ6POqh6buMxB6ULaDJEvuD5AIQHuSiktlUPDYtrV5A_d_GCeRrYUSDcvyo2igrfS4Mnu6rPylDIpWr5airrhF5IyagouqKU2dBsr5di-UX2osacDnFilq0czq-emGafyLLhs08h1pkun4KEM4TLOgWK5tBzWLXs5xV0wZ2zJVgelVmCrPTFnw1ANTtqmnLHi6OlPfnvLgqQemfFNPefB0dab-PJWN7EPb-1ek4-n9t67310SDpFch6tnR0PJ6IMq2dDQ0vKsT9exoaHc9EOVbOhqa3dWJkqNZcdN2upnuerPiA78JNZ4)
+  - [3n-spr 100ge e810cq avf 40tnlsw](https://csit.fd.io/report/#eNrtmM1OhDAQgJ8GL2YMLWXZiwdX3sOUMrvbhJ_aVhSfXsBNCjEmarbgoRd-MtN22i9fMqmxrcYng9V9lB6i7BDRTJbDI0oeboeXrgxN4h10SgFN7oYvjRVyg5A0BRilgcTxCakiuCexeAbeHUHoXtkWSEr2BRABaM9SMakMChbbpjKvMPwX4yyyscDR0HR3EjU0pR6Xpo-Xpb_U4aLli3XRobpFpEPtgouyXZo69y7n-824AVwjdyM-9-iiFs2soJ_u2I0_al6jke_oJpnOz2WIAdQsKJZr217NopeDzPIpY2OqKlC9DlXlmyoNrvqgSrd1lQZX16fq3VUWXPVBlW3rKguurk_Vo6uylm-hBf4z1PH4_l0H_GumQdTrMPXtaWh_fTClm3oamt_1mfr2NLS-PpiyTT0Nje_6TJ2naX7TtLqe7oDT_ANkjjcG)
+  - [3n-spr 200ge cx7 mlx5 40tnlsw](https://csit.fd.io/report/#eNrtmM1OxCAQgJ-mXsyYlsLWi4dd-x6GpeMuSX8IYG19etu6CW1MjMZFPHDpT2aAgS9fMsHYTuOTwfohYYekOCSkkNX0SPL97fTStSF5uoNeKSD53fSlsUZuEPKWg1EaSJqekKhMDEWP3EJTDwyEHpXtIGPZ_REyAWjPUlGpDAqa2rY2rzD9H-d5ZGuBoyFsdxINtJWeFyePl8U_VeKi1Yt10am-TaRH7YKbwl2aOo8u56vtuCFcI3djPnbpohbNqqTv7tmNf9a8QSPf0E2ynKDLEBOsVVBs17ajWkUvR1mUS0ZwsiqSvRZZ5Z8sic76IUtCO0uisyHI_oGzNDrrhywN7SyNzoYg69VZ2cghtsa_ADsf4D_sjH_MNQp7La7-fY1tsR-uJLCvsSkOwdW_r7El9sOVBvY1NsQhuDpfWXnTdrpZ7oxZ-Q4xpFRe)
 - hoststack quic
-  - [3n-icx 100ge e810cq dpdk ip4udpquic](http://cuts2.com/WTRoA)
-  - [3n-icx 100ge cx6 dpdk ip4udpquic](http://cuts2.com/ZGHEO)
-  - [3n-spr 100ge e810cq dpdk ip4udpquic](http://cuts2.com/LoBjd)
-  - [3n-spr 200ge cx7 dpdk ip4udpquic](http://cuts2.com/CODih)
+  - [3n-icx 100ge e810cq dpdk ip4udpquic](https://csit.fd.io/report/#eNrlVctOwzAQ_JpwQYtsh5BeOLTkP5BjL8Sq27hep6J8PW5UsYmg1x6ai21pZvY1WplSH_Gd0L8W1aaoN4Wqnc1HUa4f8xU9qVK8wDEEUOVTfkX0qAmh3IMzXyCF-EQVJK6kMAewwW6h6ylR0mYLUq1EC9IApg5ceB5sOAzOtOcAOSSaroc20Dmfervk-5OcUTskRrN-hhwxMjirlWmhOzHnegcs0BE1K34bY0JCmtR0vU1WfES9Q3LfyLJxTMww2ZIJaObZ0ilM0Mv06mZk3Mg_Mtpj5nspaAE-_tfunfq5LDvv2c1lLeeNd7NqHvZ93I1_ZtX8ALrmCdg)
+  - [3n-icx 100ge cx6 mlx5 ip4udpquic](https://csit.fd.io/report/#eNrlVUFuwyAQfI17qbYCXMe99NDE_4gw3taoOKYsjpy-vsSKurbaXHNwLoA0M8zujhAU-4B7QveaFdus3GaqtE1asvztMW3BkcrFBo7eg8qf0imgQ00I-QGsGUEK8YHKSzNumhE6NxbQ9hQpavMJUr2IGqQBjC1Y_zw0_muwpj7r041o2h5qT2c7tbvY_fFmtBkio0m_QI4YGFyUyjTfnphztQHm64CaBb99MSEizUq63iUr3oPukOw3smyaEjNMCmQGmqVbPPkZehleWU2M26RHRjuUwjgpaP0p_tftOtO8qzBXnOVdPcwbv8uiejj0oZv-yqL6AfuHCcg)
+  - [3n-spr 100ge e810cq dpdk ip4udpquic](https://csit.fd.io/report/#eNrlVctugzAQ_Bp6qbayTSm59NCU_4iMvS0oJGy8JlLy9XVQ1AX1ccwhXGxLM7Ov0coc-4Abxu41K9ZZuc5M2fp0ZPnbY7pCxyZXL3AkApM_pVfADi0j5PsamAJopT7RkMaVVu4AnvwWmp4jR-u2oM1K1aAdYGygpefB02FoXX2JkGKia3qoiS8Jzfs14Y_sgvohCpr0M-SIQcBZsUKj5iScf1oQhQ1oRfLdmRAi8qSov_sUxUewO-T2jCIb5yQMl0yZgG6eLZ5ogl7HV1Yj41YOsrMdJn6nFS_Byd_6vVdHF2boXfu5sAW98X4W1cO-D7vx7yyqL3lpDXA)
+  - [3n-spr 200ge cx7 mlx5 ip4udpquic](https://csit.fd.io/report/#eNrlVctugzAQ_Bp6qbayTQi99JCU_4iM2RZUE1yvQUm-Pg6KsqA-jjmEi21pZvY1WplC53FHaN-SbJvk20TlTRWPJN08x8tbUqlYw-AcqPQlvjxa1ISQ7jWQ86CE-ETlpDnkA-oArT1kUHcUKGjzBVK9ihKkAQw1NG7VV-67b0x5CRGDoqk7KB1dMqr3a8Yf6Rmt-sBo1M-QAT2Ds2qZ5uojc_7rgSXao2bNrTUmBKRJVX83yooPr1uk5oQsGwfFDBNtmYBmni0c3QS9zi8vRsbdPCSjLUphrBS0CC9_a_hhPV2apY_t6NKW9M47mhVP-8634x-aFWchkBQI)
 - hoststack tcp udp
-  - [3n-icx 100ge e810cq dpdk ip4tcp ipudp](http://cuts2.com/jlSrJ)
-  - [3n-icx 100ge cx6 dpdk ip4tcp ipudp](http://cuts2.com/Pkqng)
-  - [3n-spr 100ge e810cq dpdk ip4tcp ipudp](http://cuts2.com/RMWmj)
-  - [3n-spr 200ge cx7 dpdk ip4tcp ipudp](http://cuts2.com/cRVdc)
+  - [3n-icx 100ge e810cq dpdk ip4tcp ipudp](https://csit.fd.io/report/#eNrlVctOwzAQ_JpwQYv8aBouHCj5D-TYWxLVbYzXrShfjxtVbCJUeoJDc7Etz4x3xyPLlPqIr4T-qShXRbUqVNW5PBT6-T5P0ZPSYgmHEEDph7yK6NEQgt5BZz9ACvGGKkh8lMK-gwtuA21PiZKxG5CLpWhAWsDUQhcWyYbmJPYu5HN64_ImxrWGJtCpqHo5F_3RAaNunxjNfU2QA0YGJw0zLbRH5ly2wQIT0bDi2x0TEtKopyteWbaOZovUfSJrhwtjhs3hjEA7LZmOYYSer7CqB8Y_JEnWeJTWS0FzCfQ3y7eR697N54Ve8nozSc7thV6x_Pe5lvXdro_b4S8t6y_g7REe)
+  - [3n-icx 100ge cx6 mlx5 ip4tcp ipudp](https://csit.fd.io/report/#eNrlVcFuwyAM_ZrsMnkC0iSnHdblPyYC7hKNNAjTKt3Xj0bVnGjqeuqluQDiPWM_P1lQHAJ-ELrXrNhm1TZTVWfTkuVvz2kLjlQuSjh6Dyp_SaeADjUh5HvozAhSiE9UXpqxtCP0biygHShS1OYL5KYUDUgDGFvo_CYa35xjnfXpmUHbdIlhl0Pj6ZxTvV9y_imAUXuIjKayFsgRA4OLepnm2xNzrqpgvg6oOeBXHBMi0qykG1I5bBd0j9R9I8dO_WKGSdbMQLNMGU9-hl46WNUT4_4-ktEOpXFS0Ers_E_xQ7h6sKuZzmtSH8XHlU3nDcX3d7Won_ZD6Kc_tKh_AANWEQ4)
+  - [3n-spr 100ge e810cq dpdk ip4tcp ipudp](https://csit.fd.io/report/#eNrlVUFuwyAQfI17qbYCO4576SGp_1Fh2NRWSLxlSaT09SVW1LVVNTm1h_gCiJlhdxghOPYB3xj9S1aus2qd5VXn0pAVq8c0Bc95oZZwJIK8eEqrgB4NIxT7BpgCaKXeMSeNz1rZD3DkttD2HDkauwW9WKoGtAWMLXS0iJaas9o7Sgf1xqVNDJsCGuJz1fz1UvVHC4K6QxQ0NTZBjhgEnHQsNGpPwrniQxQmoBHJtz0hRORRUzfMimwTzA65-0TRDjcmDJviGYF2WjKeaIRe7rCqB8Z_ZMnWeNTWa8WzifSa5ztJ9uBm9Ep_M3s_Wc7uld7w_PfJlvXDvg-74U8t6y_oFxS2)
+  - [3n-spr 200ge cx7 mlx5 ip4tcp ipudp](https://csit.fd.io/report/#eNrlVUFuwyAQfI17qbbCEMenHpr6HxWGTW0Vx4glVpLXh1hR11bV5NQe4gsgZobdYYSg2Af8IHSvWbHJyk0my9amIVNvz2kKjqQSaxi8B6le0iqgQ00IaqeBfAApxCdKn5tDOaCO0LlDAU1PkaI2X5Cv1qKG3ADGBlq_isbXF7mzPp3Ua5s2MWwV1J4uZeX7teyPHhi1-8ho6myGDBgYnLXMNN8cmXPLCEt0QM2ab39MiEiTru64Zdk26A6pPSFrxytjhkkBTUAzLxmPfoJeL7GsRsa_pElGO8yNywUtJ9Rbph8l271d0kv9ze0Dpbm8l3rH9N9nW1RPuz50499aVGf85RtO)
 - nat44
-  - [2n-icx 100ge e810cq avf ethip4tcp tput](http://cuts2.com/aLIBU)
-  - [2n-spr 100ge e810cq avf ethip4tcp-nat44ed tput](http://cuts2.com/loEKr)
-  - [2n-spr 100ge e810cq avf ethip4tcp-nat44ed cps](http://cuts2.com/boqsw)
-  - [2n-spr 200ge cx7 dpdk ethip4tcp-nat44ed tput](http://cuts2.com/QwXZd)
+  - [2n-icx 100ge e810cq avf ethip4tcp tput](https://csit.fd.io/report/#eNrtVl1PhDAQ_DX4Ytb0gxZ88MGT_2G4sickd9za9ojnr7ecJIUoiYlGI-GllM4su9PJJDh_tPjocH-XqE2SbRKRNVVYEnl_HR5274RkGjoiEPIm7CzusXQIooXGvABn7AkFccw5M89QdjtoKO2Pt8ANoK_DqzfUn277upozkQJpCU6nigvwdPLQVrZvKh6Gph8miGh18hENc02QDm0EJwNHGtXnEWdORuSXFstYEHREyKMbDfNFsbF8Z8sDuuYV4zf6i4sEE8wZYWba2Z9phA5XmBUXxp85SauT33WSft9JLfNBHWdS8Nulx_JzvctJ5oyftPr5L_OplZL6XV_KRZ7pfNn5nNG7mHzO-Umrnz-aT1VctUd7uPzbquINdw_s1g)
+  - [2n-spr 100ge e810cq avf ethip4tcp-nat44ed tput](https://csit.fd.io/report/#eNrtVl1PhDAQ_DX4Ytb0gxZ88MGT_2Eq7AkJx61tj-T89ZaTpBAlMdFoJLwAZabdnZ1MUuePFh8dtneJ2iXZLhFZU4VHIu-vw8u2TkimoScCIW_Cl8UWjUMQHTiywBl7RkEcc87KFzD9HhpKh99PwEtAX4elLwk649MUK6g5EymQluB0qrgATycPXWWHouJhLPqhg4hWJx_R0NcM6dFGcNZwpFF9nnCWZES-sWjihiAnQh7dpJkvio3b99Yc0DWvGM8YBhcJZTBngpXzyv5ME3QcYVZcGH_mJG1OftdJ-n0ntcxHdZxJwW_XHsvP9a4nmQt-0ubnv8ynVkrqd30pF3mm83Xnc0HvavK55Cdtfv5oPlVx1R3t4XK3VcUbnCbrMg)
+  - [2n-spr 100ge e810cq avf ethip4tcp-nat44ed cps](https://csit.fd.io/report/#eNrtlt1KxDAQhZ-m3shI_lsv9sK17yGxnbWFbndMYmF9euNaSItdEBTFsjdNy5l05uTjQHw4OHzw2G0yvc3ybSbyto6PTN5dx8V1XkhmYCACIW_im8MOrUcQPXhywBl7QkEcC86qZ7DDDlpSYNQj8AowNPErVAS9DUphDQ1nQgEZCd4ozQVU5KGv3XtLcT-2_NQ_qfVLSGqcaqYM6JI4GzeVUXOc1JwzkeqtQ5s2RDdJCugnw3zNa9q9c3aPvn3F9It4akmvIpgk8WreNxxpoo4HmJenij-iSBeK36NIv07RyGK0xpkU_HblcVy0u5ZELrOkC8v_l0ujtTQf5hQXRW6KVedy2e5KcnmGJV1Y_mAudXnVH9z-dIfV5RtGI-MK)
+  - [2n-spr 200ge cx7 mlx5 ethip4tcp-nat44ed tput](https://csit.fd.io/report/#eNrtlt1qhDAQhZ_G3pQp-THRXvSiW9-jpDqtgrpDkpXdPn2zWyFKKxRaWCre-MOZcebk44DO7y0-O2wfErVLsl0isqYKl0Q-3oabbZ2QTMNABELehSeLLRqHIHpwZEEw9oaCeHnMBjQeuvaooKEUOGMvwEtAX4dXXxL0xqcpVlBzJlIgLcHpVHEBng4e-sqex4qnceyXHaJaHXxUw2YzZUAbxdnKsYzq06Rm2UjsMBZNbAmGouTRTdb5od3Y_mpNh655x_iN89HFgjIAmmjlfLI_0UQdDzErLhVXpEkbzd_TpGvQ1DIf_XEmBb9ffzy_d7ymhC4wpY3pv82pVkrqT4cpF3mm87XndMHxinK6xJQ2pn-cU1Xc9HvbXf55VfEBRW_56g)
 - tunnels (gnv, vxlan, gtpu)
-  - [2n-icx 100ge e810cq avf ethip4udpgeneve](http://cuts2.com/VOrQr)
-  - [3n-icx 100ge cx6 dpdk gtpu sw](http://cuts2.com/uYTVT)
-  - [3n-spr 200ge cx7 dpdk vxlan](http://cuts2.com/iOYme)
-  - [3n-spr 200ge cx7 dpdk gtpu sw](http://cuts2.com/tZrfd)
-  - [3n-spr 200ge cx7 dpdk wireguard](http://cuts2.com/xKCia)
+  - [2n-icx 100ge e810cq avf ethip4udpgeneve](https://csit.fd.io/report/#eNrtmFFrgzAQxz-Nexk3TIxxL3to5_coVq-tYNMsidL20y8W4XRjsIexQtIXI_7vcnf580OIdSeDG4vdW5Kvk2Kd8KJt_CPJVs9-MZ3lWSph0Bp49uLfDHZYWQSuoK3PwNJ0j1wzfGVp_QHVsINWi43rlcLOghRbYDWgO_ivMK19o_eocEBg0geOCdtxS9WYsTJ_nyp_a4PUpnek-uYWyoCGxEXXFKYPl1nMT7NQfGWwooTZiBTi0M6a-tXIlLwz1RFte0XawZ8d6bW3iSRWL8u6i56p0zkW5S3ivp7qh6d_4qm-r6fxYRo6pfFBGjijPI_vZ7qcOUROv7iqH66GwKqIjlQROKciOkpF4IzK-CCVoVMq48NU_ienefmkTuZ4u0vKy0_aCie_)
+  - [3n-icx 100ge cx6 mlx5 gtpu sw](https://csit.fd.io/report/#eNrtlkFugzAQRU9DN9VUYAysumjCPSJipgmScUa2SUlPXxNFGlDbRao02XiDkf-3Z-ynL9n5g8WNQ_2aFKukWiWi6trwSfK35zBY7USelnAkApG_hD-LGhuHkBvo1AhZmu5QUKbGsh2h12MBHcmNH4xB7aCUW8gUoN-H2Z2nwX1M-nbawbR2KiTWl0LfqrLaDp7V0MtCOaJlcdEk22h_Ys-vrbO_sdjwgtmJ2OLRzZr66YTsfbdNj677RF4QboZ1FSCwlKllFX-imXq5tqo-O-5KjCKxvxCj_ycmYsauIyYenTERM3ZLYnfImIwZu46YfHTGZMzYLYlxxor6yRxsf34zFvUXjV3cHg)
+  - [3n-spr 200ge cx7 mlx5 vxlan](https://csit.fd.io/report/#eNrtVcFuwjAM_Zrugjy1KaUnDrD-B0pTDyqlwXJCVfb1BKjkVtN24YCEuCRRnl_s5ycrPhwZdx7tOim2SblNVNk2cUnyzSJubL3K0xX0RKDyz3hitKg9Qu40eGJQabpHRZkZyh51gM4OBbS03IWTc2g9rJY1ZAYwHOJtP1jtwKq6qeMjnTaWHbiGrxnV15jxV3pBm1MQNBY1Q3pkAWfVShgdzhLznwahaEYtnIk0CQnoJ3X9LVUY36w79O0PCi02SnATbREoM_Nc4UwTdOxfWd0inuMhvT18yEN6joeDuQp78Qm8i3yp2Rt9o7dvD89bUX24I3e3_6-oLg1S_ds)
+  - [3n-spr 200ge cx7 mlx5 gtpu sw](https://csit.fd.io/report/#eNrtlsGKgzAQhp_GvSyzaIz1tIft-h4l1dlWiOmQRLft0zeWwii7LHQp0kMuRvz_cSb5-CHOHyxuHOr3pFgn5ToRZduER5J_vIbFaifydAUDEYj8LbxZ1KgcQm4UOLIg0nSHgrL6WA6oPHT6WEBLcuN7Y1A7WMktZDWg34evO0-9-x717fgT09ixl_i89frRmNWm96yGcWbKgJbF2Zxso_2JPX9NzyXKouKayabY4tFN5vptk-z9sqpD156RC8LhsF4HFCxl9byLP9FEvZ1cWV0dS3OjyO2f3GgRbiLm7W5u4gnyJmLeHsxtmbzJmLe7ucknyJuMeXswN85bUb2Yg-2u98qiugCXaut-)
+  - [3n-spr 200ge cx7 mlx5 wireguard](https://csit.fd.io/report/#eNrtl0FugzAQRU9DN5Ur24TCpouk3CNy8DRBMo41NiTp6WNQpAFVqrqoGinuBhD_DzPjr7fAhyPC1oN5y4pNVm4yWbY6XrJ8_RxvaLzM-SsbnGMyf4lPCAaUB5ZbxbxDJjnfg3SiOZcDqMA6cy5Y61bb0FsLxjNRiGrHRMMgHOL7XrtTi7DvFWrBOQ_W-NNYsBu_ajWOzeX7rfmXSUjVfSA1zrdQBkASF4OTzR0u5PluHSpRCIpqZluSJYCfzfWDnan0A1UHvv0Eqp8OjxxNDGsmNsu24eJm6u0oy3py3D1Z95_sbyXr7pxsgsgmQWyCwCbAa3K0JsBqcqQ-PqdVapxWj89plRqn1R9zWtRP9ojd9O9a1FdcSTlU)
 - reassembly
-  - [3n-icx 100ge e810cq dpdk reassembly](http://cuts2.com/vBqTg)
+  - [3n-icx 100ge e810cq dpdk reassembly](https://csit.fd.io/report/#eNrtVkFugzAQfA29VFthAyGXHpLyjwrMNrEKxvW6aenr69BIC6p6qUTCgYttecar2R2NZPKdw2fC5jHK9lG-j2Su67BEye4-bK4hmcQbOFkLMnkIJ4cNloSQGNDqE0QcH1BagVsRqzeobf0KyvXWdyAysa1AKEB_1DbVllAFeuxNQx8QbqpzHW08lEgy2xxUG6qXRNhWTQ-mdmcd8umi45coRut3z2iQOkFO6Bic9MA0e-yZ83dn_KAMQvnFT8OMeqSRoH-1z8VeXNki6S_kisNkmaGChSNQTYX43o7Qy1TzYmAsyW-7-j2D33Zuv-Wa7-v6LW-bb7nme0l-z57vdM33df1Ob5vvdM33kvzmfGfFnelcO_zTs-IbpihUvQ)
 
 ## CSIT-2306 Selected Performance Comparisons
 
 Comparisons 23.06 vs 23.02
-- [2n-icx 100ge e810cq avf 1c 64B PDR](http://cuts2.com/UBwMY)
+- [2n-icx 100ge e810cq avf 1c 64B PDR](https://csit.fd.io/comparisons/#eNqNkEsOgjAQhk-DG1JTioAbFyoHMMYLNGUwJFDqtBD19LY8LCQuTJq0M_83j_4aahAGikOQnQKWIZSAIAXYdxAfwzGrwUzxDTsrncMh6SqrVq7QoptRe_VKuWDkrdIDehFrzWKaEhZvKSNou3ENHq9kidzTTJJKPElE6R2YimAfUfEgvC99hWjxu3bidonOLkzySS-x0dV7jaS704ox5qXWxCW_TkQ2nHlWozj-4ZKleANm-XFvxIj0vO7gty_p0pdh_ka22Bzcakn-AeXRdNc)
 
 ## CSIT-2306 Selected Performance Coverage Data
 
 CSIT-2306 VPP v23.06 coverage data
-- [2n-icx 200ge cx7 dpdk ip4](http://cuts2.com/EfqNe)
+- [2n-icx 200ge cx7 mlx5 ip4](https://csit.fd.io/coverage/#eNpVjsEOwiAQRL8GLwaDi5RTD9b-hyG4sSRICSDSv29JD9TLJjNvZjMRLepkZtcTORCQwcbtEn4_7wI466oBj2q8vqnR7P0fyRgaBH5hHQ3bdxWxxfy0HDKOGl0oMPZG8FddZEaV6McW0RoqoGoV429VyPEUp_n3tCqh00tPRN1-tGpKjCsrcD2n)
 
 ## Further Information
 
