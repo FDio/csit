@@ -1591,14 +1591,14 @@ FD.io CSIT lab contains following server types:
         - s33-t31-sut2-c1/p2 - 25GE-port2 e822cq-2p25GE.
 - ServerF3 [Server-Type-F5]:
     - testbedname: testbed31.
-    - hostname: s89-t31t32-tg1.
-    - IPMI IP: 10.30.50.89
-    - Host IP: 10.30.51.89
+    - hostname: s90-t31t32-tg1.
+    - IPMI IP: 10.30.50.90
+    - Host IP: 10.30.51.90
     - portnames:
-        - s89-t31t32-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s89-t31t32-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s89-t31t32-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s89-t31t32-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
 - ServerI1 [Server-Type-I1]:
     - testbedname: testbed32.
     - hostname: s34-t32-sut1.
@@ -1617,14 +1617,14 @@ FD.io CSIT lab contains following server types:
         - s35-t32-sut2-c1/p2 - 25GE-port2 e822cq-2p25GE.
 - ServerF3 [Server-Type-F5]:
     - testbedname: testbed32.
-    - hostname: s89-t31t32-tg1.
-    - IPMI IP: 10.30.50.89
-    - Host IP: 10.30.51.89
+    - hostname: s90-t31t32-tg1.
+    - IPMI IP: 10.30.50.90
+    - Host IP: 10.30.51.90
     - portnames:
-        - s89-t31t32-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s89-t31t32-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s89-t31t32-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s89-t31t32-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s90-t31t32-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
 ```
 
 ## Testbed Wiring
@@ -2032,13 +2032,13 @@ To be completed.
 ```
 - testbed31:
     - ring1 25GE-ports e822cq-2p25GE:
-        - s89-t31t32-tg1-c4/p1 to s32-t31-sut1-c1/p1.
+        - s90-t31t32-tg1-c4/p1 to s32-t31-sut1-c1/p1.
         - s32-t31-sut1-c1/p2 to s33-t31-sut2-c1/p2.
-        - s33-t31-sut2-c1/p1 to s89-t31t32-tg1-c4/p2.
+        - s33-t31-sut2-c1/p1 to s90-t31t32-tg1-c4/p2.
 - testbed32:
     - ring1 25GE-ports e822cq-2p25GE:
-        - s89-t31t32-tg1-c6/p1 to s34-t32-sut1-c1/p1.
+        - s90-t31t32-tg1-c6/p1 to s34-t32-sut1-c1/p1.
         - s34-t32-sut1-c1/p2 to s35-t32-sut2-c1/p2.
-        - s35-t32-sut2-c1/p1 to s89-t31t32-tg1-c6/p2.
+        - s35-t32-sut2-c1/p1 to s90-t31t32-tg1-c6/p2.
 ```
 
