@@ -60,6 +60,12 @@ intel_700_compatibility_matrix:
     nvm: "9.20"
 
 intel_800_compatibility_matrix:
+  dpdk22.03:
+    # custom
+    ice: "1.9.7"
+    ddp: "1.3.37.0"
+    iavf: "4.3.19"
+    nvm: "4.00"
   dpdk22.07:
     # https://doc.dpdk.org/guides/rel_notes/release_22_07.html
     ice: "1.9.7"
@@ -89,6 +95,7 @@ intel_ice_url:
   "1.12.6": "ice%20stable/1.12.6/ice-1.12.6.tar.gz/download"
 
 intel_iavf_url:
+  "4.3.19": "iavf%20stable/4.3.19/iavf-4.3.19.tar.gz/download"
   "4.5.3": "iavf%20stable/4.5.3/iavf-4.5.3.tar.gz/download"
   "4.9.1": "iavf%20stable/4.9.1/iavf-4.9.1.tar.gz/download"
 
