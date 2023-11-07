@@ -29,7 +29,7 @@ List of new issues in CSIT 23.10 for DPDK performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+ 1    | [CSIT-1904](https://jira.fd.io/browse/CSIT-1904) | DPDK 23.03 testpmd starup fails on some testbeds. Different cause but the same consequences as CSIT-1848.
 
 ## Fixed
 

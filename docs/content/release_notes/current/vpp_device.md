@@ -23,4 +23,5 @@ List of new issues in CSIT 23.10 for VPP functional tests in VPP Device:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+ 1    | [CSIT-1931](https://jira.fd.io/browse/CSIT-1931) | Vhost test not running in device jobs
+ 1    | [CSIT-1932](https://jira.fd.io/browse/CSIT-1932) | 1n-spr: Occasional packet loss in L2 tests
