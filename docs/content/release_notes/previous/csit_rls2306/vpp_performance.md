@@ -78,7 +78,7 @@ Issues reported in previous releases which were fixed in this release:
 
 List of RCAs in CSIT 23.06 for VPP performance regressions.
 
-Contrary to issues, these to not limit usefulness of CSIT testing.
+Contrary to issues, these do not limit usefulness of CSIT testing.
 So even if they are not fixed (e.g. when the regression is an expected
 consequence of added functionality), they will not be re-listed in the next
 release report.
