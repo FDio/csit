@@ -73,7 +73,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 130
+    MAX_TIME_PERIOD = 180
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -126,6 +126,7 @@ class Constants:
         "dpdk": "DPDK",
         "container_memif": "LXC/DRC Container Memif",
         "crypto": "IPSec IPv4 Routing",
+        "gso": "GSO",
         "ip4": "IPv4 Routing",
         "ip4_tunnels": "IPv4 Tunnels",
         "ip6": "IPv6 Routing",

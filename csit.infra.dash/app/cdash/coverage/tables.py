@@ -14,6 +14,7 @@
 """The coverage data tables.
 """
 
+
 import hdrh.histogram
 import hdrh.codec
 import pandas as pd
@@ -54,7 +55,7 @@ def select_coverage_data(
     phy = selected["phy"].split("-")
     if len(phy) == 4:
         topo, arch, nic, drv = phy
-        drv = "" if drv == "dpdk" else drv.replace("_", "-")
+        drv_str = "" if drv == "dpdk" else drv.replace("_", "-")
     else:
         return l_data
 
@@ -67,7 +68,7 @@ def select_coverage_data(
     df = df[
         (df.job.str.endswith(f"{topo}-{arch}")) &
         (df.test_id.str.contains(
-            f"^.*\.{selected['area']}\..*{nic}.*{drv}.*$",
+            f"^.*\.{selected['area']}\..*{nic}.*{drv_str}.*$",
             regex=True
         ))
     ]
@@ -115,7 +116,15 @@ def select_coverage_data(
 
     if ttype == "device":
         cov = cov.assign(Result="PASS")
-    else:
+    elif ttype == "mrr":
+        cov["Throughput_Unit"] = df["result_receive_rate_rate_unit"]
+        cov["Throughput_AVG"] = df.apply(
+            lambda row: row["result_receive_rate_rate_avg"] / 1e9, axis=1
+        )
+        cov["Throughput_STDEV"] = df.apply(
+            lambda row: row["result_receive_rate_rate_stdev"] / 1e9, axis=1
+        )
+    else:  # NDRPDR
         cov["Throughput_Unit"] = df["result_pdr_lower_rate_unit"]
         cov["Throughput_NDR"] = df.apply(
             lambda row: row["result_ndr_lower_rate_value"] / 1e6, axis=1
@@ -152,7 +161,9 @@ def select_coverage_data(
             df_suite.rename(
                 columns={
                     "Throughput_NDR": f"Throughput_NDR_M{unit}",
-                    "Throughput_PDR": f"Throughput_PDR_M{unit}"
+                    "Throughput_PDR": f"Throughput_PDR_M{unit}",
+                    "Throughput_AVG": f"Throughput_G{unit}_AVG",
+                    "Throughput_STDEV": f"Throughput_G{unit}_STDEV"
                 },
                 inplace=True
             )
@@ -160,7 +171,7 @@ def select_coverage_data(
 
         l_data.append((suite, df_suite, ))
 
-    return l_data
+    return l_data, ttype
 
 
 def coverage_tables(
@@ -181,9 +192,10 @@ def coverage_tables(
     """
 
     accordion_items = list()
-    sel_data = select_coverage_data(data, selected, show_latency=show_latency)
+    sel_data, ttype = \
+        select_coverage_data(data, selected, show_latency=show_latency)
     for suite, cov_data in sel_data:
-        if len(cov_data.columns) == 3:  # VPP Device
+        if ttype == "device":  # VPP Device
             cols = [
                 {
                     "name": col,
@@ -200,7 +212,34 @@ def coverage_tables(
                     "textAlign": "right"
                 }
             ]
-        else:  # Performance
+        elif ttype == "mrr":  # MRR
+            cols = list()
+            for idx, col in enumerate(cov_data.columns):
+                if idx == 0:
+                    cols.append({
+                        "name": ["", "", col],
+                        "id": col,
+                        "deletable": False,
+                        "selectable": False,
+                        "type": "text"
+                    })
+                else:
+                    cols.append({
+                        "name": col.split("_"),
+                        "id": col,
+                        "deletable": False,
+                        "selectable": False,
+                        "type": "numeric",
+                        "format": Format(precision=2, scheme=Scheme.fixed)
+                    })
+            style_cell={"textAlign": "right"}
+            style_cell_conditional=[
+                {
+                    "if": {"column_id": "Test Name"},
+                    "textAlign": "left"
+                }
+            ]
+        else:  # Performance NDRPDR
             cols = list()
             for idx, col in enumerate(cov_data.columns):
                 if idx == 0:

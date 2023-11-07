@@ -402,6 +402,24 @@
     - result_latency_forward_pdr_10_hdrh
 - data_type: coverage
   partition: test_type
+  partition_name: mrr
+  release: rls2310
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
+  schema: iterative_rls2310_mrr
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_receive_rate_rate_avg
+    - result_receive_rate_rate_stdev
+    - result_receive_rate_rate_unit
+- data_type: coverage
+  partition: test_type
   partition_name: device
   release: rls2310
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
