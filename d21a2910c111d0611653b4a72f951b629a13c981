@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "413c0bf0_3f068f8f",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-08T09:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66474c9a_d962301f",
+      "range": {
+        "startLine": 44,
+        "startChar": 59,
+        "endLine": 44,
+        "endChar": 62
+      },
+      "revId": "d21a2910c111d0611653b4a72f951b629a13c981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "716988aa_1f3af96d",
@@ -70,6 +94,54 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22f417bc_df432db0",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-08T09:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "716988aa_1f3af96d",
+      "range": {
+        "startLine": 86,
+        "startChar": 75,
+        "endLine": 86,
+        "endChar": 82
+      },
+      "revId": "d21a2910c111d0611653b4a72f951b629a13c981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6ddfeff_bcebf07d",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-08T09:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "704ca369_5cf3aaaa",
+      "range": {
+        "startLine": 86,
+        "startChar": 46,
+        "endLine": 86,
+        "endChar": 49
+      },
+      "revId": "d21a2910c111d0611653b4a72f951b629a13c981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a225853_680de073",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-08T07:24:50Z",
       "side": 1,
       "message": "these regressions",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 25
+      },
+      "revId": "d21a2910c111d0611653b4a72f951b629a13c981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c29c0c50_2e5544b8",
+        "filename": "docs/content/release_notes/previous/csit_rls2306/vpp_performance.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-08T09:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a225853_680de073",
       "range": {
         "startLine": 81,
         "startChar": 20,
