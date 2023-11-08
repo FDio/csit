@@ -61,7 +61,7 @@ intel_700_compatibility_matrix:
 
 intel_800_compatibility_matrix:
   dpdk22.03:
-    # custom
+    # custom for vpp_device
     ice: "1.9.7"
     ddp: "1.3.37.0"
     iavf: "4.3.19"

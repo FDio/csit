@@ -26,7 +26,7 @@
     - intel-inst-drivers
 
 - name: Check Presence of Intel Ethernet 800 Series
-  ansible.builtin.shell: "lspci -d 8086:1592; lspci -d 8086:1891"
+  ansible.builtin.shell: "lspci -d 8086:1592; lspci -d 8086:1891; lspci -d 8086:188c"
   register: intel_800_pcis
   failed_when: false
   changed_when: false
