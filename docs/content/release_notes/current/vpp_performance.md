@@ -41,7 +41,7 @@ Issues reported in previous releases which still affect the current results.
   1   | [CSIT-1782](https://jira.fd.io/browse/CSIT-1782) | Multicore AVF tests are failing when trying to create interface. Frequency is reduced by CSIT workaround, but occasional failures do still happen.
   2   | [CSIT-1785](https://jira.fd.io/browse/CSIT-1785) | NAT44ED tests failing to establish all TCP sessions. At least for max scale, in allotted time (limited by session 500s timeout) due to worse slow path performance than previously measured and calibrated for. CSIT removed the max scale NAT tests to avoid this issue.
   3   | [CSIT-1795](https://jira.fd.io/browse/CSIT-1795) | Ocassionally not all DET44 sessions have been established: 4128767 != 4128768
-  4   | [CSIT-1802](https://jira.fd.io/browse/CSIT-1802) | all testbeds: AF-XDP - NDR tests failing from time to time.
+  4   | [CSIT-1802](https://jira.fd.io/browse/CSIT-1802) | All testbeds: AF-XDP - NDR tests failing from time to time on small loss
   5   | [CSIT-1804](https://jira.fd.io/browse/CSIT-1804) | All testbeds: NDR tests failing from time to time.
   6   | [CSIT-1808](https://jira.fd.io/browse/CSIT-1808) | All tests with 9000B payload frames not forwarded over memif interfaces.
   7   | [CSIT-1827](https://jira.fd.io/browse/CSIT-1827) | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive packet loss
@@ -60,7 +60,7 @@ Issues reported in previous releases which still affect the current results.
  20   | [CSIT-1915](https://jira.fd.io/browse/CSIT-1915) | 2n-icx testbeds to not have the same performance
  21   | [CSIT-1916](https://jira.fd.io/browse/CSIT-1916) | Poor CPU scaling on 2n-zn2 RDMA.
  22   | [CSIT-1917](https://jira.fd.io/browse/CSIT-1917) | TRex STL performance is unstable at high pps due to unsent packets.
- 23   | [CSIT-1922](https://jira.fd.io/browse/CSIT-1922) | 2n-tx2: af_xdp mrr failures.
+ 23   | [CSIT-1922](https://jira.fd.io/browse/CSIT-1922) | 2n-tx2: af_xdp mrr failures. On other testbeds MRR regressions and PDR failures.
  24   | [CSIT-1923](https://jira.fd.io/browse/CSIT-1923) | 3n-icx, 3n-snr: first few swasync scheduler tests timing out in runtime stat.
  25   | [CSIT-1924](https://jira.fd.io/browse/CSIT-1924) | l3fwd error in 200Ge2P1Cx7Veat-Mlx5 test with 9000B.
 
@@ -79,12 +79,17 @@ Issues reported in previous releases which were fixed in this release:
 # Root Cause Analysis for Regressions
 
 List of RCAs in CSIT 23.10 for VPP performance regressions.
+Not listing differences caused by known issues (uneven worker load
+due to randomized RSS or other per-worker issues).
+Also not listing tests which historically show large performance variance.
 
-Contrary to issues, these to not limit usefulness of CSIT testing.
-So even if they are not fixed (e.g. when the regression is an expected
-consequence of added functionality), they will not be re-listed in the next
-release report.
+Contrary to issues, these genuine regressions do not limit usefulness
+of CSIT testing. So even if they are not fixed
+(e.g. when the regression is an expected consequence of added functionality),
+they will not be re-listed in the next release report.
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+ 1    | [CSIT-1933](https://jira.fd.io/browse/CSIT-1933) | Regresion in nat44ed tests around 2023-09-07
+ 2    | [CSIT-1934](https://jira.fd.io/browse/CSIT-1934) | rls 2310: Regression in nginx rps around 2023-10-09
+ 3    | [CSIT-1935](https://jira.fd.io/browse/CSIT-1935) | rls 2310: Zero traffic reported in udpquic tests
