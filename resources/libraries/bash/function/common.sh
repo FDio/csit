@@ -512,6 +512,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="snr"
             ;;
+        *"3n-icxd"*)
+            NODENESS="3n"
+            FLAVOR="icxd"
+            ;;
         *"2n-tx2"*)
             NODENESS="2n"
             FLAVOR="tx2"
@@ -889,6 +893,9 @@ function select_tags () {
         *"3n-snr"*)
             default_nic="nic_intel-e822cq"
             ;;
+        *"3n-icxd"*)
+            default_nic="nic_intel-e823c"
+            ;;
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
@@ -934,6 +941,8 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("cx7veat","200ge2p1cx7veat");'
     awk_nics_sub_cmd+='gsub("cx6dx","100ge2p1cx6dx");'
     awk_nics_sub_cmd+='gsub("e810cq","100ge2p1e810cq");'
+    awk_nics_sub_cmd+='gsub("e822cq","25ge2p1e822cq)'
+    awk_nics_sub_cmd+='gsub("e823c","25ge2p1e823c)'
     awk_nics_sub_cmd+='gsub("vic1227","10ge2p1vic1227");'
     awk_nics_sub_cmd+='gsub("vic1385","40ge2p1vic1385");'
     awk_nics_sub_cmd+='gsub("nitro-50g","50ge1p1ENA");'
@@ -1053,6 +1062,8 @@ function select_tags () {
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"3n-snr"*)
+            ;;
+        *"3n-icxd"*)
             ;;
         *"3na-spr"*)
             ;;
@@ -1177,6 +1188,10 @@ function select_topology () {
             ;;
         "3n_snr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_icxd")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_tsh")
