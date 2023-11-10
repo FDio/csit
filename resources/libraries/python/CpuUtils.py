@@ -13,6 +13,8 @@
 
 """CPU utilities library."""
 
+from random import choice
+
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -546,9 +548,10 @@ class CpuUtils:
             cpu_main = CpuUtils.cpu_list_per_node_str(
                 node, cpu_node,
                 skip_cnt=skip_cnt,
-                cpu_cnt=Constants.CPU_CNT_MAIN,
+                cpu_cnt=Constants.CPU_CNT_MAIN if phy_cores else 0,
                 smt_used=False
             )
+            cpu_main = cpu_main if phy_cores else choice(cpu_main)
             skip_cnt += Constants.CPU_CNT_MAIN
             cpu_dp = CpuUtils.cpu_list_per_node_str(
                 node, cpu_node,
