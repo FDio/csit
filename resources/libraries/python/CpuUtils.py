@@ -13,6 +13,8 @@
 
 """CPU utilities library."""
 
+from random import choice
+
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -522,15 +524,15 @@ class CpuUtils:
                 continue
             # Number of Data Plane physical cores.
             dp_cores_count = BuiltIn().get_variable_value(
-                f"${{dp_cores_count}}", phy_cores
+                "${{dp_cores_count}}", phy_cores
             )
             # Number of Feature Plane physical cores.
             fp_cores_count = BuiltIn().get_variable_value(
-                f"${{fp_cores_count}}", phy_cores - dp_cores_count
+                "${{fp_cores_count}}", phy_cores - dp_cores_count
             )
             # Ratio between RX queues and data plane threads.
             rxq_ratio = BuiltIn().get_variable_value(
-                f"${{rxq_ratio}}", 1
+                "${{rxq_ratio}}", 1
             )
 
             dut_pf_keys = BuiltIn().get_variable_value(
@@ -538,7 +540,7 @@ class CpuUtils:
             )
             # SMT override in case of non standard test cases.
             smt_used = BuiltIn().get_variable_value(
-                f"${{smt_used}}", CpuUtils.is_smt_enabled(node["cpuinfo"])
+                "${{smt_used}}", CpuUtils.is_smt_enabled(node["cpuinfo"])
             )
 
             cpu_node = Topology.get_interfaces_numa_node(node, *dut_pf_keys)
@@ -546,9 +548,10 @@ class CpuUtils:
             cpu_main = CpuUtils.cpu_list_per_node_str(
                 node, cpu_node,
                 skip_cnt=skip_cnt,
-                cpu_cnt=Constants.CPU_CNT_MAIN,
+                cpu_cnt=Constants.CPU_CNT_MAIN if phy_cores else 0,
                 smt_used=False
             )
+            cpu_main = cpu_main if phy_cores else choice(cpu_main.split(","))
             skip_cnt += Constants.CPU_CNT_MAIN
             cpu_dp = CpuUtils.cpu_list_per_node_str(
                 node, cpu_node,
