@@ -30,7 +30,14 @@ but was not detected/recognized/reported enough back then.
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+  1   | [CSIT-1935](https://jira.fd.io/browse/CSIT-1935) | rls 2310: Zero traffic reported in udpquic tests
+  2   | [CSIT-1936](https://jira.fd.io/browse/CSIT-1936) | TRex occasionally sees link down in L2 perf tests
+  3   | [CSIT-1937](https://jira.fd.io/browse/CSIT-1937) | Small but frequent loss in ASTF UDP on cx7 mlx5
+  4   | [CSIT-1938](https://jira.fd.io/browse/CSIT-1938) | 3n-alt: high scale ipsec policy tests may crash VPP
+  5   | [CSIT-1939](https://jira.fd.io/browse/CSIT-1939) | 3na-spr: ip4tcp ldpreload tests are failing
+  6   | [CSIT-1940](https://jira.fd.io/browse/CSIT-1940) | hardware acceleration does not work yet
+  7   | [CSIT-1941](https://jira.fd.io/browse/CSIT-1941) | TRex may wrongly detect link bandwidth
+  7   | [CSIT-1942](https://jira.fd.io/browse/CSIT-1942) | 3nb-spr hoststack: interface not up after first test
 
 ## Previous
 
@@ -42,7 +49,7 @@ Issues reported in previous releases which still affect the current results.
   2   | [CSIT-1785](https://jira.fd.io/browse/CSIT-1785) | NAT44ED tests failing to establish all TCP sessions. At least for max scale, in allotted time (limited by session 500s timeout) due to worse slow path performance than previously measured and calibrated for. CSIT removed the max scale NAT tests to avoid this issue.
   3   | [CSIT-1795](https://jira.fd.io/browse/CSIT-1795) | Ocassionally not all DET44 sessions have been established: 4128767 != 4128768
   4   | [CSIT-1802](https://jira.fd.io/browse/CSIT-1802) | All testbeds: AF-XDP - NDR tests failing from time to time on small loss
-  5   | [CSIT-1804](https://jira.fd.io/browse/CSIT-1804) | All testbeds: NDR tests failing from time to time.
+  5   | [CSIT-1804](https://jira.fd.io/browse/CSIT-1804) | 3n-tsh: NDR fails on ierrors
   6   | [CSIT-1808](https://jira.fd.io/browse/CSIT-1808) | All tests with 9000B payload frames not forwarded over memif interfaces.
   7   | [CSIT-1827](https://jira.fd.io/browse/CSIT-1827) | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive packet loss
   8   | [CSIT-1849](https://jira.fd.io/browse/CSIT-1849) | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.
@@ -92,4 +99,3 @@ they will not be re-listed in the next release report.
 ------|--------------------------------------------------|--------------------------------------------------------------
  1    | [CSIT-1933](https://jira.fd.io/browse/CSIT-1933) | Regresion in nat44ed tests around 2023-09-07
  2    | [CSIT-1934](https://jira.fd.io/browse/CSIT-1934) | rls 2310: Regression in nginx rps around 2023-10-09
- 3    | [CSIT-1935](https://jira.fd.io/browse/CSIT-1935) | rls 2310: Zero traffic reported in udpquic tests
