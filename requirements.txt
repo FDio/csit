@@ -24,7 +24,7 @@ python-dateutil==2.8.2
 PyYAML==6.0.1
 requests==2.31.0
 robotframework==6.1.1
-scapy==2.4.5
+scapy==2.5.0
 scp==0.14.5
 
 # IaaC dependencies
