@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e48ae382_888de3c4",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-14T12:10:47Z",
+      "side": 0,
+      "message": "This got fixed already in rls2302. Since then, occasional failures were happening for different causes. With CSIT-1936, CSIT-1938 and CSIT-1941 there are no remaining failures in rls2310.",
+      "range": {
+        "startLine": 47,
+        "startChar": 46,
+        "endLine": 47,
+        "endChar": 56
+      },
+      "revId": "a46cf880b708c6fc53143c96d893749a71965e57",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
