@@ -18,16 +18,16 @@ nodes:
     interfaces:
       port1:
         # s90-t31t32-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
-        mac_address: "b4:96:91:a5:22:08"
-        pci_address: "0000:ca:00.0"
+        mac_address: "b4:96:91:a5:78:b4"
+        pci_address: "0000:31:00.0"
         ip4_address: "172.16.10.1"
         driver: ice
         link: link1
         model: Intel-E810XXV
       port2:
         # s90-t31t32-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
-        mac_address: "b4:96:91:a5:22:09"
-        pci_address: "0000:ca:00.1"
+        mac_address: "b4:96:91:a5:78:b5"
+        pci_address: "0000:31:00.1"
         ip4_address: "172.16.20.1"
         driver: ice
         link: link2
@@ -60,7 +60,7 @@ nodes:
         # s32-t31-sut1-c1/p2 - 25GE port2 Intel E823-C 2p25GE.
         mac_address: "3c:ec:ef:d9:e2:6b"
         pci_address: "0000:89:00.2"
-        ip4_address: "172.16.20.2"
+        ip4_address: "172.16.30.1"
         driver: ice
         link: link3
         model: Intel-E823C
@@ -81,18 +81,18 @@ nodes:
     uio_driver: vfio-pci
     interfaces:
       port1:
-        # s33-t31-sut2-c1/p1 - 25GE port1 Intel E823-C 4p25GE.
+        # s33-t31-sut2-c1/p1 - 25GE port1 Intel E823-C 2p25GE.
         mac_address: "3c:ec:ef:d9:e2:c8"
         pci_address: "0000:89:00.0"
+        ip4_address: "172.16.20.2"
+        driver: ice
+        link: link2
+        model: Intel-E823C
+      port2:
+        # s33-t31-sut2-c1/p2 - 25GE port2 Intel E823-C 2p25GE.
+        mac_address: "3c:ec:ef:d9:e2:c9"
+        pci_address: "0000:89:00.2"
         ip4_address: "172.16.30.2"
         driver: ice
         link: link3
-        model: Intel-E823C
-      port2:
-        # s33-t31-sut2-c1/p2 - 25GE port2 Intel E823-C 4p25GE.
-        mac_address: "3c:ec:ef:d9:e2:c9"
-        pci_address: "0000:89:00.2"
-        ip4_address: "172.16.40.2"
-        driver: ice
-        link: link2
         model: Intel-E823C

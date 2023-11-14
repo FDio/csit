@@ -34,7 +34,7 @@ packages_by_distro:
     - "patchutils"
     - "libboost-dev"
     - "libboost-regex-dev"
-#    - "libudev-dev"
+#    - "libudev-dev" http://security.ubuntu.com/ubuntu/pool/main/s/systemd/
     - "yasm"
 
 packages_by_arch:
