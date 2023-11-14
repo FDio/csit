@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d73c9d2_9a6799a6",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-14T12:22:07Z",
+      "side": 1,
+      "message": "Some failures are remaining, but their real cause is either CSIT-1922 or CSIT-1921.",
+      "range": {
+        "startLine": 81,
+        "startChar": 46,
+        "endLine": 81,
+        "endChar": 56
+      },
+      "revId": "09556d7436b64cc1f8423549f7e7a057c8121ce7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
