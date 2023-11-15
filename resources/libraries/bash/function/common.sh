@@ -1142,105 +1142,98 @@ function select_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_vbox")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "1n_skx" | "1n_tx2" | "1n_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_skx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_skx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_zn2")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "3n_skx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "3n_icx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "3na_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "3nb_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "2n_clx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_icx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "3n_snr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_icxd")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_tsh")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "2n_tx2")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "3n_alt")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
         "1n_aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
-            ;;
-        "2n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "3n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "1n_c6gn")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6gn*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
             ;;
-        "2n_c6gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6gn*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "3n_c6gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6gn*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
         "1n_c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6in*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
+            ;;
+        "1n_tx2" | "1n_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "1n_vbox")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_c6gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6gn*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "2n_c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
+        "2n_clx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_tx2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2_*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_zn2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "3n_alt")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_c6gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6gn*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
         "3n_c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6in*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx_*.yaml )
+            # Trailing underscore is needed to distinguish from 3n_icxd.
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3n_icxd")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_snr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_tsh")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3na_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3nb_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *)
             # No falling back to default, that should have been done
