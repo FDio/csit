@@ -428,103 +428,103 @@ function get_test_code () {
     fi
 
     case "${TEST_CODE}" in
-        *"1n-vbox"*)
+        *"1n-vbox")
             NODENESS="1n"
             FLAVOR="vbox"
             ;;
-        *"1n-skx"*)
+        *"1n-skx")
             NODENESS="1n"
             FLAVOR="skx"
             ;;
-        *"1n-spr"*)
+        *"1n-spr")
             NODENESS="1n"
             FLAVOR="spr"
             ;;
-        *"1n-tx2"*)
+        *"1n-tx2")
             NODENESS="1n"
             FLAVOR="tx2"
             ;;
-        *"1n-aws"*)
+        *"1n-aws")
             NODENESS="1n"
             FLAVOR="aws"
             ;;
-        *"2n-aws"*)
+        *"2n-aws")
             NODENESS="2n"
             FLAVOR="aws"
             ;;
-        *"3n-aws"*)
+        *"3n-aws")
             NODENESS="3n"
             FLAVOR="aws"
             ;;
-        *"1n-c6gn"*)
+        *"1n-c6gn")
             NODENESS="1n"
             FLAVOR="c6gn"
             ;;
-        *"2n-c6gn"*)
+        *"2n-c6gn")
             NODENESS="2n"
             FLAVOR="c6gn"
             ;;
-        *"3n-c6gn"*)
+        *"3n-c6gn")
             NODENESS="3n"
             FLAVOR="c6gn"
             ;;
-        *"1n-c6in"*)
+        *"1n-c6in")
             NODENESS="1n"
             FLAVOR="c6in"
             ;;
-        *"2n-c6in"*)
+        *"2n-c6in")
             NODENESS="2n"
             FLAVOR="c6in"
             ;;
-        *"3n-c6in"*)
+        *"3n-c6in")
             NODENESS="3n"
             FLAVOR="c6in"
             ;;
-        *"2n-zn2"*)
+        *"2n-zn2")
             NODENESS="2n"
             FLAVOR="zn2"
             ;;
-        *"2n-clx"*)
+        *"2n-clx")
             NODENESS="2n"
             FLAVOR="clx"
             ;;
-        *"2n-icx"*)
+        *"2n-icx")
             NODENESS="2n"
             FLAVOR="icx"
             ;;
-        *"2n-spr"*)
+        *"2n-spr")
             NODENESS="2n"
             FLAVOR="spr"
             ;;
-        *"3n-icx"*)
+        *"3n-icx")
             NODENESS="3n"
             FLAVOR="icx"
             ;;
-        *"3na-spr"*)
+        *"3na-spr")
             NODENESS="3na"
             FLAVOR="spr"
             ;;
-        *"3nb-spr"*)
+        *"3nb-spr")
             NODENESS="3nb"
             FLAVOR="spr"
             ;;
-        *"3n-snr"*)
+        *"3n-snr")
             NODENESS="3n"
             FLAVOR="snr"
             ;;
-        *"3n-icxd"*)
+        *"3n-icxd")
             NODENESS="3n"
             FLAVOR="icxd"
             ;;
-        *"2n-tx2"*)
+        *"2n-tx2")
             NODENESS="2n"
             FLAVOR="tx2"
             ;;
-        *"3n-tsh"*)
+        *"3n-tsh")
             NODENESS="3n"
             FLAVOR="tsh"
             ;;
-        *"3n-alt"*)
+        *"3n-alt")
             NODENESS="3n"
             FLAVOR="alt"
             ;;
@@ -890,40 +890,40 @@ function select_tags () {
 
     # Select default NIC tag.
     case "${TEST_CODE}" in
-        *"3n-snr"*)
+        *"3n-snr")
             default_nic="nic_intel-e822cq"
             ;;
-        *"3n-icxd"*)
+        *"3n-icxd")
             default_nic="nic_intel-e823c"
             ;;
-        *"3n-tsh"*)
+        *"3n-tsh")
             default_nic="nic_intel-x520-da2"
             ;;
-        *"3n-icx"* | *"2n-icx"*)
+        *"3n-icx" | *"2n-icx")
             default_nic="nic_intel-e810cq"
             ;;
-        *"3na-spr"*)
+        *"3na-spr")
             default_nic="nic_mellanox-cx7veat"
             ;;
-        *"3nb-spr"*)
+        *"3nb-spr")
             default_nic="nic_intel-e810cq"
             ;;
-        *"2n-spr"*)
+        *"2n-spr")
             default_nic="nic_intel-e810cq"
             ;;
-        *"2n-clx"* | *"2n-zn2"*)
+        *"2n-clx" | *"2n-zn2")
             default_nic="nic_intel-xxv710"
             ;;
-        *"2n-tx2"* | *"3n-alt"*)
+        *"2n-tx2" | *"3n-alt")
             default_nic="nic_intel-xl710"
             ;;
-        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
             default_nic="nic_amazon-nitro-50g"
             ;;
-        *"1n-c6gn"* | *"2n-c6gn"* | *"3n-c6gn"*)
+        *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
             default_nic="nic_amazon-nitro-100g"
             ;;
-        *"1n-c6in"* | *"2n-c6in"* | *"3n-c6in"*)
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             default_nic="nic_amazon-nitro-200g"
             ;;
         *)
@@ -1032,54 +1032,54 @@ function select_tags () {
     # Reasons for blacklisting:
     # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
     case "${TEST_CODE}" in
-        *"1n-vbox"*)
+        *"1n-vbox")
             test_tag_array+=("!avf")
             test_tag_array+=("!vhost")
             test_tag_array+=("!flow")
             ;;
-        *"1n_tx2"*)
+        *"1n-tx2")
             test_tag_array+=("!flow")
             ;;
-        *"2n-clx"*)
+        *"2n-clx")
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-icx"*)
+        *"2n-icx")
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-spr"*)
+        *"2n-spr")
             ;;
-        *"2n-tx2"*)
+        *"2n-tx2")
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-zn2"*)
+        *"2n-zn2")
             test_tag_array+=("!ipsechw")
             ;;
-        *"3n-alt"*)
+        *"3n-alt")
             test_tag_array+=("!ipsechw")
             ;;
-        *"3n-icx"*)
+        *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
-        *"3n-snr"*)
+        *"3n-snr")
             ;;
-        *"3n-icxd"*)
+        *"3n-icxd")
             ;;
-        *"3na-spr"*)
+        *"3na-spr")
             ;;
-        *"3nb-spr"*)
+        *"3nb-spr")
             ;;
-        *"3n-tsh"*)
+        *"3n-tsh")
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             ;;
-        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
             test_tag_array+=("!ipsechw")
             ;;
-        *"1n-c6gn"* | *"2n-c6gn"* | *"3n-c6gn"*)
+        *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
             test_tag_array+=("!ipsechw")
             ;;
-        *"1n-c6in"* | *"2n-c6in"* | *"3n-c6in"*)
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             test_tag_array+=("!ipsechw")
             ;;
     esac
@@ -1267,21 +1267,21 @@ function set_environment_variables () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
-        *"1n-c6gn"* | *"2n-c6gn"* | *"3n-c6gn"*)
+        *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
-        *"1n-c6in"* | *"2n-c6in"* | *"3n-c6in"*)
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
@@ -1331,15 +1331,15 @@ function untrap_and_unreserve_testbed () {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
         case "${TEST_CODE}" in
-            *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+            *"1n-aws" | *"2n-aws" | *"3n-aws")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"1n-c6gn"* | *"2n-c6gn"* | *"3n-c6gn"*)
+            *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"1n-c6in"* | *"2n-c6in"* | *"3n-c6in"*)
+            *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
