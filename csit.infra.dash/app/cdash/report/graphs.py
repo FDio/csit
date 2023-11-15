@@ -128,9 +128,18 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             y_tput_max = max(max(y_data), y_tput_max)
 
         nr_of_samples = len(y_data)
-        c_data = list()
-        for _, row in itm_data.iterrows():
-            c_data.append(f"{row['job']}/{row['build']}")
+
+        if itm["testtype"] == "mrr":
+            c_data = [
+                (
+                    f"{itm_data['job'].to_list()[0]}/",
+                    f"{itm_data['build'].to_list()[0]}"
+                ),
+            ] * nr_of_samples
+        else:
+            c_data = list()
+            for _, row in itm_data.iterrows():
+                c_data.append(f"{row['job']}/{row['build']}")
         tput_kwargs = dict(
             y=y_data,
             name=(
