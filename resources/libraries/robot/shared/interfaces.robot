@@ -360,6 +360,7 @@
 | | [Arguments] | ${dut} | ${pf}
 | |
 | | Set Interface State | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | down
+| | Set Rss Key | ${nodes}['${dut}'] | ${${dut}_pf${pf}}[0]
 | | VPP Set Interface MTU
 | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${recommended_mtu}
 
@@ -462,6 +463,7 @@
 | | [Arguments] | ${dut} | ${pf}
 | |
 | | Set Interface State | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | down
+| | Set Rss Key | ${nodes}['${dut}'] | ${${dut}_pf${pf}}[0]
 | | VPP Set Interface MTU
 | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${recommended_mtu}
 
