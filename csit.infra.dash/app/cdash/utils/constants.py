@@ -179,6 +179,7 @@ class Constants:
         "3n-aws": 1.000,
         "3n-dnv": 2.000,
         "3n-icx": 2.600,
+        "3n-icxd": 2.000,
         "3n-skx": 2.500,
         "3n-tsh": 2.200,
         "3n-snr": 2.200,
