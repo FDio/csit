@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f16b0a1_f49d6812",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-15T13:22:35Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-e810cqANDdrv_*AND1cAND9000bAND*geneve-1tun* !drv_af_xdp",
+      "revId": "a480f0a52a1b5a422008d0522a95b916506fb1a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
