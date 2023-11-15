@@ -14,6 +14,7 @@
 """Implementation of graphs for iterative data.
 """
 
+
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -129,17 +130,28 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
 
         nr_of_samples = len(y_data)
 
+        customdata = list()
+        metadata = {
+            "csit release": itm["rls"],
+            "dut": itm["dut"],
+            "dut version": itm["dutver"],
+            "infra": itm["phy"],
+            "test": (
+                f"{itm['area']}-{itm['framesize']}-{itm['core']}-"
+                f"{itm['test']}-{itm['testtype']}"
+            )
+        }
+
         if itm["testtype"] == "mrr":
-            c_data = [
-                (
-                    f"{itm_data['job'].to_list()[0]}/",
-                    f"{itm_data['build'].to_list()[0]}"
-                ),
-            ] * nr_of_samples
+            metadata["csit-ref"] = (
+                f"{itm_data['job'].to_list()[0]}/",
+                f"{itm_data['build'].to_list()[0]}"
+            )
+            customdata = [{"metadata": metadata}, ] * nr_of_samples
         else:
-            c_data = list()
             for _, row in itm_data.iterrows():
-                c_data.append(f"{row['job']}/{row['build']}")
+                metadata["csit-ref"] = f"{row['job']}/{row['build']}"
+                customdata.append({"metadata": deepcopy(metadata)})
         tput_kwargs = dict(
             y=y_data,
             name=(
@@ -152,7 +164,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             boxpoints="all",
             jitter=0.3,
             marker=dict(color=get_color(idx)),
-            customdata=c_data
+            customdata=customdata
         )
         tput_traces.append(go.Box(**tput_kwargs))
         show_tput = True
@@ -160,9 +172,15 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         if ttype == "pdr":
             customdata = list()
             for _, row in itm_data.iterrows():
-                customdata.append(
-                    get_hdrh_latencies(row, f"{row['job']}/{row['build']}")
+                hdrh = get_hdrh_latencies(
+                    row,
+                    f"{metadata['infra']}-{metadata['test']}"
                 )
+                metadata["csit-ref"] = f"{row['job']}/{row['build']}"
+                customdata.append({
+                    "metadata": deepcopy(metadata),
+                    "hdrh": hdrh
+                })
 
             y_lat_row = itm_data[C.VALUE_ITER["latency"]].to_list()
             y_lat = [(y / norm_factor) for y in y_lat_row]

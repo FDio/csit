@@ -14,6 +14,7 @@
 """Plotly Dash HTML layout override.
 """
 
+
 import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
@@ -1389,14 +1390,31 @@ class Layout:
                             "q1", "lower fence", "min", "outlier")
                 elif len(data) == 1:
                     if param == "lat":
-                        stats = ("Average Latency at 50% PDR", )
+                        stats = ("average latency at 50% PDR", )
                     else:
-                        stats = ("Throughput", )
+                        stats = ("throughput", )
                 else:
                     return list()
                 unit = " [us]" if param == "lat" else str()
                 return [(f"{stat}{unit}", f"{value['y']:,.0f}")
                         for stat, value in zip(stats, data)]
+
+            customdata = graph_data[0].get("customdata", dict())
+            datapoint = customdata.get("metadata", dict())
+            hdrh_data = customdata.get("hdrh", dict())
+
+            list_group_items = list()
+            for k, v in datapoint.items():
+                if k == "csit-ref":
+                    if len(graph_data) > 1:
+                        continue
+                    list_group_item = dbc.ListGroupItem([
+                        dbc.Badge(k),
+                        html.A(v, href=f"{C.URL_JENKINS}{v}", target="_blank")
+                    ])
+                else:
+                    list_group_item = dbc.ListGroupItem([dbc.Badge(k), v])
+                list_group_items.append(list_group_item)
 
             graph = list()
             if trigger.idx == "tput":
@@ -1404,17 +1422,11 @@ class Layout:
             elif trigger.idx == "lat":
                 title = "Latency"
                 if len(graph_data) == 1:
-                    hdrh_data = graph_data[0].get("customdata", None)
                     if hdrh_data:
-                        name = hdrh_data.pop("name")
                         graph = [dbc.Card(
                             class_name="gy-2 p-0",
                             children=[
-                                dbc.CardHeader(html.A(
-                                    name,
-                                    href=f"{C.URL_JENKINS}{name}",
-                                    target="_blank"
-                                )),
+                                dbc.CardHeader(hdrh_data.pop("name")),
                                 dbc.CardBody(dcc.Graph(
                                     id="hdrh-latency-graph",
                                     figure=graph_hdrh_latency(
@@ -1425,15 +1437,10 @@ class Layout:
                         ]
             else:
                 raise PreventUpdate
-            list_group_items = list()
+
             for k, v in _process_stats(graph_data, trigger.idx):
                 list_group_items.append(dbc.ListGroupItem([dbc.Badge(k), v]))
-            if trigger.idx == "tput" and len(list_group_items) == 1:
-                job = graph_data[0].get("customdata", "")
-                list_group_items.append(dbc.ListGroupItem([
-                    dbc.Badge("csit-ref"),
-                    html.A(job, href=f"{C.URL_JENKINS}{job}", target="_blank")
-                ]))
+
             metadata = [
                 dbc.Card(
                     class_name="gy-2 p-0",
