@@ -261,75 +261,75 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
     """
     for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
         tmp_filename = replace_defensively(
-            in_filename, u"ndrpdr", suite_type, 1,
-            u"File name should contain suite type once.", in_filename
+            in_filename, "ndrpdr", suite_type, 1,
+            "File name should contain suite type once.", in_filename
         )
         tmp_prolog = replace_defensively(
-            in_prolog, u"ndrpdr".upper(), suite_type.upper(), 1,
-            u"Suite type should appear once in uppercase (as tag).",
+            in_prolog, "ndrpdr".upper(), suite_type.upper(), 1,
+            "Suite type should appear once in uppercase (as tag).",
             in_filename
         )
         tmp_prolog = replace_defensively(
             tmp_prolog,
-            u"Find NDR and PDR intervals using optimized search",
+            "Find NDR and PDR intervals using optimized search",
             Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
-            u"Main search keyword should appear once in suite.",
+            "Main search keyword should appear once in suite.",
             in_filename
         )
         tmp_prolog = replace_defensively(
             tmp_prolog,
-            Constants.PERF_TYPE_TO_SUITE_DOC_VER[u"ndrpdr"],
+            Constants.PERF_TYPE_TO_SUITE_DOC_VER["ndrpdr"],
             Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
-            1, u"Exact suite type doc not found.", in_filename
+            1, "Exact suite type doc not found.", in_filename
         )
         tmp_prolog = replace_defensively(
             tmp_prolog,
-            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[u"ndrpdr"],
+            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER["ndrpdr"],
             Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
-            1, u"Exact template type doc not found.", in_filename
+            1, "Exact template type doc not found.", in_filename
         )
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
-        for nic_name in Constants.NIC_NAME_TO_CODE:
+        for nic_code in Constants.NIC_CODE_TO_NAME:
+            nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
-                tmp_filename, u"10ge2p1x710",
-                Constants.NIC_NAME_TO_CODE[nic_name], 1,
-                u"File name should contain NIC code once.", in_filename
+                tmp_filename, "10ge2p1x710", nic_code, 1,
+                "File name should contain NIC code once.", in_filename
             )
             tmp2_prolog = replace_defensively(
-                tmp_prolog, u"Intel-X710", nic_name, 2,
-                u"NIC name should appear twice (tag and variable).",
+                tmp_prolog, "Intel-X710", nic_name, 2,
+                "NIC name should appear twice (tag and variable).",
                 in_filename
             )
-            if tmp2_prolog.count(u"HW_") == 2:
+            if tmp2_prolog.count("HW_") == 2:
                 # TODO CSIT-1481: Crypto HW should be read
                 #      from topology file instead.
                 if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW:
                     tmp2_prolog = replace_defensively(
-                        tmp2_prolog, u"HW_DH895xcc",
+                        tmp2_prolog, "HW_DH895xcc",
                         Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                        u"HW crypto name should appear.", in_filename
+                        "HW crypto name should appear.", in_filename
                     )
             iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
                 tmp2_filename
             )
-            if u"DPDK" in in_prolog:
+            if "DPDK" in in_prolog:
                 for driver in Constants.DPDK_NIC_NAME_TO_DRIVER[nic_name]:
                     out_filename = replace_defensively(
                         tmp2_filename, old_suite_id,
                         Constants.DPDK_NIC_DRIVER_TO_SUITE_PREFIX[driver] \
                             + old_suite_id,
-                        1, u"Error adding driver prefix.", in_filename
+                        1, "Error adding driver prefix.", in_filename
                     )
                     out_prolog = replace_defensively(
-                        tmp2_prolog, u"vfio-pci", driver, 1,
-                        u"Driver name should appear once.", in_filename
+                        tmp2_prolog, "vfio-pci", driver, 1,
+                        "Driver name should appear once.", in_filename
                     )
                     out_prolog = replace_defensively(
                         out_prolog,
-                        Constants.DPDK_NIC_DRIVER_TO_TAG[u"vfio-pci"],
+                        Constants.DPDK_NIC_DRIVER_TO_TAG["vfio-pci"],
                         Constants.DPDK_NIC_DRIVER_TO_TAG[driver], 1,
-                        u"Driver tag should appear once.", in_filename
+                        "Driver tag should appear once.", in_filename
                     )
                     iface, suite_id, suite_tag = get_iface_and_suite_ids(
                         out_filename
@@ -344,37 +344,36 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     check_suite_tag(suite_tag, out_prolog)
                     # TODO: Reorder loops so suite_id is finalized sooner.
                     testcase = Testcase.default(suite_id)
-                    with open(out_filename, u"wt") as file_out:
+                    with open(out_filename, "wt") as file_out:
                         file_out.write(out_prolog)
                         add_default_testcases(
                             testcase, iface, suite_id, file_out, kwargs_list
                         )
                 continue
             for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
-                nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
                 out_filename = replace_defensively(
                     tmp2_filename, old_suite_id,
                     Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
-                    1, u"Error adding driver prefix.", in_filename
+                    1, "Error adding driver prefix.", in_filename
                 )
                 out_prolog = replace_defensively(
-                    tmp2_prolog, u"vfio-pci", driver, 1,
-                    u"Driver name should appear once.", in_filename
+                    tmp2_prolog, "vfio-pci", driver, 1,
+                    "Driver name should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
+                    out_prolog, Constants.NIC_DRIVER_TO_TAG["vfio-pci"],
                     Constants.NIC_DRIVER_TO_TAG[driver], 1,
-                    u"Driver tag should appear once.", in_filename
+                    "Driver tag should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS["vfio-pci"],
                     Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
-                    u"Driver plugin should appear once.", in_filename
+                    "Driver plugin should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
+                    out_prolog, Constants.NIC_DRIVER_TO_VFS["vfio-pci"],
                     Constants.NIC_DRIVER_TO_VFS[driver], 1,
-                    u"NIC VFs argument should appear once.", in_filename
+                    "NIC VFs argument should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
@@ -395,7 +394,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 check_suite_tag(suite_tag, out_prolog)
                 # TODO: Reorder loops so suite_id is finalized sooner.
                 testcase = Testcase.default(suite_id)
-                with open(out_filename, u"wt") as file_out:
+                with open(out_filename, "wt") as file_out:
                     file_out.write(out_prolog)
                     add_default_testcases(
                         testcase, iface, suite_id, file_out, kwargs_list
