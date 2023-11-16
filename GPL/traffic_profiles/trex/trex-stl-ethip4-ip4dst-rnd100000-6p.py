@@ -108,7 +108,7 @@ class TrafficStreams(TrafficStreamsScaleClass):
             self.pkt_vm.append(
                 STLScVmRaw(
                     [
-                        STLVmFlowVar(
+                        STLVmFlowVarRepeatableRandom(
                             name="dst",
                             min_value=self.pkt_data[i]["dst_start_ip"],
                             max_value=self.pkt_data[i]["dst_end_ip"],
