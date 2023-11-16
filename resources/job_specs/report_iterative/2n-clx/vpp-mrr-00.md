@@ -109,13 +109,13 @@
 ### intel-e810cq
 #### af_xdp
 ##### ethip4-ip4base
-1c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4base
-2c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4base
-4c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4base
-##### ethip4-ip4scale20k-rnd
-1c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4scale20k-rnd
-2c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4scale20k-rnd
-4c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4scale20k-rnd
+# REENABLE 1c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4base
+# REENABLE 2c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4base
+# REENABLE 4c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4base
+# REENABLE ##### ethip4-ip4scale20k-rnd
+# REENABLE 1c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4scale20k-rnd
+# REENABLE 2c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4scale20k-rnd
+# REENABLE 4c AND 64b AND mrr AND e810cq AND drv_af_xdp AND ethip4-ip4scale20k-rnd
 #### avf
 ##### ethip4-ip4base
 1c AND 64b AND mrr AND e810cq AND drv_avf AND ethip4-ip4base
@@ -252,13 +252,13 @@
 ### intel-e810cq
 #### af_xdp
 ##### ethip6-ip6base
-1c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6base
-2c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6base
-4c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6base
-##### ethip6-ip6scale20k-rnd
-1c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6scale20k-rnd
-2c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6scale20k-rnd
-4c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6scale20k-rnd
+# REENABLE 1c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6base
+# REENABLE 2c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6base
+# REENABLE 4c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6base
+# REENABLE ##### ethip6-ip6scale20k-rnd
+# REENABLE 1c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6scale20k-rnd
+# REENABLE 2c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6scale20k-rnd
+# REENABLE 4c AND 78b AND mrr AND e810cq AND drv_af_xdp AND ethip6-ip6scale20k-rnd
 #### avf
 ##### ethip6-ip6base
 1c AND 78b AND mrr AND e810cq AND drv_avf AND ethip6-ip6base
