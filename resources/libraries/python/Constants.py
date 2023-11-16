@@ -39,7 +39,7 @@ def get_str_from_env(env_var_names, default_value):
     :returns: The value read, or default value.
     :rtype: str
     """
-    prefixes = (u"FDIO_CSIT_", u"CSIT_", u"")
+    prefixes = ("FDIO_CSIT_", "CSIT_", "")
     if not isinstance(env_var_names, (list, tuple)):
         env_var_names = [env_var_names]
     for name in env_var_names:
@@ -62,7 +62,7 @@ def get_int_from_env(env_var_names, default_value):
     :returns: The value read, or default value.
     :rtype: int
     """
-    env_str = get_str_from_env(env_var_names, u"")
+    env_str = get_str_from_env(env_var_names, "")
     try:
         return int(env_str)
     except ValueError:
@@ -81,7 +81,7 @@ def get_float_from_env(env_var_names, default_value):
     :returns: The value read, or default value.
     :rtype: float
     """
-    env_str = get_str_from_env(env_var_names, u"")
+    env_str = get_str_from_env(env_var_names, "")
     try:
         return float(env_str)
     except ValueError:
@@ -98,8 +98,8 @@ def get_pessimistic_bool_from_env(env_var_names):
     :returns: The value read, or False.
     :rtype: bool
     """
-    env_str = get_str_from_env(env_var_names, u"").lower()
-    return bool(env_str in (u"true", u"yes", u"y", u"1"))
+    env_str = get_str_from_env(env_var_names, "").lower()
+    return bool(env_str in ("true", "yes", "y", "1"))
 
 
 def get_optimistic_bool_from_env(env_var_names):
@@ -112,54 +112,54 @@ def get_optimistic_bool_from_env(env_var_names):
     :returns: The value read, or True.
     :rtype: bool
     """
-    env_str = get_str_from_env(env_var_names, u"").lower()
-    return bool(env_str not in (u"false", u"no", u"n", u"0"))
+    env_str = get_str_from_env(env_var_names, "").lower()
+    return bool(env_str not in ("false", "no", "n", "0"))
 
 
 class Constants:
     """Constants used in CSIT."""
 
     # Version for CSIT data model. See docs/model/.
-    MODEL_VERSION = u"1.5.1"
+    MODEL_VERSION = "1.5.1"
 
     # Global off-switch in case JSON export is large or slow.
-    EXPORT_JSON = get_optimistic_bool_from_env(u"EXPORT_JSON")
+    EXPORT_JSON = get_optimistic_bool_from_env("EXPORT_JSON")
 
     # OpenVPP testing directory location at topology nodes
-    REMOTE_FW_DIR = u"/tmp/openvpp-testing"
+    REMOTE_FW_DIR = "/tmp/openvpp-testing"
 
     # shell scripts location
-    RESOURCES_LIB_SH = u"resources/libraries/bash"
+    RESOURCES_LIB_SH = "resources/libraries/bash"
 
     # python scripts location
-    RESOURCES_LIB_PY = u"resources/libraries/python"
+    RESOURCES_LIB_PY = "resources/libraries/python"
 
     # shell scripts location
-    RESOURCES_TOOLS = u"resources/tools"
+    RESOURCES_TOOLS = "resources/tools"
 
     # Python API provider location
-    RESOURCES_PAPI_PROVIDER = u"resources/tools/papi/vpp_papi_provider.py"
+    RESOURCES_PAPI_PROVIDER = "resources/tools/papi/vpp_papi_provider.py"
 
     # Templates location
-    RESOURCES_TPL = u"resources/templates"
+    RESOURCES_TPL = "resources/templates"
 
     # Kubernetes templates location
-    RESOURCES_TPL_K8S = u"resources/templates/kubernetes"
+    RESOURCES_TPL_K8S = "resources/templates/kubernetes"
 
     # Container templates location
-    RESOURCES_TPL_CONTAINER = u"resources/templates/container"
+    RESOURCES_TPL_CONTAINER = "resources/templates/container"
 
     # VPP Communications Library templates location
-    RESOURCES_TPL_VCL = u"resources/templates/vcl"
+    RESOURCES_TPL_VCL = "resources/templates/vcl"
 
     # VPP Communications Library templates location
-    RESOURCES_TPL_TELEMETRY = u"resources/templates/telemetry"
+    RESOURCES_TPL_TELEMETRY = "resources/templates/telemetry"
 
     # VPP Communications Library LD_PRELOAD library
-    VCL_LDPRELOAD_LIBRARY = u"/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
+    VCL_LDPRELOAD_LIBRARY = "/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
 
     # VPP service unit name
-    VPP_UNIT = u"vpp"
+    VPP_UNIT = "vpp"
 
     # Number of system CPU cores.
     CPU_CNT_SYSTEM = 1
@@ -168,28 +168,28 @@ class Constants:
     CPU_CNT_MAIN = 1
 
     # QEMU binary path
-    QEMU_BIN_PATH = u"/usr/bin"
+    QEMU_BIN_PATH = "/usr/bin"
 
     # QEMU VM kernel image path
-    QEMU_VM_KERNEL = u"/opt/boot/vmlinuz"
+    QEMU_VM_KERNEL = "/opt/boot/vmlinuz"
 
     # QEMU VM kernel initrd path
-    QEMU_VM_KERNEL_INITRD = u"/opt/boot/initrd.img"
+    QEMU_VM_KERNEL_INITRD = "/opt/boot/initrd.img"
 
     # QEMU VM nested image path
-    QEMU_VM_IMAGE = u"/var/lib/vm/image.iso"
+    QEMU_VM_IMAGE = "/var/lib/vm/image.iso"
 
     # QEMU VM DPDK path
-    QEMU_VM_DPDK = u"/opt/dpdk-23.07"
+    QEMU_VM_DPDK = "/opt/dpdk-23.07"
 
     # Docker container SUT image
-    DOCKER_SUT_IMAGE_UBUNTU = u"csit_sut-ubuntu2204:local"
+    DOCKER_SUT_IMAGE_UBUNTU = "csit_sut-ubuntu2204:local"
 
     # Docker container arm SUT image
-    DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu2204:local"
+    DOCKER_SUT_IMAGE_UBUNTU_ARM = "csit_sut-ubuntu2204:local"
 
     # TRex install directory.
-    TREX_INSTALL_DIR = u"/opt/trex-core-3.03"
+    TREX_INSTALL_DIR = "/opt/trex-core-3.03"
 
     # TRex pcap files directory.
     TREX_PCAP_DIR = f"{TREX_INSTALL_DIR}/scripts/avl"
@@ -230,59 +230,59 @@ class Constants:
     )
 
     # Graph node variant value
-    GRAPH_NODE_VARIANT = get_str_from_env(u"GRAPH_NODE_VARIANT", u"")
+    GRAPH_NODE_VARIANT = get_str_from_env("GRAPH_NODE_VARIANT", "")
 
     # Default memory page size in case multiple configured in system
-    DEFAULT_HUGEPAGE_SIZE = get_str_from_env(u"DEFAULT_HUGEPAGE_SIZE", u"2M")
+    DEFAULT_HUGEPAGE_SIZE = get_str_from_env("DEFAULT_HUGEPAGE_SIZE", "2M")
 
     # Sysctl kernel.core_pattern
-    KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
+    KERNEL_CORE_PATTERN = "/tmp/%p-%u-%g-%s-%t-%h-%e.core"
 
     # Core dump directory
-    CORE_DUMP_DIR = u"/tmp"
+    CORE_DUMP_DIR = "/tmp"
 
     # Perf stat events (comma separated).
     PERF_STAT_EVENTS = get_str_from_env(
-        u"PERF_STAT_EVENTS",
-        u"cpu-clock,context-switches,cpu-migrations,page-faults,"
-        u"cycles,instructions,branches,branch-misses,L1-icache-load-misses")
+        "PERF_STAT_EVENTS",
+        "cpu-clock,context-switches,cpu-migrations,page-faults,"
+        "cycles,instructions,branches,branch-misses,L1-icache-load-misses")
 
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
 
     # Default path to VPP API socket.
-    SOCKSVR_PATH = u"/run/vpp/api.sock"
+    SOCKSVR_PATH = "/run/vpp/api.sock"
 
     # Default path to VPP CLI socket.
-    SOCKCLI_PATH = u"/run/vpp/cli.sock"
+    SOCKCLI_PATH = "/run/vpp/cli.sock"
 
     # Default path to VPP API Stats socket.
-    SOCKSTAT_PATH = u"/run/vpp/stats.sock"
+    SOCKSTAT_PATH = "/run/vpp/stats.sock"
 
     # This MTU value is used to force VPP to fragment 1518B packet into two.
     MTU_FOR_FRAGMENTATION = 1043
 
     # Number of trials to execute in MRR test.
-    PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
+    PERF_TRIAL_MULTIPLICITY = get_int_from_env("PERF_TRIAL_MULTIPLICITY", 10)
 
     # Duration [s] of one trial in MRR test.
-    PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
+    PERF_TRIAL_DURATION = get_float_from_env("PERF_TRIAL_DURATION", 1.0)
 
     # Whether to use latency streams in main search trials.
-    PERF_USE_LATENCY = get_pessimistic_bool_from_env(u"PERF_USE_LATENCY")
+    PERF_USE_LATENCY = get_pessimistic_bool_from_env("PERF_USE_LATENCY")
 
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
-        u"PERF_TRIAL_LATENCY_DURATION", 5.0)
+        "PERF_TRIAL_LATENCY_DURATION", 5.0)
 
     # For some testbeds TG takes longer than usual to start sending traffic.
     # This constant [s] allows longer wait, without affecting
     # the approximate duration. For example, use 0.098 for AWS.
-    PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0.0)
+    PERF_TRIAL_STL_DELAY = get_float_from_env("PERF_TRIAL_STL_DELAY", 0.0)
 
     # ASTF usually needs a different value for the delay.
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
-        u"PERF_TRIAL_ASTF_DELAY", 0.112
+        "PERF_TRIAL_ASTF_DELAY", 0.112
     )
 
     # Number of data frames in TPUT transaction, used both by TCP and UDP.
@@ -291,65 +291,65 @@ class Constants:
     # it means we can send only 5 full data frames in a burst.
     # https://github.com/cisco-system-traffic-generator/
     # trex-core/blob/v2.88/src/44bsd/tcp_var.h#L896-L903
-    ASTF_N_DATA_FRAMES = get_int_from_env(u"ASTF_N_DATA_FRAMES", 5)
+    ASTF_N_DATA_FRAMES = get_int_from_env("ASTF_N_DATA_FRAMES", 5)
 
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
-    EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
+    EXTENDED_DEBUG = get_pessimistic_bool_from_env("EXTENDED_DEBUG")
 
     # UUID string of DUT1 /tmp volume created outside of the
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
     #  /tmp directory is inside the DUT1 docker.
-    DUT1_UUID = get_str_from_env(u"DUT1_UUID", u"")
+    DUT1_UUID = get_str_from_env("DUT1_UUID", "")
 
     # Global "kill switch" for CRC checking during runtime.
     FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        u"FAIL_ON_CRC_MISMATCH"
+        "FAIL_ON_CRC_MISMATCH"
     )
 
     # Default IP4 prefix length (if not defined in topology file)
-    DEFAULT_IP4_PREFIX_LENGTH = u"24"
+    DEFAULT_IP4_PREFIX_LENGTH = "24"
 
     # Maximum number of interfaces in a data path
     DATAPATH_INTERFACES_MAX = 100
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
-        u"Intel-X520-DA2": 10000000000,
-        u"Intel-X710": 10000000000,
-        u"Intel-XL710": 24500000000,
-        u"Intel-XXV710": 24500000000,
-        u"Intel-E810XXV": 24500000000,
-        u"Intel-E822CQ": 24500000000,
-        u"Intel-E823C": 24500000000,
-        u"Intel-E810CQ": 100000000000,
-        u"Mellanox-CX556A": 100000000000,
-        u"Mellanox-CX6DX": 100000000000,
-        u"Mellanox-CX7VEAT": 200000000000,
-        u"Amazon-Nitro-50G": 10000000000,
-        u"Amazon-Nitro-100G": 10000000000,
-        u"Amazon-Nitro-200G": 16000000000,
-        u"virtual": 100000000,
+        "Intel-X520-DA2": 10000000000,
+        "Intel-X710": 10000000000,
+        "Intel-XL710": 24500000000,
+        "Intel-XXV710": 24500000000,
+        "Intel-E810XXV": 24500000000,
+        "Intel-E822CQ": 24500000000,
+        "Intel-E823C": 24500000000,
+        "Intel-E810CQ": 100000000000,
+        "Mellanox-CX556A": 100000000000,
+        "Mellanox-CX6DX": 100000000000,
+        "Mellanox-CX7VEAT": 200000000000,
+        "Amazon-Nitro-50G": 10000000000,
+        "Amazon-Nitro-100G": 10000000000,
+        "Amazon-Nitro-200G": 16000000000,
+        "virtual": 100000000,
     }
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
-        u"Intel-X520-DA2": 14880952,
-        u"Intel-X710": 14880952,
-        u"Intel-XL710": 18750000,
-        u"Intel-XXV710": 18750000,
-        u"Intel-E810XXV": 29000000,
-        u"Intel-E822CQ": 29000000,
-        u"Intel-E823C": 29000000,
-        u"Intel-E810CQ": 58500000,
-        u"Mellanox-CX556A": 148809523,
-        u"Mellanox-CX6DX": 148809523,
-        u"Mellanox-CX7VEAT": 297619046,
-        u"Amazon-Nitro-50G": 1500000,
-        u"Amazon-Nitro-100G": 3000000,
-        u"Amazon-Nitro-200G": 6000000,
-        u"virtual": 14880952,
+        "Intel-X520-DA2": 14880952,
+        "Intel-X710": 14880952,
+        "Intel-XL710": 18750000,
+        "Intel-XXV710": 18750000,
+        "Intel-E810XXV": 29000000,
+        "Intel-E822CQ": 29000000,
+        "Intel-E823C": 29000000,
+        "Intel-E810CQ": 58500000,
+        "Mellanox-CX556A": 148809523,
+        "Mellanox-CX6DX": 148809523,
+        "Mellanox-CX7VEAT": 297619046,
+        "Amazon-Nitro-50G": 1500000,
+        "Amazon-Nitro-100G": 3000000,
+        "Amazon-Nitro-200G": 6000000,
+        "virtual": 14880952,
     }
 
     # Suite file names use codes for NICs.
@@ -371,6 +371,24 @@ class Constants:
         "Mellanox-CX7VEAT": "200ge6p3cx7veat",
         "virtual": "1ge1p82540em",
     }
+    NIC_CODE_TO_NAME = {
+        "10ge2p1x520": "Intel-X520-DA2",
+        "10ge2p1x710": "Intel-X710",
+        "40ge2p1xl710": "Intel-XL710",
+        "25ge2p1xxv710": "Intel-XXV710",
+        "25ge2p1e810xxv": "Intel-E810XXV",
+        "25ge2p1e822cq": "Intel-E822CQ",
+        "25ge2p1e823c": "Intel-E823C",
+        "100ge2p1e810cq": "Intel-E810CQ",
+        "50ge1p1ena": "Amazon-Nitro-50G",
+        "100ge1p1ena": "Amazon-Nitro-100G",
+        "200ge1p1ena": "Amazon-Nitro-200G",
+        "100ge2p1cx556a": "Mellanox-CX556A",
+        "100ge2p1cx6dx": "Mellanox-CX6DX",
+        "200ge2p1cx7veat": "Mellanox-CX7VEAT",
+        "200ge6p3cx7veat": "Mellanox-CX7VEAT",
+        "1ge1p82540em": "virtual",
+    }
 
     # Shortened lowercase NIC model name, useful for presentation.
     NIC_CODE_TO_SHORT_NAME = {
@@ -390,62 +408,61 @@ class Constants:
         "200ge2p1cx7veat": "cx7veat",
         "200ge6p3cx7veat": "cx7veat",
         "1ge1p82540em": "8250em",
-
     }
 
     # Not each driver is supported by each NIC.
     NIC_NAME_TO_DRIVER = {
-        u"Intel-X520-DA2": [u"vfio-pci", u"af_xdp"],
-        u"Intel-X710": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Intel-XL710": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Intel-XXV710": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Intel-E810XXV": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Intel-E822CQ": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Intel-E823C": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Intel-E810CQ": [u"vfio-pci", u"avf", u"af_xdp"],
-        u"Amazon-Nitro-50G": [u"vfio-pci"],
-        u"Amazon-Nitro-100G": [u"vfio-pci"],
-        u"Amazon-Nitro-200G": [u"vfio-pci"],
-        u"Mellanox-CX556A": [u"rdma-core", u"mlx5_core", u"af_xdp"],
-        u"Mellanox-CX6DX": [u"rdma-core", u"mlx5_core", u"af_xdp"],
-        u"Mellanox-CX7VEAT": [u"rdma-core", u"mlx5_core", u"af_xdp"],
+        "Intel-X520-DA2": ["vfio-pci", "af_xdp"],
+        "Intel-X710": ["vfio-pci", "avf", "af_xdp"],
+        "Intel-XL710": ["vfio-pci", "avf", "af_xdp"],
+        "Intel-XXV710": ["vfio-pci", "avf", "af_xdp"],
+        "Intel-E810XXV": ["vfio-pci", "avf", "af_xdp"],
+        "Intel-E822CQ": ["vfio-pci", "avf", "af_xdp"],
+        "Intel-E823C": ["vfio-pci", "avf", "af_xdp"],
+        "Intel-E810CQ": ["vfio-pci", "avf", "af_xdp"],
+        "Amazon-Nitro-50G": ["vfio-pci"],
+        "Amazon-Nitro-100G": ["vfio-pci"],
+        "Amazon-Nitro-200G": ["vfio-pci"],
+        "Mellanox-CX556A": ["rdma-core", "mlx5_core", "af_xdp"],
+        "Mellanox-CX6DX": ["rdma-core", "mlx5_core", "af_xdp"],
+        "Mellanox-CX7VEAT": ["rdma-core", "mlx5_core", "af_xdp"],
         "virtual": ["vfio-pci"],
     }
 
     # Each driver needs different plugin to work.
     NIC_DRIVER_TO_PLUGINS = {
-        u"vfio-pci": u"dpdk_plugin.so",
-        u"avf": u"avf_plugin.so",
-        u"rdma-core": u"rdma_plugin.so",
-        u"mlx5_core": u"dpdk_plugin.so",
-        u"af_xdp": u"af_xdp_plugin.so",
+        "vfio-pci": "dpdk_plugin.so",
+        "avf": "avf_plugin.so",
+        "rdma-core": "rdma_plugin.so",
+        "mlx5_core": "dpdk_plugin.so",
+        "af_xdp": "af_xdp_plugin.so",
     }
 
     # Tags to differentiate tests for different NIC driver.
     NIC_DRIVER_TO_TAG = {
-        u"vfio-pci": u"DRV_VFIO_PCI",
-        u"avf": u"DRV_AVF",
-        u"rdma-core": u"DRV_RDMA_CORE",
-        u"mlx5_core": u"DRV_MLX5_CORE",
-        u"af_xdp": u"DRV_AF_XDP",
+        "vfio-pci": "DRV_VFIO_PCI",
+        "avf": "DRV_AVF",
+        "rdma-core": "DRV_RDMA_CORE",
+        "mlx5_core": "DRV_MLX5_CORE",
+        "af_xdp": "DRV_AF_XDP",
     }
 
     # Suite names have to be different, add prefix.
     NIC_DRIVER_TO_SUITE_PREFIX = {
-        u"vfio-pci": u"",
-        u"avf": u"avf-",
-        u"rdma-core": u"rdma-",
-        u"mlx5_core": u"mlx5-",
-        u"af_xdp": u"af-xdp-",
+        "vfio-pci": "",
+        "avf": "avf-",
+        "rdma-core": "rdma-",
+        "mlx5_core": "mlx5-",
+        "af_xdp": "af-xdp-",
     }
 
     # Number of virtual functions of physical nic.
     NIC_DRIVER_TO_VFS = {
-        u"vfio-pci": u"nic_vfs}= | 0",
-        u"avf": u"nic_vfs}= | 1",
-        u"rdma-core": u"nic_vfs}= | 0",
-        u"mlx5_core": u"nic_vfs}= | 0",
-        u"af_xdp": u"nic_vfs}= | 0",
+        "vfio-pci": "nic_vfs}= | 0",
+        "avf": "nic_vfs}= | 1",
+        "rdma-core": "nic_vfs}= | 0",
+        "mlx5_core": "nic_vfs}= | 0",
+        "af_xdp": "nic_vfs}= | 0",
     }
 
     # Number of physical interfaces of physical nic.
@@ -470,33 +487,33 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     DPDK_NIC_NAME_TO_DRIVER = {
-        u"Intel-X520-DA2": [u"vfio-pci"],
-        u"Intel-X710": [u"vfio-pci"],
-        u"Intel-XL710": [u"vfio-pci"],
-        u"Intel-XXV710": [u"vfio-pci"],
-        u"Intel-E810XXV": [u"vfio-pci"],
-        u"Intel-E822CQ": [u"vfio-pci"],
-        u"Intel-E823C": [u"vfio-pci"],
-        u"Intel-E810CQ": [u"vfio-pci"],
-        u"Amazon-Nitro-50G": [u"vfio-pci"],
-        u"Amazon-Nitro-100G": [u"vfio-pci"],
-        u"Amazon-Nitro-200G": [u"vfio-pci"],
-        u"Mellanox-CX556A": [u"mlx5_core"],
-        u"Mellanox-CX6DX": [u"mlx5_core"],
-        u"Mellanox-CX7VEAT": [u"mlx5_core"],
+        "Intel-X520-DA2": ["vfio-pci"],
+        "Intel-X710": ["vfio-pci"],
+        "Intel-XL710": ["vfio-pci"],
+        "Intel-XXV710": ["vfio-pci"],
+        "Intel-E810XXV": ["vfio-pci"],
+        "Intel-E822CQ": ["vfio-pci"],
+        "Intel-E823C": ["vfio-pci"],
+        "Intel-E810CQ": ["vfio-pci"],
+        "Amazon-Nitro-50G": ["vfio-pci"],
+        "Amazon-Nitro-100G": ["vfio-pci"],
+        "Amazon-Nitro-200G": ["vfio-pci"],
+        "Mellanox-CX556A": ["mlx5_core"],
+        "Mellanox-CX6DX": ["mlx5_core"],
+        "Mellanox-CX7VEAT": ["mlx5_core"],
         "virtual": ["vfio-pci"],
     }
 
     # Tags to differentiate tests for different NIC driver.
     DPDK_NIC_DRIVER_TO_TAG = {
-        u"vfio-pci": u"DRV_VFIO_PCI",
-        u"mlx5_core": u"DRV_MLX5_CORE",
+        "vfio-pci": "DRV_VFIO_PCI",
+        "mlx5_core": "DRV_MLX5_CORE",
     }
 
     # Suite names have to be different, add prefix.
     DPDK_NIC_DRIVER_TO_SUITE_PREFIX = {
-        u"vfio-pci": u"",
-        u"mlx5_core": u"mlx5-",
+        "vfio-pci": "",
+        "mlx5_core": "mlx5-",
     }
 
     # Some identifiers constructed from suite names
@@ -512,33 +529,33 @@ class Constants:
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
-        u"Intel-E810CQ": u"HW_4xxx",
-        u"Intel-E822CQ": u"HW_C4xxx",
-        u"Intel-E823C": u"HW_C4xxx",
-        u"Intel-X710": u"HW_DH895xcc",
-        u"Intel-XL710": u"HW_DH895xcc",
+        "Intel-E810CQ": "HW_4xxx",
+        "Intel-E822CQ": "HW_C4xxx",
+        "Intel-E823C": "HW_C4xxx",
+        "Intel-X710": "HW_DH895xcc",
+        "Intel-XL710": "HW_DH895xcc",
     }
 
     DEVICE_TYPE_TO_KEYWORD = {
-        u"scapy": None
+        "scapy": None
     }
 
     PERF_TYPE_TO_KEYWORD = {
-        u"mrr": u"Traffic should pass with maximum rate",
-        u"ndrpdr": u"Find NDR and PDR intervals using optimized search",
-        u"soak": u"Find critical load using PLRsearch",
+        "mrr": "Traffic should pass with maximum rate",
+        "ndrpdr": "Find NDR and PDR intervals using optimized search",
+        "soak": "Find critical load using PLRsearch",
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {
-        u"mrr": u'''fication:** In MaxReceivedRate tests TG sends traffic at \\
+        "mrr": u'''fication:** In MaxReceivedRate tests TG sends traffic at \\
 | ... | line rate and reports total received packets over trial period. \\''',
-        u"ndrpdr": u'''rification:** TG finds and reports throughput NDR (Non \\
+        "ndrpdr": u'''rification:** TG finds and reports throughput NDR (Non \\
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \\
 | ... | (Partial Drop Rate) with non-zero packet loss tolerance (LT) \\
 | ... | expressed in percentage of packets transmitted. NDR and PDR are \\
 | ... | discovered for different Ethernet L2 frame sizes using MLRsearch \\
 | ... | library.''',
-        u"soak": u'''rification:** TG sends traffic at dynamically computed \\
+        "soak": u'''rification:** TG sends traffic at dynamically computed \\
 | ... | rate as PLRsearch algorithm gathers data and improves its estimate \\
 | ... | of a rate at which a prescribed small fraction of packets \\
 | ... | would be lost. After set time, the serarch stops \\
@@ -546,8 +563,8 @@ class Constants:
     }
 
     PERF_TYPE_TO_TEMPLATE_DOC_VER = {
-        u"mrr": u'''Measure MaxReceivedRate for ${frame_size}B frames \\
+        "mrr": u'''Measure MaxReceivedRate for ${frame_size}B frames \\
 | | ... | using burst trials throughput test. \\''',
-        u"ndrpdr": u"Measure NDR and PDR values using MLRsearch algorithm.",
-        u"soak": u"Estimate critical rate using PLRsearch algorithm. \\",
+        "ndrpdr": "Measure NDR and PDR values using MLRsearch algorithm.",
+        "soak": "Estimate critical rate using PLRsearch algorithm. \\",
     }
