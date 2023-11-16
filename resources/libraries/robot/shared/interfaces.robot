@@ -359,9 +359,11 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | Set Interface State | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | down
-| | VPP Set Interface MTU
-| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${recommended_mtu}
+| | ${node} = | Set Variable | ${nodes}[${dut}]
+| | ${interface} = | Set Variable | ${${dut}_pf${pf}}[0]
+| | Set Interface State | ${node} | ${interface} | down
+| | VPP Set Rss Key | ${node} | ${interface}
+| | VPP Set Interface MTU | ${node} | ${interface} | mtu=${recommended_mtu}
 
 | Initialize layer avf on node
 | | [Documentation]
@@ -461,9 +463,11 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | Set Interface State | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | down
-| | VPP Set Interface MTU
-| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | mtu=${recommended_mtu}
+| | ${node} = | Set Variable | ${nodes}[${dut}]
+| | ${interface} = | Set Variable | ${${dut}_pf${pf}}[0]
+| | Set Interface State | ${node} | ${interface} | down
+| | VPP Set Rss Key | ${node} | ${interface}
+| | VPP Set Interface MTU | ${node} | ${interface} | mtu=${recommended_mtu}
 
 | Initialize layer interface
 | | [Documentation]
