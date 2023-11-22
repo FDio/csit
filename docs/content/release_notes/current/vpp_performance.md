@@ -34,10 +34,13 @@ but was not detected/recognized/reported enough back then.
   2   | [CSIT-1936](https://jira.fd.io/browse/CSIT-1936) | TRex occasionally sees link down in L2 perf tests.
   3   | [CSIT-1937](https://jira.fd.io/browse/CSIT-1937) | Small but frequent loss in ASTF UDP on cx7 mlx5.
   4   | [CSIT-1938](https://jira.fd.io/browse/CSIT-1938) | 3n-alt: High scale ipsec policy tests may crash VPP.
-  5   | [CSIT-1939](https://jira.fd.io/browse/CSIT-1939) | 3na-spr: Ip4tcp ldpreload tests are failing.
+  5   | [CSIT-1939](https://jira.fd.io/browse/CSIT-1939) | 3na-spr, 2n-zn2: VPP fails to start in first test cases.
   6   | [CSIT-1940](https://jira.fd.io/browse/CSIT-1940) | Hardware acceleration does not work yet.
   7   | [CSIT-1941](https://jira.fd.io/browse/CSIT-1941) | TRex may wrongly detect link bandwidth.
-  7   | [CSIT-1942](https://jira.fd.io/browse/CSIT-1942) | 3nb-spr hoststack: Interface not up after first test.
+  8   | [CSIT-1942](https://jira.fd.io/browse/CSIT-1942) | 3nb-spr hoststack: Interface not up after first test.
+  9   | [CSIT-1943](https://jira.fd.io/browse/CSIT-1943) | IMIX 4c tests may fail PDR due to ~10% loss.
+ 10   | [VPP-2087](https://jira.fd.io/browse/VPP-2087)   | VPP crash and other symptoms in tests with AVF, jumbo packets.
+ 11   | [VPP-2088](https://jira.fd.io/browse/VPP-2088)   | virtio: Bad CLI argument parsing introduced with tx-queue-size.
 
 ## Previous
 
@@ -50,25 +53,23 @@ Issues reported in previous releases which still affect the current results.
   3   | [CSIT-1795](https://jira.fd.io/browse/CSIT-1795) | Ocassionally not all DET44 sessions have been established: 4128767 != 4128768
   4   | [CSIT-1802](https://jira.fd.io/browse/CSIT-1802) | All testbeds: AF-XDP - NDR tests failing from time to time on small loss.
   5   | [CSIT-1804](https://jira.fd.io/browse/CSIT-1804) | 3n-tsh: NDR fails on ierrors.
-  6   | [CSIT-1808](https://jira.fd.io/browse/CSIT-1808) | All tests with 9000B payload frames not forwarded over memif interfaces.
-  7   | [CSIT-1849](https://jira.fd.io/browse/CSIT-1849) | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.
-  8   | [CSIT-1881](https://jira.fd.io/browse/CSIT-1881) | 2n-icx: NFV density tests ocassionally breaks VPP which fails to start.
-  9   | [CSIT-1883](https://jira.fd.io/browse/CSIT-1883) | 3n-snr: All hwasync wireguard tests failing when trying to verify device.
- 10   | [CSIT-1885](https://jira.fd.io/browse/CSIT-1885) | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.
- 11   | [CSIT-1886](https://jira.fd.io/browse/CSIT-1886) | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.
- 12   | [CSIT-1892](https://jira.fd.io/browse/CSIT-1892) | 3n-alt: Unexpected two-band structure of ipsec and vxlan.
- 13   | [CSIT-1896](https://jira.fd.io/browse/CSIT-1896) | Depending on topology, l3fwd avoids dut-dut link.
- 14   | [CSIT-1901](https://jira.fd.io/browse/CSIT-1901) | 3n-icx: Negative ipackets on TB38 AVF 4c l2patch.
- 15   | [CSIT-1904](https://jira.fd.io/browse/CSIT-1904) | DPDK 23.03 testpmd startup fails on some testbeds.
- 16   | [CSIT-1906](https://jira.fd.io/browse/CSIT-1906) | Zero traffic with cx7 rdma. Testing migrated to mlx5-core on ann Mellanox NICs.
- 17   | [VPP-2077](https://jira.fd.io/browse/VPP-2077)   | IP fragmentation: running_fragment_id is not thread safe. Causes reduced performance and failures in gtpu reassembly tests.
- 18   | [CSIT-1914](https://jira.fd.io/browse/CSIT-1914) | TRex does not produce latency data on ICE NICs.
- 19   | [CSIT-1915](https://jira.fd.io/browse/CSIT-1915) | The 2n-icx testbeds to not have the same performance.
- 20   | [CSIT-1916](https://jira.fd.io/browse/CSIT-1916) | Poor CPU scaling on 2n-zn2 RDMA.
- 21   | [CSIT-1917](https://jira.fd.io/browse/CSIT-1917) | TRex STL performance is unstable at high pps due to unsent packets.
- 22   | [CSIT-1921](https://jira.fd.io/browse/CSIT-1921) | Two-band structure in SRv6, causes PDR failure in rare cases.
- 23   | [CSIT-1922](https://jira.fd.io/browse/CSIT-1922) | 2n-tx2: AF_XDP MRR failures. On other testbeds MRR regressions and PDR failures.
- 24   | [CSIT-1924](https://jira.fd.io/browse/CSIT-1924) | An l3fwd error in 200Ge2P1Cx7Veat-Mlx5 test with 9000B.
+  6   | [CSIT-1849](https://jira.fd.io/browse/CSIT-1849) | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.
+  7   | [CSIT-1881](https://jira.fd.io/browse/CSIT-1881) | 2n-icx: NFV density tests ocassionally breaks VPP which fails to start.
+  8   | [CSIT-1883](https://jira.fd.io/browse/CSIT-1883) | 3n-snr: All hwasync wireguard tests failing when trying to verify device.
+  9   | [CSIT-1886](https://jira.fd.io/browse/CSIT-1886) | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.
+ 10   | [CSIT-1892](https://jira.fd.io/browse/CSIT-1892) | 3n-alt: Unexpected two-band structure of ipsec and vxlan.
+ 11   | [CSIT-1896](https://jira.fd.io/browse/CSIT-1896) | Depending on topology, l3fwd avoids dut-dut link.
+ 12   | [CSIT-1901](https://jira.fd.io/browse/CSIT-1901) | 3n-icx: Negative ipackets on TB38 AVF 4c l2patch.
+ 13   | [CSIT-1904](https://jira.fd.io/browse/CSIT-1904) | DPDK 23.03 testpmd startup fails on some testbeds.
+ 14   | [CSIT-1906](https://jira.fd.io/browse/CSIT-1906) | Zero traffic with cx7 rdma. Testing migrated to mlx5-core on ann Mellanox NICs.
+ 15   | [VPP-2077](https://jira.fd.io/browse/VPP-2077)   | IP fragmentation: running_fragment_id is not thread safe. Causes reduced performance and failures in gtpu reassembly tests.
+ 16   | [CSIT-1914](https://jira.fd.io/browse/CSIT-1914) | TRex does not produce latency data on ICE NICs.
+ 17   | [CSIT-1915](https://jira.fd.io/browse/CSIT-1915) | The 2n-icx testbeds to not have the same performance.
+ 18   | [CSIT-1916](https://jira.fd.io/browse/CSIT-1916) | Poor CPU scaling on 2n-zn2 RDMA.
+ 19   | [CSIT-1917](https://jira.fd.io/browse/CSIT-1917) | TRex STL performance is unstable at high pps due to unsent packets.
+ 20   | [CSIT-1921](https://jira.fd.io/browse/CSIT-1921) | Two-band structure in SRv6, causes PDR failure in rare cases.
+ 21   | [CSIT-1922](https://jira.fd.io/browse/CSIT-1922) | 2n-tx2: AF_XDP MRR failures. On other testbeds MRR regressions and PDR failures.
+ 22   | [CSIT-1924](https://jira.fd.io/browse/CSIT-1924) | An l3fwd error in 200Ge2P1Cx7Veat-Mlx5 test with 9000B.
 
 ## Fixed
 
