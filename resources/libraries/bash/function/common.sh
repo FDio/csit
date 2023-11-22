@@ -456,10 +456,6 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="aws"
             ;;
-        *"1n-c6gn")
-            NODENESS="1n"
-            FLAVOR="c6gn"
-            ;;
         *"2n-c6gn")
             NODENESS="2n"
             FLAVOR="c6gn"
@@ -467,6 +463,14 @@ function get_test_code () {
         *"3n-c6gn")
             NODENESS="3n"
             FLAVOR="c6gn"
+            ;;
+        *"2n-c7gn")
+            NODENESS="2n"
+            FLAVOR="c7gn"
+            ;;
+        *"3n-c7gn")
+            NODENESS="3n"
+            FLAVOR="c7gn"
             ;;
         *"1n-c6in")
             NODENESS="1n"
@@ -676,9 +680,18 @@ function prepare_topology () {
             }
             terraform_apply || die "Failed to call terraform apply."
             ;;
-        "1n_c6gn" | "2n_c6gn" | "3n_c6gn")
+        "2n_c6gn" | "3n_c6gn")
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c6gn"
+            terraform_init || die "Failed to call terraform init."
+            trap "terraform_destroy" ERR EXIT || {
+                die "Trap attempt failed, please cleanup manually. Aborting!"
+            }
+            terraform_apply || die "Failed to call terraform apply."
+            ;;
+        "2n_c7gn" | "3n_c7gn")
+            export TF_VAR_testbed_name="${TEST_CODE}"
+            TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c7gn"
             terraform_init || die "Failed to call terraform init."
             trap "terraform_destroy" ERR EXIT || {
                 die "Trap attempt failed, please cleanup manually. Aborting!"
@@ -867,7 +880,7 @@ function select_tags () {
 
     # NIC SELECTION
     case "${TEST_CODE}" in
-        *"1n-aws"* | *"1n-c6gn"* | *"1n-c6in"*)
+        *"1n-aws"* | *"1n-c6in"*)
             start_pattern='^  SUT:'
             ;;
         *)
@@ -920,7 +933,10 @@ function select_tags () {
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             default_nic="nic_amazon-nitro-50g"
             ;;
-        *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
+        *"2n-c6gn" | *"3n-c6gn")
+            default_nic="nic_amazon-nitro-100g"
+            ;;
+        *"2n-c7gn" | *"3n-c7gn")
             default_nic="nic_amazon-nitro-100g"
             ;;
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
@@ -1076,7 +1092,10 @@ function select_tags () {
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             test_tag_array+=("!ipsechw")
             ;;
-        *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
+        *"2n-c6gn" | *"3n-c6gn")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-c7gn" | *"3n-c7gn")
             test_tag_array+=("!ipsechw")
             ;;
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
@@ -1146,10 +1165,6 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
             ;;
-        "1n_c6gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6gn*.yaml )
-            TOPOLOGIES_TAGS="1_node_single_link_topo"
-            ;;
         "1n_c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6in*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
@@ -1168,6 +1183,10 @@ function select_topology () {
             ;;
         "2n_c6gn")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6gn*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_c7gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c7gn*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "2n_c6in")
@@ -1204,6 +1223,10 @@ function select_topology () {
             ;;
         "3n_c6gn")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6gn*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_c7gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c7gn*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_c6in")
@@ -1267,7 +1290,14 @@ function set_environment_variables () {
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
-        *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
+        *"2n-c6gn" | *"3n-c6gn")
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export TREX_CORE_COUNT=6
+            # Settings to prevent duration stretching.
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+        *"2n-c7gn" | *"3n-c7gn")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
@@ -1328,7 +1358,11 @@ function untrap_and_unreserve_testbed () {
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"1n-c6gn" | *"2n-c6gn" | *"3n-c6gn")
+            *"2n-c6gn" | *"3n-c6gn")
+                TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
+                terraform_destroy || die "Failed to call terraform destroy."
+                ;;
+            *"2n-c7gn" | *"3n-c7gn")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;

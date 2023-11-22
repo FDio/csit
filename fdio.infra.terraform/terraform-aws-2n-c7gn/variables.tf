@@ -11,7 +11,7 @@ variable "region" {
 variable "resource_prefix" {
   description = "Resources name prefix."
   type        = string
-  default     = "csit-2n-c6gn"
+  default     = "csit-2n-c7gn"
 }
 
 variable "testbed_name" {
@@ -104,7 +104,7 @@ variable "sut1_instance_initiated_shutdown_behavior" {
 variable "sut1_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c6gn.4xlarge"
+  default     = "c7gn.4xlarge"
 }
 
 variable "sut1_private_ip" {
