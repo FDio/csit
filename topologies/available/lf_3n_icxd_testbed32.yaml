@@ -90,7 +90,7 @@ nodes:
         model: Intel-E823C
       port2:
         # s35-t32-sut2-c1/p2 - 25GE port2 Intel E823-C 4p25GE.
-        mac_address: "3c:ec:ef:d9:e2:aa"
+        mac_address: "3c:ec:ef:d9:e2:ab"
         pci_address: "0000:89:00.2"
         ip4_address: "172.16.30.2"
         driver: ice
