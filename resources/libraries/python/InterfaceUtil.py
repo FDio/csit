@@ -506,6 +506,39 @@ class InterfaceUtil:
         return if_data.get(u"interface_name")
 
     @staticmethod
+    def vpp_set_rss_key(node_dict, interface):
+        """FIXME
+
+        :param node: VPP node.
+        :param interface: Interface to set RSS key on. Can be sw_if_index.
+        :param mtu: Ethernet MTU size in Bytes.
+        :type node: dict
+        :type interface: str or int
+        :type mtu: int
+        """
+        if isinstance(interface, str):
+            sw_if_index = Topology.get_interface_sw_index(node_dict, interface)
+        else:
+            sw_if_index = interface
+        cmd = "sw_interface_set_rss_hash_key"
+        err_msg = f"Failed to set interface RSS key on {node_dict[u'host']}"
+        args = dict(
+            sw_if_index=sw_if_index,
+            rss_hash_key=Constants.RSS_HASH_KEY,
+        )
+        with PapiSocketExecutor(node_dict) as papi_exec:
+            try:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+            except AttributeError:
+                logger.debug("Old build, skipping rss key set.")
+                return
+            cmd = "sw_interface_get_rss_hash_key"
+            err_msg = f"Failed to get interface RSS key on {node_dict[u'host']}"
+            args = dict(sw_if_index=sw_if_index)
+            key = papi_exec.add(cmd, **args).get_reply(err_msg)
+            logger.debug(f"set key: {key}")
+
+    @staticmethod
     def vpp_get_interface_sw_index(node, interface_name):
         """Get interface name for the given SW interface index from actual
         interface dump.

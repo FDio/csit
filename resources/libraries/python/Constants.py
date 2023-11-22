@@ -314,6 +314,12 @@ class Constants:
     # Maximum number of interfaces in a data path
     DATAPATH_INTERFACES_MAX = 100
 
+    RSS_HASH_KEY = (
+        # The 4439796b... key is from AVF plugin which got it from DPDK i40e.
+        "4439796bb54c5023b675ea5b124f9f30b8a2c03ddfdc4d02a08c9b334af64a4"
+        "c05c6fa343958d8557d99583ae138c92e81150366"
+    )
+
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
         "Intel-X520-DA2": 10000000000,
