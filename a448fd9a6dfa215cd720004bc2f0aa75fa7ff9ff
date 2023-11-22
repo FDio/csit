@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d72dd83_209ad2d4",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-22T12:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70dee42c_e433e8a9",
+      "range": {
+        "startLine": 56,
+        "startChar": 59,
+        "endLine": 56,
+        "endChar": 65
+      },
+      "revId": "a448fd9a6dfa215cd720004bc2f0aa75fa7ff9ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f539b5c9_4806b0e1",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-22T12:51:28Z",
       "side": 1,
       "message": "?",
+      "range": {
+        "startLine": 64,
+        "startChar": 120,
+        "endLine": 64,
+        "endChar": 123
+      },
+      "revId": "a448fd9a6dfa215cd720004bc2f0aa75fa7ff9ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966e0ee6_d33c35d1",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-11-22T12:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f539b5c9_4806b0e1",
       "range": {
         "startLine": 64,
         "startChar": 120,
