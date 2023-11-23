@@ -47,7 +47,6 @@ prepare_topology || die
 select_topology || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_robot_arguments || die
 set_environment_variables || die
 run_robot || die
 move_archives || die
