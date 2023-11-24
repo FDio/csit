@@ -284,7 +284,7 @@ function compose_robot_arguments () {
         *"device"*)
             ROBOT_ARGS+=("--suite" "tests.${DUT}.device")
             ;;
-        *"perf"*)
+        *"perf"* | *"bisect"*)
             ROBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
         *)
@@ -551,6 +551,8 @@ function get_test_tag_string () {
     # Variables set:
     # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
     #   May be empty, or even not set on event types not adding comment.
+    # - GIT_BISECT_FROM - If bisecttest, the commit hash to bisect from.
+    #   Else not set.
     # Variables exported optionally:
     # - GRAPH_NODE_VARIANT - Node variant to test with, set if found in trigger.
 
@@ -560,6 +562,10 @@ function get_test_tag_string () {
 
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
         case "${TEST_CODE}" in
+            # Order matters, bisect job contains "perf" in its name.
+            *"bisect"*)
+                trigger="bisecttest"
+                ;;
             *"device"*)
                 trigger="devicetest"
                 ;;
@@ -584,6 +590,18 @@ function get_test_tag_string () {
             comment=$(base64 --decode <<< "${comment}" || true)
             comment=$(fgrep "${trigger}" <<< "${comment}" || true)
             TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
+        fi
+        if [[ "${trigger}" == "bisecttest" ]]; then
+            # Intentionally without quotes, so spaces delimit elements.
+            test_tag_array=(${TEST_TAG_STRING}) || die "How could this fail?"
+            # First "argument" of bisecttest is a commit hash.
+            GIT_BISECT_FROM="${test_tag_array[0]}" || {
+                die "Bisect job requires commit hash."
+            }
+            # Update the tag string (tag expressions only, no commit hash).
+            TEST_TAG_STRING="${test_tag_array[@]:1}" || {
+                die "Bisect job needs a single test, no default."
+            }
         fi
         if [[ -n "${TEST_TAG_STRING-}" ]]; then
             test_tag_array=(${TEST_TAG_STRING})
