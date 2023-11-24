@@ -417,10 +417,10 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     """
     _, suite_id, _ = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.default(suite_id)
-    for nic_name in Constants.NIC_NAME_TO_CODE:
+    for nic_code in Constants.NIC_CODE_TO_NAME:
+        nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         tmp_filename = replace_defensively(
-            in_filename, u"10ge2p1x710",
-            Constants.NIC_NAME_TO_CODE[nic_name], 1,
+            in_filename, u"10ge2p1x710", nic_code, 1,
             u"File name should contain NIC code once.", in_filename
         )
         tmp_prolog = replace_defensively(
@@ -500,10 +500,10 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     # TODO: Generate rps from cps? There are subtle differences.
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.tcp(suite_id)
-    for nic_name in Constants.NIC_NAME_TO_CODE:
+    for nic_code in Constants.NIC_CODE_TO_NAME:
+        nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         tmp_filename = replace_defensively(
-            in_filename, u"10ge2p1x710",
-            Constants.NIC_NAME_TO_CODE[nic_name], 1,
+            in_filename, u"10ge2p1x710", nic_code, 1,
             u"File name should contain NIC code once.", in_filename
         )
         tmp_prolog = replace_defensively(
@@ -570,10 +570,10 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
     """
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.iperf3(suite_id)
-    for nic_name in Constants.NIC_NAME_TO_CODE:
+    for nic_code in Constants.NIC_CODE_TO_NAME:
+        nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         out_filename = replace_defensively(
-            in_filename, u"10ge2p1x710",
-            Constants.NIC_NAME_TO_CODE[nic_name], 1,
+            in_filename, u"10ge2p1x710", nic_code, 1,
             u"File name should contain NIC code once.", in_filename
         )
         out_prolog = replace_defensively(
@@ -628,10 +628,10 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
         )
         _, suite_id, suite_tag = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.trex(suite_id)
-        for nic_name in Constants.NIC_NAME_TO_CODE:
+        for nic_code in Constants.NIC_CODE_TO_NAME:
+            nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             out_filename = replace_defensively(
-                tmp_filename, u"10ge2p1x710",
-                Constants.NIC_NAME_TO_CODE[nic_name], 1,
+                tmp_filename, u"10ge2p1x710", nic_code, 1,
                 u"File name should contain NIC code once.", in_filename
             )
             out_prolog = replace_defensively(
@@ -662,10 +662,10 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
         )
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
-        for nic_name in Constants.NIC_NAME_TO_CODE:
+        for nic_code in Constants.NIC_CODE_TO_NAME:
+            nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
-                tmp_filename, u"10ge2p1x710",
-                Constants.NIC_NAME_TO_CODE[nic_name], 1,
+                tmp_filename, u"10ge2p1x710", nic_code, 1,
                 u"File name should contain NIC code once.", in_filename
             )
             tmp2_prolog = replace_defensively(
