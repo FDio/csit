@@ -955,6 +955,7 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("x520-da2","10ge2p1x520");'
     awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'
     awk_nics_sub_cmd+='gsub("cx7veat","200ge2p1cx7veat");'
+    awk_nics_sub_cmd+='gsub("cx73veat","200ge6p3cx7veat");'
     awk_nics_sub_cmd+='gsub("cx6dx","100ge2p1cx6dx");'
     awk_nics_sub_cmd+='gsub("e810cq","100ge2p1e810cq");'
     awk_nics_sub_cmd+='gsub("e822cq","25ge2p1e822cq");'
