@@ -91,17 +91,33 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
     :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
+    def get_y_values(data, y_data_max, param, norm_factor):
+        if "receive_rate" in param:
+            y_vals_raw = data[param].to_list()[0]
+        else:
+            y_vals_raw = data[param].to_list()
+        y_data = [(y * norm_factor) for y in y_vals_raw]
+        try:
+            y_data_max = max(max(y_data), y_data_max)
+        except TypeError:
+            y_data_max = 0
+        return y_data, y_data_max
+
     fig_tput = None
+    fig_band = None
     fig_lat = None
 
     tput_traces = list()
     y_tput_max = 0
+    y_units = set()
+
     lat_traces = list()
     y_lat_max = 0
     x_lat = list()
-    y_units = set()
-    show_latency = False
-    show_tput = False
+
+    band_traces = list()
+    y_band_max = 0
+
     for idx, itm in enumerate(sel):
 
         itm_data = select_iterative_data(data, itm)
@@ -120,13 +136,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
 
         y_units.update(itm_data[C.UNIT[ttype]].unique().tolist())
 
-        if itm["testtype"] == "mrr":
-            y_data_raw = itm_data[C.VALUE_ITER[ttype]].to_list()[0]
-        else:
-            y_data_raw = itm_data[C.VALUE_ITER[ttype]].to_list()
-        y_data = [(y * norm_factor) for y in y_data_raw]
-        if y_data:
-            y_tput_max = max(max(y_data), y_tput_max)
+        y_data, y_tput_max = \
+            get_y_values(itm_data, y_tput_max, C.VALUE_ITER[ttype], norm_factor)
 
         nr_of_samples = len(y_data)
 
@@ -167,7 +178,30 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             customdata=customdata
         )
         tput_traces.append(go.Box(**tput_kwargs))
-        show_tput = True
+
+        if ttype in ("ndr", "pdr"):
+            y_band, y_band_max = get_y_values(
+                itm_data,
+                y_tput_max,
+                C.VALUE_ITER[f"{ttype}-bandwidth"],
+                norm_factor
+            )
+
+            band_kwargs = dict(
+                y=y_band,
+                name=(
+                    f"{idx + 1}. "
+                    f"({nr_of_samples:02d} "
+                    f"run{'s' if nr_of_samples > 1 else ''}) "
+                    f"{itm['id']}"
+                ),
+                hoverinfo=u"y+name",
+                boxpoints="all",
+                jitter=0.3,
+                marker=dict(color=get_color(idx)),
+                customdata=customdata
+            )
+            band_traces.append(go.Box(**band_kwargs))
 
         if ttype == "pdr":
             customdata = list()
@@ -182,13 +216,12 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
                     "hdrh": hdrh
                 })
 
-            y_lat_row = itm_data[C.VALUE_ITER["latency"]].to_list()
-            y_lat = [(y / norm_factor) for y in y_lat_row]
-            if y_lat:
-                try:
-                    y_lat_max = max(max(y_lat), y_lat_max)
-                except TypeError:
-                    continue
+            y_lat, y_lat_max = get_y_values(
+                itm_data,
+                y_lat_max,
+                C.VALUE_ITER["latency"],
+                1 / norm_factor
+            )
             nr_of_samples = len(y_lat)
             lat_kwargs = dict(
                 y=y_lat,
@@ -206,11 +239,10 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             )
             x_lat.append(idx + 1)
             lat_traces.append(go.Box(**lat_kwargs))
-            show_latency = True
         else:
             lat_traces.append(go.Box())
 
-    if show_tput:
+    if tput_traces:
         pl_tput = deepcopy(layout["plot-throughput"])
         pl_tput["xaxis"]["tickvals"] = [i for i in range(len(sel))]
         pl_tput["xaxis"]["ticktext"] = [str(i + 1) for i in range(len(sel))]
@@ -219,7 +251,15 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             pl_tput["yaxis"]["range"] = [0, (int(y_tput_max / 1e6) + 2) * 1e6]
         fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
 
-    if show_latency:
+    if band_traces:
+        pl_band = deepcopy(layout["plot-bandwidth"])
+        pl_band["xaxis"]["tickvals"] = [i for i in range(len(sel))]
+        pl_band["xaxis"]["ticktext"] = [str(i + 1) for i in range(len(sel))]
+        if y_band_max:
+            pl_band["yaxis"]["range"] = [0, (int(y_band_max / 1e9) + 2) * 1e9]
+        fig_band = go.Figure(data=band_traces, layout=pl_band)
+
+    if lat_traces:
         pl_lat = deepcopy(layout["plot-latency"])
         pl_lat["xaxis"]["tickvals"] = [i for i in range(len(x_lat))]
         pl_lat["xaxis"]["ticktext"] = x_lat
@@ -227,4 +267,4 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             pl_lat["yaxis"]["range"] = [0, (int(y_lat_max / 10) + 1) * 10]
         fig_lat = go.Figure(data=lat_traces, layout=pl_lat)
 
-    return fig_tput, fig_lat
+    return fig_tput, fig_band, fig_lat

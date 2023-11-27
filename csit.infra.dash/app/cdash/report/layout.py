@@ -758,38 +758,55 @@ class Layout:
         if not tests:
             return C.PLACEHOLDER
 
-        figs = graph_iterative(self._data, tests, self._graph_layout, normalize)
+        graphs = \
+            graph_iterative(self._data, tests, self._graph_layout, normalize)
 
-        if not figs[0]:
+        if not graphs[0]:
             return C.PLACEHOLDER
-
-        row_items = [
-            dbc.Col(
+        
+        tab_items = [
+            dbc.Tab(
                 children=dcc.Graph(
                     id={"type": "graph", "index": "tput"},
-                    figure=figs[0]
+                    figure=graphs[0]
                 ),
-                class_name="g-0 p-1",
-                width=6
+                label="Throughput",
+                tab_id="tab-tput"
             )
         ]
 
-        if figs[1]:
-            row_items.append(
-                dbc.Col(
+        if graphs[1]:
+            tab_items.append(
+                dbc.Tab(
+                    children=dcc.Graph(
+                        id={"type": "graph", "index": "bandwidth"},
+                        figure=graphs[1]
+                    ),
+                    label="Bandwidth",
+                    tab_id="tab-bandwidth"
+                )
+            )
+
+        if graphs[2]:
+            tab_items.append(
+                dbc.Tab(
                     children=dcc.Graph(
                         id={"type": "graph", "index": "lat"},
-                        figure=figs[1]
+                        figure=graphs[2]
                     ),
-                    class_name="g-0 p-1",
-                    width=6
+                    label="Latency",
+                    tab_id="tab-lat"
                 )
             )
 
         return [
             dbc.Row(
-                children=row_items,
-                class_name="g-0 p-0",
+                dbc.Tabs(
+                    children=tab_items,
+                    id="tabs",
+                    active_tab="tab-tput",
+                ),
+                class_name="g-0 p-0"
             ),
             dbc.Row(
                 [
@@ -1362,11 +1379,16 @@ class Layout:
             :rtype: tuple(list, list, bool)
             """
 
+            graphs_idx = {
+                "tput": 0,
+                "bandwidth": 1,
+                "lat": 2
+            }
+
             trigger = Trigger(callback_context.triggered)
 
             try:
-                idx = 0 if trigger.idx == "tput" else 1
-                graph_data = graph_data[idx]["points"]
+                graph_data = graph_data[graphs_idx[trigger.idx]]["points"]
             except (IndexError, KeyError, ValueError, TypeError):
                 raise PreventUpdate
 
@@ -1391,6 +1413,8 @@ class Layout:
                 elif len(data) == 1:
                     if param == "lat":
                         stats = ("average latency at 50% PDR", )
+                    elif param == "bandwidth":
+                        stats = ("bandwidth", )
                     else:
                         stats = ("throughput", )
                 else:
@@ -1419,6 +1443,8 @@ class Layout:
             graph = list()
             if trigger.idx == "tput":
                 title = "Throughput"
+            elif trigger.idx == "bandwidth":
+                title = "Bandwidth"
             elif trigger.idx == "lat":
                 title = "Latency"
                 if len(graph_data) == 1:
