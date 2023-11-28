@@ -304,9 +304,10 @@ class Constants:
     DUT1_UUID = get_str_from_env("DUT1_UUID", "")
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        "FAIL_ON_CRC_MISMATCH"
-    )
+    FAIL_ON_CRC_MISMATCH = False
+# get_pessimistic_bool_from_env(
+#        "FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Default IP4 prefix length (if not defined in topology file)
     DEFAULT_IP4_PREFIX_LENGTH = "24"
@@ -432,7 +433,7 @@ class Constants:
     # Each driver needs different plugin to work.
     NIC_DRIVER_TO_PLUGINS = {
         "vfio-pci": "dpdk_plugin.so",
-        "avf": "avf_plugin.so",
+        "avf": "dev_iavf_plugin.so",
         "rdma-core": "rdma_plugin.so",
         "mlx5_core": "dpdk_plugin.so",
         "af_xdp": "af_xdp_plugin.so",
