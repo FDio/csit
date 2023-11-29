@@ -41,6 +41,9 @@ but was not detected/recognized/reported enough back then.
   9   | [CSIT-1943](https://jira.fd.io/browse/CSIT-1943) | IMIX 4c tests may fail PDR due to ~10% loss.
  10   | [VPP-2087](https://jira.fd.io/browse/VPP-2087)   | VPP crash and other symptoms in tests with AVF, jumbo packets.
  11   | [VPP-2088](https://jira.fd.io/browse/VPP-2088)   | virtio: Bad CLI argument parsing introduced with tx-queue-size.
+ 12   | [CSIT-1944](https://jira.fd.io/browse/CSIT-1944) | Memif LXC: unrecognized option '--no-validate'.
+ 13   | [CSIT-1945](https://jira.fd.io/browse/CSIT-1945) | Some srv6 9000B tests crash VPP.
+
 
 ## Previous
 
