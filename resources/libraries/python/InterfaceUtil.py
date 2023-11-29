@@ -1260,32 +1260,33 @@ class InterfaceUtil:
             the node.
         """
         PapiSocketExecutor.run_cli_cmd(
-            node, u"set logging class avf level debug"
+            node, u"set logging class iavf level debug"
         )
 
-        cmd = u"avf_create"
+        cmd = u"dev_attach"
         vf_pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
-            pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
-            enable_elog=0,
-            rxq_num=int(num_rx_queues) if num_rx_queues else 0,
-            rxq_size=rxq_size,
-            txq_size=txq_size
+            device_id=f"pci/{vf_pci_addr}",
+            driver_name="iavf",
         )
-        err_msg = f"Failed to create AVF interface on host {node[u'host']}"
+        err_msg = f"Failed to attach AVF driver on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+            logger.debug(f"reply: {reply}")
+            dev_index = reply["dev_index"]
 
-        # FIXME: Remove once the fw/driver is upgraded.
-        for _ in range(10):
-            with PapiSocketExecutor(node) as papi_exec:
-                try:
-                    sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(
-                        err_msg
-                    )
-                    break
-                except AssertionError:
-                    logger.error(err_msg)
-        else:
-            raise AssertionError(err_msg)
+        cmd = u"dev_create_port_if"
+        args = dict(
+            dev_index=dev_index,
+            intf_name="",
+            num_rxqueues=int(num_rx_queues) if num_rx_queues else 0,
+            rx_queue_size=rxq_size,
+            tx_queue_size=txq_size,
+            port_id=0,
+        )
+        err_msg = f"Failed to create AVF port on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.add_eth_interface(
             node, sw_if_index=sw_if_index, ifc_pfx=u"eth_avf",
