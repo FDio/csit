@@ -710,29 +710,44 @@ class Layout:
                     )
                 ]
             ),
-            dbc.Row(
+            dbc.Stack(
                 id="row-btns-sel-tests",
                 class_name="g-0 p-1",
                 style=C.STYLE_DISABLED,
+                gap=2,
                 children=[
-                    dbc.ButtonGroup(
-                        children=[
-                            dbc.Button(
-                                id={"type": "ctrl-btn", "index": "rm-test"},
-                                children="Remove Selected",
-                                class_name="w-100",
-                                color="info",
-                                disabled=False
-                            ),
-                            dbc.Button(
-                                id={"type": "ctrl-btn", "index": "rm-test-all"},
-                                children="Remove All",
-                                class_name="w-100",
-                                color="info",
-                                disabled=False
-                            )
-                        ]
-                    )
+                    dbc.ButtonGroup(children=[
+                        dbc.Button(
+                            id={"type": "ctrl-btn", "index": "rm-test"},
+                            children="Remove Selected",
+                            class_name="w-100",
+                            color="info",
+                            disabled=False
+                        ),
+                        dbc.Button(
+                            id={"type": "ctrl-btn", "index": "rm-test-all"},
+                            children="Remove All",
+                            class_name="w-100",
+                            color="info",
+                            disabled=False
+                        )
+                    ]),
+                    dbc.ButtonGroup(children=[
+                        dbc.Button(
+                            id="plot-btn-url",
+                            children="Show URL",
+                            class_name="w-100",
+                            color="info",
+                            disabled=False
+                        ),
+                        dbc.Button(
+                            id="plot-btn-download",
+                            children="Download Data",
+                            class_name="w-100",
+                            color="info",
+                            disabled=False
+                        )
+                    ])
                 ]
             )
         ]
@@ -808,48 +823,17 @@ class Layout:
                 ),
                 class_name="g-0 p-0"
             ),
-            dbc.Row(
+            dbc.Modal(
                 [
-                    dbc.Col([html.Div(
-                        [
-                            dbc.Button(
-                                id="plot-btn-url",
-                                children="Show URL",
-                                class_name="me-1",
-                                color="info",
-                                style={
-                                    "text-transform": "none",
-                                    "padding": "0rem 1rem"
-                                }
-                            ),
-                            dbc.Modal(
-                                [
-                                    dbc.ModalHeader(dbc.ModalTitle("URL")),
-                                    dbc.ModalBody(url)
-                                ],
-                                id="plot-mod-url",
-                                size="xl",
-                                is_open=False,
-                                scrollable=True
-                            ),
-                            dbc.Button(
-                                id="plot-btn-download",
-                                children="Download Data",
-                                class_name="me-1",
-                                color="info",
-                                style={
-                                    "text-transform": "none",
-                                    "padding": "0rem 1rem"
-                                }
-                            ),
-                            dcc.Download(id="download-iterative-data")
-                        ],
-                        className=\
-                            "d-grid gap-0 d-md-flex justify-content-md-end"
-                    )])
+                    dbc.ModalHeader(dbc.ModalTitle("URL")),
+                    dbc.ModalBody(url)
                 ],
-                class_name="g-0 p-0"
-            )
+                id="plot-mod-url",
+                size="xl",
+                is_open=False,
+                scrollable=True
+            ),
+            dcc.Download(id="download-iterative-data")
         ]
 
     def callbacks(self, app):
@@ -1322,15 +1306,16 @@ class Layout:
 
         @app.callback(
             Output("plot-mod-url", "is_open"),
-            [Input("plot-btn-url", "n_clicks")],
-            [State("plot-mod-url", "is_open")],
+            Output("plot-btn-url", "n_clicks"),
+            Input("plot-btn-url", "n_clicks"),
+            State("plot-mod-url", "is_open")
         )
         def toggle_plot_mod_url(n, is_open):
             """Toggle the modal window with url.
             """
             if n:
-                return not is_open
-            return is_open
+                return not is_open, 0
+            return is_open, 0
 
         @app.callback(
             Output("download-iterative-data", "data"),
