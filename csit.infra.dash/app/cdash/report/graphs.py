@@ -91,9 +91,12 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
     :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
-    def get_y_values(data, y_data_max, param, norm_factor):
-        if "receive_rate" in param:
-            y_vals_raw = data[param].to_list()[0]
+    def get_y_values(data, y_data_max, param, norm_factor, release=str()):
+        if param == "result_receive_rate_rate_values":
+            if release == "rls2402":
+                y_vals_raw = data["result_receive_rate_rate_avg"].to_list()
+            else:
+                y_vals_raw = data[param].to_list()[0]
         else:
             y_vals_raw = data[param].to_list()
         y_data = [(y * norm_factor) for y in y_vals_raw]
@@ -138,8 +141,9 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
 
         y_units.update(itm_data[C.UNIT[ttype]].unique().tolist())
 
-        y_data, y_tput_max = \
-            get_y_values(itm_data, y_tput_max, C.VALUE_ITER[ttype], norm_factor)
+        y_data, y_tput_max = get_y_values(
+            itm_data, y_tput_max, C.VALUE_ITER[ttype], norm_factor, itm["rls"]
+        )
 
         nr_of_samples = len(y_data)
 
@@ -156,12 +160,15 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         }
 
         if itm["testtype"] == "mrr":
+            # and itm["rls"] in ("rls2302", "rls2306", "rls2310"):
+            trial_run = "trial"
             metadata["csit-ref"] = (
                 f"{itm_data['job'].to_list()[0]}/",
                 f"{itm_data['build'].to_list()[0]}"
             )
             customdata = [{"metadata": metadata}, ] * nr_of_samples
         else:
+            trial_run = "run"
             for _, row in itm_data.iterrows():
                 metadata["csit-ref"] = f"{row['job']}/{row['build']}"
                 customdata.append({"metadata": deepcopy(metadata)})
@@ -170,7 +177,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             name=(
                 f"{idx + 1}. "
                 f"({nr_of_samples:02d} "
-                f"run{'s' if nr_of_samples > 1 else ''}) "
+                f"{trial_run}{'s' if nr_of_samples > 1 else ''}) "
                 f"{itm['id']}"
             ),
             hoverinfo=u"y+name",
