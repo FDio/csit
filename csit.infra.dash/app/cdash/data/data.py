@@ -380,7 +380,7 @@ class Data:
                 )
                 return
 
-            #  Read data:
+            # Read data:
             data = Data._create_dataframe_from_parquet(
                 path=data_set["path"],
                 partition_filter=partition_filter,
