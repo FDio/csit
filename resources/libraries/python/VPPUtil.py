@@ -375,6 +375,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        exec_cmd_no_error(node, "ls -l /var/log/dmesg*.gz")
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod

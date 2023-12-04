@@ -674,6 +674,8 @@
 | |
 | | ... | \| Traffic should pass with maximum rate \|
 | |
+| | Fail | Speed up to see earlier iavf messages in log.
+| |
 | | Set Test Variable | ${telemetry_rate} | mrr
 | | Set Test Variable | ${telemetry_export} | ${True}
 | | ${max_rate} = | Get Max Rate
