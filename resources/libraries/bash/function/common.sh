@@ -255,61 +255,6 @@ function common_dirs () {
 }
 
 
-function compose_robot_arguments () {
-
-    # This function is called by run_tests function.
-    # The reason is that some jobs (bisect) perform reservation multiple times,
-    # so WORKING_TOPOLOGY can be different each time.
-    #
-    # Variables read:
-    # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
-    # - DUT - CSIT test/ subdirectory, set while processing tags.
-    # - TAGS - Array variable holding selected tag boolean expressions.
-    # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
-    # - TEST_CODE - The test selection string from environment or argument.
-    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
-    # Variables set:
-    # - ROBOT_ARGS - String holding part of all arguments for robot.
-    # - EXPANDED_TAGS - Array of strings robot arguments compiled from tags.
-
-    set -exuo pipefail
-
-    # No explicit check needed with "set -u".
-    ROBOT_ARGS=("--loglevel" "TRACE")
-    ROBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
-
-    # TODO: The rest does not need to be recomputed on each reservation.
-    #       Refactor TEST_CODE so this part can be called only once.
-    case "${TEST_CODE}" in
-        *"device"*)
-            ROBOT_ARGS+=("--suite" "tests.${DUT}.device")
-            ;;
-        *"perf"* | *"bisect"*)
-            ROBOT_ARGS+=("--suite" "tests.${DUT}.perf")
-            ;;
-        *)
-            die "Unknown specification: ${TEST_CODE}"
-    esac
-
-    EXPANDED_TAGS=()
-    for tag in "${TAGS[@]}"; do
-        if [[ ${tag} == "!"* ]]; then
-            EXPANDED_TAGS+=("--exclude" "${tag#$"!"}")
-        else
-            if [[ ${SELECTION_MODE} == "--test" ]]; then
-                EXPANDED_TAGS+=("--test" "${tag}")
-            else
-                EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
-            fi
-        fi
-    done
-
-    if [[ ${SELECTION_MODE} == "--test" ]]; then
-        EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
-    fi
-}
-
-
 function deactivate_docker_topology () {
 
     # Deactivate virtual vpp-device topology by removing containers.
@@ -416,23 +361,36 @@ function generate_tests () {
 
 function get_test_code () {
 
+    # Computed derived quantities based on job name.
+    #
+    # This function is called just once by every bootstrap scripts.
+    # Testbed topology info is prepared, but testbed is not reserved yet,
+    # because reservation may happen multiple times per bootstrap script.
+    #
     # Arguments:
     # - ${1} - Optional, argument of entry script (or empty as unset).
     #   Test code value to override job name from environment.
     # Variables read:
     # - JOB_NAME - String affecting test selection, default if not argument.
+    # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
     # Variables set:
     # - TEST_CODE - The test selection string from environment or argument.
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
+    # - TOPOLOGIES - Array of paths to suitable topology yaml files.
+    # - TOPOLOGIES_TAGS - Tag expression selecting tests for the topology.
+    # Functions called:
+    # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
+    # Test code.
     TEST_CODE="${1-}" || die "Reading optional argument failed, somehow."
     if [[ -z "${TEST_CODE}" ]]; then
         TEST_CODE="${JOB_NAME-}" || die "Reading job name failed, somehow."
     fi
 
+    # Nodeness and flavor.
     case "${TEST_CODE}" in
         *"1n-vbox")
             NODENESS="1n"
@@ -538,6 +496,371 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="alt"
             ;;
+    esac
+
+    # Topologies and their tags.
+    case_text="${NODENESS}_${FLAVOR}"
+    case "${case_text}" in
+        "1n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
+            TOPOLOGIES_TAGS="1_node_single_link_topo"
+            ;;
+        "1n_c6in")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6in*.yaml )
+            TOPOLOGIES_TAGS="1_node_single_link_topo"
+            ;;
+        "1n_tx2" | "1n_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "1n_vbox")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_c6gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6gn*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_c7gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c7gn*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_c6in")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_clx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_tx2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2_*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_zn2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "3n_alt")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_c6gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6gn*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_c7gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c7gn*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_c6in")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6in*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx_*.yaml )
+            # Trailing underscore is needed to distinguish from 3n_icxd.
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3n_icxd")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_snr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_tsh")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh_*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3na_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3nb_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        *)
+            # No falling back to default, that should have been done
+            # by the function which has set NODENESS and FLAVOR.
+            die "Unknown specification: ${case_text}"
+    esac
+
+    if [[ -z "${TOPOLOGIES-}" ]]; then
+        die "No applicable topology found!"
+    fi
+
+    # Select default NIC tag.
+    case "${TEST_CODE}" in
+        *"3n-snr")
+            default_nic="nic_intel-e822cq"
+            ;;
+        *"3n-icxd")
+            default_nic="nic_intel-e823c"
+            ;;
+        *"3n-tsh")
+            default_nic="nic_intel-x520-da2"
+            ;;
+        *"3n-icx" | *"2n-icx")
+            default_nic="nic_intel-e810cq"
+            ;;
+        *"3na-spr")
+            default_nic="nic_mellanox-cx7veat"
+            ;;
+        *"3nb-spr")
+            default_nic="nic_intel-e810cq"
+            ;;
+        *"2n-spr")
+            default_nic="nic_intel-e810cq"
+            ;;
+        *"2n-clx" | *"2n-zn2")
+            default_nic="nic_intel-xxv710"
+            ;;
+        *"2n-tx2" | *"3n-alt")
+            default_nic="nic_intel-xl710"
+            ;;
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
+            default_nic="nic_amazon-nitro-50g"
+            ;;
+        *"2n-c6gn" | *"3n-c6gn")
+            default_nic="nic_amazon-nitro-100g"
+            ;;
+        *"2n-c7gn" | *"3n-c7gn")
+            default_nic="nic_amazon-nitro-100g"
+            ;;
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+            default_nic="nic_amazon-nitro-200g"
+            ;;
+        *)
+            default_nic="nic_intel-x710"
+            ;;
+    esac
+
+    # Expand jobspecs.
+    sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
+    awk_nics_sub_cmd=""
+    awk_nics_sub_cmd+='gsub("xxv710","25ge2p1xxv710");'
+    awk_nics_sub_cmd+='gsub("x710","10ge2p1x710");'
+    awk_nics_sub_cmd+='gsub("xl710","40ge2p1xl710");'
+    awk_nics_sub_cmd+='gsub("x520-da2","10ge2p1x520");'
+    awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'
+    awk_nics_sub_cmd+='gsub("cx7veat","200ge2p1cx7veat");'
+    awk_nics_sub_cmd+='gsub("cx6dx","100ge2p1cx6dx");'
+    awk_nics_sub_cmd+='gsub("e810cq","100ge2p1e810cq");'
+    awk_nics_sub_cmd+='gsub("e822cq","25ge2p1e822cq");'
+    awk_nics_sub_cmd+='gsub("e823c","25ge2p1e823c");'
+    awk_nics_sub_cmd+='gsub("vic1227","10ge2p1vic1227");'
+    awk_nics_sub_cmd+='gsub("vic1385","40ge2p1vic1385");'
+    awk_nics_sub_cmd+='gsub("nitro-50g","50ge1p1ENA");'
+    awk_nics_sub_cmd+='gsub("nitro-100g","100ge1p1ENA");'
+    awk_nics_sub_cmd+='gsub("nitro-200g","200ge1p1ENA");'
+    awk_nics_sub_cmd+='gsub("virtual","1ge1p82540em");'
+    awk_nics_sub_cmd+='if ($9 =="drv_avf") drv="avf-";'
+    awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'
+    awk_nics_sub_cmd+='else if ($9 =="drv_mlx5_core") drv ="mlx5-";'
+    awk_nics_sub_cmd+='else if ($9 =="drv_af_xdp") drv ="af-xdp-";'
+    awk_nics_sub_cmd+='else drv="";'
+    awk_nics_sub_cmd+='if ($1 =="-") cores="";'
+    awk_nics_sub_cmd+='else cores=$1;'
+    awk_nics_sub_cmd+='print "*"$7"-" drv $11"-"$5"."$3"-" cores "-" drv $11"-"$5'
+
+    # Tag file directory shorthand.
+    tfd="${JOB_SPECS_DIR}"
+    case "${TEST_CODE}" in
+        # Select specific performance tests based on jenkins job type variable.
+        *"device"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
+            SELECTION_MODE="--test"
+            ;;
+        *"hoststack-daily"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/hoststack_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
+        *"ndrpdr-weekly"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/ndrpdr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
+        *"mrr-daily"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
+        *"mrr-weekly"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
+        *"report-iterative"* )
+            test_sets=(${TEST_TAG_STRING//:/ })
+            # Run only one test set per run
+            report_file=${test_sets[0]}.md
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
+        *"report-coverage"* )
+            test_sets=(${TEST_TAG_STRING//:/ })
+            # Run only one test set per run
+            report_file=${test_sets[0]}.md
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
+        * )
+            if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                # If nothing is specified, we will run pre-selected tests by
+                # following tags.
+                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDethip4-ip4base"
+                                "mrrAND${default_nic}AND1cAND78bANDethip6-ip6base"
+                                "mrrAND${default_nic}AND1cAND64bANDeth-l2bdbasemaclrn"
+                                "mrrAND${default_nic}AND1cAND64bANDeth-l2xcbase"
+                                "!drv_af_xdp" "!drv_avf")
+            else
+                # If trigger contains tags, split them into array.
+                test_tag_array=(${TEST_TAG_STRING//:/ })
+            fi
+            SELECTION_MODE="--include"
+            ;;
+    esac
+
+    # Blacklisting certain tags per topology.
+    #
+    # Reasons for blacklisting:
+    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
+    case "${TEST_CODE}" in
+        *"1n-vbox")
+            test_tag_array+=("!avf")
+            test_tag_array+=("!vhost")
+            test_tag_array+=("!flow")
+            ;;
+        *"1n-tx2")
+            test_tag_array+=("!flow")
+            ;;
+        *"2n-clx")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-icx")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-spr")
+            ;;
+        *"2n-tx2")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-zn2")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-alt")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-icx")
+            test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            ;;
+        *"3n-snr")
+            ;;
+        *"3n-icxd")
+            ;;
+        *"3na-spr")
+            ;;
+        *"3nb-spr")
+            ;;
+        *"3n-tsh")
+            test_tag_array+=("!drv_avf")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-c6gn" | *"3n-c6gn")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-c7gn" | *"3n-c7gn")
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+            test_tag_array+=("!ipsechw")
+            ;;
+    esac
+
+    # Reservation independent robot options.
+    ROBOT_STATIC_OPTIONS=("--outputdir" "${ARCHIVE_DIR}")
+    case "${TEST_CODE}" in
+        *"device"*)
+            ROBOT_STATIC_OPTIONS+=("--suite" "tests.${DUT}.device")
+            ;;
+        *"perf"* | *"bisect"*)
+            ROBOT_STATIC_OPTIONS+=("--suite" "tests.${DUT}.perf")
+            ;;
+        *)
+            die "Unknown specification: ${TEST_CODE}"
+    esac
+
+    if [[ ${SELECTION_MODE} == "--test" ]]; then
+        ROBOT_STATIC_OPTIONS+=("--include" "${TOPOLOGIES_TAGS}")
+    fi
+
+    # TODO: Describe the variables exported here in function documentation.
+    case "${TEST_CODE}" in
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export TREX_CORE_COUNT=6
+            # Settings to prevent duration stretching.
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+        *"2n-c6gn" | *"3n-c6gn")
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export TREX_CORE_COUNT=6
+            # Settings to prevent duration stretching.
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+        *"2n-c7gn" | *"3n-c7gn")
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export TREX_CORE_COUNT=6
+            # Settings to prevent duration stretching.
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export TREX_CORE_COUNT=6
+            # Settings to prevent duration stretching.
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+        *"2n-zn2")
+            # Maciek's workaround for Zen2 with lower amount of cores.
+            export TREX_CORE_COUNT=14
     esac
 }
 
@@ -745,13 +1068,26 @@ function reserve_and_cleanup_testbed () {
     # as they set variables that depend on reserved topology data.
     #
     # Variables read:
+    # - BASH_FUNCTION_DIR - Directory with input files to process.
     # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
     # - BUILD_TAG - Any string suitable as filename, identifying
     #   test run executing this function. May be unset.
+    # - DUT - CSIT test/ subdirectory, set while processing tags.
+    # - TAGS - Array variable holding selected tag boolean expressions.
+    # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
+    # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
+    # - TEST_CODE - The test selection string from environment or argument.
+    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
+    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
+    #   Can be unset.
     # Variables set:
     # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
+    # - ROBOT_ARGS - String holding part of all arguments for robot.
+    # - ROBOT_STATIC_OPTIONS - Array of strings robot arguments compiled from tags.
+    # - TAGS - Array of processed tag boolean expressions.
+    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
     # Functions called:
     # - die - Print to stderr and exit.
     # - ansible_playbook - Perform an action using ansible, see ansible.sh
@@ -813,10 +1149,80 @@ function reserve_and_cleanup_testbed () {
         sleep "${sleep_time}" || die "Sleep failed."
     done
 
-    # Subfunctions to update data that may depend on topology reserved.
-    set_environment_variables || die
-    select_tags || die
-    compose_robot_arguments || die
+    # NIC selection.
+    case "${TEST_CODE}" in
+        *"1n-aws"* | *"1n-c6in"*)
+            start_pattern='^  SUT:'
+            ;;
+        *)
+            start_pattern='^  TG:'
+            ;;
+    esac
+    end_pattern='^ \? \?[A-Za-z0-9]\+:'
+    # Remove the sections from topology file
+    sed_command="/${start_pattern}/,/${end_pattern}/d"
+    # All topologies NICs
+    available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
+                | grep -hoP "model: \K.*" | sort -u)
+    # Selected topology NICs
+    reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
+               | grep -hoP "model: \K.*" | sort -u)
+    # All topologies NICs - Selected topology NICs
+    exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}"))) || {
+        die "Computation of excluded NICs failed."
+    }
+
+    TAGS=()
+    prefix=""
+    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+        if [[ "${TEST_CODE}" != *"device"* ]]; then
+            # Automatic prefixing for VPP perf jobs to limit the NIC used.
+            if [[ "${TEST_TAG_STRING-}" != *"nic_"* ]]; then
+                prefix="${default_nic}AND"
+            fi
+        fi
+    fi
+    set +x
+    for tag in "${test_tag_array[@]}"; do
+        if [[ "${tag}" == "!"* ]]; then
+            # Exclude tags are not prefixed.
+            TAGS+=("${tag}")
+        elif [[ "${tag}" == " "* || "${tag}" == *"perftest"* ]]; then
+            # Badly formed tag expressions can trigger way too much tests.
+            set -x
+            warn "The following tag expression hints at bad trigger: ${tag}"
+            warn "Possible cause: Multiple triggers in a single comment."
+            die "Aborting to avoid triggering too many tests."
+        elif [[ "${tag}" == *"OR"* ]]; then
+            # If OR had higher precedence than AND, it would be useful here.
+            # Some people think it does, thus triggering way too much tests.
+            set -x
+            warn "The following tag expression hints at bad trigger: ${tag}"
+            warn "Operator OR has lower precedence than AND. Use space instead."
+            die "Aborting to avoid triggering too many tests."
+        elif [[ "${tag}" != "" && "${tag}" != "#"* ]]; then
+            # Empty and comment lines are skipped.
+            # Other lines are normal tags, they are to be prefixed.
+            TAGS+=("${prefix}${tag}")
+        fi
+    done
+    set -x
+
+    # We will add excluded NICs.
+    test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
+
+    ROBOT_DYNAMIC_OPTIONS=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
+    for tag in "${TAGS[@]}"; do
+        if [[ ${tag} == "!"* ]]; then
+            ROBOT_DYNAMIC_OPTIONS+=("--exclude" "${tag#$"!"}")
+        else
+            if [[ ${SELECTION_MODE} == "--test" ]]; then
+                ROBOT_DYNAMIC_OPTIONS+=("--test" "${tag}")
+            else
+                ROBOT_DYNAMIC_OPTIONS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
+            fi
+        fi
+    done
 }
 
 
@@ -831,7 +1237,7 @@ function run_robot () {
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
-    # - ROBOT_ARGS, EXPANDED_TAGS - See compose_robot_arguments.sh
+    # - ROBOT_ARGS, ROBOT_STATIC_OPTIONS - See _compose_robot_arguments.
     # - GENERATED_DIR - Tests are assumed to be generated under there.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - DUT - CSIT test/ subdirectory, set while processing tags.
@@ -840,15 +1246,14 @@ function run_robot () {
     # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
     # - ROBOT_ARGS - String holding part of all arguments for robot.
-    # - EXPANDED_TAGS - Array of string robot arguments compiled from tags.
+    # - ROBOT_STATIC_OPTIONS - Array of string robot arguments compiled from tags.
     # - ROBOT_EXIT_STATUS - Exit status of most recent robot invocation.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
-    all_options=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
-    all_options+=("${EXPANDED_TAGS[@]}")
+    all_options=("${ROBOT_STATIC_OPTIONS[@]}" "${ROBOT_DYNAMIC_OPTIONS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
@@ -901,468 +1306,6 @@ function select_arch_os () {
             ;;
         *)
             ;;
-    esac
-}
-
-
-function select_tags () {
-
-    # Only to be called from the reservation function,
-    # as resulting tags may change based on topology data.
-    #
-    # Variables read:
-    # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
-    # - TEST_CODE - String affecting test selection, usually jenkins job name.
-    # - DUT - CSIT test/ subdirectory, set while processing tags.
-    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
-    #   Can be unset.
-    # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
-    # - BASH_FUNCTION_DIR - Directory with input files to process.
-    # Variables set:
-    # - TAGS - Array of processed tag boolean expressions.
-    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
-
-    set -exuo pipefail
-
-    # NIC SELECTION
-    case "${TEST_CODE}" in
-        *"1n-aws"* | *"1n-c6in"*)
-            start_pattern='^  SUT:'
-            ;;
-        *)
-            start_pattern='^  TG:'
-            ;;
-    esac
-    end_pattern='^ \? \?[A-Za-z0-9]\+:'
-    # Remove the sections from topology file
-    sed_command="/${start_pattern}/,/${end_pattern}/d"
-    # All topologies NICs
-    available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
-                | grep -hoP "model: \K.*" | sort -u)
-    # Selected topology NICs
-    reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
-               | grep -hoP "model: \K.*" | sort -u)
-    # All topologies NICs - Selected topology NICs
-    exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}"))) || {
-        die "Computation of excluded NICs failed."
-    }
-
-    # Select default NIC tag.
-    case "${TEST_CODE}" in
-        *"3n-snr")
-            default_nic="nic_intel-e822cq"
-            ;;
-        *"3n-icxd")
-            default_nic="nic_intel-e823c"
-            ;;
-        *"3n-tsh")
-            default_nic="nic_intel-x520-da2"
-            ;;
-        *"3n-icx" | *"2n-icx")
-            default_nic="nic_intel-e810cq"
-            ;;
-        *"3na-spr")
-            default_nic="nic_mellanox-cx7veat"
-            ;;
-        *"3nb-spr")
-            default_nic="nic_intel-e810cq"
-            ;;
-        *"2n-spr")
-            default_nic="nic_intel-e810cq"
-            ;;
-        *"2n-clx" | *"2n-zn2")
-            default_nic="nic_intel-xxv710"
-            ;;
-        *"2n-tx2" | *"3n-alt")
-            default_nic="nic_intel-xl710"
-            ;;
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
-            default_nic="nic_amazon-nitro-50g"
-            ;;
-        *"2n-c6gn" | *"3n-c6gn")
-            default_nic="nic_amazon-nitro-100g"
-            ;;
-        *"2n-c7gn" | *"3n-c7gn")
-            default_nic="nic_amazon-nitro-100g"
-            ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
-            default_nic="nic_amazon-nitro-200g"
-            ;;
-        *)
-            default_nic="nic_intel-x710"
-            ;;
-    esac
-
-    sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
-    awk_nics_sub_cmd=""
-    awk_nics_sub_cmd+='gsub("xxv710","25ge2p1xxv710");'
-    awk_nics_sub_cmd+='gsub("x710","10ge2p1x710");'
-    awk_nics_sub_cmd+='gsub("xl710","40ge2p1xl710");'
-    awk_nics_sub_cmd+='gsub("x520-da2","10ge2p1x520");'
-    awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'
-    awk_nics_sub_cmd+='gsub("cx7veat","200ge2p1cx7veat");'
-    awk_nics_sub_cmd+='gsub("cx6dx","100ge2p1cx6dx");'
-    awk_nics_sub_cmd+='gsub("e810cq","100ge2p1e810cq");'
-    awk_nics_sub_cmd+='gsub("e822cq","25ge2p1e822cq");'
-    awk_nics_sub_cmd+='gsub("e823c","25ge2p1e823c");'
-    awk_nics_sub_cmd+='gsub("vic1227","10ge2p1vic1227");'
-    awk_nics_sub_cmd+='gsub("vic1385","40ge2p1vic1385");'
-    awk_nics_sub_cmd+='gsub("nitro-50g","50ge1p1ENA");'
-    awk_nics_sub_cmd+='gsub("nitro-100g","100ge1p1ENA");'
-    awk_nics_sub_cmd+='gsub("nitro-200g","200ge1p1ENA");'
-    awk_nics_sub_cmd+='gsub("virtual","1ge1p82540em");'
-    awk_nics_sub_cmd+='if ($9 =="drv_avf") drv="avf-";'
-    awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'
-    awk_nics_sub_cmd+='else if ($9 =="drv_mlx5_core") drv ="mlx5-";'
-    awk_nics_sub_cmd+='else if ($9 =="drv_af_xdp") drv ="af-xdp-";'
-    awk_nics_sub_cmd+='else drv="";'
-    awk_nics_sub_cmd+='if ($1 =="-") cores="";'
-    awk_nics_sub_cmd+='else cores=$1;'
-    awk_nics_sub_cmd+='print "*"$7"-" drv $11"-"$5"."$3"-" cores "-" drv $11"-"$5'
-
-    # Tag file directory shorthand.
-    tfd="${JOB_SPECS_DIR}"
-    case "${TEST_CODE}" in
-        # Select specific performance tests based on jenkins job type variable.
-        *"device"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
-            SELECTION_MODE="--test"
-            ;;
-        *"hoststack-daily"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/hoststack_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
-            ;;
-        *"ndrpdr-weekly"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/ndrpdr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
-            ;;
-        *"mrr-daily"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
-            ;;
-        *"mrr-weekly"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
-            ;;
-        *"report-iterative"* )
-            test_sets=(${TEST_TAG_STRING//:/ })
-            # Run only one test set per run
-            report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
-            ;;
-        *"report-coverage"* )
-            test_sets=(${TEST_TAG_STRING//:/ })
-            # Run only one test set per run
-            report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
-            ;;
-        * )
-            if [[ -z "${TEST_TAG_STRING-}" ]]; then
-                # If nothing is specified, we will run pre-selected tests by
-                # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDethip4-ip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDethip6-ip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDeth-l2bdbasemaclrn"
-                                "mrrAND${default_nic}AND1cAND64bANDeth-l2xcbase"
-                                "!drv_af_xdp" "!drv_avf")
-            else
-                # If trigger contains tags, split them into array.
-                test_tag_array=(${TEST_TAG_STRING//:/ })
-            fi
-            SELECTION_MODE="--include"
-            ;;
-    esac
-
-    # Blacklisting certain tags per topology.
-    #
-    # Reasons for blacklisting:
-    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
-    case "${TEST_CODE}" in
-        *"1n-vbox")
-            test_tag_array+=("!avf")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!flow")
-            ;;
-        *"1n-tx2")
-            test_tag_array+=("!flow")
-            ;;
-        *"2n-clx")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-icx")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-spr")
-            ;;
-        *"2n-tx2")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-zn2")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-alt")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-icx")
-            test_tag_array+=("!ipsechw")
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"3n-snr")
-            ;;
-        *"3n-icxd")
-            ;;
-        *"3na-spr")
-            ;;
-        *"3nb-spr")
-            ;;
-        *"3n-tsh")
-            test_tag_array+=("!drv_avf")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-c6gn" | *"3n-c6gn")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-c7gn" | *"3n-c7gn")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
-            test_tag_array+=("!ipsechw")
-            ;;
-    esac
-
-    # We will add excluded NICs.
-    test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
-
-    TAGS=()
-    prefix=""
-    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        if [[ "${TEST_CODE}" != *"device"* ]]; then
-            # Automatic prefixing for VPP perf jobs to limit the NIC used.
-            if [[ "${TEST_TAG_STRING-}" != *"nic_"* ]]; then
-                prefix="${default_nic}AND"
-            fi
-        fi
-    fi
-    set +x
-    for tag in "${test_tag_array[@]}"; do
-        if [[ "${tag}" == "!"* ]]; then
-            # Exclude tags are not prefixed.
-            TAGS+=("${tag}")
-        elif [[ "${tag}" == " "* || "${tag}" == *"perftest"* ]]; then
-            # Badly formed tag expressions can trigger way too much tests.
-            set -x
-            warn "The following tag expression hints at bad trigger: ${tag}"
-            warn "Possible cause: Multiple triggers in a single comment."
-            die "Aborting to avoid triggering too many tests."
-        elif [[ "${tag}" == *"OR"* ]]; then
-            # If OR had higher precedence than AND, it would be useful here.
-            # Some people think it does, thus triggering way too much tests.
-            set -x
-            warn "The following tag expression hints at bad trigger: ${tag}"
-            warn "Operator OR has lower precedence than AND. Use space instead."
-            die "Aborting to avoid triggering too many tests."
-        elif [[ "${tag}" != "" && "${tag}" != "#"* ]]; then
-            # Empty and comment lines are skipped.
-            # Other lines are normal tags, they are to be prefixed.
-            TAGS+=("${prefix}${tag}")
-        fi
-    done
-    set -x
-}
-
-
-function select_topology () {
-
-    # Variables read:
-    # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
-    # - FLAVOR - Node flavor string, e.g. "clx" or "skx".
-    # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
-    # Variables set:
-    # - TOPOLOGIES - Array of paths to suitable topology yaml files.
-    # - TOPOLOGIES_TAGS - Tag expression selecting tests for the topology.
-    # Functions called:
-    # - die - Print to stderr and exit.
-
-    set -exuo pipefail
-
-    case_text="${NODENESS}_${FLAVOR}"
-    case "${case_text}" in
-        "1n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
-            TOPOLOGIES_TAGS="1_node_single_link_topo"
-            ;;
-        "1n_c6in")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6in*.yaml )
-            TOPOLOGIES_TAGS="1_node_single_link_topo"
-            ;;
-        "1n_tx2" | "1n_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "1n_vbox")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_c6gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6gn*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_c7gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c7gn*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_c6in")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_clx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx_*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_icx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx_*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr_*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_tx2")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2_*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "2n_zn2")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2_*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "3n_alt")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt_*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_c6gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6gn*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_c7gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c7gn*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_c6in")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6in*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_icx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx_*.yaml )
-            # Trailing underscore is needed to distinguish from 3n_icxd.
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "3n_icxd")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd_*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_snr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr_*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3n_tsh")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh_*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "3na_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr_*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "3nb_spr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr_*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        *)
-            # No falling back to default, that should have been done
-            # by the function which has set NODENESS and FLAVOR.
-            die "Unknown specification: ${case_text}"
-    esac
-
-    if [[ -z "${TOPOLOGIES-}" ]]; then
-        die "No applicable topology found!"
-    fi
-}
-
-
-function set_environment_variables () {
-
-    # Depending on testbed topology, overwrite defaults set in the
-    # resources/libraries/python/Constants.py file
-    #
-    # Only to be called from the reservation function,
-    # as resulting values may change based on topology data.
-    #
-    # Variables read:
-    # - TEST_CODE - String affecting test selection, usually jenkins job name.
-    # Variables set:
-    # See specific cases
-
-    set -exuo pipefail
-
-    case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
-            export TREX_RX_DESCRIPTORS_COUNT=1024
-            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
-            # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
-            ;;
-        *"2n-c6gn" | *"3n-c6gn")
-            export TREX_RX_DESCRIPTORS_COUNT=1024
-            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
-            # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
-            ;;
-        *"2n-c7gn" | *"3n-c7gn")
-            export TREX_RX_DESCRIPTORS_COUNT=1024
-            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
-            # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
-            ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
-            export TREX_RX_DESCRIPTORS_COUNT=1024
-            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
-            # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
-            ;;
-        *"2n-zn2")
-            # Maciek's workaround for Zen2 with lower amount of cores.
-            export TREX_CORE_COUNT=14
     esac
 }
 
