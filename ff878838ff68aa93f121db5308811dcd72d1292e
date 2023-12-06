@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27f86a9f_8f8584d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2023-12-06T06:08:37Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDmrrANDmemifANDip4fwdAND64b",
+      "revId": "ff878838ff68aa93f121db5308811dcd72d1292e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
