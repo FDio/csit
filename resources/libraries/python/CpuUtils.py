@@ -524,15 +524,15 @@ class CpuUtils:
                 continue
             # Number of Data Plane physical cores.
             dp_cores_count = BuiltIn().get_variable_value(
-                "${{dp_cores_count}}", phy_cores
+                "${dp_cores_count}", phy_cores
             )
             # Number of Feature Plane physical cores.
             fp_cores_count = BuiltIn().get_variable_value(
-                "${{fp_cores_count}}", phy_cores - dp_cores_count
+                "${fp_cores_count}", phy_cores - dp_cores_count
             )
             # Ratio between RX queues and data plane threads.
             rxq_ratio = BuiltIn().get_variable_value(
-                "${{rxq_ratio}}", 1
+                "${rxq_ratio}", 1
             )
 
             dut_pf_keys = BuiltIn().get_variable_value(
@@ -540,7 +540,7 @@ class CpuUtils:
             )
             # SMT override in case of non standard test cases.
             smt_used = BuiltIn().get_variable_value(
-                "${{smt_used}}", CpuUtils.is_smt_enabled(node["cpuinfo"])
+                "${smt_used}", CpuUtils.is_smt_enabled(node["cpuinfo"])
             )
 
             cpu_node = Topology.get_interfaces_numa_node(node, *dut_pf_keys)
