@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "679e03755af02a6eafd87a25543c652ae7bba3ee",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b9a50f_55ac69da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-12-07T15:53:04Z",
+      "side": 1,
+      "message": "Looks like 1n-spr infra issue, 1n-tx2 proves this is not bad.",
+      "revId": "679e03755af02a6eafd87a25543c652ae7bba3ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
