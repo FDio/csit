@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54ad329a_ac691740",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-12-07T12:53:58Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDNIC_Intel-E822CQANDdrv_vfio_pciAND2cAND1518bANDethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm",
+      "revId": "679e03755af02a6eafd87a25543c652ae7bba3ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
