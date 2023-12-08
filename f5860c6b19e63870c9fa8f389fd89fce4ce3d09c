@@ -16,6 +16,23 @@
       "message": "perftest-2n-clx mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cANDeth-l2xcbase-eth-2memif-1dcr !1518b !imix",
       "revId": "f5860c6b19e63870c9fa8f389fd89fce4ce3d09c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a0ef2b8_719552b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-12-08T14:05:14Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cANDeth-l2xcbase-eth-2memif-1dcr !1518b !imix",
+      "revId": "f5860c6b19e63870c9fa8f389fd89fce4ce3d09c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
