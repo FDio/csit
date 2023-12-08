@@ -52,7 +52,7 @@
 | |
 | | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
 | | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2 | ${rxq}=${1}
-| | ... | ${txq}=${1} | ${role}=SLAVE
+| | ... | ${txq}=${1} | ${role}=MASTER
 | |
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
