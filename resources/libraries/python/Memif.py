@@ -115,6 +115,7 @@ class Memif:
             id=int(mid),
             secret=u"",
             use_dma=use_dma,
+            no_zero_copy=True,
         )
 
         with PapiSocketExecutor(node) as papi_exec:
