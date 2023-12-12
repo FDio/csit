@@ -43,7 +43,8 @@ but was not detected/recognized/reported enough back then.
  11   | [VPP-2088](https://jira.fd.io/browse/VPP-2088)   | virtio: Bad CLI argument parsing introduced with tx-queue-size.
  12   | [CSIT-1944](https://jira.fd.io/browse/CSIT-1944) | Memif LXC: unrecognized option '--no-validate'.
  13   | [CSIT-1945](https://jira.fd.io/browse/CSIT-1945) | Some srv6 9000B tests crash VPP.
-
+ 14   | [VPP-2090](https://jira.fd.io/browse/VPP-2090)   | MRR < PDR: DPDK plugin with MLX5 driver does not read full queue.
+ 15   | [VPP-2091](https://jira.fd.io/browse/VPP-2091)   | Memif crashes with jumbo frames.
 
 ## Previous
 
