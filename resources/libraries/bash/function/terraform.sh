@@ -79,15 +79,15 @@ function terraform_init () {
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
     pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
 
-    plugin_url="https://github.com/radekg/terraform-provisioner-ansible/"
-    plugin_url+="releases/download/v2.5.0/"
-    plugin_url+="terraform-provisioner-ansible-linux-amd64_v2.5.0"
-    plugin_dir="${HOME}/.terraform.d/plugins/"
-    plugin_path+="${plugin_dir}terraform-provisioner-ansible_v2.5.0"
+    #plugin_url="https://github.com/radekg/terraform-provisioner-ansible/"
+    #plugin_url+="releases/download/v2.5.0/"
+    #plugin_url+="terraform-provisioner-ansible-linux-amd64_v2.5.0"
+    #plugin_dir="${HOME}/.terraform.d/plugins/"
+    #plugin_path+="${plugin_dir}terraform-provisioner-ansible_v2.5.0"
 
-    mkdir -p "${plugin_dir}" || die "Failed to create dir!"
-    wget -O "${plugin_path}" "${plugin_url}" || die "Failed to download plugin!"
-    chmod +x "${plugin_path}" || die "Failed to add execute rights!"
+    #mkdir -p "${plugin_dir}" || die "Failed to create dir!"
+    #wget -O "${plugin_path}" "${plugin_url}" || die "Failed to download plugin!"
+    #chmod +x "${plugin_path}" || die "Failed to add execute rights!"
 
     rm -f terraform.tfstate || die "Failed to clear terraform state!"
     export TF_LOG=INFO
