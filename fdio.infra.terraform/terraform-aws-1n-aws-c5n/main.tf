@@ -180,27 +180,32 @@ resource "null_resource" "deploy_tg" {
   }
 }
 
-
-resource "null_resource" "deploy_topology" {
+resource "local_file" "topology_file" {
   depends_on = [
     aws_instance.tg
   ]
 
-  provisioner "ansible" {
-    plays {
-      playbook {
-        file_path = var.ansible_topology_path
-      }
-      hosts = ["local"]
-      extra_vars = {
-        ansible_python_interpreter = local.ansible_python_executable
-        testbed_name               = local.testbed_name
-        cloud_topology             = local.topology_name
-        tg_if1_mac                 = data.aws_network_interface.tg_if1.mac_address
-        tg_if2_mac                 = data.aws_network_interface.tg_if2.mac_address
-        tg_public_ip               = aws_instance.tg.public_ip
-        public_ip_list             = "${aws_instance.tg.public_ip}"
-      }
+  content = templatefile(
+    "${path.module}/topology-${local.topology_name}.tftpl",
+    {
+      tg_if1_mac     = data.aws_network_interface.tg_if1.mac_address
+      tg_if2_mac     = data.aws_network_interface.tg_if2.mac_address
+      tg_public_ip   = aws_instance.tg.public_ip
     }
-  }
+  )
+  filename = "${path.module}/../../topologies/available/${local.topology_name}-${local.testbed_name}.yaml"
+}
+
+resource "local_file" "hosts" {
+  depends_on = [
+    aws_instance.tg
+  ]
+
+  content = templatefile(
+    "${path.module}/hosts.tftpl",
+    {
+      tg_public_ip   = aws_instance.tg.public_ip
+    }
+  )
+  filename = "${path.module}/../../fdio.infra.ansible/inventories/cloud_inventory/hosts.yaml"
 }
