@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8efced1_1b5779e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-12-13T13:38:43Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-device-master-ubuntu2204-aarch64-1n-tx2/2298/ : SUCCESS\n\nThat proves this works.",
+      "revId": "185d2338b5d5b40e7da71523b814d598ec83849f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
