@@ -13,6 +13,7 @@
 
 """Interface util library."""
 
+from json import loads
 from time import sleep
 from enum import IntEnum
 
@@ -25,7 +26,6 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
@@ -723,9 +723,8 @@ class InterfaceUtil:
         ret_code, stdout, _ = ssh.exec_command(cmd)
         if int(ret_code) != 0:
             raise RuntimeError(u"Get interface name and MAC failed")
-        tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
 
-        interfaces = JsonParser().parse_data(tmp)
+        interfaces = loads("{" + stdout.rstrip().replace("\n", ",") + "}")
         for interface in node[u"interfaces"].values():
             name = interfaces.get(interface[u"mac_address"])
             if name is None:
