@@ -11,7 +11,7 @@ variable "region" {
 variable "resource_prefix" {
   description = "Resources name prefix."
   type        = string
-  default     = "csit-2n-c6gn"
+  default     = "csit-2n-c6in"
 }
 
 variable "testbed_name" {

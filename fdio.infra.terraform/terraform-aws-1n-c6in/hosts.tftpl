@@ -2,8 +2,4 @@ all:
   children:
     tg:
       hosts:
-        {{ tg_public_ip }}
-    sut:
-      hosts:
-        {{ dut1_public_ip | default() }}
-        {{ dut2_public_ip | default() }}
+        ${tg_public_ip}
