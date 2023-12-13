@@ -110,6 +110,65 @@ function initialize_csit_dirs () {
 }
 
 
+function main_bisect_loop () {
+
+    # Perform the iterative part of bisect entry script.
+    #
+    # The logic is too complex to remain in the entry script.
+    #
+    # At the start, the loop assumes git bisect old/new has just been executed,
+    # and verified more iterations are needed.
+    # The iteration cleans the build directory and builds the new mid commit.
+    # Then, testbed is reserved, tests run, and testbed unreserved.
+    # Results are moved from default to archive location
+    # (indexed by iteration number) and analyzed.
+    # The new adjective ("old" or "new") is selected,
+    # and git bisect with the adjective is executed.
+    # The symlinks csit_early and csit_late are updated to tightest bounds.
+    # The git.log file is examined and if the bisect is finished, loop ends.
+
+    iteration=0
+    while true
+    do
+        let iteration+=1
+        git clean -dffx "build"/ "build-root"/ || die
+        build_vpp_ubuntu "MIDDLE" || die
+        select_build "build-root" || die
+        check_download_dir || die
+        reserve_and_cleanup_testbed || die
+        run_robot || die
+        move_test_results "csit_middle/${iteration}" || die
+        untrap_and_unreserve_testbed || die
+        rm -vf "csit_mid" || die
+        ln -s -T "csit_middle/${iteration}" "csit_mid" || die
+        set +e
+        python3 "${TOOLS_DIR}/integrated/compare_bisect.py"
+        bisect_rc="${?}"
+        set -e
+        if [[ "${bisect_rc}" == "3" ]]; then
+            adjective="new"
+            rm -v "csit_late" || die
+            ln -s -T "csit_middle/${iteration}" "csit_late" || die
+        elif [[ "${bisect_rc}" == "0" ]]; then
+            adjective="old"
+            rm -v "csit_early" || die
+            ln -s -T "csit_middle/${iteration}" "csit_early" || die
+        else
+            die "Unexpected return code: ${bisect_rc}"
+        fi
+        git bisect "${adjective}" | tee "git.log" || die
+        git describe || die
+        git status || die
+        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+            echo "Still bisecting..."
+        else
+            echo "Bisecting done."
+            break
+        fi
+    done
+}
+
+
 function move_test_results () {
 
     # Arguments:
