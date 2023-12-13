@@ -18,40 +18,14 @@ set -exuo pipefail
 # Generally, the functions assume "common.sh" library has been sourced already.
 # Keep functions ordered alphabetically, please.
 
-function archive_test_results () {
 
-    # Arguments:
-    # - ${1}: Directory to archive to. Required. Parent has to exist.
-    # Variable set:
-    # - TARGET - Target directory.
-    # Variables read:
-    # - ARCHIVE_DIR - Path to where robot result files are created in.
-    # - VPP_DIR - Path to existing directory, root for to relative paths.
-    # Directories updated:
-    # - ${1} - Created, and robot and parsing files are moved/created there.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    set -exuo pipefail
-
-    cd "${VPP_DIR}" || die "Change directory command failed."
-    TARGET="$(readlink -f "$1")"
-    mkdir -p "${TARGET}" || die "Directory creation failed."
-    file_list=("output.xml" "log.html" "report.html" "tests")
-    for filename in "${file_list[@]}"; do
-        mv "${ARCHIVE_DIR}/${filename}" "${TARGET}/${filename}" || {
-            die "Attempt to move '${filename}' failed."
-        }
-    done
-}
-
-
-function build_vpp_ubuntu_amd64 () {
+function build_vpp_ubuntu () {
 
     # This function is using make pkg-verify to build VPP with all dependencies
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
     # is consuming artifacts. This way if VPP will introduce change in building
     # mechanics they will not be blocked by CSIT repo.
+    #
     # Arguments:
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
@@ -115,20 +89,50 @@ function initialize_csit_dirs () {
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
     # Directories created:
-    # - csit_current - Holding test results of the patch under test (PUT).
-    # - csit_parent - Holding test results of parent of PUT.
+    # - csit_{part} - See the caller what it is used for.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "csit_current" "csit_parent" || {
-        die "Directory deletion failed."
-    }
-    mkdir -p "csit_current" "csit_parent" || {
-        die "Directory creation failed."
-    }
+    while true; do
+        if [[ ${#} < 1 ]]; then
+            # All directories created.
+            break
+        fi
+        name_part="${1}" || die
+        shift || die
+        dir_name="csit_${name_part}" || die
+        rm -rf "${dir_name}" || die "Directory deletion failed."
+        mkdir -p "${dir_name}" || die "Directory creation failed."
+    done
+}
+
+
+function move_test_results () {
+
+    # Arguments:
+    # - ${1}: Directory to archive to. Required. Parent has to exist.
+    # Variable set:
+    # - TARGET - Target archival directory, equivalent to the argument.
+    # Variables read:
+    # - ARCHIVE_DIR - Path to where robot result files are created in.
+    # - VPP_DIR - Path to existing directory, root for to relative paths.
+    # Directories updated:
+    # - ${1} - Created, and robot and parsing files are moved/created there.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
+
+    cd "${VPP_DIR}" || die "Change directory command failed."
+    TARGET="$(readlink -f "$1")"
+    mkdir -p "${TARGET}" || die "Directory creation failed."
+    file_list=("output.xml" "log.html" "report.html" "tests")
+    for filename in "${file_list[@]}"; do
+        mv "${ARCHIVE_DIR}/${filename}" "${TARGET}/${filename}" || die
+    done
 }
 
 
@@ -157,56 +161,37 @@ function select_build () {
 }
 
 
-function set_aside_commit_build_artifacts () {
+function set_aside_build_artifacts () {
 
-    # Function is copying VPP built artifacts from actual checkout commit for
-    # further use and clean git.
+    # Function used to save VPP .deb artifacts from currently finished build.
+    #
+    # After the artifacts are copied to the target directory,
+    # the main git tree is cleaned up to not interfere with next build.
+    #
+    # Arguments:
+    # - ${1} - String to derive the target directory name from. Required.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories read:
     # - build-root - Existing directory with built VPP artifacts (also DPDK).
     # Directories updated:
     # - ${VPP_DIR} - A local git repository, parent commit gets checked out.
-    # - build_current - Old contents removed, content of build-root copied here.
+    # - build_${1} - Old contents removed, content of build-root copied here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_current" || die "Remove operation failed."
-    mkdir -p "build_current" || die "Directory creation failed."
-    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+    dir_name="build_${1}" || die
+    rm -rf "${dir_name}" || die "Remove operation failed."
+    mkdir -p "${dir_name}" || die "Directory creation failed."
+    mv "build-root"/*".deb" "${dir_name}"/ || die "Move operation failed."
     # The previous build could have left some incompatible leftovers,
     # e.g. DPDK artifacts of different version (in build/external).
     # Also, there usually is a copy of dpdk artifact in build-root.
     git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
-    # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
-    # Display any other leftovers.
-    git status || die "Git status operation failed."
-}
-
-
-function set_aside_parent_build_artifacts () {
-
-    # Function is copying VPP built artifacts from parent checkout commit for
-    # further use. Checkout to parent is not part of this function.
-    # Variables read:
-    # - VPP_DIR - Path to existing directory, parent of accessed directories.
-    # Directories read:
-    # - build-root - Existing directory with built VPP artifacts (also DPDK).
-    # Directories updated:
-    # - build_parent - Old directory removed, build-root debs moved here.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    set -exuo pipefail
-
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_parent" || die "Remove failed."
-    mkdir -p "build_parent" || die "Directory creation operation failed."
-    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
+    git status || die
 }
 
 
