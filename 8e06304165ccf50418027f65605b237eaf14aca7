@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a3f5395_5fbe7206",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-12-13T15:50:01Z",
+      "side": 1,
+      "message": "\u003e 1n-tx2/2302/ : SUCCESS\n\nShip it!",
+      "revId": "8e06304165ccf50418027f65605b237eaf14aca7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
