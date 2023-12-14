@@ -1373,7 +1373,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create_v3"
+        cmd = u"rdma_create_v4"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
