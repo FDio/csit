@@ -73,7 +73,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 180
+    MAX_TIME_PERIOD = 250
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
