@@ -166,8 +166,9 @@ class Constants:
 
     NORM_FREQUENCY = 2.0  # [GHz]
     FREQUENCY = {  # [GHz]
-        "1n-aws": 1.000,
-        "2n-aws": 1.000,
+        "1n-aws": 3.400,
+        "2n-aws": 3.400,
+        "2n-c6in": 3.500,
         "2n-dnv": 2.000,
         "2n-clx": 2.300,
         "2n-icx": 2.600,
