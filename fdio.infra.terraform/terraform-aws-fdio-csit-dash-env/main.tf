@@ -11,8 +11,8 @@ module "elastic_beanstalk_application" {
   source = "../terraform-aws-elastic-beanstalk-application"
 
   # application
-  application_description                    = "FD.io CDASH"
-  application_name                           = "fdio-csit-dash-app"
+  application_description                    = "FD.io CDASH M7G"
+  application_name                           = "fdio-csit-dash-app-m7g"
   appversion_lifecycle_service_role_arn      = "arn:aws:iam::407116685360:role/aws-service-role/elasticbeanstalk.amazonaws.com/AWSServiceRoleForElasticBeanstalk"
   appversion_lifecycle_max_count             = 10
   appversion_lifecycle_delete_source_from_s3 = false
@@ -21,6 +21,9 @@ module "elastic_beanstalk_application" {
 module "elastic_beanstalk_environment" {
   source = "../terraform-aws-elastic-beanstalk-environment"
 
+  # environment
+  application_name = "fdio-csit-dash-app-m7g"
+
   # vpc
   vpc_cidr_block           = "10.0.0.0/16"
   vpc_enable_dns_hostnames = true
@@ -28,22 +31,22 @@ module "elastic_beanstalk_environment" {
   vpc_instance_tenancy     = "default"
 
   # subnet
-  subnet_a_availability_zone = "eu-central-1a"
+  subnet_a_availability_zone = "eu-north-1a"
   subnet_a_cidr_block        = "10.0.0.0/20"
-  subnet_b_availability_zone = "eu-central-1b"
+  subnet_b_availability_zone = "eu-north-1b"
   subnet_b_cidr_block        = "10.0.16.0/20"
 
   # environment
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
-  environment_name                   = "fdio-csit-dash-env"
-  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.0.3 running Python 3.11"
+  environment_name                   = "fdio-csit-dash-env-m7g"
+  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.0.6 running Python 3.11"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
 
   # aws:ec2:instances
-  instances_instance_types = "t3a.2xlarge"
+  instances_instance_types = "m7g.2xlarge"
 
   # aws:ec2:vpc
   associate_public_ip_address = true
@@ -54,7 +57,7 @@ module "elastic_beanstalk_environment" {
 
   # aws:elasticbeanstalk:environment
   environment_loadbalancer_type               = "application"
-  environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:eu-central-1:407116685360:certificate/737ad419-36f1-460d-919a-9110b0aac26a"
+  environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:eu-north-1:407116685360:certificate/3ef3c6ae-f1d4-49f0-a8cd-5d090991bf73"
 
   # aws:elasticbeanstalk:environment:process:default
   environment_process_default_healthcheck_interval      = 10
