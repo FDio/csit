@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS Region."
   type        = string
-  default     = "eu-central-1"
+  default     = "eu-north-1"
 }
 
 variable "vault_provider_address" {
