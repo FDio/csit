@@ -1373,7 +1373,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create_v3"
+        cmd = u"rdma_create_v4"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1382,14 +1382,20 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
-            # Note: Set True for non-jumbo packets.
+            # TODO: Set True for non-jumbo packets.
             no_multi_seg=False,
             max_pktlen=0,
             # TODO: Apply desired RSS flags.
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
-            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        try:
+            with PapiSocketExecutor(node) as papi_exec:
+                sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        except Exception as err:  # FIXME: Which subtypes?
+            logger.debug(f"err {err!r}")
+            cmd = u"rdma_create_v3"
+            with PapiSocketExecutor(node) as papi_exec:
+                sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.vpp_set_interface_mac(
             node, sw_if_index, Topology.get_interface_mac(node, if_key)
