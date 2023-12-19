@@ -98,7 +98,7 @@ def graph_trending(
             name: str,
             df: pd.DataFrame,
             color: str,
-            norm_factor: float
+            nf: float
         ) -> list:
         """Generate the trending traces for the trending graph.
 
@@ -106,13 +106,13 @@ def graph_trending(
         :param name: The test name to be displayed as the graph title.
         :param df: Data frame with test data.
         :param color: The color of the trace (samples and trend line).
-        :param norm_factor: The factor used for normalization of the results to
+        :param nf: The factor used for normalization of the results to
             CPU frequency set to Constants.NORM_FREQUENCY.
         :type ttype: str
         :type name: str
         :type df: pandas.DataFrame
         :type color: str
-        :type norm_factor: float
+        :type nf: float
         :returns: Traces (samples, trending line, anomalies)
         :rtype: list
         """
@@ -121,88 +121,78 @@ def graph_trending(
         if df.empty:
             return list(), list()
 
-        x_axis = df["start_time"].tolist()
-        if ttype == "latency":
-            y_data = [(v / norm_factor) for v in df[C.VALUE[ttype]].tolist()]
-        else:
-            y_data = [(v * norm_factor) for v in df[C.VALUE[ttype]].tolist()]
-        units = df[C.UNIT[ttype]].unique().tolist()
-
-        try:
-            anomalies, trend_avg, trend_stdev = classify_anomalies(
-                {k: v for k, v in zip(x_axis, y_data)}
-            )
-        except ValueError as err:
-            logging.error(err)
-            return list(), list()
-
         hover = list()
         customdata = list()
         customdata_samples = list()
         name_lst = name.split("-")
-        for idx, (_, row) in enumerate(df.iterrows()):
+        for _, row in df.iterrows():
             h_tput, h_band, h_lat = str(), str(), str()
             if ttype in ("mrr", "mrr-bandwidth"):
                 h_tput = (
                     f"tput avg [{row['result_receive_rate_rate_unit']}]: "
-                    f"{row['result_receive_rate_rate_avg']:,.0f}<br>"
+                    f"{row['result_receive_rate_rate_avg'] * nf:,.0f}<br>"
                     f"tput stdev [{row['result_receive_rate_rate_unit']}]: "
-                    f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
+                    f"{row['result_receive_rate_rate_stdev'] * nf:,.0f}<br>"
                 )
                 if pd.notna(row["result_receive_rate_bandwidth_avg"]):
                     h_band = (
                         f"bandwidth avg "
                         f"[{row['result_receive_rate_bandwidth_unit']}]: "
-                        f"{row['result_receive_rate_bandwidth_avg']:,.0f}<br>"
+                        f"{row['result_receive_rate_bandwidth_avg'] * nf:,.0f}"
+                        "<br>"
                         f"bandwidth stdev "
                         f"[{row['result_receive_rate_bandwidth_unit']}]: "
-                        f"{row['result_receive_rate_bandwidth_stdev']:,.0f}<br>"
+                        f"{row['result_receive_rate_bandwidth_stdev']* nf:,.0f}"
+                        "<br>"
                     )
             elif ttype in ("ndr", "ndr-bandwidth"):
                 h_tput = (
                     f"tput [{row['result_ndr_lower_rate_unit']}]: "
-                    f"{row['result_ndr_lower_rate_value']:,.0f}<br>"
+                    f"{row['result_ndr_lower_rate_value'] * nf:,.0f}<br>"
                 )
                 if pd.notna(row["result_ndr_lower_bandwidth_value"]):
                     h_band = (
                         f"bandwidth [{row['result_ndr_lower_bandwidth_unit']}]:"
-                        f" {row['result_ndr_lower_bandwidth_value']:,.0f}<br>"
+                        f" {row['result_ndr_lower_bandwidth_value'] * nf:,.0f}"
+                        "<br>"
                     )
             elif ttype in ("pdr", "pdr-bandwidth", "latency"):
                 h_tput = (
                     f"tput [{row['result_pdr_lower_rate_unit']}]: "
-                    f"{row['result_pdr_lower_rate_value']:,.0f}<br>"
+                    f"{row['result_pdr_lower_rate_value'] * nf:,.0f}<br>"
                 )
                 if pd.notna(row["result_pdr_lower_bandwidth_value"]):
                     h_band = (
                         f"bandwidth [{row['result_pdr_lower_bandwidth_unit']}]:"
-                        f" {row['result_pdr_lower_bandwidth_value']:,.0f}<br>"
+                        f" {row['result_pdr_lower_bandwidth_value'] * nf:,.0f}"
+                        "<br>"
                     )
                 if pd.notna(row["result_latency_forward_pdr_50_avg"]):
                     h_lat = (
                         f"latency "
                         f"[{row['result_latency_forward_pdr_50_unit']}]: "
-                        f"{row['result_latency_forward_pdr_50_avg']:,.0f}<br>"
+                        f"{row['result_latency_forward_pdr_50_avg'] / nf:,.0f}"
+                        "<br>"
                     )
             elif ttype in ("hoststack-cps", "hoststack-rps",
                            "hoststack-cps-bandwidth",
                            "hoststack-rps-bandwidth", "hoststack-latency"):
                 h_tput = (
                     f"tput [{row['result_rate_unit']}]: "
-                    f"{row['result_rate_value']:,.0f}<br>"
+                    f"{row['result_rate_value'] * nf:,.0f}<br>"
                 )
                 h_band = (
                     f"bandwidth [{row['result_bandwidth_unit']}]: "
-                    f"{row['result_bandwidth_value']:,.0f}<br>"
+                    f"{row['result_bandwidth_value'] * nf:,.0f}<br>"
                 )
                 h_lat = (
                     f"latency [{row['result_latency_unit']}]: "
-                    f"{row['result_latency_value']:,.0f}<br>"
+                    f"{row['result_latency_value'] / nf:,.0f}<br>"
                 )
             elif ttype in ("hoststack-bps", ):
                 h_band = (
                     f"bandwidth [{row['result_bandwidth_unit']}]: "
-                    f"{row['result_bandwidth_value']:,.0f}<br>"
+                    f"{row['result_bandwidth_value'] * nf:,.0f}<br>"
                 )
             hover_itm = (
                 f"dut: {name_lst[0]}<br>"
@@ -223,6 +213,21 @@ def graph_trending(
                     {"name": name, "show_telemetry": True}
                 )
                 customdata.append({"name": name})
+
+        x_axis = df["start_time"].tolist()
+        if "latency" in ttype:
+            y_data = [(v / nf) for v in df[C.VALUE[ttype]].tolist()]
+        else:
+            y_data = [(v * nf) for v in df[C.VALUE[ttype]].tolist()]
+        units = df[C.UNIT[ttype]].unique().tolist()
+
+        try:
+            anomalies, trend_avg, trend_stdev = classify_anomalies(
+                {k: v for k, v in zip(x_axis, y_data)}
+            )
+        except ValueError as err:
+            logging.error(err)
+            return list(), list()
 
         hover_trend = list()
         for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
@@ -352,7 +357,7 @@ def graph_trending(
         if normalize:
             phy = itm["phy"].split("-")
             topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
-            norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY[topo_arch]) \
+            norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY.get(topo_arch, 1.0)) \
                 if topo_arch else 1.0
         else:
             norm_factor = 1.0
