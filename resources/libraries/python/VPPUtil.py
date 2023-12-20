@@ -43,7 +43,7 @@ class VPPUtil:
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
 
         VPPUtil.stop_vpp_service(node)
-        command = "/usr/bin/vpp -c /etc/vpp/startup.conf"
+        command = "/usr/bin/vpp -c /etc/vpp/startup.conf; sleep 5"
         message = f"Node {node[u'host']} failed to start VPP!"
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
@@ -165,12 +165,12 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        cmd = u"echo \"show pci\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
+        cmd = u"echo \"show thread\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
         exec_cmd_no_error(
             node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
         )
 
-        cmd = u"vppctl show pci 2>&1 | fgrep -v \"Connection refused\" | " \
+        cmd = u"vppctl show thread 2>&1 | fgrep -v \"Connection refused\" | " \
               u"fgrep -v \"No such file or directory\""
         exec_cmd_no_error(
             node, cmd, sudo=True, message=u"VPP failed to start!", retries=120
