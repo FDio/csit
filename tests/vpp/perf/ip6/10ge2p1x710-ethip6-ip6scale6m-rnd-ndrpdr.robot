@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_20K | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip6-ip6scale20k
+| ... | NIC_Intel-X710 | ETH | IP6FWD | IP6_RND | SCALE | FIB_6M
+| ... | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip6-ip6scale6m-rnd
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -34,7 +34,7 @@
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 for IPv6 routing.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with IPv6 \
-| ... | routing and 2x10k static IPv6 /64 route entries. DUT1 and DUT2 tested \
+| ... | routing and 6x10k static IPv6 /64 route entries. DUT1 and DUT2 tested \
 | ... | with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
@@ -47,7 +47,7 @@
 | ... | contains two L3 flow-groups (flow-group per direction, 10k flows per \
 | ... | flow-group) with all packets containing Ethernet header, IPv6 header \
 | ... | with IP and static payload. MAC addresses are matching MAC addresses \
-| ... | of the TG node interfaces. Incrementing of IP.dst (IPv6 destination \
+| ... | of the TG node interfaces. Randomization of IP.dst (IPv6 destination \
 | ... | address) field is applied to both streams.
 | ... |
 | ... | - **[Ref] Applicable standard specifications:** RFC2544.
@@ -63,9 +63,10 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
-| ${rts_per_flow}= | ${10000}
+| ${rts_per_flow}= | ${1000000}
+| ${rxq_ratio}= | ${3}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_per_flow}-${nic_pfs}p
+| ${traffic_profile}= | trex-stl-ethip6-ip6dst-rnd${rts_per_flow}-${nic_pfs}p
 
 *** Keywords ***
 | Local Template
@@ -95,50 +96,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 78B-1c-ethip6-ip6scale20k-ndrpdr
+| 78B-1c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 78B | 1C
 | | frame_size=${78} | phy_cores=${1}
 
-| 78B-2c-ethip6-ip6scale20k-ndrpdr
+| 78B-2c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 78B | 2C
 | | frame_size=${78} | phy_cores=${2}
 
-| 78B-4c-ethip6-ip6scale20k-ndrpdr
+| 78B-4c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 78B | 4C
 | | frame_size=${78} | phy_cores=${4}
 
-| 1518B-1c-ethip6-ip6scale20k-ndrpdr
+| 1518B-1c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip6-ip6scale20k-ndrpdr
+| 1518B-2c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip6-ip6scale20k-ndrpdr
+| 1518B-4c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip6-ip6scale20k-ndrpdr
+| 9000B-1c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip6-ip6scale20k-ndrpdr
+| 9000B-2c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip6-ip6scale20k-ndrpdr
+| 9000B-4c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip6-ip6scale20k-ndrpdr
+| IMIX-1c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip6-ip6scale20k-ndrpdr
+| IMIX-2c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip6-ip6scale20k-ndrpdr
+| IMIX-4c-ethip6-ip6scale6m-rnd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
