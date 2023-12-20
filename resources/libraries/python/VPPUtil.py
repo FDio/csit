@@ -165,15 +165,15 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        cmd = u"echo \"show pci\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
-        exec_cmd_no_error(
-            node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
-        )
-
-        cmd = u"vppctl show pci 2>&1 | fgrep -v \"Connection refused\" | " \
+        cmd = u"ps -ef; vppctl show thread 2>&1 | fgrep -v \"Connection refused\" | " \
               u"fgrep -v \"No such file or directory\""
         exec_cmd_no_error(
             node, cmd, sudo=True, message=u"VPP failed to start!", retries=120
+        )
+
+        cmd = u"echo \"show thread\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock; ps -ef"
+        exec_cmd_no_error(
+            node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
         )
 
         # Properly enable cards in case they were disabled. This will be
