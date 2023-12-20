@@ -746,22 +746,10 @@ class VppInitConfig:
                 vpp_config.set_node(node)
                 vpp_config.add_unix_log()
                 vpp_config.add_unix_cli_listen()
-                vpp_config.add_unix_cli_no_pager()
-                vpp_config.add_unix_gid()
-                vpp_config.add_unix_coredump()
-                vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
-                vpp_config.add_main_heap_size("2G")
-                vpp_config.add_main_heap_page_size(huge_size)
-                vpp_config.add_default_hugepage_size(huge_size)
-                vpp_config.add_statseg_size("2G")
-                vpp_config.add_statseg_page_size(huge_size)
-                vpp_config.add_statseg_per_node_counters("on")
                 vpp_config.add_plugin("disable", "default")
                 vpp_config.add_plugin("enable", "dpdk_plugin.so")
                 vpp_config.add_dpdk_dev(
                     *[node["interfaces"][interface].get("pci_address") \
                         for interface in node["interfaces"]]
                 )
-                vpp_config.add_ip6_hash_buckets(2000000)
-                vpp_config.add_ip6_heap_size("4G")
                 vpp_config.apply_config()
