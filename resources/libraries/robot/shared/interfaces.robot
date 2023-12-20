@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -198,7 +198,6 @@
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
-| | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
 | | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 | | | Run Keyword If | not ${jumbo}
 | | | ... | ${dut}.Add DPDK No Multi Seg
