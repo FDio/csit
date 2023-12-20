@@ -693,6 +693,15 @@ class VppConfigGenerator:
             path = ["dsa", f"dev {device}"]
             self.add_config_item(self._nodeconfig, "", path)
 
+    def add_logging_default_syslog_log_level(self, value="debug"):
+        """Add default logging level for syslog.
+
+        :param value: Log level.
+        :type value: str
+        """
+        path = ["logging", "default-syslog-log-level"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def write_config(self, filename=None):
         """Generate and write VPP startup configuration to file.
 
