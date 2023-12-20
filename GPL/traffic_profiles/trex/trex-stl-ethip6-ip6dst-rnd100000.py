@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -28,10 +28,10 @@ Stream profile:
  - Packet: ETH / IPv6 /
  - Direction 0 --> 1:
    - Source IP address range:      2001:1::1
-   - Destination IP address range: 2001:2::0 - 2001:2::270F
+   - Destination IP address range: 2001:2::0 - 2001:2::1:869F
  - Direction 1 --> 0:
    - Source IP address range:      2001:2::1
-   - Destination IP address range: 2001:1::0 - 2001:1::270F
+   - Destination IP address range: 2001:1::0 - 2001:1::1:869F
 """
 
 from trex.stl.api import *
@@ -49,11 +49,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # IPs used in packet headers.
         self.p1_src_start_ip = u"2001:1::1"
         self.p1_dst_start_ip = u"2001:2::0"
-        self.p1_dst_end_ip = u"2001:2::270F"
+        self.p1_dst_end_ip = u"2001:2::1:869F"
 
         self.p2_src_start_ip = u"2001:2::1"
         self.p2_dst_start_ip = u"2001:1::0"
-        self.p2_dst_end_ip = u"2001:1::270F"
+        self.p2_dst_end_ip = u"2001:1::1:869F"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
