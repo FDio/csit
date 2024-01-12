@@ -182,7 +182,7 @@ class PLRsearch:
             f"Started search with min_rate {min_rate!r}, "
             f"max_rate {max_rate!r}"
         )
-        trial_result_list = list()
+        trial_result_list = []
         trial_number = self.trial_number_offset
         focus_trackers = (None, None)
         transmit_rate = (min_rate + max_rate) / 2.0
@@ -694,11 +694,11 @@ class PLRsearch:
                     trace_list,
                     sampls,
                 ) = result_or_traceback
-            except ValueError:
+            except ValueError as exc:
                 raise RuntimeError(
                     f"Worker {name} failed with the following traceback:\n"
                     f"{result_or_traceback}"
-                )
+                ) from exc
             logging.info(f"Logs from worker {name!r}:")
             for message in debug_list:
                 logging.info(message)
