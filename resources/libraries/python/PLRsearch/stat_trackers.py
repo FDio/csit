@@ -209,7 +209,7 @@ class ScalarDualStatTracker(ScalarStatTracker):
         """
         # Using super() as copy() and add() are not expected to change
         # signature, so this way diamond inheritance will be supported.
-        primary = super(ScalarDualStatTracker, self)
+        primary = super()
         if self.max_log_weight is None or log_weight >= self.max_log_weight:
             self.max_log_weight = log_weight
             self.secondary = primary.copy()
