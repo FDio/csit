@@ -189,8 +189,8 @@ def estimate_nd(communication_pipe, scale_coeff=8.0, trace_enabled=False):
     :raises numpy.linalg.LinAlgError: If the focus shape gets singular
         (due to rounding errors). Try changing scale_coeff.
     """
-    debug_list = list()
-    trace_list = list()
+    debug_list = []
+    trace_list = []
     # Block until input object appears.
     (
         dimension,
