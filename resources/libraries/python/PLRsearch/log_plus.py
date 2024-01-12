@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -76,14 +76,14 @@ def log_minus(first, second):
     :raises RuntimeError: If the difference would be non-positive.
     """
     if first is None:
-        raise RuntimeError(u"log_minus: does not support None first")
+        raise RuntimeError("log_minus: does not support None first")
     if second is None:
         return first
     if second >= first:
-        raise RuntimeError(u"log_minus: first has to be bigger than second")
+        raise RuntimeError("log_minus: first has to be bigger than second")
     factor = -math.expm1(second - first)
     if factor <= 0.0:
-        msg = u"log_minus: non-positive number to log"
+        msg = "log_minus: non-positive number to log"
     else:
         return first + math.log(factor)
     raise RuntimeError(msg)
