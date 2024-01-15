@@ -180,7 +180,7 @@ class Constants:
     QEMU_VM_IMAGE = "/var/lib/vm/image.iso"
 
     # QEMU VM DPDK path
-    QEMU_VM_DPDK = "/opt/dpdk-23.07"
+    QEMU_VM_DPDK = "/opt/dpdk-23.11"
 
     # Docker container SUT image
     DOCKER_SUT_IMAGE_UBUNTU = "csit_sut-ubuntu2204:local"
