@@ -148,7 +148,7 @@
 ### intel-e810cq
 #### avf
 ##### ethip4-l2bdbasemaclrn
-0c AND 64b AND scapy AND e810cq AND drv_avf AND ethip4-l2bdbasemaclrn
+# 0c AND 64b AND scapy AND e810cq AND drv_avf AND ethip4-l2bdbasemaclrn
 #### dpdk-vfio-pci
 ##### ethip4-l2bdbasemaclrn
 0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn
@@ -196,7 +196,7 @@
 ### intel-e810cq
 #### dpdk-vfio-pci
 ##### ethip4-ip4base-eth-2vhost-1vm
-# 0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-ip4base-eth-2vhost-1vm
+0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-ip4base-eth-2vhost-1vm
 ##### ethip4-l2bdbasemaclrn-eth-2vhost-1vm
 # 0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-eth-2vhost-1vm
 ##### ethip4-l2xcbase-eth-2vhost-1vm
