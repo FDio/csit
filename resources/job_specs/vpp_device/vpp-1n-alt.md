@@ -1,4 +1,4 @@
-# 1n-tx2
+# 1n-alt
 ## ./container_memif
 ### intel-x710
 #### dpdk-vfio-pci
