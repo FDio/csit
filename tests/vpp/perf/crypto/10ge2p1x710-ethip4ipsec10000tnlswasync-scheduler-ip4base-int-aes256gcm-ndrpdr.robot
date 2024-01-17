@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
 # Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,13 +16,13 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECINT | NIC_Intel-X710 | TNL_10000
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | BASE | NDRPDR
+| ... | IP4FWD | IPSEC | IPSECSW | ASYNC | IPSECINT | NIC_Intel-X710 | TNL_1
+| ... | SCHEDULER | AES_256_GCM | AES | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+| ... | ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm
 |
-| Suite Setup | Setup suite topology interfaces | performance | cryptohw
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_sa
@@ -38,9 +38,10 @@
 | ... | Eth-IPv4-IPSec on DUT1-DUT2.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with \
-| ... | multiple IPsec tunnels between them. DUTs get IPv4 traffic from TG, \
-| ... | encrypt it and send to another DUT, where packets are decrypted and \
-| ... | sent back to TG.
+| ... | multiple IPsec tunnels between them, run with IPsec async mode and \
+| ... | use crypto sw scheduler engine to schedule crypto work to crypto \
+| ... | cores. DUTs get IPv4 traffic from TG, encrypt it and send to another \
+| ... | DUT, where packets are decrypted and sent back to TG.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \
@@ -62,8 +63,9 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ... | crypto_native_plugin.so
-| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
-| ${crypto_type}= | HW_DH895xcc
+| ... | crypto_ipsecmb_plugin.so | crypto_sw_scheduler_plugin.so
+| ... | crypto_openssl_plugin.so
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
@@ -82,21 +84,23 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${10000}
+| ${dp_cores_count}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}-udir
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
 | | ... | - **[Cfg]** DUT runs IPSec tunneling AES_256_GCM config. \
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | Each DUT uses one physical core for data plane workers \
+| | ... | and rest of ${phy_cores} physical core(s) for crypto workers.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
-| | ... | - phy_cores - Number of physical cores. Type: integer
-| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ... | - phy_cores - Total number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${1}. Type: integer
 | |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
@@ -113,6 +117,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Enable IPSec Async Mode on all VPP DUTs
+| | And Set Data Plane And Feature Plane Workers for IPsec on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
@@ -121,50 +126,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 64B | 1C
-| | frame_size=${64} | phy_cores=${1}
-
-| 64B-2c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| 64B-2c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| 64B-3c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 64B | 3C
+| | frame_size=${64} | phy_cores=${3}
+
+| 64B-4c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 1518B | 1C
-| | frame_size=${1518} | phy_cores=${1}
-
-| 1518B-2c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| 1518B-2c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| 1518B-3c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 1518B | 3C
+| | frame_size=${1518} | phy_cores=${3}
+
+| 1518B-4c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| 9000B-2c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| 9000B-2c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| 9000B-3c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 9000B | 3C
+| | frame_size=${9000} | phy_cores=${3}
+
+| 9000B-4c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | phy_cores=${1}
-
-| IMIX-2c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| IMIX-2c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm-ndrpdr
+| IMIX-3c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | IMIX | 3C
+| | frame_size=IMIX_v4_1 | phy_cores=${3}
+
+| IMIX-4c-ethip4ipsec10000tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
