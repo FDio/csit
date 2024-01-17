@@ -42,7 +42,7 @@ To access these hosts, VPN connection is required.
  #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd
  1. 1-Node-Skylake         nomad  skx   na    5    5    0    5    0    0    0    0    0    0    0    0    0    0    0
  2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0
- 3. 1-Node-AmpereAltra     nomad  alt   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0    0
+ 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0
  4. 2-Node-IxiaPS1L47      tcp    skx   ps1   1    1    1    1    1    0    0    0    0    0    0    0    0    0    0
  5. 2-Node-Cascadelake     perf   clx   clx   3    3    3    0    0    0    0    0    0    6    0    0    0    0    0
  6. 2-Node-ThunderX2       perf   tx2   skx   1    1    .5   .5   0    0    1    0    0    0    0    0    0    0    0
@@ -55,8 +55,8 @@ To access these hosts, VPN connection is required.
 13. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    .5   2    0    0
 14. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0
 15. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0
-16. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4
-                                     Totals: 37   46  19.5   7    1    2    1    2    4   10    2   16.5  2   12    4
+16. 3-Node-IcelakeD        perf   icxd  icx   4    6    1    0    0    0    0    0    0    0    0    1    0    0    4
+                                     Totals: 39   48  19.5   7    1    2    1    2    6   10    2   16.5  2   12    4
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -65,9 +65,9 @@ Each 1-Node-Skylake testbed includes one SUT (Server-Type-B2) with NIC
 ports connected back-to-back ([Server Types](#server-types)).
 Used for FD.io VPP_Device functional driver tests.
 
-### 1-Node-ThunderX2 Arm Marvell (1n-tx2)
+### 1-Node-Altra Arm Ampere (1n-alt)
 
-Each 1-Node-ThunderX2 testbed includes one SUT (Server-Type-E11) with NIC
+Each 1-Node-Altra testbed includes one SUT (Server-Type-E25) with NIC
 ports connected back-to-back ([Server Types](#server-types)).
 Used for FD.io VPP_Device functional driver tests.
 
@@ -362,26 +362,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot2 41:00.xx: x710-4p10GE Intel.
             - PCIe Slot3 81:00.xx: xxv710-da2 2p25GE Intel.
 
-10. **Server-Type-E11**: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
-    - Quantity: 2.
-    - Physical connectivity:
-        - IPMI and host management ports.
-        - NIC ports connected into 1-node topologies.
-    - Main HW configuration:
-        - Chassis: GIGABYTE Rack Mount
-        - Motherboard: MT91-FS4-00
-        - Processors: 2 * ThunderX2 ARMv8 CN9980 2.20 GHz
-        - RAM Memory: 16 * 16GB DIMM
-        - Disks: 2 * 480GB 6G SATA SSD SAMSUNG MZ7LH480
-    - NICs configuration:
-        - Numa0:
-            - PCIe Slot4 05:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot8 0b:00.xx: ConnectX5-2p10/25GE Mellanox.
-        - Numa1:
-            - PCIe Slot14 91:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
-
-11. **Server-Type-E21**: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
+10. **Server-Type-E21**: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI(?) and host management ports.
@@ -395,7 +376,7 @@ FD.io CSIT lab contains following server types:
         - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
         - PCIe Slot6 11:00.xx: x520-2p10GE Intel.
 
-12. **Server-Type-E22**: Purpose - ThunderX2 Arm Marvell SUT for FD.io performance testing.
+11. **Server-Type-E22**: Purpose - ThunderX2 Arm Marvell SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -412,7 +393,7 @@ FD.io CSIT lab contains following server types:
         - Numa1:
             - PCIe Slot18 91:00.xx: XL710-QDA2-2p40GE Intel.
 
-13. **Server-Type-E23**: Purpose - Altra Arm Ampere SUT for FD.io performance testing.
+12. **Server-Type-E23**: Purpose - Altra Arm Ampere SUT for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -431,7 +412,7 @@ FD.io CSIT lab contains following server types:
         - Numa1:
             - no cards.
 
-14. **Server-Type-E24**: Purpose - Altra Arm Ampere for FD.io build.
+13. **Server-Type-E24**: Purpose - Altra Arm Ampere for FD.io build.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -442,6 +423,26 @@ FD.io CSIT lab contains following server types:
         - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
         - RAM Memory: 12* 16GB DDR4-3200MT/s
         - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
+
+14. **Server-Type-E25**: Purpose - Altra Arm Ampere SUT for FD.io VPP_Device functional tests.
+    - Quantity: 2.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 1-node topologies.
+    - Main HW configuration:
+        - Chassis: Gigabyte R152-P30-00 1U
+        - Motherboard: MP32-AR1-00
+        - Processors: 1* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
+        - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
+        - RAM Memory: 32* 16GB DDR4-3200MT/s
+        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM9A3
+    - NICs configuration:
+        - Numa0:
+            - PCIe Slot4 05:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot8 0b:00.xx: ConnectX5-2p10/25GE Mellanox.
+        - Numa1:
+            - PCIe Slot14 91:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
 
 15. **Server-Type-E31**: Purpose - Skylake Xeon Shared TG for FD.io performance testing.
     - Quantity: 1.
@@ -810,37 +811,37 @@ FD.io CSIT lab contains following server types:
         - s2-t12-sut1-c8/p2 - 100GE-port2 e810-2p100GE.
 ```
 
-### 1-Node-ThunderX2 (1n-tx2)
+### 1-Node-Altra (1n-alt)
 
 ```
-- SUT [Server-Type-E11]:
+- SUT [Server-Type-E25]:
     - testbedname: testbed13
-    - hostname: s55-t13-sut1
+    - hostname: s70-t13-sut1
     - IPMI IP: 10.30.50.70
     - Host IP: 10.30.51.70
     - portnames:
-        - s55-t13-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s55-t13-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s55-t13-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s55-t13-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s55-t13-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s55-t13-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s55-t13-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s55-t13-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-- SUT [Server-Type-E11]:
+        - s70-t13-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+- SUT [Server-Type-E25]:
     - testbedname: testbed14
-    - hostname: s56-t14-sut1
+    - hostname: s71-t14-sut1
     - IPMI IP: 10.30.50.71
     - Host IP: 10.30.51.71
     - portnames:
-        - s56-t14-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s56-t14-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s56-t14-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s56-t14-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s56-t14-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s56-t14-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s56-t14-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s56-t14-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
 ```
 
 ### 1-Node-SapphireRapids (1n-spr)
@@ -1660,28 +1661,36 @@ FD.io CSIT lab contains following server types:
         - s2-t12-sut1-c5/p2 to s2-t12-sut1-c6/p2.
 ```
 
-### 1-Node-ThunderX2 (1n-tx2)
+### 1-Node-Altra (1n-alt)
 
 ```
 - testbed13:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s55-t13-sut1-c4/p1 - s55-t13-sut1-c14/p1.
+        - s70-t13-sut1-c1/p1 - s70-t13-sut1-c2/p1.
     - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s55-t13-sut1-c4/p2 - s55-t13-sut1-c14/p2.
+        - s70-t13-sut1-c1/p2 - s70-t13-sut1-c2/p2.
     - ring3 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s55-t13-sut1-c8/p1 - s55-t13-sut1-c26/p1.
+        - s70-t13-sut1-c3/p1 - s70-t13-sut1-c4/p1.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s55-t13-sut1-c8/p2 - s55-t13-sut1-c26/p2.
+        - s70-t13-sut1-c3/p2 - s70-t13-sut1-c4/p2.
+    - ring5 100GE-ports ConnectX6-2p100GE on SUTs:
+        - s70-t13-sut1-c5/p1 - s70-t13-sut1-c6/p1.
+    - ring6 100GE-ports ConnectX6-2p100GE on SUTs:
+        - s70-t13-sut1-c5/p2 - s70-t13-sut1-c6/p2.
 
 - testbed14:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s56-t14-sut1-c4/p1 - s56-t14-sut1-c14/p1.
+        - s71-t14-sut1-c1/p1 - s71-t14-sut1-c2/p1.
     - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s56-t14-sut1-c4/p2 - s56-t14-sut1-c14/p2.
+        - s71-t14-sut1-c1/p2 - s71-t14-sut1-c2/p2.
     - ring3 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s56-t14-sut1-c8/p1 - s56-t14-sut1-c26/p1.
+        - s71-t14-sut1-c3/p1 - s71-t14-sut1-c4/p1.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s56-t14-sut1-c8/p2 - s56-t14-sut1-c26/p2.
+        - s71-t14-sut1-c3/p2 - s71-t14-sut1-c4/p2.
+    - ring5 100GE-ports ConnectX6-2p100GE on SUTs:
+        - s71-t14-sut1-c5/p1 - s71-t14-sut1-c6/p1.
+    - ring6 100GE-ports ConnectX6-2p100GE on SUTs:
+        - s71-t14-sut1-c5/p2 - s71-t14-sut1-c6/p2.
 ```
 
 ### 1-Node-SapphireRapids (1n-spr)
@@ -2041,4 +2050,3 @@ To be completed.
         - s34-t32-sut1-c1/p2 to s35-t32-sut2-c1/p2.
         - s35-t32-sut2-c1/p1 to s90-t31t32-tg1-c6/p2.
 ```
-
