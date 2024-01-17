@@ -1,13 +1,13 @@
 ---
 # file: host_vars/10.30.51.71.yaml
 
-hostname: "s56-t14-sut1"
-inventory_ipmi_hostname: "10.30.50.71"
-vfs_data_file: "csit-initialize-vfs-tx2.sh"
+hostname: "s71-t14-sut1"
 grub:
   hugepagesz: "2M"
   hugepages: 32768
   iommu.passthrough: "1"
+inventory_ipmi_hostname: "10.30.50.71"
+vfs_data_file: "csit-initialize-vfs-tx2.sh"
 cpu_microarchitecture: "thunderx2"
 
 intel_700_matrix: "dpdk22.07"
@@ -60,12 +60,11 @@ nomad_servers:
   - "10.30.51.23:4647"
   - "10.30.51.24:4647"
   - "10.30.51.25:4647"
-nomad_cpu_total_compute: "40000"
 
 # Consul settigs.
 nomad_use_consul: true
 consul_certificates:
-  - src: "{{ file_consul_agent_ca_pem }}"
+  - src: "{{ file_consul_ca_pem }}"
     dest: "{{ consul_ca_file }}"
   - src: "{{ file_consul_server_0_pem }}"
     dest: "{{ consul_cert_file }}"
@@ -91,7 +90,8 @@ vault_version: "1.13.1"
 
 # Docker settings.
 docker_daemon:
+  default-shm-size: "1073741824"
   dns: ["172.17.0.1"]
   dns-opts: []
   dns-search: ["{{ansible_hostname}}"]
-  storage-driver: "overlay2"
+  host: ["172.17.0.1:/var/run/docker.sock"]
