@@ -100,6 +100,7 @@
 | | ... | ${DUT1_${int}2_mac}[0] | ${encr_alg} | ${encr_keys}[0] | ${auth_alg}
 | | ... | ${auth_keys}[0] | ${dut_spi} | ${tg_spi} | ${laddr_ip4} | ${raddr_ip4}
 | | ... | ${tun_if1_ip4} | ${tun_if2_ip4}
+| | Fail | Verifying teardown.
 
 *** Test Cases ***
 | 64B-0c-ethip4ipsec11tnlsw-ip4base-int-aes128cbc-hmac512sha-scapy
