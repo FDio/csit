@@ -16,6 +16,23 @@
       "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_af_xdpAND1cAND64bANDeth-l2patch",
       "revId": "3488d8cb0584600cb3e0d6adb5ce8cee2a6de989",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efb1f7ed_c6d9f75f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-01-18T14:46:39Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "3488d8cb0584600cb3e0d6adb5ce8cee2a6de989",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
