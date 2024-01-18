@@ -187,7 +187,7 @@ class PLRsearch:
         focus_trackers = (None, None)
         transmit_rate = (min_rate + max_rate) / 2.0
         lossy_loads = [max_rate]
-        zeros = 0  # How many consecutive zero loss results are happening.
+#        zeros = 0  # How many consecutive zero loss results are happening.
         while 1:
             trial_number += 1
             logging.info(f"Trial {trial_number!r}")
@@ -209,21 +209,21 @@ class PLRsearch:
                 f"loss ratio {measurement.plr_loss_count}"
                 f" / {measurement.intended_count}"
             )
-            zeros += 1
-            # TODO: Ratio of fill rate to drain rate seems to have
-            # exponential impact. Make it configurable, or is 4:3 good enough?
-            if measurement.plr_loss_count >= (
-                measurement.intended_count * self.packet_loss_ratio_target
-            ):
-                for _ in range(4 * zeros):
-                    lossy_loads.append(measurement.intended_load)
-                lossy_loads.sort()
-                zeros = 0
-                logging.debug("High enough loss, lossy loads added.")
-            else:
-                logging.debug(
-                    f"Not a high loss, zero counter bumped to {zeros}."
-                )
+#            zeros += 1
+#            # TODO: Ratio of fill rate to drain rate seems to have
+#            # exponential impact. Make it configurable, or is 4:3 good enough?
+#            if measurement.plr_loss_count >= (
+#                measurement.intended_count * self.packet_loss_ratio_target
+#            ):
+#                for _ in range(4 * zeros):
+#                    lossy_loads.append(measurement.intended_load)
+#                lossy_loads.sort()
+#                zeros = 0
+#                logging.debug("High enough loss, lossy loads added.")
+#            else:
+#                logging.debug(
+#                    f"Not a high loss, zero counter bumped to {zeros}."
+#                )
             if stop_time <= time.time():
                 return average, stdev
             trial_result_list.append(measurement)
@@ -235,20 +235,20 @@ class PLRsearch:
                 )
             else:
                 next_load = (avg1 + avg2) / 2.0
-                if zeros > 0:
-                    if lossy_loads[0] > next_load:
-                        diminisher = math.pow(2.0, 1 - zeros)
-                        next_load = lossy_loads[0] + diminisher * next_load
-                        next_load /= 1.0 + diminisher
-                    # On zero measurement, we need to drain obsoleted low losses
-                    # even if we did not use them to increase next_load,
-                    # in order to get to usable loses at higher loads.
-                    if len(lossy_loads) > 3:
-                        lossy_loads = lossy_loads[3:]
-                logging.debug(
-                    f"Zeros {zeros!r} orig {(avg1 + avg2) / 2.0!r} "
-                    f"next {next_load!r} loads {lossy_loads!r}"
-                )
+#                if zeros > 0:
+#                    if lossy_loads[0] > next_load:
+#                        diminisher = math.pow(2.0, 1 - zeros)
+#                        next_load = lossy_loads[0] + diminisher * next_load
+#                        next_load /= 1.0 + diminisher
+#                    # On zero measurement, we need to drain obsoleted low losses
+#                    # even if we did not use them to increase next_load,
+#                    # in order to get to usable loses at higher loads.
+#                    if len(lossy_loads) > 3:
+#                        lossy_loads = lossy_loads[3:]
+#                logging.debug(
+#                    f"Zeros {zeros!r} orig {(avg1 + avg2) / 2.0!r} "
+#                    f"next {next_load!r} loads {lossy_loads!r}"
+#                )
             transmit_rate = min(max_rate, max(min_rate, next_load))
 
     @staticmethod
