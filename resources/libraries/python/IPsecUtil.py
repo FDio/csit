@@ -2034,7 +2034,7 @@ class IPsecUtil:
         :type node: dict
         """
         cmds = [
-            u"ipsec_sa_v3_dump"
+            u"ipsec_sa_v4_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
 

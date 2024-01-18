@@ -1321,7 +1321,7 @@ class InterfaceUtil:
             node, u"set logging class af_xdp level debug"
         )
 
-        cmd = u"af_xdp_create_v2"
+        cmd = u"af_xdp_create_v3"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
