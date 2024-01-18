@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
-# Copyright (c) 2023 PANTHEON.tech s.r.o.
+# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2024 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -2034,7 +2034,7 @@ class IPsecUtil:
         :type node: dict
         """
         cmds = [
-            u"ipsec_sa_v3_dump"
+            u"ipsec_sa_v4_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
 
