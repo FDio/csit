@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,6 +73,8 @@ class AvgStdevStats:
                 run_size = run.size
                 run_avg = run.avg
                 run_stdev = run.stdev
+            if run_size < 1:
+                continue
             old_total_size = total_size
             delta = run_avg - total_avg
             total_size += run_size
