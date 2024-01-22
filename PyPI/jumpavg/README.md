@@ -8,11 +8,14 @@ of [CSIT](https://wiki.fd.io/view/CSIT "Continuous System and Integration Testin
 project of [fd.io](https://fd.io/ "Fast Data"),
 one of [LFN](https://www.linuxfoundation.org/projects/networking/ "Linux Foundation Networking") projects.
 
-Currently still being primarily used in PAL's successor [CSIT-DASH](https://csit.fd.io).
+Currently still being primarily used in PAL's successor
+[CSIT-DASH](https://csit.fd.io).
 
-In order to make this code available in [PyPI](https://pypi.org/ "Python Package Index"),
-the setuputils stuff has been added,
-and the code has been moved into a separate [directory](https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/jumpavg),
+In order to make this code available in
+[PyPI](https://pypi.org/ "Python Package Index"),
+the pyproject.toml stuff has been added,
+and the code has been moved into a separate
+[directory](https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/jumpavg),
 in order to not intervere of otherwise tightly coupled CSIT code.
 
 ## Usage
@@ -22,6 +25,8 @@ TODO.
 ## Change log
 
 TODO: Move into a separate file?
+
++ 0.4.2: Should no longer divide by zero on empty inputs.
 
 + 0.4.1: Fixed bug of not penalizing large stdev enough (at all for size 2 stats).
 
