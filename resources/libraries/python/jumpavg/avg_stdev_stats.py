@@ -73,6 +73,8 @@ class AvgStdevStats:
                 run_size = run.size
                 run_avg = run.avg
                 run_stdev = run.stdev
+            if run_size < 1:
+                continue
             old_total_size = total_size
             delta = run_avg - total_avg
             total_size += run_size
