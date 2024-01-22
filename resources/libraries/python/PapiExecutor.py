@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -285,19 +285,36 @@ class PapiSocketExecutor:
             # It is right, we should refactor the code and move initialization
             # of package outside.
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            try:
+                # The old way. Deduplicate when pre-2402 support is not needed.
 
-            vpp_class.apidir = cls.api_json_path
-            # We need to create instance before removing from sys.path.
-            # Cannot use loglevel parameter, robot.api.logger lacks the support.
-            vpp_instance = vpp_class(
-                use_socket=True,
-                server_address="TBD",
-                async_thread=False,
-                # Large read timeout was originally there for VPP-1722,
-                # it may still be helping against AVF device creation failures.
-                read_timeout=14,
-                logger=FilteredLogger(logger, "INFO"),
-            )
+                vpp_class.apidir = cls.api_json_path
+                # We need to create instance before removing from sys.path.
+                # Cannot use loglevel parameter, robot.api.logger lacks the support.
+                vpp_instance = vpp_class(
+                    use_socket=True,
+                    server_address="TBD",
+                    async_thread=False,
+                    # Large read timeout was originally there for VPP-1722,
+                    # it may still be helping against AVF device creation failures.
+                    read_timeout=14,
+                    logger=FilteredLogger(logger, "INFO"),
+                )
+            except vpp_class.VPPRuntimeError:
+                # The 39871 way.
+
+                # We need to create instance before removing from sys.path.
+                # Cannot use loglevel parameter, robot.api.logger lacks the support.
+                vpp_instance = vpp_class(
+                    apidir=cls.api_json_path,
+                    use_socket=True,
+                    server_address="TBD",
+                    async_thread=False,
+                    # Large read timeout was originally there for VPP-1722,
+                    # it may still be helping against AVF device creation failures.
+                    read_timeout=14,
+                    logger=FilteredLogger(logger, "INFO"),
+                )
             # The following is needed to prevent union (e.g. Ip4) debug logging
             # of VPP part of PAPI from spamming robot logs.
             logging.getLogger("vpp_papi.serializer").setLevel(logging.INFO)
