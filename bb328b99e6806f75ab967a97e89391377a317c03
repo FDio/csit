@@ -16,6 +16,23 @@
       "message": "With the parent this fixes [0] bisect when global suite setup fails.\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-csit-bisect-master-ubuntu2204-x86_64-2n-clx/4/",
       "revId": "bb328b99e6806f75ab967a97e89391377a317c03",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33335dd9_276c7105",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-01-22T17:42:14Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-device-master-ubuntu2204-x86_64-1n-spr/438/ : FAILURE\n\nOnly the usual L2 failed tests, most passes (and bootstraps are not ready for 1n-alt).",
+      "revId": "bb328b99e6806f75ab967a97e89391377a317c03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
