@@ -8,7 +8,7 @@ weight: 1
 # CSIT-2310 Release Report
 
 This section includes release notes for FD.io CSIT-2310. The CSIT report
-will be published on Nov-08 2023. The release plan is published on
+was published on **Nov-08 2023**. The release plan is published on
 [CSIT wiki](https://wiki.fd.io/view/CSIT/csit2310_plan) pages.
 
 ## CSIT-2310 Release Notes
