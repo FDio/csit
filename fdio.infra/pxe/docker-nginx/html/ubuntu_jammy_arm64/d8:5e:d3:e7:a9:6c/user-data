@@ -10,7 +10,7 @@ autoinstall:
     - arches: [default]
       uri: http://ports.ubuntu.com/ubuntu-ports
   identity:
-    hostname: s56-t14-sut1
+    hostname: s71-t14-sut1
     password: $6$FIsbVDQR$5D0wgufOd2FtnmOiRNsGlgg6Loh.0x3dWSj72DSQnqisSyE9DROfgSgA6s0yxDwz4Jd5SRTXiTKuRYuSQ5POI1
     realname: localadmin
     username: localadmin
@@ -21,7 +21,7 @@ autoinstall:
   locale: en_US.UTF-8
   network:
     ethernets:
-      enp8s0f0:
+      eno1:
         addresses: [ 10.30.51.71/24 ]
         dhcp4: false
         gateway4: 10.30.51.1
@@ -39,13 +39,13 @@ autoinstall:
   storage:
     config:
     - grub_device: false
-      id: disk-sda
-      path: /dev/sda
+      id: disk-nvme0n1
+      path: /dev/nvme0n1
       ptable: gpt
       preserve: false
       type: disk
       wipe: superblock-recursive
-    - device: disk-sda
+    - device: disk-nvme0n1
       grub_device: true
       id: partition-0
       flag: boot
@@ -59,7 +59,7 @@ autoinstall:
       preserve: false
       type: format
       volume: partition-0
-    - device: disk-sda
+    - device: disk-nvme0n1
       flag: ''
       grub_device: false
       id: partition-1
