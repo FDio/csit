@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -59,8 +59,10 @@ def main() -> int:
     early_results, early_avg = read_from_dir("csit_early")
     late_results, late_avg = read_from_dir("csit_late")
     mid_results, mid_avg = read_from_dir("csit_mid")
-    rel_diff_to_early = abs(early_avg - mid_avg) / max(early_avg, mid_avg)
-    rel_diff_to_late = abs(late_avg - mid_avg) / max(late_avg, mid_avg)
+    max_early, abs_diff_late = max(early_avg, mid_avg), abs(late_avg - mid_avg)
+    max_late, abs_diff_early = max(late_avg, mid_avg), abs(early_avg - mid_avg)
+    rel_diff_early = abs_diff_early / max_early if max_early else 0.0
+    rel_diff_late = abs_diff_late / max_late if max_late else 0.0
     max_value = max(early_results + mid_results + late_results)
     # Create a common group list with just the early group.
     common_group_list = jumpavg.BitCountingGroupList(
@@ -97,17 +99,17 @@ def main() -> int:
         print("Perhaps two different anomalies. Selecting by averages only.")
         diff = single_bits - double_bits
         print(f"Saved {diff} ({100*diff/single_bits}%) bits.")
-        if rel_diff_to_early > rel_diff_to_late:
+        if rel_diff_early > rel_diff_late:
             print("The mid results are considered late.")
             print("Preferring relative difference of averages:")
-            print(f"{100*rel_diff_to_early}% to {100*rel_diff_to_late}%.")
+            print(f"{100*rel_diff_early}% to {100*rel_diff_late}%.")
             # rc==1 is when command is not found.
             # rc==2 is when python interpreter does not find the script.
             exit_code = 3
         else:
             print("The mid results are considered early.")
             print("Preferring relative difference of averages:")
-            print(f"{100*rel_diff_to_late}% to {100*rel_diff_to_early}%.")
+            print(f"{100*rel_diff_late}% to {100*rel_diff_early}%.")
             exit_code = 0
     else:
         # When difference of averages is within stdev,
@@ -117,12 +119,12 @@ def main() -> int:
         if early_bits > late_bits:
             print("The mid results are considered late.")
             print(f"Saved {diff} ({100*diff/early_bits}%) bits.")
-            print(f"New relative difference is {100*rel_diff_to_early}%.")
+            print(f"New relative difference is {100*rel_diff_early}%.")
             exit_code = 3
         else:
             print("The mid results are considered early.")
             print(f"Saved {-diff} ({-100*diff/late_bits}%) bits.")
-            print(f"New relative difference is {100*rel_diff_to_late}%.")
+            print(f"New relative difference is {100*rel_diff_late}%.")
             exit_code = 0
     print(f"Exit code {exit_code}")
     return exit_code
