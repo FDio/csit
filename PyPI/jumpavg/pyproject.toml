@@ -1,16 +1,9 @@
 [project]
 name = "jumpavg"
-version = "0.4.1"
+version = "0.4.2"
 description = "Library for locating changes in time series by grouping results."
-authors = [
-    { name = "Cisco Systems Inc. and/or its affiliates", email = "csit-dev@lists.fd.io" },
-]
-maintainers = [
-    { name = "Vratko Polak", email = "vrpolak@cisco.com" },
-    { name = "Tibor Frank", email = "tifrank@cisco.com" },
-]
-keywords = ["progression", "regression", "anomaly detection", "statistics", "bits" ]
-readme = "README.md"
+license = { file = "LICENSE.txt" }
+readme = { file = "README.rst", content-type = "text/x-rst" }
 requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -20,6 +13,14 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.8",
     "Topic :: Scientific/Engineering :: Information Analysis",
+]
+keywords = ["progression", "regression", "anomaly detection", "statistics", "bits" ]
+authors = [
+    { name = "Cisco Systems Inc. and/or its affiliates", email = "csit-dev@lists.fd.io" },
+]
+maintainers = [
+    { name = "Vratko Polak", email = "vrpolak@cisco.com" },
+    { name = "Tibor Frank", email = "tifrank@cisco.com" },
 ]
 
 [project.urls]

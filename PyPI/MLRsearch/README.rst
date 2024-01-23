@@ -9,30 +9,15 @@ in CSIT_ (Continuous System and Integration Testing) project of fd.io_
 (Fast Data), one of LFN_ (Linux Foundation Networking) projects.
 
 In order to make this code available in PyPI_ (Python Package Index),
-the setuputils stuff has been added,
-but after some discussion, the export directory_
-is only a symlink to the original place of tightly coupled CSIT code.
+the setuputils stuff (later converted to pyproject.toml) has been added,
+but after some discussion, that directory_ ended up having
+only a symlink to the original place of tightly coupled CSIT code.
 
-Change log
-----------
+IETF documents
+--------------
 
-1.2.1: Updated the readme document.
-
-1.2.0: Changed the output structure to use Goal Result as described in draft-05.
-
-1.1.0: Logic improvements, independent selectors, exceed ratio support,
-better width rounding, conditional throughput as output.
-Implementation relies more on dataclasses, code split into smaller files.
-API changed considerably, mainly to avoid long argument lists.
-
-0.4.0: Considarable logic improvements, more than two target ratios supported.
-API is not backward compatible with previous versions.
-
-0.3.0: Migrated to Python 3.6, small code quality improvements.
-
-0.2.0: Optional parameter "doublings" has been added.
-
-0.1.1: First officially released version.
+The currently published `IETF draft`_ describes the logic of version 1.2.0,
+earlier library and draft versions do not match each other that well.
 
 Usage
 -----
@@ -142,11 +127,26 @@ This is the screen capture of interactive python interpreter
     PDR conditional throughput: 1000000.6730730429
     >>>
 
-IETF documents
---------------
+Change log
+----------
 
-The currently published `IETF draft`_ describes the logic of version 1.2.0,
-earlier library and draft versions do not match each other that well.
+1.2.1: Updated the readme document.
+
+1.2.0: Changed the output structure to use Goal Result as described in draft-05.
+
+1.1.0: Logic improvements, independent selectors, exceed ratio support,
+better width rounding, conditional throughput as output.
+Implementation relies more on dataclasses, code split into smaller files.
+API changed considerably, mainly to avoid long argument lists.
+
+0.4.0: Considarable logic improvements, more than two target ratios supported.
+API is not backward compatible with previous versions.
+
+0.3.0: Migrated to Python 3.6, small code quality improvements.
+
+0.2.0: Optional parameter "doublings" has been added.
+
+0.1.1: First officially released version.
 
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
