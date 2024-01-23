@@ -8,7 +8,7 @@ grub:
   iommu.passthrough: "1"
 inventory_ipmi_hostname: "10.30.50.71"
 vfs_data_file: "csit-initialize-vfs-alt.sh"
-cpu_microarchitecture: "thunderx2"
+cpu_microarchitecture: "altra"
 
 intel_700_matrix: "dpdk22.07"
 

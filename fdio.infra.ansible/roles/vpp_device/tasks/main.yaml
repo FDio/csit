@@ -1,6 +1,16 @@
 ---
 # file: tasks/main.yaml
 
+- name: "Load Kernel Modules On Startup (vfio-pci)"
+  ansible.builtin.lineinfile:
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "vfio-pci"
+  tags:
+    - load-kernel-modules
+
 - name: "Disable IPv6 Router Advertisement"
   ansible.builtin.sysctl:
     name: "net.ipv6.conf.default.accept_ra"
