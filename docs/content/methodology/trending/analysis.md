@@ -31,8 +31,9 @@ normally, currently we do not have a better tractable model.
 Here, "sample" should be the result of single trial measurement, with group
 boundaries set only at test run granularity. But in order to avoid detecting
 causes unrelated to VPP performance, the current presentation takes average of
-all trials within the run as the sample. Effectively, this acts as a single
+all trials within the MRR run as the sample. Effectively, this acts as a single
 trial with aggregate duration.
+(Trending of NDR or PDR results take just one sample, the conditional throughput).
 
 Performance graphs show the run average as a dot (not all individual trial
 results).
@@ -59,11 +60,19 @@ group average (more on that later), group stdev and then all the samples.
 
 Luckily, the "all the samples" part turns out to be quite easy to compute.
 If sample values are considered as coordinates in (multi-dimensional)
-Euclidean space, fixing stdev means the point with allowed coordinates
-lays on a sphere. Fixing average intersects the sphere with a (hyper)-plane,
-and Gaussian probability density on the resulting sphere is constant.
+Euclidean space, fixing average restrict possible values to a (hyper-)plane.
+Then, fixing stdev means the point with allowed coordinates
+lays on a sphere (centered the "all samples equal to average" point)
+within that hyper-plane.
+And the Gaussian probability density on the resulting sphere is constant.
 So the only contribution is the "area" of the sphere, which only depends
 on the number of samples and stdev.
+
+Still, to get the information content in bits, we need to know what "size"
+one "pixel" of that area is.
+Our implementation assumes that measurement precision is such that
+the max sample value is 4096 (2^12) pixels (inspired by 0.5% precision
+of NDRPDR tests, roughly two pixels around max value).
 
 A somehow ambiguous part is in choosing which encoding
 is used for group size, average and stdev.
@@ -74,13 +83,11 @@ for stdev and average of the first group,
 but for averages of subsequent groups we have chosen a distribution
 which discourages delimiting groups with averages close together.
 
-Our implementation assumes that measurement precision is 1.0 pps.
-Thus it is slightly wrong for trial durations other than 1.0 seconds.
-Also, all the calculations assume 1.0 pps is totally negligible,
-compared to stdev value.
-
 The group selection algorithm currently has no parameters,
 all the aforementioned encodings and handling of precision is hard-coded.
+(Although the underlying library "jumpavg" allows users to change the precision,
+either in absolute units or in bits per max sample.)
+
 In principle, every group selection is examined, and the one encodable
 with least amount of bits is selected.
 As the bit amount for a selection is just sum of bits for every group,
