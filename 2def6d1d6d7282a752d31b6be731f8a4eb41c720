@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b9b1cf3_34487e7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-01-23T15:08:13Z",
+      "side": 1,
+      "message": "Will render as seen in https://test.pypi.org/project/jumpavg/0.4.2/",
+      "revId": "2def6d1d6d7282a752d31b6be731f8a4eb41c720",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
