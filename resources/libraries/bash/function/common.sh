@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
-# Copyright (c) 2023 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2024 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,7 +45,7 @@ function activate_docker_topology () {
     device_image="$(< ${CSIT_DIR}/${IMAGE_VER_FILE})"
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_skx" | "1n_tx2" | "1n_spr")
+        "1n_skx" | "1n_alt" | "1n_spr")
             # We execute reservation over csit-shim-dcr (ssh) which runs sourced
             # script's functions. Env variables are read from ssh output
             # back to localhost for further processing.
@@ -328,7 +328,7 @@ function deactivate_docker_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_skx" | "1n_tx2" | "1n_spr")
+        "1n_skx" | "1n_alt" | "1n_spr")
             ssh="ssh root@172.17.0.1 -p 6022"
             env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
             # The "declare -f" output is long and boring.
@@ -452,9 +452,9 @@ function get_test_code () {
             NODENESS="1n"
             FLAVOR="spr"
             ;;
-        *"1n-tx2")
+        *"1n-alt")
             NODENESS="1n"
-            FLAVOR="tx2"
+            FLAVOR="alt"
             ;;
         *"1n-aws")
             NODENESS="1n"
@@ -1106,7 +1106,7 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!flow")
             ;;
-        *"1n-tx2")
+        *"1n-alt")
             test_tag_array+=("!flow")
             ;;
         *"2n-clx")
@@ -1222,7 +1222,7 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6in*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
             ;;
-        "1n_tx2" | "1n_spr")
+        "1n_alt" | "1n_spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
