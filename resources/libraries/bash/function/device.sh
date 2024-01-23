@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -312,12 +312,12 @@ function get_available_interfaces () {
             dut1_netdev=(ens5 enp175)
             ports_per_nic=2
             ;;
-       "1n_tx2")
+       "1n_alt")
             # Add Intel Corporation XL710/X710 Virtual Function to the
             # whitelist.
             pci_id="0x154c"
-            tg_netdev=(enp5)
-            dut1_netdev=(enp145)
+            tg_netdev=(enp1s0f0 enp1s0f1)
+            dut1_netdev=(enP3p2s0f0 enP3p2s0f1)
             ports_per_nic=2
             ;;
         "1n_spr")

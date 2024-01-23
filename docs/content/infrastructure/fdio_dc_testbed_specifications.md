@@ -434,15 +434,16 @@ FD.io CSIT lab contains following server types:
         - Motherboard: MP32-AR1-00
         - Processors: 1* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
         - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
-        - RAM Memory: 32* 16GB DDR4-3200MT/s
-        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM9A3
+        - RAM Memory: 16* 32GB DDR4-3200MT/s
+        - Disks: 2* 960GB SSD Samsung U.2 NVMe PM9A3
     - NICs configuration:
         - Numa0:
-            - PCIe Slot4 05:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot8 0b:00.xx: ConnectX5-2p10/25GE Mellanox.
+            - PCIe Slot0 0000:01:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot1 0001:01:00.xx: ConnectX6-2p100GE Mellanox.
+            - PCIe Slot2 0002:03:00.xx: ConnectX5-2p10/25GE Mellanox.
         - Numa1:
-            - PCIe Slot14 91:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
+            - PCIe Slot3 0003:02:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot5 0005:02:00.xx: ConnectX5-2p10/25GE Mellanox.
 
 15. **Server-Type-E31**: Purpose - Skylake Xeon Shared TG for FD.io performance testing.
     - Quantity: 1.
@@ -820,28 +821,32 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.70
     - Host IP: 10.30.51.70
     - portnames:
-        - s70-t13-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c1/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c1/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c2/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c2/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c4/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c4/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c5/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s70-t13-sut1-c5/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
 - SUT [Server-Type-E25]:
     - testbedname: testbed14
     - hostname: s71-t14-sut1
     - IPMI IP: 10.30.50.71
     - Host IP: 10.30.51.71
     - portnames:
-        - s71-t14-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c1/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c1/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c2/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c2/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c4/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c4/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c5/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s71-t14-sut1-c5/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
 ```
 
 ### 1-Node-SapphireRapids (1n-spr)
