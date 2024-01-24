@@ -200,15 +200,30 @@ class PLRsearch:
                 focus_trackers,
             )
             measurement, average, stdev, avg1, avg2, focus_trackers = results
+            # Workaround for unsent packets and other anomalies.
+            measurement.plr_loss_count = min(
+                measurement.intended_count,
+                int(measurement.intended_count * measurement.loss_ratio + 0.9),
+            )
+            logging.debug(
+                f"loss ratio {measurement.plr_loss_count}"
+                f" / {measurement.intended_count}"
+            )
             zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
             # exponential impact. Make it configurable, or is 4:3 good enough?
-            if measurement.loss_ratio >= self.packet_loss_ratio_target:
+            if measurement.plr_loss_count >= (
+                measurement.intended_count * self.packet_loss_ratio_target
+            ):
                 for _ in range(4 * zeros):
                     lossy_loads.append(measurement.intended_load)
-            if measurement.loss_ratio > 0.0:
+                lossy_loads.sort()
                 zeros = 0
-            lossy_loads.sort()
+                logging.debug("High enough loss, lossy loads added.")
+            else:
+                logging.debug(
+                    f"Not a high loss, zero counter bumped to {zeros}."
+                )
             if stop_time <= time.time():
                 return average, stdev
             trial_result_list.append(measurement)
@@ -472,7 +487,7 @@ class PLRsearch:
         trace("spread", spread)
         for result in trial_result_list:
             trace("for tr", result.intended_load)
-            trace("lc", result.loss_count)
+            trace("plc", result.plr_loss_count)
             trace("d", result.intended_duration)
             # _rel_ values use units of intended_load (transactions per second).
             log_avg_rel_loss_per_second = lfit_func(
@@ -485,7 +500,7 @@ class PLRsearch:
             )
             # Geometric probability computation for logarithms.
             log_trial_likelihood = log_plus(0.0, -log_avg_abs_loss_per_trial)
-            log_trial_likelihood *= -result.loss_count
+            log_trial_likelihood *= -result.plr_loss_count
             log_trial_likelihood -= log_plus(0.0, +log_avg_abs_loss_per_trial)
             log_likelihood += log_trial_likelihood
             trace("avg_loss_per_trial", math.exp(log_avg_abs_loss_per_trial))
