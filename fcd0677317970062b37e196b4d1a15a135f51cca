@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82653ed3_bb99a62e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-01-24T12:14:16Z",
+      "side": 1,
+      "message": "\u003e 1n-alt/15/ : SUCCESS\n\nSo this is good.",
+      "revId": "fcd0677317970062b37e196b4d1a15a135f51cca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
