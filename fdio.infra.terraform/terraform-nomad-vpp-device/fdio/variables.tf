@@ -1,5 +1,5 @@
 variable "nomad_acl" {
-  description = "Nomad ACLs enabled/disabled"
+  description = "Nomad ACLs enabled/disabled."
   type        = bool
   default     = false
 }
@@ -7,7 +7,7 @@ variable "nomad_acl" {
 variable "nomad_provider_address" {
   description = "FD.io Nomad cluster address."
   type        = string
-  default     = "http://nomad.service.consul:4646"
+  default     = "http://10.30.51.23:4646"
 }
 
 variable "nomad_provider_ca_file" {
@@ -28,8 +28,20 @@ variable "nomad_provider_key_file" {
   default     = "/etc/nomad.d/ssl/nomad-cli-key.pem"
 }
 
-variable "token" {
-  description = "Vault root token"
+variable "vault_provider_address" {
+  description = "Vault cluster address."
+  type        = string
+  default     = "http://10.30.51.23:8200"
+}
+
+variable "vault_provider_skip_tls_verify" {
+  description = "Verification of the Vault server's TLS certificate."
+  type        = bool
+  default     = false
+}
+
+variable "vault_provider_token" {
+  description = "Vault root token."
   type        = string
   sensitive   = true
 }

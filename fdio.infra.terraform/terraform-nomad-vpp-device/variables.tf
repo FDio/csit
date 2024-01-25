@@ -1,42 +1,42 @@
 # Nomad
-variable "nomad_datacenters" {
-  description = "Nomad data centers"
+variable "datacenters" {
+  description = "Specifies the list of DCs to be considered placing this task"
   type        = list(string)
   default     = ["dc1"]
 }
 
 # CSIT SHIM
-variable "csit_shim_job_name" {
+variable "job_name" {
   description = "CSIT SHIM job name"
   type        = string
   default     = "prod-csit-shim"
 }
 
-variable "csit_shim_group_count" {
+variable "group_count" {
   description = "Number of CSIT SHIM group instances"
   type        = number
   default     = 1
 }
 
-variable "csit_shim_cpu" {
+variable "cpu" {
   description = "CSIT SHIM task CPU"
   type        = number
   default     = 2000
 }
 
-variable "csit_shim_mem" {
+variable "memory" {
   description = "CSIT SHIM task memory"
   type        = number
   default     = 10000
 }
 
-variable "csit_shim_image_aarch64" {
+variable "image_aarch64" {
   description = "CSIT SHIM AARCH64 docker image"
   type        = string
   default     = "fdiotools/csit_shim-ubuntu2004:prod-aarch64"
 }
 
-variable "csit_shim_image_x86_64" {
+variable "image_x86_64" {
   description = "CSIT SHIM X86_64 docker image"
   type        = string
   default     = "fdiotools/csit_shim-ubuntu2004:prod-x86_64"

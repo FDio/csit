@@ -7,7 +7,7 @@ provider "nomad" {
 }
 
 provider "vault" {
-  address         = "http://10.30.51.28:8200"
-  skip_tls_verify = true
-  token           = var.token
+  address         = var.vault_provider_address
+  skip_tls_verify = var.vault_provider_skip_tls_verify
+  token           = var.vault_provider_token
 }
