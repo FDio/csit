@@ -254,6 +254,23 @@
       "message": "csit-trex-report-cov-1n-aws-perftest trex-00",
       "revId": "2dfe7257c7887b91bcfd0ac98f64184abfa42cd6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f13d54_aa7efe96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-01-25T06:04:24Z",
+      "side": 1,
+      "message": "csit-dpdk-report-cov-3n-alt-perftest dpdk-00",
+      "revId": "2dfe7257c7887b91bcfd0ac98f64184abfa42cd6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
