@@ -346,10 +346,10 @@
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
     - result_receive_rate_rate_values
-    # - result_receive_rate_bandwidth_avg
-    # - result_receive_rate_bandwidth_stdev
-    # - result_receive_rate_bandwidth_unit
-    # - result_receive_rate_bandwidth_values
+    - result_receive_rate_bandwidth_avg
+    - result_receive_rate_bandwidth_stdev
+    - result_receive_rate_bandwidth_unit
+    - result_receive_rate_bandwidth_values
 - data_type: iterative
   partition: test_type
   partition_name: ndrpdr

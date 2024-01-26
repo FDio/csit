@@ -159,8 +159,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             )
         }
 
-        if itm["testtype"] == "mrr":
-            # and itm["rls"] in ("rls2306", "rls2310"):
+        if itm["testtype"] == "mrr" and itm["rls"] in ("rls2306", "rls2310"):
             trial_run = "trial"
             metadata["csit-ref"] = (
                 f"{itm_data['job'].to_list()[0]}/",
@@ -188,7 +187,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         )
         tput_traces.append(go.Box(**tput_kwargs))
 
-        if ttype in ("ndr", "pdr"):
+        if ttype in ("ndr", "pdr", "mrr"):
             y_band, y_band_max = get_y_values(
                 itm_data,
                 y_band_max,
