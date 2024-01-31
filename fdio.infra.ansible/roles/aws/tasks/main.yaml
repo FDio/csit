@@ -33,8 +33,6 @@
   with_items:
     - "igb_uio"
     - "vfio-pci"
-  notify:
-    - "Reboot Server"
   tags:
     - aws-load-kernel-modules
 
@@ -46,8 +44,6 @@
     create: "yes"
   with_items:
     - "options igb_uio wc_activate=1"
-  notify:
-    - "Reboot Server"
   tags:
     - aws-load-kernel-modules
 
@@ -59,12 +55,8 @@
     create: "yes"
   with_items:
     - "options vfio enable_unsafe_noiommu_mode=1"
-  notify:
-    - "Reboot Server"
   tags:
     - aws-load-kernel-modules
-
-- meta: flush_handlers
 
 #- name: Get vfio-pci With WC Patcher
 #  ansible.builtin.get_url:
