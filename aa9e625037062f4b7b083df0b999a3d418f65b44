@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "285ee761_14bf73aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-01-31T07:51:58Z",
+      "side": 1,
+      "message": "\u003e Download VPP artifacts failed.\n\nNot a fault of this change, spr passed si this is good.",
+      "revId": "aa9e625037062f4b7b083df0b999a3d418f65b44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
