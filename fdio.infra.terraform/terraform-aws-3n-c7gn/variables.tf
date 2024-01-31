@@ -5,7 +5,7 @@ variable "vault-name" {
 variable "region" {
   description = "AWS Region."
   type        = string
-  default     = "eu-central-1"
+  default     = "eu-west-1"
 }
 
 variable "resource_prefix" {
@@ -38,7 +38,7 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-07430bfa17fd4e597"
+  default     = "ami-0b5aa26a6e4192705"
 }
 
 variable "tg_associate_public_ip_address" {
@@ -74,7 +74,7 @@ variable "tg_source_dest_check" {
 variable "sut1_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-0cebabdc14ee56909"
+  default     = "ami-08930f71bd0be1085"
 }
 
 variable "sut1_associate_public_ip_address" {
@@ -110,7 +110,7 @@ variable "sut1_source_dest_check" {
 variable "sut2_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-0cebabdc14ee56909"
+  default     = "ami-08930f71bd0be1085"
 }
 
 variable "sut2_associate_public_ip_address" {
