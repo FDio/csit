@@ -51,16 +51,16 @@ source "amazon-ebs" "csit_ubuntu_jammy_arm_sut" {
   ami_name        = "csit_ubuntu_jammy_arm_sut"
   ami_description = "CSIT SUT image based on Ubuntu jammy"
   ena_support     = true
-  instance_type   = "c6gn.4xlarge"
+  instance_type   = "c7gn.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
     volume_type = "gp2"
   }
   force_deregister = true
-  region           = "eu-central-1"
+  region           = "eu-west-1"
   skip_create_ami  = false
-  source_ami       = "ami-0329d3839379bfd15"
+  source_ami       = "ami-0a1b36900d715a3ad"
   ssh_username     = "ubuntu"
 }
 
