@@ -16,6 +16,92 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDmrrANDmemifANDip4fwdAND1518b\ncsit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDmrrANDmemifANDl2xcfwdAND1518b",
       "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86ed493f_3f85c5db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-02-01T13:07:10Z",
+      "side": 1,
+      "message": "From pylint job https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-verify-tox-master-ubuntu2204-x86_64/3008/pylint.log.gz\n\n\n************* Module resources.libraries.python.DMAUtil\nresources/libraries/python/DMAUtil.py:41:0: W1405: Quote delimiter \u0027 is inconsistent with the rest of the file (inconsistent-quotes)\nresources/libraries/python/DMAUtil.py:42:0: W1405: Quote delimiter \u0027 is inconsistent with the rest of the file (inconsistent-quotes)\nresources/libraries/python/DMAUtil.py:43:0: W1405: Quote delimiter \u0027 is inconsistent with the rest of the file (inconsistent-quotes)\nresources/libraries/python/DMAUtil.py:44:0: W1405: Quote delimiter \u0027 is inconsistent with the rest of the file (inconsistent-quotes)\nresources/libraries/python/DMAUtil.py:49:0: W1405: Quote delimiter \u0027 is inconsistent with the rest of the file (inconsistent-quotes)\nresources/libraries/python/DMAUtil.py:50:0: W1405: Quote delimiter \u0027 is inconsistent with the rest of the file (inconsistent-quotes)\nresources/libraries/python/DMAUtil.py:25:4: W0104: Statement seems to have no effect (pointless-statement)\nresources/libraries/python/DMAUtil.py:26:4: E0213: Method \u0027get_dma_resource\u0027 should have \"self\" as first argument (no-self-argument)\nresources/libraries/python/DMAUtil.py:198:12: W0612: Unused variable \u0027stdout\u0027 (unused-variable)\nresources/libraries/python/DMAUtil.py:17:0: W0611: Unused DUTSetup imported from resources.libraries.python.DUTSetup (unused-import)",
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08fbaab9_590628f1",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-02-01T13:07:10Z",
+      "side": 1,
+      "message": "unused import",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0209cf3a_e4e8bc3e",
+        "filename": "resources/libraries/python/DMAUtil.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-02-01T13:07:10Z",
+      "side": 1,
+      "message": "we are not anymore using u\"\"\n\nalso please use one style of \" \" instead of \u0027 \u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 17,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe6e223_5bc2c815",
+        "filename": "resources/libraries/python/DMAUtil.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-02-01T13:07:10Z",
+      "side": 1,
+      "message": "also if \"Intel-DSA\" in dev[\"model\"]",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 11
+      },
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
