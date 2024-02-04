@@ -58,6 +58,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "906b9907_49119953",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2024-02-04T06:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08fbaab9_590628f1",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0209cf3a_e4e8bc3e",
@@ -81,6 +105,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69996644_e5fc4c27",
+        "filename": "resources/libraries/python/DMAUtil.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2024-02-04T06:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0209cf3a_e4e8bc3e",
+      "range": {
+        "startLine": 41,
+        "startChar": 17,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fe6e223_5bc2c815",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-02-01T13:07:10Z",
       "side": 1,
       "message": "also if \"Intel-DSA\" in dev[\"model\"]",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 11
+      },
+      "revId": "14ac4b9fc45232a1fc2e5d4b52882381bfa97385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1c3549_9aedc00e",
+        "filename": "resources/libraries/python/DMAUtil.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2024-02-04T06:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fe6e223_5bc2c815",
       "range": {
         "startLine": 171,
         "startChar": 0,
