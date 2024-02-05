@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDmrrANDmemifANDdmaAND1518b",
       "revId": "a2dc906759552ee89f52717ed6d6e86cd6b50db1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "559c4ceb_a06026fb",
+        "filename": "resources/libraries/python/DMAUtil.py",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-02-05T09:05:13Z",
+      "side": 1,
+      "message": "resources/libraries/python/DMAUtil.py:1:0: C0103: Module name \"DMAUtil\" doesn\u0027t conform to snake_case naming style (invalid-name)\nresources/libraries/python/DMAUtil.py:24:4: W0104: Statement seems to have no effect (pointless-statement)\nresources/libraries/python/DMAUtil.py:25:4: E0213: Method \u0027get_dma_resource\u0027 should have \"self\" as first argument (no-self-argument)\nresources/libraries/python/DMAUtil.py:201:12: W0612: Unused variable \u0027stdout\u0027 (unused-variable)",
+      "revId": "a2dc906759552ee89f52717ed6d6e86cd6b50db1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
