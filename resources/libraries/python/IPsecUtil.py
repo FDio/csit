@@ -438,7 +438,7 @@ class IPsecUtil:
             data=integ_key if integ_key else 0
         )
 
-        flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
+        flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY)
         if tunnel_src and tunnel_dst:
             flags = flags | int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
             src_addr = ip_address(tunnel_src)
@@ -539,7 +539,7 @@ class IPsecUtil:
             data=integ_key if integ_key else 0
         )
 
-        flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
+        flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY)
         if tunnel_src and tunnel_dst:
             flags = flags | int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
             if src_addr.version == 6:
@@ -1276,7 +1276,7 @@ class IPsecUtil:
                     args[u"entry"][u"integrity_key"][u"length"] = len(ikeys[i])
                     args[u"entry"][u"integrity_key"][u"data"] = ikeys[i]
                 args[u"entry"][u"flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
+                    IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY
                 )
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
@@ -1291,7 +1291,7 @@ class IPsecUtil:
                     args[u"entry"][u"integrity_key"][u"length"] = len(ikeys[i])
                     args[u"entry"][u"integrity_key"][u"data"] = ikeys[i]
                 args[u"entry"][u"flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE |
+                    IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY |
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
                 )
                 papi_exec.add(
@@ -1515,7 +1515,7 @@ class IPsecUtil:
                     args[u"entry"][u"integrity_key"][u"length"] = len(ikeys[i])
                     args[u"entry"][u"integrity_key"][u"data"] = ikeys[i]
                 args[u"entry"][u"flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
+                    IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY
                 )
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
@@ -1530,7 +1530,7 @@ class IPsecUtil:
                     args[u"entry"][u"integrity_key"][u"length"] = len(ikeys[i])
                     args[u"entry"][u"integrity_key"][u"data"] = ikeys[i]
                 args[u"entry"][u"flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE |
+                    IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY |
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
                 )
                 papi_exec.add(
