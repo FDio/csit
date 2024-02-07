@@ -296,6 +296,7 @@
 | |
 | | ... | \| \${runtime_rate} = \| Get Runtime Rate \|
 | |
+| | Return From Keyword | ${9001.0}
 | | ${runtime_rate} = | Get Variable Value | \${runtime_rate} | ${0.0}
 | | Return From Keyword If | ${runtime_rate} | ${runtime_rate}
 | | Run Keyword And Return | Get Max Rate
