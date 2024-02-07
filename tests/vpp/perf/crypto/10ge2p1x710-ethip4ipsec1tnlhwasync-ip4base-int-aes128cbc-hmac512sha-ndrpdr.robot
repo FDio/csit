@@ -63,8 +63,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ... | crypto_native_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
-| ${crypto_type}= | HW_DH895xcc
-| ${nic_name}= | Intel-X710
+| ${crypto_type}= | HW_4xxx
+| ${nic_name}= | Intel-E810CQ
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
@@ -119,19 +119,19 @@
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${DUT2_${int}1}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Traffic should pass with maximum rate
 
 *** Test Cases ***
 | 64B-1c-ethip4ipsec1tnlhwasync-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4ipsec1tnlhwasync-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-| | [Tags] | 64B | 2C
+| | [Tags] | 64B | 2C | THIS
 | | frame_size=${64} | phy_cores=${2}
 
 | 64B-4c-ethip4ipsec1tnlhwasync-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-| | [Tags] | 64B | 4C
+| | [Tags] | 64B | 4C | THIS
 | | frame_size=${64} | phy_cores=${4}
 
 | 1518B-1c-ethip4ipsec1tnlhwasync-ip4base-int-aes128cbc-hmac512sha-ndrpdr
