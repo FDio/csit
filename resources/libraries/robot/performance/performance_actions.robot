@@ -78,6 +78,9 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | Send traffic on tg
 | | ... | duration=${-1}
 | | ... | rate=${runtime_rate}
