@@ -207,3 +207,5 @@ programs:
       sleep {duration}
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
+      vppctl -s {socket} show cryptodev assignment
+      vppctl -s {socket} show cryptodev cache status
