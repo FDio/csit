@@ -150,6 +150,8 @@ programs:
       sleep {duration}
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
+      vppctl -s {socket} show cryptodev assignment
+      vppctl -s {socket} show cryptodev cache status
   - name: bundle_vppctl
     metrics:
       gauge:
@@ -207,3 +209,5 @@ programs:
       sleep {duration}
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
+      vppctl -s {socket} show cryptodev assignment
+      vppctl -s {socket} show cryptodev cache status
