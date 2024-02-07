@@ -407,7 +407,7 @@ class Constants:
         "100ge2p1cx6dx": "cx6dx",
         "200ge2p1cx7veat": "cx7veat",
         "200ge6p3cx7veat": "cx7veat",
-        "1ge1p82540em": "8250em",
+        "1ge1p82540em": "82540em",
     }
 
     # Not each driver is supported by each NIC.
