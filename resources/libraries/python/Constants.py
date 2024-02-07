@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -407,7 +407,7 @@ class Constants:
         "100ge2p1cx6dx": "cx6dx",
         "200ge2p1cx7veat": "cx7veat",
         "200ge6p3cx7veat": "cx7veat",
-        "1ge1p82540em": "8250em",
+        "1ge1p82540em": "82540em",
     }
 
     # Not each driver is supported by each NIC.
