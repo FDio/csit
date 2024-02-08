@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-05
-date: 2023-10-23
+docname: draft-ietf-bmwg-mlrsearch-06
+date: 2024-01-26
 
 ipr: trust200902
 area: ops
@@ -43,9 +43,9 @@ informative:
     title: "FD.io CSIT Test Methodology - MLRsearch"
     date: 2023-10
   PyPI-MLRsearch:
-    target: https://pypi.org/project/MLRsearch/0.4.1/
-    title: "MLRsearch 0.4.1, Python Package Index"
-    date: 2021-07
+    target: https://pypi.org/project/MLRsearch/1.2.1/
+    title: "MLRsearch 1.2.1, Python Package Index"
+    date: 2023-10
 
 --- abstract
 
@@ -129,9 +129,6 @@ This chapter describes the problems affecting usability
 of various preformance testing methodologies,
 mainly a binary search for [RFC2544] unconditionally compliant throughput.
 
-The last chapter will summarize how the problems are addressed,
-the middle chapters provide explanations and definitions needed for that.
-
 ## Long Search Duration
 
 Emergence of software DUTs, with frequent software updates and a
@@ -166,7 +163,7 @@ discovered throughput.
 networking system, treating it either as a single DUT, or as a system
 of devices, an SUT.
 
-In case of software networking, the SUT consists nt only of the DUT
+In case of software networking, the SUT consists of not only the DUT
 as a software program processing frames, but also of
 a server hardware and operating system functions,
 with server hardware resources shared across all programs
@@ -180,9 +177,9 @@ software running on the same server. Some sources of such interference
 can be to some degree eliminated, e.g. by pinning DUT program threads
 to specific CPU cores and isolating those cores to avoid context switching.
 But some level of adverse effects may remain even after
-all such reasonable precautions are applied.
-These effects affect DUT's network performance negatively.
-As the effects are hard to predict in general, they have impact similar to
+all such reasonable precautions are applied,
+negatively impacting DUT's network performance.
+As the effects are hard to predict in general, they have an impact similar to
 what other engineering disciplines define as a noise.
 Thus, all such effects are called an SUT noise.
 
@@ -462,13 +459,13 @@ All three specify this value applies to one (input or output) interface.
 
 Trial duration is the intended duration of the traffic for a trial.
 
-In general, this general quantity does not include any preparation nor waiting
+In general, this quantity does not include any preparation nor waiting
 described in section 23 of [RFC2544].
 
 However, the measurer MAY return a duration value different
 from the intended duration. This may be useful for users
 who want to control the overal search duration, not just the traffic part of it.
-The manager MUST report how does the measurer computes the returned duration
+The manager MUST report how does the measurer compute the returned duration
 values in that case.
 
 ### Trial Forwarding Ratio
@@ -486,10 +483,6 @@ that should have been forwarded it outside of the scope of this document.
 E.g. what should the measurer return when it detects
 that the offered load differs significantly from the intended load.
 
-It is RECOMMENDED implementations return an irregular goal result
-if they detect questionable (in comparability sense) trial results
-affecting their goal result.
-
 ### Trial Loss Ratio
 
 Trial loss ratio is equal to one minus the trial forwarding ratio.
@@ -501,7 +494,7 @@ the trial forwarding ratio.
 
 Note that this is very similar, but not identical to Forwarding Rate
 as defined in [RFC2285] section 3.6.1, as that definition
-is specific to one output interface, while trial forwarding ratio
+is specific to one output interface, while the trial forwarding ratio
 is based on frame counts aggregated over all SUT interfaces.
 
 ## Traffic profile
@@ -526,7 +519,7 @@ and in the test report. See other IETF documents.
 A search goal is one item of the list required as an argument
 when the manager calls the controller.
 
-Each search goal is composite consisting of several attributes,
+Each search goal is a composite consisting of several attributes,
 some of them are required.
 Implementations are free to add their own attributes.
 
@@ -534,7 +527,7 @@ Subsections list all required attributes and one recommended attribute.
 
 The meaning of the attributes is formally given only by their effect
 on the computation of the attributes of the goal result.
-The subsections do contain a short informal description,
+Each subsections contains a short informal description,
 but see other chapters for more in-depth explanations.
 
 ### Goal Final Trial Duration
@@ -543,20 +536,20 @@ A threshold value for trial durations.
 REQUIRED attribute, MUST be positive.
 
 Informally, the conditional throughput for this goal will be computed
-only from trial results from trials as long as this.
+only from trial results from trials at least as long as this.
 
 ### Goal Duration Sum
 
 A threshold value for a particular sum of trial durations.
 REQUIRED attribute, MUST be positive.
 
-This uses the duration values returned by the measurer,
-in case it returns something else than the intended durations
-for the traffic part of the search.
+This uses the duration values returned by the measurer.
 
 Informally, even at looking only at trials done at this goal's
 final trial duration, MLRsearch may spend up to this time measuring
-the same load value.
+the same load value. If the goal duration sum is larger than
+the goal final trial duration, it means multiple trials need to be measured
+at the same load.
 
 ### Goal Loss Ratio
 
@@ -571,22 +564,16 @@ the conditional throughput for this goal will be smaller than that load.
 A threshold value for particular ratio of duration sums.
 REQUIRED attribute, MUST be non-negative and smaller than one.
 
-This uses the duration values returned by the measurer,
-in case it returns something else than the intended durations
-for the traffic part of the search.
+This uses the duration values returned by the measurer.
 
 Informally, this acts as the q-value for a quantile when selecting
-the forwarding rate of which trial result becomes the conditional throughput.
+which trial result gives the conditional throughput.
 For example, when the goal exceed ratio is 0.5 and MLRsearch
-happened to use the whole goal duration sum when determining conditional
-throughput, it means the conditional throughput is the median
-of trial forwarding rates.
+happened to use the whole goal duration sum,
+it means the conditional throughput is the median of trial forwarding rates.
 In practice, MLRsearch may stop measuring a load before the goal duration sum
 is reached, and the conditional throughput in that case frequently
 is the worst trial still not exceeding the goal loss ratio.
-If the goal duration sum is no larger than the goal fina trial duration,
-MLRsearch performs only one trial per load (unless other goals need more)
-and the goal exceed ratio has no effect on the search result.
 
 ### Goal Width
 
@@ -728,8 +715,6 @@ thus it is not required to report the goal width value.
 
 This allows MLRsearch implementations to use exit conditions
 different from goal width.
-The MLRsearch specification only REQUIRES the search procedure
-to always finish in a finite time, regardless of possible trial results.
 
 ## Load Classification
 
@@ -737,8 +722,7 @@ MLRsearch keeps the basic logic of binary search (tracking tightest bounds,
 measuring at the middle), perhaps with minor technical clarifications.
 The algorithm chooses an intended load (as opposed to offered load),
 the interval between bounds does not need to be split exactly in two equal halves,
-and the final reported structure specifies both bounds
-(optionally also the conditional throughput at the lower bound, defined later).
+and the final reported structure specifies both bounds.
 
 The biggest difference is that in order to classify a load
 as an upper or lower bound, MLRsearch may need more than one trial
@@ -768,7 +752,7 @@ A set of trial results for one specific intended load value
 can classify the load as an upper bound for some goals, but a lower bound
 for some other goals, and undecided for the rest of the goals.
 
-Therefore, the load classification depends not only on ttrial results,
+Therefore, the load classification depends not only on trial results,
 but also on the goal. The overall search procedure becomes more complicated
 (compared to binary search with a single goal),
 but most of the complications do not affect the final result,
@@ -820,11 +804,11 @@ by infrequent effects, causing poor repeatability of [RFC2544] throughput result
 See the discussion about noiseful and noiseless ends of SUT performance spectrum.
 Stable results are closer to the noiseless end of SUT preformance spectrum,
 so MLRsearch may need to allow some frequency of high-loss trials
-to ignore the reare but big effects near the noisefull end.
+to ignore the rare but big effects near the noisefull end.
 
 MLRsearch is able to do such trial result filtering, but it needs
 a configuration option to tell it how much frequent can the infrequent big loss be.
-This option is called exceed ratio. It tells MLRsearch what ratio of trials
+This option is called the exceed ratio. It tells MLRsearch what ratio of trials
 (more exactly what ratio of trial seconds) can have trial loss ratio
 larger than goal loss ratio and still be classified as a lower bound.
 Zero exceed ratio means all trials have to have trial loss ratio
@@ -852,12 +836,14 @@ from the actual trial traffic durations.
 
 ## Short Trials
 
+MLRsearch requires each goal to specify its final trial duration.
+Full-length trial is a shorter name for a trial whose intended trial duration
+is equal to the goal final trial duration.
+
 Section 24 of [RFC2544] already anticipates possible time savings
 when short trials (shorter than full length trials) are used.
-
-MLRsearch requires each goal to specify its final trial duration.
-Full-length trial is the short name for a trial whose intended trial duration
-is equal to the goal final trial duration.
+Full-length trials are the opposite of short trials,
+so tehy may be called the long trials.
 
 Any MLRsearch implementation may include its own configuration options
 which control when and how MLRsearch chooses to use shorter trial durations.
@@ -893,8 +879,8 @@ especially with non-zero goal exceed ratio.
 
 MLRsearch defines one such generalization, called the conditional throughput.
 It is the forwarding rate from one of the trials performed at the load
-in question. Specification of which trial exactly is quite technical.
-More detailed explanations are given in the next chapter.
+in question. Specification of which trial exactly is quite technical,
+see the specification and Appendix B.
 
 Conditional throughput is partially related to load classification.
 If a load is classified as a lower bound for a goal,
@@ -992,8 +978,8 @@ the conditional throughput is still conditionally compliant with
 This chapter continues with explanations,
 but this time more precise definitions are needed
 for readers to follow the explanations.
-The definitions here are wordy, implementers can look into the next chapter
-for more concise definitions.
+The definitions here are wordy, implementers should read the specification
+chapter for more concise definitions.
 
 The two areas of focus in this chapter are the load classification
 and the conditional throughput, starting with the latter.
@@ -1004,8 +990,9 @@ There are several equivalent ways to define the conditional throughput computati
 One of the ways relies on an object called the performance spectrum.
 First, two heavy definitions are needed.
 
-Take an intended load value, and a finite set of trial results, all trials
-measured at that load value. The performance spectrum is the function that maps
+Take an intended load value, a trial duration value, and a finite set
+of trial results, all trials measured at that load value and duration value.
+The performance spectrum is the function that maps
 any non-negative real number into a sum of trial durations among all trials
 in the set that have that number as their forwarding rate,
 e.g. map to zero if no trial has that particular forwarding rate.
@@ -1021,17 +1008,18 @@ These functions are related to the SUT performance spectrum,
 as sampled by the trials in the set.
 
 As for any other probability function, we can talk about percentiles,
-of the performance probability function, and bout other quantiles
-such as the median. The conditional throughput will be
-one such quantile value for a specifically chosen set of trials.
+of the performance probability function, uncluding the median.
+The conditional throughput will be one such quantile value
+for a specifically chosen set of trials.
 
-Take a set of all full-length trials performed at the load in question.
+Take a set of all full-length trials performed at the load in question,
+sorted by decreasing forwarding rate.
 The sum of durations of those trials may be less than goal duration sum, or not.
 If it is less, add an imaginary trial result with zero forwarding rate
 such that the new sum of durations is equal to the goal duration sum.
 This is the set of trials to use. The q-value for the quantile
 is the goal exceed ratio. If the quantile touches two trials,
-the larger forwarding rate is used.
+the larger forwarding rate (from trial result sorted earlier) is used.
 
 First example. For zero exceed ratio when goal duration sum
 has been reached. The conditional throughput is the smallest forwarding
@@ -1045,7 +1033,7 @@ cannot become the relevant lower bound yet.
 
 Third example. Exceed ratio 50%, goal duration sum two seconds,
 one trial present with duration one second and zero loss.
-An imaginary trial is added with duration one second and zero forwarding rate.
+Imaginary trial is added with duration one second and zero forwarding rate.
 Median would touch both trials, so the conditional throughput
 is the forwarding rate of the one non-imaginary trial.
 As that had zero loss, the value is equal to the offered load.
@@ -1071,6 +1059,10 @@ to make the sum of all trials to become equal to the goal duration sum.
 As the exceed ratio is defined just using sums of durations
 (number of trials does not matter), it does not matter whether
 the "subsequent trials" can consist of integer number of full-length trials.
+
+In any of the two scenarios, we can compute the load exceed ratio
+as duration sum of good trials divide vy duration sum of all trials,
+in both cases including the assumed trials.
 
 If even in the best case scenario the load exceed ratio would be larger
 than the goal exceed ratio, the load is an upper bound.
@@ -1115,7 +1107,7 @@ final trial duration. Perhaps SUT has buffers that may get full at longer
 trial durations. Perhaps SUT shows periodic decreases of performance
 the user does not want to treat as noise. In any case, many good short trials
 may became bad full-length trial in the counter-factual case.
-In extreme case, there are no bad short trials.
+In extreme case, there are plenty of good short trials and no bad short trials.
 In this scenario, we want the load classification NOT to classify the load
 as a lower bound, despite the abundance of good short trials.
 Effectively, we want the good short trials to be ignored, so they
@@ -1202,122 +1194,31 @@ before selecting this load for measurement, bringing time savings
 If there are trial results with intended duration larger
 than the goal trial duration, the classification logic is intentionally undefined.
 
-The implementations MAY treat such longer trials as if they were full-length.
-In any case, presence of such longer trials in either the relevant lower bound
-or the relevant upper bound SHOULD be mentioned, as for sume SUTs
-it is likely to affect comparability.
+The implementations MAY treat such longer trials as if they were full-length,
+and the precise definitions in Appendix A and Appendix B do treat them that way.
+
+But in configurations with multiple trials needed to achieve
+the goal duration sum, moderate goal exceed rations (including 0.5)
+and small goal loss ratio (especially zero),
+bad trials with longer than goal durations may bias the search
+towards the lower load values, as they are more likely to happen
+due to noiseful end of spectrum having larger probability to cause loss.
+
+For some users this is an acceptable price for increased configuration flexibility
+(perhaps saving time for the affected goals),
+so implementations SHOULD allow such configurations.
+Still, users are encouraged to avoid such configurations
+by making all goals use the same final trial duration,
+so their results remain comparable across implementations.
 
 
 TODO: Here will be a chapter summarizing how MLRsearch library
 adresses the problems from the Identified Problems chapter.
 
-{::comment}
-
-    # Problems after MLRsearch
-
-    Now when MLRsearch is clearly specified and explained,
-    it is possible to summarize how does MLRsearch specification help with problems.
-
-    Here, "multiple trials" is a shorthand for having the goal final trial duration
-    significantly smaller than the goal duration sum.
-    This results in MLRsearch performing multiple trials at the same load,
-    which may not be the case with other configurations.
-
-    ## Long Test Duration
-
-    As shortening the overall search duration is the main motivation
-    of MLRsearch library development, the library implements
-    multiple improvements on this front, both big and small.
-    Most of implementation details are not part of the MLRsearch specification,
-    so that future implementations may keep shortening the search duration even more.
-
-    TODO: The rest is about attributes.
-
-    From the required goal attributes, the goal duration sum
-    remains the best way to get even shorter searches.
-
-    Usage of multiple trials can also save time,
-    depending on wait times around trial traffic.
-
-    The farther the goal exceed ratio is from 0.5 towards either side,
-    the less predictable the overal search duration becomes in practice.
-
-    Width parameter does not change search duration much in practice
-    (compared to other, mainly optional goal attributes).
-
-    ## DUT in SUT
-
-    Practice shows big improvements when multiple trials
-    and moderate exceed ratios are used. Mainly when it comes to result
-    repeatability, as sometimes it is not easy to distinguish
-    SUT noise from DUT instability.
-
-    Conditional throughput has intuitive meaning when described
-    using the performance spectrum, so this is an improvement,
-    especially when compared to search procedures which use non-zero
-    goal loss ratio but return only the intended load at a lower bound.
-
-    Multiple trials can save time also when the noisy end of
-    the preformance spectrum needs to be examined, e.g. for [RFC9004].
-
-    Under some circumstances, testing the same DUT and SUT setup with different
-    DUT configurations can give some hints on what part of noise us SUT noise
-    and what part is DUT performance fluctuations.
-    In practice, both types of noise tend to be too complicated for that analysis.
-    MLRsearch does not offer additional tools in this regard,
-    apart of giving users ability to search for more goals,
-    hoping to get more insight at the cost of longer overall search time.
-
-    ## Repeatability and Comparability
-
-    Multiple trials improve repeatability, depending on exceed ratio.
-
-    In practice, 1s goal final trial duration with exceed ratio 0.5
-    is good enough for modern SUTs (but that usually requires
-    smaller wait times around the traffic part of the trial,
-    otherwise too much search time is wasted waiting).
-
-    It is not clear whether exceed ratios higher than 0.5 are better
-    for repeatability.
-    The 0.5 value is still preferred due to explainability using median.
-    TODO: Stress single value is for comparability, which one is due explainability.
-
-    It is possible that the conditional throughput values (with non-zero
-    goal loss ratio) are better for repeatability than the relevant
-    lower bound values, especially for implementations
-    which pick load from a small set of discrete values.
-
-    Implementations focusing on shortening the overall search time
-    are automatically forced to avoid comparability issues
-    due to load selection, as they must prefer even splits wherever possible.
-    But this conclusion only holds when the same goals are used.
-    Larger adoption is needed before any further claims on comparability
-    between MLRsearch implementations can be made.
-
-    ## Throughput with Non-Zero Loss
-
-    Suported by the goal loss ratio attribute.
-    Improves repeatability as expected.
-
-    ## Inconsistent Trial Results
-
-    MLRsearch is conservative wherever possible,
-    this is built into the definition of conditional throughput,
-    and into the treatment of short trial results for load classification.
-
-    This is consistent with [RFC2544] zero loss tolerance motivation.
-
-    If the very best (noiseless) part of the SUT performance spectrum
-    is of interest, it should be enough to set small value for
-    the goal final trial duration, and perhaps also a large value
-    for the goal exceed ratio.
-
-    Implementations may offer other (optional) configuration attributes
-    (and optional goal result attributes)
-    to become less conservative, but currently it is not clear
-    what impact would that have on repeatability.
-
-{:/comment}
+TODO: Add (somewhere) discussion about the measurer capabilities:
+1. What to do when offered load differs from intended load.
+2. How to handle duplicate and (maybe) reordered frames.
+3. Allow the controller to pass additional trial info, e.g. telemetry.
 
 # IANA Considerations
 
@@ -1358,6 +1259,12 @@ Al, you are dearly missed.
 
 This is a specification of load classification.
 
+Any intended load value can be classified, according to any give search goal.
+
+The algorithm uses (some subsets of) the set of all available trial results
+from trials measured at given intended load at the end of search.
+All durations are those returned by the measurer.
+
 The block at the end of this appendix holds pseudocode
 which computes two values, stored in variables named optimistic and pessimistic.
 The pseudocode happens to be a valid Python code.
@@ -1389,23 +1296,28 @@ The pseudocole expects the following variables hold values as follows:
   shorter than the goal final trial duration and with trial loss ratio
   higher than the goal loss ratio.
 
-Here the implicit set of available trial results consists of all trials
-measured at given intended load at the end of search.
+The code works correctly also when there are no trial results at the given load.
 
-The code works correctly also when there are no trial results at given load.
-
-```
+~~~ python
 balancing_sum = good_short_sum * goal_exceed_ratio / (1.0 - goal_exceed_ratio)
 effective_bad_sum = bad_long_sum + max(0.0, bad_short_sum - balancing_sum)
 effective_whole_sum = max(good_long_sum + effective_bad_sum, goal_duration_sum)
 quantile_duration_sum = effective_whole_sum * goal_exceed_ratio
 optimistic = effective_bad_sum <= quantile_duration_sum
 pessimistic = (effective_whole_sum - good_long_sum) <= quantile_duration_sum
-```
+~~~
 
 # Appendix B
 
 This is a specification of conditional throughput.
+
+Any intended load value can be used as the basis for the following computation,
+but only the relevant lower bound (at the end of the search)
+leads to the value called the conditional throughput for a given goal.
+
+The algorithm uses (some subsets of) the set of all available trial results
+from trials measured at given intended load at the end of search.
+All durations are those returned by the measurer.
 
 The block at the end of this appendix holds pseudocode
 which computes a value stored as variable conditional_throughput.
@@ -1434,13 +1346,10 @@ The pseudocole expects the following variables hold values as follows:
 
   - trial.duration: The trial duration of this trial.
 
-Here the implicit set of available trial results consists of all trials
-measured at given intended load at the end of search.
-
-The code works correctly only when there if there is at leas one
+The code works correctly only when there if there is at least one
 trial result measured at given load.
 
-```
+~~~ python
 all_long_sum = max(goal_duration_sum, good_long_sum + bad_long_sum)
 remaining = all_long_sum * (1.0 - goal_exceed_ratio)
 quantile_loss_ratio = None
@@ -1453,8 +1362,7 @@ for trial in long_trials:
 else:
     if remaining > 0.0:
         quantile_loss_ratio = 1.0
-
 conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
-```
+~~~
 
 --- back
