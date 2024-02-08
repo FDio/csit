@@ -162,7 +162,7 @@ one TG (Server-Type-H6) connected in a 2-node or 3-node circular topology
 Used for FD.io performance tests.
 
 
-## Tesdtbed Naming Convention
+## Testbed Naming Convention
 
 Following naming convention is used within this page to specify physical
 connectivity and wiring across defined CSIT testbeds:
@@ -430,12 +430,12 @@ FD.io CSIT lab contains following server types:
         - IPMI and host management ports.
         - NIC ports connected into 1-node topologies.
     - Main HW configuration:
-        - Chassis: Gigabyte R152-P30-00 1U
+        - Chassis: Gigabyte E252-P30-00 2U
         - Motherboard: MP32-AR1-00
-        - Processors: 1* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
-        - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
-        - RAM Memory: 16* 32GB DDR4-3200MT/s
-        - Disks: 2* 960GB SSD Samsung U.2 NVMe PM9A3
+        - Processors: 1* Ampere(R) Altra(R) M128-30 Processor (Neoverse N1)
+        - Processor Signature: Implementor 0x41 (Arm), Variant 0x3, Architecture 0xf, Part 0xd0c (neoverse-n1), Revision 0x1
+        - RAM Memory: 32* 32GB DDR4-3200MT/s
+        - Disks: 2* 960GB SSD Samsung M.2 NVMe PM9A3
     - NICs configuration:
         - Numa0:
             - PCIe Slot0 0000:01:00.xx: XL710-QDA2-2p40GE Intel.
@@ -821,32 +821,32 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.70
     - Host IP: 10.30.51.70
     - portnames:
-        - s70-t13-sut1-c1/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c1/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c0/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c0/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s70-t13-sut1-c1/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s70-t13-sut1-c1/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
         - s70-t13-sut1-c2/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
         - s70-t13-sut1-c2/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
         - s70-t13-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
         - s70-t13-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c4/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c4/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c5/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
-        - s70-t13-sut1-c5/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
+        - s70-t13-sut1-c5/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s70-t13-sut1-c5/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
 - SUT [Server-Type-E25]:
     - testbedname: testbed14
     - hostname: s71-t14-sut1
     - IPMI IP: 10.30.50.71
     - Host IP: 10.30.51.71
     - portnames:
-        - s71-t14-sut1-c1/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c1/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c0/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c0/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s71-t14-sut1-c1/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s71-t14-sut1-c1/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
         - s71-t14-sut1-c2/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
         - s71-t14-sut1-c2/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
         - s71-t14-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
         - s71-t14-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c4/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c4/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c5/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
-        - s71-t14-sut1-c5/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
+        - s71-t14-sut1-c5/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s71-t14-sut1-c5/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
 ```
 
 ### 1-Node-SapphireRapids (1n-spr)
@@ -1671,31 +1671,27 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed13:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s70-t13-sut1-c1/p1 - s70-t13-sut1-c2/p1.
+        - s70-t13-sut1-c0/p1 - s70-t13-sut1-c3/p1.
     - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s70-t13-sut1-c1/p2 - s70-t13-sut1-c2/p2.
-    - ring3 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s70-t13-sut1-c3/p1 - s70-t13-sut1-c4/p1.
+        - s70-t13-sut1-c0/p2 - s70-t13-sut1-c3/p2.
+    - ring3 100GE-ports ConnectX6-2p100GE on SUTs:
+        - s70-t13-sut1-c1/p1 - s70-t13-sut1-c1/p2.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s70-t13-sut1-c3/p2 - s70-t13-sut1-c4/p2.
-    - ring5 100GE-ports ConnectX6-2p100GE on SUTs:
-        - s70-t13-sut1-c5/p1 - s70-t13-sut1-c6/p1.
-    - ring6 100GE-ports ConnectX6-2p100GE on SUTs:
-        - s70-t13-sut1-c5/p2 - s70-t13-sut1-c6/p2.
+        - s70-t13-sut1-c2/p1 - s70-t13-sut1-c5/p1.
+    - ring5 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
+        - s70-t13-sut1-c2/p2 - s70-t13-sut1-c5/p2.
 
 - testbed14:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s71-t14-sut1-c1/p1 - s71-t14-sut1-c2/p1.
+        - s71-t14-sut1-c0/p1 - s71-t14-sut1-c3/p1.
     - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s71-t14-sut1-c1/p2 - s71-t14-sut1-c2/p2.
-    - ring3 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s71-t14-sut1-c3/p1 - s71-t14-sut1-c4/p1.
+        - s71-t14-sut1-c0/p2 - s71-t14-sut1-c3/p2.
+    - ring3 100GE-ports ConnectX6-2p100GE on SUTs:
+        - s71-t14-sut1-c1/p1 - s71-t14-sut1-c1/p2.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s71-t14-sut1-c3/p2 - s71-t14-sut1-c4/p2.
-    - ring5 100GE-ports ConnectX6-2p100GE on SUTs:
-        - s71-t14-sut1-c5/p1 - s71-t14-sut1-c6/p1.
-    - ring6 100GE-ports ConnectX6-2p100GE on SUTs:
-        - s71-t14-sut1-c5/p2 - s71-t14-sut1-c6/p2.
+        - s71-t14-sut1-c2/p1 - s71-t14-sut1-c5/p1.
+    - ring5 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
+        - s71-t14-sut1-c2/p2 - s71-t14-sut1-c5/p2.
 ```
 
 ### 1-Node-SapphireRapids (1n-spr)
