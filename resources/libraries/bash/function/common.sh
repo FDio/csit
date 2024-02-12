@@ -974,6 +974,9 @@ function select_tags () {
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             default_nic="nic_amazon-nitro-200g"
             ;;
+        *"1n-alt")
+            default_nic="nic_mellanox-cx6dx"
+            ;;
         *)
             default_nic="nic_intel-x710"
             ;;
