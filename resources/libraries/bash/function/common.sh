@@ -124,18 +124,51 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip3 install virtualenv==20.15.1 || {
-        die "Virtualenv package install failed."
-    }
-    virtualenv --no-download --python=$(which python3) "${env_dir}" || {
+    set +eu
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    export PATH="~/.cargo/bin:$PATH"
+    curl https://pyenv.run | bash
+    export PYENV_ROOT="~/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
+    pyenv versions
+    pyenv install pypy3.10-7.3.12
+    pyenv versions
+    pyenv global pypy3.10-7.3.12
+    pyenv versions
+    pyenv versions
+    pyenv virtualenv vvvv
+    pyenv versions
+    pyenv shell vvvv
+    pyenv versions
+    pyenv virtualenvs
+    set -eu
+    python3 --version
+    which python3
+    pyenv which python3
+    pip3 --version
+    pip3 install --upgrade pip
+    pip3 install --upgrade virtualenv
+    virtualenv --no-download --python=$(pyenv which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
+    pip3 install --upgrade pip wheel
     pip3 install -r "${req_path}" || {
         die "Requirements installation failed."
     }
+    python3 --version
+    pip3 --version
+    pip3 freeze
+    robot --version
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
     export PYTHONPATH="${CSIT_DIR}" || die "Export failed."
 }
@@ -840,6 +873,8 @@ function run_robot () {
     all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
+    python --version
+    robot --version
     set +e
     robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     ROBOT_EXIT_STATUS="$?"
