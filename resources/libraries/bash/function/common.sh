@@ -985,6 +985,9 @@ function select_tags () {
         *"2n-x-"* | *"3n-x-"*)
             default_nic="nic_intel-e810cq"
             ;;
+        *"1n-alt")
+            default_nic="nic_mellanox-cx6dx"
+            ;;
         *)
             default_nic="nic_intel-x710"
             ;;
