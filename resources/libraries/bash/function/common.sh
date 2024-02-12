@@ -124,15 +124,21 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip3 install virtualenv==20.15.1 || {
-        die "Virtualenv package install failed."
-    }
-    virtualenv --no-download --python=$(which python3) "${env_dir}" || {
-        die "Virtualenv creation for $(which python3) failed."
-    }
-    set +u
-    source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
-    set -u
+    curl https://pyenv.run | bash
+    if [ -z "${PYENV_ROOT:-}" ]; then export PYENV_ROOT="~/.pyenv"; fi
+    if ! command -v pyenv; then export PATH="$PYENV_ROOT/bin:$PATH"; fi
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    pyenv install pypy3.10-7.3.12
+    set +eu
+    pyenv virtualenv pypy3.10-7.3.12 venv
+    set -eu
+    pyenv shell venv
+    pyenv versions
+    pyenv virtualenvs
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    export PATH="~/.cargo/bin:$PATH"
+    pip3 install --upgrade pip wheel
     pip3 install -r "${req_path}" || {
         die "Requirements installation failed."
     }
@@ -840,6 +846,8 @@ function run_robot () {
     all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
+    python --version
+    robot --version
     set +e
     robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     ROBOT_EXIT_STATUS="$?"
