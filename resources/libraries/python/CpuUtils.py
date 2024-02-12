@@ -580,7 +580,7 @@ class CpuUtils:
             rxq_count_int = 1 if not rxq_count_int else rxq_count_int
 
             compute_resource_info["buffers_numa"] = \
-                215040 if smt_used else 107520
+                32768 if smt_used else 16384
             compute_resource_info["smt_used"] = smt_used
             compute_resource_info[f"{node_name}_cpu_main"] = cpu_main
             compute_resource_info[f"{node_name}_cpu_dp"] = cpu_dp

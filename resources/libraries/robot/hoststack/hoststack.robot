@@ -30,8 +30,8 @@
 | ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
 | ... | rxq=${1}
-| ... | rxd=${256}
-| ... | txd=${256}
+| ... | rxd=${512}
+| ... | txd=${512}
 | ... | phy_cores=${1}
 | ... | app_api_socket=/run/vpp/app_ns_sockets/default
 | ... | tcp_cc_algo=cubic
