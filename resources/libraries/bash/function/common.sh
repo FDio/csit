@@ -536,6 +536,14 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="alt"
             ;;
+        *"2n-x-"*)
+            NODENESS="2n"
+            FLAVOR="${TEST_CODE#*2n-}"
+            ;;
+        *"3n-x-"*)
+            NODENESS="3n"
+            FLAVOR="${TEST_CODE#*3n-}"
+            ;;
     esac
 }
 
@@ -974,6 +982,9 @@ function select_tags () {
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             default_nic="nic_amazon-nitro-200g"
             ;;
+        *"2n-x-"* | *"3n-x-"*)
+            default_nic="nic_intel-e810cq"
+            ;;
         *)
             default_nic="nic_intel-x710"
             ;;
@@ -1131,6 +1142,8 @@ function select_tags () {
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             test_tag_array+=("!ipsechw")
             ;;
+        *"2n-x-"* | *"3n-x-"*)
+            ;;
     esac
 
     # We will add excluded NICs.
@@ -1280,6 +1293,14 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr_*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
+        "2n_x"*)
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_"${FLAVOR}"*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "3n_x"*)
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_"${FLAVOR}"*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
         *)
             # No falling back to default, that should have been done
             # by the function which has set NODENESS and FLAVOR.
@@ -1332,6 +1353,10 @@ function set_environment_variables () {
         *"2n-zn2")
             # Maciek's workaround for Zen2 with lower amount of cores.
             export TREX_CORE_COUNT=14
+            ;;
+        *"2n-x-"* | *"3n-x-"* )
+            export TREX_CORE_COUNT=3
+            ;;
     esac
 }
 
