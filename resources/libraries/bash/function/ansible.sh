@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -30,6 +30,9 @@ function ansible_adhoc () {
     case "$FLAVOR" in
         "aws" | "c6in" | "c6gn" | "c7gn")
             INVENTORY_PATH="cloud_inventory"
+            ;;
+        "x-"*)
+            INVENTORY_PATH="external_inventory"
             ;;
         *)
             INVENTORY_PATH="lf_inventory"
@@ -72,6 +75,9 @@ function ansible_playbook () {
     case "$FLAVOR" in
         "aws" | "c6in" | "c6gn" | "c7gn")
             INVENTORY_PATH="cloud_inventory"
+            ;;
+        "x-"*)
+            INVENTORY_PATH="external_inventory"
             ;;
         *)
             INVENTORY_PATH="lf_inventory"

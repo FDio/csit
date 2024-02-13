@@ -1,0 +1,71 @@
+#cloud-config
+apt:
+  sources:
+    docker.list:
+      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable"
+      keyid: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
+groups:
+  - "docker"
+hostname: "s01-t21-tg"
+package_update: true
+packages:
+  - "apt-transport-https"
+  - "autoconf"
+  - "build-essential"
+  - "ca-certificates"
+  - "cgroup-tools"
+  - "curl"
+  - "dkms"
+  - "docker-ce"
+  - "docker-ce-cli"
+  - "gcc-9"
+  - "g++-9"
+  - "gnupg-agent"
+  - "iperf3"
+  - "libmnl-dev"
+  - "libnuma-dev"
+  - "libpcap-dev"
+  - "librdmacm-dev"
+  - "librdmacm1"
+  - "libssl-dev"
+  - "linux-tools-common"
+  - "net-tools"
+  - "ninja-build"
+  - "numactl"
+  - "pciutils"
+  - "python3-all"
+  - "python3-apt"
+  - "python3-cffi"
+  - "python3-cffi-backend"
+  - "python3-dev"
+  - "python3-pip"
+  - "python3-pyelftools"
+  - "python3-setuptools"
+  - "qemu-system"
+  - "socat"
+  - "software-properties-common"
+  - "unzip"
+  - "virtualenv"
+  - "zlib1g-dev"
+runcmd:
+  - sed -i '/PermitRootLogin/d' /etc/ssh/sshd_config
+  - echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+  - systemctl restart sshd
+  - systemctl start docker
+  - systemctl enable docker
+  - curl --proxy "http://[2620:0:cc8:11::1]:8888" -L http://github.com/cisco-system-traffic-generator/trex-core/archive/v3.03.tar.gz -o /opt/trex-core-v3.03.tar.gz
+  - mkdir -p /opt/trex-core-v3.03
+  - tar xzf /opt/trex-core-v3.03.tar.gz -C /opt/trex-core-v3.03 --strip-components=1
+  - cd /opt/trex-core-v3.03/linux_dpdk && ./b configure
+  - cd /opt/trex-core-v3.03/linux_dpdk && ./b build
+  - cd /opt/trex-core-v3.03/scripts/ko/src && make
+  - cd /opt/trex-core-v3.03/scripts/ko/src && make install
+ssh_pwauth: True
+users:
+  - name: "testuser"
+    groups: users, admin, docker, sudo
+    shell: "/bin/bash"
+    sudo:
+      - ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: false
+    passwd: "$6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0"
