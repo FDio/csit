@@ -1355,7 +1355,7 @@ function set_environment_variables () {
             export TREX_CORE_COUNT=14
             ;;
         *"2n-x-"* | *"3n-x-"* )
-            export TREX_CORE_COUNT=3
+            export TREX_CORE_COUNT=2
             ;;
     esac
 }
