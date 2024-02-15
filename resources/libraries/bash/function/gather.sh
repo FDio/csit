@@ -174,7 +174,7 @@ function gather_vpp () {
             ;;
         "vpp-csit-"*)
             # Shorten line.
-            pgks="${PKG_SUFFIX}"
+            pkgs="${PKG_SUFFIX}"
             # Use locally built packages.
             mv "${DOWNLOAD_DIR}"/../*vpp*."${pkgs}" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
