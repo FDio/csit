@@ -1151,11 +1151,13 @@ function select_tags () {
 
     TAGS=()
     prefix=""
-    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        if [[ "${TEST_CODE}" != *"device"* ]]; then
-            # Automatic prefixing for VPP perf jobs to limit the NIC used.
-            if [[ "${TEST_TAG_STRING-}" != *"nic_"* ]]; then
-                prefix="${default_nic}AND"
+    if [[ "${TEST_CODE}" != *"daily"* ]]; then
+        if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+            if [[ "${TEST_CODE}" != *"device"* ]]; then
+                # Automatic prefixing for VPP perf jobs to limit the NIC used.
+                if [[ "${TEST_TAG_STRING-}" != *"nic_"* ]]; then
+                    prefix="${default_nic}AND"
+                fi
             fi
         fi
     fi
