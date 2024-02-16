@@ -21,19 +21,9 @@
   tags:
     - set-sysctl
 
-- name: "Disable IPv6 Router Advertisement"
-  ansible.builtin.sysctl:
-    name: "net.ipv6.conf.all.accept_ra"
-    value: "0"
-    state: "present"
-    sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
-  tags:
-    - set-sysctl
-
 - name: "Disable IPv6 MLDv1 interval"
   ansible.builtin.sysctl:
-    name: "net.ipv6.conf.all.mldv1_unsolicited_report_interval"
+    name: "net.ipv6.conf.default.mldv1_unsolicited_report_interval"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
@@ -43,7 +33,7 @@
 
 - name: "Disable IPv6 MLDv2 interval"
   ansible.builtin.sysctl:
-    name: "net.ipv6.conf.all.mldv2_unsolicited_report_interval"
+    name: "net.ipv6.conf.default.mldv2_unsolicited_report_interval"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
@@ -53,7 +43,7 @@
 
 - name: "Disable IPv6 Autoconf"
   ansible.builtin.sysctl:
-    name: "net.ipv6.conf.all.autoconf"
+    name: "net.ipv6.conf.default.autoconf"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
@@ -63,7 +53,27 @@
 
 - name: "Disable IPv6 MC Forwarding"
   ansible.builtin.sysctl:
-    name: "net.ipv6.conf.all.mc_forwarding"
+    name: "net.ipv6.conf.default.mc_forwarding"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: "Disable IPv4 IGMPv2 interval"
+  ansible.builtin.sysctl:
+    name: "net.ipv4.conf.default.igmpv2_unsolicited_report_interval"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: "Disable IPv4 IGMPv3 interval"
+  ansible.builtin.sysctl:
+    name: "net.ipv4.conf.default.igmpv3_unsolicited_report_interval"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"

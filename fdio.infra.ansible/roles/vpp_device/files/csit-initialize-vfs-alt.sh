@@ -24,7 +24,7 @@ PCI_BLACKLIST+=($(lspci -Dmmd ':1017:0200' | cut -f1 -d' '))
 # Add Intel Corporation Ethernet Controller XL710 for 40GbE QSFP+ to whitelist.
 PCI_WHITELIST=($(lspci -Dmmd ':1583:0200' | cut -f1 -d' '))
 # Add MT2892 Family [ConnectX-6 Dx] 101d to whitelist.
-PCI_WHITELIST=($(lspci -Dmmd ':101d:0200' | cut -f1 -d' '))
+PCI_WHITELIST+=($(lspci -Dmmd ':101d:0200' | cut -f1 -d' '))
 
 # See http://pci-ids.ucw.cz/v2.2/pci.ids for more info.
 
