@@ -417,6 +417,10 @@ class HoststackUtil():
             f"\n{role} VPP 'show errors' on host {node[u'host']}:\n" \
             f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
 
+        test_results += \
+            f"\n{role} VPP 'show hardware verbose' on host {node[u'host']}:\n" \
+            f"{PapiSocketExecutor.run_cli_cmd(node, u'show hardware verbose')}\n"
+
         if u"error" in program_stderr.lower():
             test_results += f"ERROR DETECTED:\n{program_stderr}"
             return (True, test_results)
