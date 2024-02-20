@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,7 +34,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items, graph_hdrh_latency
+    generate_options, get_list_group_items, graph_hdrh_latency, navbar_trending
 from ..utils.url_processing import url_decode
 from .graphs import graph_trending, select_trending_data, graph_tm_trending
 
@@ -244,9 +244,7 @@ class Layout:
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
-                        children=[
-                            self._add_navbar()
-                        ]
+                        children=[navbar_trending((True, False, False, False))]
                     ),
                     dbc.Row(
                         id="row-main",
@@ -289,43 +287,6 @@ class Layout:
                 dbc.Alert("An Error Occured", color="danger"),
                 id="div-main-error"
             )
-
-    def _add_navbar(self):
-        """Add nav element with navigation panel. It is placed on the top.
-
-        :returns: Navigation bar.
-        :rtype: dbc.NavbarSimple
-        """
-        return dbc.NavbarSimple(
-            children=[
-                dbc.NavItem(dbc.NavLink(
-                    C.TREND_TITLE,
-                    active=True,
-                    external_link=True,
-                    href="/trending"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    C.NEWS_TITLE,
-                    external_link=True,
-                    href="/news"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    C.STATS_TITLE,
-                    external_link=True,
-                    href="/stats"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Documentation",
-                    id="btn-documentation",
-                ))
-            ],
-            id="navbarsimple-main",
-            brand=C.BRAND,
-            brand_href="/",
-            brand_external_link=True,
-            class_name="p-2",
-            fluid=True
-        )
 
     def _add_ctrl_col(self) -> dbc.Col:
         """Add column with controls. It is placed on the left side.
