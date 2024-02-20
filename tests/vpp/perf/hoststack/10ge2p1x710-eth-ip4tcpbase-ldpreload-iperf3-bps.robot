@@ -51,6 +51,7 @@
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local template
