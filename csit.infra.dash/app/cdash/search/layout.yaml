@@ -1,0 +1,276 @@
+plot-throughput:
+  xaxis:
+    title: "Test Cases [Index]"
+    autorange: True
+    fixedrange: False
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickmode: "array"
+    zeroline: True
+  yaxis:
+    title: "Throughput [pps|cps|rps|bps]"
+    gridcolor: "rgb(230, 230, 230)"
+    hoverformat: ".3s"
+    tickformat: ".3s"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    zeroline: True
+    range: [0, 100]
+  autosize: True
+  margin:
+    t: 50
+    b: 0
+    l: 80
+    r: 20
+  showlegend: False
+  height: 850
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-bandwidth:
+  xaxis:
+    title: "Test Cases [Index]"
+    autorange: True
+    fixedrange: False
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickmode: "array"
+    zeroline: True
+  yaxis:
+    title: "Bandwidth [bps]"
+    gridcolor: "rgb(230, 230, 230)"
+    hoverformat: ".3s"
+    tickformat: ".3s"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    zeroline: True
+    range: [0, 200]
+  autosize: True
+  margin:
+    t: 50
+    b: 0
+    l: 80
+    r: 20
+  showlegend: False
+  height: 850
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-latency:
+  xaxis:
+    title: "Test Cases [Index]"
+    autorange: True
+    fixedrange: False
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickmode: "array"
+    zeroline: True
+  yaxis:
+    title: "Average Latency at 50% PDR [us]"
+    gridcolor: "rgb(230, 230, 230)"
+    hoverformat: ".3s"
+    tickformat: ".3s"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    zeroline: True
+    range: [0, 200]
+  autosize: True
+  margin:
+    t: 50
+    b: 0
+    l: 80
+    r: 20
+  showlegend: False
+  height: 850
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-trending-tput:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Throughput [pps|cps|rps|bps]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-trending-bandwidth:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Bandwidth [bps]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-trending-lat:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Average Latency at 50% PDR [us]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-hdrh-latency:
+  showlegend: True
+  legend:
+    traceorder: "normal"
+    orientation: "h"
+    xanchor: "left"
+    yanchor: "top"
+    x: 0
+    y: -0.25
+    bgcolor: "rgba(255, 255, 255, 0)"
+    bordercolor: "rgba(255, 255, 255, 0)"
+  xaxis:
+    type: "log"
+    title: "Percentile [%]"
+    autorange: True
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6]
+    ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999]
+  yaxis:
+    title: "One-Way Latency per Direction [us]"
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+  autosize: True
+  paper_bgcolor: "white"
+  plot_bgcolor: "white"

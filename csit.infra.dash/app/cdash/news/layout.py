@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,7 +24,7 @@ from dash import callback_context
 from dash import Input, Output, State
 
 from ..utils.constants import Constants as C
-from ..utils.utils import gen_new_url
+from ..utils.utils import gen_new_url, navbar_trending
 from ..utils.anomalies import classify_anomalies
 from ..utils.url_processing import url_decode
 from .tables import table_summary
@@ -262,9 +262,7 @@ class Layout:
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
-                        children=[
-                            self._add_navbar()
-                        ]
+                        children=[navbar_trending((False, True, False, False))]
                     ),
                     dbc.Row(
                         id="row-main",
@@ -300,44 +298,6 @@ class Layout:
                     )
                 ]
             )
-
-    def _add_navbar(self):
-        """Add nav element with navigation panel. It is placed on the top.
-
-        :returns: Navigation bar.
-        :rtype: dbc.NavbarSimple
-        """
-
-        return dbc.NavbarSimple(
-            id="navbarsimple-main",
-            children=[
-                dbc.NavItem(dbc.NavLink(
-                    C.TREND_TITLE,
-                    external_link=True,
-                    href="/trending"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    C.NEWS_TITLE,
-                    active=True,
-                    external_link=True,
-                    href="/news"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    C.STATS_TITLE,
-                    external_link=True,
-                    href="/stats"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Documentation",
-                    id="btn-documentation",
-                ))
-            ],
-            brand=C.BRAND,
-            brand_href="/",
-            brand_external_link=True,
-            class_name="p-2",
-            fluid=True
-        )
 
     def _add_ctrl_col(self) -> dbc.Col:
         """Add column with control panel. It is placed on the left side.
@@ -527,8 +487,8 @@ class Layout:
 
         @app.callback(
             Output("plot-mod-url", "is_open"),
-            [Input("plot-btn-url", "n_clicks")],
-            [State("plot-mod-url", "is_open")],
+            Input("plot-btn-url", "n_clicks"),
+            State("plot-mod-url", "is_open")
         )
         def toggle_plot_mod_url(n, is_open):
             """Toggle the modal window with url.
