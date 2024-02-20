@@ -54,6 +54,7 @@
 | ${clients}= | ${10}
 | ${streams}= | ${10}
 | ${bytes}= | 100M
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local template
