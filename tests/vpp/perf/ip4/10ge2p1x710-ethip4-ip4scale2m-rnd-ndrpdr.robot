@@ -56,13 +56,14 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 512
+| ${nic_txq_size}= | 512
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
+| ${smt_used}= | ${False}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst-rnd${rts_per_flow}-${nic_pfs}p
 

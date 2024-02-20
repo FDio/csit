@@ -83,6 +83,8 @@
 | ${n_tunnels}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
+| ${traffic_directions}= | ${1}
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local Template
