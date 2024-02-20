@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -126,6 +126,17 @@ def init_app():
             logging.info(C.COVERAGE_TITLE)
             from .coverage.coverage import init_coverage
             app = init_coverage(app, data_coverage=data["coverage"])
+
+        if all((data["trending"].empty, data["iterative"].empty,
+                data["coverage"].empty)):
+            logging.error((
+                f'"{C.SEARCH_TITLE}" application not loaded, '
+                'no data available.'
+            ))
+        else:
+            logging.info(C.SEARCH_TITLE)
+            from .search.search import init_search
+            app = init_search(app, data)
 
     return app
 
