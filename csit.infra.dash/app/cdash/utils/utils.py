@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,11 +22,12 @@ import hdrh.histogram
 import hdrh.codec
 
 from math import sqrt
-from dash import dcc
+from dash import dcc, no_update, html
 from datetime import datetime
 
 from ..utils.constants import Constants as C
 from ..utils.url_processing import url_encode
+from ..utils.trigger import Trigger
 
 
 def get_color(idx: int) -> str:
@@ -468,3 +469,394 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             fig.update_layout(layout_hdrh)
 
     return fig
+
+
+def navbar_trending(active: tuple):
+    """Add nav element with navigation panel. It is placed on the top.
+
+    :param active: Tuple of boolean values defining the active items in the
+        navbar. True == active
+    :type active: tuple
+    :returns: Navigation bar.
+    :rtype: dbc.NavbarSimple
+    """
+    return dbc.NavbarSimple(
+        children=[
+            dbc.NavItem(dbc.NavLink(
+                C.TREND_TITLE,
+                active=active[0],
+                external_link=True,
+                href="/trending"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                C.NEWS_TITLE,
+                active=active[1],
+                external_link=True,
+                href="/news"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                C.STATS_TITLE,
+                active=active[2],
+                external_link=True,
+                href="/stats"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                C.SEARCH_TITLE,
+                active=active[3],
+                external_link=True,
+                href="/search"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                "Documentation",
+                id="btn-documentation",
+            ))
+        ],
+        id="navbarsimple-main",
+        brand=C.BRAND,
+        brand_href="/",
+        brand_external_link=True,
+        class_name="p-2",
+        fluid=True
+    )
+
+
+def navbar_report(active: tuple):
+    """Add nav element with navigation panel. It is placed on the top.
+
+    :param active: Tuple of boolean values defining the active items in the
+        navbar. True == active
+    :type active: tuple
+    :returns: Navigation bar.
+    :rtype: dbc.NavbarSimple
+    """
+    return dbc.NavbarSimple(
+        id="navbarsimple-main",
+        children=[
+            dbc.NavItem(dbc.NavLink(
+                C.REPORT_TITLE,
+                active=active[0],
+                external_link=True,
+                href="/report"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                "Comparisons",
+                active=active[1],
+                external_link=True,
+                href="/comparisons"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                "Coverage Data",
+                active=active[2],
+                external_link=True,
+                href="/coverage"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                C.SEARCH_TITLE,
+                active=active[3],
+                external_link=True,
+                href="/search"
+            )),
+            dbc.NavItem(dbc.NavLink(
+                "Documentation",
+                id="btn-documentation",
+            ))
+        ],
+        brand=C.BRAND,
+        brand_href="/",
+        brand_external_link=True,
+        class_name="p-2",
+        fluid=True
+    )
+
+
+def filter_table_data(
+        store_table_data: list,
+        table_filter: str
+    ) -> list:
+    """Filter table data using user specified filter.
+
+    :param store_table_data: Table data represented as a list of records.
+    :param table_filter: User specified filter.
+    :type store_table_data: list
+    :type table_filter: str
+    :returns: A new table created by filtering of table data represented as
+        a list of records.
+    :rtype: list
+    """
+
+    # Checks:
+    if not any((table_filter, store_table_data, )):
+        return store_table_data
+
+    def _split_filter_part(filter_part: str) -> tuple:
+        """Split a part of filter into column name, operator and value.
+        A "part of filter" is a sting berween "&&" operator.
+
+        :param filter_part: A part of filter.
+        :type filter_part: str
+        :returns: Column name, operator, value
+        :rtype: tuple[str, str, str|float]
+        """
+        for operator_type in C.OPERATORS:
+            for operator in operator_type:
+                if operator in filter_part:
+                    name_p, val_p = filter_part.split(operator, 1)
+                    name = name_p[name_p.find("{") + 1 : name_p.rfind("}")]
+                    val_p = val_p.strip()
+                    if (val_p[0] == val_p[-1] and val_p[0] in ("'", '"', '`')):
+                        value = val_p[1:-1].replace("\\" + val_p[0], val_p[0])
+                    else:
+                        try:
+                            value = float(val_p)
+                        except ValueError:
+                            value = val_p
+
+                    return name, operator_type[0].strip(), value
+        return (None, None, None)
+
+    df = pd.DataFrame.from_records(store_table_data)
+    for filter_part in table_filter.split(" && "):
+        col_name, operator, filter_value = _split_filter_part(filter_part)
+        if operator == "contains":
+            df = df.loc[df[col_name].str.contains(filter_value, regex=True)]
+        elif operator in ("eq", "ne", "lt", "le", "gt", "ge"):
+            # These operators match pandas series operator method names.
+            df = df.loc[getattr(df[col_name], operator)(filter_value)]
+        elif operator == "datestartswith":
+            # This is a simplification of the front-end filtering logic,
+            # only works with complete fields in standard format.
+            # Currently not used in comparison tables.
+            df = df.loc[df[col_name].str.startswith(filter_value)]
+
+    return df.to_dict("records")
+
+
+def show_trending_graph_data(
+        trigger: Trigger,
+        data: dict,
+        graph_layout: dict
+    ) -> tuple:
+    """Generates the data for the offcanvas displayed when a particular point in
+    a trending graph (daily data) is clicked on.
+
+    :param trigger: The information from trigger when the data point is clicked
+        on.
+    :param graph: The data from the clicked point in the graph.
+    :param graph_layout: The layout of the HDRH latency graph.
+    :type trigger: Trigger
+    :type graph: dict
+    :type graph_layout: dict
+    :returns: The data to be displayed on the offcanvas and the information to
+        show the offcanvas.
+    :rtype: tuple(list, list, bool)
+    """
+    
+    if trigger.idx == "tput":
+        idx = 0
+    elif trigger.idx == "bandwidth":
+        idx = 1
+    elif trigger.idx == "lat":
+        idx = len(data) - 1
+    else:
+        return list(), list(), False
+    try:
+        data = data[idx]["points"][0]
+    except (IndexError, KeyError, ValueError, TypeError):
+        return list(), list(), False
+
+    metadata = no_update
+    graph = list()
+
+    list_group_items = list()
+    for itm in data.get("text", None).split("<br>"):
+        if not itm:
+            continue
+        lst_itm = itm.split(": ")
+        if lst_itm[0] == "csit-ref":
+            list_group_item = dbc.ListGroupItem([
+                dbc.Badge(lst_itm[0]),
+                html.A(
+                    lst_itm[1],
+                    href=f"{C.URL_JENKINS}{lst_itm[1]}",
+                    target="_blank"
+                )
+            ])
+        else:
+            list_group_item = dbc.ListGroupItem([
+                dbc.Badge(lst_itm[0]),
+                lst_itm[1]
+            ])
+        list_group_items.append(list_group_item)
+
+    if trigger.idx == "tput":
+        title = "Throughput"
+    elif trigger.idx == "bandwidth":
+        title = "Bandwidth"
+    elif trigger.idx == "lat":
+        title = "Latency"
+        hdrh_data = data.get("customdata", None)
+        if hdrh_data:
+            graph = [dbc.Card(
+                class_name="gy-2 p-0",
+                children=[
+                    dbc.CardHeader(hdrh_data.pop("name")),
+                    dbc.CardBody(
+                        dcc.Graph(
+                            id="hdrh-latency-graph",
+                            figure=graph_hdrh_latency(hdrh_data, graph_layout)
+                        )
+                    )
+                ])
+            ]
+
+    metadata = [
+        dbc.Card(
+            class_name="gy-2 p-0",
+            children=[
+                dbc.CardHeader(children=[
+                    dcc.Clipboard(
+                        target_id="tput-lat-metadata",
+                        title="Copy",
+                        style={"display": "inline-block"}
+                    ),
+                    title
+                ]),
+                dbc.CardBody(
+                    dbc.ListGroup(list_group_items, flush=True),
+                    id="tput-lat-metadata",
+                    class_name="p-0",
+                )
+            ]
+        )
+    ]
+
+    return metadata, graph, True
+
+
+def show_iterative_graph_data(
+        trigger: Trigger,
+        data: dict,
+        graph_layout: dict
+    ) -> tuple:
+    """Generates the data for the offcanvas displayed when a particular point in
+    a box graph (iterative data) is clicked on.
+
+    :param trigger: The information from trigger when the data point is clicked
+        on.
+    :param graph: The data from the clicked point in the graph.
+    :param graph_layout: The layout of the HDRH latency graph.
+    :type trigger: Trigger
+    :type graph: dict
+    :type graph_layout: dict
+    :returns: The data to be displayed on the offcanvas and the information to
+        show the offcanvas.
+    :rtype: tuple(list, list, bool)
+    """
+
+    if trigger.idx == "tput":
+        idx = 0
+    elif trigger.idx == "bandwidth":
+        idx = 1
+    elif trigger.idx == "lat":
+        idx = len(data) - 1
+    else:
+        return list(), list(), False
+
+    try:
+        data = data[idx]["points"]
+    except (IndexError, KeyError, ValueError, TypeError):
+        return list(), list(), False
+
+    def _process_stats(data: list, param: str) -> list:
+        """Process statistical data provided by plot.ly box graph.
+
+        :param data: Statistical data provided by plot.ly box graph.
+        :param param: Parameter saying if the data come from "tput" or
+            "lat" graph.
+        :type data: list
+        :type param: str
+        :returns: Listo of tuples where the first value is the
+            statistic's name and the secont one it's value.
+        :rtype: list
+        """
+        if len(data) == 7:
+            stats = ("max", "upper fence", "q3", "median", "q1",
+                    "lower fence", "min")
+        elif len(data) == 9:
+            stats = ("outlier", "max", "upper fence", "q3", "median",
+                    "q1", "lower fence", "min", "outlier")
+        elif len(data) == 1:
+            if param == "lat":
+                stats = ("average latency at 50% PDR", )
+            elif param == "bandwidth":
+                stats = ("bandwidth", )
+            else:
+                stats = ("throughput", )
+        else:
+            return list()
+        unit = " [us]" if param == "lat" else str()
+        return [(f"{stat}{unit}", f"{value['y']:,.0f}")
+                for stat, value in zip(stats, data)]
+
+    customdata = data[0].get("customdata", dict())
+    datapoint = customdata.get("metadata", dict())
+    hdrh_data = customdata.get("hdrh", dict())
+
+    list_group_items = list()
+    for k, v in datapoint.items():
+        if k == "csit-ref":
+            if len(data) > 1:
+                continue
+            list_group_item = dbc.ListGroupItem([
+                dbc.Badge(k),
+                html.A(v, href=f"{C.URL_JENKINS}{v}", target="_blank")
+            ])
+        else:
+            list_group_item = dbc.ListGroupItem([dbc.Badge(k), v])
+        list_group_items.append(list_group_item)
+
+    graph = list()
+    if trigger.idx == "tput":
+        title = "Throughput"
+    elif trigger.idx == "bandwidth":
+        title = "Bandwidth"
+    elif trigger.idx == "lat":
+        title = "Latency"
+        if len(data) == 1:
+            if hdrh_data:
+                graph = [dbc.Card(
+                    class_name="gy-2 p-0",
+                    children=[
+                        dbc.CardHeader(hdrh_data.pop("name")),
+                        dbc.CardBody(dcc.Graph(
+                            id="hdrh-latency-graph",
+                            figure=graph_hdrh_latency(hdrh_data, graph_layout)
+                        ))
+                    ])
+                ]
+
+    for k, v in _process_stats(data, trigger.idx):
+        list_group_items.append(dbc.ListGroupItem([dbc.Badge(k), v]))
+
+    metadata = [
+        dbc.Card(
+            class_name="gy-2 p-0",
+            children=[
+                dbc.CardHeader(children=[
+                    dcc.Clipboard(
+                        target_id="tput-lat-metadata",
+                        title="Copy",
+                        style={"display": "inline-block"}
+                    ),
+                    title
+                ]),
+                dbc.CardBody(
+                    dbc.ListGroup(list_group_items, flush=True),
+                    id="tput-lat-metadata",
+                    class_name="p-0"
+                )
+            ]
+        )
+    ]
+
+    return metadata, graph, True

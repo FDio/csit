@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,7 +34,8 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items, graph_hdrh_latency
+    generate_options, get_list_group_items, graph_hdrh_latency, \
+    navbar_trending, show_trending_graph_data
 from ..utils.url_processing import url_decode
 from .graphs import graph_trending, select_trending_data, graph_tm_trending
 
@@ -244,9 +245,7 @@ class Layout:
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
-                        children=[
-                            self._add_navbar()
-                        ]
+                        children=[navbar_trending((True, False, False, False))]
                     ),
                     dbc.Row(
                         id="row-main",
@@ -289,43 +288,6 @@ class Layout:
                 dbc.Alert("An Error Occured", color="danger"),
                 id="div-main-error"
             )
-
-    def _add_navbar(self):
-        """Add nav element with navigation panel. It is placed on the top.
-
-        :returns: Navigation bar.
-        :rtype: dbc.NavbarSimple
-        """
-        return dbc.NavbarSimple(
-            children=[
-                dbc.NavItem(dbc.NavLink(
-                    C.TREND_TITLE,
-                    active=True,
-                    external_link=True,
-                    href="/trending"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    C.NEWS_TITLE,
-                    external_link=True,
-                    href="/news"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    C.STATS_TITLE,
-                    external_link=True,
-                    href="/stats"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Documentation",
-                    id="btn-documentation",
-                ))
-            ],
-            id="navbarsimple-main",
-            brand=C.BRAND,
-            brand_href="/",
-            brand_external_link=True,
-            class_name="p-2",
-            fluid=True
-        )
 
     def _add_ctrl_col(self) -> dbc.Col:
         """Add column with controls. It is placed on the left side.
@@ -1692,91 +1654,11 @@ class Layout:
             """
 
             trigger = Trigger(callback_context.triggered)
-
-            try:
-                if trigger.idx == "tput":
-                    idx = 0
-                elif trigger.idx == "bandwidth":
-                    idx = 1
-                elif trigger.idx == "lat":
-                    idx = 2
-                else:
-                    raise PreventUpdate
-                graph_data = graph_data[idx]["points"][0]
-            except (IndexError, KeyError, ValueError, TypeError):
+            if not trigger.value:
                 raise PreventUpdate
-
-            metadata = no_update
-            graph = list()
-
-            list_group_items = list()
-            for itm in graph_data.get("text", None).split("<br>"):
-                if not itm:
-                    continue
-                lst_itm = itm.split(": ")
-                if lst_itm[0] == "csit-ref":
-                    list_group_item = dbc.ListGroupItem([
-                        dbc.Badge(lst_itm[0]),
-                        html.A(
-                            lst_itm[1],
-                            href=f"{C.URL_JENKINS}{lst_itm[1]}",
-                            target="_blank"
-                        )
-                    ])
-                else:
-                    list_group_item = dbc.ListGroupItem([
-                        dbc.Badge(lst_itm[0]),
-                        lst_itm[1]
-                    ])
-                list_group_items.append(list_group_item)
-
-            if trigger.idx == "tput":
-                title = "Throughput"
-            elif trigger.idx == "bandwidth":
-                title = "Bandwidth"
-            elif trigger.idx == "lat":
-                title = "Latency"
-                hdrh_data = graph_data.get("customdata", None)
-                if hdrh_data:
-                    graph = [dbc.Card(
-                        class_name="gy-2 p-0",
-                        children=[
-                            dbc.CardHeader(hdrh_data.pop("name")),
-                            dbc.CardBody(
-                                dcc.Graph(
-                                    id="hdrh-latency-graph",
-                                    figure=graph_hdrh_latency(
-                                        hdrh_data, self._graph_layout
-                                    )
-                                )
-                            )
-                        ])
-                    ]
-            else:
-                raise PreventUpdate
-
-            metadata = [
-                dbc.Card(
-                    class_name="gy-2 p-0",
-                    children=[
-                        dbc.CardHeader(children=[
-                            dcc.Clipboard(
-                                target_id="tput-lat-metadata",
-                                title="Copy",
-                                style={"display": "inline-block"}
-                            ),
-                            title
-                        ]),
-                        dbc.CardBody(
-                            dbc.ListGroup(list_group_items, flush=True),
-                            id="tput-lat-metadata",
-                            class_name="p-0",
-                        )
-                    ]
-                )
-            ]
-
-            return metadata, graph, True
+            
+            return show_trending_graph_data(
+                    trigger, graph_data, self._graph_layout)
 
         @app.callback(
             Output("download-trending-data", "data"),

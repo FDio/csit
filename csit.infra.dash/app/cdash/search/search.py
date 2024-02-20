@@ -11,19 +11,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiate the Report Dash application.
+"""Instantiate the Search Dash application.
 """
 
 import dash
-import pandas as pd
 
 from ..utils.constants import Constants as C
 from .layout import Layout
 
 
-def init_comparisons(
+def init_search(
         server,
-        data_iterative: pd.DataFrame
+        data: tuple
     ) -> dash.Dash:
     """Create a Plotly Dash dashboard.
 
@@ -35,15 +34,17 @@ def init_comparisons(
 
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix=C.COMP_ROUTES_PATHNAME_PREFIX,
+        routes_pathname_prefix=C.SEARCH_ROUTES_PATHNAME_PREFIX,
         external_stylesheets=C.EXTERNAL_STYLESHEETS,
-        title=C.COMP_TITLE
+        title=C.SEARCH_TITLE
     )
 
     layout = Layout(
         app=dash_app,
-        data_iterative=data_iterative,
-        html_layout_file=C.HTML_LAYOUT_FILE
+        data=data,
+        html_layout_file=C.HTML_LAYOUT_FILE,
+        graph_layout_file=C.SEARCH_GRAPH_LAYOUT_FILE,
+        tooltip_file=C.TOOLTIP_FILE
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()
