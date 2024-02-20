@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -71,7 +71,7 @@ def graph_trending(
         data: pd.DataFrame,
         sel: dict,
         layout: dict,
-        normalize: bool
+        normalize: bool=False
     ) -> tuple:
     """Generate the trending graph(s) - MRR, NDR, PDR and for PDR also Latences
     (result_latency_forward_pdr_50_avg).

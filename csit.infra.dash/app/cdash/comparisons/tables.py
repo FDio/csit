@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -309,65 +309,3 @@ def comparison_table(
     )
 
     return (title, df_cmp)
-
-
-def filter_table_data(
-        store_table_data: list,
-        table_filter: str
-    ) -> list:
-    """Filter table data using user specified filter.
-
-    :param store_table_data: Table data represented as a list of records.
-    :param table_filter: User specified filter.
-    :type store_table_data: list
-    :type table_filter: str
-    :returns: A new table created by filtering of table data represented as
-        a list of records.
-    :rtype: list
-    """
-
-    # Checks:
-    if not any((table_filter, store_table_data, )):
-        return store_table_data
-
-    def _split_filter_part(filter_part: str) -> tuple:
-        """Split a part of filter into column name, operator and value.
-        A "part of filter" is a sting berween "&&" operator.
-
-        :param filter_part: A part of filter.
-        :type filter_part: str
-        :returns: Column name, operator, value
-        :rtype: tuple[str, str, str|float]
-        """
-        for operator_type in C.OPERATORS:
-            for operator in operator_type:
-                if operator in filter_part:
-                    name_p, val_p = filter_part.split(operator, 1)
-                    name = name_p[name_p.find("{") + 1 : name_p.rfind("}")]
-                    val_p = val_p.strip()
-                    if (val_p[0] == val_p[-1] and val_p[0] in ("'", '"', '`')):
-                        value = val_p[1:-1].replace("\\" + val_p[0], val_p[0])
-                    else:
-                        try:
-                            value = float(val_p)
-                        except ValueError:
-                            value = val_p
-
-                    return name, operator_type[0].strip(), value
-        return (None, None, None)
-
-    df = pd.DataFrame.from_records(store_table_data)
-    for filter_part in table_filter.split(" && "):
-        col_name, operator, filter_value = _split_filter_part(filter_part)
-        if operator == "contains":
-            df = df.loc[df[col_name].str.contains(filter_value, regex=True)]
-        elif operator in ("eq", "ne", "lt", "le", "gt", "ge"):
-            # These operators match pandas series operator method names.
-            df = df.loc[getattr(df[col_name], operator)(filter_value)]
-        elif operator == "datestartswith":
-            # This is a simplification of the front-end filtering logic,
-            # only works with complete fields in standard format.
-            # Currently not used in comparison tables.
-            df = df.loc[df[col_name].str.startswith(filter_value)]
-
-    return df.to_dict("records")
