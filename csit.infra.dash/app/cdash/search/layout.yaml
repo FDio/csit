@@ -1,0 +1,201 @@
+plot-trending-tput:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Throughput [pps|cps|rps|bps]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-trending-bandwidth:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Bandwidth [bps]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-trending-lat:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Average Latency at 50% PDR [us]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-hdrh-latency:
+  showlegend: True
+  legend:
+    traceorder: "normal"
+    orientation: "h"
+    xanchor: "left"
+    yanchor: "top"
+    x: 0
+    y: -0.25
+    bgcolor: "rgba(255, 255, 255, 0)"
+    bordercolor: "rgba(255, 255, 255, 0)"
+  xaxis:
+    type: "log"
+    title: "Percentile [%]"
+    autorange: True
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6]
+    ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999]
+  yaxis:
+    title: "One-Way Latency per Direction [us]"
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+  autosize: True
+  paper_bgcolor: "white"
+  plot_bgcolor: "white"
+
+plot-trending-telemetry:
+  autosize: True
+  showlegend: True
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Metric"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: 50
+  legend:
+    orientation: "h"
+    y: -0.2
+    font:
+      size: 12
