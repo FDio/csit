@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -79,7 +79,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+    TIME_PERIOD = 10  # MAX_TIME_PERIOD  # [days]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -96,6 +96,12 @@ class Constants:
 
     # The element is enabled and visible.
     STYLE_ENABLED = {"visibility": "visible"}
+
+    # The element is not displayed.
+    STYLE_DONT_DISPLAY = {"display": "none"}
+
+    # The element is displaed.
+    STYLE_DISPLAY = {"display": "flex"}
 
     # Checklist "All" is disabled.
     CL_ALL_DISABLED = [
@@ -401,5 +407,20 @@ class Constants:
 
     # Default name of downloaded file with selected data.
     COVERAGE_DOWNLOAD_FILE_NAME = "coverage_data.csv"
+
+    ############################################################################
+    # Search tests.
+
+    # The title.
+    SEARCH_TITLE = "Search Tests"
+
+    # The pathname prefix for the application.
+    SEARCH_ROUTES_PATHNAME_PREFIX = "/search/"
+
+    # Layout of plot.ly graphs.
+    SEARCH_GRAPH_LAYOUT_FILE = "cdash/search/layout.yaml"
+
+    # Default name of downloaded file with selected data.
+    SEARCH_DOWNLOAD_FILE_NAME = "search_data.csv"
 
     ############################################################################

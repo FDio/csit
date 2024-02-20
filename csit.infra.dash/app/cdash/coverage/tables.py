@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,7 +57,7 @@ def select_coverage_data(
         topo, arch, nic, drv = phy
         drv_str = "" if drv == "dpdk" else drv.replace("_", "-")
     else:
-        return l_data
+        return l_data, None
 
     df = pd.DataFrame(data.loc[(
         (data["passed"] == True) &
@@ -78,8 +78,10 @@ def select_coverage_data(
                 df[df.test_id.str.contains(f"-{driver}-")].index,
                 inplace=True
             )
-
-    ttype = df["test_type"].to_list()[0]
+    try:
+        ttype = df["test_type"].to_list()[0]
+    except IndexError:
+        return l_data, None
 
     # Prepare the coverage data
     def _latency(hdrh_string: str, percentile: float) -> int:
@@ -177,16 +179,20 @@ def select_coverage_data(
 def coverage_tables(
         data: pd.DataFrame,
         selected: dict,
-        show_latency: bool=True
+        show_latency: bool=True,
+        start_collapsed: bool=True
     ) -> list:
     """Generate an accordion with coverage tables.
 
     :param data: Coverage data.
     :param selected: Dictionary with user selection.
     :param show_latency: If True, latency is displayed in the tables.
+    :param start_collapsed: If True, the accordion with tables is collapsed when
+        displayed.
     :type data: pandas.DataFrame
     :type selected: dict
     :type show_latency: bool
+    :type start_collapsed: bool
     :returns: Accordion with suite names (titles) and tables.
     :rtype: dash_bootstrap_components.Accordion
     """
@@ -298,6 +304,6 @@ def coverage_tables(
     return dbc.Accordion(
         children=accordion_items,
         class_name="gy-1 p-0",
-        start_collapsed=True,
+        start_collapsed=start_collapsed,
         always_open=True
     )
