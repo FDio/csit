@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,7 +32,8 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items, graph_hdrh_latency
+    generate_options, get_list_group_items, graph_hdrh_latency, navbar_report, \
+    show_iterative_graph_data
 from ..utils.url_processing import url_decode
 from .graphs import graph_iterative, select_iterative_data
 
@@ -250,9 +251,7 @@ class Layout:
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
-                        children=[
-                            self._add_navbar()
-                        ]
+                        children=[navbar_report((True, False, False, False)), ]
                     ),
                     dbc.Row(
                         id="row-main",
@@ -305,43 +304,6 @@ class Layout:
                     )
                 ]
             )
-
-    def _add_navbar(self):
-        """Add nav element with navigation panel. It is placed on the top.
-
-        :returns: Navigation bar.
-        :rtype: dbc.NavbarSimple
-        """
-        return dbc.NavbarSimple(
-            id="navbarsimple-main",
-            children=[
-                dbc.NavItem(dbc.NavLink(
-                    C.REPORT_TITLE,
-                    active=True,
-                    external_link=True,
-                    href="/report"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Comparisons",
-                    external_link=True,
-                    href="/comparisons"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Coverage Data",
-                    external_link=True,
-                    href="/coverage"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Documentation",
-                    id="btn-documentation",
-                ))
-            ],
-            brand=C.BRAND,
-            brand_href="/",
-            brand_external_link=True,
-            class_name="p-2",
-            fluid=True
-        )
 
     def _add_ctrl_col(self) -> dbc.Col:
         """Add column with controls. It is placed on the left side.
@@ -1365,118 +1327,11 @@ class Layout:
             """
 
             trigger = Trigger(callback_context.triggered)
-
-            if trigger.idx == "tput":
-                idx = 0
-            elif trigger.idx == "bandwidth":
-                idx = 1
-            elif trigger.idx == "lat":
-                idx = len(graph_data) - 1
-            else:
-                return list(), list(), False
-
-            try:
-                graph_data = graph_data[idx]["points"]
-            except (IndexError, KeyError, ValueError, TypeError):
+            if not trigger.value:
                 raise PreventUpdate
 
-            def _process_stats(data: list, param: str) -> list:
-                """Process statistical data provided by plot.ly box graph.
-
-                :param data: Statistical data provided by plot.ly box graph.
-                :param param: Parameter saying if the data come from "tput" or
-                    "lat" graph.
-                :type data: list
-                :type param: str
-                :returns: Listo of tuples where the first value is the
-                    statistic's name and the secont one it's value.
-                :rtype: list
-                """
-                if len(data) == 7:
-                    stats = ("max", "upper fence", "q3", "median", "q1",
-                            "lower fence", "min")
-                elif len(data) == 9:
-                    stats = ("outlier", "max", "upper fence", "q3", "median",
-                            "q1", "lower fence", "min", "outlier")
-                elif len(data) == 1:
-                    if param == "lat":
-                        stats = ("average latency at 50% PDR", )
-                    elif param == "bandwidth":
-                        stats = ("bandwidth", )
-                    else:
-                        stats = ("throughput", )
-                else:
-                    return list()
-                unit = " [us]" if param == "lat" else str()
-                return [(f"{stat}{unit}", f"{value['y']:,.0f}")
-                        for stat, value in zip(stats, data)]
-
-            customdata = graph_data[0].get("customdata", dict())
-            datapoint = customdata.get("metadata", dict())
-            hdrh_data = customdata.get("hdrh", dict())
-
-            list_group_items = list()
-            for k, v in datapoint.items():
-                if k == "csit-ref":
-                    if len(graph_data) > 1:
-                        continue
-                    list_group_item = dbc.ListGroupItem([
-                        dbc.Badge(k),
-                        html.A(v, href=f"{C.URL_JENKINS}{v}", target="_blank")
-                    ])
-                else:
-                    list_group_item = dbc.ListGroupItem([dbc.Badge(k), v])
-                list_group_items.append(list_group_item)
-
-            graph = list()
-            if trigger.idx == "tput":
-                title = "Throughput"
-            elif trigger.idx == "bandwidth":
-                title = "Bandwidth"
-            elif trigger.idx == "lat":
-                title = "Latency"
-                if len(graph_data) == 1:
-                    if hdrh_data:
-                        graph = [dbc.Card(
-                            class_name="gy-2 p-0",
-                            children=[
-                                dbc.CardHeader(hdrh_data.pop("name")),
-                                dbc.CardBody(dcc.Graph(
-                                    id="hdrh-latency-graph",
-                                    figure=graph_hdrh_latency(
-                                        hdrh_data, self._graph_layout
-                                    )
-                                ))
-                            ])
-                        ]
-            else:
-                raise PreventUpdate
-
-            for k, v in _process_stats(graph_data, trigger.idx):
-                list_group_items.append(dbc.ListGroupItem([dbc.Badge(k), v]))
-
-            metadata = [
-                dbc.Card(
-                    class_name="gy-2 p-0",
-                    children=[
-                        dbc.CardHeader(children=[
-                            dcc.Clipboard(
-                                target_id="tput-lat-metadata",
-                                title="Copy",
-                                style={"display": "inline-block"}
-                            ),
-                            title
-                        ]),
-                        dbc.CardBody(
-                            dbc.ListGroup(list_group_items, flush=True),
-                            id="tput-lat-metadata",
-                            class_name="p-0"
-                        )
-                    ]
-                )
-            ]
-
-            return metadata, graph, True
+            return show_iterative_graph_data(
+                    trigger, graph_data, self._graph_layout)
 
         @app.callback(
             Output("offcanvas-documentation", "is_open"),
