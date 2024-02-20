@@ -33,5 +33,6 @@ def home():
         comp_title=C.COMP_TITLE,
         stats_title=C.STATS_TITLE,
         news_title=C.NEWS_TITLE,
-        cov_title=C.COVERAGE_TITLE
+        cov_title=C.COVERAGE_TITLE,
+        search_title=C.SEARCH_TITLE
     )

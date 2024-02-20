@@ -516,7 +516,7 @@ class PapiSocketExecutor:
         # on background. Other ways (shell=True with "&" and ssh with -f)
         # seem to be too dependent on shell behavior.
         # In particular, -f does NOT return values for run().
-        subprocess.Popen(ssh_cmd)
+        subprocess.Popen( )
         # Check socket presence on local side.
         while time.monotonic() < time_stop:
             # It can take a moment for ssh to create the socket file.

@@ -127,6 +127,17 @@ def init_app():
             from .coverage.coverage import init_coverage
             app = init_coverage(app, data_coverage=data["coverage"])
 
+        if all((data["trending"].empty, data["iterative"].empty,
+                data["coverage"].empty)):
+            logging.error((
+                f'"{C.SEARCH_TITLE}" application not loaded, '
+                'no data available.'
+            ))
+        else:
+            logging.info(C.SEARCH_TITLE)
+            from .search.search import init_search
+            app = init_search(app, data)
+
     return app
 
 
