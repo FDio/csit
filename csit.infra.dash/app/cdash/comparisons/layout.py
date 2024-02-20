@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,8 +28,9 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
-from ..utils.utils import generate_options, gen_new_url
-from .tables import comparison_table, filter_table_data
+from ..utils.utils import generate_options, gen_new_url, navbar_report, \
+    filter_table_data
+from .tables import comparison_table
 
 
 # Control panel partameters and their default values.
@@ -194,9 +195,7 @@ class Layout:
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
-                        children=[
-                            self._add_navbar()
-                        ]
+                        children=[navbar_report((False, True, False, False)), ]
                     ),
                     dbc.Row(
                         id="row-main",
@@ -237,43 +236,6 @@ class Layout:
                     )
                 ]
             )
-
-    def _add_navbar(self):
-        """Add nav element with navigation panel. It is placed on the top.
-
-        :returns: Navigation bar.
-        :rtype: dbc.NavbarSimple
-        """
-        return dbc.NavbarSimple(
-            id="navbarsimple-main",
-            children=[
-                dbc.NavItem(dbc.NavLink(
-                    C.REPORT_TITLE,
-                    external_link=True,
-                    href="/report"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Comparisons",
-                    active=True,
-                    external_link=True,
-                    href="/comparisons"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Coverage Data",
-                    external_link=True,
-                    href="/coverage"
-                )),
-                dbc.NavItem(dbc.NavLink(
-                    "Documentation",
-                    id="btn-documentation",
-                ))
-            ],
-            brand=C.BRAND,
-            brand_href="/",
-            brand_external_link=True,
-            class_name="p-2",
-            fluid=True
-        )
 
     def _add_ctrl_col(self) -> dbc.Col:
         """Add column with controls. It is placed on the left side.
@@ -539,7 +501,7 @@ class Layout:
         ) -> list:
         """Generate the plotting area with all its content.
 
-        :param title: The title of the comparison table..
+        :param title: The title of the comparison table.
         :param table: Comparison table to be displayed.
         :param url: URL to be displayed in the modal window.
         :type title: str
