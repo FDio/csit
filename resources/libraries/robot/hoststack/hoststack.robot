@@ -29,7 +29,7 @@
 | ${quic_crypto_engine}= | nocrypto
 | ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
-| ... | rxq=${1}
+| ... | rxq=${2}
 | ... | rxd=${256}
 | ... | txd=${256}
 | ... | phy_cores=${1}
