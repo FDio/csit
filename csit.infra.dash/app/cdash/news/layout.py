@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,7 +24,7 @@ from dash import callback_context
 from dash import Input, Output, State
 
 from ..utils.constants import Constants as C
-from ..utils.utils import gen_new_url
+from ..utils.utils import gen_new_url, navbar_trending
 from ..utils.anomalies import classify_anomalies
 from ..utils.url_processing import url_decode
 from .tables import table_summary
@@ -262,9 +262,7 @@ class Layout:
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
-                        children=[
-                            self._add_navbar()
-                        ]
+                        children=[navbar_trending((False, True, False, False))]
                     ),
                     dbc.Row(
                         id="row-main",
