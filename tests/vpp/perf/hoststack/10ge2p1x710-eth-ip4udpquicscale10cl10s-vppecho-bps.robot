@@ -54,11 +54,13 @@
 | ${clients}= | ${10}
 | ${streams}= | ${10}
 | ${bytes}= | 100M
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | nclients=${clients}
 | | ... | quic_streams=${streams} | rx_bytes=${bytes}
