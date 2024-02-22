@@ -83,6 +83,7 @@
 | ${n_tunnels}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -97,7 +98,7 @@
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | |
-| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${1}
 | |
 | | Set Test Variable | \${frame_size}
 | |
