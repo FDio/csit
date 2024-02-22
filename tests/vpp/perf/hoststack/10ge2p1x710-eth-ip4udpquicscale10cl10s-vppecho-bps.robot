@@ -44,21 +44,23 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | quic_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 512
+| ${nic_txq_size}= | 512
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
-| ${frame_size}= | ${9000}
+| ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 | ${clients}= | ${10}
 | ${streams}= | ${10}
 | ${bytes}= | 100M
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | nclients=${clients}
 | | ... | quic_streams=${streams} | rx_bytes=${bytes}
