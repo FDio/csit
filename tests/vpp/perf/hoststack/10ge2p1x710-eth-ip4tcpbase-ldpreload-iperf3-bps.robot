@@ -44,12 +44,12 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 512
+| ${nic_txq_size}= | 512
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
-| ${frame_size}= | ${9000}
+| ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 
 *** Keywords ***
