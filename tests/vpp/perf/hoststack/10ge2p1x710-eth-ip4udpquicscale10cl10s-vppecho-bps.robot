@@ -44,8 +44,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | quic_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 1024
+| ${nic_txq_size}= | 1024
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
@@ -54,6 +54,7 @@
 | ${clients}= | ${10}
 | ${streams}= | ${10}
 | ${bytes}= | 100M
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local template
