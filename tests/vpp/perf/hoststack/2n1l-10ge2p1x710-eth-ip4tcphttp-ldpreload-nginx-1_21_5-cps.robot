@@ -71,6 +71,7 @@
 | ${local_endpts_tbl_mem}= | 1g
 | ${tcp_prealloc_conns}= | 1100000
 | ${tcp_prealloc_ho_conns}= | 1100000
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local template
