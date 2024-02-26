@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c724829_ca7a4ccc",
+        "filename": "resources/job_specs/report_iterative/2n-spr/vpp-ndrpdr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-02-26T15:43:23Z",
+      "side": 1,
+      "message": "The same tests must be defined also in resources/job_specs/report_iterative/2n-spr/vpp-mrr-00.md",
+      "revId": "8cacf6165afbad0013f77170504b3876582c2fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cef0339_409ad95c",
+        "filename": "resources/job_specs/report_iterative/3n-snr/vpp-ndrpdr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-02-26T15:43:23Z",
+      "side": 1,
+      "message": "The same tests must be defined also in resources/job_specs/report_iterative/3n-snr/vpp-mrr-00.md",
+      "revId": "8cacf6165afbad0013f77170504b3876582c2fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
