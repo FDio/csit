@@ -1722,6 +1722,8 @@ class InterfaceUtil:
 
         cmd = f"{ns_str} ip link set dev {interface} {trust_str}"
         exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -x {interface}"
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def set_linux_interface_spoof_off(
