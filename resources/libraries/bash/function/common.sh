@@ -75,9 +75,15 @@ function activate_docker_topology () {
             die "Unknown specification: ${case_text}!"
     esac
 
-    trap 'deactivate_docker_topology' EXIT || {
-         die "Trap attempt failed, please cleanup manually. Aborting!"
-    }
+    # Save CSIT run state for cleaning up later when CSIT_NO_CLEANUP=1 
+    if [[ "${CSIT_NO_CLEANUP:-0}" -eq 1 ]]; then
+        csit_save_state || die "Saving CSIT state variables failed"
+        echo "CSIT_NO_CLEANUP==1. Run cleanup_docker_topology.sh to cleanup"
+    else
+        trap 'deactivate_docker_topology' EXIT || {
+            die "Trap attempt failed, please cleanup manually. Aborting!"
+        }
+    fi    
 
     parse_env_variables || die "Parse of environment variables failed!"
 
@@ -315,6 +321,17 @@ function compose_robot_arguments () {
     fi
 }
 
+function csit_save_state () {
+
+    # Save state variables required for cleanup,
+    # when CSIT_NO_CLEANUP = 1
+
+    set -exuo pipefail
+
+    env | grep CSIT_  | tee  ${CSIT_DIR}/CSIT_STATE_VARS|| die
+    echo "NODENESS=${NODENESS}" >> ${CSIT_DIR}/CSIT_STATE_VARS || die
+    echo "FLAVOR=${FLAVOR}" >> ${CSIT_DIR}/CSIT_STATE_VARS || die
+}
 
 function deactivate_docker_topology () {
 
