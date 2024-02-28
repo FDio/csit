@@ -93,6 +93,18 @@
 1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4base
 2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4base
 4c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4base
+##### ethip4-ip4scale20k-rnd
+1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k-rnd
+2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k-rnd
+4c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale200k-rnd
+1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
+2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
+4c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
+##### ethip4-ip4scale2m-rnd
+1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m-rnd
+2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m-rnd
+4c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m-rnd
 ## ./ip4_tunnels
 ### mellanox-cx7veat
 #### mlx5-core
