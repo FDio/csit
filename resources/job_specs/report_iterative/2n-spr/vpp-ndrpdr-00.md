@@ -175,6 +175,10 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale200k-rnd
+1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale200k-rnd
+2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale200k-rnd
+4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale200k-rnd
 ##### ethip4-ip4scale2m-rnd
 1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale2m-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale2m-rnd
@@ -264,6 +268,10 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale2m-rnd
+1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
+2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
+4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 ## ./ip4_tunnels
 ### mellanox-cx7veat
 #### mlx5-core
