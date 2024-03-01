@@ -1722,6 +1722,8 @@ class InterfaceUtil:
 
         cmd = f"{ns_str} ip link set dev {interface} {trust_str}"
         exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface}"
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def set_linux_interface_spoof_off(
@@ -1890,6 +1892,8 @@ class InterfaceUtil:
             DUTSetup.pci_vf_driver_bind(
                 node, pf_pci_addr, vf_id, uio_driver
             )
+            cmd = f"ethtool -n {interface}"
+            exec_cmd_no_error(node, cmd, sudo=True)
 
             # Add newly created ports into topology file
             vf_ifc_name = f"{ifc_key}_vif"

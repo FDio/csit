@@ -52,6 +52,7 @@ function bind_dut_interfaces_to_vpp_driver () {
 
     for NETDEV in "${DUT1_NETDEVS[@]}"; do
         get_pci_addr || die
+        ethtool -n "${NETDEV}" || echo "ethtool failed"
         get_krn_driver || die
         if [[ ${KRN_DRIVER} == "iavf" ]]; then
             DRIVER="vfio-pci"
