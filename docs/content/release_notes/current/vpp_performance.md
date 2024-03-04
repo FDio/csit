@@ -9,12 +9,13 @@ weight: 1
    - **CSIT test environment** version has been updated to ver. 14, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
-   - **Trending**: Ndrpdr tests use newer code (MLRsearch 1.2.1) and
-     configuration, gaining more stability and speed.
+   - **Trending and release testing**: Ndrpdr tests use newer code
+     (MLRsearch 1.2.1) and configuration, gaining more stability and speed.
 1. VPP PERFORMANCE TESTS
-   - No updates.
+   - Added 2n-c7gn and 3n-icxd testbeds.
 2. PRESENTATION AND ANALYTICS LAYER
-   - No updates.
+   - [Performance dashboard](https://csit.fd.io/) got updated with the
+     possibility to search in tests.
 
 # Known Issues
 
