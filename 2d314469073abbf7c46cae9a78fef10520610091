@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07205d4e_658bf377",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-03-05T13:26:25Z",
+      "side": 1,
+      "message": "\u003e csit-vpp-device-master-ubuntu2204-aarch64-1n-alt/112/ : SUCCESS\n\nThat means this does nothing wrong.",
+      "revId": "2d314469073abbf7c46cae9a78fef10520610091",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
