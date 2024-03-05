@@ -1722,6 +1722,14 @@ class InterfaceUtil:
 
         cmd = f"{ns_str} ip link set dev {interface} {trust_str}"
         exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface}"
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash tcp4"
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash udp4"
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash esp4"
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def set_linux_interface_spoof_off(
