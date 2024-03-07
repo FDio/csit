@@ -16,17 +16,18 @@
 
 import pandas as pd
 
-from numpy import mean, std
+from numpy import mean, std, percentile
 from copy import deepcopy
 
 from ..utils.constants import Constants as C
 from ..utils.utils import relative_change_stdev
 
 
-def select_comparison_data(
+def select_comp_data(
         data: pd.DataFrame,
         selected: dict,
-        normalize: bool=False
+        normalize: bool=False,
+        remove_outliers: bool=False
     ) -> pd.DataFrame:
     """Select data for a comparison table.
 
@@ -35,9 +36,12 @@ def select_comparison_data(
         the user.
     :param normalize: If True, the data is normalized to CPU frequency
         Constants.NORM_FREQUENCY.
+    :param remove_outliers: If True the outliers are removed before
+        generating the table.
     :type data: pandas.DataFrame
     :type selected: dict
     :type normalize: bool
+    :type remove_outliers: bool
     :returns: A data frame with selected data.
     :rtype: pandas.DataFrame
     """
@@ -46,7 +50,8 @@ def select_comparison_data(
             data_in: pd.DataFrame,
             ttype: str,
             drv: str,
-            norm_factor: float
+            norm_factor: float,
+            remove_outliers: bool=False
         ) -> pd.DataFrame:
         """Calculates mean value and standard deviation for provided data.
 
@@ -54,10 +59,13 @@ def select_comparison_data(
         :param ttype: The test type.
         :param drv: The driver.
         :param norm_factor: The data normalization factor.
+        :param remove_outliers: If True the outliers are removed before
+            generating the table.
         :type data_in: pandas.DataFrame
         :type ttype: str
         :type drv: str
         :type norm_factor: float
+        :type remove_outliers: bool
         :returns: A pandas dataframe with: test name, mean value, standard
             deviation and unit.
         :rtype: pandas.DataFrame
@@ -82,6 +90,15 @@ def select_comparison_data(
                 for l_itm in l_df:
                     tmp_df.extend(l_itm)
                 l_df = tmp_df
+
+            if remove_outliers:
+                q1 = percentile(l_df, 25, method=C.COMP_PERCENTILE_METHOD)
+                q3 = percentile(l_df, 75, method=C.COMP_PERCENTILE_METHOD)
+                irq = q3 - q1
+                lif = q1 - C.COMP_OUTLIER_TYPE * irq
+                uif = q3 + C.COMP_OUTLIER_TYPE * irq
+                l_df = [i for i in l_df if i >= lif and i <= uif]
+
             try:
                 mean_val = mean(l_df)
                 std_val = std(l_df)
@@ -148,7 +165,8 @@ def select_comparison_data(
                 tmp_df,
                 itm["ttype"].lower(),
                 itm["driver"],
-                norm_factor
+                norm_factor,
+                remove_outliers=remove_outliers
             )
 
         lst_df.append(tmp_df)
@@ -171,7 +189,8 @@ def comparison_table(
         data: pd.DataFrame,
         selected: dict,
         normalize: bool,
-        format: str="html"
+        format: str="html",
+        remove_outliers: bool=False
     ) -> tuple:
     """Generate a comparison table.
 
@@ -185,10 +204,13 @@ def comparison_table(
           of the unit.
         - csv: To be downloaded as a CSV file the values are stored in base
           units.
+    :param remove_outliers: If True the outliers are removed before
+        generating the table.
     :type data: pandas.DataFrame
     :type selected: dict
     :type normalize: bool
     :type format: str
+    :type remove_outliers: bool
     :returns: A tuple with the tabe title and the comparison table.
     :rtype: tuple[str, pandas.DataFrame]
     """
@@ -245,7 +267,7 @@ def comparison_table(
     c_name = c_params["value"]
 
     # Select reference data
-    r_data = select_comparison_data(data, r_selection, normalize)
+    r_data = select_comp_data(data, r_selection, normalize, remove_outliers)
 
     # Select compare data
     c_sel = deepcopy(selected["reference"]["selection"])
@@ -255,7 +277,7 @@ def comparison_table(
         c_sel[c_params["parameter"]] = c_params["value"]
 
     c_selection = _create_selection(c_sel)
-    c_data = select_comparison_data(data, c_selection, normalize)
+    c_data = select_comp_data(data, c_selection, normalize, remove_outliers)
 
     if r_data.empty or c_data.empty:
         return str(), pd.DataFrame()

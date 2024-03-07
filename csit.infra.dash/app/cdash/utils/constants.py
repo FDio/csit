@@ -358,6 +358,24 @@ class Constants:
     # Default name of downloaded file with selected data.
     COMP_DOWNLOAD_FILE_NAME = "comparison_data.csv"
 
+    # This parameter specifies the method to use for estimating the percentile.
+    # Possible values:
+    # - inverted_cdf
+    # - averaged_inverted_cdf
+    # - closest_observation
+    # - interpolated_inverted_cdf
+    # - hazen
+    # - weibull
+    # - linear (default)
+    # - median_unbiased
+    # - normal_unbiased
+    COMP_PERCENTILE_METHOD = "linear"
+
+    # Extreme or mild outlier?
+    OUTLIER_EXTREME = 3
+    OUTLIER_MILD = 1.5
+    COMP_OUTLIER_TYPE = OUTLIER_EXTREME
+
     ############################################################################
     # Statistics.
 

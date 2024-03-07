@@ -54,7 +54,8 @@ CP_PARAMS = {
     "cmp-val-opt": list(),
     "cmp-val-dis": True,
     "cmp-val-val": str(),
-    "normalize-val": list()
+    "normalize-val": list(),
+    "outliers-val": list()
 }
 
 # List of comparable parameters.
@@ -420,21 +421,33 @@ class Layout:
             )
         ]
 
-        normalize = [
+        processing = [
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
                     dbc.InputGroup(
-                        dbc.Checklist(
-                            id="normalize",
-                            options=[{
-                                "value": "normalize",
-                                "label": "Normalize to 2GHz CPU frequency"
-                            }],
-                            value=[],
-                            inline=True,
-                            class_name="ms-2"
-                        ),
+                        children = [
+                            dbc.Checklist(
+                                id="normalize",
+                                options=[{
+                                    "value": "normalize",
+                                    "label": "Normalize to 2GHz CPU frequency"
+                                }],
+                                value=[],
+                                inline=True,
+                                class_name="ms-2"
+                            ),
+                            dbc.Checklist(
+                                id="outliers",
+                                options=[{
+                                    "value": "outliers",
+                                    "label": "Remove Extreme Outliers"
+                                }],
+                                value=[],
+                                inline=True,
+                                class_name="ms-2"
+                            )
+                        ],
                         style={"align-items": "center"},
                         size="sm"
                     )
@@ -479,10 +492,10 @@ class Layout:
                 dbc.Card(
                     [
                         dbc.CardHeader(
-                            html.H5("Normalization")
+                            html.H5("Data Manipulations")
                         ),
                         dbc.CardBody(
-                            children=normalize,
+                            children=processing,
                             class_name="g-0 p-0"
                         )
                     ],
@@ -659,7 +672,8 @@ class Layout:
                 Output({"type": "ctrl-dd", "index": "cmpval"}, "options"),
                 Output({"type": "ctrl-dd", "index": "cmpval"}, "disabled"),
                 Output({"type": "ctrl-dd", "index": "cmpval"}, "value"),
-                Output("normalize", "value")
+                Output("normalize", "value"),
+                Output("outliers", "value")
             ],
             [
                 State("store-control-panel", "data"),
@@ -671,6 +685,7 @@ class Layout:
             [
                 Input("url", "href"),
                 Input("normalize", "value"),
+                Input("outliers", "value"),
                 Input({"type": "table", "index": ALL}, "filter_query"),
                 Input({"type": "ctrl-dd", "index": ALL}, "value"),
                 Input({"type": "ctrl-cl", "index": ALL}, "value"),
@@ -685,6 +700,7 @@ class Layout:
                 table_data: list,
                 href: str,
                 normalize: list,
+                outliers: bool,
                 table_filter: str,
                 *_
             ) -> tuple:
@@ -721,6 +737,10 @@ class Layout:
                     r_sel = selected["reference"]["selection"]
                     c_sel = selected["compare"]
                     normalize = literal_eval(url_params["norm"][0])
+                    try:  # Necessary for backward compatibility
+                        outliers = literal_eval(url_params["outliers"][0])
+                    except (KeyError, IndexError, AttributeError):
+                        outliers = list()
                     process_url = bool(
                         (selected["reference"]["set"] == True) and
                         (c_sel["set"] == True)
@@ -755,7 +775,8 @@ class Layout:
                                 [r_sel["infra"]]["ttype"]
                         ),
                         "ttype-val": r_sel["ttype"],
-                        "normalize-val": normalize
+                        "normalize-val": normalize,
+                        "outliers-val": outliers
                     })
                     opts = list()
                     for itm, label in CMP_PARAMS.items():
@@ -783,6 +804,9 @@ class Layout:
                     on_draw = True
             elif trigger.type == "normalize":
                 ctrl_panel.set({"normalize-val": normalize})
+                on_draw = True
+            elif trigger.type == "outliers":
+                ctrl_panel.set({"outliers-val": outliers})
                 on_draw = True
             elif trigger.type == "ctrl-dd":
                 if trigger.idx == "dut":
@@ -942,13 +966,23 @@ class Layout:
 
             if all((on_draw, selected["reference"]["set"],
                     selected["compare"]["set"], )):
-                title, table = comparison_table(self._data, selected, normalize)
+                title, table = comparison_table(
+                    data=self._data,
+                    selected=selected,
+                    normalize=normalize,
+                    format="html",
+                    remove_outliers=outliers
+                )
                 plotting_area = self._get_plotting_area(
                     title=title,
                     table=table,
                     url=gen_new_url(
                         parsed_url,
-                        params={"selected": selected, "norm": normalize}
+                        params={
+                            "selected": selected,
+                            "norm": normalize,
+                            "outliers": outliers
+                        }
                     )
                 )
                 store_table_data = table.to_dict("records")
