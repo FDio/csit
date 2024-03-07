@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a86da8_636ed9ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-03-07T16:35:39Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest ip4-00",
+      "revId": "ca49e54eceebb665d38fa90ad9a2f8b6479eb873",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
