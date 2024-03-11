@@ -49,6 +49,14 @@ To access CSIT-2402 Release data please use following web resources:
     - `Value` > `rls2402-24.02-release`
 - [CSIT Per Release Coverage Data](https://csit.fd.io/coverage/)
   - `CSIT Release` > `rls2402`
+- [CSIT Search Tests](https://csit.fd.io/search/)
+  - `Data Type` > `iterative`
+  - `DUT` > `vpp`
+  - `Release` > `rls2402`
+  - `Type a Regular Expression` > `2n-zn2 -1c ethip4-ip4base-[mrr|ndrpdr]`
+    ".*" can be replaced by " " (white space).
+  - `Choose a cell in the table` > A corresponding graph(s) is displayed.
+  - `Click a datapoint in the graph` > Detailed information is displayed.
 
 ## CSIT-2402 Selected Performance Tests
 

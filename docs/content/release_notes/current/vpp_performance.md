@@ -15,7 +15,10 @@ weight: 1
    - Added 2n-c7gn and 3n-icxd testbeds.
 2. PRESENTATION AND ANALYTICS LAYER
    - [Performance dashboard](https://csit.fd.io/) got updated with the
-     possibility to search in tests.
+     possibility to [search in tests](https://csit.fd.io/search/).
+   - [Per Release Performance Comparisons](https://csit.fd.io/comparisons/) got
+     updated with the function removing extreme outliers from data presented in
+     the comparison table.
 
 # Known Issues
 
