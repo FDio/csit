@@ -616,7 +616,7 @@ class Layout:
                             ),
                             dbc.Button(
                                 id="plot-btn-download",
-                                children="Download Data",
+                                children="Download Table",
                                 class_name="me-1",
                                 color="info",
                                 style={
@@ -624,7 +624,18 @@ class Layout:
                                     "padding": "0rem 1rem"
                                 }
                             ),
-                            dcc.Download(id="download-iterative-data")
+                            dcc.Download(id="download-iterative-data"),
+                            dbc.Button(
+                                id="plot-btn-download-raw",
+                                children="Download Raw Data",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dcc.Download(id="download-raw-data")
                         ],
                         className=\
                             "d-grid gap-0 d-md-flex justify-content-md-end"
@@ -1045,6 +1056,38 @@ class Layout:
                 table = pd.DataFrame.from_records(table_data)
 
             return dcc.send_data_frame(table.to_csv, C.COMP_DOWNLOAD_FILE_NAME)
+
+        @app.callback(
+            Output("download-raw-data", "data"),
+            State("store-selected", "data"),
+            Input("plot-btn-download-raw", "n_clicks"),
+            prevent_initial_call=True
+        )
+        def _download_raw_comparison_data(selected: dict, _: int) -> dict:
+            """Download the data.
+
+            :param selected: Selected tests.
+            :type selected: dict
+            :returns: dict of data frame content (base64 encoded) and meta data
+                used by the Download component.
+            :rtype: dict
+            """
+
+            if not selected:
+                raise PreventUpdate
+
+            _, table = comparison_table(
+                    data=self._data,
+                    selected=selected,
+                    normalize=False,
+                    remove_outliers=False,
+                    raw_data=True
+                )
+
+            return dcc.send_data_frame(
+                table.dropna(how="all", axis=1).to_csv,
+                f"raw_{C.COMP_DOWNLOAD_FILE_NAME}"
+            )
 
         @app.callback(
             Output("offcanvas-documentation", "is_open"),

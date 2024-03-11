@@ -27,7 +27,8 @@ def select_comp_data(
         data: pd.DataFrame,
         selected: dict,
         normalize: bool=False,
-        remove_outliers: bool=False
+        remove_outliers: bool=False,
+        raw_data: bool=False
     ) -> pd.DataFrame:
     """Select data for a comparison table.
 
@@ -38,10 +39,13 @@ def select_comp_data(
         Constants.NORM_FREQUENCY.
     :param remove_outliers: If True the outliers are removed before
         generating the table.
+    :param raw_data: If True, returns data as it is in parquets without any
+        processing. It is used for "download raw data" feature.
     :type data: pandas.DataFrame
     :type selected: dict
     :type normalize: bool
     :type remove_outliers: bool
+    :type raw_data: bool
     :returns: A data frame with selected data.
     :rtype: pandas.DataFrame
     """
@@ -161,13 +165,14 @@ def select_comp_data(
                     norm_factor = C.NORM_FREQUENCY / C.FREQUENCY[itm["tbed"]]
             else:
                 norm_factor = 1.0
-            tmp_df = _calculate_statistics(
-                tmp_df,
-                itm["ttype"].lower(),
-                itm["driver"],
-                norm_factor,
-                remove_outliers=remove_outliers
-            )
+            if not raw_data:
+                tmp_df = _calculate_statistics(
+                    tmp_df,
+                    itm["ttype"].lower(),
+                    itm["driver"],
+                    norm_factor,
+                    remove_outliers=remove_outliers
+                )
 
         lst_df.append(tmp_df)
 
@@ -190,7 +195,8 @@ def comparison_table(
         selected: dict,
         normalize: bool,
         format: str="html",
-        remove_outliers: bool=False
+        remove_outliers: bool=False,
+        raw_data: bool=False
     ) -> tuple:
     """Generate a comparison table.
 
@@ -206,11 +212,14 @@ def comparison_table(
           units.
     :param remove_outliers: If True the outliers are removed before
         generating the table.
+    :param raw_data: If True, returns data as it is in parquets without any
+        processing. It is used for "download raw data" feature.
     :type data: pandas.DataFrame
     :type selected: dict
     :type normalize: bool
     :type format: str
     :type remove_outliers: bool
+    :type raw_data: bool
     :returns: A tuple with the tabe title and the comparison table.
     :rtype: tuple[str, pandas.DataFrame]
     """
@@ -241,9 +250,32 @@ def comparison_table(
                     })
         return selection
 
+    # Select reference data
     r_sel = deepcopy(selected["reference"]["selection"])
-    c_params = selected["compare"]
     r_selection = _create_selection(r_sel)
+    r_data = select_comp_data(
+        data, r_selection, normalize, remove_outliers, raw_data
+    )
+
+    # Select compare data
+    c_sel = deepcopy(selected["reference"]["selection"])
+    c_params = selected["compare"]
+    if c_params["parameter"] in ("core", "frmsize", "ttype"):
+        c_sel[c_params["parameter"]] = [c_params["value"], ]
+    else:
+        c_sel[c_params["parameter"]] = c_params["value"]
+    c_selection = _create_selection(c_sel)
+    c_data = select_comp_data(
+        data, c_selection, normalize, remove_outliers, raw_data
+    )
+
+    if raw_data:
+        r_data["ref/cmp"] = "reference"
+        c_data["ref/cmp"] = "compare"
+        return str(), pd.concat([r_data, c_data], ignore_index=True, copy=False)
+
+    if r_data.empty or c_data.empty:
+        return str(), pd.DataFrame()
 
     if format == "html" and "Latency" not in r_sel["ttype"]:
         unit_factor, s_unit_factor = (1e6, "M")
@@ -265,22 +297,6 @@ def comparison_table(
     if isinstance(r_name, list):
         r_name = "|".join(r_name)
     c_name = c_params["value"]
-
-    # Select reference data
-    r_data = select_comp_data(data, r_selection, normalize, remove_outliers)
-
-    # Select compare data
-    c_sel = deepcopy(selected["reference"]["selection"])
-    if c_params["parameter"] in ("core", "frmsize", "ttype"):
-        c_sel[c_params["parameter"]] = [c_params["value"], ]
-    else:
-        c_sel[c_params["parameter"]] = c_params["value"]
-
-    c_selection = _create_selection(c_sel)
-    c_data = select_comp_data(data, c_selection, normalize, remove_outliers)
-
-    if r_data.empty or c_data.empty:
-        return str(), pd.DataFrame()
 
     l_name, l_r_mean, l_r_std, l_c_mean, l_c_std, l_rc_mean, l_rc_std, unit = \
         list(), list(), list(), list(), list(), list(), list(), set()
