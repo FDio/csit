@@ -14,6 +14,8 @@
 """Plotly Dash HTML layout override.
 """
 
+
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -23,13 +25,14 @@ from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from dash.dash_table.Format import Format, Scheme
 from ast import literal_eval
+from yaml import load, FullLoader, YAMLError
 
 from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
 from ..utils.utils import generate_options, gen_new_url, navbar_report, \
-    filter_table_data
+    filter_table_data, show_tooltip
 from .tables import comparison_table
 
 
@@ -76,7 +79,8 @@ class Layout:
             self,
             app: Flask,
             data_iterative: pd.DataFrame,
-            html_layout_file: str
+            html_layout_file: str,
+            tooltip_file: str
         ) -> None:
         """Initialization:
         - save the input parameters,
@@ -87,15 +91,19 @@ class Layout:
         :param data_iterative: Iterative data to be used in comparison tables.
         :param html_layout_file: Path and name of the file specifying the HTML
             layout of the dash application.
+        :param tooltip_file: Path and name of the yaml file specifying the
+            tooltips.
         :type app: Flask
         :type data_iterative: pandas.DataFrame
         :type html_layout_file: str
+        :type tooltip_file: str
         """
 
         # Inputs
         self._app = app
-        self._html_layout_file = html_layout_file
         self._data = data_iterative
+        self._html_layout_file = html_layout_file
+        self._tooltip_file = tooltip_file
 
         # Get structure of tests:
         tbs = dict()
@@ -164,6 +172,19 @@ class Layout:
         except IOError as err:
             raise RuntimeError(
                 f"Not possible to open the file {self._html_layout_file}\n{err}"
+            )
+
+        try:
+            with open(self._tooltip_file, "r") as file_read:
+                self._tooltips = load(file_read, Loader=FullLoader)
+        except IOError as err:
+            logging.warning(
+                f"Not possible to open the file {self._tooltip_file}\n{err}"
+            )
+        except YAMLError as err:
+            logging.warning(
+                f"An error occurred while parsing the specification file "
+                f"{self._tooltip_file}\n{err}"
             )
 
         # Callbacks:
@@ -288,7 +309,9 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("DUT"),
+                            dbc.InputGroupText(
+                                show_tooltip(self._tooltips, "help-dut", "DUT")
+                            ),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "dut"},
                                 placeholder="Select a Device under Test...",
@@ -310,7 +333,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("CSIT and DUT Version"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-csit-dut",
+                                "CSIT and DUT Version"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "dutver"},
                                 placeholder="Select a CSIT and DUT Version...")
@@ -324,7 +351,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Infra"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-infra",
+                                "Infra"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "infra"},
                                 placeholder=\
@@ -340,7 +371,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Frame Size"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-framesize",
+                                "Frame Size"
+                            )),
                             dbc.Checklist(
                                 id={"type": "ctrl-cl", "index": "frmsize"},
                                 inline=True,
@@ -357,7 +392,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Number of Cores"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-cores",
+                                "Number of Cores"
+                            )),
                             dbc.Checklist(
                                 id={"type": "ctrl-cl", "index": "core"},
                                 inline=True,
@@ -374,7 +413,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Measurement"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-measurement",
+                                "Measurement"
+                            )),
                             dbc.Checklist(
                                 id={"type": "ctrl-cl", "index": "ttype"},
                                 inline=True,
@@ -394,7 +437,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Parameter"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-cmp-parameter",
+                                "Parameter"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "cmpprm"},
                                 placeholder="Select a Parameter..."
@@ -409,7 +456,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Value"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-cmp-value",
+                                "Value"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "cmpval"},
                                 placeholder="Select a Value..."

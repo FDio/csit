@@ -1,9 +1,18 @@
 help-area:
-  The area defines a VPP packet path and lookup type.
+  The area defines a DUT packet path and lookup type.
 help-cadence:
   The cadence of the Jenkins job which runs the tests.
+help-cmp-parameter:
+  The parameter to be used for comparison.
+help-cmp-value:
+  The value of parameter to be used for comparison.
 help-cores:
   Number of cores the DUT uses during the test.
+help-csit-dut:
+  The version of CSIT (the part in front of the first hyphen) and the version of
+  Device under Test (the rest).
+help-data-type:
+  The type of collected data.
 help-download:
   Download the selected data as a csv file.
 help-dut:
@@ -19,13 +28,15 @@ help-framesize:
 help-infra:
   Infrastructure is defined by the toplology (number of nodes), processor
   architecture, NIC and driver.
+help-measurement:
+  The measured quantity in interest.
 help-normalize:
   Normalize the results to CPU frequency 2GHz. The results from AWS environment
   are not normalized as we do not know the exact value of CPU frequency.
 help-release:
   The CSIT release.
-help-summary-period:
-  Choose the number of runs for summary tables.
+help-show-latency:
+  If selected, the latency is included in tables.
 help-tbed:
   The test bed is defined by toplology (number of nodes) and processor
   architecture.
@@ -33,8 +44,6 @@ help-test:
   The test specification consists of packet encapsulation, VPP packet processing
   (packet forwarding mode and packet processing function(s)) and packet
   forwarding path.
-help-time-period:
-  Choose a time period for selected tests.
 help-ttype:
   Main measured variable.
 help-url:

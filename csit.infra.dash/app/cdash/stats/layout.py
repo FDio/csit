@@ -331,13 +331,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-dut",
-                                    "DUT"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-dut",
+                                "DUT"
+                            )),
                             dbc.RadioItems(
                                 id="ri-duts",
                                 inline=True,
@@ -355,13 +353,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-ttype",
-                                    "Test Type"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-ttype",
+                                "Test Type"
+                            )),
                             dbc.RadioItems(
                                 id="ri-ttypes",
                                 inline=True,
@@ -379,13 +375,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-cadence",
-                                    "Cadence"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-cadence",
+                                "Cadence"
+                            )),
                             dbc.RadioItems(
                                 id="ri-cadences",
                                 inline=True,
@@ -403,13 +397,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-tbed",
-                                    "Test Bed"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-tbed",
+                                "Test Bed"
+                            )),
                             dbc.Select(
                                 id="dd-tbeds",
                                 placeholder="Select a test bed...",

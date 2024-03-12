@@ -43,7 +43,8 @@ def init_comparisons(
     layout = Layout(
         app=dash_app,
         data_iterative=data_iterative,
-        html_layout_file=C.HTML_LAYOUT_FILE
+        html_layout_file=C.HTML_LAYOUT_FILE,
+        tooltip_file=C.TOOLTIP_FILE
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()

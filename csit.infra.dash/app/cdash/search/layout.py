@@ -32,7 +32,8 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import gen_new_url, generate_options, navbar_trending, \
-    filter_table_data, show_trending_graph_data, show_iterative_graph_data
+    filter_table_data, show_trending_graph_data, show_iterative_graph_data, \
+    show_tooltip
 from ..utils.url_processing import url_decode
 from .tables import search_table
 from ..coverage.tables import coverage_tables
@@ -297,7 +298,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Data Type"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-data-type",
+                                "Data Type"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "datatype"},
                                 placeholder="Select a Data Type...",
@@ -321,7 +326,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("DUT"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-dut",
+                                "DUT"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "dut"},
                                 placeholder="Select a Device under Test..."
@@ -338,7 +347,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Release"),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-release",
+                                "CSIT Release"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "release"},
                                 placeholder="Select a Release..."

@@ -354,13 +354,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-release",
-                                    "CSIT Release"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-release",
+                                "CSIT Release"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "rls"},
                                 placeholder="Select a Release...",
@@ -382,13 +380,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-dut",
-                                    "DUT"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-dut",
+                                "DUT"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "dut"},
                                 placeholder="Select a Device under Test..."
@@ -403,13 +399,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-dut-ver",
-                                    "DUT Version"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-dut-ver",
+                                "DUT Version"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "dutver"},
                                 placeholder=\
@@ -425,13 +419,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-area",
-                                    "Area"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-area",
+                                "Area"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "area"},
                                 placeholder="Select an Area..."
@@ -446,13 +438,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-test",
-                                    "Test"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-test",
+                                "Test"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "test"},
                                 placeholder="Select a Test..."
@@ -467,13 +457,11 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-infra",
-                                    "Infra"
-                                )
-                            ),
+                            dbc.InputGroupText(show_tooltip(
+                                self._tooltips,
+                                "help-infra",
+                                "Infra"
+                            )),
                             dbc.Select(
                                 id={"type": "ctrl-dd", "index": "phy"},
                                 placeholder=\
