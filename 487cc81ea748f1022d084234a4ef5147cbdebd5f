@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest mrrANDnic_*ANDdrv_mlx5_coreAND4cAND78bANDethip6srhip6-ip6base-srv6enc2sids",
       "revId": "487cc81ea748f1022d084234a4ef5147cbdebd5f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f04df5_dcc51cf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-03-12T14:00:18Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest mrrANDnic_*ANDdrv_*AND4cAND78bANDethip6srhip6-ip6base-srv6enc2sids !drv_af_xdp",
+      "revId": "487cc81ea748f1022d084234a4ef5147cbdebd5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
