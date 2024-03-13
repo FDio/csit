@@ -77,7 +77,6 @@ def main() -> int:
             current_aggregate[name].extend(current_results[name])
     exit_code = 0
     for name in test_names:
-        print(f"Test name: {name}")
         parent_values = parent_aggregate[name]
         current_values = current_aggregate[name]
         print(f"Time-ordered MRR values for parent build: {parent_values}")
