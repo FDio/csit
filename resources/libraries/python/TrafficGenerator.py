@@ -1564,7 +1564,7 @@ class OptimizedSearch:
         )
         if loss_ratio:
             loss_ratios = [0.0, loss_ratio]
-            exceed_ratio = 0.5
+            exceed_ratio = 0.0  # 0.5
         else:
             # Happens in reconf tests.
             loss_ratios = [0.0]
