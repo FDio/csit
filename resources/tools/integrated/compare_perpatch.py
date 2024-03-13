@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -77,7 +77,6 @@ def main() -> int:
             current_aggregate[name].extend(current_results[name])
     exit_code = 0
     for name in test_names:
-        print(f"Test name: {name}")
         parent_values = parent_aggregate[name]
         current_values = current_aggregate[name]
         print(f"Time-ordered MRR values for parent build: {parent_values}")
