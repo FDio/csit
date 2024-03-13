@@ -485,6 +485,25 @@ class Constants:
         "1ge1p82540em": "nic_pfs}= | 2",
     }
 
+    NIC_CODE_TO_CORESCALE = {
+        "10ge2p1x520": 1,
+        "10ge2p1x710": 1,
+        "40ge2p1xl710": 1,
+        "25ge2p1xxv710": 1,
+        "25ge2p1e810xxv": 1,
+        "25ge2p1e822cq": 1,
+        "25ge2p1e823c": 1,
+        "100ge2p1e810cq": 1,
+        "50ge1p1ena": 1,
+        "100ge1p1ena": 1,
+        "200ge1p1ena": 1,
+        "100ge2p1cx556a": 1,
+        "100ge2p1cx6dx": 1,
+        "200ge2p1cx7veat": 1,
+        "200ge6p3cx7veat": 3,
+        "1ge1p82540em": 1,
+    }
+
     # Not each driver is supported by each NIC.
     DPDK_NIC_NAME_TO_DRIVER = {
         "Intel-X520-DA2": ["vfio-pci"],

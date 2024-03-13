@@ -301,25 +301,18 @@ class ExportJson():
         self.data["test_id"] = f"{suite_part}.{test_part}"
         tags = self.data["tags"]
         # Test name does not contain thread count.
-        subparts = test_part.split("c-", 1)
-        if len(subparts) < 2 or subparts[0][-2:-1] != "-":
+        subparts = test_part.split("-")
+        if any("tg" in s for s in subparts) and subparts[1] == "":
             # Physical core count not detected, assume it is a TRex test.
             if "--" not in test_part:
-                raise RuntimeError(f"Cores not found for {subparts}")
+                raise RuntimeError(f"Invalid TG test name for: {subparts}")
             short_name = test_part.split("--", 1)[1]
         else:
-            short_name = subparts[1]
+            short_name = "-".join(subparts[2:])
             # Add threads to test_part.
-            core_part = subparts[0][-1] + "c"
-            for tag in tags:
-                tag = tag.lower()
-                if len(tag) == 4 and core_part == tag[2:] and tag[1] == "t":
-                    test_part = test_part.replace(f"-{core_part}-", f"-{tag}-")
-                    break
-            else:
-                raise RuntimeError(
-                    f"Threads not found for {test_part} tags {tags}"
-                )
+            core_part = subparts[1]
+            tag = list(filter(lambda t: subparts[1].upper() in t, tags))[0]
+            test_part = test_part.replace(f"-{core_part}-", f"-{tag.lower()}-")
         # For long name we need NIC model, which is only in suite name.
         last_suite_part = suite_part.split(".")[-1]
         # Short name happens to be the suffix we want to ignore.

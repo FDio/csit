@@ -54,15 +54,16 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_name}= | Mellanox-CX7VEAT
+| ${nic_driver}= | mlx5_core
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
-| ${nic_pfs}= | 2
+| ${nic_pfs}= | 6
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${10000}
+| ${rxq_ratio}= | ${3}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst-rnd${rts_per_flow}-${nic_pfs}p
 
@@ -92,7 +93,7 @@
 | | And Initialize layer interface
 | | And Set interfaces in path up
 | | And Initialize IPv4 Forwarding | count=${rts_per_flow} | pfs=${nic_pfs}
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Traffic should pass with maximum rate
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4scale60k-rnd-ndrpdr
@@ -103,9 +104,9 @@
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4-ip4scale60k-rnd-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| 64B-12c-ethip4-ip4scale60k-rnd-ndrpdr
+| | [Tags] | 64B | 12C | THIS
+| | frame_size=${64} | phy_cores=${12}
 
 | 1518B-1c-ethip4-ip4scale60k-rnd-ndrpdr
 | | [Tags] | 1518B | 1C
