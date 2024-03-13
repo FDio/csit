@@ -150,16 +150,17 @@ def filter_and_edit_kwargs_for_astf(suite_id, kwargs):
     return kwargs
 
 
-def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
+def add_default_testcases(
+        testcase, nic_code, suite_id, file_out, tc_kwargs_list):
     """Add default testcases to file.
 
     :param testcase: Testcase class.
-    :param iface: Interface.
+    :param nic_code: NIC code.
     :param suite_id: Suite ID.
     :param file_out: File to write testcases to.
     :param tc_kwargs_list: Key-value pairs used to construct testcases.
     :type testcase: Testcase
-    :type iface: str
+    :type nic_code: str
     :type suite_id: str
     :type file_out: file
     :type tc_kwargs_list: dict
@@ -169,23 +170,7 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
         kwargs = copy.deepcopy(kwas)
         # TODO: Is there a better way to disable some combinations?
         emit = True
-        if kwargs[u"frame_size"] == 9000:
-            if u"vic1227" in iface:
-                # Not supported in HW.
-                emit = False
-            if u"vic1385" in iface:
-                # Not supported in HW.
-                emit = False
-        if u"-16vm2t-" in suite_id or u"-16dcr2t-" in suite_id:
-            if kwargs[u"phy_cores"] > 3:
-                # CSIT lab only has 28 (physical) core processors,
-                # so these test would fail when attempting to assign cores.
-                emit = False
-        if u"-24vm1t-" in suite_id or u"-24dcr1t-" in suite_id:
-            if kwargs[u"phy_cores"] > 3:
-                # CSIT lab only has 28 (physical) core processors,
-                # so these test would fail when attempting to assign cores.
-                emit = False
+        core_scale = Constants.NIC_CODE_TO_CORESCALE[nic_code]
         if u"soak" in suite_id:
             # Soak test take too long, do not risk other than tc01.
             if kwargs[u"phy_cores"] != 1:
@@ -196,6 +181,9 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             else:
                 if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                     emit = False
+
+        kwargs.update({'phy_cores': kwas['phy_cores']*core_scale})
+
         kwargs = filter_and_edit_kwargs_for_astf(suite_id, kwargs)
         if emit and kwargs is not None:
             file_out.write(testcase.generate(**kwargs))
@@ -347,7 +335,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     with open(out_filename, "wt") as file_out:
                         file_out.write(out_prolog)
                         add_default_testcases(
-                            testcase, iface, suite_id, file_out, kwargs_list
+                            testcase, nic_code, suite_id, file_out, kwargs_list
                         )
                 continue
             for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
@@ -396,7 +384,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 with open(out_filename, "wt") as file_out:
                     file_out.write(out_prolog)
                     add_default_testcases(
-                        testcase, iface, suite_id, file_out, kwargs_list
+                        testcase, nic_code, suite_id, file_out, kwargs_list
                     )
 
 
