@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -139,12 +139,11 @@ class CoreDumpUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 command = (
-                    f"for f in {Constants.CORE_DUMP_DIR}/*.core; do "
-                    # Causing issues
-                    #f"sudo gdb /usr/bin/vpp ${{f}} "
-                    #f"-ex 'source -v {Constants.REMOTE_FW_DIR}"
-                    #f"/resources/tools/scripts/gdb-commands' -ex quit; "
-                    f"sudo rm -f ${{f}}; done"
+                    f"for f in {Constants.CORE_DUMP_DIR}/*.core; do"
+                    f" sleep 10; sudo gdb /usr/bin/vpp ${{f}}"
+                    f" -ex 'source -v {Constants.REMOTE_FW_DIR}"
+                    f"/resources/tools/scripts/gdb-commands' -ex quit;"
+                    f" sudo rm -f ${{f}}; done"
                 )
                 try:
                     exec_cmd_no_error(node, command, timeout=3600)
