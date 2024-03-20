@@ -303,6 +303,7 @@ class IPsecUtil:
         :raises RuntimeError: If failed to select IPsec backend or if no API
             reply received.
         """
+        PapiSocketExecutor.run_cli_cmd(node, "show ipsec backends")
         cmd = u"ipsec_select_backend"
         err_msg = f"Failed to select IPsec backend on host {node[u'host']}"
         args = dict(
