@@ -19,6 +19,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 from copy import deepcopy
+from numpy import percentile
 
 from ..utils.constants import Constants as C
 from ..utils.utils import get_color, get_hdrh_latencies
@@ -74,7 +75,7 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
 
 def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
-        normalize: bool=False) -> tuple:
+        normalize: bool=False, remove_outliers: bool=False) -> tuple:
     """Generate the statistical box graph with iterative data (MRR, NDR and PDR,
     for PDR also Latencies).
 
@@ -83,15 +84,19 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
     :param layout: Layout of plot.ly graph.
     :param normalize: If True, the data is normalized to CPU frequency
         Constants.NORM_FREQUENCY.
-    :param data: pandas.DataFrame
-    :param sel: list
-    :param layout: dict
-    :param normalize: bool
+    :param remove_outliers: If True the outliers are removed before
+        generating the table.
+    :type data: pandas.DataFrame
+    :type sel: list
+    :type layout: dict
+    :type normalize: bool
+    :type remove_outliers: bool
     :returns: Tuple of graphs - throughput and latency.
     :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
-    def get_y_values(data, y_data_max, param, norm_factor, release=str()):
+    def get_y_values(data, y_data_max, param, norm_factor, release=str(),
+                     remove_outliers=False):
         if param == "result_receive_rate_rate_values":
             if release == "rls2402":
                 y_vals_raw = data["result_receive_rate_rate_avg"].to_list()
@@ -100,6 +105,15 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
         else:
             y_vals_raw = data[param].to_list()
         y_data = [(y * norm_factor) for y in y_vals_raw]
+
+        if remove_outliers:
+            q1 = percentile(y_data, 25, method=C.COMP_PERCENTILE_METHOD)
+            q3 = percentile(y_data, 75, method=C.COMP_PERCENTILE_METHOD)
+            irq = q3 - q1
+            lif = q1 - C.COMP_OUTLIER_TYPE * irq
+            uif = q3 + C.COMP_OUTLIER_TYPE * irq
+            y_data = [i for i in y_data if i >= lif and i <= uif]
+
         try:
             y_data_max = max(max(y_data), y_data_max)
         except TypeError:
@@ -142,7 +156,12 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
         y_units.update(itm_data[C.UNIT[ttype]].unique().tolist())
 
         y_data, y_tput_max = get_y_values(
-            itm_data, y_tput_max, C.VALUE_ITER[ttype], norm_factor, itm["rls"]
+            itm_data,
+            y_tput_max,
+            C.VALUE_ITER[ttype],
+            norm_factor,
+            itm["rls"],
+            remove_outliers
         )
 
         nr_of_samples = len(y_data)
@@ -192,7 +211,8 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
                 itm_data,
                 y_band_max,
                 C.VALUE_ITER[f"{ttype}-bandwidth"],
-                norm_factor
+                norm_factor,
+                remove_outliers=remove_outliers
             )
             if not all(pd.isna(y_band)):
                 y_band_units.update(
