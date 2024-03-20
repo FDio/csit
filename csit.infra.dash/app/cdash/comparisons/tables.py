@@ -95,15 +95,14 @@ def select_comp_data(
                     tmp_df.extend(l_itm)
                 l_df = tmp_df
 
-            if remove_outliers:
-                q1 = percentile(l_df, 25, method=C.COMP_PERCENTILE_METHOD)
-                q3 = percentile(l_df, 75, method=C.COMP_PERCENTILE_METHOD)
-                irq = q3 - q1
-                lif = q1 - C.COMP_OUTLIER_TYPE * irq
-                uif = q3 + C.COMP_OUTLIER_TYPE * irq
-                l_df = [i for i in l_df if i >= lif and i <= uif]
-
             try:
+                if remove_outliers:
+                    q1 = percentile(l_df, 25, method=C.COMP_PERCENTILE_METHOD)
+                    q3 = percentile(l_df, 75, method=C.COMP_PERCENTILE_METHOD)
+                    irq = q3 - q1
+                    lif = q1 - C.COMP_OUTLIER_TYPE * irq
+                    uif = q3 + C.COMP_OUTLIER_TYPE * irq
+                    l_df = [i for i in l_df if i >= lif and i <= uif]
                 mean_val = mean(l_df)
                 std_val = std(l_df)
             except (TypeError, ValueError):

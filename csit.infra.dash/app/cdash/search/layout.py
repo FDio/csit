@@ -32,8 +32,8 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import gen_new_url, generate_options, navbar_trending, \
-    filter_table_data, show_trending_graph_data, show_iterative_graph_data, \
-    show_tooltip
+    filter_table_data, sort_table_data, show_trending_graph_data, \
+    show_iterative_graph_data, show_tooltip
 from ..utils.url_processing import url_decode
 from .tables import search_table
 from ..coverage.tables import coverage_tables
@@ -448,7 +448,7 @@ class Layout:
                             columns=columns,
                             data=table.to_dict("records"),
                             filter_action="custom",
-                            sort_action="native",
+                            sort_action="custom",
                             sort_mode="multi",
                             selected_columns=[],
                             selected_rows=[],
@@ -538,6 +538,7 @@ class Layout:
             State({"type": "table", "index": ALL}, "data"),
             Input("url", "href"),
             Input({"type": "table", "index": ALL}, "filter_query"),
+            Input({"type": "table", "index": ALL}, "sort_by"),
             Input({"type": "ctrl-dd", "index": ALL}, "value"),
             prevent_initial_call=True
         )
@@ -679,10 +680,16 @@ class Layout:
                     }
                     on_draw = True
             elif trigger.type == "table" and trigger.idx == "search":
-                filtered_data = filter_table_data(
-                    store_table_data,
-                    trigger.value
-                )
+                if trigger.parameter == "filter_query":
+                    filtered_data = filter_table_data(
+                        store_table_data,
+                        trigger.value
+                    )
+                elif trigger.parameter == "sort_by":
+                    filtered_data = sort_table_data(
+                        store_table_data,
+                        trigger.value
+                    )
                 table_data = [filtered_data, ]
 
             if on_draw:
@@ -735,8 +742,8 @@ class Layout:
                 rls = store["selection"]["release"]
                 tb = row["Test Bed"].iloc[0]
                 nic = row["NIC"].iloc[0]
-                driver = row['Driver'].iloc[0]
-                test_name = row['Test'].iloc[0]
+                driver = row["Driver"].iloc[0]
+                test_name = row["Test"].iloc[0]
                 dutver = str()
             except(KeyError, IndexError, AttributeError, ValueError):
                 raise PreventUpdate
@@ -777,7 +784,7 @@ class Layout:
                     testtype = [testtype, ]
                 core = l_test[1] if l_test[1] else "8c"
                 test = "-".join(l_test[2: -1])
-                test_id = f"{tb}-{nic}-{driver}-{core}-{l_test[0]}-{test}"
+                test_id = f"{tb}-{nic}-{driver}-{l_test[0]}-{core}-{test}"
                 title = dbc.Row(
                     class_name="g-0 p-0",
                     children=dbc.Alert(test_id, color="info"),
@@ -873,7 +880,7 @@ class Layout:
             Input({"type": "graph-iter", "index": ALL}, "clickData"),
             prevent_initial_call=True
         )
-        def _show_metadata_from_trend_graph(
+        def _show_metadata_from_graph(
                 trend_data: dict,
                 iter_data: dict
             ) -> tuple:
