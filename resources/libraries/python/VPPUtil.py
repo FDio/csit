@@ -167,7 +167,7 @@ class VPPUtil:
         """
         cmd = u"echo \"show pci\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
         exec_cmd_no_error(
-            node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
+            node, cmd, sudo=False, message=u"VPP failed to start!", retries=1200
         )
 
         cmd = u"vppctl show pci 2>&1 | fgrep -v \"Connection refused\" | " \
