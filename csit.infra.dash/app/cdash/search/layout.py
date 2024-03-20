@@ -735,8 +735,8 @@ class Layout:
                 rls = store["selection"]["release"]
                 tb = row["Test Bed"].iloc[0]
                 nic = row["NIC"].iloc[0]
-                driver = row['Driver'].iloc[0]
-                test_name = row['Test'].iloc[0]
+                driver = row["Driver"].iloc[0]
+                test_name = row["Test"].iloc[0]
                 dutver = str()
             except(KeyError, IndexError, AttributeError, ValueError):
                 raise PreventUpdate

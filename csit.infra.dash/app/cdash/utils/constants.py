@@ -79,7 +79,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+    TIME_PERIOD = 10  # MAX_TIME_PERIOD  # [days]
 
     ############################################################################
     # General, application wide, layout affecting constants.

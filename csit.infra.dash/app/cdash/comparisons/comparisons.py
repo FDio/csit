@@ -44,6 +44,7 @@ def init_comparisons(
         app=dash_app,
         data_iterative=data_iterative,
         html_layout_file=C.HTML_LAYOUT_FILE,
+        graph_layout_file=C.REPORT_GRAPH_LAYOUT_FILE,
         tooltip_file=C.TOOLTIP_FILE
     )
     dash_app.index_string = layout.html_layout
