@@ -48,12 +48,7 @@ git status || die
 git describe || die
 build_vpp_ubuntu "CURRENT" || die
 set_aside_build_artifacts "current" || die
-git checkout "HEAD~" || die "Failed to checkout parent commit."
-git status || die
-git describe || die
-build_vpp_ubuntu "PARENT" || die
-set_aside_build_artifacts "parent" || die
-initialize_csit_dirs "parent" "current" || die
+initialize_csit_dirs "current" || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_dut || die
@@ -63,25 +58,8 @@ activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
-# Support for interleaved measurements is kept for future.
-iterations=1 # 8
-for ((iter=0; iter<iterations; iter++)); do
-    if ((iter)); then
-        # Function reserve_and_cleanup_testbed has already cleaned it once,
-        # but we need to clean it explicitly on subsequent iterations.
-        ansible_playbook "cleanup" || die
-    fi
-    # Testing current first. Good for early failures or for API changes.
-    select_build "build_current" || die
-    check_download_dir || die
-    run_robot || die
-    move_test_results "csit_current/${iter}" || die
-    # TODO: Use less heavy way to avoid apt remove failures.
-    ansible_playbook "cleanup" || die
-    select_build "build_parent" || die
-    check_download_dir || die
-    run_robot || die
-    move_test_results "csit_parent/${iter}" || die
-done
+select_build "build_current" || die
+check_download_dir || die
+run_robot || die
+move_test_results "csit_current/0" || die
 untrap_and_unreserve_testbed || die
-compare_test_results  # The error code becomes this script's error code.
