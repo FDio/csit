@@ -631,6 +631,39 @@ def filter_table_data(
     return df.to_dict("records")
 
 
+def sort_table_data(
+        store_table_data: list,
+        sort_by: list
+    ) -> list:
+    """Sort table data using user specified order.
+
+    :param store_table_data: Table data represented as a list of records.
+    :param sort_by: User specified sorting order (multicolumn).
+    :type store_table_data: list
+    :type sort_by: list
+    :returns: A new table created by sorting the table data represented as
+        a list of records.
+    :rtype: list
+    """
+
+    # Checks:
+    if not any((sort_by, store_table_data, )):
+        return store_table_data
+
+    df = pd.DataFrame.from_records(store_table_data)
+    if len(sort_by):
+        dff = df.sort_values(
+            [col["column_id"] for col in sort_by],
+            ascending=[col["direction"] == "asc" for col in sort_by],
+            inplace=False
+        )
+    else:
+        # No sort is applied
+        dff = df
+
+    return dff.to_dict("records")
+
+
 def show_trending_graph_data(
         trigger: Trigger,
         data: dict,
