@@ -16,6 +16,23 @@
       "message": "Tests should be added to every testbed with QAT, which also includes 3n-snr and 3n-icxd.",
       "revId": "4bb473d3b35756fe4f4d5a441e5ab99e4bd2bcad",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a4397fc_71073db0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-03-20T11:52:27Z",
+      "side": 1,
+      "message": "Also, add only ipsec-hwasync tests for now (some are already added in resources/job_specs/report_coverage/3nb-spr/crypto-07.md).",
+      "revId": "4bb473d3b35756fe4f4d5a441e5ab99e4bd2bcad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
