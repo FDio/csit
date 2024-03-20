@@ -26,14 +26,16 @@ from dash.exceptions import PreventUpdate
 from dash.dash_table.Format import Format, Scheme
 from ast import literal_eval
 from yaml import load, FullLoader, YAMLError
+from copy import deepcopy
 
 from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
 from ..utils.utils import generate_options, gen_new_url, navbar_report, \
-    filter_table_data, show_tooltip
+    filter_table_data, sort_table_data, show_iterative_graph_data, show_tooltip
 from .tables import comparison_table
+from ..report.graphs import graph_iterative
 
 
 # Control panel partameters and their default values.
@@ -80,12 +82,15 @@ class Layout:
             app: Flask,
             data_iterative: pd.DataFrame,
             html_layout_file: str,
+            graph_layout_file: str,
             tooltip_file: str
         ) -> None:
         """Initialization:
         - save the input parameters,
         - prepare data for the control panel,
         - read HTML layout file,
+        - read graph layout file,
+        - read tooltips from the tooltip file.
 
         :param app: Flask application running the dash application.
         :param data_iterative: Iterative data to be used in comparison tables.
@@ -93,9 +98,12 @@ class Layout:
             layout of the dash application.
         :param tooltip_file: Path and name of the yaml file specifying the
             tooltips.
+        :param graph_layout_file: Path and name of the file with layout of
+            plot.ly graphs.
         :type app: Flask
         :type data_iterative: pandas.DataFrame
         :type html_layout_file: str
+        :type graph_layout_file: str
         :type tooltip_file: str
         """
 
@@ -103,6 +111,7 @@ class Layout:
         self._app = app
         self._data = data_iterative
         self._html_layout_file = html_layout_file
+        self._graph_layout_file = graph_layout_file
         self._tooltip_file = tooltip_file
 
         # Get structure of tests:
@@ -173,6 +182,20 @@ class Layout:
             raise RuntimeError(
                 f"Not possible to open the file {self._html_layout_file}\n{err}"
             )
+        
+        try:
+            with open(self._graph_layout_file, "r") as file_read:
+                self._graph_layout = load(file_read, Loader=FullLoader)
+        except IOError as err:
+            raise RuntimeError(
+                f"Not possible to open the file {self._graph_layout_file}\n"
+                f"{err}"
+            )
+        except YAMLError as err:
+            raise RuntimeError(
+                f"An error occurred while parsing the specification file "
+                f"{self._graph_layout_file}\n{err}"
+            )
 
         try:
             with open(self._tooltip_file, "r") as file_read:
@@ -231,6 +254,31 @@ class Layout:
                             self._add_ctrl_col(),
                             self._add_plotting_col()
                         ]
+                    ),
+                    dbc.Spinner(
+                        dbc.Offcanvas(
+                            class_name="w-75",
+                            id="offcanvas-details",
+                            title="Test Details",
+                            placement="end",
+                            is_open=False,
+                            children=[]
+                        ),
+                        delay_show=C.SPINNER_DELAY
+                    ),
+                    dbc.Spinner(
+                        dbc.Offcanvas(
+                            class_name="w-50",
+                            id="offcanvas-metadata",
+                            title="Detailed Information",
+                            placement="end",
+                            is_open=False,
+                            children=[
+                                dbc.Row(id="metadata-tput-lat"),
+                                dbc.Row(id="metadata-hdrh-graph")
+                            ]
+                        ),
+                        delay_show=C.SPINNER_DELAY
                     ),
                     dbc.Offcanvas(
                         class_name="w-75",
@@ -625,7 +673,7 @@ class Layout:
                             editable=False,
                             filter_action="custom",
                             filter_query="",
-                            sort_action="native",
+                            sort_action="custom",
                             sort_mode="multi",
                             selected_columns=[],
                             selected_rows=[],
@@ -749,6 +797,7 @@ class Layout:
                 Input("normalize", "value"),
                 Input("outliers", "value"),
                 Input({"type": "table", "index": ALL}, "filter_query"),
+                Input({"type": "table", "index": ALL}, "sort_by"),
                 Input({"type": "ctrl-dd", "index": ALL}, "value"),
                 Input({"type": "ctrl-cl", "index": ALL}, "value"),
                 Input({"type": "ctrl-btn", "index": ALL}, "n_clicks")
@@ -763,7 +812,6 @@ class Layout:
                 href: str,
                 normalize: list,
                 outliers: bool,
-                table_filter: str,
                 *_
             ) -> tuple:
             """Update the application when the event is detected.
@@ -1020,10 +1068,16 @@ class Layout:
                         "cmp-val-val": str()
                     })
             elif trigger.type == "table" and trigger.idx == "comparison":
-                filtered_data = filter_table_data(
-                    store_table_data,
-                    table_filter[0]
-                )
+                if trigger.parameter == "filter_query":
+                    filtered_data = filter_table_data(
+                        store_table_data,
+                        trigger.value
+                    )
+                elif trigger.parameter == "sort_by":
+                    filtered_data = sort_table_data(
+                        store_table_data,
+                        trigger.value
+                    )
                 table_data = [filtered_data, ]
 
             if all((on_draw, selected["reference"]["set"],
@@ -1149,3 +1203,136 @@ class Layout:
             if n_clicks:
                 return not is_open
             return is_open
+
+        @app.callback(
+            Output("offcanvas-details", "is_open"),
+            Output("offcanvas-details", "children"),
+            State("store-selected", "data"),
+            State("store-filtered-table-data", "data"),
+            State("normalize", "value"),
+            State("outliers", "value"),
+            Input({"type": "table", "index": ALL}, "active_cell"),
+            prevent_initial_call=True
+        )
+        def show_test_data(cp_sel, table, normalize, outliers, *_):
+            """Show offcanvas with graphs and tables based on selected test(s).
+            """
+
+            trigger = Trigger(callback_context.triggered)
+            if not all((trigger.value, cp_sel["reference"]["set"], \
+                        cp_sel["compare"]["set"])):
+                raise PreventUpdate
+
+            try:
+                test_name = pd.DataFrame.from_records(table).\
+                    iloc[[trigger.value["row"]]]["Test Name"].iloc[0]
+                dut = cp_sel["reference"]["selection"]["dut"]
+                rls, dutver = cp_sel["reference"]["selection"]["dutver"].\
+                    split("-", 1)
+                phy = cp_sel["reference"]["selection"]["infra"]
+                framesize, core, test_id = test_name.split("-", 2)
+                test, ttype = test_id.rsplit("-", 1)
+                l_phy = phy.split("-")
+                tb = "-".join(l_phy[:2])
+                nic = l_phy[2]
+                stype = "ndrpdr" if ttype in ("ndr", "pdr") else ttype
+            except(KeyError, IndexError, AttributeError, ValueError):
+                raise PreventUpdate
+            
+            df = pd.DataFrame(self._data.loc[(
+                    (self._data["dut_type"] == dut) &
+                    (self._data["dut_version"] == dutver) &
+                    (self._data["release"] == rls)
+                )])
+            df = df[df.job.str.endswith(tb)]
+            df = df[df.test_id.str.contains(
+                f"{nic}.*{test}-{stype}", regex=True
+            )]
+            if df.empty:
+                raise PreventUpdate
+
+            l_test_id = df["test_id"].iloc[0].split(".")
+            area = ".".join(l_test_id[3:-2])
+
+            r_sel = {
+                "id": test_id,
+                "rls": rls,
+                "dut": dut,
+                "dutver": dutver,
+                "phy": phy,
+                "area": area,
+                "test": test,
+                "framesize": framesize,
+                "core": core,
+                "testtype": ttype
+            }
+
+            c_sel = deepcopy(r_sel)
+            param = cp_sel["compare"]["parameter"]
+            val = cp_sel["compare"]["value"].lower()
+            if param == "dutver":
+                c_sel["rls"], c_sel["dutver"] = val.split("-", 1)
+            elif param == "ttype":
+                c_sel["id"] = f"{test}-{val}"
+                c_sel["testtype"] = val
+            elif param == "infra":
+                c_sel["phy"] = val
+            else:
+                c_sel[param] = val
+
+            r_sel["id"] = "-".join(
+                (r_sel["phy"], r_sel["framesize"], r_sel["core"], r_sel["id"])
+            )
+            c_sel["id"] = "-".join(
+                (c_sel["phy"], c_sel["framesize"], c_sel["core"], c_sel["id"])
+            )
+            selected = [r_sel, c_sel]
+
+            indexes = ("tput", "bandwidth", "lat")
+            graphs = graph_iterative(
+                self._data,
+                selected,
+                self._graph_layout,
+                bool(normalize),
+                bool(outliers)
+            )
+            cols = list()
+            for graph, idx in zip(graphs, indexes):
+                if graph:
+                    cols.append(dbc.Col(dcc.Graph(
+                        figure=graph,
+                        id={"type": "graph-iter", "index": idx},
+                    )))
+            if not cols:
+                cols="No data."
+            ret_val = [
+                dbc.Row(
+                    class_name="g-0 p-0",
+                    children=dbc.Alert(test, color="info"),
+                ),
+                dbc.Row(class_name="g-0 p-0", children=cols)
+            ]
+
+            return True, ret_val
+
+        @app.callback(
+            Output("metadata-tput-lat", "children"),
+            Output("metadata-hdrh-graph", "children"),
+            Output("offcanvas-metadata", "is_open"),
+            Input({"type": "graph-iter", "index": ALL}, "clickData"),
+            prevent_initial_call=True
+        )
+        def _show_metadata_from_graph(iter_data: dict) -> tuple:
+            """Generates the data for the offcanvas displayed when a particular
+            point in a graph is clicked on.
+            """
+
+            trigger = Trigger(callback_context.triggered)
+            if not trigger.value:
+                raise PreventUpdate
+
+            if trigger.type == "graph-iter":
+                return show_iterative_graph_data(
+                    trigger, iter_data, self._graph_layout)
+            else:
+                raise PreventUpdate
