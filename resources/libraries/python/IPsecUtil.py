@@ -30,7 +30,7 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
     MPLS_LABEL_INVALID, NetworkIncrement
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.ssh import scp_node
+from resources.libraries.python.ssh import scp_node, exec_cmd
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.FlowUtil import FlowUtil
@@ -303,6 +303,7 @@ class IPsecUtil:
         :raises RuntimeError: If failed to select IPsec backend or if no API
             reply received.
         """
+        exec_cmd(node, "show ipsec backends")
         cmd = u"ipsec_select_backend"
         err_msg = f"Failed to select IPsec backend on host {node[u'host']}"
         args = dict(
