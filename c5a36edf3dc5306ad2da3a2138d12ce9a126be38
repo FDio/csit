@@ -33,6 +33,23 @@
       "message": "I run verify job and 2 tests failed:\nhttps://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-spr/108/\nPlease, check.\n\nIf you want to run the tests in daily trending and in the report, add them to the corresponding job-specs.",
       "revId": "c5a36edf3dc5306ad2da3a2138d12ce9a126be38",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e54494b0_a929f9c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2024-03-21T07:46:49Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDhoststack",
+      "revId": "c5a36edf3dc5306ad2da3a2138d12ce9a126be38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
