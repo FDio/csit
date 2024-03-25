@@ -1,0 +1,78 @@
+job "${job_name}" {
+  datacenters = ["${datacenters}"]
+  type        = "system"
+  group "${job_name}-amd" {
+    count = ${group_count}
+    constraint {
+      attribute = "$${node.class}"
+      value     = "csit"
+    }
+    restart {
+      interval = "1m"
+      attempts = 3
+      delay    = "15s"
+      mode     = "delay"
+    }
+    network {
+      port "ssh" {
+          static = 6022
+      }
+      port "ssh2" {
+          static = 6023
+      }
+    }
+    task "${job_name}-amd" {
+      driver = "docker"
+      config {
+        image        = "${image_x86_64}"
+        network_mode = "host"
+        pid_mode     = "host"
+        volumes      = [
+          "/var/run/docker.sock:/var/run/docker.sock"
+        ]
+        privileged   = true
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+  }
+  group "${job_name}-arm" {
+    count = ${group_count}
+    constraint {
+      attribute = "$${node.class}"
+      value     = "csitarm"
+    }
+    restart {
+      interval = "1m"
+      attempts = 3
+      delay    = "15s"
+      mode     = "delay"
+    }
+    network {
+      port "ssh" {
+          static = 6022
+      }
+      port "ssh2" {
+          static = 6023
+      }
+    }
+    task "${job_name}-arm" {
+      driver = "docker"
+      config {
+        image        = "${image_aarch64}"
+        network_mode = "host"
+        pid_mode     = "host"
+        volumes      = [
+          "/var/run/docker.sock:/var/run/docker.sock"
+        ]
+        privileged   = true
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+  }
+}
