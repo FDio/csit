@@ -150,6 +150,7 @@
 | | | Run Keyword | ${dut}.Add Unix CLI Listen
 | | | Run Keyword | ${dut}.Add Unix CLI No Pager
 | | | Run Keyword | ${dut}.Add Unix GID
+| | | Run Keyword | ${dut}.Add API Segment Prefix | ${dut}
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
 | | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${3}}G
