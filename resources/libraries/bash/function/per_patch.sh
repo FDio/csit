@@ -51,7 +51,7 @@ function build_vpp_ubuntu () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
-    make UNATTENDED=y install-dep install-ext-deps pkg-deb-debug || die
+    make UNATTENDED=y install-dep install-ext-deps pkg-deb-debug VPP_EXTRA_CMAKE_ARGS=-DVPP_ENABLE_SANITIZE_ADDR=ON || die
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
