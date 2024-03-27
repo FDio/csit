@@ -29,14 +29,16 @@ testing.
 
 Any issue listed here may have been present also in a previous release,
 but was not detected/recognized/reported enough back then.
+Also, issues previously thought fixed but now reopened are listed here.
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
-  1   | [CSIT-1946](https://jira.fd.io/browse/CSIT-1946) | Ipsec hwasync fails with large scale and multiple queues.
-  2   | [CSIT-1947](https://jira.fd.io/browse/CSIT-1947) | VPP crash in udp nat avf 4c tests.
-  3   | [CSIT-1948](https://jira.fd.io/browse/CSIT-1948) | NICs do not consistently distribute tunnels over RXQs depending on model or plugin.
-  4   | [CSIT-1950](https://jira.fd.io/browse/CSIT-1950) | Loadbalancer maglev 9000B test see fragmented packets.
-  5   | [CSIT-1951](https://jira.fd.io/browse/CSIT-1951) | Combination of AVF and vhost drops all 9000B packets.
+  1   | [CSIT-1845](https://jira.fd.io/browse/CSIT-1845) | AVF 9000B any ndrpdr test may start failing due to packets not arriving in one or both directions.
+  2   | [CSIT-1946](https://jira.fd.io/browse/CSIT-1946) | Ipsec hwasync fails with large scale and multiple queues.
+  3   | [CSIT-1947](https://jira.fd.io/browse/CSIT-1947) | VPP crash in udp nat avf 4c tests.
+  4   | [CSIT-1948](https://jira.fd.io/browse/CSIT-1948) | NICs do not consistently distribute tunnels over RXQs depending on model or plugin.
+  5   | [CSIT-1950](https://jira.fd.io/browse/CSIT-1950) | 9000B tests with high encap overhead see fragmented packets.
+  6   | [CSIT-1951](https://jira.fd.io/browse/CSIT-1951) | Combination of AVF and vhost drops all 9000B packets.
 
 
 ## Previous
