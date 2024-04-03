@@ -10,6 +10,9 @@
 1c AND 64b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 2c AND 64b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 4c AND 64b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+1c AND 1518b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+2c AND 1518b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+4c AND 1518b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 ##### eth-l2xcbase-eth-2memif-1dcr
 1c AND 64b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2xcbase-eth-2memif-1dcr
 2c AND 64b AND mrr AND 2p1cx7veat AND drv_mlx5_core AND eth-l2xcbase-eth-2memif-1dcr
@@ -28,6 +31,9 @@
 1c AND 64b AND mrr AND e810xxv AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 2c AND 64b AND mrr AND e810xxv AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 4c AND 64b AND mrr AND e810xxv AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+1c AND 1518b AND mrr AND e810xxv AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+2c AND 1518b AND mrr AND e810xxv AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+4c AND 1518b AND mrr AND e810xxv AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 ##### eth-l2xcbase-eth-2memif-1dcr
 1c AND 64b AND mrr AND e810xxv AND drv_avf AND eth-l2xcbase-eth-2memif-1dcr
 2c AND 64b AND mrr AND e810xxv AND drv_avf AND eth-l2xcbase-eth-2memif-1dcr
@@ -46,6 +52,9 @@
 1c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 2c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 4c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 ##### eth-l2xcbase-eth-2memif-1dcr
 1c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase-eth-2memif-1dcr
 2c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase-eth-2memif-1dcr
@@ -63,6 +72,9 @@
 1c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 2c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 4c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
 ##### eth-l2xcbase-eth-2memif-1dcr
 1c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
 2c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
