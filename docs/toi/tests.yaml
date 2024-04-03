@@ -1,0 +1,104 @@
+
+
+
+
+- jobs:
+  - daily-mrr
+  - daily-hoststack
+  - weekly-mrr
+  - weekly-ndrpdr
+  - iterative-mrr
+  - iterative-ndrpdr
+  - iterative-hoststack
+  - coverage
+  - device
+
+
+
+
+- infrastructure:
+
+
+
+
+- tests:
+  - dpdk-testpmd:
+    - eth-l2xcbase-testpmd
+  - dpdk-l3fwd:
+    - ethip4-ip4base-l3fwd
+  - memif-drc:
+    - eth-l2bdbasemaclrn-eth-2memif-1dcr
+    - eth-l2xcbase-eth-2memif-1dcr
+    - ethip4-ip4base-eth-2memif-1dcr
+  - memif-dcr-dma:
+    - list-of-tests
+  - ipsec-sw-scale:
+    - list-of-tests
+  - ipsec-sw-async:
+    - list-of-tests
+  - ipsec-sw-feature:
+    - list-of-tests
+  - ipsec-hw-scale:
+    - list-of-tests
+  - ipsec-hw-async:
+    - list-of-tests
+  - ipsec-hw-feature:
+    - list-of-tests
+  - gso:
+    - list-of-tests
+  - hoststack-nginx:
+    - list-of-tests
+  - hoststack-iperf:
+    - list-of-tests
+  - hoststack-vppecho:
+    - list-of-tests
+  - ip4-base:
+    - list-of-tests
+  - ip4-scale:
+    - list-of-tests
+  - ip4-feature:
+    - list-of-tests
+  - ip4-nat44:
+    - list-of-tests
+  - ip4-tunnels-geneve:
+    - list-of-tests
+  - ip4-tunnels-vxlan:
+    - list-of-tests
+  - ip4-tunnels-gtpu-sw:
+    - list-of-tests
+  - ip4-tunnels-gtpu-hw:
+    - list-of-tests
+  - ip4-tunnels-wireguard-sw:
+    - list-of-tests
+  - ip4-tunnels-wireguard-hw:
+    - list-of-tests
+  - ip6-base:
+    - list-of-tests
+  - ip6-scale:
+    - list-of-tests
+  - ip6-feature:
+    - list-of-tests
+  - l2-base:
+    - list-of-tests
+  - l2-scale:
+    - list-of-tests
+  - l2-feature:
+    - list-of-tests
+  - srv6:
+    - list-of-tests
+  - trex-ip4-base:
+    - list-of-tests
+  - trex-ip4-scale:
+    - list-of-tests
+  - trex-ip4-feature:
+    - list-of-tests
+  - trex-ip6-base:
+    - list-of-tests
+  - trex-ip6-scale:
+    - list-of-tests
+  - trex-l2-scale:
+    - list-of-tests
+  - vm-vhost-testpmd:
+    - list-of-tests
+  - vm-vhost-vpp:
+    - list-of-tests
