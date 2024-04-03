@@ -1,0 +1,1834 @@
+# This yaml file defines test groups for particular infrastructure and job
+# types.
+
+# "jobs" define the test groups, their configuration (test types, cores,
+# frame sizes, ...) and the infrastructure used for running particular test
+# groups.
+# All parameters defined here are considered to be "top level" and can be
+# overwritten on lower levels of configuration for specific test groups.
+jobs:
+
+  csit-vpp-perf-mrr-daily-master-{node-arch}:
+    test-type:
+      - mrr
+    framesize:
+      - 64b
+    core: [1, 2, 4]
+    node-arch:
+      2n-clx: 2n-clx-vpp-iterative
+      2n-icx: 2n-icx-vpp-iterative
+      2n-spr: 2n-spr-vpp-iterative
+      2n-tx2: 2n-tx2-vpp-iterative
+      2n-zn2: 2n-zn2-vpp-iterative
+      3n-alt: 3n-alt-vpp-iterative
+      3n-icx: 3n-icx-vpp-iterative
+      3n-icxd: 3n-icxd-vpp-iterative
+      3n-snr: 3n-snr-vpp-iterative
+      3n-tsh: 3n-tsh-vpp-iterative
+      3na-spr: 3na-spr-vpp-iterative
+      3nb-spr: 3nb-spr-vpp-iterative
+
+  csit-vpp-perf-mrr-weekly-master-{node-arch}:
+    test-type:
+      - mrr
+    framesize:
+      - 64b
+    core: [1, 2, 4]
+    node-arch:
+      2n-aws: 2n-aws-vpp-iterative
+      2n-c6in: 2n-c6in-vpp-iterative
+      2n-c7gn: 2n-c7gn-vpp-iterative
+      2n-clx: 2n-clx-vpp-nfv
+      2n-icx: 2n-icx-vpp-nfv
+
+  csit-vpp-perf-ndrpdr-weekly-master-{node-arch}:
+    test-type:
+      - ndrpdr
+    framesize:
+      - 64b
+    core: [1, 2, 4]
+    node-arch:
+      2n-clx: 2n-clx-vpp-iterative
+      2n-icx: 2n-icx-vpp-iterative
+      2n-spr: 2n-spr-vpp-iterative
+      2n-tx2: 2n-tx2-vpp-iterative
+      2n-zn2: 2n-zn2-vpp-iterative
+      3n-alt: 3n-alt-vpp-iterative
+      3n-icx: 3n-icx-vpp-iterative
+      3n-icxd: 3n-icxd-vpp-iterative
+      3n-snr: 3n-snr-vpp-iterative
+      3n-tsh: 3n-tsh-vpp-iterative
+      3na-spr: 3na-spr-vpp-iterative
+      3nb-spr: 3nb-spr-vpp-iterative
+
+  csit-vpp-perf-hoststack-daily-master-{node-arch}:
+    test-type:
+      - cps
+      - rps
+    framesize:
+      - 0b
+    core: [1, 2]
+    node-arch:
+      2n-icx: 2n-icx-vpp-hoststack
+      2n-spr: 2n-spr-vpp-hoststack
+      3n-icx: 3n-icx-vpp-hoststack
+      3na-spr: 3na-spr-vpp-hoststack
+      3nb-spr: 3nb-spr-vpp-hoststack
+
+  csit-vpp-perf-report-iterative-{stream}-{node-arch}:
+    stream:
+      - "2406"
+    test-type:
+      - mrr
+      - ndrpdr
+    framesize:
+      - 64b
+    core: [1, 2, 4]
+    node-arch:
+      2n-aws: 2n-aws-vpp-iterative
+      2n-c6in: 2n-c6in-vpp-iterative
+      2n-c7gn: 2n-c7gn-vpp-iterative
+      2n-clx: 2n-clx-vpp-iterative
+      2n-icx: 2n-icx-vpp-iterative
+      2n-spr: 2n-spr-vpp-iterative
+      2n-tx2: 2n-tx2-vpp-iterative
+      2n-zn2: 2n-zn2-vpp-iterative
+      3n-alt: 3n-alt-vpp-iterative
+      3n-icx: 3n-icx-vpp-iterative
+      3n-icxd: 3n-icxd-vpp-iterative
+      3n-snr: 3n-snr-vpp-iterative
+      3n-tsh: 3n-tsh-vpp-iterative
+      3na-spr: 3na-spr-vpp-iterative
+      3nb-spr: 3nb-spr-vpp-iterative
+
+  csit-vpp-perf-report-coverage-{stream}-{node-arch}:
+    stream:
+      - "2406"
+    test-type:
+      - ndrpdr
+    framesize:
+      - 64b
+      - 1518b
+      - imix
+    core: [1, 2, 4]
+    node-arch:
+      2n-aws: 2n-aws-vpp-iterative
+      2n-c6in: 2n-c6in-vpp-iterative
+      2n-c7gn: 2n-c7gn-vpp-iterative
+      2n-clx: 2n-clx-vpp-coverage
+      2n-icx: 2n-icx-vpp-coverage
+      2n-spr: 2n-spr-vpp-coverage
+      2n-tx2: 2n-tx2-vpp-coverage
+      2n-zn2: 2n-zn2-vpp-coverage
+      3n-alt: 3n-alt-vpp-coverage
+      3n-icx: 3n-icx-vpp-coverage
+      3n-icxd: 3n-icxd-vpp-coverage
+      3n-snr: 3n-snr-vpp-coverage
+      3n-tsh: 3n-tsh-vpp-coverage
+      3na-spr: 3na-spr-vpp-coverage
+      3nb-spr: 3nb-spr-vpp-coverage
+
+  csit-dpdk-perf-mrr-weekly-master-{node-arch}:
+    test-type:
+      - mrr
+    framesize:
+      - 64b
+      - 1518b
+      - imix
+    core: [1, 2, 4]
+    node-arch:
+      2n-clx: 2n-clx-dpdk-iterative
+      2n-icx: 2n-icx-dpdk-iterative
+      2n-spr: 2n-spr-dpdk-iterative
+      2n-tx2: 2n-tx2-dpdk-iterative
+      2n-zn2: 2n-zn2-dpdk-iterative
+      3n-alt: 3n-alt-dpdk-iterative
+      3n-icx: 3n-icx-dpdk-iterative
+      3n-icxd: 3n-icxd-dpdk-iterative
+      3n-snr: 3n-snr-dpdk-iterative
+      3n-tsh: 3n-tsh-dpdk-iterative
+      3na-spr: 3na-spr-dpdk-iterative
+      3nb-spr: 3nb-spr-dpdk-iterative
+
+  csit-dpdk-perf-report-iterative-{stream}-{node-arch}:
+    stream:
+      - "2402"
+    test-type:
+      - ndrpdr
+      - mrr
+    framesize:
+      - 64b
+      - 1518b
+      - imix
+    core: [1, 2, 4]
+    node-arch:
+      2n-clx: 2n-clx-dpdk-iterative
+      2n-icx: 2n-icx-dpdk-iterative
+      2n-spr: 2n-spr-dpdk-iterative
+      2n-tx2: 2n-tx2-dpdk-iterative
+      2n-zn2: 2n-zn2-dpdk-iterative
+      3n-alt: 3n-alt-dpdk-iterative
+      3n-icx: 3n-icx-dpdk-iterative
+      3n-icxd: 3n-icxd-dpdk-iterative
+      3n-snr: 3n-snr-dpdk-iterative
+      3n-tsh: 3n-tsh-dpdk-iterative
+      3na-spr: 3na-spr-dpdk-iterative
+      3nb-spr: 3nb-spr-dpdk-iterative
+
+  csit-dpdk-perf-report-coverage-{stream}-2n-{node-arch}:
+    stream:
+      - "2402"
+    test-type:
+      - ndrpdr
+    framesize:
+      - 64b
+      - 1518b
+      - imix
+    core: [1, 2, 4]
+    node-arch:
+      2n-clx: 2n-clx-dpdk-coverage
+      2n-icx: 2n-icx-dpdk-coverage
+      2n-spr: 2n-spr-dpdk-coverage
+      2n-tx2: 2n-tx2-dpdk-coverage
+      2n-zn2: 2n-zn2-dpdk-coverage
+      3n-alt: 3n-alt-dpdk-coverage
+      3n-icx: 3n-icx-dpdk-coverage
+      3n-icxd: 3n-icxd-dpdk-coverage
+      3n-snr: 3n-snr-dpdk-coverage
+      3n-tsh: 3n-tsh-dpdk-coverage
+      3na-spr: 3na-spr-dpdk-coverage
+      3nb-spr: 3nb-spr-dpdk-coverage
+
+  csit-trex-perf-ndrpdr-weekly-master-{node-arch}:
+    test-type:
+      - ndrpdr
+    framesize:
+      - 64b
+    core: ["-", ]
+    node-arch:
+      1n-aws: 1n-aws-trex-iterative
+      2n-icx: 2n-icx-trex-iterative
+      2n-spr: 2n-spr-trex-iterative
+
+  csit-trex-perf-report-iterative-{stream}-{node-arch}:
+    stream:
+      - "2402"
+    test-type:
+      - mrr
+      - ndrpdr
+    framesize:
+      - 64b
+    core: ["-", ]
+    node-arch:
+      1n-aws: 1n-aws-trex-iterative
+      2n-icx: 2n-icx-trex-iterative
+      2n-spr: 2n-spr-trex-iterative
+
+  csit-trex-perf-report-coverage-{stream}-{node-arch}:
+    stream:
+      - "2402"
+    test-type:
+      - ndrpdr
+    framesize:
+      - 64b
+      - 1518b
+      - imix
+    core: ["-", ]
+    node-arch:
+      1n-aws: 1n-aws-trex-coverage
+      2n-icx: 2n-icx-trex-coverage
+      2n-spr: 2n-spr-trex-coverage
+
+  csit-vpp-device-{stream}-{os}-{executor-arch}-{node-arch}:
+    stream:
+      - master
+      - "2402"
+    core: [0, ]
+    framesize:
+      - 64b
+    test-type:
+      - scapy
+    node-arch:
+      1n-alt:
+        os: ubuntu2204
+        executor-arch: aarch64
+        tests: 1n-alt-vpp-device
+      1n-spr:
+        os: ubuntu2204
+        executor-arch: x86_64
+        tests: 1n-spr-vpp-device
+
+  csit-vpp-device-semiweekly-{stream}-{os}-{executor-arch}-{node-arch}:
+    stream:
+      - master
+      - "2402"
+    core: [0, ]
+    framesize:
+      - 64b
+    test-type:
+      - scapy
+    node-arch:
+      1n-alt:
+        os: ubuntu2204
+        executor-arch: aarch64
+        tests: 1n-alt-vpp-device
+      1n-spr:
+        os: ubuntu2204
+        executor-arch: x86_64
+        tests: 1n-spr-vpp-device
+
+  csit-vpp-device-weekly-{stream}-{os}-{executor-arch}-{node-arch}:
+    stream:
+      - master
+      - "2402"
+    core: [0, ]
+    framesize:
+      - 64b
+    test-type:
+      - scapy
+    node-arch:
+      1n-alt:
+        os: ubuntu2204
+        executor-arch: aarch64
+        tests: 1n-alt-vpp-device
+      1n-spr:
+        os: ubuntu2204
+        executor-arch: x86_64
+        tests: 1n-spr-vpp-device
+
+  csit-vpp-device-report-coverage-rls-{node-arch}:
+    core: [0, ]
+    framesize:
+      - 64b
+    test-type:
+      - scapy
+    node-arch:
+      1n-alt: 1n-alt-vpp-device
+      1n-spr: 1n-spr-vpp-device
+
+
+# Test groups assigned to infrastructure.
+test-to-infra:
+
+  2n-aws-vpp-iterative:
+    core: [1, 2]
+    framesize:
+      - 64b
+      - 1518b
+    infra:
+      nitro-50g:
+        - vfio-pci
+    tests:
+      - ip4-small
+      - ip6-small:
+        - framesize:
+          - 78b
+          - 1518b
+
+  2n-c6in-vpp-iterative:
+    core: [1, 2]
+    framesize:
+      - 64b
+      - 1518b
+    infra:
+      nitro-200g:
+        - vfio-pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  2n-c7gn-vpp-iterative:
+    core: [1, 2]
+    framesize:
+      - 64b
+      - 1518b
+    infra:
+      nitro-100g:
+        - vfio-pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  2n-clx-vpp-iterative:
+    infra:
+      cx556a:
+        - rdma_core
+        - mlx5_core
+      e810cq:
+        - avf
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  2n-icx-vpp-iterative:
+    infra:
+      2p1cx7veat:
+        - mlx5_core
+      e810xxv:
+        - avf
+      e810cq:
+        - avf
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  2n-spr-vpp-iterative:
+    infra:
+      2p1cx7veat:
+        - mlx5_core
+      e810xxv:
+        - avf
+      e810cq:
+        - avf
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  2n-tx2-vpp-iterative:
+    infra:
+      xl710:
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  2n-zn2-vpp-iterative:
+    infra:
+      xxv710:
+        - avf
+        - vfio_pci
+      cx556a:
+        - mlx5_core
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  3n-alt-vpp-iterative:
+    infra:
+      cx6dx:
+        - mlx5_core
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  3n-icx-vpp-iterative:
+    infra:
+      cx6dx:
+        - mlx5_rdma
+      e810xv:
+        - vfio_pci
+      e810cq:
+        - avf
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  3n-icxd-vpp-iterative:
+    infra:
+      e823c:
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  3n-tsh-vpp-iterative:
+    infra:
+      x520-da2:
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  3na-spr-vpp-iterative:
+    infra:
+      2p1cx7veat:
+        - mlx5_core
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  3nb-spr-vpp-iterative:
+    infra:
+      e810xxv:
+        - avf
+        - vfio_pci
+      e810cq:
+        - avf
+        - vfio_pci
+    tests:
+      - container-memif-sw-medium
+      - container-memif-hw-small
+      - ipsec-sw-small
+      - ipsec-sw-medium
+      - ipsec-sw-large
+      - ipsec-sw-udir-xlarge
+      - ipsec-sw-policy-medium
+      - ipsec-sw-policy-xlarge
+      - ipsec-sw-async-medium
+      - ipsec-sw-fixtnlip-medium
+      - ipsec-sw-reassembly-small
+      - ipsec-hw-small
+      - ipsec-hw-medium
+      - gso-medium
+      - hoststack-sw-small
+      - hoststack-sw-large
+      - hoststack-hw-small
+      - ip4-small
+      - ip4-medium
+      - ip4-large
+      - ip4acl-small
+      - ip4acl-medium
+      - nat44-small
+      - nat44-medium
+      - nat44-large
+      - nat44-xlarge
+      - geneve-medium
+      - geneve-large
+      - vxlan-small
+      - gtpu-sw-small
+      - gtpu-hw-small
+      - wireguard-sw-small
+      - wireguard-sw-medium
+      - wireguard-sw-large
+      - wireguard-hw-medium
+      - wireguard-hw-large
+      - ip6-small
+      - ip6-medium
+      - ip6-large
+      - l2-small
+      - l2-medium
+      - l2-large
+      - l2acl-medium
+      - srv6-large
+      - vhost-small
+      - vhost-medium
+      - vhost-large
+
+  # There are usualy too many tests in coverage test sets. It will be possible
+  # to triger only one item from the list "tests".
+  2n-clx-vpp-coverage:
+    infra:
+      cx556a:
+        - rdma_core
+        - mlx5_core
+      e810cq:
+        - avf
+        - vfio_pci
+    tests:
+      - list-of-test-groups
+
+  2n-icx-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-spr-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-tx2-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-zn2-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3n-alt-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3n-icx-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3n-icxd-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3n-snr-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3n-tsh-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3na-spr-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3nb-spr-vpp-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-icx-vpp-hoststack:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-spr-vpp-hoststack:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3n-icx-vpp-hoststack:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3na-spr-vpp-hoststack:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  3nb-spr-vpp-hoststack:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-clx-vpp-nfv:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-icx-vpp-nfv:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - list-of-test-groups
+
+  2n-clx-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-icx-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-spr-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-tx2-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-zn2-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-alt-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-icx-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-icxd-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-snr-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-tsh-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3na-spr-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3nb-spr-dpdk-iterative:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-clx-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-icx-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-spr-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-tx2-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  2n-zn2-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-alt-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-icx-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-icxd-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3n-snr-dpdk-coverage:
+    infra:
+      nic:
+      - dpdk-small
+    tests:
+      - dpdk-small
+
+  3n-tsh-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3na-spr-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  3nb-spr-dpdk-coverage:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dpdk-small
+
+  1n-aws-trex-iterative:
+    infra:
+      nic:
+        - "-"
+    tests:
+      - trex-ip4-small
+      - trex-nat44-large
+      - trex-ip6-small
+      - trex-l2-small
+
+  2n-icx-trex-iterative:
+    infra:
+      nic:
+        - "-"
+    tests:
+      - trex-ip4-small
+      - trex-nat44-large
+      - trex-ip6-small
+      - trex-l2-small
+
+  2n-spr-trex-iterative:
+    infra:
+      nic:
+        - "-"
+    tests:
+      - trex-ip4-small
+      - trex-nat44-large
+      - trex-ip6-small
+      - trex-l2-small
+
+  1n-aws-trex-coverage:
+    infra:
+      nic:
+        - "-"
+    tests:
+      - trex-ip4-small
+      - trex-nat44-large
+      - trex-ip6-small
+      - trex-l2-small
+
+  2n-icx-trex-coverage:
+    infra:
+      nic:
+        - "-"
+    tests:
+      - trex-ip4-small
+      - trex-nat44-large
+      - trex-ip6-small
+      - trex-l2-small
+
+  2n-spr-trex-coverage:
+    infra:
+      nic:
+        - "-"
+    tests:
+      - trex-ip4-small
+      - trex-nat44-large
+      - trex-ip6-small
+      - trex-l2-small
+
+  1n-alt-vpp-device:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dev-container-memif-medium
+      - dev-ipsec-ip4-medium
+      - dev-ipsec-ip4-small
+      - dev-flow-ip4-large
+      - dev-flow-ip6-medium
+      - dev-interface-medium
+      - dev-ip4-large
+      - dev-nat44-medium
+      - dev-lisp-medium
+      - dev-geneve-small
+      - dev-vxlan-small
+      - dev-ip6-large
+      - dev-lisp-ip6-small
+      - dev-l2-large
+      - dev-srv6-large
+      - dev-vhost-small
+
+  1n-spr-vpp-device:
+    infra:
+      nic:
+        - list-of-drivers
+    tests:
+      - dev-container-memif-medium
+      - dev-ipsec-ip4-medium
+      - dev-ipsec-ip4-small
+      - dev-flow-ip4-large
+      - dev-flow-ip6-medium
+      - dev-interface-medium
+      - dev-ip4-large
+      - dev-nat44-medium
+      - dev-lisp-medium
+      - dev-geneve-small
+      - dev-vxlan-small
+      - dev-ip6-large
+      - dev-lisp-ip6-small
+      - dev-l2-large
+      - dev-srv6-large
+      - dev-vhost-small
+
+# Definitions of test groups.
+
+tests:
+
+# VPP
+
+## Container memif SW
+  container-memif-sw-medium:
+    - eth-l2bdbasemaclrn-eth-2memif-1dcr
+    - eth-l2xcbase-eth-2memif-1dcr
+    - ethip4-ip4base-eth-2memif-1dcr
+## Container memif hW
+  container-memif-hw-small:
+    - eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+## IPSec SW
+  ipsec-sw-small:
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+  ipsec-sw-medium:
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+  ipsec-sw-large:
+    - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+  ipsec-sw-udir-xlarge:
+    - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+    - ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm-udir
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-udir
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
+  ipsec-sw-policy-medium:
+    - ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
+  ipsec-sw-policy-xlarge:
+    - ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+    - ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-udir
+    - ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+    - ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
+  ipsec-sw-async-medium:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+  ipsec-sw-fixtnlip-medium:
+    - ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm
+    - ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-dir-aes256gcm
+    - ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm
+  ipsec-sw-reassembly-small:
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+## IPSec HW
+  ipsec-hw-small:
+    - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+  ipsec-hw-medium:
+    - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+## GSO
+  gso-medium:
+    - ethip4-ip4base-2tap-gso-iperf3
+    - ethip4-ip4base-2tap-iperf3
+    - ethip4-ip4base-2vhost-gso-iperf3
+    - ethip4-ip4base-2vhost-iperf3
+## Hoststack SW
+  hoststack-sw-small:
+    - eth-ip4tcphttp-ldpreload-nginx-1_21_5
+  hoststack-sw-large:
+    - eth-ip4tcpbase-ldpreload-iperf3
+    - eth-ip4tcpscale1cl10s-ldpreload-iperf3
+    - eth-ip4udpbase-ldpreload-iperf3
+    - eth-ip4udpscale1cl10s-ldpreload-iperf3
+    - eth-ip4udpquicbase-vppecho
+    - eth-ip4udpquicscale1cl10s-vppecho
+    - eth-ip4udpquicscale10cl1s-vppecho
+    - eth-ip4udpquicscale10cl10s-vppecho
+## Hoststack HW
+  hoststack-hw-small:
+    - eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5
+## IPv4
+  ip4-small:
+    - ethip4-ip4base
+    - ethip4-ip4scale200k-rnd
+  ip4-medium:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k-rnd
+    - ethip4-ip4scale200k-rnd
+    - ethip4-ip4scale2m-rnd
+  ip4-large:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k
+    - ethip4-ip4scale20k-rnd
+    - ethip4-ip4scale200k
+    - ethip4-ip4scale200k-rnd
+    - ethip4-ip4scale2m
+    - ethip4-ip4scale2m-rnd
+## IPv4 ACL
+  ip4acl-small:
+    - ethip4udp-ip4base-iacl50sf-10kflows
+    - ethip4udp-ip4base-iacl50sl-10kflows
+  ip4acl-medium:
+    - ethip4udp-ip4base-iacl50sf-10kflows
+    - ethip4udp-ip4base-iacl50sl-10kflows
+    - ethip4udp-ip4base-oacl50sf-10kflows
+    - ethip4udp-ip4base-oacl50sl-10kflows
+## IPv4 NAT44
+  nat44-small:
+    - ethip4udp-nat44det-h1024-p63-s64512
+    - ethip4udp-nat44det-h65536-p63-s4128758
+  nat44-medium:
+    - ethip4udp-nat44det-h1024-p63-s64512
+    - ethip4udp-nat44det-h65536-p63-s4128758
+    - ethip4udp-nat44ed-h1024-p63-s64512-tput
+    - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+  nat44-large:
+    - ethip4udp-nat44det-h1024-p63-s64512
+    - ethip4udp-nat44det-h65536-p63-s4128758
+    - ethip4udp-nat44ed-h1024-p63-s64512-tput
+    - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+    - ethip4udp-nat44ed-h1024-p63-s64512-cps
+    - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+    - ethip4udp-nat44ed-h1024-p63-s64512-udir
+  nat44-xlarge:
+    - ethip4udp-nat44det-h1024-p63-s64512
+    - ethip4udp-nat44det-h65536-p63-s4128758
+    - ethip4udp-nat44ed-h1024-p63-s64512-tput
+    - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+    - ethip4udp-nat44ed-h1024-p63-s64512-cps
+    - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+    - ethip4udp-nat44ed-h1024-p63-s64512-udir
+    - ethip4tcp-nat44ed-h1024-p63-s64512-cps
+    - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+    - ethip4tcp-nat44ed-h1024-p63-s64512-tput
+    - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+    - ethip4tcp-ip4base-h1024-p63-s64512-cps
+    - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+    - ethip4tcp-ip4base-h1024-p63-s64512-tput
+    - ethip4tcp-ip4base-h65536-p63-s4128768-tput
+## IPv4 Tunnels - Geneve
+  geneve-medium:
+    - ethip4--ethip4udpgeneve-1tun-ip4base
+    - ethip4--ethip4udpgeneve-16tun-ip4base
+    - ethip4--ethip4udpgeneve-256tun-ip4base
+  geneve-large:
+    - ethip4--ethip4udpgeneve-1tun-ip4base
+    - ethip4--ethip4udpgeneve-4tun-ip4base
+    - ethip4--ethip4udpgeneve-16tun-ip4base
+    - ethip4--ethip4udpgeneve-64tun-ip4base
+    - ethip4--ethip4udpgeneve-256tun-ip4base
+## IPv4 Tunnels - VXLan
+  vxlan-small:
+    - ethip4vxlan-l2bdbasemaclrn
+    - ethip4vxlan-l2xcbase
+## IPv4 Tunnels GTPU SW
+  gtpu-sw-small:
+    - ethip4gtpusw-ip4base
+    - ethip4gtpusw-ip4base-reassembly
+## IPv4 Tunnels GTPU HW
+  gtpu-hw-small:
+    - ethip4gtpuhw-ip4base
+## IPv4 Tunnels - Wireguard SW
+  wireguard-sw-small:
+    - ethip4udpwireguard1tnlsw-ip4base
+  wireguard-sw-medium:
+    - ethip4udpwireguard1tnlsw-ip4base
+    - ethip4udpwireguard100tnlsw-ip4base
+    - ethip4udpwireguard1000tnlsw-ip4base
+  wireguard-sw-large:
+    - ethip4udpwireguard1tnlsw-ip4base
+    - ethip4udpwireguard2tnlsw-ip4base
+    - ethip4udpwireguard4tnlsw-ip4base
+    - ethip4udpwireguard8tnlsw-ip4base
+    - ethip4udpwireguard100tnlsw-ip4base
+    - ethip4udpwireguard1000tnlsw-ip4base
+## IPv4 Tunnels - Wireguard HW
+  wireguard-hw-medium:
+    - ethip4udpwireguard1tnlhw-ip4base
+    - ethip4udpwireguard4tnlhw-ip4base
+    - ethip4udpwireguard100tnlhw-ip4base
+    - ethip4udpwireguard1000tnlhw-ip4base
+  wireguard-hw-large:
+    - ethip4udpwireguard1tnlhw-ip4base
+    - ethip4udpwireguard2tnlhw-ip4base
+    - ethip4udpwireguard4tnlhw-ip4base
+    - ethip4udpwireguard8tnlhw-ip4base
+    - ethip4udpwireguard100tnlhw-ip4base
+    - ethip4udpwireguard1000tnlhw-ip4base
+## IPv6
+  ip6-small:
+    - ethip6-ip6base
+    - ethip6-ip6scale200k-rnd
+  ip6-medium:
+    - ethip6-ip6base
+    - ethip6-ip6scale20k-rnd
+    - ethip6-ip6scale200k-rnd
+    - ethip6-ip6scale2m-rnd
+  ip6-large:
+    - ethip6-ip6base
+    - ethip6-ip6scale20k
+    - ethip6-ip6scale20k-rnd
+    - ethip6-ip6scale200k
+    - ethip6-ip6scale200k-rnd
+    - ethip6-ip6scale2m
+    - ethip6-ip6scale2m-rnd
+## L2
+  l2-small:
+    - eth-l2bdbasemaclrn
+    - eth-l2xcbase
+  l2-medium:
+    - eth-l2bdbasemaclrn
+    - eth-l2xcbase
+    - eth-l2bdscale10kmaclrn
+    - eth-l2bdscale100kmaclrn
+  l2-large:
+    - eth-l2bdbasemaclrn
+    - eth-l2xcbase
+    - eth-l2bdscale10kmaclrn
+    - eth-l2bdscale100kmaclrn
+    - dot1q-l2bdbasemaclrn
+    - eth-l2patch
+    - eth-l2bdscale1mmaclrn
+## L2 ACL
+  l2acl-medium:
+    - eth-l2bdbasemaclrn-iacl50sf-10kflows
+    - eth-l2bdbasemaclrn-iacl50sl-10kflows
+    - eth-l2bdbasemaclrn-oacl50sf-10kflows
+    - eth-l2bdbasemaclrn-oacl50sl-10kflows
+## SRv6
+  srv6-large:
+    - ethip6ip6-ip6base-srv6enc1sid
+    - ethip6srhip6-ip6base-srv6enc2sids
+    - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+    - ethip6srhip6-ip6base-srv6proxy-dyn
+    - ethip6srhip6-ip6base-srv6proxy-masq
+    - ethip6srhip6-ip6base-srv6proxy-stat
+## VM Vhost
+  vhost-small:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+  vhost-medium:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2xcbase-eth-2vhostvr1024-1vm
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+  vhost-large:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2xcbase-eth-2vhostvr1024-1vm
+    - ethip4-ip4base-eth-2vhostvr1024-1vm
+    - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    - ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
+    - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+
+# TRex
+  trex-ip4-small:
+    - ethip4-ip4base-tg
+    - ethip4-ip4scale20k-tg
+  trex-nat44-large:
+    - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
+    - ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg
+    - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
+    - ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg
+  trex-ip6-small:
+    - ethip6-ip6base-tg
+    - ethip6-ip6scale20k-tg
+  trex-l2-small:
+    - eth-l2bdscale1mmaclrn-tg
+
+# DPDK
+  dpdk-small:
+    - eth-l2xcbase-testpmd
+    - ethip4-ip4base-l3fwd
+
+# Device Test
+  dev-container-memif-medium:
+    - ethip4-l2xcbase-eth-2memif-1dcr
+    - ethip4-l2bdbasemaclrn-eth-2memif-1dcr
+    - ethip4-ip4base-eth-2memif-1dcr
+  dev-ipsec-ip4-medium:
+    - ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec11tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
+    - ethip4ipsec1tptsw-ip4base-policy-aes128cbc-hmac512sha
+  dev-ipsec-ip4-small:
+    - ethip6ipsec1tnlsw-ip6base-policy-aes128cbc-hmac512sha
+    - ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
+  dev-flow-ip4-large:
+    - ethip4-flow-ip4-gtpu
+    - ethip4-flow-ip4-ipsec-ah
+    - ethip4-flow-ip4-ipsec-esp
+    - ethip4-flow-ip4-l2tpv3oip
+    - ethip4-flow-ip4-ntuple-tcp
+    - ethip4-flow-ip4-ntuple-udp
+    - ethip4-flow-ip4-tcp
+    - ethip4-flow-ip4-udp
+  dev-flow-ip6-medium:
+    - ethip6-flow-ip6-ntuple-tcp
+    - ethip6-flow-ip6-ntuple-udp
+    - ethip6-flow-ip6-tcp
+    - ethip6-flow-ip6-udp
+  dev-interface-medium:
+    - ethicmp4-ip4base-eth-1tap
+    - ethicmp4-ip4base-eth-1tap-namespace
+    - ethip4-l2bdbasemaclrn-eth-2tap
+  dev-ip4-large:
+    - ethip4-ip4base-adlalwlistbase
+    - ethip4-ip4base-adlblklistbase
+    - ethip4-ip4base
+    - ethip4-ip4base-iacldstbase
+    - ethip4-ip4base-ipolicemarkbase
+  dev-nat44-medium:
+    - ethip4tcp-nat44det
+    - ethip4tcp-nat44ed
+    - ethip4udp-nat44det
+    - ethip4udp-nat44ed
+  dev-lisp-medium:
+    - ethip4lisp-ip4base
+    - ethip4lispgpe-ip4base
+    - ethip4lispgpe-ip6base
+  dev-geneve-small:
+    - ethip4--ethip4udpgeneve-1tun-ip4base
+  dev-vxlan-small:
+    - ethip4vxlan-l2bdbasemaclrn
+    - ethip4vxlan-l2xcbase
+  dev-ip6-large:
+    - ethip6-ip6base-adlalwlistbase
+    - ethip6-ip6base-adlblklistbase
+    - ethip6-ip6base-iacldstbase
+    - ethip6-ip6base-ipolicemarkbase
+    - ethip6-ip6base
+  dev-lisp-ip6-small:
+    - ethip6lispgpe-ip4base
+    - ethip6lispgpe-ip6base
+  dev-l2-large:
+    - ethip4-l2bdbasemaclrn
+    - ethip4-l2bdbasemaclrn-iacl1sf
+    - ethip4-l2bdbasemaclrn-iacl1sl
+    - ethip4-l2bdbasemaclrn-macip-iacl1sl
+    - ethip4-l2bdbasemaclrn-oacl1sf
+    - ethip4-l2bdbasemaclrn-oacl1sl
+    - ethip4-l2patch
+    - ethip4-l2xcbase
+  dev-srv6-large:
+    - ethip6ip6-ip6base-srv6enc1sid
+    - ethip6srhip6-ip6base-srv6enc2sids
+    - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+    - ethip6srhip6-ip6base-srv6proxy-dyn
+    - ethip6srhip6-ip6base-srv6proxy-masq
+    - ethip6srhip6-ip6base-srv6proxy-stat
+  dev-vhost-small:
+    - ethip4-ip4base-eth-2vhost-1vm
