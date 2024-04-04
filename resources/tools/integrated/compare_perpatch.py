@@ -114,15 +114,14 @@ def main() -> int:
         # TODO: Version of classify that takes max_value and list of stats?
         # That matters if only stats (not list of floats) are given.
         classified_list = jumpavg.classify([parent_values, current_values])
-        if len(classified_list) < 2:
-            print(f"Test {name}: normal (no anomaly)")
-            continue
-        anomaly = classified_list[1].comment
-        if anomaly == "regression":
-            print(f"Test {name}: anomaly regression")
-            exit_code = 3  # 1 or 2 can be caused by other errors
-            continue
-        print(f"Test {name}: anomaly {anomaly}")
+        anomaly_name = "normal (no anomaly)"
+        if len(classified_list) > 1:
+            anomaly = classified_list[1].comment
+            anomaly_name = "anomaly progression"
+            if anomaly == "regression":
+                anomaly_name = "anomaly regression"
+                exit_code = 3  # 1 or 2 can be caused by other errors
+        print(f"Test name {name}: {anomaly_name}")
     print(f"Exit code: {exit_code}")
     return exit_code
 
