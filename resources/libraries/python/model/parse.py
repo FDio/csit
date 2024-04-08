@@ -54,6 +54,9 @@ def parse(dirpath: str, fake_value: float = 1.0) -> Dict[str, List[float]]:
     Units are ignored, as both parent and current are tested
     with the same CSIT code so the unit should be identical.
 
+    The test results are sorted by test_id,
+    as the filesystem order is not deterministic enough.
+
     The result is also cached as results.json file.
 
     :param dirpath: Path to the directory tree to examine.
@@ -103,6 +106,7 @@ def parse(dirpath: str, fake_value: float = 1.0) -> Dict[str, List[float]]:
                 results[name] = [result_object["bandwidth"]["value"]]
             else:
                 raise RuntimeError(f"Unknown result type: {result_type}")
+    results = {test_id: result[test_id] for test_id in sorted(results)}
     with open(resultpath, "wt", encoding="utf8") as file_out:
         json.dump(results, file_out, indent=1, separators=(", ", ": "))
     return results
