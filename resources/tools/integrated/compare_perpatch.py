@@ -56,7 +56,7 @@ def main() -> int:
         parent_results = {}
         current_results = {}
         parent_results = parse(f"csit_parent/{iteration}", fake_value=2.0)
-        parent_names = set(parent_results.keys())
+        parent_names = list(parent_results)
         if test_names is None:
             test_names = parent_names
         if not parent_names:
@@ -64,7 +64,7 @@ def main() -> int:
             break
         assert parent_names == test_names, f"{parent_names} != {test_names}"
         current_results = parse(f"csit_current/{iteration}", fake_value=1.0)
-        current_names = set(current_results.keys())
+        current_names = list(current_results)
         assert (
             current_names == parent_names
         ), f"{current_names} != {parent_names}"
