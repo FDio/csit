@@ -39,7 +39,7 @@ Also, issues previously thought fixed but now reopened are listed here.
   4   | [CSIT-1948](https://jira.fd.io/browse/CSIT-1948) | NICs do not consistently distribute tunnels over RXQs depending on model or plugin.
   5   | [CSIT-1950](https://jira.fd.io/browse/CSIT-1950) | 9000B tests with high encap overhead see fragmented packets.
   6   | [CSIT-1951](https://jira.fd.io/browse/CSIT-1951) | Combination of AVF and vhost drops all 9000B packets.
-
+  7   | [CSIT-1954](https://jira.fd.io/browse/CSIT-1954) | 3n-icx: 9000B AVF ip6 tests show zero traffic in one direction due to no free tx slots.
 
 ## Previous
 
