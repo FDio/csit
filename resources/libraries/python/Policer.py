@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -72,7 +72,7 @@ class Policer:
     def policer_set_configuration(
             node, policer_name, cir, eir, cbs, ebs, rate_type, round_type,
             policer_type, conform_action_type, exceed_action_type,
-            violate_action_type, color_aware, is_add=True, conform_dscp=None,
+            violate_action_type, color_aware, conform_dscp=None,
             exceed_dscp=None, violate_dscp=None):
         """Configure policer on VPP node.
 
@@ -89,7 +89,6 @@ class Policer:
         :param exceed_action_type: Exceed action type.
         :param violate_action_type: Violate action type.
         :param color_aware: Color-blind (cb) or color-aware (ca).
-        :param is_add: Add policer if True, else delete.
         :param conform_dscp: DSCP for conform mark_and_transmit action.
         :param exceed_dscp: DSCP for exceed mark_and_transmit action.
         :param violate_dscp: DSCP for vilate mark_and_transmit action.
@@ -106,7 +105,6 @@ class Policer:
         :type exceed_action_type: str
         :type violate_action_type: str
         :type color_aware: str
-        :type is_add: bool
         :type conform_dscp: str
         :type exceed_dscp: str
         :type violate_dscp: str
@@ -130,10 +128,8 @@ class Policer:
             else 0
         )
 
-        cmd = u"policer_add_del"
-        args = dict(
-            is_add=is_add,
-            name=str(policer_name),
+        cmd = u"policer_add"
+        infos = dict(
             cir=int(cir),
             eir=int(eir),
             cb=int(cbs),
@@ -147,6 +143,10 @@ class Policer:
             exceed_action=exceed_action,
             violate_action=violate_action,
             color_aware=bool(color_aware == u"'ca'")
+        )
+        args = dict(
+            name=str(policer_name),
+            infos=infos,
         )
         err_msg = f"Failed to configure policer {policer_name} " \
             f"on host {node['host']}"

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -102,6 +102,7 @@
 | | ... | ${DUT1_vf1_mac}[0] | ${DUT1_vf2_mac}[0]
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${tg_dst_ip}
+| | Fail
 
 *** Test Cases ***
 | 78B-0c-ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha-scapy
