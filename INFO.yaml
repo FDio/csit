@@ -29,7 +29,7 @@ meetings:
       server: ''
       channel: 'fdio-csit'
       repeats: 'weekly'
-      time: '15:00 UTC'
+      time: '14:00 UTC'
 repositories:
     - 'csit'
 committers:
