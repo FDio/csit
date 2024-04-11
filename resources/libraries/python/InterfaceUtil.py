@@ -1066,7 +1066,7 @@ class InterfaceUtil:
         :raises RuntimeError: if it is unable to create GTPU interface on the
             node.
         """
-        cmd = u"gtpu_add_del_tunnel"
+        cmd = u"gtpu_add_del_tunnel_v2"
         args = dict(
             is_add=True,
             src_address=IPAddress.create_ip_address_object(
@@ -1077,8 +1077,10 @@ class InterfaceUtil:
             ),
             mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
             encap_vrf_id=0,
-            decap_next_index=2,
-            teid=teid
+            decap_next_index=2,  # ipv4
+            teid=teid,
+            # pdu_extension: Unused, false by default.
+            # qfi: Irrelevant when pdu_extension is not used.
         )
         err_msg = f"Failed to create GTPU tunnel interface " \
             f"on host {node[u'host']}"
@@ -1373,7 +1375,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create_v3"
+        cmd = u"rdma_create_v4"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1386,6 +1388,8 @@ class InterfaceUtil:
             no_multi_seg=False,
             max_pktlen=0,
             # TODO: Apply desired RSS flags.
+            # rss4 kept 0 (auto) as API default.
+            # rss6 kept 0 (auto) as API default.
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
