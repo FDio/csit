@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -222,15 +222,14 @@ class SRv6:
         :type sid_list: list
         :type mode: str
         """
-        # TODO: Convert to use sr_policy_add_v2.
-        # The conversion is not straightforward so it was not done when bumping.
-        cmd = u"sr_policy_add"
+        cmd = u"sr_policy_add_v2"
         args = dict(
             bsid_addr=IPv6Address(bsid).packed,
             weight=1,
             is_encap=bool(mode == u"encap"),
-            is_spray=False,
-            sids=SRv6.create_srv6_sid_list(sid_list)
+            type=0,  # Neither SPRAY nor TEF are needed yet.
+            sids=SRv6.create_srv6_sid_list(sid_list),
+            # encap_src is optional, do not set yet.
         )
         err_msg = f"Failed to add SR policy for BindingSID {bsid} " \
             f"on host {node[u'host']}"

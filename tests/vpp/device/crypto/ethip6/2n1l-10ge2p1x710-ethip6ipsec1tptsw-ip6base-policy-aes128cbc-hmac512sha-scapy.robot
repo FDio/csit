@@ -102,6 +102,7 @@
 | | ... | ${DUT1_vf1_mac}[0] | ${DUT1_vf2_mac}[0]
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${tg_dst_ip}
+| | Fail
 
 *** Test Cases ***
 | 78B-0c-ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha-scapy
