@@ -17,21 +17,18 @@
 # Comment https link towards the build used to get or verify the CRC values.
 # Link cannot easily be name as it is too long.
 
-# Prefer x86_64, Ubuntu, latest LTS.
-# Note that during flag day process, the link would point
-# to (logged artifacts of) verify job, not merge job.
-
 # Note that you cannot easily avoid quotes for CRC values.
 # With leading 0x, yaml interprets the values as numbers.
 # Even with 0x removed, hexa CRC value may appear as decimal number.
 
 # Trailing comments are optional, for tracking how to test the message.
+
 # Please keep alphabetic order.
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://packagecloud.io/app/fdio/release
-# /search?q=23.10&filter=debs&filter=all&dist=debian
-23.10-release:
+# /search?q=24.02&filter=debs&filter=all&dist=debian
+24.02-release:
     # plugins/acl/acl.api
     acl_add_replace: '0xee5c2f18'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
@@ -190,10 +187,10 @@
     # vnet/ipsec/ipsec.api
     ipsec_interface_add_del_spd: '0x80f80cbb'  # dev
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
-    ipsec_sa_v4_details: '0x87a322d7'  # dev teardown
-    ipsec_sa_v4_dump: '0x2076c2f4'  # dev teardown
-    ipsec_sad_entry_add: '0x50229353'  # dev teardown
-    ipsec_sad_entry_add_reply: '0x9ffac24b'  # dev
+    ipsec_sa_v5_details: ''  # dev teardown
+    ipsec_sa_v5_dump: ''  # dev teardown
+    ipsec_sad_entry_add_v2: ''  # dev
+    ipsec_sad_entry_add_v2_reply: ''  # dev
     ipsec_select_backend: '0x5bcfd3b7'  # perf
     ipsec_select_backend_reply: '0xe8d4e804'  # perf
     # ^^ 64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr
@@ -297,8 +294,8 @@
     # ^ 1280BAND1cANDeth-ip4udpquicscale10cl1s-vppecho
 
     # vnet/policer/policer.api
-    policer_add_del: '0x2b31dd38'  # dev
-    policer_add_del_reply: '0xa177cef2'  # dev
+    policer_add: ''  # dev
+    policer_add_reply: ''  # dev
 
     # vnet/classify/classify.api
     policer_classify_set_interface: '0xde7ad708'  # dev
@@ -325,8 +322,8 @@
     sr_localsids_dump: '0x51077d14'  # dev teardown
     sr_policies_v2_details: '0x96dcb699'  # dev teardown
     sr_policies_v2_dump: '0x51077d14'  # dev teardown
-    sr_policy_add: '0x44ac92e8'  # dev
-    sr_policy_add_reply: '0xe8d4e804'  # dev
+    sr_policy_add_v2: ''  # dev
+    sr_policy_add_v2_reply: ''  # dev
     sr_set_encap_source: '0xd3bad5e1'  # dev
     sr_set_encap_source_reply: '0xe8d4e804'  # dev
     sr_steering_add_del: '0xe46b0a0f'  # dev
