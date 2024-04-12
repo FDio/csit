@@ -16,6 +16,23 @@
       "message": "csit-3n-alt-perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDethip4gtpusw-ip4base",
       "revId": "43d2d2be55918c9d7fe839948245466f229e8bc8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab24d82_ff2aac16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-12T11:29:24Z",
+      "side": 1,
+      "message": "\u003e csit-vpp-perf-verify-master-3n-alt/90/ : FAILURE\n\nExpected due to CSIT-1906, but API calls are ok.\n\ncsit-2n-clx-perftest ndrpdrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch",
+      "revId": "43d2d2be55918c9d7fe839948245466f229e8bc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
