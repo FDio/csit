@@ -67,6 +67,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND1cAND64bANDethip4ipsec10000tnlsw-ip4base-int-aes256gcm",
       "revId": "43d2d2be55918c9d7fe839948245466f229e8bc8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1be5ac90_8ec59594",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-12T14:12:00Z",
+      "side": 1,
+      "message": "The difference in ipsec MRR performance looks real enough to me. More investigation is needed before declaring the bump safe.",
+      "revId": "43d2d2be55918c9d7fe839948245466f229e8bc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
