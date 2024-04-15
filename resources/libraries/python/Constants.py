@@ -560,9 +560,9 @@ class Constants:
     }
 
     PERF_TYPE_TO_KEYWORD = {
-        "mrr": "Fail",
-        "ndrpdr": "Fail",
-        "soak": "Fail",
+        "mrr": "Traffic should pass with maximum rate",
+        "ndrpdr": "Find NDR and PDR intervals using optimized search",
+        "soak": "Find critical load using PLRsearch",
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {
