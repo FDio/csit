@@ -85,7 +85,7 @@ class Testcase:
         template_string = f'''
 | ${{frame_str}}-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{frame_str}} | ${{cores_str}}C
-| | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
+| | frame_size=${{frame_num}} | phy_cores=$${{1}}
 '''
         return cls(template_string)
 
