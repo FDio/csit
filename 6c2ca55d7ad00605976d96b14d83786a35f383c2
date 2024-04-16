@@ -16,6 +16,23 @@
       "message": "Changes in the SRv6.py looks good to me. Thanks!",
       "revId": "6c2ca55d7ad00605976d96b14d83786a35f383c2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "705309f7_d085e13e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-16T09:30:26Z",
+      "side": 1,
+      "message": "Currently I believe the regressions is not real, just bad luck.",
+      "revId": "6c2ca55d7ad00605976d96b14d83786a35f383c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
