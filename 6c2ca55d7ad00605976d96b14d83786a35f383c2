@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49f168f8_937daf2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1776
+      },
+      "writtenOn": "2024-04-16T08:34:54Z",
+      "side": 1,
+      "message": "Changes in the SRv6.py looks good to me. Thanks!",
+      "revId": "6c2ca55d7ad00605976d96b14d83786a35f383c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
