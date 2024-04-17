@@ -64,7 +64,7 @@
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${100000}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_per_flow}-rnd
+| ${traffic_profile}= | trex-stl-ethip6-ip6dst-rnd${rts_per_flow}
 
 *** Keywords ***
 | Local Template
