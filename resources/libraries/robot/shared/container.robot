@@ -371,3 +371,23 @@
 | | END
 | | Append To List | ${container_groups} | ${container_group}
 | | Save VPP PIDs
+
+| Start multiple vswitch containers
+| | [Documentation]
+| | ... | Configure and start multiple vswitch in container on all DUTs.
+| |
+| | Set Test Variable | ${container_group} | VSWITCH
+| | Stop VPP service on all DUTs | ${nodes}
+| | FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | | ... | engine=${container_engine} | WITH NAME | VSWITCH
+| | | Construct container on DUT | ${dut}
+| | | ... | nf_chains=${${nic_pfs}//${2}} | nf_nodes=${1} | nf_chain=${3}
+| | | ... | nf_node=${1}
+| | | VSWITCH.Acquire all containers
+| | | VSWITCH.Create all containers
+| | | VSWITCH.Configure VPP in all containers | multiple_vswitch | node=${dut}
+| | | VSWITCH.Start VPP In All Containers
+| | END
+| | Append To List | ${container_groups} | VSWITCH
+| | Save VPP PIDs
