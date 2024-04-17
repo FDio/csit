@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF | TNL_40
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE

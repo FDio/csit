@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | SCALE | IPSEC | IPSECSW | IPSECSPD | SPD_OUTBOUND | SPE_100 | NOCRYPTO
