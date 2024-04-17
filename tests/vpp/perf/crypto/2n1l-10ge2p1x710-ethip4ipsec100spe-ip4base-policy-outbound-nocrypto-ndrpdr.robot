@@ -1,4 +1,4 @@
-# Copyright (c) 2023 PANTHEON.tech s.r.o.
+# Copyright (c) 2024 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | SCALE | IPSEC | IPSECSW | IPSECSPD | SPD_OUTBOUND | SPE_100 | NOCRYPTO

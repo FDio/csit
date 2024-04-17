@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Intel and/or its affiliates.
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_4
 | ... | IP4FWD | IPSEC | IPSECSW | ASYNC | IPSECINT | NIC_Intel-X710 | SCALE
