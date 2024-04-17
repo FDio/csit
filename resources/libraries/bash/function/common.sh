@@ -1052,6 +1052,12 @@ function select_tags () {
                 awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
             SELECTION_MODE="--test"
             ;;
+        *"soak-weekly"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/soak_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
         *"report-iterative"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
