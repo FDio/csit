@@ -193,10 +193,7 @@ class ContainerManager:
     def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
 
-        :param chain_topology: Topology used for chaining containers can be
-            chain or cross_horiz. Chain topology is using 1 memif pair per
-            container. Cross_horiz topology is using 1 memif and 1 physical
-            interface in container (only single container can be configured).
+        :param chain_topology: Topology used for chaining containers.
         :param kwargs: Named parameters.
         :type chain_topology: str
         :type kwargs: dict
@@ -220,46 +217,50 @@ class ContainerManager:
             self.engine.container = self.containers[container]
             guest_dir = self.engine.container.mnt[0].split(u":")[1]
 
-            if chain_topology == u"chain":
+            if chain_topology == "chain":
                 self._configure_vpp_chain_l2xc(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"cross_horiz":
+            elif chain_topology == "cross_horiz":
                 self._configure_vpp_cross_horiz(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"chain_functional":
+            elif chain_topology == "chain_functional":
                 self._configure_vpp_chain_functional(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"chain_ip4":
+            elif chain_topology == "chain_ip4":
                 self._configure_vpp_chain_ip4(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"pipeline_ip4":
+            elif chain_topology == "pipeline_ip4":
                 self._configure_vpp_pipeline_ip4(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"chain_vswitch":
+            elif chain_topology == "chain_vswitch":
                 self._configure_vpp_chain_vswitch(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs)
-            elif chain_topology == u"chain_ipsec":
+            elif chain_topology == "chain_ipsec":
                 idx_match = search(r"\d+$", self.engine.container.name)
                 if idx_match:
                     idx = int(idx_match.group())
                 self._configure_vpp_chain_ipsec(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, nf_instance=idx, **kwargs)
-            elif chain_topology == u"chain_dma":
+            elif chain_topology == "chain_dma":
                 self._configure_vpp_chain_dma(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
+                )
+            elif chain_topology == "vswitch_ip4scale":
+                self._configure_vpp_vswitch_ip4scale(
+                    vid=mid1, guest_dir=guest_dir, **kwargs
                 )
             else:
                 raise RuntimeError(
@@ -532,6 +533,47 @@ class ContainerManager:
             mac1=f"52:54:00:00:{mid1:02X}:01",
             mac2=f"52:54:00:00:{mid2:02X}:02",
             vif1_mac=vif1_mac, vif2_mac=vif2_mac
+        )
+
+    def _configure_vpp_vswitch_ip4scale(self, **kwargs):
+        """Configure VPP in container with.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        dut = self.engine.container.name.split("_")[0]
+
+        #if dut == "DUT1":
+        #    if1_pci = Topology.get_interface_pci_addr(
+        #        self.engine.container.node, kwargs["dut1_if2"])
+        #    if2_pci = Topology.get_interface_pci_addr(
+        #        self.engine.container.node, kwargs["dut1_if1"])
+        #    tg_pf_ip4 = kwargs["tg_pf2_ip4"]
+        #    tg_pf_mac = kwargs["tg_pf2_mac"]
+        #if dut == "DUT2":
+        #    tg_pf_ip4 = kwargs["tg_pf1_ip4"]
+        #    tg_pf_mac = kwargs["tg_pf1_mac"]
+        #    if1_pci = Topology.get_interface_pci_addr(
+        #        self.engine.container.node, kwargs["dut2_if1"])
+        #    if2_pci = Topology.get_interface_pci_addr(
+        #k        self.engine.container.node, kwargs["dut2_if2"])
+        phy_cores = BuiltIn().get_variable_value("${phy_cores}")
+        rx_queues = BuiltIn().get_variable_value("${rxq}")
+        rxd = BuiltIn.get_variable_value("${rxd}")
+        txd = BuiltIn.get_variable_value("${txd}")
+
+        compute_resource_info = CpuUtils.get_affinity_vswitch(
+            kwargs["nodes"], phy_cores, rx_queues=rx_queues,
+            rxd=rxd, txd=txd
+        )
+        print(compute_resource_info)
+        self.engine.create_vpp_startup_config_vswitch(
+            compute_resource_info["${dut}_cpu_dp"],
+            compute_resource_info["rxq_count_int"]
+        )
+
+        self.engine.create_vpp_exec_config(
+            "create_vswitch_ip4scale.exec"
         )
 
     def stop_all_containers(self):

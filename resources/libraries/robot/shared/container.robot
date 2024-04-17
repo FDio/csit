@@ -290,7 +290,7 @@
 | | ... | ${auto_scale}=${True} | ${pinning}=${True}
 | |
 | | Set Test Variable | @{container_groups} | @{EMPTY}
-| | Set Test Variable | ${container_group} | CNF
+ | | Set Test Variable | ${container_group} | CNF
 | | Set Test Variable | ${nf_nodes}
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${container_group}
@@ -370,4 +370,30 @@
 | | | ... | ${dut} | ${phy_cores} | ${rx_queues}
 | | END
 | | Append To List | ${container_groups} | ${container_group}
+| | Save VPP PIDs
+
+| Start multiple vswitch containers
+| | [Documentation]
+| | ... | Configure and start multiple vswitch in container on all DUTs.
+| |
+| | Set Test Variable | @{container_groups} | @{EMPTY}
+| | Set Test Variable | ${container_group} | VSWITCH
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | VSWITCH
+| | Stop VPP service on all DUTs | ${nodes}
+| | FOR | ${dut} | IN | @{duts}
+| | | FOR | ${i} | IN RANGE | 1 | ${${nic_pfs}//${2}+1}
+| | | | Construct container on DUT | ${dut}
+| | | | ... | nf_chains=${1} | nf_nodes=${${nic_pfs}//${2}}
+| | | | ... | nf_chain=${1} | nf_node=${i}
+| | | | ... | auto_scale=${False} | pinning=${False}
+| | | END
+| | END
+| | Run Keyword | VSWITCH.Acquire all containers
+| | Run Keyword | VSWITCH.Create all containers
+| | Run Keyword | VSWITCH.Configure vpp in all containers
+| | ... | vswitch_ip4scale | nodes=${nodes}
+| | ... | n_instances=${${nic_pfs}//${2}} | rts_per_flow=${rts_per_flow}
+| | Run Keyword | VSWITCH.Start VPP In All Containers
+| | Append To List | ${container_groups} | VSWITCH
 | | Save VPP PIDs
