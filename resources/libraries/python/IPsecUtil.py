@@ -1333,10 +1333,10 @@ class IPsecUtil:
             args = dict(tunnel=ipip_tunnel)
             ipip_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args["tunnel"]["src"] = IPAddress.create_ip_address_object(
+                ipip_tunnel["src"] = IPAddress.create_ip_address_object(
                     tun_ips["ip1"] + i * addr_incr
                 )
-                args["tunnel"]["dst"] = IPAddress.create_ip_address_object(
+                ipip_tunnel["dst"] = IPAddress.create_ip_address_object(
                     tun_ips["ip2"]
                 )
                 papi_exec.add(
@@ -1359,6 +1359,7 @@ class IPsecUtil:
             cmd = "ipsec_sad_entry_add_v2"
             c_key = dict(length=0, data=None)
             i_key = dict(length=0, data=None)
+            common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
             sad_entry = dict(
                 sad_id=None,
                 spi=None,
@@ -1367,7 +1368,7 @@ class IPsecUtil:
                 crypto_key=c_key,
                 integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
                 integrity_key=i_key,
-                flags=None,
+                flags=common_flags,
                 tunnel=dict(
                     src=0,
                     dst=0,
@@ -1391,33 +1392,28 @@ class IPsecUtil:
                     gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
                 )
                 # SAD entry for outband / tx path
-                args["entry"]["sad_id"] = i
-                args["entry"]["spi"] = spi_d["spi_1"] + i
+                sad_entry["sad_id"] = i
+                sad_entry["spi"] = spi_d["spi_1"] + i
 
-                args["entry"]["crypto_key"]["length"] = len(ckeys[i])
-                args["entry"]["crypto_key"]["data"] = ckeys[i]
+                sad_entry["crypto_key"]["length"] = len(ckeys[i])
+                sad_entry["crypto_key"]["data"] = ckeys[i]
                 if integ_alg:
-                    args["entry"]["integrity_key"]["length"] = len(ikeys[i])
-                    args["entry"]["integrity_key"]["data"] = ikeys[i]
-                args["entry"]["flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
-                )
+                    sad_entry["integrity_key"]["length"] = len(ikeys[i])
+                    sad_entry["integrity_key"]["data"] = ikeys[i]
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
+            sad_entry["flags"] |= IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
+            for i in range(existing_tunnels, n_tunnels):
                 # SAD entry for inband / rx path
-                args["entry"]["sad_id"] = 100000 + i
-                args["entry"]["spi"] = spi_d["spi_2"] + i
+                sad_entry["sad_id"] = 100000 + i
+                sad_entry["spi"] = spi_d["spi_2"] + i
 
-                args["entry"]["crypto_key"]["length"] = len(ckeys[i])
-                args["entry"]["crypto_key"]["data"] = ckeys[i]
+                sad_entry["crypto_key"]["length"] = len(ckeys[i])
+                sad_entry["crypto_key"]["data"] = ckeys[i]
                 if integ_alg:
-                    args["entry"]["integrity_key"]["length"] = len(ikeys[i])
-                    args["entry"]["integrity_key"]["data"] = ikeys[i]
-                args["entry"]["flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
-                    | IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
-                )
+                    sad_entry["integrity_key"]["length"] = len(ikeys[i])
+                    sad_entry["integrity_key"]["data"] = ikeys[i]
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
@@ -1578,10 +1574,10 @@ class IPsecUtil:
             args = dict(tunnel=ipip_tunnel)
             ipip_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args["tunnel"]["src"] = IPAddress.create_ip_address_object(
+                ipip_tunnel["src"] = IPAddress.create_ip_address_object(
                     tun_ips["ip2"]
                 )
-                args["tunnel"]["dst"] = IPAddress.create_ip_address_object(
+                ipip_tunnel["dst"] = IPAddress.create_ip_address_object(
                     tun_ips["ip1"] + i * addr_incr
                 )
                 papi_exec.add(
@@ -1602,6 +1598,7 @@ class IPsecUtil:
             cmd = "ipsec_sad_entry_add_v2"
             c_key = dict(length=0, data=None)
             i_key = dict(length=0, data=None)
+            common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
             sad_entry = dict(
                 sad_id=None,
                 spi=None,
@@ -1610,7 +1607,7 @@ class IPsecUtil:
                 crypto_key=c_key,
                 integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
                 integrity_key=i_key,
-                flags=None,
+                flags=common_flags,
                 tunnel=dict(
                     src=0,
                     dst=0,
@@ -1634,33 +1631,28 @@ class IPsecUtil:
                     gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
                 )
                 # SAD entry for outband / tx path
-                args["entry"]["sad_id"] = 100000 + i
-                args["entry"]["spi"] = spi_d["spi_2"] + i
+                sad_entry["sad_id"] = 100000 + i
+                sad_entry["spi"] = spi_d["spi_2"] + i
 
-                args["entry"]["crypto_key"]["length"] = len(ckeys[i])
-                args["entry"]["crypto_key"]["data"] = ckeys[i]
+                sad_entry["crypto_key"]["length"] = len(ckeys[i])
+                sad_entry["crypto_key"]["data"] = ckeys[i]
                 if integ_alg:
-                    args["entry"]["integrity_key"]["length"] = len(ikeys[i])
-                    args["entry"]["integrity_key"]["data"] = ikeys[i]
-                args["entry"]["flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
-                )
+                    sad_entry["integrity_key"]["length"] = len(ikeys[i])
+                    sad_entry["integrity_key"]["data"] = ikeys[i]
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
+            sad_entry["flags"] |= IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
+            for i in range(existing_tunnels, n_tunnels):
                 # SAD entry for inband / rx path
-                args["entry"]["sad_id"] = i
-                args["entry"]["spi"] = spi_d["spi_1"] + i
+                sad_entry["sad_id"] = i
+                sad_entry["spi"] = spi_d["spi_1"] + i
 
-                args["entry"]["crypto_key"]["length"] = len(ckeys[i])
-                args["entry"]["crypto_key"]["data"] = ckeys[i]
+                sad_entry["crypto_key"]["length"] = len(ckeys[i])
+                sad_entry["crypto_key"]["data"] = ckeys[i]
                 if integ_alg:
-                    args["entry"]["integrity_key"]["length"] = len(ikeys[i])
-                    args["entry"]["integrity_key"]["data"] = ikeys[i]
-                args["entry"]["flags"] = int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
-                    | IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
-                )
+                    sad_entry["integrity_key"]["length"] = len(ikeys[i])
+                    sad_entry["integrity_key"]["data"] = ikeys[i]
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
