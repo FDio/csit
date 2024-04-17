@@ -26,7 +26,8 @@ from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
-from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VppConfigGenerator import (VppConfigGenerator,
+    VppInitConfig)
 from resources.libraries.python.VPPUtil import VPPUtil
 
 
@@ -193,10 +194,7 @@ class ContainerManager:
     def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
 
-        :param chain_topology: Topology used for chaining containers can be
-            chain or cross_horiz. Chain topology is using 1 memif pair per
-            container. Cross_horiz topology is using 1 memif and 1 physical
-            interface in container (only single container can be configured).
+        :param chain_topology: Topology used for chaining containers.
         :param kwargs: Named parameters.
         :type chain_topology: str
         :type kwargs: dict
@@ -220,44 +218,49 @@ class ContainerManager:
             self.engine.container = self.containers[container]
             guest_dir = self.engine.container.mnt[0].split(u":")[1]
 
-            if chain_topology == u"chain":
+            if chain_topology == "chain":
                 self._configure_vpp_chain_l2xc(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"cross_horiz":
+            elif chain_topology == "cross_horiz":
                 self._configure_vpp_cross_horiz(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"chain_functional":
+            elif chain_topology == "chain_functional":
                 self._configure_vpp_chain_functional(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"chain_ip4":
+            elif chain_topology == "chain_ip4":
                 self._configure_vpp_chain_ip4(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"pipeline_ip4":
+            elif chain_topology == "pipeline_ip4":
                 self._configure_vpp_pipeline_ip4(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"chain_vswitch":
+            elif chain_topology == "chain_vswitch":
                 self._configure_vpp_chain_vswitch(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs)
-            elif chain_topology == u"chain_ipsec":
+            elif chain_topology == "chain_ipsec":
                 idx_match = search(r"\d+$", self.engine.container.name)
                 if idx_match:
                     idx = int(idx_match.group())
                 self._configure_vpp_chain_ipsec(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, nf_instance=idx, **kwargs)
-            elif chain_topology == u"chain_dma":
+            elif chain_topology == "chain_dma":
                 self._configure_vpp_chain_dma(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
+            elif chain_topology == "vswitch_ip4scale":
+                self._configure_vpp_vswitch_ip4scale(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
@@ -534,6 +537,47 @@ class ContainerManager:
             vif1_mac=vif1_mac, vif2_mac=vif2_mac
         )
 
+    def _configure_vpp_vswitch_ip4scale(self, **kwargs):
+        """Configure VPP in container with.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        dut = self.engine.container.name.split("_")[0]
+        sid1 = kwargs["sid1"]
+        sid2 = kwargs["sid2"]
+        vid = kwargs["mid1"]
+
+        phy_cores = BuiltIn().get_variable_value("${cpu_count_int}")
+        rx_queues = BuiltIn().get_variable_value("${rxq_count_int}")
+        ifl = BuiltIn().get_variable_value("${int}")
+
+        if1_pci = Topology.get_interface_pci_addr(
+            self.engine.container.node,
+            BuiltIn().get_variable_value(f"${{{dut}_{ifl}{sid1}}}[0]")
+        )
+        if2_pci = Topology.get_interface_pci_addr(
+            self.engine.container.node,
+            BuiltIn().get_variable_value(f"${{{dut}_{ifl}{sid2}}}[0]")
+        )
+
+        compute_resource_info = CpuUtils.get_affinity_vswitch(
+            kwargs["nodes"], phy_cores, rx_queues=rx_queues
+        )
+        offset = (phy_cores + 1) * (vid - 1)
+        offset_cpu = compute_resource_info[f"{dut}_cpu_alloc_str"].split(",")
+        offset_cpu = [int(c) + int(offset) for c in offset_cpu]
+
+        print(offset_cpu)
+        self.engine.create_vpp_startup_config_vswitch(
+            offset_cpu, compute_resource_info["rxq_count_int"],
+            if1_pci, if2_pci
+        )
+
+        #self.engine.create_vpp_exec_config(
+        #    "create_vswitch_ip4scale.exec"
+        #)
+
     def stop_all_containers(self):
         """Stop all containers."""
         # TODO: Rework if containers can be affected outside ContainerManager.
@@ -760,13 +804,17 @@ class ContainerEngine:
         :type rxq: int
         :type devices: list
         """
-        vpp_config = self.create_base_vpp_startup_config(cpuset_cpus)
+        if cpuset_cpus is None:
+            cpuset_cpus = self.container.cpuset_cpus
+
+        vpp_config = VppInitConfig.create_vpp_startup_configuration_container(
+            self.container.node, cpuset_cpus
+        )
         vpp_config.add_dpdk_dev(*devices)
-        vpp_config.add_dpdk_log_level(u"debug")
+        vpp_config.add_dpdk_log_level("debug")
         vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_dpdk_dev_default_rxq(rxq)
-        vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
-        vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
+        vpp_config.add_plugin("enable", "dpdk_plugin.so")
 
         # Apply configuration
         self.execute(u"mkdir -p /etc/vpp/")
