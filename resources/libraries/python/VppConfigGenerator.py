@@ -794,3 +794,44 @@ class VppInitConfig:
                 vpp_config.add_ip6_hash_buckets(2000000)
                 vpp_config.add_ip6_heap_size("4G")
                 vpp_config.apply_config()
+
+    @staticmethod
+    def create_vpp_startup_configuration_container(node, cpuset_cpus=None):
+        """Create base startup configuration of VPP on container.
+
+        :param node: Node in the topology.
+        :param cpuset_cpus: List of CPU cores to allocate.
+        :type node: dict
+        :type cpuset_cpus: list.
+        :returns: Base VPP startup configuration for container.
+        :rtype: VppConfigGenerator
+        """
+        huge_size = Constants.DEFAULT_HUGEPAGE_SIZE
+
+        vpp_config = VppConfigGenerator()
+        vpp_config.set_node(node)
+        vpp_config.add_unix_log()
+        vpp_config.add_unix_cli_listen()
+        vpp_config.add_unix_cli_no_pager()
+        vpp_config.add_unix_exec("/tmp/running.exec")
+        vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+        if cpuset_cpus:
+            # We will pop the first core from the list to be a main core
+            vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
+            # If more cores in the list, the rest will be used as workers.
+            corelist_workers = ",".join(str(cpu) for cpu in cpuset_cpus)
+            vpp_config.add_cpu_corelist_workers(corelist_workers)
+        vpp_config.add_buffers_per_numa(215040)
+        vpp_config.add_plugin("disable", "default")
+        vpp_config.add_plugin("enable", "memif_plugin.so")
+        vpp_config.add_plugin("enable", "perfmon_plugin.so")
+        vpp_config.add_main_heap_size("2G")
+        vpp_config.add_main_heap_page_size(huge_size)
+        vpp_config.add_default_hugepage_size(huge_size)
+        vpp_config.add_statseg_size("2G")
+        vpp_config.add_statseg_page_size(huge_size)
+        vpp_config.add_statseg_per_node_counters("on")
+        vpp_config.add_ip6_hash_buckets(2000000)
+        vpp_config.add_ip6_heap_size("4G")
+
+        return vpp_config
