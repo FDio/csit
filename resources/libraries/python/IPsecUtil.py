@@ -19,10 +19,12 @@ from io import open
 from ipaddress import ip_network, ip_address
 from random import choice
 from string import ascii_letters
+from typing import Union
 
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.enum_util import get_enum_instance
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import (
     InterfaceUtil,
@@ -80,6 +82,7 @@ class PolicyAction(Enum):
 class CryptoAlg(Enum):
     """Encryption algorithms."""
 
+    NONE = ("none", 0, "none", 0)
     AES_CBC_128 = ("aes-cbc-128", 1, "AES-CBC", 16)
     AES_CBC_256 = ("aes-cbc-256", 3, "AES-CBC", 32)
     AES_GCM_128 = ("aes-gcm-128", 7, "AES-GCM", 16)
@@ -91,10 +94,16 @@ class CryptoAlg(Enum):
         self.scapy_name = scapy_name
         self.key_len = key_len
 
+    # TODO: Investigate if __int__ works with PAPI. It was not enough for "if".
+    def __bool__(self):
+        """A shorthand to enable "if crypto_alg:" constructs."""
+        return self.alg_int_repr != 0
+
 
 class IntegAlg(Enum):
     """Integrity algorithm."""
 
+    NONE = ("none", 0, "none", 0)
     SHA_256_128 = ("sha-256-128", 4, "SHA2-256-128", 32)
     SHA_512_256 = ("sha-512-256", 6, "SHA2-512-256", 64)
 
@@ -103,6 +112,10 @@ class IntegAlg(Enum):
         self.alg_int_repr = alg_int_repr
         self.scapy_name = scapy_name
         self.key_len = key_len
+
+    def __bool__(self):
+        """A shorthand to enable "if integ_alg:" constructs."""
+        return self.alg_int_repr != 0
 
 
 class IPsecProto(IntEnum):
@@ -115,7 +128,7 @@ class IPsecProto(IntEnum):
 class IPsecSadFlags(IntEnum):
     """IPsec Security Association Database flags."""
 
-    IPSEC_API_SAD_FLAG_NONE = 0
+    IPSEC_API_SAD_FLAG_NONE = NONE = 0
     # Enable extended sequence numbers
     IPSEC_API_SAD_FLAG_USE_ESN = 0x01
     # Enable Anti - replay
@@ -134,7 +147,7 @@ class IPsecSadFlags(IntEnum):
 class TunnelEncpaDecapFlags(IntEnum):
     """Flags controlling tunnel behaviour."""
 
-    TUNNEL_API_ENCAP_DECAP_FLAG_NONE = 0
+    TUNNEL_API_ENCAP_DECAP_FLAG_NONE = NONE = 0
     # at encap, copy the DF bit of the payload into the tunnel header
     TUNNEL_API_ENCAP_DECAP_FLAG_ENCAP_COPY_DF = 1
     # at encap, set the DF bit in the tunnel header
@@ -151,7 +164,7 @@ class TunnelMode(IntEnum):
     """Tunnel modes."""
 
     # point-to-point
-    TUNNEL_API_MODE_P2P = 0
+    TUNNEL_API_MODE_P2P = NONE = 0
     # multi-point
     TUNNEL_API_MODE_MP = 1
 
@@ -160,149 +173,60 @@ class IPsecUtil:
     """IPsec utilities."""
 
     @staticmethod
-    def policy_action_bypass():
-        """Return policy action bypass.
-
-        :returns: PolicyAction enum BYPASS object.
-        :rtype: PolicyAction
-        """
-        return PolicyAction.BYPASS
-
-    @staticmethod
-    def policy_action_discard():
-        """Return policy action discard.
-
-        :returns: PolicyAction enum DISCARD object.
-        :rtype: PolicyAction
-        """
-        return PolicyAction.DISCARD
-
-    @staticmethod
-    def policy_action_protect():
-        """Return policy action protect.
-
-        :returns: PolicyAction enum PROTECT object.
-        :rtype: PolicyAction
-        """
-        return PolicyAction.PROTECT
-
-    @staticmethod
-    def crypto_alg_aes_cbc_128():
-        """Return encryption algorithm aes-cbc-128.
-
-        :returns: CryptoAlg enum AES_CBC_128 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_CBC_128
-
-    @staticmethod
-    def crypto_alg_aes_cbc_256():
-        """Return encryption algorithm aes-cbc-256.
-
-        :returns: CryptoAlg enum AES_CBC_256 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_CBC_256
-
-    @staticmethod
-    def crypto_alg_aes_gcm_128():
-        """Return encryption algorithm aes-gcm-128.
-
-        :returns: CryptoAlg enum AES_GCM_128 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_GCM_128
-
-    @staticmethod
-    def crypto_alg_aes_gcm_256():
-        """Return encryption algorithm aes-gcm-256.
-
-        :returns: CryptoAlg enum AES_GCM_128 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_GCM_256
-
-    @staticmethod
-    def get_crypto_alg_key_len(crypto_alg):
+    def get_crypto_alg_key_len(crypto_alg: Union[CryptoAlg, str, None]) -> int:
         """Return encryption algorithm key length.
 
+        Both string and instance form of the argument are supported.
+        This is a Python one-liner, but useful when called as a Robot keyword.
+
         :param crypto_alg: Encryption algorithm.
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :returns: Key length.
         :rtype: int
         """
-        return crypto_alg.key_len
+        return get_enum_instance(CryptoAlg, crypto_alg).key_len
 
     @staticmethod
-    def get_crypto_alg_scapy_name(crypto_alg):
+    def get_crypto_alg_scapy_name(
+        crypto_alg: Union[CryptoAlg, str, None]
+    ) -> str:
         """Return encryption algorithm scapy name.
 
+        Both string and instance form of the argument are supported.
+        This is a Python one-liner, but useful when called as a Robot keyword.
+
         :param crypto_alg: Encryption algorithm.
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :returns: Algorithm scapy name.
         :rtype: str
         """
-        return crypto_alg.scapy_name
+        return get_enum_instance(CryptoAlg, crypto_alg).scapy_name
 
+    # The below to methods differ only by enum type conversion from str.
     @staticmethod
-    def integ_alg_sha_256_128():
-        """Return integrity algorithm SHA-256-128.
-
-        :returns: IntegAlg enum SHA_256_128 object.
-        :rtype: IntegAlg
-        """
-        return IntegAlg.SHA_256_128
-
-    @staticmethod
-    def integ_alg_sha_512_256():
-        """Return integrity algorithm SHA-512-256.
-
-        :returns: IntegAlg enum SHA_512_256 object.
-        :rtype: IntegAlg
-        """
-        return IntegAlg.SHA_512_256
-
-    @staticmethod
-    def get_integ_alg_key_len(integ_alg):
+    def get_integ_alg_key_len(integ_alg: Union[IntegAlg, str, None]) -> int:
         """Return integrity algorithm key length.
 
-        None argument is accepted, returning zero.
+        Both string and instance form of the argument are supported.
+        This is a Python one-liner, but useful when called as a Robot keyword.
 
         :param integ_alg: Integrity algorithm.
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :returns: Key length.
         :rtype: int
         """
-        return 0 if integ_alg is None else integ_alg.key_len
+        return get_enum_instance(IntegAlg, integ_alg).key_len
 
     @staticmethod
-    def get_integ_alg_scapy_name(integ_alg):
+    def get_integ_alg_scapy_name(integ_alg: Union[IntegAlg, str, None]) -> str:
         """Return integrity algorithm scapy name.
 
         :param integ_alg: Integrity algorithm.
-        :type integ_alg: IntegAlg
+        :type integ_alg: Union[IntegAlg, str, None]
         :returns: Algorithm scapy name.
         :rtype: str
         """
-        return integ_alg.scapy_name
-
-    @staticmethod
-    def ipsec_proto_esp():
-        """Return IPSec protocol ESP.
-
-        :returns: IPsecProto enum ESP object.
-        :rtype: IPsecProto
-        """
-        return int(IPsecProto.IPSEC_API_PROTO_ESP)
-
-    @staticmethod
-    def ipsec_proto_ah():
-        """Return IPSec protocol AH.
-
-        :returns: IPsecProto enum AH object.
-        :rtype: IPsecProto
-        """
-        return int(IPsecProto.IPSEC_API_PROTO_AH)
+        return get_enum_instance(IntegAlg, integ_alg).scapy_name
 
     @staticmethod
     def vpp_ipsec_select_backend(node, protocol, index=1):
@@ -318,7 +242,7 @@ class IPsecUtil:
             reply received.
         """
         cmd = "ipsec_select_backend"
-        err_msg = f"Failed to select IPsec backend on host {node[u'host']}"
+        err_msg = f"Failed to select IPsec backend on host {node['host']}"
         args = dict(protocol=protocol, index=index)
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -338,7 +262,7 @@ class IPsecUtil:
         """
         with PapiSocketExecutor(node) as papi_exec:
             cmd = "ipsec_set_async_mode"
-            err_msg = f"Failed to set IPsec async mode on host {node[u'host']}"
+            err_msg = f"Failed to set IPsec async mode on host {node['host']}"
             args = dict(async_enable=async_enable)
             papi_exec.add(cmd, **args).get_reply(err_msg)
             cmd = "crypto_set_async_dispatch_v2"
@@ -371,7 +295,7 @@ class IPsecUtil:
             cmd = "crypto_sw_scheduler_set_worker"
             err_msg = (
                 f"Failed to disable/enable crypto for worker thread "
-                f"on host {node[u'host']}"
+                f"on host {node['host']}"
             )
             args = dict(worker_index=worker - 1, crypto_enable=crypto_enable)
             with PapiSocketExecutor(node) as papi_exec:
@@ -395,7 +319,7 @@ class IPsecUtil:
                 thread_data = VPPUtil.vpp_show_threads(node)
                 worker_cnt = len(thread_data) - 1
                 if not worker_cnt:
-                    return None
+                    return
                 worker_ids = list()
                 workers = BuiltIn().get_variable_value(
                     f"${{{node_name}_cpu_dp}}"
@@ -413,8 +337,8 @@ class IPsecUtil:
         node,
         sad_id,
         spi,
-        crypto_alg,
-        crypto_key,
+        crypto_alg=None,
+        crypto_key="",
         integ_alg=None,
         integ_key="",
         tunnel_src=None,
@@ -436,13 +360,15 @@ class IPsecUtil:
         :type node: dict
         :type sad_id: int
         :type spi: int
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :type crypto_key: str
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type integ_key: str
         :type tunnel_src: str
         :type tunnel_dst: str
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         if isinstance(crypto_key, str):
             crypto_key = crypto_key.encode(encoding="utf-8")
         if isinstance(integ_key, str):
@@ -466,14 +392,14 @@ class IPsecUtil:
         cmd = "ipsec_sad_entry_add_v2"
         err_msg = (
             f"Failed to add Security Association Database entry "
-            f"on host {node[u'host']}"
+            f"on host {node['host']}"
         )
         sad_entry = dict(
             sad_id=int(sad_id),
             spi=int(spi),
             crypto_algorithm=crypto_alg.alg_int_repr,
             crypto_key=ckey,
-            integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+            integrity_algorithm=integ_alg.alg_int_repr,
             integrity_key=ikey,
             flags=flags,
             tunnel=dict(
@@ -500,8 +426,8 @@ class IPsecUtil:
         n_entries,
         sad_id,
         spi,
-        crypto_alg,
-        crypto_key,
+        crypto_alg=None,
+        crypto_key="",
         integ_alg=None,
         integ_key="",
         tunnel_src=None,
@@ -530,14 +456,16 @@ class IPsecUtil:
         :type n_entries: int
         :type sad_id: int
         :type spi: int
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :type crypto_key: str
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type integ_key: str
         :type tunnel_src: str
         :type tunnel_dst: str
         :type tunnel_addr_incr: bool
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         if isinstance(crypto_key, str):
             crypto_key = crypto_key.encode(encoding="utf-8")
         if isinstance(integ_key, str):
@@ -570,7 +498,7 @@ class IPsecUtil:
         cmd = "ipsec_sad_entry_add_v2"
         err_msg = (
             f"Failed to add Security Association Database entry "
-            f"on host {node[u'host']}"
+            f"on host {node['host']}"
         )
 
         sad_entry = dict(
@@ -578,7 +506,7 @@ class IPsecUtil:
             spi=int(spi),
             crypto_algorithm=crypto_alg.alg_int_repr,
             crypto_key=ckey,
-            integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+            integrity_algorithm=integ_alg.alg_int_repr,
             integrity_key=ikey,
             flags=flags,
             tunnel=dict(
@@ -677,10 +605,10 @@ class IPsecUtil:
         )
         err_msg = (
             f"Failed to configure IP addresses, IP routes and "
-            f"IP neighbor on interface {interface} on host {node[u'host']}"
+            f"IP neighbor on interface {interface} on host {node['host']}"
             if dst_mac
             else f"Failed to configure IP addresses and IP routes "
-            f"on interface {interface} on host {node[u'host']}"
+            f"on interface {interface} on host {node['host']}"
         )
 
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
@@ -727,8 +655,7 @@ class IPsecUtil:
         """
         cmd = "ipsec_spd_add_del"
         err_msg = (
-            f"Failed to add Security Policy Database "
-            f"on host {node[u'host']}"
+            f"Failed to add Security Policy Database " f"on host {node['host']}"
         )
         args = dict(is_add=True, spd_id=int(spd_id))
         with PapiSocketExecutor(node) as papi_exec:
@@ -748,7 +675,7 @@ class IPsecUtil:
         cmd = "ipsec_interface_add_del_spd"
         err_msg = (
             f"Failed to add interface {interface} to Security Policy "
-            f"Database {spd_id} on host {node[u'host']}"
+            f"Database {spd_id} on host {node['host']}"
         )
         args = dict(
             is_add=True,
@@ -1052,7 +979,7 @@ class IPsecUtil:
         """
         err_msg = (
             f"Failed to add entry to Security Policy Database "
-            f"{spd_id} on host {node[u'host']}"
+            f"{spd_id} on host {node['host']}"
         )
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
             IPsecUtil._vpp_ipsec_add_spd_entry_internal(
@@ -1132,19 +1059,9 @@ class IPsecUtil:
             raddr_range = "::/0" if is_ipv6 else "0.0.0.0/0"
             raddr_range = NetworkIncrement(ip_network(raddr_range), 0)
 
-        lport_range_start = 0
-        lport_range_stop = 65535
-        if lport_range:
-            lport_range_start, lport_range_stop = lport_range.split("-")
-
-        rport_range_start = 0
-        rport_range_stop = 65535
-        if rport_range:
-            rport_range_start, rport_range_stop = rport_range.split("-")
-
         err_msg = (
             f"Failed to add entry to Security Policy Database "
-            f"{spd_id} on host {node[u'host']}"
+            f"{spd_id} on host {node['host']}"
         )
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
             for _ in range(n_entries):
@@ -1191,7 +1108,7 @@ class IPsecUtil:
             )
             err_msg = (
                 f"Failed to create loopback interface "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.add(cmd, **args)
             loop_sw_if_idx = papi_exec.get_sw_if_index(err_msg)
@@ -1202,7 +1119,7 @@ class IPsecUtil:
             )
             err_msg = (
                 f"Failed to set loopback interface state up "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.add(cmd, **args).get_reply(err_msg)
             # Set IP address on VPP node 1 interface
@@ -1220,7 +1137,7 @@ class IPsecUtil:
             )
             err_msg = (
                 f"Failed to set IP address on interface {if1_key} "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.add(cmd, **args).get_reply(err_msg)
             cmd2 = "ip_neighbor_add_del"
@@ -1283,8 +1200,8 @@ class IPsecUtil:
         :type if1_key: str
         :type if2_key: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type raddr_ip2: IPv4Address or IPv6Address
         :type addr_incr: int
         :type spi_d: dict
@@ -1344,7 +1261,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPIP tunnel interfaces on host"
-                f" {nodes[u'DUT1'][u'host']}"
+                f" {nodes['DUT1']['host']}"
             )
             ipip_tunnels.extend(
                 [
@@ -1366,7 +1283,7 @@ class IPsecUtil:
                 protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
                 crypto_algorithm=crypto_alg.alg_int_repr,
                 crypto_key=c_key,
-                integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+                integrity_algorithm=integ_alg.alg_int_repr,
                 integrity_key=i_key,
                 flags=common_flags,
                 tunnel=dict(
@@ -1385,12 +1302,8 @@ class IPsecUtil:
             )
             args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
-                ikeys.append(
-                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                )
+                ckeys.append(gen_key(crypto_alg.key_len))
+                ikeys.append(gen_key(integ_alg.key_len))
                 # SAD entry for outband / tx path
                 sad_entry["sad_id"] = i
                 sad_entry["spi"] = spi_d["spi_1"] + i
@@ -1419,7 +1332,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPsec SAD entries on host"
-                f" {nodes[u'DUT1'][u'host']}"
+                f" {nodes['DUT1']['host']}"
             )
             papi_exec.get_replies(err_msg)
             # Add protection for tunnels with IPSEC
@@ -1442,7 +1355,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add protection for tunnels with IPSEC "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1485,7 +1398,7 @@ class IPsecUtil:
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
             err_msg = (
-                f"Failed to add IP routes on host " f"{nodes[u'DUT1'][u'host']}"
+                f"Failed to add IP routes on host " f"{nodes['DUT1']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1530,14 +1443,16 @@ class IPsecUtil:
         :type tun_ips: dict
         :type if2_key: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :type ckeys: Sequence[bytes]
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type ikeys: Sequence[bytes]
         :type addr_incr: int
         :type spi_d: dict
         :type existing_tunnels: int
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         with PapiSocketExecutor(nodes["DUT2"], is_async=True) as papi_exec:
             if not existing_tunnels:
                 # Set IP address on VPP node 2 interface
@@ -1555,7 +1470,7 @@ class IPsecUtil:
                 )
                 err_msg = (
                     f"Failed to set IP address on interface {if2_key} "
-                    f"on host {nodes[u'DUT2'][u'host']}"
+                    f"on host {nodes['DUT2']['host']}"
                 )
                 papi_exec.add(cmd, **args).get_replies(err_msg)
             # Configure IPIP tunnel interfaces
@@ -1585,7 +1500,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPIP tunnel interfaces on host"
-                f" {nodes[u'DUT2'][u'host']}"
+                f" {nodes['DUT2']['host']}"
             )
             ipip_tunnels.extend(
                 [
@@ -1605,7 +1520,7 @@ class IPsecUtil:
                 protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
                 crypto_algorithm=crypto_alg.alg_int_repr,
                 crypto_key=c_key,
-                integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+                integrity_algorithm=integ_alg.alg_int_repr,
                 integrity_key=i_key,
                 flags=common_flags,
                 tunnel=dict(
@@ -1624,12 +1539,8 @@ class IPsecUtil:
             )
             args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
-                ikeys.append(
-                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                )
+                ckeys.append(gen_key(crypto_alg.key_len))
+                ikeys.append(gen_key(integ_alg.key_len))
                 # SAD entry for outband / tx path
                 sad_entry["sad_id"] = 100000 + i
                 sad_entry["spi"] = spi_d["spi_2"] + i
@@ -1658,7 +1569,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPsec SAD entries on host"
-                f" {nodes[u'DUT2'][u'host']}"
+                f" {nodes['DUT2']['host']}"
             )
             papi_exec.get_replies(err_msg)
             # Add protection for tunnels with IPSEC
@@ -1681,7 +1592,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add protection for tunnels with IPSEC "
-                f"on host {nodes[u'DUT2'][u'host']}"
+                f"on host {nodes['DUT2']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1736,7 +1647,7 @@ class IPsecUtil:
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
             err_msg = (
-                f"Failed to add IP routes " f"on host {nodes[u'DUT2'][u'host']}"
+                f"Failed to add IP routes " f"on host {nodes['DUT2']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1789,8 +1700,8 @@ class IPsecUtil:
         :type if1_key: str
         :type if2_key: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optonal[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
@@ -1799,6 +1710,8 @@ class IPsecUtil:
         :returns: Ckeys, ikeys, spi_1, spi_2.
         :rtype: Optional[List[bytes], List[bytes], int, int]
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         n_tunnels = int(n_tunnels)
         existing_tunnels = int(existing_tunnels)
         spi_d = dict(spi_1=100000, spi_2=200000)
@@ -1915,13 +1828,15 @@ class IPsecUtil:
         :type if1_ip_addr: str
         :type if2_ip_addr: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
         :type n_instances: int
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         spi_1 = 100000
         spi_2 = 200000
         addr_incr = 1 << (32 - raddr_range)
@@ -1930,9 +1845,8 @@ class IPsecUtil:
         dut2_scripts = IPsecUtil._create_ipsec_script_files("DUT2", n_instances)
 
         for cnf in range(0, n_instances):
-            dut1_scripts[cnf].write(
-                "create loopback interface\n" "set interface state loop0 up\n\n"
-            )
+            dut1_scripts[cnf].write("create loopback interface\n")
+            dut1_scripts[cnf].write("set interface state loop0 up\n\n")
             dut2_scripts[cnf].write(
                 f"ip route add {if1_ip_addr}/8 via "
                 f"{ip_address(if2_ip_addr) + cnf + 100} memif1/{cnf + 1}\n\n"
@@ -1940,13 +1854,9 @@ class IPsecUtil:
 
         for tnl in range(0, n_tunnels):
             cnf = tnl % n_instances
-            ckey = getattr(
-                gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)), "hex"
-            )
+            ckey = getattr(gen_key(crypto_alg.key_len), "hex")
             integ = ""
-            ikey = getattr(
-                gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), "hex"
-            )
+            ikey = getattr(gen_key(integ_alg.key_len), "hex")
             if integ_alg:
                 integ = (
                     f"integ-alg {integ_alg.alg_name} "
@@ -2039,8 +1949,8 @@ class IPsecUtil:
         :type interface1: str or int
         :type interface2: str or int
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type tunnel_ip1: str
         :type tunnel_ip2: str
         :type raddr_ip1: string
@@ -2056,15 +1966,8 @@ class IPsecUtil:
         spi_1 = 300000
         spi_2 = 400000
 
-        crypto_key = gen_key(
-            IPsecUtil.get_crypto_alg_key_len(crypto_alg)
-        ).decode()
-        integ_key = (
-            gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)).decode()
-            if integ_alg
-            else ""
-        )
-
+        crypto_key = gen_key(crypto_alg.key_len).decode()
+        integ_key = gen_key(integ_alg.key_len).decode()
         rmac = (
             Topology.get_interface_mac(nodes["DUT2"], interface2)
             if "DUT2" in nodes.keys()
