@@ -22,15 +22,17 @@ class IPTopology:
     """IP Topology Library."""
 
     @staticmethod
-    def initialize_ipv4_forwarding(count=1, pfs=2):
+    def initialize_ipv4_forwarding(count=1, pfs=2, route_prefix=64):
         """
         Custom setup of IPv4 forwarding with scalability of IP routes on all
         DUT nodes in 2-node / 3-node circular topology.
 
         :param count: Number of routes to configure.
         :param pfs: Number of physical interfaces to configure.
+        :param route_prefix: Route prefix to configure.
         :type count: int
         :type pfs: int
+        :type route_prefix: int
         """
         topology = BuiltIn().get_variable_value("&{topology_info}")
         dut = topology["duts"][-1]
@@ -79,34 +81,36 @@ class IPTopology:
             )
 
             IPUtil.vpp_route_add(
-                topology["DUT1"], f"{i}0.0.0.0", 32, gateway=f"1.{l}.1.1",
-                interface=dut1_int1, count=count
+                topology["DUT1"], f"{i}0.0.0.0", route_prefix,
+                gateway=f"1.{l}.1.1", interface=dut1_int1, count=count
             )
             if dut == "DUT2":
                 IPUtil.vpp_route_add(
-                    topology["DUT1"], f"{i+1}0.0.0.0", 32, gateway=f"3.{l}.3.2",
-                    interface=dut1_int2, count=count
+                    topology["DUT1"], f"{i+1}0.0.0.0", route_prefix,
+                    gateway=f"3.{l}.3.2", interface=dut1_int2, count=count
                 )
                 IPUtil.vpp_route_add(
-                    topology["DUT2"], f"{i}0.0.0.0", 32, gateway=f"3.{l}.3.1",
-                    interface=dut_int1, count=count
+                    topology["DUT2"], f"{i}0.0.0.0", route_prefix,
+                    gateway=f"3.{l}.3.1", interface=dut_int1, count=count
                 )
             IPUtil.vpp_route_add(
-                topology[dut], f"{i+1}0.0.0.0", 32, gateway=f"2.{l}.2.1",
-                interface=dut_int2, count=count
+                topology[dut], f"{i+1}0.0.0.0", route_prefix,
+                gateway=f"2.{l}.2.1", interface=dut_int2, count=count
             )
 
 
     @staticmethod
-    def initialize_ipv6_forwarding(count=1, pfs=2):
+    def initialize_ipv6_forwarding(count=1, pfs=2, route_prefix=128):
         """
         Custom setup of IPv6 forwarding with scalability of IP routes on all
         DUT nodes in 2-node / 3-node circular topology.
 
         :param count: Number of routes to configure.
         :param pfs: Number of physical interfaces to configure.
+        :param route_prefix: Route prefix to configure.
         :type count: int
         :type pfs: int
+        :type route_prefix: int
         """
         topology = BuiltIn().get_variable_value("&{topology_info}")
         dut = topology["duts"][-1]
@@ -155,19 +159,19 @@ class IPTopology:
             )
 
             IPUtil.vpp_route_add(
-                topology["DUT1"], f"2{i}00::0", 64,
+                topology["DUT1"], f"2{i}00::0", route_prefix,
                 gateway=f"2001:{l}::1", interface=dut1_int1, count=count
             )
             if dut == "DUT2":
                 IPUtil.vpp_route_add(
-                    topology["DUT1"], f"2{i+1}00::0", 64,
+                    topology["DUT1"], f"2{i+1}00::0", route_prefix,
                     gateway=f"2003:{l}::2", interface=dut1_int2, count=count
                 )
                 IPUtil.vpp_route_add(
-                    topology["DUT2"], f"2{i}00::0", 64,
+                    topology["DUT2"], f"2{i}00::0", route_prefix,
                     gateway=f"2003:{l}::1", interface=dut_int1, count=count
                 )
             IPUtil.vpp_route_add(
-                topology[dut], f"2{i+1}00::0", 64,
+                topology[dut], f"2{i+1}00::0", route_prefix,
                 gateway=f"2002:{l}::1", interface=dut_int2, count=count
             )
