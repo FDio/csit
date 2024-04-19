@@ -318,7 +318,7 @@ class IPsecUtil:
             reply received.
         """
         cmd = "ipsec_select_backend"
-        err_msg = f"Failed to select IPsec backend on host {node[u'host']}"
+        err_msg = f"Failed to select IPsec backend on host {node['host']}"
         args = dict(protocol=protocol, index=index)
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -338,7 +338,7 @@ class IPsecUtil:
         """
         with PapiSocketExecutor(node) as papi_exec:
             cmd = "ipsec_set_async_mode"
-            err_msg = f"Failed to set IPsec async mode on host {node[u'host']}"
+            err_msg = f"Failed to set IPsec async mode on host {node['host']}"
             args = dict(async_enable=async_enable)
             papi_exec.add(cmd, **args).get_reply(err_msg)
             cmd = "crypto_set_async_dispatch_v2"
@@ -371,7 +371,7 @@ class IPsecUtil:
             cmd = "crypto_sw_scheduler_set_worker"
             err_msg = (
                 f"Failed to disable/enable crypto for worker thread "
-                f"on host {node[u'host']}"
+                f"on host {node['host']}"
             )
             args = dict(worker_index=worker - 1, crypto_enable=crypto_enable)
             with PapiSocketExecutor(node) as papi_exec:
@@ -466,7 +466,7 @@ class IPsecUtil:
         cmd = "ipsec_sad_entry_add_v2"
         err_msg = (
             f"Failed to add Security Association Database entry "
-            f"on host {node[u'host']}"
+            f"on host {node['host']}"
         )
         sad_entry = dict(
             sad_id=int(sad_id),
@@ -570,7 +570,7 @@ class IPsecUtil:
         cmd = "ipsec_sad_entry_add_v2"
         err_msg = (
             f"Failed to add Security Association Database entry "
-            f"on host {node[u'host']}"
+            f"on host {node['host']}"
         )
 
         sad_entry = dict(
@@ -677,10 +677,10 @@ class IPsecUtil:
         )
         err_msg = (
             f"Failed to configure IP addresses, IP routes and "
-            f"IP neighbor on interface {interface} on host {node[u'host']}"
+            f"IP neighbor on interface {interface} on host {node['host']}"
             if dst_mac
             else f"Failed to configure IP addresses and IP routes "
-            f"on interface {interface} on host {node[u'host']}"
+            f"on interface {interface} on host {node['host']}"
         )
 
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
@@ -728,7 +728,7 @@ class IPsecUtil:
         cmd = "ipsec_spd_add_del"
         err_msg = (
             f"Failed to add Security Policy Database "
-            f"on host {node[u'host']}"
+            f"on host {node['host']}"
         )
         args = dict(is_add=True, spd_id=int(spd_id))
         with PapiSocketExecutor(node) as papi_exec:
@@ -748,7 +748,7 @@ class IPsecUtil:
         cmd = "ipsec_interface_add_del_spd"
         err_msg = (
             f"Failed to add interface {interface} to Security Policy "
-            f"Database {spd_id} on host {node[u'host']}"
+            f"Database {spd_id} on host {node['host']}"
         )
         args = dict(
             is_add=True,
@@ -1052,7 +1052,7 @@ class IPsecUtil:
         """
         err_msg = (
             f"Failed to add entry to Security Policy Database "
-            f"{spd_id} on host {node[u'host']}"
+            f"{spd_id} on host {node['host']}"
         )
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
             IPsecUtil._vpp_ipsec_add_spd_entry_internal(
@@ -1132,19 +1132,9 @@ class IPsecUtil:
             raddr_range = "::/0" if is_ipv6 else "0.0.0.0/0"
             raddr_range = NetworkIncrement(ip_network(raddr_range), 0)
 
-        lport_range_start = 0
-        lport_range_stop = 65535
-        if lport_range:
-            lport_range_start, lport_range_stop = lport_range.split("-")
-
-        rport_range_start = 0
-        rport_range_stop = 65535
-        if rport_range:
-            rport_range_start, rport_range_stop = rport_range.split("-")
-
         err_msg = (
             f"Failed to add entry to Security Policy Database "
-            f"{spd_id} on host {node[u'host']}"
+            f"{spd_id} on host {node['host']}"
         )
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
             for _ in range(n_entries):
@@ -1191,7 +1181,7 @@ class IPsecUtil:
             )
             err_msg = (
                 f"Failed to create loopback interface "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.add(cmd, **args)
             loop_sw_if_idx = papi_exec.get_sw_if_index(err_msg)
@@ -1202,7 +1192,7 @@ class IPsecUtil:
             )
             err_msg = (
                 f"Failed to set loopback interface state up "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.add(cmd, **args).get_reply(err_msg)
             # Set IP address on VPP node 1 interface
@@ -1220,7 +1210,7 @@ class IPsecUtil:
             )
             err_msg = (
                 f"Failed to set IP address on interface {if1_key} "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.add(cmd, **args).get_reply(err_msg)
             cmd2 = "ip_neighbor_add_del"
@@ -1344,7 +1334,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPIP tunnel interfaces on host"
-                f" {nodes[u'DUT1'][u'host']}"
+                f" {nodes['DUT1']['host']}"
             )
             ipip_tunnels.extend(
                 [
@@ -1419,7 +1409,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPsec SAD entries on host"
-                f" {nodes[u'DUT1'][u'host']}"
+                f" {nodes['DUT1']['host']}"
             )
             papi_exec.get_replies(err_msg)
             # Add protection for tunnels with IPSEC
@@ -1442,7 +1432,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add protection for tunnels with IPSEC "
-                f"on host {nodes[u'DUT1'][u'host']}"
+                f"on host {nodes['DUT1']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1485,7 +1475,7 @@ class IPsecUtil:
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
             err_msg = (
-                f"Failed to add IP routes on host " f"{nodes[u'DUT1'][u'host']}"
+                f"Failed to add IP routes on host " f"{nodes['DUT1']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1555,7 +1545,7 @@ class IPsecUtil:
                 )
                 err_msg = (
                     f"Failed to set IP address on interface {if2_key} "
-                    f"on host {nodes[u'DUT2'][u'host']}"
+                    f"on host {nodes['DUT2']['host']}"
                 )
                 papi_exec.add(cmd, **args).get_replies(err_msg)
             # Configure IPIP tunnel interfaces
@@ -1585,7 +1575,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPIP tunnel interfaces on host"
-                f" {nodes[u'DUT2'][u'host']}"
+                f" {nodes['DUT2']['host']}"
             )
             ipip_tunnels.extend(
                 [
@@ -1658,7 +1648,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add IPsec SAD entries on host"
-                f" {nodes[u'DUT2'][u'host']}"
+                f" {nodes['DUT2']['host']}"
             )
             papi_exec.get_replies(err_msg)
             # Add protection for tunnels with IPSEC
@@ -1681,7 +1671,7 @@ class IPsecUtil:
                 )
             err_msg = (
                 f"Failed to add protection for tunnels with IPSEC "
-                f"on host {nodes[u'DUT2'][u'host']}"
+                f"on host {nodes['DUT2']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1736,7 +1726,7 @@ class IPsecUtil:
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
             err_msg = (
-                f"Failed to add IP routes " f"on host {nodes[u'DUT2'][u'host']}"
+                f"Failed to add IP routes " f"on host {nodes['DUT2']['host']}"
             )
             papi_exec.get_replies(err_msg)
 
@@ -1860,7 +1850,7 @@ class IPsecUtil:
             script_filename = (
                 f"/tmp/ipsec_create_tunnel_cnf_{dut}_{cnf + 1}.config"
             )
-            scripts.append(open(script_filename, "w"))
+            scripts.append(open(script_filename, "w", encoding="utf-8"))
         return scripts
 
     @staticmethod
@@ -1931,7 +1921,7 @@ class IPsecUtil:
 
         for cnf in range(0, n_instances):
             dut1_scripts[cnf].write(
-                "create loopback interface\n" "set interface state loop0 up\n\n"
+                "create loopback interface\nset interface state loop0 up\n\n"
             )
             dut2_scripts[cnf].write(
                 f"ip route add {if1_ip_addr}/8 via "
@@ -2279,24 +2269,24 @@ class IPsecUtil:
         PapiSocketExecutor.dump_and_log(node, [cmd])
 
     @staticmethod
-    def vpp_ipsec_flow_enale_rss(node, proto, type, function="default"):
+    def vpp_ipsec_flow_enable_rss(node, proto, rss_type, function="default"):
         """Ipsec flow enable rss action.
 
         :param node: DUT node.
         :param proto: The flow protocol.
-        :param type: RSS type.
+        :param rss_type: RSS type.
         :param function: RSS function.
 
         :type node: dict
         :type proto: str
-        :type type: str
+        :type rss_type: str
         :type function: str
         :returns: flow_index.
         """
         # TODO: to be fixed to use full PAPI when it is ready in VPP
         cmd = (
             f"test flow add src-ip any proto {proto} rss function "
-            f"{function} rss types {type}"
+            f"{function} rss types {rss_type}"
         )
         stdout = PapiSocketExecutor.run_cli_cmd(node, cmd)
         flow_index = stdout.split()[1]
