@@ -117,10 +117,10 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPSec in 3-node circular topology
-| | ${flow_index} = | And VPP Ipsec Flow Enale Rss
+| | ${flow_index} = | And VPP Ipsec Flow Enable Rss
 | | ... | ${dut1} | IPSEC_ESP | esp | default
 | | And VPP Flow Enable | ${dut1} | ${DUT1_${int}2}[0] | ${flow_index}
-| | ${flow_index} = | And VPP Ipsec Flow Enale Rss
+| | ${flow_index} = | And VPP Ipsec Flow Enable Rss
 | | ... | ${dut2} | IPSEC_ESP | esp | default
 | | And VPP Flow Enable | ${dut2} | ${DUT2_${int}1}[0] | ${flow_index}
 | | And VPP IPsec Add Multiple Tunnels
