@@ -16,6 +16,46 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDhoststack",
       "revId": "ebd408550103fc19fcd50f5d584c046cbd6f4499",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b0bd07b_631b1718",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-22T11:59:19Z",
+      "side": 1,
+      "message": "The non-dma tests\u0027 performance is not affected and this is an improvement, so I prefer to have this merged before I start working on my hostsack improvements. For the few doubts I have, they could be fixed later, without big edits.\n\nGerrit sees a merge conflict, but locally my git rebases without any issues.",
+      "revId": "ebd408550103fc19fcd50f5d584c046cbd6f4499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc78191_74430e72",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-22T11:59:19Z",
+      "side": 1,
+      "message": "Is this really needed? If it is useful, it would probably be useful also for non-dma tests.",
+      "range": {
+        "startLine": 701,
+        "startChar": 27,
+        "endLine": 701,
+        "endChar": 40
+      },
+      "revId": "ebd408550103fc19fcd50f5d584c046cbd6f4499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
