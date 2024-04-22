@@ -67,6 +67,23 @@
       "message": "It seems all failures are due to AVF, dpdk driver passes so far.",
       "revId": "5ba25d499683ba5fa8e0e14ede051fcd4643e008",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d1f49c2_03ad2265",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-22T18:46:08Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "5ba25d499683ba5fa8e0e14ede051fcd4643e008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
