@@ -16,6 +16,23 @@
       "message": "Hello? Tox job? Would you like to start? Please?\nrecheck",
       "revId": "92fbedc4cbd4376f4d43416401d3438ee923984b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26621a6f_91fec5ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-22T10:57:25Z",
+      "side": 1,
+      "message": "Tox is fine [0], device cannot be affected.\n\n[0] https://jenkins.fd.io/view/csit/job/csit-verify-tox-master-ubuntu2204-x86_64/3340/",
+      "revId": "92fbedc4cbd4376f4d43416401d3438ee923984b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
