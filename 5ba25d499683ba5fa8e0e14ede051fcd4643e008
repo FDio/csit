@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9513c6fa_8c8632c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-22T14:41:21Z",
+      "side": 1,
+      "message": "Tox passes: https://jenkins.fd.io/view/csit/job/csit-verify-tox-master-ubuntu2204-x86_64/3341/",
+      "revId": "5ba25d499683ba5fa8e0e14ede051fcd4643e008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
