@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Intel and/or its affiliates.
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -35,7 +35,7 @@
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 for IPv6 routing.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv6 routing \
-| ... | 2x500k static IPv6 /64 route entries. DUT1 is tested with ${nic_name}.
+| ... | 2x500k static IPv6 /128 route entries. DUT1 is tested with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \

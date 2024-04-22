@@ -34,7 +34,7 @@
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 for IPv6 routing.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with IPv6 \
-| ... | routing and 6x10k static IPv6 /64 route entries. DUT1 and DUT2 tested \
+| ... | routing and 6x10k static IPv6 /128 route entries. DUT1 and DUT2 tested \
 | ... | with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
