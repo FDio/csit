@@ -57,4 +57,7 @@ select_topology || die
 activate_docker_topology || die
 run_robot || die
 move_archives || die
+# Comment-out the following line if tests become unstable or some infra issue.
+# This will unblock VPP, at the risk of merging a breaking Change.
+# Do not forget to merge to oper branch!
 die_on_robot_error || die
