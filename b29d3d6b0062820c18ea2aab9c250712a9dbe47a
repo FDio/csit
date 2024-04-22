@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2eca37a_b25f4495",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-22T12:05:25Z",
+      "side": 1,
+      "message": "Gerrit is currently unable to trigger Jenkins runs, but I say nothing is likely to break when we trust the previous verify.",
+      "revId": "b29d3d6b0062820c18ea2aab9c250712a9dbe47a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
