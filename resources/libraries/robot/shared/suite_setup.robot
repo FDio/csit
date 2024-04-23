@@ -228,9 +228,10 @@
 | | | ... | numvfs=${0} | osi_layer=${osi_layer}
 | | END
 
-| Additional Suite Setup Action For performance
+| Additional Suite Setup Action For performance_no_tg
 | | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement.
+| | ... | Additional Setup for suites which use VPP for performance measurement,
+| | ... | but without any TG. Mostly used by hoststack performance tests.
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${nic_vfs} > 0
@@ -238,10 +239,6 @@
 | | | ... | ELSE
 | | | ... | Additional Suite Setup Action For performance pf | ${dut}
 | | END
-| | ${type} = | Get TG Type | ${nodes}[TG]
-| | ${version} = | Get TG Version | ${nodes}[TG]
-| | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
 
 | Additional Suite Setup Action For performance_tg_nic
 | | [Documentation]
@@ -253,6 +250,13 @@
 | | Export Dut Type And Version | ${type} | ${version}
 | | Export TG Type And Version | ${type} | ${version}
 | | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
+
+| Additional Suite Setup Action For performance
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement.
+| |
+| | Additional Suite Setup Action For performance_no_tg
+| | Additional Suite Setup Action For performance_tg_nic
 
 | Additional Suite Setup Action For iPerf3
 | | [Documentation]
