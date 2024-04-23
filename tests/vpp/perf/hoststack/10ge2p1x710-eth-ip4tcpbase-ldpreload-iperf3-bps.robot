@@ -22,7 +22,8 @@
 | ... | LDPRELOAD | IPERF3 | 1CLIENT | 1STREAM | 1460B
 | ... | eth-ip4tcpbase-ldpreload-iperf3
 |
-| Suite Setup | Setup suite topology interfaces with no TG | iPerf3
+| Suite Setup | Setup suite topology interfaces with no TG
+| ... | performance_no_tg | iPerf3
 | Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test

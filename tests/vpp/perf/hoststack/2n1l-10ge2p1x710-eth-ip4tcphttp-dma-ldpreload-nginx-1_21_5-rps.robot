@@ -20,7 +20,8 @@
 | ... | TCP_RPS | DMA
 | ... | eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5
 |
-| Suite Setup | Setup suite topology interfaces | ab | nginx
+| Suite Setup | Setup suite topology interfaces
+| ... | performance_no_tg | ab | nginx
 | Suite Teardown | Tear down suite | ab
 | Test Setup | Setup test
 | Test Teardown | Tear down test | nginx

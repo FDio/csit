@@ -19,7 +19,8 @@
 | ... | HOSTSTACK | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1_21_5
 |
-| Suite Setup | Setup suite topology interfaces | ab | nginx
+| Suite Setup | Setup suite topology interfaces
+| ... | performance_no_tg | ab | nginx
 | Suite Teardown | Tear down suite | ab
 | Test Setup | Setup test
 | Test Teardown | Tear down test | nginx

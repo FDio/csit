@@ -102,6 +102,8 @@
 | | ... | Compute path for testing on given topology nodes in circular topology
 | | ... | based on interface model provided as an argument and set
 | | ... | corresponding suite variables.
+| | ... |
+| | ... | Note that for NGINX tests, TG node is used for AB, so do not use this.
 | |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional setup action. Type: list
@@ -228,20 +230,21 @@
 | | | ... | numvfs=${0} | osi_layer=${osi_layer}
 | | END
 
-| Additional Suite Setup Action For performance
+| Additional Suite Setup Action For performance_no_tg
 | | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement.
+| | ... | Additional Setup for suites which use VPP for performance measurement,
+| | ... | but without any TG. Mostly used by hoststack performance tests.
+| | ... |
+| | ... | Note that NGINX tests do not use TRex so use this.
 | |
+| | ${osi_layer} = | Get Variable Value | \${osi_layer} | L7
+| | Set Suite Variable | \${osi_layer}
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${nic_vfs} > 0
 | | | ... | Additional Suite Setup Action For performance vf | ${dut}
 | | | ... | ELSE
 | | | ... | Additional Suite Setup Action For performance pf | ${dut}
 | | END
-| | ${type} = | Get TG Type | ${nodes}[TG]
-| | ${version} = | Get TG Version | ${nodes}[TG]
-| | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
 
 | Additional Suite Setup Action For performance_tg_nic
 | | [Documentation]
@@ -253,6 +256,13 @@
 | | Export Dut Type And Version | ${type} | ${version}
 | | Export TG Type And Version | ${type} | ${version}
 | | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
+
+| Additional Suite Setup Action For performance
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement.
+| |
+| | Additional Suite Setup Action For performance_no_tg
+| | Additional Suite Setup Action For performance_tg_nic
 
 | Additional Suite Setup Action For iPerf3
 | | [Documentation]
