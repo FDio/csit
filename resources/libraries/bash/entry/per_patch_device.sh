@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,4 +57,7 @@ select_topology || die
 activate_docker_topology || die
 run_robot || die
 move_archives || die
+# Comment-out the following line if tests become unstable or some infra issue.
+# This will unblock VPP, at the risk of merging a breaking Change.
+# Do not forget to merge to oper branch!
 die_on_robot_error || die
