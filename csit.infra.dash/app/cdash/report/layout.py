@@ -166,10 +166,7 @@ class Layout:
                 tst_params["core"].append(core.upper())
             if framesize.upper() not in tst_params["frame-size"]:
                 tst_params["frame-size"].append(framesize.upper())
-            if row["test_type"] == "mrr":
-                if "MRR" not in tst_params["test-type"]:
-                    tst_params["test-type"].append("MRR")
-            elif row["test_type"] == "ndrpdr":
+            if row["test_type"] == "ndrpdr":
                 if "NDR" not in tst_params["test-type"]:
                     tst_params["test-type"].extend(("NDR", "PDR", ))
             elif row["test_type"] == "hoststack" and \
@@ -179,6 +176,9 @@ class Layout:
             elif row["test_type"] == "hoststack" and row["tg_type"] == "ab":
                 if "CPS" not in tst_params["test-type"]:
                     tst_params["test-type"].extend(("CPS", "RPS"))
+            else:  # MRR, SOAK
+                if row["test_type"].upper() not in tst_params["test-type"]:
+                    tst_params["test-type"].append(row["test_type"].upper())
         self._spec_tbs = tbs
 
         # Read from files:

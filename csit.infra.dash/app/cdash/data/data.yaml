@@ -87,6 +87,27 @@
     - telemetry
     - test_id
     - version
+# - data_type: trending
+#   partition: test_type
+#   partition_name: soak
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+#   schema: trending_hoststack
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - tg_type
+#     - result_critical_rate_lower_bandwidth_unit
+#     - result_critical_rate_lower_bandwidth_value
+#     - result_critical_rate_lower_rate_unit
+#     - result_critical_rate_lower_rate_value
+#     - start_time
+#     - passed
+#     - telemetry
+#     - test_id
+#     - version
 - data_type: iterative
   partition: test_type
   partition_name: mrr
@@ -98,6 +119,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - start_time
     - passed
     - test_id
@@ -117,6 +139,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - start_time
     - passed
     - test_id
@@ -146,6 +169,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - tg_type
     - result_bandwidth_unit
     - result_bandwidth_value
@@ -207,6 +231,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - start_time
     - passed
     - test_id
@@ -226,6 +251,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - start_time
     - passed
     - test_id
@@ -259,6 +285,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - tg_type
     - result_bandwidth_unit
     - result_bandwidth_value
@@ -338,6 +365,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - start_time
     - passed
     - test_id
@@ -361,6 +389,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - start_time
     - passed
     - test_id
@@ -394,6 +423,7 @@
     - build
     - dut_type
     - dut_version
+    # - hosts
     - tg_type
     - result_bandwidth_unit
     - result_bandwidth_value

@@ -171,6 +171,9 @@ class Layout:
             elif row["test_type"] == "hoststack" and row["tg_type"] == "ab":
                 if "CPS" not in tbs[dut][dver][infra]["ttype"]:
                     tbs[dut][dver][infra]["ttype"].extend(("CPS", "RPS", ))
+            elif row["test_type"] == "soak":
+                if "SOAK" not in tbs[dut][dver][infra]["ttype"]:
+                    tbs[dut][dver][infra]["ttype"].append("SOAK")
         self._tbs = tbs
 
         # Read from files:

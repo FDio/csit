@@ -219,7 +219,7 @@ class Data:
             try:
                 # Specify the condition or remove it:
                 if all((
-                        pd.api.types.is_string_dtype(itm["column_name"]),
+                        pd.api.types.is_string_dtype(itm["result_receive_rate_rate_unit"]),
                         pd.api.types.is_string_dtype(itm["telemetry"][0])
                     )):
                     schema = pa.Schema.from_pandas(itm)

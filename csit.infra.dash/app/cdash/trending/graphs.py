@@ -50,6 +50,8 @@ def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
         test_type = "ndrpdr"
     elif itm["testtype"] == "mrr":
         test_type = "mrr"
+    elif itm["testtype"] == "soak":
+        test_type = "soak"
     elif itm["area"] == "hoststack":
         test_type = "hoststack"
     df = data.loc[(
@@ -194,6 +196,20 @@ def graph_trending(
                     f"bandwidth [{row['result_bandwidth_unit']}]: "
                     f"{row['result_bandwidth_value'] * nf:,.0f}<br>"
                 )
+            elif ttype in ("soak", "soak-bandwidth"):
+                h_tput = (
+                    f"tput [{row['result_critical_rate_lower_rate_unit']}]: "
+                    f"{row['result_critical_rate_lower_rate_value'] * nf:,.0f}"
+                    "<br>"
+                )
+                if pd.notna(row["result_critical_rate_lower_bandwidth_value"]):
+                    bv = row['result_critical_rate_lower_bandwidth_value']
+                    h_band = (
+                        "bandwidth "
+                        f"[{row['result_critical_rate_lower_bandwidth_unit']}]:"
+                        f" {bv * nf:,.0f}"
+                        "<br>"
+                    )
             hover_itm = (
                 f"dut: {name_lst[0]}<br>"
                 f"infra: {'-'.join(name_lst[1:5])}<br>"
@@ -379,7 +395,7 @@ def graph_trending(
                 fig_tput = go.Figure()
             fig_tput.add_traces(traces)
 
-        if ttype in ("ndr", "pdr", "mrr", "hoststack-cps", "hoststack-rps"):
+        if ttype in C.TESTS_WITH_BANDWIDTH:
             traces, _ = _generate_trending_traces(
                 f"{ttype}-bandwidth",
                 itm["id"],
@@ -392,7 +408,7 @@ def graph_trending(
                     fig_band = go.Figure()
                 fig_band.add_traces(traces)
 
-        if ttype in ("pdr", "hoststack-cps", "hoststack-rps"):
+        if ttype in C.TESTS_WITH_LATENCY:
             traces, _ = _generate_trending_traces(
                 "latency" if ttype == "pdr" else "hoststack-latency",
                 itm["id"],
