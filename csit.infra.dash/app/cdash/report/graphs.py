@@ -51,6 +51,8 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
         test_type = "ndrpdr"
     elif itm["testtype"] == "mrr":
         test_type = "mrr"
+    elif itm["testtype"] == "soak":
+        test_type = "soak"
     elif itm["area"] == "hoststack":
         test_type = "hoststack"
     df = data.loc[(
@@ -190,6 +192,10 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
             trial_run = "run"
             for _, row in itm_data.iterrows():
                 metadata["csit-ref"] = f"{row['job']}/{row['build']}"
+                try:
+                    metadata["hosts"] = ", ".join(row["hosts"])
+                except (KeyError, TypeError):
+                    pass
                 customdata.append({"metadata": deepcopy(metadata)})
         tput_kwargs = dict(
             y=y_data,
@@ -207,7 +213,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
         )
         tput_traces.append(go.Box(**tput_kwargs))
 
-        if ttype in ("ndr", "pdr", "mrr"):
+        if ttype in C.TESTS_WITH_BANDWIDTH:
             y_band, y_band_max = get_y_values(
                 itm_data,
                 y_band_max,
@@ -237,7 +243,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
                 x_band.append(idx + 1)
                 band_traces.append(go.Box(**band_kwargs))
 
-        if ttype == "pdr":
+        if ttype in C.TESTS_WITH_LATENCY:
             y_lat, y_lat_max = get_y_values(
                 itm_data,
                 y_lat_max,
@@ -281,7 +287,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
         pl_tput["xaxis"]["ticktext"] = [str(i + 1) for i in range(len(sel))]
         pl_tput["yaxis"]["title"] = f"Throughput [{'|'.join(sorted(y_units))}]"
         if y_tput_max:
-            pl_tput["yaxis"]["range"] = [0, int(y_tput_max) + 2e6]
+            pl_tput["yaxis"]["range"] = [0, int(y_tput_max) * 1.1]
         fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
 
     if band_traces:
@@ -291,7 +297,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
         pl_band["yaxis"]["title"] = \
             f"Bandwidth [{'|'.join(sorted(y_band_units))}]"
         if y_band_max:
-            pl_band["yaxis"]["range"] = [0, int(y_band_max) + 2e9]
+            pl_band["yaxis"]["range"] = [0, int(y_band_max) * 1.1]
         fig_band = go.Figure(data=band_traces, layout=pl_band)
 
     if lat_traces:

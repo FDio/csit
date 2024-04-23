@@ -784,7 +784,7 @@ class Layout:
                             dbc.Badge(lst_itm[0]),
                             html.A(
                                 lst_itm[1],
-                                href=f"{C.URL_JENKINS}{lst_itm[1]}",
+                                href=f"{C.URL_LOGS}{lst_itm[1]}",
                                 target="_blank"
                             )
                         ])

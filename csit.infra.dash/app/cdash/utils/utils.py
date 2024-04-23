@@ -710,7 +710,7 @@ def show_trending_graph_data(
                 dbc.Badge(lst_itm[0]),
                 html.A(
                     lst_itm[1],
-                    href=f"{C.URL_JENKINS}{lst_itm[1]}",
+                    href=f"{C.URL_LOGS}{lst_itm[1]}",
                     target="_blank"
                 )
             ])
@@ -842,7 +842,7 @@ def show_iterative_graph_data(
                 continue
             list_group_item = dbc.ListGroupItem([
                 dbc.Badge(k),
-                html.A(v, href=f"{C.URL_JENKINS}{v}", target="_blank")
+                html.A(v, href=f"{C.URL_LOGS}{v}", target="_blank")
             ])
         else:
             list_group_item = dbc.ListGroupItem([dbc.Badge(k), v])
