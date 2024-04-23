@@ -84,6 +84,23 @@
       "message": "recheck",
       "revId": "5ba25d499683ba5fa8e0e14ede051fcd4643e008",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d9d6c2_af763e28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-23T08:22:38Z",
+      "side": 1,
+      "message": "Density tests were failing also before, so this does not break anything new.",
+      "revId": "5ba25d499683ba5fa8e0e14ede051fcd4643e008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
