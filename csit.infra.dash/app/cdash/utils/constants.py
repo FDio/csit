@@ -47,6 +47,9 @@ class Constants:
     # URL to Jenkins
     URL_JENKINS = "https://jenkins.fd.io/job/"
 
+    # URL to logs
+    URL_LOGS = "https://s3-logs.fd.io/vex-yul-rot-jenkins-1/"
+
     # URL to the documentation
     URL_DOC_TRENDING = "https://csit.fd.io/cdocs/methodology/trending/analysis/"
     URL_DOC_REL_NOTES = "https://csit.fd.io/cdocs/release_notes/current/"
@@ -242,7 +245,9 @@ class Constants:
         "hoststack-cps-bandwidth": "result_bandwidth_value",
         "hoststack-rps-bandwidth": "result_bandwidth_value",
         "hoststack-bps": "result_bandwidth_value",
-        "hoststack-latency": "result_latency_value"
+        "hoststack-latency": "result_latency_value",
+        "soak": "result_critical_rate_lower_rate_value",
+        "soak-bandwidth": "result_critical_rate_lower_bandwidth_value"
     }
 
     VALUE_ITER = {
@@ -255,8 +260,12 @@ class Constants:
         "latency": "result_latency_forward_pdr_50_avg",
         "hoststack-cps": "result_rate_value",
         "hoststack-rps": "result_rate_value",
+        "hoststack-cps-bandwidth": "result_bandwidth_value",
+        "hoststack-rps-bandwidth": "result_bandwidth_value",
         "hoststack-bps": "result_bandwidth_value",
-        "hoststack-latency": "result_latency_value"
+        "hoststack-latency": "result_latency_value",
+        "soak": "result_critical_rate_lower_rate_value",
+        "soak-bandwidth": "result_critical_rate_lower_bandwidth_value"
     }
 
     UNIT = {
@@ -272,8 +281,24 @@ class Constants:
         "hoststack-cps-bandwidth": "result_bandwidth_unit",
         "hoststack-rps-bandwidth": "result_bandwidth_unit",
         "hoststack-bps": "result_bandwidth_unit",
-        "hoststack-latency": "result_latency_unit"
+        "hoststack-latency": "result_latency_unit",
+        "soak": "result_critical_rate_lower_rate_unit",
+        "soak-bandwidth": "result_critical_rate_lower_bandwidth_unit"
     }
+
+    TESTS_WITH_BANDWIDTH = (
+        "ndr",
+        "pdr",
+        "mrr",
+        "hoststack-cps",
+        "hoststack-rps",
+        "soak"
+    )
+    TESTS_WITH_LATENCY = (
+        "pdr",
+        "hoststack-cps",
+        "hoststack-rps"
+    )
 
     # Latencies.
     LAT_HDRH = (  # Do not change the order

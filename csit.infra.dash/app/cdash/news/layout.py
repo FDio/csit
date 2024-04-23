@@ -182,20 +182,20 @@ class Layout:
                             _create_test_name(test).replace("-ndrpdr", "-pdr"),
                             x_axis[_get_rindex(anomalies, "regression")]
                         ))
-                else:  # mrr
-                    tst_data = tst_data.dropna(
-                        subset=["result_receive_rate_rate_avg", ]
-                    )
+                else:  # mrr, hoststack, soak
+                    if "soak" in test:
+                        val = "result_critical_rate_lower_rate_value"
+                    elif "hoststack" in test:
+                        val = "result_rate_value"
+                    else:  # mrr
+                        val = "result_receive_rate_rate_avg"
+                    tst_data = tst_data.dropna(subset=[val, ])
                     if tst_data.empty:
                         continue
                     x_axis = tst_data["start_time"].tolist()
                     try:
                         anomalies, _, _ = classify_anomalies({
-                            k: v for k, v in zip(
-                                x_axis,
-                                tst_data["result_receive_rate_rate_avg"].\
-                                    tolist()
-                            )
+                            k: v for k, v in zip(x_axis, tst_data[val].tolist())
                         })
                     except ValueError:
                         continue
