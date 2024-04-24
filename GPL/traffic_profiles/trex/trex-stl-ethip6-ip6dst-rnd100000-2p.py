@@ -47,14 +47,12 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "2100::1",
                 "dst_start_ip": "2200::0",
                 "dst_end_ip": "2200::1:869F",
-                "seed": 1
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2200::1",
                 "dst_start_ip": "2100::0",
                 "dst_end_ip": "2100::1:869F",
-                "seed": 2
             }
         ]
         self.pkt_base = []
@@ -84,12 +82,12 @@ class TrafficStreams(TrafficStreamsScaleClass):
             self.pkt_vm.append(
                 STLScVmRaw(
                     [
-                        STLVmFlowVar(
+                        STLVmFlowVarRepeatableRandom(
                             name="ipv6_dst",
                             min_value=base,
                             max_value=base + count,
                             size=8,
-                            seed=self.pkt_data[i]["seed"],
+                            seed=i + 1,
                             limit=(2**24 - 1)
                         ),
                         STLVmWrFlowVar(
