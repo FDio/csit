@@ -152,18 +152,16 @@
 | | ... | ${r_tunnel} | ${l_tunnel}
 | | VPP IPsec Add SPD | ${node} | ${spd_id}
 | | VPP IPsec SPD Add If | ${node} | ${spd_id} | ${interface}
-| | ${action}= | Policy Action Bypass
-| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
+| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_hi} | BYPASS
 | | ... | inbound=${TRUE} | proto=${ESP_PROTO} | is_ipv6=${is_ipv6}
 | | ... | laddr_range=${tg_tun_ip} | raddr_range=${dut_tun_ip}
-| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
+| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_hi} | BYPASS
 | | ... | inbound=${FALSE} | proto=${ESP_PROTO} | is_ipv6=${is_ipv6}
 | | ... | laddr_range=${dut_tun_ip} | raddr_range=${tg_tun_ip}
-| | ${action}= | Policy Action Protect
-| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
+| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_lo} | PROTECT
 | | ... | sa_id=${r_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${TRUE}
-| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
+| | VPP IPsec Add SPD Entry | ${node} | ${spd_id} | ${p_lo} | PROTECT
 | | ... | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${FALSE}
 
