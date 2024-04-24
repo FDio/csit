@@ -24,6 +24,7 @@ from typing import Iterable, List, Optional, Sequence, Tuple, Union
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.enum_util import get_enum_instance
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import (
     InterfaceUtil,
@@ -60,27 +61,32 @@ def gen_key(length: int) -> bytes:
     )
 
 
-class PolicyAction(Enum):
-    """Policy actions."""
+class IpsecSpdAction(Enum):
+    """Policy actions.
 
-    BYPASS = ("bypass", 0)
+    Mirroring VPP: src/vnet/ipsec/ipsec_types.api enum ipsec_spd_action.
+    """
+
+    BYPASS = NONE = ("bypass", 0)
     DISCARD = ("discard", 1)
+    RESOLVE = ("resolve", 2)
     PROTECT = ("protect", 3)
 
-    def __init__(self, policy_name: str, policy_int_repr: int):
-        self.policy_name = policy_name
-        self.policy_int_repr = policy_int_repr
+    def __init__(self, action_name: str, action_int_repr: int):
+        self.action_name = action_name
+        self.action_int_repr = action_int_repr
 
     def __str__(self) -> str:
-        return self.policy_name
+        return self.action_name
 
     def __int__(self) -> int:
-        return self.policy_int_repr
+        return self.action_int_repr
 
 
 class CryptoAlg(Enum):
     """Encryption algorithms."""
 
+    NONE = ("none", 0, "none", 0)
     AES_CBC_128 = ("aes-cbc-128", 1, "AES-CBC", 16)
     AES_CBC_256 = ("aes-cbc-256", 3, "AES-CBC", 32)
     AES_GCM_128 = ("aes-gcm-128", 7, "AES-GCM", 16)
@@ -94,10 +100,16 @@ class CryptoAlg(Enum):
         self.scapy_name = scapy_name
         self.key_len = key_len
 
+    # TODO: Investigate if __int__ works with PAPI. It was not enough for "if".
+    def __bool__(self):
+        """A shorthand to enable "if crypto_alg:" constructs."""
+        return self.alg_int_repr != 0
+
 
 class IntegAlg(Enum):
     """Integrity algorithm."""
 
+    NONE = ("none", 0, "none", 0)
     SHA_256_128 = ("sha-256-128", 4, "SHA2-256-128", 32)
     SHA_512_256 = ("sha-512-256", 6, "SHA2-512-256", 64)
 
@@ -108,6 +120,10 @@ class IntegAlg(Enum):
         self.alg_int_repr = alg_int_repr
         self.scapy_name = scapy_name
         self.key_len = key_len
+
+    def __bool__(self):
+        """A shorthand to enable "if integ_alg:" constructs."""
+        return self.alg_int_repr != 0
 
 
 class IPsecProto(IntEnum):
@@ -120,7 +136,7 @@ class IPsecProto(IntEnum):
 class IPsecSadFlags(IntEnum):
     """IPsec Security Association Database flags."""
 
-    IPSEC_API_SAD_FLAG_NONE = 0
+    IPSEC_API_SAD_FLAG_NONE = NONE = 0
     # Enable extended sequence numbers
     IPSEC_API_SAD_FLAG_USE_ESN = 0x01
     # Enable Anti - replay
@@ -139,7 +155,7 @@ class IPsecSadFlags(IntEnum):
 class TunnelEncpaDecapFlags(IntEnum):
     """Flags controlling tunnel behaviour."""
 
-    TUNNEL_API_ENCAP_DECAP_FLAG_NONE = 0
+    TUNNEL_API_ENCAP_DECAP_FLAG_NONE = NONE = 0
     # at encap, copy the DF bit of the payload into the tunnel header
     TUNNEL_API_ENCAP_DECAP_FLAG_ENCAP_COPY_DF = 1
     # at encap, set the DF bit in the tunnel header
@@ -156,7 +172,7 @@ class TunnelMode(IntEnum):
     """Tunnel modes."""
 
     # point-to-point
-    TUNNEL_API_MODE_P2P = 0
+    TUNNEL_API_MODE_P2P = NONE = 0
     # multi-point
     TUNNEL_API_MODE_MP = 1
 
@@ -164,150 +180,59 @@ class TunnelMode(IntEnum):
 class IPsecUtil:
     """IPsec utilities."""
 
-    @staticmethod
-    def policy_action_bypass() -> PolicyAction:
-        """Return policy action bypass.
-
-        :returns: PolicyAction enum BYPASS object.
-        :rtype: PolicyAction
-        """
-        return PolicyAction.BYPASS
+    # The following 4 methods are Python one-liners,
+    # but they are useful when called as a Robot keyword.
 
     @staticmethod
-    def policy_action_discard() -> PolicyAction:
-        """Return policy action discard.
-
-        :returns: PolicyAction enum DISCARD object.
-        :rtype: PolicyAction
-        """
-        return PolicyAction.DISCARD
-
-    @staticmethod
-    def policy_action_protect() -> PolicyAction:
-        """Return policy action protect.
-
-        :returns: PolicyAction enum PROTECT object.
-        :rtype: PolicyAction
-        """
-        return PolicyAction.PROTECT
-
-    @staticmethod
-    def crypto_alg_aes_cbc_128() -> CryptoAlg:
-        """Return encryption algorithm aes-cbc-128.
-
-        :returns: CryptoAlg enum AES_CBC_128 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_CBC_128
-
-    @staticmethod
-    def crypto_alg_aes_cbc_256() -> CryptoAlg:
-        """Return encryption algorithm aes-cbc-256.
-
-        :returns: CryptoAlg enum AES_CBC_256 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_CBC_256
-
-    @staticmethod
-    def crypto_alg_aes_gcm_128() -> CryptoAlg:
-        """Return encryption algorithm aes-gcm-128.
-
-        :returns: CryptoAlg enum AES_GCM_128 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_GCM_128
-
-    @staticmethod
-    def crypto_alg_aes_gcm_256() -> CryptoAlg:
-        """Return encryption algorithm aes-gcm-256.
-
-        :returns: CryptoAlg enum AES_GCM_128 object.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_GCM_256
-
-    @staticmethod
-    def get_crypto_alg_key_len(crypto_alg: CryptoAlg) -> int:
+    def get_crypto_alg_key_len(crypto_alg: Union[CryptoAlg, str, None]) -> int:
         """Return encryption algorithm key length.
 
+        This is a Python one-liner, but useful when called as a Robot keyword.
+
         :param crypto_alg: Encryption algorithm.
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :returns: Key length.
         :rtype: int
         """
-        return crypto_alg.key_len
+        return get_enum_instance(CryptoAlg, crypto_alg).key_len
 
     @staticmethod
-    def get_crypto_alg_scapy_name(crypto_alg: CryptoAlg) -> str:
+    def get_crypto_alg_scapy_name(
+        crypto_alg: Union[CryptoAlg, str, None]
+    ) -> str:
         """Return encryption algorithm scapy name.
 
+        This is a Python one-liner, but useful when called as a Robot keyword.
+
         :param crypto_alg: Encryption algorithm.
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :returns: Algorithm scapy name.
         :rtype: str
         """
-        return crypto_alg.scapy_name
+        return get_enum_instance(CryptoAlg, crypto_alg).scapy_name
 
+    # The below to keywords differ only by enum type conversion from str.
     @staticmethod
-    def integ_alg_sha_256_128() -> IntegAlg:
-        """Return integrity algorithm SHA-256-128.
-
-        :returns: IntegAlg enum SHA_256_128 object.
-        :rtype: IntegAlg
-        """
-        return IntegAlg.SHA_256_128
-
-    @staticmethod
-    def integ_alg_sha_512_256() -> IntegAlg:
-        """Return integrity algorithm SHA-512-256.
-
-        :returns: IntegAlg enum SHA_512_256 object.
-        :rtype: IntegAlg
-        """
-        return IntegAlg.SHA_512_256
-
-    @staticmethod
-    def get_integ_alg_key_len(integ_alg: Optional[IntegAlg]) -> int:
+    def get_integ_alg_key_len(integ_alg: Union[IntegAlg, str, None]) -> int:
         """Return integrity algorithm key length.
 
-        None argument is accepted, returning zero.
-
         :param integ_alg: Integrity algorithm.
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :returns: Key length.
         :rtype: int
         """
-        return 0 if integ_alg is None else integ_alg.key_len
+        return get_enum_instance(IntegAlg, integ_alg).key_len
 
     @staticmethod
-    def get_integ_alg_scapy_name(integ_alg: Optional[IntegAlg]) -> str:
+    def get_integ_alg_scapy_name(integ_alg: Union[IntegAlg, str, None]) -> str:
         """Return integrity algorithm scapy name.
 
         :param integ_alg: Integrity algorithm.
-        :type integ_alg: IntegAlg
+        :type integ_alg: Union[IntegAlg, str, None]
         :returns: Algorithm scapy name.
         :rtype: str
         """
-        return integ_alg.scapy_name
-
-    @staticmethod
-    def ipsec_proto_esp() -> int:
-        """Return IPSec protocol ESP.
-
-        :returns: IPsecProto enum ESP object.
-        :rtype: IPsecProto
-        """
-        return int(IPsecProto.IPSEC_API_PROTO_ESP)
-
-    @staticmethod
-    def ipsec_proto_ah() -> int:
-        """Return IPSec protocol AH.
-
-        :returns: IPsecProto enum AH object.
-        :rtype: IPsecProto
-        """
-        return int(IPsecProto.IPSEC_API_PROTO_AH)
+        return get_enum_instance(IntegAlg, integ_alg).scapy_name
 
     @staticmethod
     def vpp_ipsec_select_backend(
@@ -420,9 +345,9 @@ class IPsecUtil:
         node: dict,
         sad_id: int,
         spi: int,
-        crypto_alg: CryptoAlg,
-        crypto_key: str,
-        integ_alg: Optional[IntegAlg] = None,
+        crypto_alg: Union[CryptoAlg, str, None] = None,
+        crypto_key: str = "",
+        integ_alg: Union[IntegAlg, str, None] = None,
         integ_key: str = "",
         tunnel_src: Optional[str] = None,
         tunnel_dst: Optional[str] = None,
@@ -443,13 +368,15 @@ class IPsecUtil:
         :type node: dict
         :type sad_id: int
         :type spi: int
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :type crypto_key: str
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type integ_key: str
         :type tunnel_src: Optional[str]
         :type tunnel_dst: Optional[str]
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         if isinstance(crypto_key, str):
             crypto_key = crypto_key.encode(encoding="utf-8")
         if isinstance(integ_key, str):
@@ -480,7 +407,7 @@ class IPsecUtil:
             spi=int(spi),
             crypto_algorithm=crypto_alg.alg_int_repr,
             crypto_key=ckey,
-            integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+            integrity_algorithm=integ_alg.alg_int_repr,
             integrity_key=ikey,
             flags=flags,
             tunnel=dict(
@@ -507,9 +434,9 @@ class IPsecUtil:
         n_entries: int,
         sad_id: int,
         spi: int,
-        crypto_alg: CryptoAlg,
-        crypto_key: str,
-        integ_alg: Optional[IntegAlg] = None,
+        crypto_alg: Union[CryptoAlg, str, None] = None,
+        crypto_key: str = "",
+        integ_alg: Union[IntegAlg, str, None] = None,
         integ_key: str = "",
         tunnel_src: Optional[str] = None,
         tunnel_dst: Optional[str] = None,
@@ -537,14 +464,16 @@ class IPsecUtil:
         :type n_entries: int
         :type sad_id: int
         :type spi: int
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :type crypto_key: str
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type integ_key: str
         :type tunnel_src: Optional[str]
         :type tunnel_dst: Optional[str]
         :type tunnel_addr_incr: bool
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         if isinstance(crypto_key, str):
             crypto_key = crypto_key.encode(encoding="utf-8")
         if isinstance(integ_key, str):
@@ -585,7 +514,7 @@ class IPsecUtil:
             spi=int(spi),
             crypto_algorithm=crypto_alg.alg_int_repr,
             crypto_key=ckey,
-            integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+            integrity_algorithm=integ_alg.alg_int_repr,
             integrity_key=ikey,
             flags=flags,
             tunnel=dict(
@@ -774,7 +703,7 @@ class IPsecUtil:
         entry_amount: int,
         local_addr_range: Union[str, IPv4Address, IPv6Address],
         remote_addr_range: Union[str, IPv4Address, IPv6Address],
-        action: PolicyAction = PolicyAction.BYPASS,
+        action: Union[IpsecSpdAction, str, None] = IpsecSpdAction.BYPASS,
         inbound: bool = False,
         bidirectional: bool = True,
     ) -> None:
@@ -814,13 +743,13 @@ class IPsecUtil:
             Union[str, IPv4Address, IPv6Address]
         :type remote_addr_range:
             Union[str, IPv4Address, IPv6Address]
-        :type action: PolicyAction
+        :type action: Union[IpsecSpdAction, str, None]
         :type inbound: bool
         :type bidirectional: bool
-        :raises NotImplementedError: When the action is PolicyAction.PROTECT.
+        :raises NotImplementedError: When the action is IpsecSpdAction.PROTECT.
         """
-
-        if action == PolicyAction.PROTECT:
+        action = get_enum_instance(IpsecSpdAction, action)
+        if action == IpsecSpdAction.PROTECT:
             raise NotImplementedError("Policy action PROTECT is not supported.")
 
         spd_id_dir1 = 1
@@ -913,7 +842,7 @@ class IPsecUtil:
         executor: PapiSocketExecutor,
         spd_id: int,
         priority: int,
-        action: PolicyAction,
+        action: Union[IpsecSpdAction, str, None],
         inbound: bool = True,
         sa_id: Optional[int] = None,
         proto: Optional[int] = None,
@@ -935,7 +864,7 @@ class IPsecUtil:
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
             outbound.
-        :param sa_id: SAD entry ID for action PolicyAction.PROTECT.
+        :param sa_id: SAD entry ID for action IpsecSpdAction.PROTECT.
         :param proto: Policy selector next layer protocol number.
         :param laddr_range: Policy selector local IPv4 or IPv6 address range
             in format IP/prefix or IP/mask. If no mask is provided,
@@ -952,7 +881,7 @@ class IPsecUtil:
         :type executor: PapiSocketExecutor
         :type spd_id: int
         :type priority: int
-        :type action: PolicyAction
+        :type action: Union[IpsecSpdAction, str, None]
         :type inbound: bool
         :type sa_id: Optional[int]
         :type proto: Optional[int]
@@ -962,6 +891,7 @@ class IPsecUtil:
         :type rport_range: Optional[str]
         :type is_ipv6: bool
         """
+        action = get_enum_instance(IpsecSpdAction, action)
         if laddr_range is None:
             laddr_range = "::/0" if is_ipv6 else "0.0.0.0/0"
 
@@ -1013,7 +943,7 @@ class IPsecUtil:
         node: dict,
         spd_id: int,
         priority: int,
-        action: PolicyAction,
+        action: Union[IpsecSpdAction, str, None],
         inbound: bool = True,
         sa_id: Optional[int] = None,
         proto: Optional[int] = None,
@@ -1031,7 +961,7 @@ class IPsecUtil:
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
             outbound.
-        :param sa_id: SAD entry ID for action PolicyAction.PROTECT.
+        :param sa_id: SAD entry ID for action IpsecSpdAction.PROTECT.
         :param proto: Policy selector next layer protocol number.
         :param laddr_range: Policy selector local IPv4 or IPv6 address range
             in format IP/prefix or IP/mask. If no mask is provided,
@@ -1048,7 +978,7 @@ class IPsecUtil:
         :type node: dict
         :type spd_id: int
         :type priority: int
-        :type action: PolicyAction
+        :type action: Union[IpsecSpdAction, str, None]
         :type inbound: bool
         :type sa_id: Optional[int]
         :type proto: Optional[int]
@@ -1058,6 +988,7 @@ class IPsecUtil:
         :type rport_range: Optional[str]
         :type is_ipv6: bool
         """
+        action = get_enum_instance(IpsecSpdAction, action)
         err_msg = (
             "Failed to add entry to Security Policy Database"
             f" {spd_id} on host {node['host']}"
@@ -1085,7 +1016,7 @@ class IPsecUtil:
         n_entries: int,
         spd_id: int,
         priority: Optional[ObjIncrement],
-        action: PolicyAction,
+        action: Union[IpsecSpdAction, str, None],
         inbound: bool,
         sa_id: Optional[ObjIncrement] = None,
         proto: Optional[int] = None,
@@ -1104,7 +1035,7 @@ class IPsecUtil:
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
             outbound.
-        :param sa_id: SAD entry ID for action PolicyAction.PROTECT.
+        :param sa_id: SAD entry ID for action IpsecSpdAction.PROTECT.
         :param proto: Policy selector next layer protocol number.
         :param laddr_range: Policy selector local IPv4 or IPv6 address range
             in format IP/prefix or IP/mask. If no mask is provided,
@@ -1122,7 +1053,7 @@ class IPsecUtil:
         :type n_entries: int
         :type spd_id: int
         :type priority: Optional[ObjIncrement]
-        :type action: PolicyAction
+        :type action: Union[IpsecSpdAction, str, None]
         :type inbound: bool
         :type sa_id: Optional[ObjIncrement]
         :type proto: Optional[int]
@@ -1132,6 +1063,7 @@ class IPsecUtil:
         :type rport_range: Optional[str]
         :type is_ipv6: bool
         """
+        action = get_enum_instance(IpsecSpdAction, action)
         if laddr_range is None:
             laddr_range = "::/0" if is_ipv6 else "0.0.0.0/0"
             laddr_range = NetworkIncrement(ip_network(laddr_range), 0)
@@ -1253,8 +1185,8 @@ class IPsecUtil:
         if1_key: str,
         if2_key: str,
         n_tunnels: int,
-        crypto_alg: CryptoAlg,
-        integ_alg: Optional[IntegAlg],
+        crypto_alg: Union[CryptoAlg, str, None],
+        integ_alg: Union[IntegAlg, str, None],
         raddr_ip2: Union[IPv4Address, IPv6Address],
         addr_incr: int,
         spi_d: dict,
@@ -1285,8 +1217,8 @@ class IPsecUtil:
         :type if1_key: str
         :type if2_key: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type raddr_ip2: Union[IPv4Address, IPv6Address]
         :type addr_incr: int
         :type spi_d: dict
@@ -1368,7 +1300,7 @@ class IPsecUtil:
                 protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
                 crypto_algorithm=crypto_alg.alg_int_repr,
                 crypto_key=c_key,
-                integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+                integrity_algorithm=integ_alg.alg_int_repr,
                 integrity_key=i_key,
                 flags=common_flags,
                 tunnel=dict(
@@ -1387,12 +1319,8 @@ class IPsecUtil:
             )
             args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
-                ikeys.append(
-                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                )
+                ckeys.append(gen_key(crypto_alg.key_len))
+                ikeys.append(gen_key(integ_alg.key_len))
                 # SAD entry for outband / tx path
                 sad_entry["sad_id"] = i
                 sad_entry["spi"] = spi_d["spi_1"] + i
@@ -1532,15 +1460,17 @@ class IPsecUtil:
         :type tun_ips: dict
         :type if2_key: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
+        :type crypto_alg: Union[CryptoAlg, str, None]
         :type ckeys: Sequence[bytes]
-        :type integ_alg: Optional[IntegAlg]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type ikeys: Sequence[bytes]
         :type raddr_ip1: Union[IPv4Address, IPv6Address]
         :type addr_incr: int
         :type spi_d: dict
         :type existing_tunnels: int
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         with PapiSocketExecutor(nodes["DUT2"], is_async=True) as papi_exec:
             if not existing_tunnels:
                 # Set IP address on VPP node 2 interface
@@ -1608,7 +1538,7 @@ class IPsecUtil:
                 protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
                 crypto_algorithm=crypto_alg.alg_int_repr,
                 crypto_key=c_key,
-                integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
+                integrity_algorithm=integ_alg.alg_int_repr,
                 integrity_key=i_key,
                 flags=common_flags,
                 tunnel=dict(
@@ -1627,12 +1557,8 @@ class IPsecUtil:
             )
             args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
-                ikeys.append(
-                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                )
+                ckeys.append(gen_key(crypto_alg.key_len))
+                ikeys.append(gen_key(integ_alg.key_len))
                 # SAD entry for outband / tx path
                 sad_entry["sad_id"] = 100000 + i
                 sad_entry["spi"] = spi_d["spi_2"] + i
@@ -1749,8 +1675,8 @@ class IPsecUtil:
         if1_key: str,
         if2_key: str,
         n_tunnels: int,
-        crypto_alg: CryptoAlg,
-        integ_alg: Optional[IntegAlg],
+        crypto_alg: Union[CryptoAlg, str, None],
+        integ_alg: Union[IntegAlg, str, None],
         raddr_ip1: str,
         raddr_ip2: str,
         raddr_range: int,
@@ -1790,8 +1716,8 @@ class IPsecUtil:
         :type if1_key: str
         :type if2_key: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type raddr_ip1: str
         :type raddr_ip2: str
         :type raddr_range: int
@@ -1800,6 +1726,8 @@ class IPsecUtil:
         :returns: Ckeys, ikeys, spi_1, spi_2.
         :rtype: Optional[Tuple[List[bytes], List[bytes], int, int]]
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         n_tunnels = int(n_tunnels)
         existing_tunnels = int(existing_tunnels)
         spi_d = dict(spi_1=100000, spi_2=200000)
@@ -1896,8 +1824,8 @@ class IPsecUtil:
         if1_ip_addr: str,
         if2_ip_addr: str,
         n_tunnels: int,
-        crypto_alg: CryptoAlg,
-        integ_alg: Optional[IntegAlg],
+        crypto_alg: Union[CryptoAlg, str, None],
+        integ_alg: Union[IntegAlg, str, None],
         raddr_ip1: str,
         raddr_ip2: str,
         raddr_range: int,
@@ -1922,13 +1850,15 @@ class IPsecUtil:
         :type if1_ip_addr: str
         :type if2_ip_addr: str
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type raddr_ip1: str
         :type raddr_ip2: str
         :type raddr_range: int
         :type n_instances: int
         """
+        crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
+        integ_alg = get_enum_instance(IntegAlg, integ_alg)
         spi_1 = 100000
         spi_2 = 200000
         addr_incr = 1 << (32 - raddr_range)
@@ -1947,13 +1877,9 @@ class IPsecUtil:
 
         for tnl in range(0, n_tunnels):
             cnf = tnl % n_instances
-            ckey = getattr(
-                gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)), "hex"
-            )
+            ckey = getattr(gen_key(crypto_alg.key_len), "hex")
             integ = ""
-            ikey = getattr(
-                gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), "hex"
-            )
+            ikey = getattr(gen_key(integ_alg.key_len), "hex")
             if integ_alg:
                 integ = (
                     f"integ-alg {integ_alg.alg_name}"
@@ -2044,8 +1970,8 @@ class IPsecUtil:
         :type interface1: Union[str, int]
         :type interface2: Union[str, int]
         :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: Optional[IntegAlg]
+        :type crypto_alg: Union[CryptoAlg, str, None]
+        :type integ_alg: Union[IntegAlg, str, None]
         :type tunnel_ip1: str
         :type tunnel_ip2: str
         :type raddr_ip1: str
@@ -2061,15 +1987,8 @@ class IPsecUtil:
         spi_1 = 300000
         spi_2 = 400000
 
-        crypto_key = gen_key(
-            IPsecUtil.get_crypto_alg_key_len(crypto_alg)
-        ).decode()
-        integ_key = (
-            gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)).decode()
-            if integ_alg
-            else ""
-        )
-
+        crypto_key = gen_key(crypto_alg.key_len).decode()
+        integ_key = gen_key(integ_alg.key_len).decode()
         rmac = (
             Topology.get_interface_mac(nodes["DUT2"], interface2)
             if "DUT2" in nodes.keys()
@@ -2106,7 +2025,7 @@ class IPsecUtil:
                 nodes["DUT1"],
                 spd_id,
                 p_hi,
-                PolicyAction.BYPASS,
+                IpsecSpdAction.BYPASS,
                 inbound=False,
                 proto=50,
                 laddr_range=dut1_local_outbound_range,
@@ -2116,7 +2035,7 @@ class IPsecUtil:
                 nodes["DUT1"],
                 spd_id,
                 p_hi,
-                PolicyAction.BYPASS,
+                IpsecSpdAction.BYPASS,
                 inbound=True,
                 proto=50,
                 laddr_range=dut1_remote_outbound_range,
@@ -2142,7 +2061,7 @@ class IPsecUtil:
             n_tunnels,
             spd_id,
             priority=ObjIncrement(p_lo, 0),
-            action=PolicyAction.PROTECT,
+            action=IpsecSpdAction.PROTECT,
             inbound=False,
             sa_id=ObjIncrement(sa_id_1, 1),
             raddr_range=NetworkIncrement(ip_network(raddr_ip2)),
@@ -2166,7 +2085,7 @@ class IPsecUtil:
             n_tunnels,
             spd_id,
             priority=ObjIncrement(p_lo, 0),
-            action=PolicyAction.PROTECT,
+            action=IpsecSpdAction.PROTECT,
             inbound=True,
             sa_id=ObjIncrement(sa_id_2, 1),
             raddr_range=NetworkIncrement(ip_network(raddr_ip1)),
@@ -2199,7 +2118,7 @@ class IPsecUtil:
                     nodes["DUT2"],
                     spd_id,
                     p_hi,
-                    PolicyAction.BYPASS,
+                    IpsecSpdAction.BYPASS,
                     inbound=False,
                     proto=50,
                     laddr_range=dut2_remote_outbound_range,
@@ -2209,7 +2128,7 @@ class IPsecUtil:
                     nodes["DUT2"],
                     spd_id,
                     p_hi,
-                    PolicyAction.BYPASS,
+                    IpsecSpdAction.BYPASS,
                     inbound=True,
                     proto=50,
                     laddr_range=dut2_local_outbound_range,
@@ -2234,7 +2153,7 @@ class IPsecUtil:
                 n_tunnels,
                 spd_id,
                 priority=ObjIncrement(p_lo, 0),
-                action=PolicyAction.PROTECT,
+                action=IpsecSpdAction.PROTECT,
                 inbound=True,
                 sa_id=ObjIncrement(sa_id_1, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip2)),
@@ -2258,7 +2177,7 @@ class IPsecUtil:
                 n_tunnels,
                 spd_id,
                 priority=ObjIncrement(p_lo, 0),
-                action=PolicyAction.PROTECT,
+                action=IpsecSpdAction.PROTECT,
                 inbound=False,
                 sa_id=ObjIncrement(sa_id_2, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip1)),
