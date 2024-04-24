@@ -698,5 +698,4 @@
 | | | ... | ${dut}.Add DPDK Dev Default Tso
 | | | Run keyword If | '${nic_driver}' == 'vfio-pci'
 | | | ... | ${dut}.Add DPDK Enable Tcp Udp Checksum
-| | | Run keyword | ${dut}.Add Api Trace
 | | END
