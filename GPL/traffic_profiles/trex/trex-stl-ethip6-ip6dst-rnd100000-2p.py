@@ -84,7 +84,7 @@ class TrafficStreams(TrafficStreamsScaleClass):
             self.pkt_vm.append(
                 STLScVmRaw(
                     [
-                        STLVmFlowVar(
+                        STLVmFlowVarRepeatableRandom(
                             name="ipv6_dst",
                             min_value=base,
                             max_value=base + count,

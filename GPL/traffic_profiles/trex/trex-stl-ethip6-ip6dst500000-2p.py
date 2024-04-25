@@ -24,7 +24,7 @@
 """Stream profile for T-rex traffic generator.
 
 Stream profile:
- - Three parallel bi-directional streams sent as W --> E and E --> W
+ - Single parallel bi-directional streams sent as W --> E and E --> W
    at the same time.
  - Packet: ETH / IPv6 /
 """
@@ -46,43 +46,13 @@ class TrafficStreams(TrafficStreamsScaleClass):
             {
                 "src_start_ip": "2100::1",
                 "dst_start_ip": "2200::0",
-                "dst_end_ip": "2200::1:869F",
-                "seed": 1
-            },
-            # Direction W --> E:
-            {
-                "src_start_ip": "2300::1",
-                "dst_start_ip": "2400::0",
-                "dst_end_ip": "2400::1:869F",
-                "seed": 2
-            },
-            # Direction W --> E:
-            {
-                "src_start_ip": "2500::1",
-                "dst_start_ip": "2600::0",
-                "dst_end_ip": "2600::1:869F",
-                "seed": 1
+                "dst_end_ip": "2200::7:a11f"
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2200::1",
                 "dst_start_ip": "2100::0",
-                "dst_end_ip": "2100::1:869F",
-                "seed": 2
-            },
-            # Direction E --> W:
-            {
-                "src_start_ip": "2400::1",
-                "dst_start_ip": "2300::0",
-                "dst_end_ip": "2300::1:869F",
-                "seed": 1
-            },
-            # Direction E --> W:
-            {
-                "src_start_ip": "2600::1",
-                "dst_start_ip": "2500::0",
-                "dst_end_ip": "2500::1:869F",
-                "seed": 2
+                "dst_end_ip": "2100::7:a11f"
             }
         ]
         self.pkt_base = []
@@ -112,7 +82,7 @@ class TrafficStreams(TrafficStreamsScaleClass):
             self.pkt_vm.append(
                 STLScVmRaw(
                     [
-                        STLVmFlowVarRepeatableRandom(
+                        STLVmFlowVar(
                             name="ipv6_dst",
                             min_value=base,
                             max_value=base + count,
