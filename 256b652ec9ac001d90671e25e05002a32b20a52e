@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "348e52d6_c7d6e469",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-25T14:44:06Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest ndrpdrANDnic_*ANDdrv_avfAND4cAND1518bAND*ethip4ipsec1tnl*",
+      "revId": "256b652ec9ac001d90671e25e05002a32b20a52e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
