@@ -62,6 +62,13 @@
 1c AND imix AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
+##### ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND e823c AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
 ## ./ip4
 ### intel-e823c
 #### dpdk-vfio-pci
