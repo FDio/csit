@@ -66,6 +66,9 @@ the algorithm is agnostic to flows and directions,
 it only cares about aggregate counts of packets sent and packets lost),
 but debug output from traffic generator lists unidirectional values.
 
+In CSIT, tests that employ PLRsearch are identified as SOAK tests,
+the search time is set to 30 minuts.
+
 ### Measurement Delay
 
 In a sample implemenation in FD.io CSIT project, there is roughly 0.5
@@ -347,7 +350,7 @@ agrees that the interval should be wider than that.
 
 #### Summary
 
-The two graphs show the behavior of PLRsearch algorithm applied to soaking test
+The two graphs show the behavior of PLRsearch algorithm applied to soak test
 when some of PLRsearch assumptions do not hold:
 
 + L2 patch measurement results violate the assumption
