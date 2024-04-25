@@ -1227,6 +1227,7 @@ class IPsecUtil:
         spi_d: dict,
         existing_tunnels: int = 0,
         udp_encap: bool = False,
+        anti_replay: bool = False,
     ) -> Tuple[List[bytes], List[bytes]]:
         """Create multiple IPsec tunnel interfaces on DUT1 node using PAPI.
 
@@ -1249,6 +1250,7 @@ class IPsecUtil:
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
         :param udp_encap: Whether to apply UDP_ENCAP flag.
+        :param anti_replay: Whether to apply USE_ANTI_REPLAY flag.
         :type nodes: dict
         :type tun_ips: dict
         :type if1_key: str
@@ -1261,6 +1263,7 @@ class IPsecUtil:
         :type spi_d: dict
         :type existing_tunnels: int
         :type udp_encap: bool
+        :type anti_replay: bool
         :returns: Generated ckeys and ikeys.
         :rtype: List[bytes], List[bytes]
         """
@@ -1336,6 +1339,8 @@ class IPsecUtil:
             common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
             if udp_encap:
                 common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_UDP_ENCAP
+            if anti_replay:
+                common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY
             sad_entry = dict(
                 sad_id=None,
                 spi=None,
@@ -1476,6 +1481,7 @@ class IPsecUtil:
         spi_d: dict,
         existing_tunnels: int = 0,
         udp_encap: bool = False,
+        anti_replay: bool = False,
     ) -> None:
         """Create multiple IPsec tunnel interfaces on DUT2 node using PAPI.
 
@@ -1500,6 +1506,7 @@ class IPsecUtil:
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
         :param udp_encap: Whether to apply UDP_ENCAP flag.
+        :param anti_replay: Whether to apply USE_ANTI_REPLAY flag.
         :type nodes: dict
         :type tun_ips: dict
         :type if2_key: str
@@ -1513,6 +1520,7 @@ class IPsecUtil:
         :type spi_d: dict
         :type existing_tunnels: int
         :type udp_encap: bool
+        :type anti_replay: bool
         """
         crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
         integ_alg = get_enum_instance(IntegAlg, integ_alg)
@@ -1579,6 +1587,8 @@ class IPsecUtil:
             common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
             if udp_encap:
                 common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_UDP_ENCAP
+            if anti_replay:
+                common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY
             sad_entry = dict(
                 sad_id=None,
                 spi=None,
@@ -1729,6 +1739,7 @@ class IPsecUtil:
         raddr_range: int,
         existing_tunnels: int = 0,
         udp_encap: bool = False,
+        anti_replay: bool = False,
         return_keys: bool = False,
     ) -> Optional[Tuple[List[bytes], List[bytes], int, int]]:
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
@@ -1759,6 +1770,7 @@ class IPsecUtil:
             Useful mainly for reconf tests. Default 0.
         :param return_keys: Whether generated keys should be returned.
         :param udp_encap: Whether to apply UDP_ENCAP flag.
+        :param anti_replay: Whether to apply USE_ANTI_REPLAY flag.
         :type nodes: dict
         :type tun_if1_ip_addr: str
         :type tun_if2_ip_addr: str
@@ -1773,6 +1785,7 @@ class IPsecUtil:
         :type existing_tunnels: int
         :type return_keys: bool
         :type udp_encap: bool
+        :type anti_replay: bool
         :returns: Ckeys, ikeys, spi_1, spi_2.
         :rtype: Optional[Tuple[List[bytes], List[bytes], int, int]]
         """
@@ -1805,6 +1818,7 @@ class IPsecUtil:
             spi_d,
             existing_tunnels,
             udp_encap,
+            anti_replay,
         )
         if "DUT2" in nodes.keys():
             IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
@@ -1821,6 +1835,7 @@ class IPsecUtil:
                 spi_d,
                 existing_tunnels,
                 udp_encap,
+                anti_replay,
             )
 
         if return_keys:
