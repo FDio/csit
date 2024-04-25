@@ -11,24 +11,39 @@ set of performance test cases implemented and executed within CSIT.
 
 Following throughput test methods are used:
 
-- MLRsearch - Multiple Loss Ratio search
-- PLRsearch - Probabilistic Loss Ratio search
-- MRR - Maximum Receive Rate
+- MLRsearch - Multiple Loss Ratio search, used in NDRPDR tests.
+- PLRsearch - Probabilistic Loss Ratio search, used in SOAK tests.
+- MRR - Maximum Receive Rate tests, the method based on FRMOL from RFC 2285.
 
 Description of each test method is followed by generic test properties
 shared by all methods.
 
-## MLRsearch Tests
+## NDRPDR Tests
+
+These tests employ MLRsearch to find two conditional throughput values.
+NDR for zero loss ratio goal and PDR for 0.5% loss ratio goal.
+
+### Algorithm Details
+
+See [MLRSearch]({{< ref "mlr_search/#MLRsearch" >}}) section for more detail.
+MLRsearch is being standardized in IETF in
+[draft-ietf-bmwg-mlrsearch](https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-06).
 
 ### Description
 
-Multiple Loss Ratio search (MLRsearch) tests discover multiple packet
-throughput rates in a single search, reducing the overall test execution
-time compared to a binary search. Each rate is associated with a
-distinct Packet Loss Ratio (PLR) criteria. In FD.io CSIT two throughput
-rates are discovered: Non-Drop Rate (NDR, with zero packet loss, PLR=0)
-and Partial Drop Rate (PDR, with PLR<0.5%). MLRsearch is compliant with
-RFC2544.
+Multiple Loss Ratio search (MLRsearch) algorithm can discover multiple
+conditional throughputs in a single search,
+reducing the overall test execution time compared to a binary search.
+In FD.io CSIT, conditional throughputs are discovered for two search goals:
+Non-Drop Rate (NDR, zero loss ratio goal)
+and Partial Drop Rate (PDR, 0.5% loss ratio goal).
+Other inputs are common for both goals:
+Goal width is 0.5%, trial duration is 1 second, duration sum goal is 21 seconds
+and exceed ratio is 50%.
+
+The main algorithm expresses the conditional throughput based on one-port load.
+The results presented in CSIT show aggregate load,
+(the value from the search is doubled if the tests uses bidirectional traffic).
 
 ### Usage
 
@@ -44,39 +59,43 @@ environments. NDR and PDR packet and bandwidth throughput results for
 all frame sizes and for all tests are presented in detailed results
 tables.
 
-### Details
+## SOAK Tests
 
-See [MLRSearch]({{< ref "mlr_search/#MLRsearch" >}}) section for more detail.
-MLRsearch is being standardized in IETF in
-[draft-ietf-bmwg-mlrsearch](https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-01).
+These tests employ PLRsearch to find a critical load value.
 
-## PLRsearch Tests
-
-### Description
-
-Probabilistic Loss Ratio search (PLRsearch) tests discovers a packet
-throughput rate associated with configured Packet Loss Ratio (PLR)
-criteria for tests run over an extended period of time a.k.a. soak
-testing. PLRsearch assumes that system under test is probabilistic in
-nature, and not deterministic.
-
-### Usage
-
-PLRsearch are run to discover a sustained throughput for PLR=10^-7^
-(close to NDR) for VPP release covered by CSIT report. Results for small
-frame sizes (64B/78B) are presented in packet throughput graphs (Box
-Plots) for a small subset of baseline tests.
-
-Each soak test lasts 30 minutes and is executed at least twice. Results are
-compared against NDR and PDR rates discovered with MLRsearch.
-
-### Details
+### Algorithm Details
 
 See [PLRSearch]({{< ref "plr_search/#PLRsearch" >}}) methodology section for
 more detail. PLRsearch is being standardized in IETF in
 [draft-vpolak-bmwg-plrsearch](https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch).
 
+### Description
+
+Probabilistic Loss Ratio search (PLRsearch) tests discovers a packet
+throughput rate associated with configured Packet Loss Ratio (PLR)
+target for tests run over an extended period of time a.k.a. soak
+testing. PLRsearch assumes that system under test is probabilistic in
+nature, and not deterministic.
+
+### Usage
+
+PLRsearch are run to discover a critical load for PLR=10^-7^
+(close to NDR) for VPP release covered by CSIT report. Results for small
+frame sizes (64B/78B) are presented in packet throughput graphs (Box
+Plots) for a small subset of baseline tests.
+
+Each soak test lasts 30 minutes and is executed at least twice.
+
 ## MRR Tests
+
+### Algorithm Details
+
+See [MRR Throughput]({{< ref "mrr/#MRR" >}})
+section for more detail about MRR tests configuration.
+
+FD.io CSIT performance dashboard includes complete description of
+[daily performance trending tests]({{< ref "../../trending/analysis" >}})
+and [VPP per patch tests]({{< ref "../../per_patch_testing.md" >}}).
 
 ### Description
 
@@ -91,8 +110,8 @@ specified Ethernet frame size is set to the bi-directional link rate.
 
 ### Usage
 
-MRR tests are much faster than MLRsearch as they rely on a single trial
-or a small set of trials with very short duration. It is this property
+MRR tests are much faster than MLRsearch as they rely on
+a small set of trials with very short duration. It is this property
 that makes them suitable for continuous execution in daily performance
 trending jobs enabling detection of performance anomalies (regressions,
 progressions) resulting from data plane code changes.
@@ -101,15 +120,6 @@ MRR tests are also used for VPP per patch performance jobs verifying
 patch performance vs parent. CSIT reports include MRR throughput
 comparisons between releases and test environments. Small frame sizes
 only (64B/78B, IMIX).
-
-### Details
-
-See [MRR Throughput]({{< ref "mrr/#MRR" >}})
-section for more detail about MRR tests configuration.
-
-FD.io CSIT performance dashboard includes complete description of
-[daily performance trending tests]({{< ref "../../trending/analysis" >}})
-and [VPP per patch tests]({{< ref "../../per_patch_testing.md" >}}).
 
 ## Generic Test Properties
 
