@@ -46,37 +46,37 @@ class TrafficStreams(TrafficStreamsScaleClass):
             {
                 "src_start_ip": "2100::1",
                 "dst_start_ip": "2200::0",
-                "dst_end_ip": "2200::F:423F",
+                "dst_end_ip": "2200::F:423F"
             },
             # Direction W --> E:
             {
                 "src_start_ip": "2300::1",
                 "dst_start_ip": "2400::0",
-                "dst_end_ip": "2400::F:423F",
+                "dst_end_ip": "2400::F:423F"
             },
             # Direction W --> E:
             {
                 "src_start_ip": "2500::1",
                 "dst_start_ip": "2600::0",
-                "dst_end_ip": "2600::F:423F",
+                "dst_end_ip": "2600::F:423F"
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2200::1",
                 "dst_start_ip": "2100::0",
-                "dst_end_ip": "2100::F:423F",
+                "dst_end_ip": "2100::F:423F"
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2400::1",
                 "dst_start_ip": "2300::0",
-                "dst_end_ip": "2300::F:423F",
+                "dst_end_ip": "2300::F:423F"
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2600::1",
                 "dst_start_ip": "2500::0",
-                "dst_end_ip": "2500::F:423F",
+                "dst_end_ip": "2500::F:423F"
             }
         ]
         self.pkt_base = []
@@ -106,13 +106,12 @@ class TrafficStreams(TrafficStreamsScaleClass):
             self.pkt_vm.append(
                 STLScVmRaw(
                     [
-                        STLVmFlowVarRepeatableRandom(
+                        STLVmFlowVar(
                             name="ipv6_dst",
                             min_value=base,
                             max_value=base + count,
                             size=8,
-                            seed=i + 1,
-                            limit=(2**24 - 1)
+                            op="inc"
                         ),
                         STLVmWrFlowVar(
                             fv_name="ipv6_dst",
