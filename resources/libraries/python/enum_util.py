@@ -31,12 +31,14 @@ def get_enum_instance(
     to convert string into the corresponding Enum instance.
     Aliases are also recognized.
 
-    As an added benefit, support various Robot-like niceties,
-    like lower case, or dash or space instead of underscore.
-
     As a common shortcut, value is returned it it already is an instance.
 
     Another convenience: None or empty string is processed as "NONE".
+
+    As an added benefit, support various Robot-like niceties,
+    like lower case, or dash or space instead of underscore.
+    Also strip the identifiers, this is mostly due to "3DES".
+    Enum instance cannot start with a number, so "_3DES" + strip is needed.
 
     If the class is a subclass of IntEnum, int values
     and (string) values convertable to int are also accepted as input.
@@ -59,9 +61,10 @@ def get_enum_instance(
         return value
     if not value:
         value = "NONE"
-    normalized_name = str(value).upper().replace("-", "_").replace(" ", "_")
+    normalized_name = str(value).upper().replace("-", " ").replace("_", " ")
     members = enum_class.__members__  # Includes aliases, useful for NONE.
-    if normalized_name not in members:
-        msg = f"Enum class {enum_class} does not have value {normalized_name!r}"
-        raise ValueError(msg)
-    return members[normalized_name]
+    for member_name in members:
+        if normalized_name.strip() == member_name.replace("_", " ").strip():
+            return members[member_name]
+    msg = f"Enum class {enum_class} does not have value {normalized_name!r}"
+    raise ValueError(msg)
