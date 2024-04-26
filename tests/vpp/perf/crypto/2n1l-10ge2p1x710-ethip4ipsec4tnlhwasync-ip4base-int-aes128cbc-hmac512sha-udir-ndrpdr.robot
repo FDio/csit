@@ -76,6 +76,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${4}
+| ${rxq_ratio}= | ${2}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}-udir
 | ${traffic_directions}= | ${1}
