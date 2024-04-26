@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fd6a0cb_e75979f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-26T11:54:22Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bAND*ip6scale1m",
+      "revId": "a0dd1b1e412864616d09a55403d1cfb6fb2a7192",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
