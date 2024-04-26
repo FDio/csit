@@ -86,9 +86,7 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             name="ipv6_dst",
                             min_value=base,
                             max_value=base + count,
-                            size=8,
-                            seed=self.pkt_data[i]["seed"],
-                            limit=(2**24 - 1)
+                            size=8
                         ),
                         STLVmWrFlowVar(
                             fv_name="ipv6_dst",
