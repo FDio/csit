@@ -1848,49 +1848,6 @@ class IPsecUtil:
         return None
 
     @staticmethod
-    def _create_ipsec_script_files(
-        dut: str, instances: int
-    ) -> List[TextIOWrapper]:
-        """Create script files for configuring IPsec in containers
-
-        :param dut: DUT node on which to create the script files
-        :param instances: number of containers on DUT node
-        :type dut: str
-        :type instances: int
-        :returns: Created opened file handles.
-        :rtype: List[TextIOWrapper]
-        """
-        scripts = []
-        for cnf in range(0, instances):
-            script_filename = (
-                f"/tmp/ipsec_create_tunnel_cnf_{dut}_{cnf + 1}.config"
-            )
-            scripts.append(open(script_filename, "w", encoding="utf-8"))
-        return scripts
-
-    @staticmethod
-    def _close_and_copy_ipsec_script_files(
-        dut: str, nodes: dict, instances: int, scripts: Sequence[TextIOWrapper]
-    ) -> None:
-        """Close created scripts and copy them to containers
-
-        :param dut: DUT node on which to create the script files
-        :param nodes: VPP nodes
-        :param instances: number of containers on DUT node
-        :param scripts: dictionary holding the script files
-        :type dut: str
-        :type nodes: dict
-        :type instances: int
-        :type scripts: dict
-        """
-        for cnf in range(0, instances):
-            scripts[cnf].close()
-            script_filename = (
-                f"/tmp/ipsec_create_tunnel_cnf_{dut}_{cnf + 1}.config"
-            )
-            scp_node(nodes[dut], script_filename, script_filename)
-
-    @staticmethod
     def vpp_ipsec_add_multiple_tunnels(
         nodes: dict,
         interface1: Union[str, int],
