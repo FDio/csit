@@ -63,6 +63,8 @@
 | ... | crypto_ipsecmb_plugin.so | crypto_sw_scheduler_plugin.so
 | ... | crypto_openssl_plugin.so
 | ${crypto_type}= | ${None}
+| ${encr_alg}= | AES GCM 128
+| ${auth_alg}= | NONE
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
@@ -101,10 +103,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| |
-| | # These are enums (not strings) so they cannot be in Variables table.
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Set Variable | ${NONE}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
