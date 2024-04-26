@@ -64,6 +64,8 @@
 | ... | crypto_native_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${crypto_type}= | ${None}
+| ${encr_alg}= | AES GCM 256
+| ${auth_alg}= | NONE
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
@@ -105,11 +107,6 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | # These are enums (not strings) so they cannot be in Variables table.
-| | ${encr_alg}= | Crypto Alg AES GCM 256
-| | ${auth_alg}= | Set Variable | ${NONE}
-| | ${ipsec_proto}= | IPsec Proto ESP
-| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -117,11 +114,9 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPSec in 3-node circular topology
-| | ${flow_index} = | And VPP Ipsec Flow Enable Rss
-| | ... | ${dut1} | IPSEC_ESP | esp | default
+| | ${flow_index} = | And VPP Ipsec Flow Enable Rss | ${dut1}
 | | And VPP Flow Enable | ${dut1} | ${DUT1_${int}2}[0] | ${flow_index}
-| | ${flow_index} = | And VPP Ipsec Flow Enable Rss
-| | ... | ${dut2} | IPSEC_ESP | esp | default
+| | ${flow_index} = | And VPP Ipsec Flow Enable Rss | ${dut2}
 | | And VPP Flow Enable | ${dut2} | ${DUT2_${int}1}[0] | ${flow_index}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${DUT1_${int}2}[0] | ${DUT2_${int}1}[0] | ${n_tunnels}
