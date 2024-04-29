@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDhoststack",
       "revId": "df5bc6a794259ca79a59f049cccbdd1142731df5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "832b96b2_260f3f2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2024-04-29T02:10:16Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciANDhoststack",
+      "revId": "df5bc6a794259ca79a59f049cccbdd1142731df5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
