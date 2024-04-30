@@ -16,6 +16,23 @@
       "message": "csit-3nb-spr-perftest ndrpdrANDnic_*ANDethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm !drv_af_xdp !9000b",
       "revId": "b973cbadc8d450a6f8ec8d2ca6bcf7208d8c5001",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8df71d_0355d17f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-30T13:05:02Z",
+      "side": 1,
+      "message": "Ah, makes sense, AVF does not offer the fine-grained flow offload capabilities needed by the suite. Together it means this does not break anything.\nrecheck",
+      "revId": "b973cbadc8d450a6f8ec8d2ca6bcf7208d8c5001",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
