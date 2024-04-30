@@ -800,6 +800,14 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     IPSec using HMAC SHA 512 integrity algorithms.
 
+**UDP_ENCAP**
+
+    Encapsulate IPsec traffic in UDP.
+
+**ANTI_REPLAY**
+
+    Enable IPsec Anti-Replay functionality.
+
 **SCHEDULER**
 
     IPSec using crypto sw scheduler engine.
