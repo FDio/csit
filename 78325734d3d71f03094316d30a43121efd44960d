@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cAND1518bAND*10000tnl*",
       "revId": "78325734d3d71f03094316d30a43121efd44960d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90006c95_126fdae7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-30T13:10:37Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/879/ : FAILURE\n\nAh, the policy tests still suffer from CSIT-1938.\nFor the rests, check repeatability:\ncsit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND*10000tnl* !*policy* !soak !9000b",
+      "revId": "78325734d3d71f03094316d30a43121efd44960d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
