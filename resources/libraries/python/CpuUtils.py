@@ -15,6 +15,7 @@
 
 from random import choice
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -577,6 +578,7 @@ class CpuUtils:
             rxq_count_int = \
                 int(rx_queues) if rx_queues \
                 else int(dp_count_int/rxq_ratio)
+            logger.debug(f"dp_count_int {dp_count_int} rxq_ratio {rxq_ratio} rxq_count_int {rxq_count_int}")
             rxq_count_int = 1 if not rxq_count_int else rxq_count_int
 
             compute_resource_info["buffers_numa"] = \
