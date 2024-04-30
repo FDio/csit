@@ -774,23 +774,43 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **AES**
 
-    IPSec using AES algorithms.
+    IPSec using AES encrytion algorithms.
 
 **AES_128_CBC**
 
     IPSec using AES 128 CBC algorithms.
 
+**AES_128_CTR**
+
+    IPSec using AES 128 CTR algorithms.
+
 **AES_128_GCM**
 
     IPSec using AES 128 GCM algorithms.
+
+**AES_128_NULL_GMAC**
+
+    IPSec using AES 128 NULL GMAC algorithms.
+
+**AES_256_CBC**
+
+    IPSec using AES 256 CBC algorithms.
 
 **AES_256_GCM**
 
     IPSec using AES 256 GCM algorithms.
 
+**AES_256_NULL_GMAC**
+
+    IPSec using AES 256 NULL GMAC algorithms.
+
 **HMAC**
 
-    IPSec using HMAC integrity algorithms.
+    IPSec using HMAC integrity/authorization algorithms.
+
+**HMAC_SHA_96**
+
+    IPSec using HMAC SHA 96 integrity algorithms.
 
 **HMAC_SHA_256**
 
@@ -799,6 +819,14 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 **HMAC_SHA_512**
 
     IPSec using HMAC SHA 512 integrity algorithms.
+
+**UDP_ENCAP**
+
+    Encapsulate IPsec traffic in UDP.
+
+**ANTI_REPLAY**
+
+    Enable IPsec Anti-Replay functionality.
 
 **SCHEDULER**
 

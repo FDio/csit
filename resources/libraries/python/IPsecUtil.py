@@ -85,13 +85,35 @@ class IpsecSpdAction(Enum):
 
 
 class CryptoAlg(Enum):
-    """Encryption algorithms."""
+    """Encryption algorithms.
+
+    API names and numeric enums from ipsec_types.api (enum ipsec_crypto_alg).
+
+    Lowercase names from ipsec_sa.h (foreach_ipsec_crypto_alg).
+
+    Scapy names are from:
+    https://github.com/secdev/scapy/blob/master/scapy/layers/ipsec.py
+
+    Key lengths from crypto.h
+    (foreach_crypto_cipher_alg and foreach_crypto_aead_alg).
+    """
 
     NONE = ("none", 0, "none", 0)
     AES_CBC_128 = ("aes-cbc-128", 1, "AES-CBC", 16)
+    AES_CBC_192 = ("aes-cbc-192", 2, "AES-CBC", 24)
     AES_CBC_256 = ("aes-cbc-256", 3, "AES-CBC", 32)
+    AES_CTR_128 = ("aes-ctr-128", 4, "AES-CTR", 16)
+    AES_CTR_192 = ("aes-ctr-192", 5, "AES-CTR", 24)
+    AES_CTR_256 = ("aes-ctr-256", 6, "AES-CTR", 32)
     AES_GCM_128 = ("aes-gcm-128", 7, "AES-GCM", 16)
+    AES_GCM_192 = ("aes-gcm-192", 8, "AES-GCM", 24)
     AES_GCM_256 = ("aes-gcm-256", 9, "AES-GCM", 32)
+    DES_CBC = ("des-cbc", 10, "DES", 7)
+    _3DES_CBC = ("3des-cbc", 11, "3DES", 24)
+    CHACHA20_POLY1305 = ("chacha20-poly1305", 12, "CHACHA20-POLY1305", 32)
+    AES_NULL_GMAC_128 = ("aes-null-gmac-128", 13, "AES-NULL-GMAC", 16)
+    AES_NULL_GMAC_192 = ("aes-null-gmac-192", 14, "AES-NULL-GMAC", 24)
+    AES_NULL_GMAC_256 = ("aes-null-gmac-256", 15, "AES-NULL-GMAC", 32)
 
     def __init__(
         self, alg_name: str, alg_int_repr: int, scapy_name: str, key_len: int
@@ -108,10 +130,30 @@ class CryptoAlg(Enum):
 
 
 class IntegAlg(Enum):
-    """Integrity algorithm."""
+    """Integrity algorithms.
+
+    API names and numeric enums from ipsec_types.api (enum ipsec_integ_alg).
+
+    Lowercase names from ipsec_sa.h (foreach_ipsec_integ_alg).
+
+    Scapy names are from:
+    https://github.com/secdev/scapy/blob/master/scapy/layers/ipsec.py
+    Among those, "AES-CMAC-96" may be a mismatch,
+    but there is no sha2-related item with "96" in it.
+
+    Key lengths seem to be given double of digest length
+    from crypto.h (foreach_crypto_link_async_alg),
+    but data there is not complete
+    (e.g. it does not distinguish sha-256-96 from sha-256-128).
+    The missing values are chosen based on last number (e.g. 192 / 4 = 48).
+    """
 
     NONE = ("none", 0, "none", 0)
+    MD5_96 = ("md5-96", 1, "HMAC-MD5-96", 24)
+    SHA1_96 = ("sha1-96", 2, "HMAC-SHA1-96", 24)
+    SHA_256_96 = ("sha-256-96", 3, "AES-CMAC-96", 24)
     SHA_256_128 = ("sha-256-128", 4, "SHA2-256-128", 32)
+    SHA_384_192 = ("sha-384-192", 5, "SHA2-384-192", 48)
     SHA_512_256 = ("sha-512-256", 6, "SHA2-512-256", 64)
 
     def __init__(
@@ -1226,6 +1268,8 @@ class IPsecUtil:
         addr_incr: int,
         spi_d: dict,
         existing_tunnels: int = 0,
+        udp_encap: bool = False,
+        anti_replay: bool = False,
     ) -> Tuple[List[bytes], List[bytes]]:
         """Create multiple IPsec tunnel interfaces on DUT1 node using PAPI.
 
@@ -1247,6 +1291,8 @@ class IPsecUtil:
         :param addr_incr: IP / IPv6 address incremental step.
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
+        :param udp_encap: Whether to apply UDP_ENCAP flag.
+        :param anti_replay: Whether to apply USE_ANTI_REPLAY flag.
         :type nodes: dict
         :type tun_ips: dict
         :type if1_key: str
@@ -1258,6 +1304,8 @@ class IPsecUtil:
         :type addr_incr: int
         :type spi_d: dict
         :type existing_tunnels: int
+        :type udp_encap: bool
+        :type anti_replay: bool
         :returns: Generated ckeys and ikeys.
         :rtype: List[bytes], List[bytes]
         """
@@ -1331,6 +1379,10 @@ class IPsecUtil:
             c_key = dict(length=0, data=None)
             i_key = dict(length=0, data=None)
             common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
+            if udp_encap:
+                common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_UDP_ENCAP
+            if anti_replay:
+                common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY
             sad_entry = dict(
                 sad_id=None,
                 spi=None,
@@ -1470,6 +1522,8 @@ class IPsecUtil:
         addr_incr: int,
         spi_d: dict,
         existing_tunnels: int = 0,
+        udp_encap: bool = False,
+        anti_replay: bool = False,
     ) -> None:
         """Create multiple IPsec tunnel interfaces on DUT2 node using PAPI.
 
@@ -1493,6 +1547,8 @@ class IPsecUtil:
         :param addr_incr: IP / IPv6 address incremental step.
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
+        :param udp_encap: Whether to apply UDP_ENCAP flag.
+        :param anti_replay: Whether to apply USE_ANTI_REPLAY flag.
         :type nodes: dict
         :type tun_ips: dict
         :type if2_key: str
@@ -1505,6 +1561,8 @@ class IPsecUtil:
         :type addr_incr: int
         :type spi_d: dict
         :type existing_tunnels: int
+        :type udp_encap: bool
+        :type anti_replay: bool
         """
         crypto_alg = get_enum_instance(CryptoAlg, crypto_alg)
         integ_alg = get_enum_instance(IntegAlg, integ_alg)
@@ -1569,6 +1627,10 @@ class IPsecUtil:
             c_key = dict(length=0, data=None)
             i_key = dict(length=0, data=None)
             common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
+            if udp_encap:
+                common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_UDP_ENCAP
+            if anti_replay:
+                common_flags |= IPsecSadFlags.IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY
             sad_entry = dict(
                 sad_id=None,
                 spi=None,
@@ -1718,6 +1780,8 @@ class IPsecUtil:
         raddr_ip2: str,
         raddr_range: int,
         existing_tunnels: int = 0,
+        udp_encap: bool = False,
+        anti_replay: bool = False,
         return_keys: bool = False,
     ) -> Optional[Tuple[List[bytes], List[bytes], int, int]]:
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
@@ -1747,6 +1811,8 @@ class IPsecUtil:
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
         :param return_keys: Whether generated keys should be returned.
+        :param udp_encap: Whether to apply UDP_ENCAP flag.
+        :param anti_replay: Whether to apply USE_ANTI_REPLAY flag.
         :type nodes: dict
         :type tun_if1_ip_addr: str
         :type tun_if2_ip_addr: str
@@ -1760,6 +1826,8 @@ class IPsecUtil:
         :type raddr_range: int
         :type existing_tunnels: int
         :type return_keys: bool
+        :type udp_encap: bool
+        :type anti_replay: bool
         :returns: Ckeys, ikeys, spi_1, spi_2.
         :rtype: Optional[Tuple[List[bytes], List[bytes], int, int]]
         """
@@ -1791,6 +1859,8 @@ class IPsecUtil:
             addr_incr,
             spi_d,
             existing_tunnels,
+            udp_encap,
+            anti_replay,
         )
         if "DUT2" in nodes.keys():
             IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
@@ -1806,6 +1876,8 @@ class IPsecUtil:
                 addr_incr,
                 spi_d,
                 existing_tunnels,
+                udp_encap,
+                anti_replay,
             )
 
         if return_keys:
@@ -2150,7 +2222,8 @@ class IPsecUtil:
         # The proto argument does not correspond to IPsecProto.
         # The allowed values come from src/vnet/ip/protocols.def
         # and we do not have a good enum for that yet.
-        # FlowUti. and FlowUtil. are close but not exactly the same.
+        # FlowUtil.FlowType and FlowUtil.FlowProto are close,
+        # but not exactly the same.
 
         # TODO: to be fixed to use full PAPI when it is ready in VPP
         cmd = (
