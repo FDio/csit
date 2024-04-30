@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88097ab9_57a5aa4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-04-30T11:00:03Z",
+      "side": 1,
+      "message": "Comparison base for 40749.\ncsit-3nb-spr-perftest ndrpdrANDnic_*ANDdrv_vfio_pciAND1cAND64bANDANDethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm !drv_af_xdp !9000b",
+      "revId": "e74e9a0d73ac31119fb3c49efd4cda3bc5d0c8a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
