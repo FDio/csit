@@ -47,12 +47,14 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "2100::1",
                 "dst_start_ip": "2200::0",
                 "dst_end_ip": "2200::F:423F",
+                "seed": 1
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2200::1",
                 "dst_start_ip": "2100::0",
                 "dst_end_ip": "2100::F:423F",
+                "seed": 2
             }
         ]
         self.pkt_base = []
@@ -87,7 +89,7 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             min_value=base,
                             max_value=base + count,
                             size=8,
-                            seed=i + 1,
+                            seed=self.pkt_data[i]["seed"],
                             limit=(2**24 - 1)
                         ),
                         STLVmWrFlowVar(
