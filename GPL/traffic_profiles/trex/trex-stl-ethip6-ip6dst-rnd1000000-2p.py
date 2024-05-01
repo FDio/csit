@@ -47,13 +47,19 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "2100::1",
                 "dst_start_ip": "2200::0",
                 "dst_end_ip": "2200::F:423F",
+                "seed": 1
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2200::1",
                 "dst_start_ip": "2100::0",
                 "dst_end_ip": "2100::F:423F",
+<<<<<<< PATCH SET (ef7f29 Revert "feat(profiles): Do not repeat seeds in 6p profiles")
+                "seed": 2
+            }
+=======
             },
+>>>>>>> BASE      (e3d820 feat(ipsec): Use strings instead of enums in Robot)
         ]
         self.pkt_base = []
         self.pkt_vm = []
@@ -87,8 +93,13 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             min_value=base,
                             max_value=base + count,
                             size=8,
+<<<<<<< PATCH SET (ef7f29 Revert "feat(profiles): Do not repeat seeds in 6p profiles")
+                            seed=self.pkt_data[i]["seed"],
+                            limit=(2**24 - 1)
+=======
                             seed=i + 1,
                             limit=(2**24 - 1),
+>>>>>>> BASE      (e3d820 feat(ipsec): Use strings instead of enums in Robot)
                         ),
                         STLVmWrFlowVar(
                             fv_name="ipv6_dst",

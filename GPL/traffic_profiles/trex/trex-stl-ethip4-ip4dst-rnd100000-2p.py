@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -47,13 +47,19 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "10.0.0.1",
                 "dst_start_ip": "20.0.0.0",
                 "dst_end_ip": "20.1.134.159",
+                "seed": 1
             },
             # Direction E --> W:
             {
                 "src_start_ip": "20.0.0.1",
                 "dst_start_ip": "10.0.0.0",
                 "dst_end_ip": "10.1.134.159",
+<<<<<<< PATCH SET (ef7f29 Revert "feat(profiles): Do not repeat seeds in 6p profiles")
+                "seed": 2
+            }
+=======
             },
+>>>>>>> BASE      (e3d820 feat(ipsec): Use strings instead of enums in Robot)
         ]
         self.pkt_base = []
         self.pkt_vm = []
@@ -83,8 +89,13 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             min_value=self.pkt_data[i]["dst_start_ip"],
                             max_value=self.pkt_data[i]["dst_end_ip"],
                             size=4,
+<<<<<<< PATCH SET (ef7f29 Revert "feat(profiles): Do not repeat seeds in 6p profiles")
+                            seed=self.pkt_data[i]["seed"],
+                            limit=(2**24 - 1)
+=======
                             seed=i + 1,
                             limit=(2**24 - 1),
+>>>>>>> BASE      (e3d820 feat(ipsec): Use strings instead of enums in Robot)
                         ),
                         STLVmWrFlowVar(
                             fv_name="dst",
