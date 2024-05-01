@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -46,14 +46,14 @@ class TrafficStreams(TrafficStreamsScaleClass):
             {
                 "src_start_ip": "10.0.0.1",
                 "dst_start_ip": "20.0.0.0",
-                "dst_end_ip": "20.1.134.159",
+                "dst_end_ip": "20.1.134.159"
             },
             # Direction E --> W:
             {
                 "src_start_ip": "20.0.0.1",
                 "dst_start_ip": "10.0.0.0",
-                "dst_end_ip": "10.1.134.159",
-            },
+                "dst_end_ip": "10.1.134.159"
+            }
         ]
         self.pkt_base = []
         self.pkt_vm = []
@@ -68,11 +68,11 @@ class TrafficStreams(TrafficStreamsScaleClass):
         """
         for i in range(len(self.pkt_data)):
             self.pkt_base.append(
-                Ether()
-                / IP(
+                Ether() /
+                IP(
                     src=self.pkt_data[i]["src_start_ip"],
                     dst=self.pkt_data[i]["dst_start_ip"],
-                    proto=61,
+                    proto=61
                 )
             )
             self.pkt_vm.append(
@@ -83,15 +83,15 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             min_value=self.pkt_data[i]["dst_start_ip"],
                             max_value=self.pkt_data[i]["dst_end_ip"],
                             size=4,
-                            op="inc",
+                            op="inc"
                         ),
                         STLVmWrFlowVar(
                             fv_name="dst",
-                            pkt_offset="IP.dst",
+                            pkt_offset="IP.dst"
                         ),
                         STLVmFixIpv4(
-                            offset="IP",
-                        ),
+                            offset="IP"
+                        )
                     ]
                 )
             )
