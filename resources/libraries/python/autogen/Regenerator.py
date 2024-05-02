@@ -745,7 +745,7 @@ class Regenerator:
             {u"frame_size": 9000, u"phy_cores": 4},
             {u"frame_size": u"IMIX_v4_1", u"phy_cores": 1},
             {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4},
         ]
         hs_bps_kwargs_list = [
             {u"frame_size": 1460, u"phy_cores": 1},
@@ -756,7 +756,7 @@ class Regenerator:
         iperf3_kwargs_list = [
             {u"frame_size": 128000, u"phy_cores": 1},
             {u"frame_size": 128000, u"phy_cores": 2},
-            {u"frame_size": 128000, u"phy_cores": 4}
+            {u"frame_size": 128000, u"phy_cores": 4},
         ]
         # List for tests with one dataplane core
         # (and variable number of other cores).
@@ -772,7 +772,7 @@ class Regenerator:
             {u"frame_size": 9000, u"phy_cores": 4},
             {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
             {u"frame_size": u"IMIX_v4_1", u"phy_cores": 3},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4},
         ]
 
         http_kwargs_list = [
@@ -783,18 +783,20 @@ class Regenerator:
             {u"frame_size": 1024, u"phy_cores": 1},
             {u"frame_size": 1024, u"phy_cores": 2},
             {u"frame_size": 2048, u"phy_cores": 1},
-            {u"frame_size": 2048, u"phy_cores": 2}
+            {u"frame_size": 2048, u"phy_cores": 2},
+            {u"frame_size": 65536, u"phy_cores": 1},
+            {u"frame_size": 65536, u"phy_cores": 2},
         ]
 
         device_kwargs_list = [
-            {u"frame_size": min_frame_size, u"phy_cores": 0}
+            {u"frame_size": min_frame_size, u"phy_cores": 0},
         ]
 
         trex_kwargs_list = [
             {u"frame_size": min_frame_size},
             {u"frame_size": 1518},
             {u"frame_size": 9000},
-            {u"frame_size": u"IMIX_v4_1"}
+            {u"frame_size": u"IMIX_v4_1"},
         ]
 
         for in_filename in glob(pattern):
