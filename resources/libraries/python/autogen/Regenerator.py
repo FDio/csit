@@ -784,6 +784,8 @@ class Regenerator:
             {u"frame_size": 1024, u"phy_cores": 2},
             {u"frame_size": 2048, u"phy_cores": 1},
             {u"frame_size": 2048, u"phy_cores": 2}
+            {u"frame_size": 65536, u"phy_cores": 1},
+            {u"frame_size": 65536, u"phy_cores": 2}
         ]
 
         device_kwargs_list = [
