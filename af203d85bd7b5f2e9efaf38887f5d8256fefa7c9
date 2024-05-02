@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "694efb8a_5789ffec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-02T12:46:41Z",
+      "side": 1,
+      "message": "It was created by combining 10ge2p1x710-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.robot\nwith 10ge2p1x710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr.robot\n\nIt uses the same traffic profile as the ipsec suite, it should only add one \"detour\" (per DUT) through memif, on the side closer to TG (before continuing with ipsec tunneling on the side closer to the other DUT).",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "af203d85bd7b5f2e9efaf38887f5d8256fefa7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a938a20c_4fb2a803",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-02T12:46:41Z",
+      "side": 1,
+      "message": "I will probably add a single keyword to replace both \"Initialize IPv4 routing with memif pairs\" and \"Initialize IPSec in 3-node circular topology\".",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 43
+      },
+      "revId": "af203d85bd7b5f2e9efaf38887f5d8256fefa7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "34678243_a8c5acc5",
