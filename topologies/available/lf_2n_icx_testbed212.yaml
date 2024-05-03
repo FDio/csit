@@ -107,7 +107,7 @@ nodes:
       port12:
         # s72-t212-tg1-c6/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a7:01"
-        pci_address: "0000:ca:00.1"
+        pci_address: "0000:cc:00.0"
         ip4_address: "172.16.120.2"
         driver: ice
         link: link11
