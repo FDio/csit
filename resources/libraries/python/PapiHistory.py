@@ -96,17 +96,6 @@ class PapiHistory:
         history = u'\n'.join(history_list)
         logger.info(f"{node[u'host']} PAPI command history:\n{history}\n")
 
-    @staticmethod
-    def show_papi_history_on_all_duts(nodes):
-        """Show PAPI command history for all DUT nodes.
-
-        :param nodes: Nodes to show PAPI command history for.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                PapiHistory.show_papi_history(node)
-
 
 # This module can be imported outside usual Robot test context,
 # e.g. in pylint or by tools generating docs from docstrings.

@@ -874,6 +874,23 @@ class PapiSocketExecutor:
                 logger.debug(f"{cmd}:\n{pformat(dump)}")
 
     @staticmethod
+    def show_papi_history_on_all_duts(nodes):
+        """Show PAPI command history for all DUT nodes.
+
+        There is a chicken-or-egg problem between this module and PapiHistory.
+        Putting this kayword here is ugly, but it works.
+
+        :param nodes: Nodes to show PAPI command history for.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                PapiHistory.show_papi_history(node)
+                # TODO: Also support containers via sockets here.
+                if Constants.USE_VPP_API_TRACE:
+                    PapiSocketExecutor.run_cli_cmd(node, "api trace dump-json")
+
+    @staticmethod
     def _read_internal(vpp_instance, timeout=None):
         """Blockingly read within timeout.
 
