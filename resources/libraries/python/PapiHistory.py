@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -95,17 +95,6 @@ class PapiHistory:
             history_list = (u"No PAPI command executed", )
         history = u'\n'.join(history_list)
         logger.info(f"{node[u'host']} PAPI command history:\n{history}\n")
-
-    @staticmethod
-    def show_papi_history_on_all_duts(nodes):
-        """Show PAPI command history for all DUT nodes.
-
-        :param nodes: Nodes to show PAPI command history for.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                PapiHistory.show_papi_history(node)
 
 
 # This module can be imported outside usual Robot test context,

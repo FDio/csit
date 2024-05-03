@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version
@@ -183,12 +184,16 @@ class VPPUtil:
         exec_cmd(node, cmd, sudo=False)
 
     @staticmethod
-    def verify_vpp(node):
+    def verify_vpp(node, api_trace=False):
         """Verify that VPP is installed and started on the specified topology
         node. Adjust privileges so user can connect without sudo.
 
         :param node: Topology node.
+        :param api_trace: Whether to enable API trace.
+            Only the tested VPP instance should attempt this,
+            e.g. not in suite setup when determining interfaces.
         :type node: dict
+        :type api_trace: bool
         :raises RuntimeError: If VPP service fails to start.
         """
         DUTSetup.verify_program_installed(node, 'vpp')
@@ -200,19 +205,11 @@ class VPPUtil:
             # Verify responsiveness of PAPI.
             VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)
+            if api_trace and Constants.USE_VPP_API_TRACE:
+                # All subsequent PAPI interaction may need to be traced.
+                VPPUtil.enable_vpp_api_trace(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
-
-    @staticmethod
-    def verify_vpp_on_all_duts(nodes):
-        """Verify that VPP is installed and started on all DUT nodes.
-
-        :param nodes: Nodes in the topology.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                VPPUtil.verify_vpp(node)
 
     @staticmethod
     def vpp_show_version(
@@ -252,6 +249,40 @@ class VPPUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 VPPUtil.vpp_show_version(node)
+
+
+    @staticmethod
+    def enable_vpp_api_trace(node):
+        """Enable API tracing on VPP.
+
+        Only call when allowed by Constants.USE_VPP_API_TRACE please.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        # TODO: Support non-primary VPP instances,
+        # e.g. inside container if reachable via SocketType.PAPI in topology.
+        PapiSocketExecutor.run_cli_cmd(node, "api trace on")
+
+    # There is chicken-or-egg problem between this PapiExecutor and PapiHistory.
+    # The following keyword needs to acces both.
+    # It cannot be in PapiHistory because that would cause an import loop.
+    # It cannot be in PapiExecutor, as that is imported per-node,
+    # so not directly importable from default.robot resource.
+    # Putting this keyword here is ugly, but it works.
+    @staticmethod
+    def show_papi_history_on_all_duts(nodes):
+        """Show PAPI command history for all DUT nodes.
+
+        :param nodes: Nodes to show PAPI command history for.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                PapiHistory.show_papi_history(node)
+                # TODO: Also support containers via sockets here.
+                if Constants.USE_VPP_API_TRACE:
+                    PapiSocketExecutor.run_cli_cmd(node, "api trace dump-json")
 
     @staticmethod
     def vpp_show_interfaces(node):

@@ -285,30 +285,12 @@
 | | [Arguments] | ${with_trace}=${False}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword | ${dut}.Apply Config
+| | | Run Keyword | ${dut}.Apply VPP Config
 | | END
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 | | Run Keyword If | ${with_trace} | VPP Enable Traces On All Duts | ${nodes}
-
-| Apply startup configuration on VPP DUT
-| | [Documentation] | Write VPP startup configuration and restart VPP DUT.
-| |
-| | ... | *Arguments:*
-| | ... | - dut - DUT on which to apply the configuration. Type: string
-| | ... | - with_trace - Enable packet trace after VPP restart Type: boolean
-| |
-| | [Arguments] | ${dut} | ${with_trace}=${False}
-| |
-| | Run Keyword | ${dut}.Apply Config
-| | Save VPP PIDs on DUT | ${dut}
-| | Enable Coredump Limit VPP on DUT | ${nodes['${dut}']}
-| | ${dutnode}= | Copy Dictionary | ${nodes}
-| | Keep In Dictionary | ${dutnode} | ${dut}
-| | Update All Interface Data On All Nodes | ${dutnode} | skip_tg=${True}
-| | Run Keyword If | ${with_trace} | VPP Enable Traces On Dut
-| | ... | ${nodes['${dut}']}
 
 | Save VPP PIDs
 | | [Documentation] | Get PIDs of VPP processes from all DUTs in topology and\
