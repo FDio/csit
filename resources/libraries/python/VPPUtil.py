@@ -183,12 +183,16 @@ class VPPUtil:
         exec_cmd(node, cmd, sudo=False)
 
     @staticmethod
-    def verify_vpp(node):
+    def verify_vpp(node, api_trace=False):
         """Verify that VPP is installed and started on the specified topology
         node. Adjust privileges so user can connect without sudo.
 
         :param node: Topology node.
+        :param api_trace: Whether to enable API trace.
+            Only the tested VPP instance should attempt this,
+            e.g. not in suite setup when determining interfaces.
         :type node: dict
+        :type api_trace: bool
         :raises RuntimeError: If VPP service fails to start.
         """
         DUTSetup.verify_program_installed(node, 'vpp')
@@ -200,19 +204,11 @@ class VPPUtil:
             # Verify responsiveness of PAPI.
             VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)
+            if api_trace and Constants.USE_VPP_API_TRACE:
+                # All subsequent PAPI interaction may need to be traced.
+                VPPUtil.enable_vpp_api_trace(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
-
-    @staticmethod
-    def verify_vpp_on_all_duts(nodes):
-        """Verify that VPP is installed and started on all DUT nodes.
-
-        :param nodes: Nodes in the topology.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                VPPUtil.verify_vpp(node)
 
     @staticmethod
     def vpp_show_version(
@@ -252,6 +248,20 @@ class VPPUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 VPPUtil.vpp_show_version(node)
+
+
+    @staticmethod
+    def enable_vpp_api_trace(node):
+        """Enable API tracing on VPP.
+
+        Only call when allowed by Constants.USE_VPP_API_TRACE please.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        # TODO: Support non-primary VPP instances,
+        # e.g. inside container if reachable via SocketType.PAPI in topology.
+        PapiSocketExecutor.run_cli_cmd(node, "api trace on")
 
     @staticmethod
     def vpp_show_interfaces(node):
