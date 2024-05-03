@@ -743,7 +743,7 @@ class ContainerEngine:
         """
         vpp_config = self.create_base_vpp_startup_config()
 
-        # Apply configuration
+        # Write startup.conf file.
         self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
             f'echo "{vpp_config.get_config_str()}" | '
@@ -768,7 +768,7 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
         vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
 
-        # Apply configuration
+        # Write startup.conf file.
         self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
             f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
@@ -786,7 +786,7 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
         vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
 
-        # Apply configuration
+        # Write startup.conf file.
         self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
             f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
@@ -802,7 +802,7 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"dma_intel_plugin.so")
         vpp_config.add_dma_dev(dma_devices)
 
-        # Apply configuration
+        # Write startup.conf file.
         self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
             f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
