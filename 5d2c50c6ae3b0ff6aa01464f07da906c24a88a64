@@ -16,6 +16,23 @@
       "message": "csit-trex-2n-icx-perftest mrrANDnic_intel-e810cqAND64bANDethip4-ip4base-tg",
       "revId": "5d2c50c6ae3b0ff6aa01464f07da906c24a88a64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e46df63_ed1057c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-03T15:41:44Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-trex-perf-verify-master-2n-icx/10/ : SUCCESS\n\nStarted on wrong testbed. Again.\ncsit-trex-2n-icx-perftest mrrANDnic_intel-e810cqAND64bANDethip4-ip4base-tg",
+      "revId": "5d2c50c6ae3b0ff6aa01464f07da906c24a88a64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
