@@ -126,3 +126,11 @@
 | 2048B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
 | | [Tags] | 2048B | 2C
 | | frame_size=${2048} | phy_cores=${2}
+
+| 4096B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| | [Tags] | 4096B | 1C
+| | frame_size=${4096} | phy_cores=${1}
+
+| 4096B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| | [Tags] | 4096B | 2C
+| | frame_size=${4096} | phy_cores=${2}
