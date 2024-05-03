@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -26,7 +26,7 @@ class NginxConfigGenerator:
 
     def __init__(self):
         """Initialize library."""
-        # VPP Node to apply configuration on
+        # DUT to apply Nginx configuration on
         self._node = u""
         # NGINX Startup config location
         self._nginx_path = u"/usr/local/nginx/"
@@ -228,7 +228,7 @@ class NginxConfigGenerator:
         path = [u"worker_processes"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, filename=None, verify_nginx=True):
+    def apply_nginx_config(self, filename=None, verify_nginx=True):
         """Generate and write NGINX configuration to file and
         verify configuration.
 

@@ -314,6 +314,13 @@ class Constants:
     # Maximum number of interfaces in a data path
     DATAPATH_INTERFACES_MAX = 100
 
+    # Whether to gather (before config) and dump (after test) VPP API trace.
+    # Helpful when debugging but slow in production (e.g. scale tests),
+    # thus off by default.
+    USE_VPP_API_TRACE = get_pessimistic_bool_from_env(
+        "USE_VPP_API_TRACE"
+    )
+
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
         "Intel-X520-DA2": 10000000000,
