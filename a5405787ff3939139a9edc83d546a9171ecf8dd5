@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89ecb138_bd48afcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-03T14:08:49Z",
+      "side": 1,
+      "message": "csit-trex-2n-icx-perftest mrrANDnic_*AND64bANDethip4-ip4base-tg",
+      "revId": "a5405787ff3939139a9edc83d546a9171ecf8dd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
