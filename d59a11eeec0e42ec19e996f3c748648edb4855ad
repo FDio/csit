@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "971d1941_0a48d896",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-03T14:37:59Z",
+      "side": 1,
+      "message": "Just to confirm nothing changes by default:\ncsit-2n-clx-perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch",
+      "revId": "d59a11eeec0e42ec19e996f3c748648edb4855ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
