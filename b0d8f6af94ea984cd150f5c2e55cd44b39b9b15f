@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "547cc578_fd82ebc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-03T11:41:53Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND1cAND8192bAND*nginx*",
+      "revId": "b0d8f6af94ea984cd150f5c2e55cd44b39b9b15f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
