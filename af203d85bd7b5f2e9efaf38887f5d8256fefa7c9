@@ -62,6 +62,23 @@
       "message": "csit-3n-icx-perftest ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cAND1518bANDethip4-ip4base-ipsec-2memif-1dcr",
       "revId": "af203d85bd7b5f2e9efaf38887f5d8256fefa7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42d7eff_624571a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-03T11:39:29Z",
+      "side": 1,
+      "message": "Proposed suite name: 10ge2p1x710-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-2memif-1dcr-ndrpdr",
+      "revId": "af203d85bd7b5f2e9efaf38887f5d8256fefa7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
