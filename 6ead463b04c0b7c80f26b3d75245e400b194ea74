@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest nic_intel-e810cqANDdrv_vfip_pciAND1cAND65536bAND*nginx*",
       "revId": "6ead463b04c0b7c80f26b3d75245e400b194ea74",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5995ece_5eceb1ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-03T08:06:18Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND1cAND65536bAND*nginx*",
+      "revId": "6ead463b04c0b7c80f26b3d75245e400b194ea74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
