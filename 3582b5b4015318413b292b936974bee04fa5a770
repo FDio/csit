@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56e00313_92d761f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-05-06T17:41:34Z",
+      "side": 1,
+      "message": "Looks like the tests should work for 2048B, but do not work for 4096B and greater. So it makes sense to add 2048B tests in interim, while work gets underway to enable greater file sizes.",
+      "revId": "3582b5b4015318413b292b936974bee04fa5a770",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
