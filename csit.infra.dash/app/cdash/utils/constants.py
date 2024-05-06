@@ -48,7 +48,7 @@ class Constants:
     URL_JENKINS = "https://jenkins.fd.io/job/"
 
     # URL to logs
-    URL_LOGS = "https://s3-logs.fd.io/vex-yul-rot-jenkins-1/"
+    URL_LOGS = "https://logs.fd.io/vex-yul-rot-jenkins-1/"
 
     # URL to the documentation
     URL_DOC_TRENDING = "https://csit.fd.io/cdocs/methodology/trending/analysis/"
