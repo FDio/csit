@@ -96,6 +96,9 @@ function nginx_compile () {
     NGINX_INS_PATH="${DOWNLOAD_DIR}/${NGINX_VER}"
     pushd "${NGINX_DIR}" || die "Pushd failed."
 
+    # Modify NGX_CONF_BUFFER
+    sed -i "s/4096/1024 \* 1024 \* 10/" ${NGINX_DIR}/src/core/ngx_conf_file.c
+
     # Set installation prefix.
     param="--prefix=${NGINX_INS_PATH} "
     # Set nginx binary pathname.
