@@ -80,7 +80,6 @@ function common_dirs () {
 }
 
 
-
 function nginx_compile () {
 
     # Compile NGINX archive.
@@ -110,7 +109,28 @@ function nginx_compile () {
     param+="--with-http_realip_module "
     params=(${param})
     ./configure "${params[@]}" || die "Failed to configure NGINX!"
-    make -j 16;make install || die "Failed to compile NGINX!"
+    make -j 16 || die "Failed to compile NGINX!"
+    make install || die "Failed to install NGINX!"
+}
+
+
+function nginx_patch () {
+
+    # Patch NGINX archive.
+    #
+    # This is needed when testing large payloads.
+    # The patch has no reason to affect the performance in any way.
+    #
+    # Variables read:
+    # - NGINX_DIR - Path to NGINX framework.
+    # Functions called:
+    # - die - Print to stderr and exit.
+
+    set -exuo pipefail
+
+    # Modify NGX_CONF_BUFFER, 10 MiB should be enough for now.
+    sed -i "s/4096/1024 \* 1024 \* 10/" "${NGINX_DIR}/src/core/ngx_conf_file.c"
+    # Exit code propagates to teh caller.
 }
 
 

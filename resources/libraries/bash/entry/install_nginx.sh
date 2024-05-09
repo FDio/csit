@@ -35,4 +35,5 @@ source "${BASH_FUNCTION_DIR}/nginx.sh" || die "Source failed."
 common_dirs ${@} || die
 gather_nginx  || die "Download nginx failed."
 nginx_extract || die "Extract nginx failed."
+nginx_patch || die "Patch nginx failed."
 nginx_compile || die "Compile nginx failed."
