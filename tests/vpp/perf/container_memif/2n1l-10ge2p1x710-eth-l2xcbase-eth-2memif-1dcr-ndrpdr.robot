@@ -93,8 +93,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Start containers for test
 | | And Initialize L2 xconnect with memif pairs
+| | And Start containers for test
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
