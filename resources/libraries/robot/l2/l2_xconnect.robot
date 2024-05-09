@@ -319,7 +319,7 @@
 | | | ... | ${${dut}_${int}2}[0]
 | | END
 
-| Initialize L2 xconnect with memif pairs
+| Initialize L2 xconnect with memif pairs part 1
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Cross
 | | ... | connect each Memif interface with one physical interface or virtual
@@ -337,6 +337,9 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
 | | END
+#| | Set interfaces in path up | validate=${False}
+
+| Initialize L2 xconnect with memif pairs part 2
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
