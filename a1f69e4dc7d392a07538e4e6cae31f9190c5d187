@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7263bd9e_02da941c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-09T11:27:49Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-spr/125/ : FAILURE\n\nThe DMA tests failed, but the failures does not seem to be caused by CSIT code. So My opinion is that there are bugs in VPP or DMA tests need somewhat different configuration (can be fixed in a subsequent change if needed).",
+      "revId": "a1f69e4dc7d392a07538e4e6cae31f9190c5d187",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
