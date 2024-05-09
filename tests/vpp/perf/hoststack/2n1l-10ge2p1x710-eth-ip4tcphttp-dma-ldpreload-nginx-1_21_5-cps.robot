@@ -120,3 +120,11 @@
 | 2048B-2c-eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5-cps
 | | [Tags] | 2048B | 2C
 | | frame_size=${2048} | phy_cores=${2}
+
+| 65536B-1c-eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5-cps
+| | [Tags] | 65536B | 1C
+| | frame_size=${65536} | phy_cores=${1}
+
+| 65536B-2c-eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5-cps
+| | [Tags] | 65536B | 2C
+| | frame_size=${65536} | phy_cores=${2}

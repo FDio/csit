@@ -77,7 +77,10 @@ class NGINXTools:
         cmd = f"test -f {pkg_dir}/nginx-{nginx_version}/sbin/nginx"
         ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
         if ret_code == 0:
-            return
+            cmd = f"rm -rf {pkg_dir}/nginx-{nginx_version}"
+            ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+            if ret_code:
+                raise RuntimeError(f"Failed to clean up: {cmd}")
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
                   f"/entry/install_nginx.sh nginx-{nginx_version}"
         message = u"Install the NGINX failed!"

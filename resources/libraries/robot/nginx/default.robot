@@ -58,4 +58,5 @@
 | | Run Keyword | nc_manager.Add Http Server Location | ${64}
 | | Run Keyword | nc_manager.Add Http Server Location | ${1024}
 | | Run Keyword | nc_manager.Add Http Server Location | ${2048}
+| | Run Keyword | nc_manager.Add Http Server Location | ${65536}
 | | Run Keyword | nc_manager.Apply Config
