@@ -1,10 +1,28 @@
 create memif socket id $sid1 filename $socket1
-create interface memif id $mid1 socket-id $sid1 master
+create interface memif id $mid1 socket-id $sid1 slave rx-queues 8 tx-queues 8
 set int state memif$sid1/$mid1 up
 
 create memif socket id $sid2 filename $socket2
-create interface memif id $mid2 socket-id $sid2 master
+create interface memif id $mid2 socket-id $sid2 slave rx-queues 8 tx-queues 8
 set int state memif$sid2/$mid2 up
 
 set interface l2 xconnect memif$sid2/$mid2 memif$sid1/$mid1
 set interface l2 xconnect memif$sid1/$mid1 memif$sid2/$mid2
+
+set interface rx-placement memif$sid1/$mid1 queue 0 worker 0
+set interface rx-placement memif$sid1/$mid1 queue 1 worker 1
+set interface rx-placement memif$sid1/$mid1 queue 2 worker 2
+set interface rx-placement memif$sid1/$mid1 queue 3 worker 3
+set interface rx-placement memif$sid1/$mid1 queue 4 worker 4
+set interface rx-placement memif$sid1/$mid1 queue 5 worker 5
+set interface rx-placement memif$sid1/$mid1 queue 6 worker 6
+set interface rx-placement memif$sid1/$mid1 queue 7 worker 7
+
+set interface rx-placement memif$sid2/$mid2 queue 0 worker 0
+set interface rx-placement memif$sid2/$mid2 queue 1 worker 1
+set interface rx-placement memif$sid2/$mid2 queue 2 worker 2
+set interface rx-placement memif$sid2/$mid2 queue 3 worker 3
+set interface rx-placement memif$sid2/$mid2 queue 4 worker 4
+set interface rx-placement memif$sid2/$mid2 queue 5 worker 5
+set interface rx-placement memif$sid2/$mid2 queue 6 worker 6
+set interface rx-placement memif$sid2/$mid2 queue 7 worker 7
