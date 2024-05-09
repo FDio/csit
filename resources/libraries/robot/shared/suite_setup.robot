@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -271,8 +271,11 @@
 
 | Additional Suite Setup Action For nginx
 | | [Documentation]
-| | ... | Additional Setup for suites which uses Nginx.
+| | ... | Recompile NGINX with current patches if not done that in this run yet.
 | |
+| | ${nginx_recompiled} = | Get Variable Value | \${NGINX_RECOMPILED} | ${False}
+| | Return From Keyword If | ${nginx_recompiled}
+| | Set Global Variable | \${NGINX_RECOMPILED} | ${True}
 | | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
 | | ... | ${nginx_version}
 

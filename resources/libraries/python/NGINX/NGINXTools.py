@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -66,6 +66,10 @@ class NGINXTools:
         """
         Prepare the NGINX framework on the DUT node.
 
+        If there is an existing NGINX installation,
+        remove it before recompiling,
+        as the old installation may have used different patches.
+
         :param node: Node from topology file.
         :param pkg_dir: Ldp NGINX install dir.
         :param nginx_version: NGINX Version.
@@ -77,7 +81,8 @@ class NGINXTools:
         cmd = f"test -f {pkg_dir}/nginx-{nginx_version}/sbin/nginx"
         ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
         if ret_code == 0:
-            return
+            cmd = f"rm -rf {pkg_dir}/nginx-{nginx_version}"
+            exec_cmd_no_error(node, cmd, sudo=True)
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
                   f"/entry/install_nginx.sh nginx-{nginx_version}"
         message = u"Install the NGINX failed!"

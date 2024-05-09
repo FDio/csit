@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -126,3 +126,11 @@
 | 2048B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
 | | [Tags] | 2048B | 2C
 | | frame_size=${2048} | phy_cores=${2}
+
+| 65536B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| | [Tags] | 65536B | 1C
+| | frame_size=${65536} | phy_cores=${1}
+
+| 65536B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| | [Tags] | 65536B | 2C
+| | frame_size=${65536} | phy_cores=${2}

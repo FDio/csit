@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -35,4 +35,5 @@ source "${BASH_FUNCTION_DIR}/nginx.sh" || die "Source failed."
 common_dirs ${@} || die
 gather_nginx  || die "Download nginx failed."
 nginx_extract || die "Extract nginx failed."
+nginx_patch || die "Patch nginx failed."
 nginx_compile || die "Compile nginx failed."
