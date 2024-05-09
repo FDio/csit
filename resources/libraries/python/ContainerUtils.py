@@ -19,6 +19,7 @@ from re import search
 from string import Template
 from time import sleep
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -273,6 +274,7 @@ class ContainerManager:
         :type kwargs: dict
         """
         self.engine.create_vpp_startup_config()
+        logger.debug(f"kwargs {kwargs}")
         self.engine.create_vpp_exec_config(
             u"memif_create_chain_l2xc.exec",
             mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
