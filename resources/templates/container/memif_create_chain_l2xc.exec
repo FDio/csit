@@ -1,9 +1,9 @@
 create memif socket id $sid1 filename $socket1
-create interface memif id $mid1 socket-id $sid1 master
+create interface memif id $mid1 socket-id $sid1 master rx-queues 9 tx-queues 10
 set int state memif$sid1/$mid1 up
 
 create memif socket id $sid2 filename $socket2
-create interface memif id $mid2 socket-id $sid2 master
+create interface memif id $mid2 socket-id $sid2 master rx-queues 9 tx-queues 10
 set int state memif$sid2/$mid2 up
 
 set interface l2 xconnect memif$sid2/$mid2 memif$sid1/$mid1

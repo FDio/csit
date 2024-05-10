@@ -153,7 +153,7 @@ class Memif:
 
         # Create memif
         sw_if_index = Memif._memif_create(
-            node, mid, sid, rxq=rxq, txq=txq, role=role, use_dma=use_dma
+            node, mid, sid, rxq=rxq+2, txq=txq+1, role=role, use_dma=use_dma
         )
 
         # Update Topology
