@@ -91,7 +91,7 @@
 | | ... | \| SLAVE \|
 | |
 | | [Arguments] | ${dut_node} | ${filename} | ${mid}=${1} | ${sid}=${1}
-| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=SLAVE
+| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=MASTER
 | |
 | | ${memif}= | Create memif interface | ${dut_node} | ${filename}${mid}-${sid}
 | | ... | ${mid} | ${sid} | rxq=${rxq} | txq=${txq} | role=${role}
