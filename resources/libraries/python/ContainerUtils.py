@@ -19,6 +19,7 @@ from re import search
 from string import Template
 from time import sleep
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -711,7 +712,8 @@ class ContainerEngine:
         :rtype: VppConfigGenerator
         """
         if cpuset_cpus is None:
-            cpuset_cpus = self.container.cpuset_cpus
+            cpuset_cpus = self.container.cpuset_cpus + 2
+        logger.debug(f"{cpuset_cpus=}")
 
         # Create config instance
         vpp_config = VppConfigGenerator()
