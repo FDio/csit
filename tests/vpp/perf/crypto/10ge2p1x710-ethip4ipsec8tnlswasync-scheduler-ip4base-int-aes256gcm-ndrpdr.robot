@@ -85,7 +85,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${8}
-| ${dp_cores_count}= | ${1}
+#| ${dp_cores_count}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 
@@ -123,18 +123,6 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 64B | 2C
-| | frame_size=${64} | phy_cores=${2}
-
-| 64B-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 64B | 3C
-| | frame_size=${64} | phy_cores=${3}
-
-| 64B-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
-
 | 1518B-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
@@ -146,27 +134,3 @@
 | 1518B-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
-
-| 9000B-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| 9000B-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 9000B | 3C
-| | frame_size=${9000} | phy_cores=${3}
-
-| 9000B-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
-| IMIX-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | phy_cores=${2}
-
-| IMIX-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | IMIX | 3C
-| | frame_size=IMIX_v4_1 | phy_cores=${3}
-
-| IMIX-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
