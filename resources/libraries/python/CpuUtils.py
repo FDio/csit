@@ -15,6 +15,7 @@
 
 from random import choice
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -278,6 +279,8 @@ class CpuUtils:
             raise RuntimeError(u"NodeID is out of range!")
 
         smt_used = CpuUtils.is_smt_enabled(node[u"cpuinfo"])
+        smt_used = BuiltIn().get_variable_value("\${smt_used}", smt_used)
+        logger.debug(f"{smt_used=}")
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
         # CPU thread sibling offset.
         sib = len(cpu_list) // CpuUtils.NR_OF_THREADS
