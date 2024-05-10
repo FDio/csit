@@ -360,7 +360,7 @@ class IPsecUtil:
                     return
                 worker_ids = list()
                 workers = BuiltIn().get_variable_value(
-                    f"${{{node_name}_cpu_dp}}"
+                    f"${{{node_name}_cpu_wt}}"
                 )
                 for item in thread_data:
                     if str(item.cpu_id) in workers.split(","):
