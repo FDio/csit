@@ -146,6 +146,7 @@
 | |
 | | ${fib_table_1}= | Set Variable | ${10}
 | | Run Keyword If | ${fib_table_1} > ${0}
+| | # FIXME: Maybe wrong.
 | | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_1}
 | | ${ip_base_if1}= | Evaluate | ${dut_index} + ${1}
 | | ${ip_net_if1}= | Set Variable
@@ -203,6 +204,126 @@
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
 | | | ${memif1}= | Set Variable | ${${dut}-memif-${number}-if1}
 | | | ${memif2}= | Set Variable | ${${dut}-memif-${number}-if2}
+| | | ${fib_table_1}= | Evaluate | ${fib_table_1} + ${1}
+| | | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${1}
+| | | Run Keyword If | ${number} != ${count}
+| | | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
+| | | Assign Interface To Fib Table | ${nodes['${dut}']}
+| | | ... | ${memif1} | ${fib_table_1}
+| | | Assign Interface To Fib Table | ${nodes['${dut}']}
+| | | ... | ${memif2} | ${fib_table_2}
+| | | ${ip_base_memif1}= | Evaluate
+| | | ... | ${ip_base_start} + (${number} - ${1}) * ${2}
+| | | ${ip_base_memif2}= | Evaluate | ${ip_base_memif1} + ${1}
+| | | ${ip_net_memif1}= | Set Variable
+| | | ... | ${ip_base_memif1}.${ip_base_memif1}.${ip_base_memif1}
+| | | ${ip_net_memif2}= | Set Variable
+| | | ... | ${ip_base_memif2}.${ip_base_memif2}.${ip_base_memif2}
+| | | VPP Interface Set IP Address
+| | | ... | ${nodes['${dut}']} | ${memif1} | ${ip_net_memif1}.1 | 30
+| | | VPP Interface Set IP Address
+| | | ... | ${nodes['${dut}']} | ${memif2} | ${ip_net_memif2}.1 | 30
+| | | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24
+| | | ... | vrf=${fib_table_1} | gateway=${ip_net_memif2}.1
+| | | ... | interface=${memif1}
+| | | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24
+| | | ... | vrf=${fib_table_2} | gateway=${ip_net_memif1}.1
+| | | ... | interface=${memif2}
+| | | ${memif_if1_key}= | Get interface by sw index | ${nodes['${dut}']}
+| | | ... | ${memif1}
+| | | ${memif_if1_mac}= | Get interface mac | ${nodes['${dut}']}
+| | | ... | ${memif_if1_key}
+| | | ${memif_if2_key}= | Get interface by sw index | ${nodes['${dut}']}
+| | | ... | ${memif2}
+| | | ${memif_if2_mac}= | Get interface mac | ${nodes['${dut}']}
+| | | ... | ${memif_if2_key}
+| | | VPP Add IP Neighbor | ${nodes['${dut}']}
+| | | ... | ${memif1} | ${ip_net_memif2}.1 | ${memif_if2_mac}
+| | | VPP Add IP Neighbor | ${nodes['${dut}']}
+| | | ... | ${memif2} | ${ip_net_memif1}.1 | ${memif_if1_mac}
+| | END
+
+| Initialize IPv4 routing with memif pairs and ipsec on DUT node
+| | [Documentation] FIXME!
+| |
+| | [Arguments] | ${dut}
+| |
+| | Run Keyword If | "${duts_count}" != "2" | Fail | FIXME
+| | ${dut_index}= | Get Index From List | ${duts} | ${dut}
+| | ${last_dut_index}= | Evaluate | ${duts_count} - ${1}
+| |
+| | # FIXME I bet those two are wrong for ipsec traffic profiles.
+| | ${tg_if1_net}= | Set Variable | 10.10.10.0
+| | ${tg_if2_net}= | Set Variable | 20.20.20.0
+| |
+| | ${prev_node}= | Run Keyword If | ${dut_index} == ${0}
+| | ... | Set Variable | TG
+| | ... | ELSE | Get From List | ${duts} | ${dut_index-${1}}
+| | ${prev_if}= | Run Keyword If | ${dut_index} == ${0}
+| | ... | Set Variable | pf1
+| | ... | ELSE | Set Variable | ${int}2
+| | ${prev_if_mac}= | Get Interface MAC | ${nodes['${prev_node}']}
+| | ... | ${${prev_node}_${prev_if}}[0]
+| | ${fib_table_1}= | Set Variable If | "${prev_node}" == "TG" | ${10} | ${0}
+| | Run Keyword If | ${fib_table_1} > ${0}
+| | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_1}
+| | # FIXME: I also bet this next value is wrong.
+| | ${ip_base_if1}= | Evaluate | ${dut_index} + ${1}
+| | ${ip_net_if1}= | Set Variable
+| | ... | ${ip_base_if1}.${ip_base_if1}.${ip_base_if1}
+| | # FIXME: Is /24 enough?
+| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24
+| | ... | vrf=${fib_table_1} | gateway=${ip_net_if1}.1
+| | ... | interface=${${dut}_${int}1}[0] | multipath=${TRUE}
+| | # FIXME: Skip these 3 commands if "${fib_table_1}" == "0".
+| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_${int}1}[0]
+| | ... | ${fib_table_1}
+| | VPP Interface Set IP Address | ${nodes['${dut}']} | ${${dut}_${int}1}[0]
+| | ... | ${ip_net_if1}.2 | 30
+| | VPP Add IP Neighbor
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${ip_net_if1}.1
+| | ... | ${prev_if_mac}
+| |
+| | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${count}
+| | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
+| | # FIXME: Also suspicious.
+| | ${ip_base_if2}= | Evaluate | ${ip_base_if1} + ${1}
+| | ${ip_net_if2}= | Set Variable
+| | ... | ${ip_base_if2}.${ip_base_if2}.${ip_base_if2}
+| | # FIXME: Investigate which of those need to be skipped.
+| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24
+| | ... | vrf=${fib_table_2} | gateway=${ip_net_if2}.2
+| | ... | interface=${${dut}_${int}2}[0] | multipath=${TRUE}
+| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_${int}2}[0]
+| | ... | ${fib_table_2}
+| | VPP Interface Set IP Address | ${nodes['${dut}']} | ${${dut}_${int}2}[0]
+| | ... | ${ip_net_if2}.1 | 30
+| | ${next_node}= | Run Keyword If | ${dut_index} == ${last_dut_index}
+| | ... | Set Variable | TG
+| | ... | ELSE | Get From List | ${duts} | ${dut_index+${1}}
+| | ${next_if}= | Run Keyword If | ${dut_index} == ${last_dut_index}
+| | ... | Set Variable | pf2
+| | ... | ELSE | Set Variable | ${int}1
+| | ${next_if_mac}= | Get Interface MAC | ${nodes['${next_node}']}
+| | ... | ${${next_node}_${next_if}}[0]
+| | VPP Add IP Neighbor
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}2}[0] | ${ip_net_if2}.2
+| | ... | ${next_if_mac}
+| |
+| | # FIXME: Wrong.
+| | ${fib_table_1}= | Evaluate | ${fib_table_1} - ${1}
+| | # FIXME: Maybe wrong.
+| | ${ip_base_start}= | Set Variable | ${31}
+| | # FIXME: Hardcode count==1.
+| | FOR | ${number} | IN RANGE | 1 | ${count+${1}}
+| | | ${sock1}= | Set Variable | memif-${dut}_CNF
+| | | ${sock2}= | Set Variable | memif-${dut}_CNF
+| | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
+| | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
+| | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ${memif1}= | Set Variable | ${${dut}-memif-${number}-if1}
+| | | ${memif2}= | Set Variable | ${${dut}-memif-${number}-if2}
+| | | # FIXME Needs care.
 | | | ${fib_table_1}= | Evaluate | ${fib_table_1} + ${1}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${1}
 | | | Run Keyword If | ${number} != ${count}

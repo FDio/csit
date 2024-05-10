@@ -1224,7 +1224,7 @@ class IPsecUtil:
         integ_alg: IntegAlg.InputType,
         raddr_ip2: Union[IPv4Address, IPv6Address],
         addr_incr: int,
-        spi_d: dict,
+        spi: int,
         existing_tunnels: int = 0,
     ) -> Tuple[List[bytes], List[bytes]]:
         """Create multiple IPsec tunnel interfaces on DUT1 node using PAPI.
@@ -1360,7 +1360,7 @@ class IPsecUtil:
                 ikeys.append(gen_key(integ_alg.key_len))
                 # SAD entry for outband / tx path
                 sad_entry["sad_id"] = i
-                sad_entry["spi"] = spi_d["spi_1"] + i
+                sad_entry["spi"] = spi + i
 
                 sad_entry["crypto_key"]["length"] = len(ckeys[i])
                 sad_entry["crypto_key"]["data"] = ckeys[i]
@@ -1373,8 +1373,8 @@ class IPsecUtil:
             sad_entry["flags"] |= IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND
             for i in range(existing_tunnels, n_tunnels):
                 # SAD entry for inband / rx path
-                sad_entry["sad_id"] = 100000 + i
-                sad_entry["spi"] = spi_d["spi_2"] + i
+                sad_entry["sad_id"] = i
+                sad_entry["spi"] = spi + i
 
                 sad_entry["crypto_key"]["length"] = len(ckeys[i])
                 sad_entry["crypto_key"]["data"] = ckeys[i]
@@ -1403,7 +1403,7 @@ class IPsecUtil:
             for i in range(existing_tunnels, n_tunnels):
                 args["tunnel"]["sw_if_index"] = ipip_tunnels[i]
                 args["tunnel"]["sa_out"] = i
-                args["tunnel"]["sa_in"] = [100000 + i]
+                args["tunnel"]["sa_in"] = [i]
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
@@ -1468,7 +1468,7 @@ class IPsecUtil:
         ikeys: Sequence[bytes],
         raddr_ip1: Union[IPv4Address, IPv6Address],
         addr_incr: int,
-        spi_d: dict,
+        spi: int,
         existing_tunnels: int = 0,
     ) -> None:
         """Create multiple IPsec tunnel interfaces on DUT2 node using PAPI.
@@ -1597,8 +1597,8 @@ class IPsecUtil:
                 ckeys.append(gen_key(crypto_alg.key_len))
                 ikeys.append(gen_key(integ_alg.key_len))
                 # SAD entry for outband / tx path
-                sad_entry["sad_id"] = 100000 + i
-                sad_entry["spi"] = spi_d["spi_2"] + i
+                sad_entry["sad_id"] = i
+                sad_entry["spi"] = spi + i
 
                 sad_entry["crypto_key"]["length"] = len(ckeys[i])
                 sad_entry["crypto_key"]["data"] = ckeys[i]
@@ -1612,7 +1612,7 @@ class IPsecUtil:
             for i in range(existing_tunnels, n_tunnels):
                 # SAD entry for inband / rx path
                 sad_entry["sad_id"] = i
-                sad_entry["spi"] = spi_d["spi_1"] + i
+                sad_entry["spi"] = spi + i
 
                 sad_entry["crypto_key"]["length"] = len(ckeys[i])
                 sad_entry["crypto_key"]["data"] = ckeys[i]
@@ -1640,7 +1640,7 @@ class IPsecUtil:
             args = dict(tunnel=ipsec_tunnel_protect)
             for i in range(existing_tunnels, n_tunnels):
                 args["tunnel"]["sw_if_index"] = ipip_tunnels[i]
-                args["tunnel"]["sa_out"] = 100000 + i
+                args["tunnel"]["sa_out"] = i
                 args["tunnel"]["sa_in"] = [i]
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
@@ -1767,7 +1767,7 @@ class IPsecUtil:
         integ_alg = get_enum_instance(IntegAlg, integ_alg)
         n_tunnels = int(n_tunnels)
         existing_tunnels = int(existing_tunnels)
-        spi_d = dict(spi_1=100000, spi_2=200000)
+        spi = 100000
         tun_ips = dict(
             ip1=ip_address(tun_if1_ip_addr), ip2=ip_address(tun_if2_ip_addr)
         )
@@ -1789,7 +1789,7 @@ class IPsecUtil:
             integ_alg,
             raddr_ip2,
             addr_incr,
-            spi_d,
+            spi,
             existing_tunnels,
         )
         if "DUT2" in nodes.keys():
@@ -1804,12 +1804,12 @@ class IPsecUtil:
                 ikeys,
                 raddr_ip1,
                 addr_incr,
-                spi_d,
+                spi,
                 existing_tunnels,
             )
 
         if return_keys:
-            return ckeys, ikeys, spi_d["spi_1"], spi_d["spi_2"]
+            return ckeys, ikeys, spi
         return None
 
     @staticmethod
