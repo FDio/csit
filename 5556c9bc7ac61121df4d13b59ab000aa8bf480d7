@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a56a16e_667bdee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-10T11:20:27Z",
+      "side": 1,
+      "message": "csit-3nb-spr ndrpdrANDnic_intel-e810cqANDdrv_avfANDperftes*",
+      "revId": "5556c9bc7ac61121df4d13b59ab000aa8bf480d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
