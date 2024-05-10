@@ -173,7 +173,7 @@ class TrafficStreamsBaseClass:
             # second traffic stream with a phase of 10ns (inter-stream gap)
             lat_stream2 = STLStream(
                 packet=pkt_lat_b,
-                isg=10.0,
+                isg=500000000.0,
                 flow_stats=STLFlowLatencyStats(pg_id=1),
                 mode=STLTXCont(pps=9000)
             )
