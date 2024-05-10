@@ -33,6 +33,29 @@
       "message": "Maciek, I heard we also want 9k testcase. We can tweak which exact sizes we need later, when discussing jobspecs.",
       "revId": "a1f69e4dc7d392a07538e4e6cae31f9190c5d187",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deffbe1d_2a20b739",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-05-10T08:48:31Z",
+      "side": 1,
+      "message": "Vratko, I understand the purpose of the test is to use the same NGINX code every time with nailed down version. What is the reason for this change?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 51
+      },
+      "revId": "a1f69e4dc7d392a07538e4e6cae31f9190c5d187",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
