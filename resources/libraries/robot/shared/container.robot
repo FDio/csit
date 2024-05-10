@@ -82,6 +82,7 @@
 | | ${nf_dtc}= | Run Keyword If | ${pinning}
 | | ... | Set Variable If | ${auto_scale} | ${cpu_count_int}
 | | ... | ${nf_dtc}
+| | ${nf_dtc}= | Evaluate | ${nf_dtc} + 1
 | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
 | | ${in_container}= | Running in Container | ${nodes['${dut}']}
