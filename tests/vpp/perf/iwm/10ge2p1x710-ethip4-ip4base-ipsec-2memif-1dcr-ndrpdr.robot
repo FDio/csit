@@ -15,10 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | MEMIF | LXC
-| ... | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | eth-l2xcbase-eth-2memif-1lxc
+| ... | ethip4-ip4base-ipsec-2memif-1dcr
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -27,18 +26,19 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **RFC2544: Pkt throughput L2XC test cases**
+| Documentation | **RFC2544: Pkt throughput IPv4 routing test cases**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-DUT1-DUT2-TG 3-node circular \
 | ... | topology with single links between nodes.
 | ... |
-| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for L2 cross connect.
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for IPv4 routing.
 | ... |
-| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with L2 \
-| ... | cross-connect. DUT1 and DUT2 tested with ${nic_name}.
-| ... | LXC is connected to VPP via Memif interface. LXC is running same VPP \
-| ... | version as running on DUT. LXC is limited via cgroup to use 3 cores \
-| ... | allocated from pool of isolated CPUs. There are no memory contraints.
+| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with IPv4. \
+| ... | routing with two FIB tables and two static IPv4 /24 route entries per \
+| ... | FIB table. Container is connected to VPP via Memif interface. \
+| ... | Container is running same VPP version as running on DUT. Container is \
+| ... | limited via cgroup to use cores allocated from pool of isolated CPUs. \
+| ... | There are no memory contraints. DUTs are tested with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \
@@ -54,25 +54,39 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | memif_plugin.so
+| ... | crypto_native_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${crypto_type}= | ${None}
+| ${encr_alg}= | AES GCM 256
+| ${auth_alg}= | NONE
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${osi_layer}= | L2
-| ${overhead}= | ${0}
+| ${osi_layer}= | L3
+| ${overhead}= | ${54}
+| ${tg_if1_ip4}= | 192.168.10.254
+| ${dut1_if1_ip4}= | 192.168.10.11
+| ${dut1_if2_ip4}= | 100.0.0.1
+| ${dut2_if1_ip4}= | 200.0.0.102
+| ${dut2_if2_ip4}= | 192.168.20.11
+| ${tg_if2_ip4}= | 192.168.20.254
+| ${raddr_ip4}= | 20.0.0.0
+| ${laddr_ip4}= | 10.0.0.0
+| ${addr_range}= | ${24}
+| ${n_tunnels}= | ${40}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip4-ip4src254
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 # Container
-| ${container_engine}= | LXC
+| ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | - **[Cfg]** DUT runs L2XC switching config. \
+| | ... | - **[Cfg]** DUT runs IPv4 routing config. \
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
@@ -93,22 +107,63 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Start containers for test
-| | And Initialize L2 xconnect with memif pairs
+
+| | And Initialize IPv4 routing with memif pairs
+
+| | And Initialize IPSec in 3-node circular topology
+
+| | And VPP IPsec Create Tunnel Interfaces
+| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
+| | ... | ${DUT2_${int}1}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
+| | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 1518B-1c-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
+| 64B-1c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | 64B | 1C
+| | frame_size=${64} | phy_cores=${1}
+
+| 64B-2c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | 64B | 2C
+| | frame_size=${64} | phy_cores=${2}
+
+| 64B-4c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | 64B | 4C
+| | frame_size=${64} | phy_cores=${4}
+
+| 1518B-1c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
+| 1518B-2c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-3c-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
-| | [Tags] | 1518B | 2C
-| | frame_size=${1518} | phy_cores=${2}
-
-| 1518B-4c-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
+| 1518B-4c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
+
+| 9000B-1c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | 9000B | 1C
+| | frame_size=${9000} | phy_cores=${1}
+
+| 9000B-2c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | 9000B | 2C
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-4c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | 9000B | 4C
+| | frame_size=${9000} | phy_cores=${4}
+
+| IMIX-1c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | IMIX | 1C
+| | frame_size=IMIX_v4_1 | phy_cores=${1}
+
+| IMIX-2c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | IMIX | 2C
+| | frame_size=IMIX_v4_1 | phy_cores=${2}
+
+| IMIX-4c-ethip4-ip4base-ipsec-2memif-1dcr-ndrpdr
+| | [Tags] | IMIX | 4C
+| | frame_size=IMIX_v4_1 | phy_cores=${4}
