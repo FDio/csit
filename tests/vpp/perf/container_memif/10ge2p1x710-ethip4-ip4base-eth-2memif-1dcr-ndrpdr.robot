@@ -68,6 +68,7 @@
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
+| ${smt_used}= | ${False}
 
 *** Keywords ***
 | Local Template
