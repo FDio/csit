@@ -238,7 +238,7 @@
 | | ... | on all DUT nodes (leaving feature plane workers disabled).
 | |
 | | VPP Round Robin Rx Placement on all DUTs
-| | ... | ${nodes} | prefix=${EMPTY} | use_dp_cores=${True}
+| | ... | ${nodes} | prefix=${EMPTY} | use_dp_cores=${False}
 | | VPP IPSec Crypto SW Scheduler Set Worker on all DUTs
 | | ... | ${nodes} | crypto_enable=${False}
 

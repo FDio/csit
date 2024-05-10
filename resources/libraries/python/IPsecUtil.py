@@ -21,6 +21,7 @@ from random import choice
 from string import ascii_letters
 from typing import Iterable, List, Optional, Sequence, Tuple, Union
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -336,6 +337,7 @@ class IPsecUtil:
                 f" on host {node['host']}"
             )
             args = dict(worker_index=worker - 1, crypto_enable=crypto_enable)
+            logger.debug(f"{args=}")
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -360,7 +362,7 @@ class IPsecUtil:
                     return
                 worker_ids = list()
                 workers = BuiltIn().get_variable_value(
-                    f"${{{node_name}_cpu_dp}}"
+                    f"${{{node_name}_cpu_wt}}"
                 )
                 for item in thread_data:
                     if str(item.cpu_id) in workers.split(","):
