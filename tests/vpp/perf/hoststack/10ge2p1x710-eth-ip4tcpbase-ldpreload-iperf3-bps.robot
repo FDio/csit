@@ -49,7 +49,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
-| ${frame_size}= | ${9000}
+| ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 
 *** Keywords ***
