@@ -20,6 +20,9 @@
 *** Keywords ***
 | Set up memif interfaces on DUT node
 | | [Documentation] | Create two Memif interfaces on given VPP node.
+| | ... | Also create test variables named as the provided interface names,
+| | ... | the values hold the sw_if_index values for the newly created variables.
+| | ... | TODO: Add those to the current topology state properly.
 | |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node. Type: dictionary
@@ -37,35 +40,35 @@
 | | ... | - role - Memif role (Optional). Type: string, default value: SLAVE
 | |
 | | ... | _NOTE:_ This KW sets following test case variable:
-| | ... | - ${${memif_if1}} - 1st Memif interface.
-| | ... | - ${${memif_if2}} - 2nd Memif interface.
+| | ... | - \${\${memif_if1}} - 1st Memif interface.
+| | ... | - \${\${memif_if2}} - 2nd Memif interface.
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Set up memif interfaces on DUT node \
-| | ... | \| ${nodes['DUT1']} \| sock1 \| sock2 \| 1 \|
+| | ... | \| \${nodes['DUT1']} \| sock1 \| sock2 \| 1 \|
 | | ... | \| Set up memif interfaces on DUT node \
-| | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \
+| | ... | \| \${nodes['DUT2']} \| sock1 \| sock2 \| 1 \
 | | ... | \| dut2_memif_if1 \| dut2_memif_if2 \| 1 \| 1 \| SLAVE \|
-| | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \| rxq=0 \| txq=0 \
+| | ... | \| \${nodes['DUT2']} \| sock1 \| sock2 \| 1 \| rxq=0 \| txq=0 \
 | | ... | \| dcr_uuid=_a5730a0a-2ba1-4fe9-91bd-79b9828e968e \|
 | |
 | | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
 | | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2 | ${rxq}=${1}
-| | ... | ${txq}=${1} | ${role}=SLAVE
+| | ... | ${txq}=${1} | ${role}=MASTER
 | |
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
-| | ${memif_1}= | Create memif interface | ${dut_node}
+| | ${memif_1_swindex}= | Create memif interface | ${dut_node}
 | | ... | ${filename1}${mid}${DUT1_UUID}-${sid_1} | ${mid} | ${sid_1}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
-| | ${memif_2}= | Create memif interface | ${dut_node}
+| | ${memif_2_swindex}= | Create memif interface | ${dut_node}
 | | ... | ${filename2}${mid}${DUT1_UUID}-${sid_2} | ${mid} | ${sid_2}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
-| | Set Interface State | ${dut_node} | ${memif_1} | up
-| | Set Interface State | ${dut_node} | ${memif_2} | up
-| | Set Test Variable | ${${memif_if1}} | ${memif_1}
-| | Set Test Variable | ${${memif_if2}} | ${memif_2}
+| | Set Interface State | ${dut_node} | ${memif_1_swindex} | up
+| | Set Interface State | ${dut_node} | ${memif_2_swindex} | up
+| | Set Test Variable | ${${memif_if1}} | ${memif_1_swindex}
+| | Set Test Variable | ${${memif_if2}} | ${memif_2_swindex}
 
 | Set up single memif interface on DUT node
 | | [Documentation] | Create single Memif interface on given VPP node.
@@ -87,11 +90,11 @@
 | | ... | *Example:*
 | |
 | | ... | \| Set up single memif interface on DUT node \
-| | ... | \| ${nodes['DUT1']} \| sock1 \| 1 \| dut1_memif_if1 \| 1 \| 1 \
+| | ... | \| \${nodes['DUT1']} \| sock1 \| 1 \| dut1_memif_if1 \| 1 \| 1 \
 | | ... | \| SLAVE \|
 | |
 | | [Arguments] | ${dut_node} | ${filename} | ${mid}=${1} | ${sid}=${1}
-| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=SLAVE
+| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=MASTER
 | |
 | | ${memif}= | Create memif interface | ${dut_node} | ${filename}${mid}-${sid}
 | | ... | ${mid} | ${sid} | rxq=${rxq} | txq=${txq} | role=${role}
