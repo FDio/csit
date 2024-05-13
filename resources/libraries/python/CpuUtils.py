@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -278,6 +278,7 @@ class CpuUtils:
             raise RuntimeError(u"NodeID is out of range!")
 
         smt_used = CpuUtils.is_smt_enabled(node[u"cpuinfo"])
+        smt_used = BuiltIn().get_variable_value("\${smt_used}", smt_used)
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
         # CPU thread sibling offset.
         sib = len(cpu_list) // CpuUtils.NR_OF_THREADS
