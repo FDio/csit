@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e768535_ad67f64e",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-05-14T04:06:43Z",
+      "side": 0,
+      "message": "leave it",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 0
+      },
+      "revId": "3ac428429c7bc6d723ae12c3b848771390e7cbb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}

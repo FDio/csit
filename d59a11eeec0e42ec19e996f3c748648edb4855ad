@@ -33,6 +33,75 @@
       "message": "Ok. By default no effect, but using previous patchset this [1] is the new api trace dump.\n\n[1] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-clx/1271/log.html.gz#s1-s1-s1-s1-s1-t1-k3-k2",
       "revId": "d59a11eeec0e42ec19e996f3c748648edb4855ad",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1613f8d2_38651d29",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-05-14T04:06:43Z",
+      "side": 1,
+      "message": "verify is for verify and not for enable traces",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 50
+      },
+      "revId": "d59a11eeec0e42ec19e996f3c748648edb4855ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6a3e06_5b9de17f",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-05-14T04:06:43Z",
+      "side": 1,
+      "message": "just \"apply config\"",
+      "range": {
+        "startLine": 61,
+        "startChar": 29,
+        "endLine": 61,
+        "endChar": 47
+      },
+      "revId": "d59a11eeec0e42ec19e996f3c748648edb4855ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dbad356_6acd3017",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-05-14T04:06:43Z",
+      "side": 1,
+      "message": "just \"apply config\" no need to do VPP as it is from VPPConfigClass",
+      "range": {
+        "startLine": 288,
+        "startChar": 27,
+        "endLine": 288,
+        "endChar": 43
+      },
+      "revId": "d59a11eeec0e42ec19e996f3c748648edb4855ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
