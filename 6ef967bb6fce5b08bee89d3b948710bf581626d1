@@ -101,6 +101,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND1stream",
       "revId": "6ef967bb6fce5b08bee89d3b948710bf581626d1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1462abc4_39b6bedd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-14T12:49:21Z",
+      "side": 1,
+      "message": "Alright, so 3nb-spr failing is a known issue already present in trending.\nComparing performance with parent, it is either better here or identical (within noise).\nThe only exception is 128KB-1c-ethip4-ip4base-2vhost-iperf3-mrr. As Vector/Call remains low [0], I suspect the reason is that now VM has one less core [1] that in parent [2].\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-spr/127/log.html.gz#s1-s1-s1-s1-s4-t1-k2-k12-k3-k17-k1-k1-k1-k1\n[1] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-spr/127/log.html.gz#s1-s1-s1-s1-s4-t1-k2-k10-k8\n[2] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-spr/128/log.html.gz#s1-s1-s1-s1-s4-t1-k2-k10-k8",
+      "revId": "6ef967bb6fce5b08bee89d3b948710bf581626d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
