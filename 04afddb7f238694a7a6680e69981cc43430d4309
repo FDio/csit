@@ -33,6 +33,23 @@
       "message": "Verify runs as comparison base for child changes.\ncsit-2n-spr-perftest nic_intel-e810cqANDgso*",
       "revId": "04afddb7f238694a7a6680e69981cc43430d4309",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "697223c1_e4aa3f3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-14T10:27:30Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND1stream",
+      "revId": "04afddb7f238694a7a6680e69981cc43430d4309",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
