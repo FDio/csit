@@ -300,7 +300,9 @@ class L2Util:
             papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
-    def vpp_setup_bidirectional_l2_patch(node, interface1, interface2):
+    def vpp_setup_bidirectional_l2_patch(
+        node, interface1, interface2, interface3, interface4, ext1, ext1,
+    ):
         """Create bidirectional l2 patch between 2 interfaces on vpp node.
 
         :param node: Node to add bidirectional l2 patch.
@@ -320,6 +322,23 @@ class L2Util:
         else:
             sw_iface2 = interface2
 
+        # Hack: The best performance is when we trick l2-patch to work in L3 mode.
+        # We do the same hack all the interfaces,
+        # so no internal graph node passes ethernet headers.
+        # First, make sure VPP views the devices as in L2 mode.
+        L2Util.vpp_setup_bidirectional_cross_connect(node, interface1, interface2)
+        L2Util.vpp_setup_bidirectional_cross_connect(node, interface3, interface4)
+        # Now switch to L3 mode, removing the l2-xc. Only doable via CLI.
+        cmd = "set interface l3 memif1/1"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = f"set interface l3 {ext1}"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "set interface l3 memif2/1"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = f"set interface l3 {ext2}"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        # After the hack above, l2-patch will work in L3 mode,
+        # and also the other memif now returns L3 data, ready for ipsec.
         cmd = u"l2_patch_add_del"
         args1 = dict(
             rx_sw_if_index=sw_iface1,
@@ -333,7 +352,6 @@ class L2Util:
         )
         err_msg = f"Failed to add L2 patch between two interfaces " \
             f"on host {node['host']}"
-
         with PapiSocketExecutor(node) as papi_exec:
             # Cannot use get_replies due to VPP-2203.
             papi_exec.add(cmd, **args1).get_reply(err_msg)
