@@ -279,7 +279,7 @@
 | | Configure L2XC
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${vhost_if2}
 
-| Initialize L2 xconnect with memif pairs on DUT node
+| Initialize L2patch with memif pairs on DUT node
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on DUT node. Cross connect each Memif
 | | ... | interface with one physical interface or virtual interface to create
@@ -298,28 +298,34 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Initialize L2 xconnect with memif pairs on DUT node \| ${dut} \
+| | ... | \| Initialize L2patch with memif pairs on DUT node \| ${dut} \
 | | ... | \| ${1} \|
 | |
 | | [Arguments] | ${dut} | ${count}
 | |
-| | FOR | ${number} | IN RANGE | 1 | ${count}+1
-| | | ${sock1}= | Set Variable | memif-${dut}_CNF
-| | | ${sock2}= | Set Variable | memif-${dut}_CNF
-| | | ${prev_index}= | Evaluate | ${number}-1
-| | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
-| | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
-| | | ${xconnect_if1}= | Set Variable If | ${number}==1
-| | | ... | ${${dut}_${int}1}[0] | ${${dut}-memif-${prev_index}-if2}
-| | | Configure L2XC | ${nodes['${dut}']} | ${xconnect_if1}
-| | | ... | ${${dut}-memif-${number}-if1}
-| | | Run Keyword If | ${number}==${count} | Configure L2XC
-| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${number}-if2}
-| | | ... | ${${dut}_${int}2}[0]
-| | END
+| | Run Keyword If | "${dut}" not in ["DUT1", "DUT2"] | Fail | Unsupported ${dut}
+| | ${node} = | Set Variable | ${nodes['${dut}']}
+| | ${tgf_num} = | Set Variable If | "${dut}" == "DUT1" | ${1} | ${2}
+| | ${other_num} = | Set Variable If | "${dut}" == "DUT1" | ${2} | ${1}
+| | ${tgf_port_name} = | Set Variable | ${${dut}_${int}${tgf_num}}[0]
+| | ${other_port_name} = | Set Variable | ${${dut}_${int}${other_num}}[0]
+| | ${tgf_if_name} = | Get Interface Name | ${node} | ${tgf_port_name}
+| | ${other_if_name} = | Get Interface Name | ${node} | ${other_port_name}
+| | ${sock} = | Set Variable | memif-${dut}_CNF
+| | ${memif_1_varname} = | Set Variable | ${dut}-memif-1-if1
+| | ${memif_2_varname} = | Set Variable | ${dut}-memif-1-if2
+| | Set up memif interfaces on DUT node | ${node}
+| | ... | ${sock} | ${sock} | ${1} | ${memif_1_varname}
+| | ... | ${memif_2_varname} | ${rxq_count_int} | ${rxq_count_int}
+| | ${memif_1_swindex} = | Set Variable | ${${memif_1_varname}}
+| | ${memif_2_swindex} = | Set Variable | ${${memif_2_varname}}
+| | VPP Setup Bidirectional L2 patch | ${node}
+| | ... | ${tgf_port_name} | ${memif_1_swindex}
+| | ... | ${other_port_name} | ${memif_2_swindex}
+| | ... | ${tgf_if_name} | ${other_if_name}
+# The other memif remains in fib table 0 available for ip4 routing.
 
-| Initialize L2 xconnect with memif pairs
+| Initialize L2patch with memif pairs
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Cross
 | | ... | connect each Memif interface with one physical interface or virtual
@@ -330,12 +336,12 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Initialize L2 xconnect with memif pairs \| ${1} \|
+| | ... | \| Initialize L2patch with memif pairs \| ${1} \|
 | |
 | | [Arguments] | ${count}=${1}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
+| | | Initialize L2patch with memif pairs on DUT node | ${dut} | ${count}
 | | END
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
