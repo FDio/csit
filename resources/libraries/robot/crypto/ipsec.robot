@@ -174,18 +174,22 @@
 | | ... | with prefix /8 and next hop of neighbour TG interface IPv4 address.
 | |
 | | Set interfaces in path up
+| | ${memif_1_varname} = | Set Variable | DUT1-memif-1-if2
+| | ${memif_2_varname} = | Set Variable | DUT2-memif-1-if2
+| | ${memif_1_swindex} = | Set Variable | ${${memif_1_varname}}
+| | ${memif_2_swindex} = | Set Variable | ${${memif_2_varname}}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip4} | 24
+| | ... | ${dut1} | ${memif_1_swindex} | ${dut1_if1_ip4} | 24
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip4} | 24
+| | ... | ${dut2} | ${memif_2_swindex} | ${dut2_if2_ip4} | 24
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
+| | ... | ${dut1} | ${memif_1_swindex} | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${tg_if2_ip4} | ${TG_pf2_mac}[0]
+| | ... | ${dut2} | ${memif_2_swindex} | ${tg_if2_ip4} | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
-| | ... | interface=${DUT1_${int}1}[0]
+| | ... | interface=${memif_1_swindex}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
-| | ... | interface=${DUT2_${int}2}[0]
+| | ... | interface=${memif_2_swindex}
 
 | Initialize IPSec in 3-node circular container topology
 | | [Documentation]
@@ -238,9 +242,9 @@
 | | ... | on all DUT nodes (leaving feature plane workers disabled).
 | |
 | | VPP Round Robin Rx Placement on all DUTs
-| | ... | ${nodes} | prefix=${EMPTY} | use_dp_cores=${True}
-| | VPP IPSec Crypto SW Scheduler Set Worker on all DUTs
-| | ... | ${nodes} | crypto_enable=${False}
+| | ... | ${nodes} | prefix=${EMPTY} | use_dp_cores=${False}
+#| | VPP IPSec Crypto SW Scheduler Set Worker on all DUTs
+#| | ... | ${nodes} | crypto_enable=${False}
 
 | Enable SPD flow cache IPv4 Inbound
 | | [Documentation]
