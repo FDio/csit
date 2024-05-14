@@ -16,6 +16,23 @@
       "message": "This is one of edits already verified back in https://gerrit.fd.io/r/c/csit/+/40326",
       "revId": "04afddb7f238694a7a6680e69981cc43430d4309",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27c11c63_ff0a3af6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-14T10:27:02Z",
+      "side": 1,
+      "message": "Verify runs as comparison base for child changes.\ncsit-2n-spr-perftest nic_intel-e810cqANDgso*",
+      "revId": "04afddb7f238694a7a6680e69981cc43430d4309",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
