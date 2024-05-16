@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,15 +67,34 @@ function eb_version_build_verify () {
 
     # Build and verify Elastic Beanstalk CDash integrity.
     #
-    # Variable read:
-    # - ${CSIT_DIR} - CSIT main directory.
     # Variables set:
     # - ${TERRAFORM_MODULE_DIR} - Terraform module sub-directory.
     # Functions called:
-    # - hugo_init_modules - Initialize Hugo modules.
-    # - hugo_build_site - Build static site with Hugo.
     # - terraform_init - Initialize Terraform modules.
     # - terraform_validate - Validate Terraform code.
+    # - die - Print to stderr and exit.
+
+    set -exuo pipefail
+
+    eb_version_create_release || die "Failed to create release!"
+
+    TERRAFORM_MODULE_DIR="terraform-aws-fdio-csit-dash-app-base"
+
+    export TF_VAR_application_version="${BUILD_ID}"
+    terraform_init || die "Failed to call Terraform init!"
+    terraform_validate || die "Failed to call Terraform validate!"
+}
+
+
+function eb_version_create_release () {
+
+    # Create release of Elastic Beanstalk CDash.
+    #
+    # Variable read:
+    # - ${CSIT_DIR} - CSIT main directory.
+    # Functions called:
+    # - hugo_init_modules - Initialize Hugo modules.
+    # - hugo_build_site - Build static site with Hugo.
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
@@ -94,54 +113,8 @@ function eb_version_build_verify () {
     zip -r ../app.zip . || die "Compress failed!"
     popd || die "Popd failed!"
     popd || die "Popd failed!"
-
-    TERRAFORM_MODULE_DIR="terraform-aws-fdio-csit-dash-app-base"
-
-    export TF_VAR_application_version="${BUILD_ID}"
-    terraform_init || die "Failed to call Terraform init!"
-    terraform_validate || die "Failed to call Terraform validate!"
 }
 
-
-function generate_report () {
-
-    # Generate report content.
-    #
-    # Variable read:
-    # - ${TOOLS_DIR} - Path to existing resources subdirectory "tools".
-    # - ${GERRIT_BRANCH} - Gerrit branch used for release tagging.
-    # Variables set:
-    # - ${CODE_EXIT_STATUS} - Exit status of report generation.
-    # Functions called:
-    # - die - Print to stderr and exit.
-
-    set -exuo pipefail
-
-    pushd "${TOOLS_DIR}"/presentation || die "Pushd failed!"
-
-    # Set default values in config array.
-    typeset -A CFG
-    typeset -A DIR
-
-    DIR[WORKING]="_tmp"
-
-    # Create working directories.
-    mkdir "${DIR[WORKING]}" || die "Mkdir failed!"
-
-    export PYTHONPATH=`pwd`:`pwd`/../../../ || die "Export failed!"
-
-    all_options=("pal.py")
-    all_options+=("--specification" "specifications/report")
-    all_options+=("--release" "${GERRIT_BRANCH:-master}")
-    all_options+=("--week" $(date "+%V"))
-    all_options+=("--logging" "INFO")
-    all_options+=("--force")
-
-    set +e
-    python "${all_options[@]}"
-    CODE_EXIT_STATUS="$?"
-    set -e
-}
 
 function installed () {
 
