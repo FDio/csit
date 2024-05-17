@@ -121,9 +121,9 @@
 ##### ethip4--ethip4udpgeneve-1tun-ip4base
 0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4--ethip4udpgeneve-1tun-ip4base
 ##### ethip4vxlan-l2bdbasemaclrn
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
 ##### ethip4vxlan-l2xcbase
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4vxlan-l2xcbase
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
 ## ./ip6
 ### intel-e810cq
 #### dpdk-vfio-pci
@@ -148,30 +148,30 @@
 ### intel-e810cq
 #### avf
 ##### ethip4-l2bdbasemaclrn
-# 0c AND 64b AND scapy AND e810cq AND drv_avf AND ethip4-l2bdbasemaclrn
+0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-l2bdbasemaclrn
 #### dpdk-vfio-pci
 ##### ethip4-l2bdbasemaclrn
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn
 ##### ethip4-l2bdbasemaclrn-iacl1sf
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-iacl1sf
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-iacl1sf
 ##### ethip4-l2bdbasemaclrn-iacl1sl
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-iacl1sl
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-iacl1sl
 ##### ethip4-l2bdbasemaclrn-macip-iacl1sl
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-macip-iacl1sl
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-macip-iacl1sl
 ##### ethip4-l2bdbasemaclrn-oacl1sf
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-oacl1sf
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-oacl1sf
 ##### ethip4-l2bdbasemaclrn-oacl1sl
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-oacl1sl
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-oacl1sl
 ## ./l2patch
 ### intel-e810cq
 #### dpdk-vfio-pci
 ##### ethip4-l2patch
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2patch
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2patch
 ## ./l2xc
 ### intel-e810cq
 #### dpdk-vfio-pci
 ##### ethip4-l2xcbase
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2xcbase
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2xcbase
 ## ./srv6
 ### intel-e810cq
 #### dpdk-vfio-pci
@@ -191,7 +191,7 @@
 ### intel-e810cq
 #### dpdk-vfio-pci
 ##### ethip4-l2xcbase-stats
-0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-l2xcbase-stats
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2xcbase-stats
 ## ./vm/ethip4
 ### intel-e810cq
 #### dpdk-vfio-pci
