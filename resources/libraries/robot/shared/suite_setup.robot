@@ -225,7 +225,7 @@
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | Run Keyword | Init interface
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
-| | | ... | numvfs=${0} | osi_layer=${osi_layer}
+| | | ... | numvfs=${0} | osi_layer=${osi_layer} | strict=${False}
 | | END
 
 | Additional Suite Setup Action For performance
