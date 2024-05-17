@@ -1726,6 +1726,34 @@ class InterfaceUtil:
 
         cmd = f"{ns_str} ip link set dev {interface} {trust_str}"
         exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool --help"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -x {interface}"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface}"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash ether"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash tcp6"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash udp6"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash esp6"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash tcp4"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash udp4"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash esp4"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -N {interface} rx-flow-hash esp4 s d"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -N {interface} rx-flow-hash udp4 s d f n"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash esp4"
+        exec_cmd(node, cmd, sudo=True)
+        cmd = f"{ns_str} ethtool -n {interface} rx-flow-hash udp4"
+        exec_cmd(node, cmd, sudo=True)
 
     @staticmethod
     def set_linux_interface_spoof_off(
@@ -1768,7 +1796,7 @@ class InterfaceUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def init_interface(node, ifc_key, driver, numvfs=0, osi_layer=u"L2"):
+    def init_interface(node, ifc_key, driver, numvfs=0, osi_layer=u"L2", strict=True):
         """Init PCI device. Check driver compatibility and bind to proper
         drivers. Optionally create NIC VFs.
 
@@ -1797,7 +1825,7 @@ class InterfaceUtil:
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, strict=strict,
             )
         elif driver == u"af_xdp":
             if kernel_driver not in (
@@ -1808,16 +1836,16 @@ class InterfaceUtil:
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, strict=strict,
             )
         elif driver == u"rdma-core":
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, strict=strict,
             )
         return vf_keys
 
     @staticmethod
-    def init_generic_interface(node, ifc_key, numvfs=0, osi_layer=u"L2"):
+    def init_generic_interface(node, ifc_key, numvfs=0, osi_layer=u"L2", strict=True):
         """Init PCI device. Bind to proper drivers. Optionally create NIC VFs.
 
         :param node: DUT node.
@@ -1842,11 +1870,16 @@ class InterfaceUtil:
             node, pf_pci_addr.replace(u":", r"\:"))
         pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
+        # Stop VPP to prevent deadlock.
         VPPUtil.stop_vpp_service(node)
-        if current_driver != kernel_driver:
+        if current_driver != kernel_driver and strict:
+            raise RuntimeError(f"Suite setup did not set {kernel_driver}")
+        if not strict:
+            # Not strict means suite setup.
+            # Rebind even is driver matches, we do not trust previous suite.
+
             # PCI device must be re-bound to kernel driver before creating VFs.
             DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
-            # Stop VPP to prevent deadlock.
             # Unbind from current driver if bound.
             if current_driver:
                 DUTSetup.pci_driver_unbind(node, pf_pci_addr)
@@ -1894,6 +1927,20 @@ class InterfaceUtil:
             DUTSetup.pci_vf_driver_bind(
                 node, pf_pci_addr, vf_id, uio_driver
             )
+            cmd = f"{ns_str} {interface[1:-1]}"
+            _, linuxname, _ = exec_cmd(node, cmd, sudo=True)
+            cmd = f"{ns_str} ethtool -n {linuxname} rx-flow-hash udp4"
+            exec_cmd(node, cmd, sudo=True)
+            cmd = f"{ns_str} ethtool -n {linuxname} rx-flow-hash esp4"
+            exec_cmd(node, cmd, sudo=True)
+            cmd = f"{ns_str} ethtool -N {linuxname} rx-flow-hash esp4 s d"
+            exec_cmd(node, cmd, sudo=True)
+            cmd = f"{ns_str} ethtool -N {linuxname} rx-flow-hash udp4 s d f n"
+            exec_cmd(node, cmd, sudo=True)
+            cmd = f"{ns_str} ethtool -n {linuxname} rx-flow-hash esp4"
+            exec_cmd(node, cmd, sudo=True)
+            cmd = f"{ns_str} ethtool -n {linuxname} rx-flow-hash udp4"
+            exec_cmd(node, cmd, sudo=True)
 
             # Add newly created ports into topology file
             vf_ifc_name = f"{ifc_key}_vif"

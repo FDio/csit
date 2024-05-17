@@ -46,7 +46,7 @@ nodes:
         model: "HW_C4xxx"
         module: "qat_c4xxx"
         numvfs: 8
-    uio_driver: vfio-pci
+    uio_driver: iavf
     interfaces:
       port1:
         # s34-t32-sut1-c1/p1 - 25GE port1 Intel E823-C 2p25GE.
@@ -78,7 +78,7 @@ nodes:
         model: "HW_C4xxx"
         module: "qat_c4xxx"
         numvfs: 8
-    uio_driver: vfio-pci
+    uio_driver: iavf
     interfaces:
       port1:
         # s35-t32-sut2-c1/p1 - 25GE port1 Intel E823-C 4p25GE.
