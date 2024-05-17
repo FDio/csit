@@ -247,6 +247,7 @@
 | | ... | ELSE
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
+| | ... | xq_num=${rxq_count_int}
 
 | Stop all '${group}' containers
 | | [Documentation] | Stop all container(s) in specific container group on all
