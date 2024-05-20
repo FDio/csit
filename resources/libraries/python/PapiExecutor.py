@@ -97,6 +97,8 @@ def dictize_and_check_retval(obj, err_msg):
     :raises AssertionError: If retval field is present with nonzero value.
     """
     ret = dictize(obj)
+    if ctx := ret.get("context"):
+        logger.debug(f"context {ctx}")
     # *_details messages do not contain retval.
     retval = ret.get("retval", 0)
     if retval != 0:
