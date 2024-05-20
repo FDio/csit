@@ -413,7 +413,7 @@
 | |
 | | # Some suites (e.g. device) are not calling Set Max Rate And Jumbo.
 | | Set Numeric Frame Sizes
-| | ${jumbo} = | Evaluate | ${max_frame_size} >= 1522
+| | ${jumbo} = | Evaluate | ${max_frame_size} >= 1800
 | | Set Test Variable | \${jumbo}
 | | ${recommended_mtu} = | Set Variable If | ${jumbo} | ${9200} | ${1800}
 | | Set Test Variable | \${recommended_mtu}
