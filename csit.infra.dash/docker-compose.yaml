@@ -6,6 +6,20 @@ services:
     environment:
       FLASK_DEBUG: 1
       FLASK_ENV: "development"
+      CSIT_START_TRENDING: "True"
+      CSIT_START_REPORT: "True"
+      CSIT_START_COMPARISONS: "True"
+      CSIT_START_COVERAGE: "True"
+      CSIT_START_STATISTICS: "True"
+      CSIT_START_FAILURES: "True"
+      CSIT_START_SEARCH: "True"
+      CSIT_START_DOC: "True"
+      CSIT_TITLE: "FD.io CSIT"
+      CSIT_BRAND: "CSIT-Dash"
+      CSIT_URL_CICD: "https://jenkins.fd.io/job/"
+      CSIT_URL_LOGS: "https://logs.fd.io/vex-yul-rot-jenkins-1/"
+      CSIT_URL_DOC: "https://csit.fd.io/cdocs/"
+      CSIT_TIME_PERIOD: 250
     mem_limit: "16g"
     ports:
       - "5000:5000"

@@ -17,9 +17,73 @@
 does not need to be hard coded here, but can be read from environment variables.
 """
 
+import os
 import logging
 
 from dash import html
+
+
+def get_str_from_env(env_var_name: str, default_value: str) -> str:
+    """Attempt to read string from environment variable, return that or default.
+
+    The environment variable must start with perfix  "CSIT_".
+
+    If environment variable exists, but is empty (and default is not),
+    empty string is returned.
+
+    :param env_var_name: Base name of environment variable to attempt to read.
+    :param default_value: Value to return if the env var does not exist.
+    :type env_var_names: str
+    :type default_value: str
+    :returns: The value read, or default value.
+    :rtype: str
+    """
+    prefix = "CSIT_"
+    env_str = os.environ.get(prefix + env_var_name, None)
+    if env_str is not None:
+        return env_str
+    return default_value
+
+
+def get_int_from_env(env_var_name: str, default_value: int) -> int:
+    """Attempt to read int from environment variable, return that or default.
+
+    The environment variable must start with perfix  "CSIT_".
+
+    String value is read, default is returned also if conversion fails.
+
+    :param env_var_name: Base name of environment variable to attempt to read.
+    :param default_value: Value to return if read or conversion fails.
+    :type env_var_names: str
+    :type default_value: int
+    :returns: The value read, or default value.
+    :rtype: int
+    """
+    try:
+        return int(get_str_from_env(env_var_name, str()))
+    except ValueError:
+        return default_value
+
+
+def get_bool_from_env(env_var_name: str, default_value: bool) -> bool:
+    """Attempt to read bool from environment variable, return that or default.
+
+    The environment variable must start with perfix  "CSIT_".
+
+    :param env_var_name: Base name of environment variable to attempt to read.
+    :param default_value: Value to return if read or conversion fails.
+    :type env_var_names: str
+    :type default_value: bool
+    :returns: The value read, or default value.
+    :rtype: bool
+    """
+    env_str = get_str_from_env(env_var_name, str()).lower()
+    if env_str in ("true", "yes", "y", "1"):
+        return True
+    elif env_str in ("false", "no", "n", "0"):
+        return False
+    else:
+        return default_value
 
 
 class Constants:
@@ -29,14 +93,24 @@ class Constants:
     ############################################################################
     # General, application wide constants.
 
+    # Select applications to start.
+    START_TRENDING = get_bool_from_env("START_TRENDING", True)
+    START_REPORT = get_bool_from_env("START_REPORT", True)
+    START_COMPARISONS = get_bool_from_env("START_COMPARISONS", True)
+    START_COVERAGE = get_bool_from_env("START_COVERAGE", True)
+    START_STATISTICS = get_bool_from_env("START_STATISTICS", True)
+    START_FAILURES = get_bool_from_env("START_FAILURES", True)
+    START_SEARCH = get_bool_from_env("START_SEARCH", True)
+    START_DOC = get_bool_from_env("START_DOC", True)
+
     # Logging settings.
     LOG_LEVEL = logging.INFO
     LOG_FORMAT = "%(asctime)s: %(levelname)s: %(message)s"
     LOG_DATE_FORMAT = "%Y/%m/%d %H:%M:%S"
 
     # The application title.
-    TITLE = "FD.io CSIT"
-    BRAND = "CSIT-Dash"
+    TITLE = get_str_from_env("TITLE", "FD.io CSIT")
+    BRAND = get_str_from_env("BRAND", "CSIT-Dash")
 
     # The application description.
     DESCRIPTION = "Performance Dashboard"
@@ -45,14 +119,17 @@ class Constants:
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
     # URL to Jenkins
-    URL_JENKINS = "https://jenkins.fd.io/job/"
+    URL_CICD = get_str_from_env("URL_CICD", "https://jenkins.fd.io/job/")
 
     # URL to logs
-    URL_LOGS = "https://logs.fd.io/vex-yul-rot-jenkins-1/"
+    URL_LOGS = get_str_from_env(
+        "URL_LOGS", "https://logs.fd.io/vex-yul-rot-jenkins-1/"
+    )
 
     # URL to the documentation
-    URL_DOC_TRENDING = "https://csit.fd.io/cdocs/methodology/trending/analysis/"
-    URL_DOC_REL_NOTES = "https://csit.fd.io/cdocs/release_notes/current/"
+    URL_DOC = get_str_from_env("URL_DOC", "https://csit.fd.io/cdocs/")
+    URL_DOC_TRENDING = URL_DOC + "methodology/trending/analysis/"
+    URL_DOC_REL_NOTES = URL_DOC + "release_notes/current/"
 
     # Path and name of the file specifying the HTML layout of the dash
     # application.
@@ -82,7 +159,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+    TIME_PERIOD = get_int_from_env("TIME_PERIOD", MAX_TIME_PERIOD)  # [days]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -465,5 +542,11 @@ class Constants:
 
     # Default name of downloaded file with selected data.
     SEARCH_DOWNLOAD_FILE_NAME = "search_data.csv"
+
+    ############################################################################
+    # Documentation.
+
+    # The title.
+    DOC_TITLE = "Documentation"
 
     ############################################################################
