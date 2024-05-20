@@ -480,37 +480,42 @@ def navbar_trending(active: tuple):
     :returns: Navigation bar.
     :rtype: dbc.NavbarSimple
     """
+    children = list()
+    if C.START_TRENDING:
+        children.append(dbc.NavItem(dbc.NavLink(
+            C.TREND_TITLE,
+            active=active[0],
+            external_link=True,
+            href="/trending"
+        )))
+    if C.START_FAILURES:
+        children.append(dbc.NavItem(dbc.NavLink(
+            C.NEWS_TITLE,
+            active=active[1],
+            external_link=True,
+            href="/news"
+        )))
+    if C.START_STATISTICS:
+        children.append(dbc.NavItem(dbc.NavLink(
+            C.STATS_TITLE,
+            active=active[2],
+            external_link=True,
+            href="/stats"
+        )))
+    if C.START_SEARCH:
+        children.append(dbc.NavItem(dbc.NavLink(
+            C.SEARCH_TITLE,
+            active=active[3],
+            external_link=True,
+            href="/search"
+        )))
+    if C.START_DOC:
+        children.append(dbc.NavItem(dbc.NavLink(
+            "Documentation",
+            id="btn-documentation",
+        )))
     return dbc.NavbarSimple(
-        children=[
-            dbc.NavItem(dbc.NavLink(
-                C.TREND_TITLE,
-                active=active[0],
-                external_link=True,
-                href="/trending"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                C.NEWS_TITLE,
-                active=active[1],
-                external_link=True,
-                href="/news"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                C.STATS_TITLE,
-                active=active[2],
-                external_link=True,
-                href="/stats"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                C.SEARCH_TITLE,
-                active=active[3],
-                external_link=True,
-                href="/search"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                "Documentation",
-                id="btn-documentation",
-            ))
-        ],
+        children=children,
         id="navbarsimple-main",
         brand=C.BRAND,
         brand_href="/",
@@ -529,38 +534,43 @@ def navbar_report(active: tuple):
     :returns: Navigation bar.
     :rtype: dbc.NavbarSimple
     """
+    children = list()
+    if C.START_REPORT:
+        children.append(dbc.NavItem(dbc.NavLink(
+            C.REPORT_TITLE,
+            active=active[0],
+            external_link=True,
+            href="/report"
+        )))
+    if C.START_COMPARISONS:
+        children.append(dbc.NavItem(dbc.NavLink(
+            "Comparisons",
+            active=active[1],
+            external_link=True,
+            href="/comparisons"
+        )))
+    if C.START_COVERAGE:
+        children.append(dbc.NavItem(dbc.NavLink(
+            "Coverage Data",
+            active=active[2],
+            external_link=True,
+            href="/coverage"
+        )))
+    if C.START_SEARCH:
+        children.append(dbc.NavItem(dbc.NavLink(
+            C.SEARCH_TITLE,
+            active=active[3],
+            external_link=True,
+            href="/search"
+        )))
+    if C.START_DOC:
+        children.append(dbc.NavItem(dbc.NavLink(
+            "Documentation",
+            id="btn-documentation",
+        )))
     return dbc.NavbarSimple(
+        children=children,
         id="navbarsimple-main",
-        children=[
-            dbc.NavItem(dbc.NavLink(
-                C.REPORT_TITLE,
-                active=active[0],
-                external_link=True,
-                href="/report"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                "Comparisons",
-                active=active[1],
-                external_link=True,
-                href="/comparisons"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                "Coverage Data",
-                active=active[2],
-                external_link=True,
-                href="/coverage"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                C.SEARCH_TITLE,
-                active=active[3],
-                external_link=True,
-                href="/search"
-            )),
-            dbc.NavItem(dbc.NavLink(
-                "Documentation",
-                id="btn-documentation",
-            ))
-        ],
         brand=C.BRAND,
         brand_href="/",
         brand_external_link=True,
