@@ -397,6 +397,8 @@
 | | | Set List Value | ${${dut}_vf${pf}_mac} | ${vf} | ${_mac}
 | | | Set List Value | ${${dut}_vf${pf}_pci} | ${vf} | ${_pci}
 | | | Set List Value | ${${dut}_vf${pf}_vlan} | ${vf} | ${_vlan}
+| | | VPP Set Interface MTU
+| | | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[${vf}] | mtu=${recommended_mtu}
 | | END
 
 | Initialize layer af_xdp on node

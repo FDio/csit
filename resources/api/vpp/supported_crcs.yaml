@@ -125,6 +125,11 @@
     # TODO: Which test to run to verify det44_* messages?
     # dhcp_proxy_dump / details # honeycomb
 
+    dev_attach: '0x44b725fc'
+    dev_attach_reply: '0x6082b181'
+    dev_create_port_if: '0x1eb00d01'
+    dev_create_port_if_reply: '0x243c2374'
+
     # vnet/flow/flow.api
     flow_add_v2: '0x5b757558'  # dev
     flow_add_v2_reply: '0x8587dc85'  # dev
