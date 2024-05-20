@@ -6,7 +6,7 @@
   <header class="mb-auto">
     <div>
       <h3 class="float-md-start mb-0 text-white">
-        CSIT-Dash
+        {{ brand }}
       </h3>
     </div>
   </header>
@@ -20,52 +20,18 @@
       {{ description }}
     </p>
     <p class="lead">
-      <p>
-        <a href="/trending/" class="btn btn-primary fw-bold w-25">
-          {{ trending_title }}
-        </a>
-      </p>
-      <p>
-        <a href="/report/" class="btn btn-primary fw-bold w-25">
-          {{ report_title }}
-        </a>
-      </p>
-      <p>
-        <a href="/comparisons/" class="btn btn-primary fw-bold w-25">
-          {{ comp_title }}
-        </a>
-      </p>
-      <p>
-      <p>
-        <a href="/coverage/" class="btn btn-primary fw-bold w-25">
-          {{ cov_title }}
-        </a>
-      </p>
-      <p>
-        <a href="/stats/" class="btn btn-primary fw-bold w-25">
-          {{ stats_title }}
-        </a>
-      </p>
-      <p>
-        <a href="/news/" class="btn btn-primary fw-bold w-25">
-          {{ news_title }}
-        </a>
-      </p>
-      <p>
-        <a href="/search/" class="btn btn-primary fw-bold w-25">
-          {{ search_title }}
-        </a>
-      </p>
-      <p>
-        <a href="/cdocs/" class="btn btn-primary fw-bold w-25">
-          Documentation
-        </a>
-      </p>
+      {% for itm in menu_itms %}
+        <p>
+          <a href="{{ itm['path'] }}" class="btn btn-primary fw-bold w-25">
+            {{ itm['title'] }}
+          </a>
+        </p>
+      {% endfor %}
     </p>
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>Copyright © 2016-2023 <a href="https://fd.io" class="text-white">The Fast Data Project</a>, a series of LF Projects, LLC.</p>
+    <p>Copyright © 2016-2024 <a href="https://fd.io" class="text-white">The Fast Data Project</a>, a series of LF Projects, LLC.</p>
   </footer>
 </div>
 {% endblock %}
