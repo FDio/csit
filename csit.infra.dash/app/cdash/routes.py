@@ -27,12 +27,22 @@ def home():
     return render_template(
         C.MAIN_HTML_LAYOUT_FILE,
         title=C.TITLE,
+        brand=C.BRAND,
         description=C.DESCRIPTION,
+        copyright=C.COPYRIGHT,
         trending_title=C.TREND_TITLE,
+        trending_display="d-block" if C.START_TRENDING else "d-none",
         report_title=C.REPORT_TITLE,
+        report_display="d-block" if C.START_REPORT else "d-none",
         comp_title=C.COMP_TITLE,
+        comp_display="d-block" if C.START_COMPARISONS else "d-none",
         stats_title=C.STATS_TITLE,
+        stats_display="d-block" if C.START_STATISTICS else "d-none",
         news_title=C.NEWS_TITLE,
+        news_display="d-block" if C.START_FAILURES else "d-none",
         cov_title=C.COVERAGE_TITLE,
-        search_title=C.SEARCH_TITLE
+        cov_display="d-block" if C.START_COVERAGE else "d-none",
+        search_title=C.SEARCH_TITLE,
+        search_display="d-block" if C.START_SEARCH else "d-none",
+        doc_display="d-block" if C.START_DOC else "d-none"
     )

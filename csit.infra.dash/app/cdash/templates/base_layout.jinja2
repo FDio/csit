@@ -6,7 +6,7 @@
   <header class="mb-auto">
     <div>
       <h3 class="float-md-start mb-0 text-white">
-        CSIT-Dash
+        {{ brand }}
       </h3>
     </div>
   </header>
@@ -20,43 +20,42 @@
       {{ description }}
     </p>
     <p class="lead">
-      <p>
+      <p class="{{ trending_display }}">
         <a href="/trending/" class="btn btn-primary fw-bold w-25">
           {{ trending_title }}
         </a>
       </p>
-      <p>
+      <p class="{{ report_display }}">
         <a href="/report/" class="btn btn-primary fw-bold w-25">
           {{ report_title }}
         </a>
       </p>
-      <p>
+      <p class="{{ comp_display }}">
         <a href="/comparisons/" class="btn btn-primary fw-bold w-25">
           {{ comp_title }}
         </a>
       </p>
-      <p>
-      <p>
+      <p class="{{ cov_display }}">
         <a href="/coverage/" class="btn btn-primary fw-bold w-25">
           {{ cov_title }}
         </a>
       </p>
-      <p>
+      <p class="{{ stats_display }}">
         <a href="/stats/" class="btn btn-primary fw-bold w-25">
           {{ stats_title }}
         </a>
       </p>
-      <p>
+      <p class="{{ news_display }}">
         <a href="/news/" class="btn btn-primary fw-bold w-25">
           {{ news_title }}
         </a>
       </p>
-      <p>
+      <p class="{{ search_display }}">
         <a href="/search/" class="btn btn-primary fw-bold w-25">
           {{ search_title }}
         </a>
       </p>
-      <p>
+      <p class="{{ doc_display }}">
         <a href="/cdocs/" class="btn btn-primary fw-bold w-25">
           Documentation
         </a>
@@ -65,7 +64,7 @@
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>Copyright © 2016-2023 <a href="https://fd.io" class="text-white">The Fast Data Project</a>, a series of LF Projects, LLC.</p>
+    <p>Copyright © {{ copyright }}</p>
   </footer>
 </div>
 {% endblock %}

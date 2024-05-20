@@ -196,7 +196,7 @@ class Layout:
             "dd-tbeds-value": self._default["tbed"],
             "al-job-children": html.A(
                 self._default["job"],
-                href=f"{C.URL_JENKINS}{self._default['job']}",
+                href=f"{C.URL_CICD}{self._default['job']}",
                 target="_blank"
             )
         }
@@ -631,7 +631,7 @@ class Layout:
                                 "al-job-children": html.A(
                                     self._default["job"],
                                     href=(
-                                        f"{C.URL_JENKINS}"
+                                        f"{C.URL_CICD}"
                                         f"{self._default['job']}"
                                     ),
                                     target="_blank"
@@ -654,7 +654,7 @@ class Layout:
                 {
                     "al-job-children": html.A(
                         job,
-                        href=f"{C.URL_JENKINS}{job}",
+                        href=f"{C.URL_CICD}{job}",
                         target="_blank"
                     )
                 }
