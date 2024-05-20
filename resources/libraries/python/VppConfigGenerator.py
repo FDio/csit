@@ -541,6 +541,16 @@ class VppConfigGenerator:
         """Add DPDK no-multi-seg configuration."""
         path = ["dpdk", "no-multi-seg"]
         self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk", "level debug"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk/device"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdkdpdk/device", "level debug"]
+        self.add_config_item(self._nodeconfig, "", path)
 
     def add_dpdk_no_tx_checksum_offload(self):
         """Add DPDK no-tx-checksum-offload configuration."""
