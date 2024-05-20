@@ -181,7 +181,7 @@
 | | | ${_vf}=
 | | | ... | Run Keyword | Init interface
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
-| | | ... | numvfs=${nic_vfs} | osi_layer=${osi_layer}
+| | | ... | numvfs=${nic_vfs} | osi_layer=${osi_layer} | strict=${False}
 | | | ${_mac}=
 | | | ... | Create List | ${EMPTY}
 | | | ${_ip4_addr}=
@@ -225,7 +225,7 @@
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | Run Keyword | Init interface
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
-| | | ... | numvfs=${0} | osi_layer=${osi_layer}
+| | | ... | numvfs=${0} | osi_layer=${osi_layer} | strict=${False}
 | | END
 
 | Additional Suite Setup Action For performance
