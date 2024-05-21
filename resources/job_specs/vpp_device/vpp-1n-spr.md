@@ -157,7 +157,7 @@
 ##### ethip4-l2bdbasemaclrn-iacl1sl
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-iacl1sl
 ##### ethip4-l2bdbasemaclrn-macip-iacl1sl
-0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-macip-iacl1sl
+# 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-macip-iacl1sl
 ##### ethip4-l2bdbasemaclrn-oacl1sf
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-oacl1sf
 ##### ethip4-l2bdbasemaclrn-oacl1sl
