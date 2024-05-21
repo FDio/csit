@@ -49,6 +49,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${dpdk_no_tx_checksum_offload}= | ${False}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 | ${streams} | ${10}
@@ -57,7 +58,6 @@
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
-| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test

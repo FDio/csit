@@ -51,6 +51,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${dpdk_no_tx_checksum_offload}= | ${False}
 #| ${page_size}= | 1G
 | ${ciphers}= | 0
 | ${rps_cps}= | rps
@@ -73,7 +74,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

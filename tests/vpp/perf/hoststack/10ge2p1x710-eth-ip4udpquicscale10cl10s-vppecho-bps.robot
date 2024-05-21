@@ -49,6 +49,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${dpdk_no_tx_checksum_offload}= | ${False}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 | ${clients}= | ${10}

@@ -50,6 +50,7 @@
 | ${nic_vfs}= | 0
 | ${smt_used}= | ${False}
 | ${overhead}= | ${0}
+| ${dpdk_no_tx_checksum_offload}= | ${False}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 | ${iperf3_packet_length}= | ${1460}
@@ -58,7 +59,6 @@
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
-| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | ${bandwidth} = | Get From Dictionary
 | | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}

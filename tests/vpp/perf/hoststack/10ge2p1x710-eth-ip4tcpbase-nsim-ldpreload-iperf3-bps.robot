@@ -50,6 +50,7 @@
 | ${nic_vfs}= | 0
 | ${smt_used}= | ${False}
 | ${overhead}= | ${0}
+| ${dpdk_no_tx_checksum_offload}= | ${False}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 | ${pkts_per_drop}= | ${100}
