@@ -139,7 +139,6 @@ paths = wr.s3.list_objects(
     last_modified_end=LAST_MODIFIED_END,
     ignore_suffix=IGNORE_SUFFIX,
     ignore_empty=True
-)
 
 filtered_paths = [path for path in paths if "report-coverage-2406" in path]
 

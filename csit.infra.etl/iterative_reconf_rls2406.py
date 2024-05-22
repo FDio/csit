@@ -160,7 +160,6 @@ try:
     )
 except KeyError:
     boto3_session = session.Session()
-)
 
 try:
     wr.s3.to_parquet(
