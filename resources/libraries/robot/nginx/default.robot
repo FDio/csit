@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -58,4 +58,5 @@
 | | Run Keyword | nc_manager.Add Http Server Location | ${64}
 | | Run Keyword | nc_manager.Add Http Server Location | ${1024}
 | | Run Keyword | nc_manager.Add Http Server Location | ${2048}
+| | Run Keyword | nc_manager.Add Http Server Location | ${65536}
 | | Run Keyword | nc_manager.Apply Config

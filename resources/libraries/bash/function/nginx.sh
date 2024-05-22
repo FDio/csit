@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2024 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -80,7 +80,6 @@ function common_dirs () {
 }
 
 
-
 function nginx_compile () {
 
     # Compile NGINX archive.
@@ -88,20 +87,19 @@ function nginx_compile () {
     # Variables read:
     # - NGINX_DIR - Path to NGINX framework.
     # - CSIT_DIR - Path to CSIT framework.
-    # - NGINX_INS_PATH - Path to NGINX install path.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
-    NGINX_INS_PATH="${DOWNLOAD_DIR}/${NGINX_VER}"
+    nginx_install_path="${DOWNLOAD_DIR}/${NGINX_VER}"
     pushd "${NGINX_DIR}" || die "Pushd failed."
 
     # Set installation prefix.
-    param="--prefix=${NGINX_INS_PATH} "
+    param="--prefix=${nginx_install_path} "
     # Set nginx binary pathname.
-    param+="--sbin-path=${NGINX_INS_PATH}/sbin/nginx "
+    param+="--sbin-path=${nginx_install_path}/sbin/nginx "
     # Set nginx.conf pathname.
-    param+="--conf-path=${NGINX_INS_PATH}/conf/nginx.conf "
+    param+="--conf-path=${nginx_install_path}/conf/nginx.conf "
     # Enable ngx_http_stub_status_module.
     param+="--with-http_stub_status_module "
     # Force PCRE library usage.
@@ -110,7 +108,28 @@ function nginx_compile () {
     param+="--with-http_realip_module "
     params=(${param})
     ./configure "${params[@]}" || die "Failed to configure NGINX!"
-    make -j 16;make install || die "Failed to compile NGINX!"
+    make -j 16 || die "Failed to compile NGINX!"
+    make install || die "Failed to install NGINX!"
+}
+
+
+function nginx_patch () {
+
+    # Patch NGINX sources before compilation.
+    #
+    # This is needed when testing large payloads.
+    # The current patch has no reason to affect the performance in any way.
+    #
+    # Variables read:
+    # - NGINX_DIR - Path to NGINX framework.
+    # Functions called:
+    # - die - Print to stderr and exit.
+
+    set -exuo pipefail
+
+    # Modify NGX_CONF_BUFFER, 10 MiB should be enough for now.
+    sed -i "s/4096/1024 \* 1024 \* 10/" "${NGINX_DIR}/src/core/ngx_conf_file.c"
+    # Exit code propagates to the caller.
 }
 
 
