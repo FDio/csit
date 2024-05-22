@@ -3,7 +3,7 @@ title: "TRex Performance"
 weight: 3
 ---
 
-# CSIT 24.02 - TRex Performance
+# CSIT 24.06 - TRex Performance
 
 1. TEST FRAMEWORK
    - **CSIT test environment** version has been updated to ver. 14, see
@@ -17,7 +17,7 @@ weight: 3
 
 ## New
 
-List of new issues in CSIT 24.02 for TRex performance tests:
+List of new issues in CSIT 24.06 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
@@ -25,7 +25,7 @@ List of new issues in CSIT 24.02 for TRex performance tests:
 
 ## Previous
 
-List of known issues in CSIT 24.02 for TRex performance tests
+List of known issues in CSIT 24.06 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
@@ -33,7 +33,7 @@ List of known issues in CSIT 24.02 for TRex performance tests
 
 ## Fixed
 
-List of known issues in CSIT 24.02 for TRex performance tests
+List of fixed issues in CSIT 24.06 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------

@@ -1,25 +1,23 @@
 ---
-title: "DPDK Performance"
-weight: 2
+title: "TRex Performance"
+weight: 3
 ---
 
-# CSIT 24.06 - DPDK Performance
+# CSIT 24.02 - TRex Performance
 
 1. TEST FRAMEWORK
    - **CSIT test environment** version has been updated to ver. 14, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
-2. DPDK PERFORMANCE TESTS
+2. TREX TESTS
    - No updates
-3. DPDK RELEASE VERSION CHANGE
-   - Version 24.03 is now tested.
+3. TREX VERSION
+   - Currently using v3.03 of TRex.
 
 # Known Issues
 
-List of known issues in CSIT 24.06 for DPDK performance tests:
-
 ## New
 
-List of new issues in CSIT 24.06 for DPDK performance tests:
+List of new issues in CSIT 24.02 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
@@ -27,7 +25,7 @@ List of new issues in CSIT 24.06 for DPDK performance tests:
 
 ## Previous
 
-List of known issues in CSIT 24.06 for DPDK performance tests:
+List of known issues in CSIT 24.02 for TRex performance tests
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
@@ -35,8 +33,7 @@ List of known issues in CSIT 24.06 for DPDK performance tests:
 
 ## Fixed
 
-
-List of fixed issues in CSIT 24.06 for DPDK performance tests:
+List of known issues in CSIT 24.02 for TRex performance tests
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
