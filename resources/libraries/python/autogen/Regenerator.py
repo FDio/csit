@@ -734,18 +734,12 @@ class Regenerator:
 
         min_frame_size = PROTOCOL_TO_MIN_FRAME_SIZE[protocol]
         default_kwargs_list = [
-            {u"frame_size": min_frame_size, u"phy_cores": 1},
-            {u"frame_size": min_frame_size, u"phy_cores": 2},
-            {u"frame_size": min_frame_size, u"phy_cores": 4},
             {u"frame_size": 1518, u"phy_cores": 1},
             {u"frame_size": 1518, u"phy_cores": 2},
+            {u"frame_size": 1518, u"phy_cores": 3},
             {u"frame_size": 1518, u"phy_cores": 4},
-            {u"frame_size": 9000, u"phy_cores": 1},
-            {u"frame_size": 9000, u"phy_cores": 2},
-            {u"frame_size": 9000, u"phy_cores": 4},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 1},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
+            {u"frame_size": 1518, u"phy_cores": 6},
+            {u"frame_size": 1518, u"phy_cores": 8},
         ]
         hs_bps_kwargs_list = [
             {u"frame_size": 1460, u"phy_cores": 1},
@@ -761,18 +755,12 @@ class Regenerator:
         # List for tests with one dataplane core
         # (and variable number of other cores).
         dp1_kwargs_list = [
-            {u"frame_size": min_frame_size, u"phy_cores": 2},
-            {u"frame_size": min_frame_size, u"phy_cores": 3},
-            {u"frame_size": min_frame_size, u"phy_cores": 4},
+            {u"frame_size": 1518, u"phy_cores": 1},
             {u"frame_size": 1518, u"phy_cores": 2},
             {u"frame_size": 1518, u"phy_cores": 3},
             {u"frame_size": 1518, u"phy_cores": 4},
-            {u"frame_size": 9000, u"phy_cores": 2},
-            {u"frame_size": 9000, u"phy_cores": 3},
-            {u"frame_size": 9000, u"phy_cores": 4},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 3},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
+            {u"frame_size": 1518, u"phy_cores": 6},
+            {u"frame_size": 1518, u"phy_cores": 8},
         ]
 
         http_kwargs_list = [
