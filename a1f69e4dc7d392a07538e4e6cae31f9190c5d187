@@ -56,6 +56,30 @@
       },
       "revId": "a1f69e4dc7d392a07538e4e6cae31f9190c5d187",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c57951b_723e8e3a",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-22T11:19:46Z",
+      "side": 1,
+      "message": "The support for larger files needs a patch and recompilation of NGINX, so we cannot use the pre-compiled NGINX installations (as they may not have been patched).",
+      "parentUuid": "deffbe1d_2a20b739",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 51
+      },
+      "revId": "a1f69e4dc7d392a07538e4e6cae31f9190c5d187",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
