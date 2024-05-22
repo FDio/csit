@@ -99,7 +99,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
     def get_y_values(data, y_data_max, param, norm_factor, release=str(),
                      remove_outliers=False):
         if param == "result_receive_rate_rate_values":
-            if release == "rls2402":
+            if release in ("rls2402", "rls2406", "rls2410"):
                 y_vals_raw = data["result_receive_rate_rate_avg"].to_list()
             else:
                 y_vals_raw = data[param].to_list()[0]
@@ -181,7 +181,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
             )
         }
 
-        if itm["testtype"] == "mrr" and itm["rls"] in ("rls2306", "rls2310"):
+        if itm["testtype"] == "mrr" and itm["rls"] == "rls2310":
             trial_run = "trial"
             metadata["csit-ref"] = (
                 f"{itm_data['job'].to_list()[0]}/",
