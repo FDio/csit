@@ -46,17 +46,17 @@
   retries: 300
   when: trex_extracted.changed
 
-- name: Compile Release {{ item }} Part III
-  ansible.builtin.command: "make -j 16"
-  args:
-    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
-  when: trex_extracted.changed
+#- name: Compile Release {{ item }} Part III
+#  ansible.builtin.command: "make -j 16"
+#  args:
+#    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
+#  when: trex_extracted.changed
 
-- name: Compile Release {{ item }} Part IV
-  ansible.builtin.command: "make install"
-  args:
-    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
-  when: trex_extracted.changed
+#- name: Compile Release {{ item }} Part IV
+#  ansible.builtin.command: "make install"
+#  args:
+#    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
+#  when: trex_extracted.changed
 
 - name: Link libc.a to liblibc.a
   ansible.builtin.command: "ln -s -f /usr/lib/x86_64-linux-gnu/libc.a /usr/lib/x86_64-linux-gnu/liblibc.a"
