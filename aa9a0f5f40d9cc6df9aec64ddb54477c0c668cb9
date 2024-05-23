@@ -16,6 +16,24 @@
       "message": "Should be done in ansible.",
       "revId": "aa9a0f5f40d9cc6df9aec64ddb54477c0c668cb9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15634eb_96c60661",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-23T11:04:08Z",
+      "side": 1,
+      "message": "\u003e Should be done in ansible.\n\nI do not know how I could do that in a way that would be visible in verify job while not affecting daily jobs.\nI may be able to introduce some non-ansible way to skip compilation when the compiler artifact should be equivalent to the already existing one.\nIn any way, the installation directory should not be the one that always [0] gets wiped everytime a run starts.\n\n[0] https://gerrit.fd.io/r/c/csit/+/107/11/resources/libraries/python/SetupFramework.py#64",
+      "parentUuid": "3b1d8ee3_07896819",
+      "revId": "aa9a0f5f40d9cc6df9aec64ddb54477c0c668cb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
