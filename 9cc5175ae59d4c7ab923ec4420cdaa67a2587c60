@@ -33,6 +33,23 @@
       "message": "csit-dpdk-report-iter-2n-icx-perftest dpdk-ndrpdr-00\ncsit-dpdk-report-iter-2n-clx-perftest dpdk-ndrpdr-00",
       "revId": "9cc5175ae59d4c7ab923ec4420cdaa67a2587c60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10748a0e_d63096cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-23T07:31:40Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-2n-icx-perftest trex-mrr-00",
+      "revId": "9cc5175ae59d4c7ab923ec4420cdaa67a2587c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
