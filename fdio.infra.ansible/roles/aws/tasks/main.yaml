@@ -13,18 +13,6 @@
   tags:
     - aws-inst-prerequisites
 
-- name: Switch Kernel At Boot
-  ansible.builtin.lineinfile:
-    path: "/etc/default/grub"
-    state: "present"
-    line: "GRUB_DEFAULT=\"1>2\""
-  notify:
-    - "Update GRUB"
-  tags:
-    - perf-conf-grub
-
-- meta: flush_handlers
-
 - name: Load Kernel Modules By Default
   ansible.builtin.lineinfile:
     path: "/etc/modules"
@@ -58,6 +46,36 @@
   tags:
     - aws-load-kernel-modules
 
+- name: Kernel Parameters
+  ansible.builtin.lineinfile:
+    path: "/etc/default/grub"
+    state: "present"
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: "GRUB_CMDLINE_LINUX=iommu=1 intel_iommu=on"
+  notify:
+    - "Update GRUB"
+  tags:
+    - perf-conf-grub
+
+- meta: flush_handlers
+
+- name: Disable Password Login
+  ansible.builtin.lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^PasswordAuthentication yes"
+    line: "PasswordAuthentication no"
+  notify:
+    - "Restart SSHd"
+  tags:
+    - conf-ssh
+
+- name: Recursively Delete Other Configs
+  ansible.builtin.file:
+    path: "/etc/ssh/sshd_config.d"
+    state: "absent"
+  tags:
+    - conf-ssh
+
 #- name: Get vfio-pci With WC Patcher
 #  ansible.builtin.get_url:
 #    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/get-vfio-with-wc.sh"
@@ -65,48 +83,41 @@
 #    mode: 0744
 #  tags:
 #    - aws-vfio-patch
-
-- name: Create vfio-pci Patch Directory
-  ansible.builtin.file:
-    path: "/opt/patches/"
-    state: "directory"
-  tags:
-    - aws-vfio-patch
-
-- name: Get vfio-pci WC Patch
-  ansible.builtin.get_url:
-    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/{{ item }}"
-    dest: "/opt/patches/{{ item }}"
-    mode: 0744
-  with_items:
-    - "linux-4.10-vfio-wc.patch"
-    - "linux-5.8-vfio-wc.patch"
-    - "linux-5.15-vfio-wc.patch"
-  tags:
-    - aws-vfio-patch
-
-- name: Copy vfio-pci WC Patch
-  ansible.builtin.copy:
-    src: "files/get-vfio-with-wc.sh"
-    dest: "/opt"
-    mode: 0744
-  tags:
-    - aws-vfio-patch
-
-- name: Compile vfio-pci With WC Patch
-  ansible.builtin.shell: "/bin/bash /opt/get-vfio-with-wc.sh"
-  environment:
-    DEBIAN_FRONTEND: "noninteractive"
-    TERM: "vt100"
-  tags:
-    - aws-vfio-patch
-
-- name: Reload systemd-modules
-  ansible.builtin.systemd:
-    name: "systemd-modules-load"
-    state: "restarted"
-  tags:
-    - aws-reload-systemd-modules
+#
+#- name: Create vfio-pci Patch Directory
+#  ansible.builtin.file:
+#    path: "/opt/patches/"
+#    state: "directory"
+#  tags:
+#    - aws-vfio-patch
+#
+#- name: Get vfio-pci WC Patch
+#  ansible.builtin.get_url:
+#    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/{{ item }}"
+#    dest: "/opt/patches/{{ item }}"
+#    mode: 0744
+#  with_items:
+#    - "linux-4.10-vfio-wc.patch"
+#    - "linux-5.8-vfio-wc.patch"
+#    - "linux-5.15-vfio-wc.patch"
+#  tags:
+#    - aws-vfio-patch
+#
+#- name: Copy vfio-pci WC Patch
+#  ansible.builtin.copy:
+#    src: "files/get-vfio-with-wc.sh"
+#    dest: "/opt"
+#    mode: 0744
+#  tags:
+#    - aws-vfio-patch
+#
+#- name: Compile vfio-pci With WC Patch
+#  ansible.builtin.shell: "/bin/bash /opt/get-vfio-with-wc.sh"
+#  environment:
+#    DEBIAN_FRONTEND: "noninteractive"
+#    TERM: "vt100"
+#  tags:
+#    - aws-vfio-patch
 
 - name: Adjust nr_hugepages
   ansible.builtin.sysctl:
