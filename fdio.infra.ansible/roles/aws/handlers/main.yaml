@@ -18,3 +18,8 @@
     reboot_timeout: 3600
   tags:
     - reboot-server
+
+- name: Restart SSHd
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
