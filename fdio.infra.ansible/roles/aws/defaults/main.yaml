@@ -15,9 +15,7 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    - "linux-image-5.4.0-1009-aws"
-    - "linux-headers-5.4.0-1009-aws"
-    - "linux-tools-5.4.0-1009-aws"
+    - []
 
 packages_by_arch:
   aarch64:
