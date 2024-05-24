@@ -34,6 +34,24 @@
       "parentUuid": "3b1d8ee3_07896819",
       "revId": "aa9a0f5f40d9cc6df9aec64ddb54477c0c668cb9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc1b01a5_3ebba77a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-05-24T05:43:36Z",
+      "side": 1,
+      "message": "\u003e visible in verify job while not affecting daily jobs.\n\nIt won\u0027t. It should be statically compiled. IoW why you need to switch between runs and recompile?\nIf NGINX is being part of DUT development (that means changing its internal code, like vpp development) then it must have a jenkins ci/cd pipeline to do that and build such artefacts.\n\n\u003e I may be able to introduce some non-ansible way to skip compilation when the compiler artifact should be equivalent to the already existing one.\n\nThat does not work. And i will vote -1 as well. You already assume opposite in your first sentence. So read after yourself.\n\n\u003e the installation directory should not be the one that always [0] gets wiped everytime a run starts.\n\nthis assumes mapped storage (in fd.io we use an jenkins job abstraction for that). If the NGINX is being pathed, we cannot declare it as a NGINX but dirty copy and that requires either statically installed binary (e.g dirty/non-dirty if only 2 exists) or jenkins job abstraction. But for sure not in CSIT code.",
+      "parentUuid": "f15634eb_96c60661",
+      "revId": "aa9a0f5f40d9cc6df9aec64ddb54477c0c668cb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
