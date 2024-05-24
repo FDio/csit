@@ -254,6 +254,23 @@
       "message": "csit-dpdk-report-iter-3n-icxd-perftest dpdk-ndrpdr-00",
       "revId": "a4812aeeeb9bf2ad4dd7184e6aa43127c29f9de1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae1b42cf_78c21ed8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-24T16:23:30Z",
+      "side": 1,
+      "message": "csit-dpdk-report-cov-3n-icx-perftest dpdk-00\ncsit-dpdk-report-cov-3n-icxd-perftest dpdk-00\ncsit-dpdk-report-cov-2n-icx-perftest dpdk-00\ncsit-dpdk-report-cov-2n-clx-perftest dpdk-00\ncsit-dpdk-report-cov-3n-snr-perftest dpdk-00\ncsit-dpdk-report-cov-3n-alt-perftest dpdk-00\ncsit-dpdk-report-cov-3n-tsh-perftest dpdk-00\ncsit-dpdk-report-cov-2n-tx2-perftest dpdk-00\ncsit-dpdk-report-cov-2n-zn2-perftest dpdk-00\ncsit-dpdk-report-cov-2n-spr-perftest dpdk-00\ncsit-dpdk-report-cov-3nb-spr-perftest dpdk-00\ncsit-dpdk-report-cov-3na-spr-perftest dpdk-00",
+      "revId": "a4812aeeeb9bf2ad4dd7184e6aa43127c29f9de1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
