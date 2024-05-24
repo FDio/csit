@@ -60,7 +60,7 @@ source "amazon-ebs" "csit_ubuntu_jammy_x86_sut" {
   force_deregister = true
   region           = "eu-central-1"
   skip_create_ami  = false
-  source_ami       = "ami-026c3177c9bd54288"
+  source_ami       = "ami-04e601abe3e1a910f"
   ssh_username     = "ubuntu"
 }
 
@@ -77,7 +77,7 @@ source "amazon-ebs" "csit_ubuntu_jammy_x86_tg" {
   force_deregister = true
   region           = "eu-central-1"
   skip_create_ami  = false
-  source_ami       = "ami-026c3177c9bd54288"
+  source_ami       = "ami-04e601abe3e1a910f"
   ssh_username     = "ubuntu"
 }
 
@@ -92,10 +92,10 @@ build {
   provisioner "ansible" {
     playbook_file = var.ansible_file_path
     user          = "ubuntu"
-    use_proxy     = false
     groups        = ["sut_aws"]
     extra_arguments = [
       "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
+      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
       "--extra-vars", "aws=true"
     ]
   }
@@ -115,10 +115,10 @@ build {
   provisioner "ansible" {
     playbook_file = var.ansible_file_path
     user          = "ubuntu"
-    use_proxy     = false
     groups        = ["tg_aws"]
     extra_arguments = [
       "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
+      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
       "--extra-vars", "aws=true"
     ]
   }
