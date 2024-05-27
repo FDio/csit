@@ -47,7 +47,6 @@
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${smt_used}= | ${False}
 | ${overhead}= | ${0}
 | ${dpdk_no_tx_checksum_offload}= | ${False}
 | ${frame_size}= | ${1518}

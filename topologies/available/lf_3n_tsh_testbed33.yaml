@@ -65,12 +65,14 @@ nodes:
       port0:
         mac_address: "80:41:26:6f:19:81"
         pci_address: "0000:11:00.0"
+        ip4_address: "172.16.10.2"
         link: link3
         driver: ixgbe
         model: Intel-X520-DA2
       port1:
         mac_address: "80:41:26:6f:19:82"
         pci_address: "0000:11:00.1"
+        ip4_address: "172.16.20.2"
         link: link1
         driver: ixgbe
         model: Intel-X520-DA2
@@ -86,12 +88,14 @@ nodes:
       port0:
         mac_address: "80:41:26:6f:19:7d"
         pci_address: "0000:11:00.0"
+        ip4_address: "172.16.10.3"
         link: link2
         driver: ixgbe
         model: Intel-X520-DA2
       port1:
         mac_address: "80:41:26:6f:19:7e"
         pci_address: "0000:11:00.1"
+        ip4_address: "172.16.20.3"
         link: link3
         driver: ixgbe
         model: Intel-X520-DA2
