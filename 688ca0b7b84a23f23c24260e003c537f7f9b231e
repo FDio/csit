@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_*ANDdrv_mlx5_coreANDeth-ip4udpbase-ldpreload-iperf3*",
       "revId": "688ca0b7b84a23f23c24260e003c537f7f9b231e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c647fe9_c14a7ba4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-27T16:20:49Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest nic_*ANDdrv_vfio_pciANDeth-ip4udpbase-ldpreload-iperf3*",
+      "revId": "688ca0b7b84a23f23c24260e003c537f7f9b231e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
