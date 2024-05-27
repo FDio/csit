@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07bea92f_e252b036",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-27T15:39:15Z",
+      "side": 1,
+      "message": "I mixed my local branches, so I needed to upload again so this does not get contaminated. Still ready.",
+      "revId": "852cae92a1811a289ac06e317ddd29fb89c5c0f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
