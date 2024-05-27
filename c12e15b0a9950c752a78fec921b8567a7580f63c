@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abcd68ba_f4bbd92f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-27T11:40:57Z",
+      "side": 1,
+      "message": "Some tests are expected to fail, passed tests prove the stats telemetry is present in log.html now.",
+      "revId": "c12e15b0a9950c752a78fec921b8567a7580f63c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
