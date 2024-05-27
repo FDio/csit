@@ -6,8 +6,10 @@ weight: 4
 # CSIT 24.06 - VPP Device
 
 1. TEST FRAMEWORK
-   - **CSIT test environment** version has been updated to ver. 14, see
+   - **CSIT test environment** version 14 used, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+2. DEVICE TESTS
+   - No updates
 
 # Known Issues
 
