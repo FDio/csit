@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0083b28d_57de30b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-27T14:13:53Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDdrv_mlx5_coreANDeth-ip4udpbase-ldpreload-iperf3*",
+      "revId": "4461e59795efb6f404883502e160bc43b992d898",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
