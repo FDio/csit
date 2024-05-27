@@ -16,6 +16,23 @@
       "message": "I mixed my local branches, so I needed to upload again so this does not get contaminated. Still ready.",
       "revId": "852cae92a1811a289ac06e317ddd29fb89c5c0f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a71950_ac60123a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-27T15:56:52Z",
+      "side": 1,
+      "message": "Comparison base for 40932:\ncsit-3n-icx-perftest nic_*ANDdrv_mlx5_coreANDeth-ip4udpbase-ldpreload-iperf3*",
+      "revId": "852cae92a1811a289ac06e317ddd29fb89c5c0f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
