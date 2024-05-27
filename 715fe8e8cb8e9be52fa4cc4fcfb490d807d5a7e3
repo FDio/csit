@@ -33,6 +33,75 @@
       "message": "Trending results [0] as the comparison base, but it does not include 40901 (should be a tiny progression, if even detected over noise).\n\nSummary of the new results (PDR conditional throughput, Gbps bidirectional, rounded down), 10000tnl 1518B int sync 3n-icx e810cq dpdk plugin only. Two siblings per physical core:\nip4base-int-aes128cbc-hmac512sha: 12.84 1c, 23.76 2c, 44.91 4c.\nip4base-int-aes128gcm: 26.53 1c, 45.82 2c, 80.32 4c.\nip4base-int-aes256gcm: 24.49 1c, 42.71 2c, 76.78 4c.\nudp-ar-ip4base-int-aes128cbc-hmac256sha: 7.07 1c, 13.55 2c, 26.40 4c.\nudp-ar-ip4base-int-aes128cbc-hmac96sha: 21.49 1c, 39.03 2c, 70.51 4c.\nudp-ar-ip4base-int-aes128ctr-hmac256sha: 6.99 1c, 13.62 2c, 26.80 4c.\nudp-ar-ip4base-int-aes128ctr-hmac96sha: 19.75 1c, 36.77 2c, 67.43 4c.\nudp-ar-ip4base-int-aes128gcm: 26.27 1c, 45.36 2c, 79.92 4c.\nudp-ar-ip4base-int-aes128nullgmac: 16.90 1c, 27.63 2c, 46.06 4c.\nudp-ar-ip4base-int-aes256cbc-hmac256sha: 6.92 1c, 13.28 2c, 25.87 4c.\nudp-ar-ip4base-int-aes256cbc-hmac96sha: 19.85 1c, 36.59 2c, 67.43 4c.\nudp-ar-ip4base-int-aes256gcm: 24.86 1c, 42.50 2c, 75.64 4c.\nudp-ar-ip4base-int-aes256nullgmac: 16.66 1c, 27.48 2c, 46.31 4c.\nudp-ar-ip4base-int-none-hmac96sha: 28.91 1c, 52.99 2c, 94.80 4c.\nudp-ip4base-int-aes256gcm: 24.98 1c, 42.93 2c, 76.02 4c.\n\nSuite names and robot tags are not discussed yet, they may change before merging.\n\n[0] https://csit.fd.io/trending/#eNrtlMGKwjAQhp-mXmQgiY31sgfdvoekyahhbTsmWbX79BurkBYUdhE8eUkg_8z8P_NBfGgdrj3uPzK5yopVJgpr4pHNltN4HYlg1oDVZ-CMbVEQxwVn-gCGzBdo11FogUu-qIBrwLCzlFvyqGM5Y6HZ-xPEp0p5BNsEUOiFnG91DWTcxUd8XnzMdxiZJoV2XVIeR0kNyqFKHdeESQ3oB07_yJtGbJyq0dsfTHP6BaQKHXc6EPXYPnQ0UG9rKMq-4ikA4g3gLgDxKgD5G8BdAPkfAchy0rSu7r8iWf4CfdJM7A",
       "revId": "715fe8e8cb8e9be52fa4cc4fcfb490d807d5a7e3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "996ac6bb_8f6585a5",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-27T10:59:26Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 19,
+        "startChar": 69,
+        "endLine": 19,
+        "endChar": 81
+      },
+      "revId": "715fe8e8cb8e9be52fa4cc4fcfb490d807d5a7e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9bf414_25002d16",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac256sha-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-27T10:59:26Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 19,
+        "startChar": 69,
+        "endLine": 19,
+        "endChar": 81
+      },
+      "revId": "715fe8e8cb8e9be52fa4cc4fcfb490d807d5a7e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05cd1b2b_c69ea649",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-27T10:59:26Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 19,
+        "startChar": 69,
+        "endLine": 19,
+        "endChar": 81
+      },
+      "revId": "715fe8e8cb8e9be52fa4cc4fcfb490d807d5a7e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
