@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6402445_4415655b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-27T16:40:47Z",
+      "side": 1,
+      "message": "csit-3n-tsh-perftest nic_*ANDdrv_vfio_pciANDeth-ip4udpbase-ldpreload-iperf3*",
+      "revId": "0d9a92d6a37100380a015a7fcc9fd0cc135e7b66",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
