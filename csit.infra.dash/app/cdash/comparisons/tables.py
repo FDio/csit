@@ -315,11 +315,13 @@ def comparison_table(
         else:
             c_row = c_data[c_data["name"] == row["name"]]
         if not c_row.empty:
-            unit.add(f"{s_unit_factor}{row['unit']}")
             r_mean = row["mean"]
             r_std = row["stdev"]
             c_mean = c_row["mean"].values[0]
             c_std = c_row["stdev"].values[0]
+            if r_mean == 0.0 or c_mean == 0.0:
+                break
+            unit.add(f"{s_unit_factor}{row['unit']}")
             l_name.append(row["name"])
             l_r_mean.append(r_mean / unit_factor)
             l_r_std.append(r_std / unit_factor)
