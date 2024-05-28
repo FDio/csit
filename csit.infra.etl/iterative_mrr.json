@@ -44,6 +44,16 @@
         },
         {
             "metadata": {},
+            "name": "hosts",
+            "nullable": true,
+            "type": {
+                "containsNull": true,
+                "elementType": "string",
+                "type": "array"
+            }
+        },
+        {
+            "metadata": {},
             "name": "result",
             "nullable": true,
             "type": {

@@ -32,16 +32,6 @@
         },
         {
             "metadata": {},
-            "name": "hosts",
-            "nullable": true,
-            "type": {
-                "containsNull": true,
-                "elementType": "string",
-                "type": "array"
-            }
-        },
-        {
-            "metadata": {},
             "name": "tg_type",
             "nullable": true,
             "type": "string"
@@ -51,6 +41,16 @@
             "name": "tg_version",
             "nullable": true,
             "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "hosts",
+            "nullable": true,
+            "type": {
+                "containsNull": true,
+                "elementType": "string",
+                "type": "array"
+            }
         },
         {
             "metadata": {},
