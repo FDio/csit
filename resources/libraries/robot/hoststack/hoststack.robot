@@ -505,6 +505,9 @@
 | | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
 | | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vpp_echo_server_attr}[cpu_cnt]
+| | FOR | ${action} | IN | @{stat_pre_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${server_pid}= | Run hoststack test program on DUT
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
 | | ... | ${vpp_echo_server_attr}[namespace] | ${core_list}
@@ -528,6 +531,9 @@
 | | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_server}
+| | FOR | ${action} | IN | @{stat_post_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Set test message | ${server_output} | append=True
 | | Run Keyword And Return | Hoststack Test Program Defer Fail
 | | ... | ${server_defer_fail} | ${client_defer_fail}
@@ -549,6 +555,9 @@
 | | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
 | | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_server_attr}[cpu_cnt]
+| | FOR | ${action} | IN | @{stat_pre_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${server_pid}= | Run hoststack test program on DUT
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
 | | ... | ${iperf3_server_attr}[namespace] | ${core_list}
@@ -563,6 +572,9 @@
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ... | ${iperf3_client} | ${dut2} | ${iperf3_server}
+| | FOR | ${action} | IN | @{stat_post_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
@@ -638,11 +650,16 @@
 | |
 | | ${dut_ip_addrs_str} | Evaluate | ','.join(${dut_ip_addrs})
 | | ${ad_ip_addrs_str} | Evaluate | ','.join(${ab_ip_addrs})
+| | FOR | ${action} | IN | @{stat_pre_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${output}= | Run ab | ${tg} | ${dut_ip_addrs_str} | ${ad_ip_addrs_str}
 | | ... | ${tls_tcp} | ${ciphers} | ${files} | ${mode} | ${r_total} | ${c_total}
 | | ... | ${listen_port}
+| | FOR | ${action} | IN | @{stat_post_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Set test message | ${output}
-| | Log VPP Hoststack data | ${dut1}
 
 | Configure VPP startup configuration for NGINX
 | | [Documentation]
