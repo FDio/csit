@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9563ff7c_15833a79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-28T14:28:56Z",
+      "side": 1,
+      "message": "\u003e Build Failed\n\u003e\n\u003e https://jenkins.fd.io/job/csit-verify-tox-master-ubuntu2204-x86_64/3638/ : FAILURE\n\nGit checkout failure.\nrecheck",
+      "revId": "e417ac6f71f32064075d7f270c71f18f4cbe6f69",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
