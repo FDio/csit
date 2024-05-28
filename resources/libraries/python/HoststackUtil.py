@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -413,10 +413,6 @@ class HoststackUtil():
                 f"bits/sec, pkt-drop-rate {nsim_attr[u'packets_per_drop']} " \
                 f"pkts/drop\n"
 
-        test_results += \
-            f"\n{role} VPP 'show errors' on host {node[u'host']}:\n" \
-            f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
-
         if u"error" in program_stderr.lower():
             test_results += f"ERROR DETECTED:\n{program_stderr}"
             return (True, test_results)
@@ -469,18 +465,3 @@ class HoststackUtil():
         :rtype: bool
         """
         return server_defer_fail and client_defer_fail
-
-    @staticmethod
-    def log_vpp_hoststack_data(node):
-        """Retrieve and log VPP HostStack data.
-
-        :param node: DUT node.
-        :type node: dict
-        :raises RuntimeError: If node subtype is not a DUT or startup failed.
-        """
-
-        if node[u"type"] != u"DUT":
-            raise RuntimeError(u"Node type is not a DUT!")
-
-        PapiSocketExecutor.run_cli_cmd(node, u"show error")
-        PapiSocketExecutor.run_cli_cmd(node, u"show interface")
