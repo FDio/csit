@@ -31,12 +31,12 @@ nodes:
         model: "HW_4xxx"
         module: "qat_4xxx"
         numvfs: 8
-      device2:
-        pci_address: "0000:7a:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
-        numvfs: 8
+      #device2:
+      #  pci_address: "0000:7a:00.0"
+      #  driver: "4xxx"
+      #  model: "HW_4xxx"
+      #  module: "qat_4xxx"
+      #  numvfs: 8
     interfaces:
       port1:
         # s53-t21-tg1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
@@ -126,12 +126,12 @@ nodes:
         model: "HW_4xxx"
         module: "qat_4xxx"
         numvfs: 8
-      device2:
-        pci_address: "0000:7a:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
-        numvfs: 8
+      #device2:
+      #  pci_address: "0000:7a:00.0"
+      #  driver: "4xxx"
+      #  model: "HW_4xxx"
+      #  module: "qat_4xxx"
+      #  numvfs: 8
     interfaces:
       port1:
         # s52-t21-sut1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
@@ -205,12 +205,12 @@ nodes:
         model: "HW_4xxx"
         module: "qat_4xxx"
         numvfs: 8
-      device2:
-        pci_address: "0000:f7:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
-        numvfs: 8
+      #device2:
+      #  pci_address: "0000:f7:00.0"
+      #  driver: "4xxx"
+      #  model: "HW_4xxx"
+      #  module: "qat_4xxx"
+      #  numvfs: 8
     interfaces:
       port1:
         # s52-t21-sut2-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
