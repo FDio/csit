@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | BASE | IPSEC | IPSECSW | IPSECSPD | SPD_OUTBOUND | SPD_FLOW_CACHE
 | ... | SPE_1 | NOCRYPTO
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
 |
 | Suite Setup | Setup suite topology interfaces | performance

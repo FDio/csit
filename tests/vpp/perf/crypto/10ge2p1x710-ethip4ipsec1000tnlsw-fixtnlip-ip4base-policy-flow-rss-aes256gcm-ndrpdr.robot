@@ -17,8 +17,8 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1000
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | FLOW_RSS | NIC_Intel-X710 | SCALE
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | AES_256_GCM | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance

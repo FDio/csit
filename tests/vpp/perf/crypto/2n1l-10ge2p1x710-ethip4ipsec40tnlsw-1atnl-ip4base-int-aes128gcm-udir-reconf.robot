@@ -16,8 +16,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | UDIR | PERFTEST | HW_ENV | RECONF
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | TNL_40
-| ... | AES_128_GCM | AES | 1_ADDED_TUNNEL | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | AES_128_GCM | AES | 1_ADDED_TUNNEL
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec40tnlsw-1atnl-ip4base-int-aes128gcm-udir
 |
 | Suite Setup | Setup suite topology interfaces | performance

@@ -16,8 +16,8 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF | TNL_40
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | 1_ADDED_TUNNEL | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | 1_ADDED_TUNNEL
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec40tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha
 |
 | Suite Setup | Setup suite topology interfaces | performance
