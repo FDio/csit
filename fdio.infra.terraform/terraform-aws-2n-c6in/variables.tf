@@ -50,7 +50,11 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
+<<<<<<< HEAD   (e395c9 fix(hoststack): Do not limit number of RX queues)
   default     = "ami-05832aa8871fda2ef"
+=======
+  default     = "ami-0285a978d8bd77dcb"
+>>>>>>> CHANGE (5bb211 feat(terraform): New AWS AMI image)
 }
 
 variable "tg_associate_public_ip_address" {
@@ -86,7 +90,11 @@ variable "tg_source_dest_check" {
 variable "sut1_ami" {
   description = "AMI to use for the instance."
   type        = string
+<<<<<<< HEAD   (e395c9 fix(hoststack): Do not limit number of RX queues)
   default     = "ami-0d4f2b5ee26aedefe"
+=======
+  default     = "ami-0f3ecd7f56fc232bd"
+>>>>>>> CHANGE (5bb211 feat(terraform): New AWS AMI image)
 }
 
 variable "sut1_associate_public_ip_address" {
