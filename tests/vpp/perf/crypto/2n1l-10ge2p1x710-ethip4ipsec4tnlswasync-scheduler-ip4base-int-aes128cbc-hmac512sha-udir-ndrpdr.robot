@@ -17,8 +17,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | UDIR | PERFTEST | HW_ENV | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECSW | ASYNC | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | SCHEDULER | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TNL_4
+| ... | SCHEDULER | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI | TNL_4
 | ... | ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-udir
 |
 | Suite Setup | Setup suite topology interfaces | performance
