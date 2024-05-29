@@ -296,6 +296,15 @@ class VppConfigGenerator:
             path = ["dpdk", cryptodev_config]
             self.add_config_item(self._nodeconfig, "", path)
 
+    def add_dpdk_dev_default_devargs(self, value):
+        """Add DPDK dev default devargs configuration.
+
+        :param value: DPDK devargs to pass to interface.
+        :type value: str
+        """
+        path = ["dpdk", "dev default", "devargs"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev_default_rxq(self, value):
         """Add DPDK dev default rxq configuration.
 
@@ -334,7 +343,7 @@ class VppConfigGenerator:
 
     def add_dpdk_dev_default_tso(self):
         """Add DPDK dev default tso configuration."""
-        path = [u"dpdk", u"dev default", u"tso"]
+        path = ["dpdk", "dev default", "tso"]
         self.add_config_item(self._nodeconfig, "on", path)
 
     def add_dpdk_log_level(self, value):
@@ -382,7 +391,7 @@ class VppConfigGenerator:
 
     def add_dpdk_enable_tcp_udp_checksum(self):
         """Add DPDK enable-tcp-udp-checksum configuration."""
-        path = [u"dpdk", u"enable-tcp-udp-checksum"]
+        path = ["dpdk", "enable-tcp-udp-checksum"]
         self.add_config_item(self._nodeconfig, u"", path)
 
     def add_cpu_main_core(self, value):
@@ -477,7 +486,7 @@ class VppConfigGenerator:
         :param value: "on" to enable spd fast path.
         :type value: str
         """
-        path = [u"ipsec", u"ipv4-inbound-spd-fast-path"]
+        path = ["ipsec", "ipv4-inbound-spd-fast-path"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_ipsec_spd_fast_path_ipv4_outbound(self, value):
@@ -599,8 +608,8 @@ class VppConfigGenerator:
 
     def add_tcp_tso(self):
         """Add TCP tso configuration."""
-        path = [u"tcp", u"tso"]
-        self.add_config_item(self._nodeconfig, u"", path)
+        path = ["tcp", "tso"]
+        self.add_config_item(self._nodeconfig, "", path)
 
     def add_session_enable(self):
         """Add session enable."""
@@ -794,3 +803,44 @@ class VppInitConfig:
                 vpp_config.add_ip6_hash_buckets(2000000)
                 vpp_config.add_ip6_heap_size("4G")
                 vpp_config.apply_config()
+
+    @staticmethod
+    def create_vpp_startup_configuration_container(node, cpuset_cpus=None):
+        """Create base startup configuration of VPP on container.
+
+        :param node: Node in the topology.
+        :param cpuset_cpus: List of CPU cores to allocate.
+        :type node: dict
+        :type cpuset_cpus: list.
+        :returns: Base VPP startup configuration for container.
+        :rtype: VppConfigGenerator
+        """
+        huge_size = Constants.DEFAULT_HUGEPAGE_SIZE
+
+        vpp_config = VppConfigGenerator()
+        vpp_config.set_node(node)
+        vpp_config.add_unix_log()
+        vpp_config.add_unix_cli_listen()
+        vpp_config.add_unix_cli_no_pager()
+        vpp_config.add_unix_exec("/tmp/running.exec")
+        vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+        if cpuset_cpus:
+            # We will pop the first core from the list to be a main core
+            vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
+            # If more cores in the list, the rest will be used as workers.
+            corelist_workers = ",".join(str(cpu) for cpu in cpuset_cpus)
+            vpp_config.add_cpu_corelist_workers(corelist_workers)
+        vpp_config.add_buffers_per_numa(215040)
+        vpp_config.add_plugin("disable", "default")
+        vpp_config.add_plugin("enable", "memif_plugin.so")
+        vpp_config.add_plugin("enable", "perfmon_plugin.so")
+        vpp_config.add_main_heap_size("2G")
+        vpp_config.add_main_heap_page_size(huge_size)
+        vpp_config.add_default_hugepage_size(huge_size)
+        vpp_config.add_statseg_size("2G")
+        vpp_config.add_statseg_page_size(huge_size)
+        vpp_config.add_statseg_per_node_counters("on")
+        vpp_config.add_ip6_hash_buckets(2000000)
+        vpp_config.add_ip6_heap_size("4G")
+
+        return vpp_config
