@@ -17,8 +17,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | UDIR | PERFTEST | HW_ENV | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECSW | ASYNC | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | SCHEDULER | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TNL_2
+| ... | SCHEDULER | AES_256_GCM | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI | TNL_2
 | ... | ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm-udir
 |
 | Suite Setup | Setup suite topology interfaces | performance

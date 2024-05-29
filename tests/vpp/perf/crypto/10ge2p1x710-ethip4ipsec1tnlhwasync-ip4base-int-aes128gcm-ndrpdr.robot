@@ -17,8 +17,8 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
 | ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECINT | NIC_Intel-X710 | BASE
-| ... | AES_128_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | AES_128_GCM | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1tnlhwasync-ip4base-int-aes128gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance | cryptohw
