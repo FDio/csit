@@ -178,9 +178,6 @@ def add_default_testcases(
             if u"reassembly" in suite_id:
                 if kwargs[u"frame_size"] != 1518:
                     emit = False
-            else:
-                if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
-                    emit = False
 
         kwargs.update({'phy_cores': kwas['phy_cores']*core_scale})
 
