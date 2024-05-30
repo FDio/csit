@@ -50,6 +50,23 @@
       "message": "csit-3na-spr-perftest ndrpdrANDnic_*AND1cAND*ip?scale* !9000b !1518b !imix !drv_af_xdp",
       "revId": "f0e076c940fc9616fb9e99ce96741f9dd37c6c64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bde5ed0f_6116e112",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-30T15:18:13Z",
+      "side": 1,
+      "message": "Maybe a new infra issue?\ncsit-3na-spr-perftest ndrpdrANDnic_*ANDdrv_mlx5_coreAND1cAND*ip?scale*rnd* !9000b !1518b !imix !drv_af_xdp",
+      "revId": "f0e076c940fc9616fb9e99ce96741f9dd37c6c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
