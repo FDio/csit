@@ -33,6 +33,23 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/977/ : FAILURE\n\nOnly expected failures.\n\ncsit-3n-icx-perftest ndrpdrANDnic_intel-e810cqAND1cAND64bANDeth-l2bdbasemaclrn",
       "revId": "5cd3594cc9b411479796d53d86214323e4c00714",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e63fb4ab_f91bc246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-30T12:55:16Z",
+      "side": 1,
+      "message": "No effect on non-hoststack tests, improved performance on hoststack tests.",
+      "revId": "5cd3594cc9b411479796d53d86214323e4c00714",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
