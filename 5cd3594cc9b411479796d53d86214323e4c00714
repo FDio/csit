@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND*hoststack*",
       "revId": "5cd3594cc9b411479796d53d86214323e4c00714",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f6eac8_4bc1018b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-30T11:47:24Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/977/ : FAILURE\n\nOnly expected failures.\n\ncsit-3n-icx-perftest ndrpdrANDnic_intel-e810cqAND1cAND64bANDeth-l2bdbasemaclrn",
+      "revId": "5cd3594cc9b411479796d53d86214323e4c00714",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
