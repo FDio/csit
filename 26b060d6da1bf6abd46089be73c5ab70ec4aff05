@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3c249af_d4609e1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-30T10:31:59Z",
+      "side": 1,
+      "message": "Comparison base for 40993:\ncsit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND*hoststack*",
+      "revId": "26b060d6da1bf6abd46089be73c5ab70ec4aff05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
