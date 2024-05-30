@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ecabcad_d00ceb92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-30T13:14:51Z",
+      "side": 1,
+      "message": "Comparison base.\n\ncsit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciAND*hoststack* !*scale* !*quic* !*nsim*",
+      "revId": "4e897a7a91e8b4782da05a4c906392e62c8f8ab5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
