@@ -31,6 +31,7 @@
 | ${quic_crypto_engine}= | nocrypto
 | ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
+| ... | rxq=${1}
 | ... | rxd=${256}
 | ... | txd=${256}
 | ... | phy_cores=${1}
@@ -139,6 +140,7 @@
 | | ... | Set the VPP HostStack attributes in the vpp_hoststack_attr dictionary.
 | |
 | | ... | *Arguments:*
+| | ... | - ${rxq} - Number of Rx Queues Type: int
 | | ... | - ${rxd} - Number of Rx Descriptors Type: int
 | | ... | - ${txd} - Number of Tx Descriptors Type: int
 | | ... | - ${phy_cores} - Number of cores for workers Type: int
@@ -166,6 +168,7 @@
 | | ... | \| Set VPP Hoststack Attributes \| phy_cores=${phy_cores} \|
 | |
 | | [Arguments]
+| | ... | ${rxq}=${vpp_hoststack_attr}[rxq]
 | | ... | ${rxd}=${vpp_hoststack_attr}[rxd]
 | | ... | ${txd}=${vpp_hoststack_attr}[txd]
 | | ... | ${phy_cores}=${vpp_hoststack_attr}[phy_cores]
@@ -180,6 +183,7 @@
 | | ... | ${sess_lendpt_buckets}=${vpp_hoststack_attr}[sess_lendpt_buckets]
 | | ... | ${sess_lendpt_mem}=${vpp_hoststack_attr}[sess_lendpt_mem]
 | |
+| | Set To Dictionary | ${vpp_hoststack_attr} | rxq | ${rxq}
 | | Set To Dictionary | ${vpp_hoststack_attr} | rxd | ${rxd}
 | | Set To Dictionary | ${vpp_hoststack_attr} | txd | ${txd}
 | | Set To Dictionary | ${vpp_hoststack_attr} | phy_cores | ${phy_cores}
@@ -449,8 +453,8 @@
 | |
 | | Set Max Rate And Jumbo
 | | Add worker threads to all DUTs
-| | ... | ${vpp_hoststack_attr}[phy_cores]
-| | ... | rxd=${vpp_hoststack_attr}[rxd] | txd=${vpp_hoststack_attr}[txd]
+| | ... | ${vpp_hoststack_attr}[phy_cores] | ${vpp_hoststack_attr}[rxq]
+| | ... | ${vpp_hoststack_attr}[rxd] | ${vpp_hoststack_attr}[txd]
 | | Pre-initialize layer driver | ${nic_driver}
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
