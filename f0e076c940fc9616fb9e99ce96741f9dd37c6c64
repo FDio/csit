@@ -102,6 +102,23 @@
       "parentUuid": "c4ecc6ef_27d0d881",
       "revId": "f0e076c940fc9616fb9e99ce96741f9dd37c6c64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d2cc6f_1973ec2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-30T17:53:36Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest ndrpdrANDnic_*ANDdrv_mlx5_coreAND3cANDethip4-ip4scale60k-rnd mrrANDnic_*AND1cAND64bANDethip4-ip4base !9000b !1518b !imix !drv_af_xdp",
+      "revId": "f0e076c940fc9616fb9e99ce96741f9dd37c6c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
