@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-c7gn-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-c6in-perftest vpp-mrr-00",
       "revId": "2aa0651895c1b2dceca576e5f5532ccd75111563",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a81b1aa6_ae805ccd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-05-30T06:03:09Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-c7gn-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-c6in-perftest vpp-ndrpdr-00",
+      "revId": "2aa0651895c1b2dceca576e5f5532ccd75111563",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
