@@ -125,6 +125,19 @@
 1c AND imix AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+##### New ipsec suites with UDP encapsulation. One tescase per suite as they are experiemntal.
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac96sha
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac96sha
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128gcm
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128nullgmac
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac96sha
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256nullgmac
+1c AND 1518b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-none-hmac96sha
 ##### ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
 1c AND 64b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
 2c AND 64b AND ndrpdr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
