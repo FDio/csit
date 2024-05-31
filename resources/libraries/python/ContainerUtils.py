@@ -193,6 +193,8 @@ class ContainerManager:
     def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
 
+        The "jumbo" kwarg is automatically added, read from test variable.
+
         :param chain_topology: Topology used for chaining containers can be
             chain or cross_horiz. Chain topology is using 1 memif pair per
             container. Cross_horiz topology is using 1 memif and 1 physical
@@ -201,6 +203,7 @@ class ContainerManager:
         :type chain_topology: str
         :type kwargs: dict
         """
+        kwargs["jumbo"] = BuiltIn().get_variable_value("\${jumbo}", False)
         # Count number of DUTs based on node's host information
         dut_cnt = len(
             Counter(
@@ -411,7 +414,7 @@ class ContainerManager:
             nf_node=1, vs_dtc=0, nf_dtc=8, nf_mtcr=1, nf_dtcr=1
         )
         self.engine.create_vpp_startup_config_vswitch(
-            cpuset_cpus, rxq, if1_pci, if2_pci
+            cpuset_cpus, rxq, if1_pci, if2_pci, **kwargs
         )
 
         instances = []
@@ -750,19 +753,25 @@ class ContainerEngine:
             f'tee /etc/vpp/startup.conf'
         )
 
-    def create_vpp_startup_config_vswitch(self, cpuset_cpus, rxq, *devices):
+    def create_vpp_startup_config_vswitch(
+        self, cpuset_cpus, rxq, *devices, **kwargs
+    ):
         """Create startup configuration of VPP vswitch.
 
         :param cpuset_cpus: CPU list to run on.
         :param rxq: Number of interface RX queues.
         :param devices: PCI devices.
+        :param kwargs: Additional named parameters.
         :type cpuset_cpus: list
         :type rxq: int
         :type devices: list
+        :type kwargs: dict
         """
         vpp_config = self.create_base_vpp_startup_config(cpuset_cpus)
         vpp_config.add_dpdk_dev(*devices)
         vpp_config.add_dpdk_log_level(u"debug")
+        if not kwargs.get("jumbo", False):
+             vpp_config.add_dpdk_no_multi_seg()
         vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_dpdk_dev_default_rxq(rxq)
         vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
