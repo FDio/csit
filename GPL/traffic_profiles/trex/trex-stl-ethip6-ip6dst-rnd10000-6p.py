@@ -54,14 +54,14 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "2300::1",
                 "dst_start_ip": "2400::0",
                 "dst_end_ip": "2400::270F",
-                "seed": 2
+                "seed": 3
             },
             # Direction W --> E:
             {
                 "src_start_ip": "2500::1",
                 "dst_start_ip": "2600::0",
                 "dst_end_ip": "2600::270F",
-                "seed": 1
+                "seed": 5
             },
             # Direction E --> W:
             {
@@ -75,14 +75,14 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "2400::1",
                 "dst_start_ip": "2300::0",
                 "dst_end_ip": "2300::270F",
-                "seed": 1
+                "seed": 4
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2600::1",
                 "dst_start_ip": "2500::0",
                 "dst_end_ip": "2500::270F",
-                "seed": 2
+                "seed": 6
             }
         ]
         self.pkt_base = []
