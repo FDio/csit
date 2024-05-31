@@ -1,5 +1,4 @@
 # 3n-snr
-## ./container_memif
 ## ./crypto
 ### intel-e822cq
 #### dpdk-vfio-pci
@@ -199,7 +198,6 @@
 1c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 2c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 4c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-## ./ip6_tunnels
 ## ./l2
 ### intel-e822cq
 #### dpdk-vfio-pci
@@ -219,13 +217,3 @@
 1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2patch
 2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2patch
 4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2patch
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
-## ./hoststack
-## ./vm_vhost
-## ./vts

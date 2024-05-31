@@ -1,5 +1,4 @@
 # 3n-tsh
-## ./container_memif
 ## ./crypto
 ### intel-x520-da2
 #### dpdk-vfio-pci
@@ -127,7 +126,6 @@
 1c AND 78b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip6-ip6base
 2c AND 78b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip6-ip6base
 4c AND 78b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip6-ip6base
-## ./ip6_tunnels
 ## ./l2
 ### intel-x520-da2
 #### dpdk-vfio-pci
