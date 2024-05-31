@@ -551,6 +551,11 @@ class VppConfigGenerator:
         path = ["dpdk", "no-multi-seg"]
         self.add_config_item(self._nodeconfig, "", path)
 
+    def add_dpdk_enable_tcp_udp_checksum(self):
+        """Add DPDK enable-tcp-udp-checksum configuration."""
+        path = ["dpdk", "enable-tcp-udp-checksum"]
+        self.add_config_item(self._nodeconfig, "", path)
+
     def add_dpdk_no_tx_checksum_offload(self):
         """Add DPDK no-tx-checksum-offload configuration."""
         path = ["dpdk", "no-tx-checksum-offload"]
