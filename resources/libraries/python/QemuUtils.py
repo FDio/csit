@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2023 Cisco and/or its affiliates.
+# Copyright (c) 2024-2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -236,25 +236,25 @@ class QemuUtils:
         )
 
     def add_vhost_user_if(
-            self, socket, server=True, jumbo_frames=False, queue_size=None,
+            self, socket, server=True, jumbo=False, queue_size=None,
             queues=1, virtio_feature_mask=None):
         """Add Vhost-user interface.
 
         :param socket: Path of the unix socket.
         :param server: If True the socket shall be a listening socket.
-        :param jumbo_frames: Set True if jumbo frames are used in the test.
+        :param jumbo: Set True if jumbo frames are used in the test.
         :param queue_size: Vring queue size.
         :param queues: Number of queues.
         :param virtio_feature_mask: Mask of virtio features to be enabled.
         :type socket: str
         :type server: bool
-        :type jumbo_frames: bool
+        :type jumbo: bool
         :type queue_size: int
         :type queues: int
         :type virtio_feature_mask: int
         """
         self._nic_id += 1
-        if jumbo_frames:
+        if jumbo:
             logger.debug(u"Jumbo frames temporarily disabled!")
         self._params.add_with_value(
             u"chardev", f"socket,id=char{self._nic_id},"
@@ -342,7 +342,7 @@ class QemuUtils:
             vpp_config.add_dpdk_dev(u"0000:00:06.0", u"0000:00:07.0")
             vpp_config.add_dpdk_dev_default_rxq(kwargs[u"queues"])
             vpp_config.add_dpdk_log_level(u"debug")
-            if not kwargs[u"jumbo_frames"]:
+            if not kwargs[u"jumbo"]:
                 vpp_config.add_dpdk_no_multi_seg()
                 vpp_config.add_dpdk_no_tx_checksum_offload()
         if "ipsec" in self._opt.get(u'vnf'):
@@ -371,7 +371,7 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
+        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo"] else u"1518"
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
@@ -398,7 +398,7 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
+        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo"] else u"1518"
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,

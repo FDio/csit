@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,7 +31,7 @@ class L3fwdTest:
 
     @staticmethod
     def start_l3fwd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+            nodes, topology_info, phy_cores, rx_queues=None, jumbo=False,
             rxd=None, txd=None):
         """
         Execute the l3fwd on all dut nodes.
@@ -40,7 +40,7 @@ class L3fwdTest:
         :param topology_info: All the info from the topology file.
         :param phy_cores: Number of physical cores to use.
         :param rx_queues: Number of RX queues.
-        :param jumbo_frames: Jumbo frames on/off.
+        :param jumbo: Jumbo frames on/off.
         :param rxd: Number of RX descriptors.
         :param txd: Number of TX descriptors.
 
@@ -48,7 +48,7 @@ class L3fwdTest:
         :type topology_info: dict
         :type phy_cores: int
         :type rx_queues: int
-        :type jumbo_frames: bool
+        :type jumbo: bool
         :type rxd: int
         :type txd: int
         :raises RuntimeError: If bash return code is not 0.
@@ -76,7 +76,7 @@ class L3fwdTest:
                 L3fwdTest.start_l3fwd(
                     nodes, node, if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames, tg_flip=tg_flip
+                    jumbo=jumbo, tg_flip=tg_flip
                 )
         for node in nodes:
             if u"DUT" in node:
@@ -88,7 +88,7 @@ class L3fwdTest:
                         L3fwdTest.start_l3fwd(
                             nodes, nodes[node], if1=if1, if2=if2,
                             lcores_list=cpu_dp, nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int, jumbo_frames=jumbo_frames,
+                            queue_nums=rxq_count_int, jumbo=jumbo,
                             tg_flip=tg_flip
                         )
                 else:
@@ -98,7 +98,7 @@ class L3fwdTest:
     @staticmethod
     def start_l3fwd(
             nodes, node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames, tg_flip):
+            jumbo, tg_flip):
         """
         Execute the l3fwd on the dut_node.
 
@@ -113,7 +113,7 @@ class L3fwdTest:
         :param lcores_list: The lcore list string for the l3fwd routing
         :param nb_cores: The cores number for the forwarding
         :param queue_nums: The queues number for the NIC
-        :param jumbo_frames: Indication if the jumbo frames are used (True) or
+        :param jumbo: Indication if the jumbo frames are used (True) or
                              not (False).
         :param tg_flip: Whether TG ports are reordered.
         :type nodes: dict
@@ -123,7 +123,7 @@ class L3fwdTest:
         :type lcores_list: str
         :type nb_cores: str
         :type queue_nums: str
-        :type jumbo_frames: bool
+        :type jumbo: bool
         :type tg_flip: bool
         """
         if node[u"type"] == NodeType.DUT:
@@ -144,7 +144,7 @@ class L3fwdTest:
                         f"({port}, {queue}, {lcores[index % NB_PORTS]}),"
                     index += 1
 
-            if jumbo_frames:
+            if jumbo:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
                     eal_corelist=f"1,{lcores_list}",
                     eal_driver=False,
@@ -155,7 +155,7 @@ class L3fwdTest:
                     pmd_eth_dest_0=f"\\\"0,{adj_mac0}\\\"",
                     pmd_eth_dest_1=f"\\\"1,{adj_mac1}\\\"",
                     pmd_parse_ptype=True,
-                    pmd_max_pkt_len=jumbo_frames
+                    pmd_max_pkt_len=jumbo
                 )
             else:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(

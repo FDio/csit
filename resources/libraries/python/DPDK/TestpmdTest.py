@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -30,7 +30,7 @@ class TestpmdTest:
 
     @staticmethod
     def start_testpmd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+            nodes, topology_info, phy_cores, rx_queues=None, jumbo=False,
             rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None):
         """
         Start the testpmd with M worker threads and rxqueues N and jumbo
@@ -40,7 +40,7 @@ class TestpmdTest:
         :param topology_info: All the info from the topology file.
         :param phy_cores: Number of physical cores to use.
         :param rx_queues: Number of RX queues.
-        :param jumbo_frames: Jumbo frames on/off.
+        :param jumbo: Jumbo frames on/off.
         :param rxd: Number of RX descriptors.
         :param txd: Number of TX descriptors.
         :param nic_rxq_size: RX queue size.
@@ -50,7 +50,7 @@ class TestpmdTest:
         :type topology_info: dict
         :type phy_cores: int
         :type rx_queues: int
-        :type jumbo_frames: bool
+        :type jumbo: bool
         :type rxd: int
         :type txd: int
         :type nic_rxq_size: int
@@ -80,7 +80,7 @@ class TestpmdTest:
                 TestpmdTest.start_testpmd(
                     node, if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
+                    jumbo=jumbo, rxq_size=nic_rxq_size,
                     txq_size=nic_txq_size
                 )
         for node in nodes:
@@ -99,7 +99,7 @@ class TestpmdTest:
                             nodes[node], if1=if1, if2=if2,
                             lcores_list=cpu_dp, nb_cores=dp_count_int,
                             queue_nums=rxq_count_int,
-                            jumbo_frames=jumbo_frames,
+                            jumbo=jumbo,
                             rxq_size=nic_rxq_size, txq_size=nic_txq_size
                         )
                 else:
@@ -109,7 +109,7 @@ class TestpmdTest:
     @staticmethod
     def start_testpmd(
             node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames, rxq_size=1024, txq_size=1024):
+            jumbo, rxq_size=1024, txq_size=1024):
         """
         Execute the testpmd on the DUT node.
 
@@ -119,7 +119,7 @@ class TestpmdTest:
         :param lcores_list: The DPDK run cores.
         :param nb_cores: The cores number for the forwarding.
         :param queue_nums: The queues number for the NIC.
-        :param jumbo_frames: Indication if the jumbo frames are used (True) or
+        :param jumbo: Indication if the jumbo frames are used (True) or
             not (False).
         :param rxq_size: RXQ size. Default=1024.
         :param txq_size: TXQ size. Default=1024.
@@ -129,7 +129,7 @@ class TestpmdTest:
         :type lcores_list: str
         :type nb_cores: int
         :type queue_nums: str
-        :type jumbo_frames: bool
+        :type jumbo: bool
         :type rxq_size: int
         :type txq_size: int
         :raises RuntimeError: If the script "run_testpmd.sh" fails.
@@ -138,7 +138,7 @@ class TestpmdTest:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
-            pmd_max_pkt_len = u"9200" if jumbo_frames else u"1518"
+            pmd_max_pkt_len = u"9200" if jumbo else u"1518"
             testpmd_args = DpdkUtil.get_testpmd_args(
                 eal_corelist=f"1,{lcores_list}",
                 eal_driver=False,
