@@ -33,6 +33,29 @@
       "message": "Invalid variable name \u0027jumbo\u0027.",
       "revId": "48803c1265e206d79a9cd3aa20ef4dc671e7be97",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9d388e_b454ac8e",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-05-31T11:04:53Z",
+      "side": 1,
+      "message": "this changes behaviour. need a reference to such request.",
+      "range": {
+        "startLine": 347,
+        "startChar": 0,
+        "endLine": 347,
+        "endChar": 56
+      },
+      "revId": "48803c1265e206d79a9cd3aa20ef4dc671e7be97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
