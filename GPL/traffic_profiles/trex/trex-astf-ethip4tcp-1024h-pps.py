@@ -58,10 +58,10 @@ class TrafficProfile(TrafficProfileBaseClass):
         :rtype: tuple
         """
         # IPs used in packet headers.
-        p1_src_start_ip = u"192.168.0.0"
-        p1_src_end_ip = u"192.168.3.255"
-        p1_dst_start_ip = u"20.0.0.0"
-        p1_dst_end_ip = u"20.0.3.255"
+        p1_src_start_ip = "192.168.0.0"
+        p1_src_end_ip = "192.168.3.255"
+        p1_dst_start_ip = "20.0.0.0"
+        p1_dst_end_ip = "20.0.3.255"
 
         # Headers length, not sure why TRex needs 32B for segment header.
         real_headers_size = 70  # 18B L2 + 20B IPv4 + 32B TCP.
@@ -73,32 +73,32 @@ class TrafficProfile(TrafficProfileBaseClass):
         # client commands
         prog_c = ASTFProgram()
         prog_c.connect()
-        prog_c.set_var(u"var1", self.n_data_frames)
-        prog_c.set_label(u"a1:")
-        prog_c.send(u"1" * real_mss)
+        prog_c.set_var("var1", self.n_data_frames)
+        prog_c.set_label("a1:")
+        prog_c.send("1" * real_mss)
         prog_c.recv(real_mss)
-        prog_c.jmp_nz(u"var1", u"a1:")
+        prog_c.jmp_nz("var1", "a1:")
 
         # server commands
         prog_s = ASTFProgram()
         prog_s.accept()
-        prog_s.set_var(u"var2", self.n_data_frames)
-        prog_s.set_label(u"a2:")
+        prog_s.set_var("var2", self.n_data_frames)
+        prog_s.set_label("a2:")
         prog_s.recv(real_mss)
-        prog_s.send(u"1" * real_mss)
-        prog_s.jmp_nz(u"var2", u"a2:")
+        prog_s.send("1" * real_mss)
+        prog_s.jmp_nz("var2", "a2:")
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[p1_src_start_ip, p1_src_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen_s = ASTFIPGenDist(
             ip_range=[p1_dst_start_ip, p1_dst_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen = ASTFIPGen(
-            glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
+            glob=ASTFIPGenGlobal(ip_offset="0.0.0.1"),
             dist_client=ip_gen_c,
             dist_server=ip_gen_s,
         )

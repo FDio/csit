@@ -40,13 +40,13 @@ class TrafficStreamsScaleClass:
         "IMIX_v4": [
             {"size": 60, "pps": 28, "isg": 0},
             {"size": 590, "pps": 20, "isg": 0.1},
-            {"size": 1514, "pps": 4, "isg": 0.2}
+            {"size": 1514, "pps": 4, "isg": 0.2},
         ],
         "IMIX_v4_1": [
             {"size": 64, "pps": 28, "isg": 0},
             {"size": 570, "pps": 16, "isg": 0.1},
-            {"size": 1518, "pps": 4, "isg": 0.2}
-        ]
+            {"size": 1518, "pps": 4, "isg": 0.2},
+        ],
     }
 
     def __init__(self):
@@ -132,18 +132,16 @@ class TrafficStreamsScaleClass:
                 payload_len = max(0, self.framesize - len(pkts[i]) - 4)
 
                 pkt = STLPktBuilder(
-                    pkt=pkts[i] / self._gen_payload(payload_len),
-                    vm=vms[i]
+                    pkt=pkts[i] / self._gen_payload(payload_len), vm=vms[i]
                 )
                 pkt_lat = STLPktBuilder(
-                    pkt=pkts[i] / self._gen_payload(payload_len),
-                    vm=vms[i]
+                    pkt=pkts[i] / self._gen_payload(payload_len), vm=vms[i]
                 )
                 pkt_streams.append(
                     STLStream(
                         packet=pkt,
                         isg=10.0 * (i // (len(pkts) // 2)),
-                        mode=STLTXCont(pps=9000)
+                        mode=STLTXCont(pps=9000),
                     )
                 )
                 lat_streams.append(
@@ -151,7 +149,7 @@ class TrafficStreamsScaleClass:
                         packet=pkt_lat,
                         isg=10.0 * (i // (len(pkts) // 2)),
                         flow_stats=STLFlowLatencyStats(pg_id=i),
-                        mode=STLTXCont(pps=9000)
+                        mode=STLTXCont(pps=9000),
                     )
                 )
 
@@ -168,14 +166,13 @@ class TrafficStreamsScaleClass:
                     payload_len = max(0, stream["size"] - len(pkts[i]) - 4)
 
                     pkt = STLPktBuilder(
-                        pkt=pkts[i] / self._gen_payload(payload_len),
-                        vm=vms[i]
+                        pkt=pkts[i] / self._gen_payload(payload_len), vm=vms[i]
                     )
                     pkt_streams.append(
                         STLStream(
                             packet=pkt,
                             isg=stream["isg"],
-                            mode=STLTXCont(pps=stream["pps"])
+                            mode=STLTXCont(pps=stream["pps"]),
                         )
                     )
             return pkt_streams

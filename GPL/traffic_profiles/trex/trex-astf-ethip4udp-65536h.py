@@ -59,17 +59,17 @@ class TrafficProfile(TrafficProfileBaseClass):
         :rtype: tuple
         """
         # IPs used in packet headers.
-        p1_src_start_ip = u"192.168.0.0"
-        p1_src_end_ip = u"192.168.255.255"
-        p1_dst_start_ip = u"20.0.0.0"
-        p1_dst_end_ip = u"20.0.255.255"
+        p1_src_start_ip = "192.168.0.0"
+        p1_src_end_ip = "192.168.255.255"
+        p1_dst_start_ip = "20.0.0.0"
+        p1_dst_end_ip = "20.0.255.255"
 
         # Headers length
         headers_size = 46  # 18B L2 + 20B IPv4 + 8B UDP.
 
         # UDP messages, not padded yet.
-        udp_req = u"GET"
-        udp_res = u"ACK"
+        udp_req = "GET"
+        udp_res = "ACK"
 
         # Padd to the required frame size.
         udp_req += self._gen_padding(headers_size + len(udp_req))
@@ -95,14 +95,14 @@ class TrafficProfile(TrafficProfileBaseClass):
         # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[p1_src_start_ip, p1_src_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen_s = ASTFIPGenDist(
             ip_range=[p1_dst_start_ip, p1_dst_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen = ASTFIPGen(
-            glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
+            glob=ASTFIPGenGlobal(ip_offset="0.0.0.1"),
             dist_client=ip_gen_c,
             dist_server=ip_gen_s,
         )

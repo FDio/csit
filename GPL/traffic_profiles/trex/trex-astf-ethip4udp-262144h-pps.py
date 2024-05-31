@@ -57,10 +57,10 @@ class TrafficProfile(TrafficProfileBaseClass):
         :rtype: tuple
         """
         # IPs used in packet headers.
-        p1_src_start_ip = u"172.16.0.0"
-        p1_src_end_ip = u"172.19.255.255"
-        p1_dst_start_ip = u"20.16.0.0"
-        p1_dst_end_ip = u"20.19.255.255"
+        p1_src_start_ip = "172.16.0.0"
+        p1_src_end_ip = "172.19.255.255"
+        p1_dst_start_ip = "20.16.0.0"
+        p1_dst_end_ip = "20.19.255.255"
 
         # The difference between data size and frame size.
         headers_size = 46  # 18B L2 + 20B IPv4 + 8B UDP.
@@ -72,7 +72,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         m_delay = 2000000  # delay 2000s (2,000,000 ms)
 
         # Data, not padded yet.
-        udp_data = u""
+        udp_data = ""
         # Pad the data to achieve the intended frame size.
         udp_data += self._gen_padding(headers_size)
 
@@ -83,10 +83,10 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Client program.
         prog_c = ASTFProgram(stream=False)
         prog_c.set_keepalive_msg(m_delay)
-        prog_c.set_var(u"var1", self.n_data_frames)
-        prog_c.set_label(u"a:")
+        prog_c.set_var("var1", self.n_data_frames)
+        prog_c.set_label("a:")
         prog_c.send_msg(udp_data)
-        prog_c.jmp_nz(u"var1", u"a:")
+        prog_c.jmp_nz("var1", "a:")
         # We should read the server response,
         # but no reason to overload client workers even more.
 
@@ -100,24 +100,24 @@ class TrafficProfile(TrafficProfileBaseClass):
         # This maybe increases server traffic duration,
         # but no other way if we want to avoid
         # TRex creating a second instance of the same server.
-        prog_s.set_var(u"var2", self.n_data_frames)
-        prog_s.set_label(u"b:")
+        prog_s.set_var("var2", self.n_data_frames)
+        prog_s.set_label("b:")
         prog_s.send_msg(udp_data)
-        prog_s.jmp_nz(u"var2", u"b:")
+        prog_s.jmp_nz("var2", "b:")
         # VPP never duplicates packets,
         # so it is safe to close the server instance now.
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[p1_src_start_ip, p1_src_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen_s = ASTFIPGenDist(
             ip_range=[p1_dst_start_ip, p1_dst_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen = ASTFIPGen(
-            glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
+            glob=ASTFIPGenGlobal(ip_offset="0.0.0.1"),
             dist_client=ip_gen_c,
             dist_server=ip_gen_s,
         )

@@ -51,13 +51,13 @@ class TrafficStreams(TrafficStreamsBaseClass):
         self.vlan_id = 10
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"2001:1::2"
-        self.p1_src_end_ip = u"2001:1::FE"
-        self.p1_dst_start_ip = u"2001:2::2"
+        self.p1_src_start_ip = "2001:1::2"
+        self.p1_src_end_ip = "2001:1::FE"
+        self.p1_dst_start_ip = "2001:2::2"
 
-        self.p2_src_start_ip = u"2001:2::2"
-        self.p2_src_end_ip = u"2001:2::FE"
-        self.p2_dst_start_ip = u"2001:1::2"
+        self.p2_src_start_ip = "2001:2::2"
+        self.p2_src_end_ip = "2001:2::FE"
+        self.p2_dst_start_ip = "2001:1::2"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -69,64 +69,51 @@ class TrafficStreams(TrafficStreamsBaseClass):
         """
 
         base_p1, count_p1 = self._get_start_end_ipv6(
-            self.p1_src_start_ip,
-            self.p1_src_end_ip
+            self.p1_src_start_ip, self.p1_src_end_ip
         )
         base_p2, count_p2 = self._get_start_end_ipv6(
-            self.p2_src_start_ip,
-            self.p2_src_end_ip
+            self.p2_src_start_ip, self.p2_src_end_ip
         )
 
         # Direction 0 --> 1
-        base_pkt_a = (
-            Ether() /
-            IPv6(
-                src=self.p1_src_start_ip,
-                dst=self.p1_dst_start_ip
-            )
+        base_pkt_a = Ether() / IPv6(
+            src=self.p1_src_start_ip, dst=self.p1_dst_start_ip
         )
         # Direction 1 --> 0
         base_pkt_b = (
-            Ether() /
-            Dot1Q(
-                vlan=self.vlan_id
-            ) /
-            IPv6(
-                src=self.p2_src_start_ip,
-                dst=self.p2_dst_start_ip
-            )
+            Ether()
+            / Dot1Q(vlan=self.vlan_id)
+            / IPv6(src=self.p2_src_start_ip, dst=self.p2_dst_start_ip)
         )
 
         # Direction 0 --> 1
         vm1 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"ipv6_src",
+                    name="ipv6_src",
                     min_value=base_p1,
                     max_value=base_p1 + count_p1,
-                    size=8, op=u"inc"
+                    size=8,
+                    op="inc",
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"ipv6_src",
-                    pkt_offset=u"IPv6.src",
-                    offset_fixup=8
-                )
+                    fv_name="ipv6_src", pkt_offset="IPv6.src", offset_fixup=8
+                ),
             ]
         )
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"ipv6_src",
+                    name="ipv6_src",
                     min_value=base_p2,
                     max_value=base_p2 + count_p2,
-                    size=8, op=u"inc"
+                    size=8,
+                    op="inc",
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"ipv6_src",
-                    pkt_offset=u"IPv6.src",
-                    offset_fixup=8
-                )
+                    fv_name="ipv6_src", pkt_offset="IPv6.src", offset_fixup=8
+                ),
             ]
         )
 

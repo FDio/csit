@@ -47,15 +47,15 @@ class TrafficStreams(TrafficStreamsScaleClass):
                 "src_start_ip": "10.0.0.1",
                 "dst_start_ip": "20.0.0.0",
                 "dst_end_ip": "20.15.66.63",
-                "seed": 1
+                "seed": 1,
             },
             # Direction E --> W:
             {
                 "src_start_ip": "20.0.0.1",
                 "dst_start_ip": "10.0.0.0",
                 "dst_end_ip": "10.15.66.63",
-                "seed": 2
-            }
+                "seed": 2,
+            },
         ]
         self.pkt_base = []
         self.pkt_vm = []
@@ -70,11 +70,11 @@ class TrafficStreams(TrafficStreamsScaleClass):
         """
         for i in range(len(self.pkt_data)):
             self.pkt_base.append(
-                Ether() /
-                IP(
+                Ether()
+                / IP(
                     src=self.pkt_data[i]["src_start_ip"],
                     dst=self.pkt_data[i]["dst_start_ip"],
-                    proto=61
+                    proto=61,
                 )
             )
             self.pkt_vm.append(
@@ -86,15 +86,10 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             max_value=self.pkt_data[i]["dst_end_ip"],
                             size=4,
                             seed=self.pkt_data[i]["seed"],
-                            limit=(2**24 - 1)
+                            limit=(2**24 - 1),
                         ),
-                        STLVmWrFlowVar(
-                            fv_name="dst",
-                            pkt_offset="IP.dst"
-                        ),
-                        STLVmFixIpv4(
-                            offset="IP"
-                        )
+                        STLVmWrFlowVar(fv_name="dst", pkt_offset="IP.dst"),
+                        STLVmFixIpv4(offset="IP"),
                     ]
                 )
             )

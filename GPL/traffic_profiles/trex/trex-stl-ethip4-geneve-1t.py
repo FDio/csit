@@ -62,18 +62,18 @@ class TrafficStreams(TrafficStreamsBaseClass):
         self.p2_geneve_start_vni = 1
 
         # IPs used in packet headers of Direction 0 --> 1.
-        self.p1_src_start_ip = u"10.128.1.0"
-        self.p1_dst_start_ip = u"10.0.1.0"
+        self.p1_src_start_ip = "10.128.1.0"
+        self.p1_dst_start_ip = "10.0.1.0"
 
         # IPs used in packet headers of Direction 1 --> 0.
-        self.p2_outer_src_ip = u"1.1.1.1"
-        self.p2_outer_dst_ip = u"1.1.1.2"
+        self.p2_outer_src_ip = "1.1.1.1"
+        self.p2_outer_dst_ip = "1.1.1.2"
 
-        self.p2_inner_src_start_ip = u"10.0.1.0"
-        self.p2_inner_dst_start_ip = u"10.128.1.0"
+        self.p2_inner_src_start_ip = "10.0.1.0"
+        self.p2_inner_dst_start_ip = "10.128.1.0"
 
         # MACs used in inner ethernet header of Direction 1 --> 0.
-        self.p2_inner_dst_mac = u"d0:0b:ee:d0:00:00"
+        self.p2_inner_dst_mac = "d0:0b:ee:d0:00:00"
 
         # UDP ports used in packet headers of Direction 1 --> 0.
         self.p2_udp_sport_start = 1024
@@ -93,32 +93,20 @@ class TrafficStreams(TrafficStreamsBaseClass):
         p2_inner_dst_start_ip_int = int(IPv4Address(self.p2_inner_dst_start_ip))
 
         # Direction 0 --> 1
-        base_pkt_a = (
-            Ether() /
-            IP(
-                src=self.p1_src_start_ip,
-                dst=self.p1_dst_start_ip,
-                proto=61
-            )
+        base_pkt_a = Ether() / IP(
+            src=self.p1_src_start_ip, dst=self.p1_dst_start_ip, proto=61
         )
         # Direction 1 --> 0
         base_pkt_b = (
-            Ether() /
-            IP(
-                src=self.p2_outer_src_ip,
-                dst=self.p2_outer_dst_ip,
-                proto=17
-            ) /
-            UDP(
-                sport=self.p2_udp_sport_start,
-                dport=self.p2_udp_dport
-            ) /
-            GENEVE(vni=self.p2_geneve_start_vni) /
-            Ether(dst=self.p2_inner_dst_mac) /
-            IP(
+            Ether()
+            / IP(src=self.p2_outer_src_ip, dst=self.p2_outer_dst_ip, proto=17)
+            / UDP(sport=self.p2_udp_sport_start, dport=self.p2_udp_dport)
+            / GENEVE(vni=self.p2_geneve_start_vni)
+            / Ether(dst=self.p2_inner_dst_mac)
+            / IP(
                 src=self.p2_inner_src_start_ip,
                 dst=self.p2_inner_dst_start_ip,
-                proto=61
+                proto=61,
             )
         )
         base_pkt_b /= Raw(load=self._gen_payload(110 - len(base_pkt_b)))
@@ -126,94 +114,81 @@ class TrafficStreams(TrafficStreamsBaseClass):
         vm1 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"ip_src",
+                    name="ip_src",
                     min_value=p1_src_start_ip_int,
                     max_value=p1_src_start_ip_int + self.n_tunnels * 256 - 1,
                     size=4,
-                    op=u"inc"
+                    op="inc",
                 ),
-                STLVmWrFlowVar(
-                    fv_name=u"ip_src",
-                    pkt_offset=u"IP.src"
-                ),
+                STLVmWrFlowVar(fv_name="ip_src", pkt_offset="IP.src"),
                 STLVmFlowVar(
-                    name=u"ip_dst",
+                    name="ip_dst",
                     min_value=p1_dst_start_ip_int,
                     max_value=p1_dst_start_ip_int + self.n_tunnels * 256 - 1,
                     size=4,
-                    op=u"inc"
+                    op="inc",
                 ),
-                STLVmWrFlowVar(
-                    fv_name=u"ip_dst",
-                    pkt_offset=u"IP.dst"
-                ),
-                STLVmFixIpv4(
-                    offset=u"IP"
-                )
+                STLVmWrFlowVar(fv_name="ip_dst", pkt_offset="IP.dst"),
+                STLVmFixIpv4(offset="IP"),
             ]
         )
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"ip",
+                    name="ip",
                     min_value=0,
                     max_value=self.n_tunnels * 256 - 1,
                     size=4,
-                    op=u"inc"
+                    op="inc",
                 ),
                 STLVmWrMaskFlowVar(
-                    fv_name=u"ip",
+                    fv_name="ip",
                     pkt_cast_size=4,
-                    mask=0xffffffff,
+                    mask=0xFFFFFFFF,
                     add_value=p2_inner_src_start_ip_int,
-                    pkt_offset=u"IP:1.src"
+                    pkt_offset="IP:1.src",
                 ),
                 STLVmWrMaskFlowVar(
-                    fv_name=u"ip",
+                    fv_name="ip",
                     pkt_cast_size=4,
-                    mask=0xffffffff,
+                    mask=0xFFFFFFFF,
                     add_value=p2_inner_dst_start_ip_int,
-                    pkt_offset=u"IP:1.dst"
+                    pkt_offset="IP:1.dst",
                 ),
                 STLVmWrMaskFlowVar(
-                    fv_name=u"ip",
+                    fv_name="ip",
                     pkt_cast_size=2,
-                    mask=0xffff,
+                    mask=0xFFFF,
                     add_value=self.p2_udp_sport_start,
-                    pkt_offset=u"UDP.sport"
+                    pkt_offset="UDP.sport",
                 ),
                 STLVmWrMaskFlowVar(
-                    fv_name=u"ip",
+                    fv_name="ip",
                     pkt_cast_size=4,
-                    mask=0xffffff00,
+                    mask=0xFFFFFF00,
                     add_value=(self.p2_geneve_start_vni << 8),
-                    pkt_offset=u"GENEVE.vni"
+                    pkt_offset="GENEVE.vni",
                 ),
                 STLVmWrMaskFlowVar(
-                    fv_name=u"ip",
+                    fv_name="ip",
                     pkt_cast_size=4,
-                    mask=0xffffff,
+                    mask=0xFFFFFF,
                     shift=-8,
                     offset_fixup=2,
                     add_value=c_int(
-                        int(
-                            self.p2_inner_dst_mac.replace(u":", u"")[6:12], 16
-                        ) << 8
+                        int(self.p2_inner_dst_mac.replace(":", "")[6:12], 16)
+                        << 8
                     ).value,
-                    pkt_offset=u"Ether:1.dst"
+                    pkt_offset="Ether:1.dst",
                 ),
-                STLVmFixIpv4(
-                    offset=u"IP:1"
-                ),
-                STLVmFixIpv4(
-                    offset=u"IP"
-                ),
+                STLVmFixIpv4(offset="IP:1"),
+                STLVmFixIpv4(offset="IP"),
                 STLVmFixChecksumHw(
-                    l3_offset=u"IP",
-                    l4_offset=u"UDP",
-                    l4_type=CTRexVmInsFixHwCs.L4_TYPE_UDP
-                )
+                    l3_offset="IP",
+                    l4_offset="UDP",
+                    l4_type=CTRexVmInsFixHwCs.L4_TYPE_UDP,
+                ),
             ]
         )
 

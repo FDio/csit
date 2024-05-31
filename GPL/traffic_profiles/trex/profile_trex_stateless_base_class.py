@@ -37,16 +37,16 @@ class TrafficStreamsBaseClass:
     """Base class for stream profiles for T-rex traffic generator."""
 
     STREAM_TABLE = {
-        u"IMIX_v4": [
-            {u"size": 60, u"pps": 28, u"isg": 0},
-            {u"size": 590, u"pps": 20, u"isg": 0.1},
-            {u"size": 1514, u"pps": 4, u"isg": 0.2}
+        "IMIX_v4": [
+            {"size": 60, "pps": 28, "isg": 0},
+            {"size": 590, "pps": 20, "isg": 0.1},
+            {"size": 1514, "pps": 4, "isg": 0.2},
         ],
-        'IMIX_v4_1': [
-            {u"size": 64, u"pps": 28, u"isg": 0},
-            {u"size": 570, u"pps": 16, u"isg": 0.1},
-            {u"size": 1518, u"pps": 4, u"isg": 0.2}
-        ]
+        "IMIX_v4_1": [
+            {"size": 64, "pps": 28, "isg": 0},
+            {"size": 570, "pps": 16, "isg": 0.1},
+            {"size": 1518, "pps": 4, "isg": 0.2},
+        ],
     }
 
     def __init__(self):
@@ -66,7 +66,7 @@ class TrafficStreamsBaseClass:
         :returns: The generated payload.
         :rtype: str
         """
-        payload = u""
+        payload = ""
         for _ in range(length):
             payload += choice(ascii_letters)
 
@@ -88,11 +88,11 @@ class TrafficStreamsBaseClass:
             ip1 = socket.inet_pton(socket.AF_INET6, start_ip)
             ip2 = socket.inet_pton(socket.AF_INET6, end_ip)
 
-            hi1, lo1 = struct.unpack(u"!QQ", ip1)
-            hi2, lo2 = struct.unpack(u"!QQ", ip2)
+            hi1, lo1 = struct.unpack("!QQ", ip1)
+            hi2, lo2 = struct.unpack("!QQ", ip2)
 
             if ((hi1 << 64) | lo1) > ((hi2 << 64) | lo2):
-                raise ValueError(u"IPv6: start_ip is greater then end_ip")
+                raise ValueError("IPv6: start_ip is greater then end_ip")
 
             return lo1, abs(int(lo1) - int(lo2))
 
@@ -153,9 +153,7 @@ class TrafficStreamsBaseClass:
 
             # Create the streams:
             # Direction 0 --> 1
-            stream1 = STLStream(
-                packet=pkt_a, mode=STLTXCont(pps=9000)
-            )
+            stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
             stream2 = STLStream(
@@ -167,7 +165,7 @@ class TrafficStreamsBaseClass:
             lat_stream1 = STLStream(
                 packet=pkt_lat_a,
                 flow_stats=STLFlowLatencyStats(pg_id=0),
-                mode=STLTXCont(pps=9000)
+                mode=STLTXCont(pps=9000),
             )
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
@@ -175,7 +173,7 @@ class TrafficStreamsBaseClass:
                 packet=pkt_lat_b,
                 isg=10.0,
                 flow_stats=STLFlowLatencyStats(pg_id=1),
-                mode=STLTXCont(pps=9000)
+                mode=STLTXCont(pps=9000),
             )
 
             return [stream1, stream2, lat_stream1, lat_stream2]
@@ -187,28 +185,30 @@ class TrafficStreamsBaseClass:
             stream2 = list()
 
             for stream in self.STREAM_TABLE[self.framesize]:
-                payload_len_a = max(0, stream[u"size"] - len(base_pkt_a) - 4)
-                payload_len_b = max(0, stream[u"size"] - len(base_pkt_b) - 4)
+                payload_len_a = max(0, stream["size"] - len(base_pkt_a) - 4)
+                payload_len_b = max(0, stream["size"] - len(base_pkt_b) - 4)
                 # Create a base packet and pad it to size
                 pkt_a = STLPktBuilder(
-                    pkt=base_pkt_a / self._gen_payload(payload_len_a),
-                    vm=vm1
+                    pkt=base_pkt_a / self._gen_payload(payload_len_a), vm=vm1
                 )
                 pkt_b = STLPktBuilder(
-                    pkt=base_pkt_b / self._gen_payload(payload_len_b),
-                    vm=vm2
+                    pkt=base_pkt_b / self._gen_payload(payload_len_b), vm=vm2
                 )
 
                 # Create the streams:
-                stream1.append(STLStream(
-                    packet=pkt_a,
-                    isg=stream[u"isg"],
-                    mode=STLTXCont(pps=stream[u"pps"]))
+                stream1.append(
+                    STLStream(
+                        packet=pkt_a,
+                        isg=stream["isg"],
+                        mode=STLTXCont(pps=stream["pps"]),
+                    )
                 )
-                stream2.append(STLStream(
-                    packet=pkt_b,
-                    isg=stream[u"isg"],
-                    mode=STLTXCont(pps=stream[u"pps"]))
+                stream2.append(
+                    STLStream(
+                        packet=pkt_b,
+                        isg=stream["isg"],
+                        mode=STLTXCont(pps=stream["pps"]),
+                    )
                 )
             streams = list()
             streams.extend(stream1)
@@ -226,7 +226,7 @@ class TrafficStreamsBaseClass:
         :returns: Traffic streams.
         :rtype: list
         """
-        self.framesize = kwargs[u"framesize"]
-        self.rate = kwargs[u"rate"]
+        self.framesize = kwargs["framesize"]
+        self.rate = kwargs["rate"]
 
         return self.create_streams()

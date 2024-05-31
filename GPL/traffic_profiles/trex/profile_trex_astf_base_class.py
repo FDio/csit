@@ -34,16 +34,16 @@ class TrafficProfileBaseClass:
     """Base class for profiles for T-rex astf traffic generator."""
 
     STREAM_TABLE = {
-        u"IMIX_v4": [
-            {u"size": 60, u"pps": 28, u"isg": 0},
-            {u"size": 590, u"pps": 20, u"isg": 0.1},
-            {u"size": 1514, u"pps": 4, u"isg": 0.2}
+        "IMIX_v4": [
+            {"size": 60, "pps": 28, "isg": 0},
+            {"size": 590, "pps": 20, "isg": 0.1},
+            {"size": 1514, "pps": 4, "isg": 0.2},
         ],
-        'IMIX_v4_1': [
-            {u"size": 64, u"pps": 28, u"isg": 0},
-            {u"size": 570, u"pps": 16, u"isg": 0.1},
-            {u"size": 1518, u"pps": 4, u"isg": 0.2}
-        ]
+        "IMIX_v4_1": [
+            {"size": 64, "pps": 28, "isg": 0},
+            {"size": 570, "pps": 16, "isg": 0.1},
+            {"size": 1518, "pps": 4, "isg": 0.2},
+        ],
     }
 
     # TODO: Declare and document fields in a contructor to make pylint happier.
@@ -82,7 +82,7 @@ class TrafficProfileBaseClass:
         if missing < 0:
             msg = f"Cannot to pad from {current_length} to {required_length}."
             raise RuntimeError(msg)
-        padding = u"".join(choices(ascii_letters, k=missing))
+        padding = "".join(choices(ascii_letters, k=missing))
         return padding
 
     def define_profile(self):
@@ -114,9 +114,7 @@ class TrafficProfileBaseClass:
             kwargs = dict()
 
         profile = ASTFProfile(
-            default_ip_gen=ip_gen,
-            templates=templates,
-            **kwargs
+            default_ip_gen=ip_gen, templates=templates, **kwargs
         )
 
         return profile
@@ -132,10 +130,10 @@ class TrafficProfileBaseClass:
         :returns: Traffic profile.
         :rtype: trex.astf.trex_astf_profile.ASTFProfile
         """
-        self.framesize = kwargs[u"framesize"]
-        self.n_data_frames = kwargs[u"n_data_frames"]
+        self.framesize = kwargs["framesize"]
+        self.n_data_frames = kwargs["n_data_frames"]
         self._pcap_dir = kwargs.get(
-            u"pcap_dir", u"/opt/trex-core-3.03/scripts/avl"
+            "pcap_dir", "/opt/trex-core-3.03/scripts/avl"
         )
 
         return self.create_profile()

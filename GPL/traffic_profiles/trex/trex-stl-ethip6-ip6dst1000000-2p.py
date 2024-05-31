@@ -46,14 +46,14 @@ class TrafficStreams(TrafficStreamsScaleClass):
             {
                 "src_start_ip": "2100::1",
                 "dst_start_ip": "2200::0",
-                "dst_end_ip": "2200::F:423F"
+                "dst_end_ip": "2200::F:423F",
             },
             # Direction E --> W:
             {
                 "src_start_ip": "2200::1",
                 "dst_start_ip": "2100::0",
-                "dst_end_ip": "2100::F:423F"
-            }
+                "dst_end_ip": "2100::F:423F",
+            },
         ]
         self.pkt_base = []
         self.pkt_vm = []
@@ -68,15 +68,14 @@ class TrafficStreams(TrafficStreamsScaleClass):
         """
         for i in range(len(self.pkt_data)):
             base, count = self._get_start_end_ipv6(
-                self.pkt_data[i]["dst_start_ip"],
-                self.pkt_data[i]["dst_end_ip"]
+                self.pkt_data[i]["dst_start_ip"], self.pkt_data[i]["dst_end_ip"]
             )
 
             self.pkt_base.append(
-                Ether() /
-                IPv6(
+                Ether()
+                / IPv6(
                     src=self.pkt_data[i]["src_start_ip"],
-                    dst=self.pkt_data[i]["dst_start_ip"]
+                    dst=self.pkt_data[i]["dst_start_ip"],
                 )
             )
             self.pkt_vm.append(
@@ -87,13 +86,13 @@ class TrafficStreams(TrafficStreamsScaleClass):
                             min_value=base,
                             max_value=base + count,
                             size=8,
-                            op="inc"
+                            op="inc",
                         ),
                         STLVmWrFlowVar(
                             fv_name="ipv6_dst",
                             pkt_offset="IPv6.dst",
-                            offset_fixup=8
-                        )
+                            offset_fixup=8,
+                        ),
                     ]
                 )
             )

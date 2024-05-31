@@ -51,13 +51,13 @@ class TrafficStreams(TrafficStreamsBaseClass):
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"20.0.0.0"
-        self.p1_src_end_ip = u"20.0.0.9"
-        self.p1_dst_start_ip = u"12.0.0.2"
+        self.p1_src_start_ip = "20.0.0.0"
+        self.p1_src_end_ip = "20.0.0.9"
+        self.p1_dst_start_ip = "12.0.0.2"
 
-        self.p2_src_start_ip = u"12.0.0.2"
-        #self.p2_src_end_ip = u"12.0.0.2"
-        self.p2_dst_start_ip = u"200.0.0.0"
+        self.p2_src_start_ip = "12.0.0.2"
+        # self.p2_src_end_ip = u"12.0.0.2"
+        self.p2_dst_start_ip = "200.0.0.0"
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1024
@@ -79,28 +79,20 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         base_pkt_a = (
-            Ether() /
-            IP(
-                src=self.p1_src_start_ip,
-                dst=self.p1_dst_start_ip,
-                proto=17
-            ) /
-            UDP(
+            Ether()
+            / IP(src=self.p1_src_start_ip, dst=self.p1_dst_start_ip, proto=17)
+            / UDP(
                 sport=self.p1_src_start_udp_port,
-                dport=self.p1_dst_start_udp_port
+                dport=self.p1_dst_start_udp_port,
             )
         )
         # Direction 1 --> 0
         base_pkt_b = (
-            Ether() /
-            IP(
-                src=self.p2_src_start_ip,
-                dst=self.p2_dst_start_ip,
-                proto=17
-            ) /
-            UDP(
+            Ether()
+            / IP(src=self.p2_src_start_ip, dst=self.p2_dst_start_ip, proto=17)
+            / UDP(
                 sport=self.p2_src_start_udp_port,
-                dport=self.p2_dst_start_udp_port
+                dport=self.p2_dst_start_udp_port,
             )
         )
 
@@ -112,35 +104,24 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     ip_max=self.p1_src_end_ip,
                     port_min=self.p1_src_start_udp_port,
                     port_max=self.p1_src_end_udp_port,
-                    name=u"tuple"
+                    name="tuple",
                 ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple.ip",
-                    pkt_offset=u"IP.src"
-                ),
-                STLVmFixIpv4(
-                    offset=u"IP"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple.port",
-                    pkt_offset=u"UDP.sport"
-                )
+                STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"),
+                STLVmFixIpv4(offset="IP"),
+                STLVmWrFlowVar(fv_name="tuple.port", pkt_offset="UDP.sport"),
             ]
         )
         # Direction 0 --> 1
         vm2 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"dport",
+                    name="dport",
                     min_value=self.p2_dst_start_udp_port,
                     max_value=self.p2_dst_end_udp_port,
                     size=2,
-                    op=u"inc"
+                    op="inc",
                 ),
-                STLVmWrFlowVar(
-                    fv_name=u"dport",
-                    pkt_offset=u"UDP.dport"
-                )
+                STLVmWrFlowVar(fv_name="dport", pkt_offset="UDP.dport"),
             ]
         )
 

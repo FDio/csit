@@ -51,15 +51,15 @@ class TrafficStreams(TrafficStreamsBaseClass):
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"10.10.10.2"
-        self.p1_src_end_ip = u"10.10.10.101"
-        self.p1_dst_start_ip = u"20.20.20.2"
-        self.p1_dst_end_ip = u"20.20.20.101"
+        self.p1_src_start_ip = "10.10.10.2"
+        self.p1_src_end_ip = "10.10.10.101"
+        self.p1_dst_start_ip = "20.20.20.2"
+        self.p1_dst_end_ip = "20.20.20.101"
 
-        self.p2_src_start_ip = u"20.20.20.2"
-        self.p2_src_end_ip = u"20.20.20.101"
-        self.p2_dst_start_ip = u"10.10.10.2"
-        self.p2_dst_end_ip = u"10.10.10.101"
+        self.p2_src_start_ip = "20.20.20.2"
+        self.p2_src_end_ip = "20.20.20.101"
+        self.p2_dst_start_ip = "10.10.10.2"
+        self.p2_dst_end_ip = "10.10.10.101"
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1001
@@ -83,28 +83,20 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         base_pkt_a = (
-            Ether() /
-            IP(
-                src=self.p1_src_start_ip,
-                dst=self.p1_dst_start_ip,
-                proto=17
-            ) /
-            UDP(
+            Ether()
+            / IP(src=self.p1_src_start_ip, dst=self.p1_dst_start_ip, proto=17)
+            / UDP(
                 sport=self.p1_src_start_udp_port,
-                dport=self.p1_dst_start_udp_port
+                dport=self.p1_dst_start_udp_port,
             )
         )
         # Direction 1 --> 0
         base_pkt_b = (
-            Ether() /
-            IP(
-                src=self.p2_src_start_ip,
-                dst=self.p2_dst_start_ip,
-                proto=17
-            ) /
-            UDP(
+            Ether()
+            / IP(src=self.p2_src_start_ip, dst=self.p2_dst_start_ip, proto=17)
+            / UDP(
                 sport=self.p2_src_start_udp_port,
-                dport=self.p2_dst_start_udp_port
+                dport=self.p2_dst_start_udp_port,
             )
         )
 
@@ -116,34 +108,24 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     ip_max=self.p1_src_end_ip,
                     port_min=self.p1_src_start_udp_port,
                     port_max=self.p1_src_end_udp_port,
-                    name=u"tuple1_src"
+                    name="tuple1_src",
                 ),
                 STLVmTupleGen(
                     ip_min=self.p1_dst_start_ip,
                     ip_max=self.p1_dst_end_ip,
                     port_min=self.p1_dst_start_udp_port,
                     port_max=self.p1_dst_end_udp_port,
-                    name=u"tuple1_dst"
+                    name="tuple1_dst",
+                ),
+                STLVmWrFlowVar(fv_name="tuple1_src.ip", pkt_offset="IP.src"),
+                STLVmWrFlowVar(fv_name="tuple1_dst.ip", pkt_offset="IP.dst"),
+                STLVmFixIpv4(offset="IP"),
+                STLVmWrFlowVar(
+                    fv_name="tuple1_src.port", pkt_offset="UDP.sport"
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"tuple1_src.ip",
-                    pkt_offset=u"IP.src"
+                    fv_name="tuple1_dst.port", pkt_offset="UDP.dport"
                 ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple1_dst.ip",
-                    pkt_offset=u"IP.dst"
-                ),
-                STLVmFixIpv4(
-                    offset=u"IP"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple1_src.port",
-                    pkt_offset=u"UDP.sport"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple1_dst.port",
-                    pkt_offset=u"UDP.dport"
-                )
             ]
         )
         # Direction 0 --> 1
@@ -154,34 +136,24 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     ip_max=self.p2_src_end_ip,
                     port_min=self.p2_src_start_udp_port,
                     port_max=self.p2_src_end_udp_port,
-                    name=u"tuple2_src"
+                    name="tuple2_src",
                 ),
                 STLVmTupleGen(
                     ip_min=self.p2_dst_start_ip,
                     ip_max=self.p2_dst_end_ip,
                     port_min=self.p2_dst_start_udp_port,
                     port_max=self.p2_dst_end_udp_port,
-                    name=u"tuple2_dst"
+                    name="tuple2_dst",
+                ),
+                STLVmWrFlowVar(fv_name="tuple2_src.ip", pkt_offset="IP.src"),
+                STLVmWrFlowVar(fv_name="tuple2_dst.ip", pkt_offset="IP.dst"),
+                STLVmFixIpv4(offset="IP"),
+                STLVmWrFlowVar(
+                    fv_name="tuple2_src.port", pkt_offset="UDP.sport"
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"tuple2_src.ip",
-                    pkt_offset=u"IP.src"
+                    fv_name="tuple2_dst.port", pkt_offset="UDP.dport"
                 ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple2_dst.ip",
-                    pkt_offset=u"IP.dst"
-                ),
-                STLVmFixIpv4(
-                    offset=u"IP"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple2_src.port",
-                    pkt_offset=u"UDP.sport"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple2_dst.port",
-                    pkt_offset=u"UDP.dport"
-                )
             ]
         )
 

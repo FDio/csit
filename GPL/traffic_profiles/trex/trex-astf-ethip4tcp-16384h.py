@@ -60,10 +60,10 @@ class TrafficProfile(TrafficProfileBaseClass):
         # No data, no way to manipulate frame sizes via MSS.
 
         # IPs used in packet headers.
-        p1_src_start_ip = u"192.168.0.0"
-        p1_src_end_ip = u"192.168.63.255"
-        p1_dst_start_ip = u"20.0.0.0"
-        p1_dst_end_ip = u"20.0.63.255"
+        p1_src_start_ip = "192.168.0.0"
+        p1_src_end_ip = "192.168.63.255"
+        p1_dst_start_ip = "20.0.0.0"
+        p1_dst_end_ip = "20.0.63.255"
 
         # client commands
         prog_c = ASTFProgram()
@@ -82,14 +82,14 @@ class TrafficProfile(TrafficProfileBaseClass):
         # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[p1_src_start_ip, p1_src_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen_s = ASTFIPGenDist(
             ip_range=[p1_dst_start_ip, p1_dst_end_ip],
-            distribution=u"seq",
+            distribution="seq",
         )
         ip_gen = ASTFIPGen(
-            glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
+            glob=ASTFIPGenGlobal(ip_offset="0.0.0.1"),
             dist_client=ip_gen_c,
             dist_server=ip_gen_s,
         )
