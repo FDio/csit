@@ -51,6 +51,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${dpdk_enable_tcp_udp_checksum}= | ${True}
 | ${dpdk_no_tx_checksum_offload}= | ${False}
 #| ${page_size}= | 1G
 | ${ciphers}= | 0
