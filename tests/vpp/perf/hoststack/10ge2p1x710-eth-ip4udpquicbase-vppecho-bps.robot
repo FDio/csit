@@ -49,7 +49,6 @@
 | ${nic_vfs}= | 0
 | ${smt_used}= | ${False}
 | ${overhead}= | ${0}
-| ${dpdk_enable_tcp_udp_checksum}= | ${True}
 | ${dpdk_no_tx_checksum_offload}= | ${False}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
