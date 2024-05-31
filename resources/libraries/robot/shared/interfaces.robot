@@ -16,6 +16,7 @@
 | Library | resources.libraries.python.VhostUser
 
 *** Variables ***
+| ${dpdk_enable_tcp_udp_checksum}= | ${False}
 | ${dpdk_no_tx_checksum_offload}= | ${True}
 
 *** Keywords ***
@@ -136,6 +137,8 @@
 | | | Unbind PCI Devices From Other Driver | ${nodes['${dut}']} | vfio-pci |
 | | | ... | @{${dut}_pf_pci}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
+| | | Run Keyword If | ${dpdk_enable_tcp_udp_checksum}
+| | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
@@ -201,6 +204,8 @@
 | | Run Keyword If | ${index} >= 0 | Return From Keyword
 | | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
+| | | Run Keyword If | ${dpdk_enable_tcp_udp_checksum}
+| | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
