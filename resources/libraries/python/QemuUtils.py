@@ -344,7 +344,7 @@ class QemuUtils:
             vpp_config.add_dpdk_log_level(u"debug")
             if not kwargs[u"jumbo"]:
                 vpp_config.add_dpdk_no_multi_seg()
-                vpp_config.add_dpdk_no_tx_checksum_offload()
+            vpp_config.add_dpdk_no_tx_checksum_offload()
         if "ipsec" in self._opt.get(u'vnf'):
             vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
             vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
