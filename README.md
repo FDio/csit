@@ -45,11 +45,9 @@ depicted in the figure below.
 .
 resources
 └── libraries
-    ├── bash                        # Contains a dependency of KubernetesUtils
-    │   ├── config                  # Config for KubernetesUtils dependency
+    ├── bash
     │   ├── entry                   # Main bootstrap entry directory
-    │   ├── function                # Bootstrap function library
-    │   └── shell                   # Various functions for KubernetesUtils
+    │   └── function                # Bootstrap function library
     ├── python                      # Python L1 KWs
     └── robot                       # Robot Framework L2 KWs
 ```
