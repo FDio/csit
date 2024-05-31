@@ -136,6 +136,23 @@
       "message": "csit-3na-spr-perftest ndrpdrANDnic_*ANDdrv_mlx5_coreAND3cANDethip4-ip4scale60k-rnd mrrANDnic_*ANDdrv_mlx5_coreAND64bANDethip4-ip4base !9000b !1518b !imix !4c !drv_af_xdp",
       "revId": "f0e076c940fc9616fb9e99ce96741f9dd37c6c64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "208de10b_c9dcde0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-05-31T08:33:58Z",
+      "side": 1,
+      "message": "It took a while to dodge CSIT-1939, but now I confirmed the performance impact is smaller than noise, compared to trending [0]\n\n[0] https://csit.fd.io/trending/#eNrVlM8OgjAMxp8GL6aJMIGTB5X3MHNUJTJstmnEp3cQk_o_JnDAw7YsX9tv_aWZdQeDK4vlLIgXQboIorTI_RaI-dgfJyIQlQRLBqLJZIsRheqcnlA60OU5hoKmkEzXECpAt2tuflklS_ThezBVDpSbpmC0bArmR_dQnRXa1ax88-QUaVByjjdmyaG9M_rwNA7fGKnRFhfkHN8V68pTYilUj0aupjv11m-atRH9Ih0u0f8EqofKUw8HZ0LiLU7xgjPpaz6fLLvzTLrNp_gRaJyNqoPR7V8aZ1cjPXmb\n\nrecheck",
+      "revId": "f0e076c940fc9616fb9e99ce96741f9dd37c6c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
