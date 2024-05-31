@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -165,18 +165,18 @@ class QemuManager:
             vif1_mac=kwargs[u"vif1_mac"],
             vif2_mac=kwargs[u"vif2_mac"],
             queues=kwargs[u"queues"],
-            jumbo_frames=kwargs[u"jumbo"]
+            jumbo=kwargs[u"jumbo"]
         )
         self.machines[name].add_vhost_user_if(
             f"/run/vpp/sock-{qemu_id}-1",
-            jumbo_frames=kwargs[u"jumbo"],
+            jumbo=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
             virtio_feature_mask=virtio_feature_mask
         )
         self.machines[name].add_vhost_user_if(
             f"/run/vpp/sock-{qemu_id}-2",
-            jumbo_frames=kwargs[u"jumbo"],
+            jumbo=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
             virtio_feature_mask=virtio_feature_mask
@@ -215,7 +215,7 @@ class QemuManager:
                 arpip1=u"1.1.1.1",
                 arpif1=u"avf-0/0/7/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         else:
             self.machines[name].configure_kernelvm_vnf(
@@ -231,7 +231,7 @@ class QemuManager:
                 arpip1=u"3.3.3.1",
                 arpif1=u"avf-0/0/6/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         self.machines[name].add_vfio_pci_if(
             pci=Topology.get_interface_pci_addr(
@@ -275,7 +275,7 @@ class QemuManager:
                 arpip1=u"1.1.1.1",
                 arpif1=u"avf-0/0/7/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         else:
             self.machines[name].configure_kernelvm_vnf(
@@ -291,7 +291,7 @@ class QemuManager:
                 arpip1=u"3.3.3.1",
                 arpif1=u"avf-0/0/6/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         self.machines[name].add_vfio_pci_if(
             pci=Topology.get_interface_pci_addr(
@@ -335,7 +335,7 @@ class QemuManager:
                 arpip1=u"1.1.1.1",
                 arpif1=u"avf-0/0/7/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         else:
             self.machines[name].configure_kernelvm_vnf(
@@ -351,7 +351,7 @@ class QemuManager:
                 arpip1=u"3.3.3.1",
                 arpif1=u"avf-0/0/6/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         self.machines[name].add_vfio_pci_if(
             pci=Topology.get_interface_pci_addr(
@@ -395,7 +395,7 @@ class QemuManager:
                 arpip1=u"1.1.1.1",
                 arpif1=u"avf-0/0/7/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         else:
             self.machines[name].configure_kernelvm_vnf(
@@ -411,7 +411,7 @@ class QemuManager:
                 arpip1=u"3.3.3.1",
                 arpif1=u"avf-0/0/6/0",
                 queues=kwargs[u"queues"],
-                jumbo_frames=kwargs[u"jumbo"]
+                jumbo=kwargs[u"jumbo"]
             )
         self.machines[name].add_vfio_pci_if(
             pci=Topology.get_interface_pci_addr(
@@ -445,13 +445,13 @@ class QemuManager:
         self.machines[name].add_kernelvm_params()
         self.machines[name].configure_kernelvm_vnf(
             queues=kwargs[u"queues"],
-            jumbo_frames=kwargs[u"jumbo"]
+            jumbo=kwargs[u"jumbo"]
         )
         self.machines[name].add_net_user()
         self.machines[name].add_vhost_user_if(
             f"/run/vpp/sock-{qemu_id}-1",
             server=False,
-            jumbo_frames=kwargs[u"jumbo"],
+            jumbo=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
             virtio_feature_mask=virtio_feature_mask
