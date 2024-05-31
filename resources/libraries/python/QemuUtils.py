@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2022-2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -344,7 +344,6 @@ class QemuUtils:
             vpp_config.add_dpdk_log_level(u"debug")
             if not kwargs[u"jumbo_frames"]:
                 vpp_config.add_dpdk_no_multi_seg()
-                vpp_config.add_dpdk_no_enable_tcp_udp_checksum()
                 vpp_config.add_dpdk_no_tx_checksum_offload()
         if "ipsec" in self._opt.get(u'vnf'):
             vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
