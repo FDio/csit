@@ -38,7 +38,7 @@ nomad_certificates:
 nomad_datacenter: "yul1"
 nomad_node_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
-nomad_node_class: "csit"
+nomad_node_class: "hst"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: false
