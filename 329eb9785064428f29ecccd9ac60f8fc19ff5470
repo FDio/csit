@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-3n-alt-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-tsh-perftest vpp-mrr-00\ncsit-vpp-report-iter-3nb-spr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-snr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3na-spr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-icxd-perftest vpp-mrr-00",
       "revId": "329eb9785064428f29ecccd9ac60f8fc19ff5470",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d9da753_c9762ee4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-03T14:51:00Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-clx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-zn2-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-tx2-perftest vpp-ndrpdr-00",
+      "revId": "329eb9785064428f29ecccd9ac60f8fc19ff5470",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
