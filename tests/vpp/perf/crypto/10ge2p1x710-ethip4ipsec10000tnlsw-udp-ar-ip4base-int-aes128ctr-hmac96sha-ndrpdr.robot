@@ -114,6 +114,7 @@
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${DUT2_${int}1}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range} | udp_encap=${True}
+| | ... | anti_replay=${True}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
