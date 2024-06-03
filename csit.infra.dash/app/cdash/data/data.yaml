@@ -250,7 +250,6 @@
     - build
     - dut_type
     - dut_version
-    # - hosts
     - start_time
     - passed
     - test_id
@@ -274,7 +273,6 @@
     - build
     - dut_type
     - dut_version
-    # - hosts
     - start_time
     - passed
     - test_id
@@ -388,7 +386,7 @@
     - build
     - dut_type
     - dut_version
-    # - hosts
+    - hosts
     - start_time
     - passed
     - test_id
@@ -412,7 +410,7 @@
     - build
     - dut_type
     - dut_version
-    # - hosts
+    - hosts
     - start_time
     - passed
     - test_id
