@@ -36,6 +36,10 @@ environment versioning include:
 
 Following is the list of CSIT versions to date:
 
+- Ver. 15 associated with CSIT rls2406 branch (
+  [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2406),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2406)
+  ).
 - Ver. 14 associated with CSIT rls2402 branch (
   [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2402),
   [CSIT](https://git.fd.io/csit/tree/?h=rls2402)
