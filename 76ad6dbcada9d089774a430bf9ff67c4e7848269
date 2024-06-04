@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f62827_470813ea",
+        "filename": "docs/content/release_notes/current/vpp_device.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-04T11:45:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3f6b79e_50d4c721",
+      "range": {
+        "startLine": 13,
+        "startChar": 19,
+        "endLine": 13,
+        "endChar": 23
+      },
+      "revId": "76ad6dbcada9d089774a430bf9ff67c4e7848269",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d373a83d_18945700",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-04T11:23:47Z",
       "side": 1,
       "message": "Line too long.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 82
+      },
+      "revId": "76ad6dbcada9d089774a430bf9ff67c4e7848269",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33cc1a14_0ff0f2c8",
+        "filename": "docs/content/release_notes/current/vpp_performance.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-04T11:45:15Z",
+      "side": 1,
+      "message": "Fixed, but the result may still be longer than needed.",
+      "parentUuid": "d373a83d_18945700",
       "range": {
         "startLine": 22,
         "startChar": 0,
