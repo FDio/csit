@@ -10,7 +10,21 @@ weight: 1
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-   - No updates.
+   - Added tests:
+     - Added memif+DMA tests; added 1518B and 4c memif testcases.
+     - Added nginx+DMA tests; added 2048B testcases.
+     - Added IPsec hwasync tests to 3n-icxd and 3n-snr.
+     - Added IPsec tests to cover more encryption algorithms and other settings.
+     - Added more SOAK tests.
+     - Added selected 6-port tests for 3na-spr.
+   - Edited tests:
+     - Selected single-flow tests now use single worker even if SMT is on.
+     - IPsecHW tests now use rxq ratio of 2.
+       - This means one worker reads only from one of two ports.
+       - This workaround avoids some inefficiencies,
+       - but still does not reach the expected performance on 3nb-spr.
+     - 1518B tests with encapsulation overhead now properly use no-multi-seg.
+     - Added TX checksum offload to hoststack tests missing it.
 3. PRESENTATION AND ANALYTICS LAYER
    - Detailed views added to comparison tables.
 
