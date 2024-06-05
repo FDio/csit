@@ -55,43 +55,48 @@ reusable and readable code for CSIT.
     Typically, a suite SHOULD define a Template keyword, and test cases
     SHOULD only specify tags and argument values
 
-        *** Settings ***
-        | Test Template | Local Template
-        ...
+    ```
+    *** Settings ***
+    | Test Template | Local Template
+    ...
 
-        *** Test Cases ***
-        | tc01-64B-1c-eth-l2patch-mrr
-        | | [Tags] | 64B | 1C
-        | | framesize=${64} | phy_cores=${1}
+    *** Test Cases ***
+    | 64B-1c-eth-l2patch-ndrpdr
+    | | [Tags] | 64B | 1C
+    | | framesize=${64} | phy_cores=${1}
+    ```
 
   + Test case templates (or testcases) SHALL be written in Behavior-driven style
     i.e. in readable English, so that even non-technical project stakeholders
     can understand it
 
-        *** Keywords ***
-        | Local Template
-        | | [Documentation]
-        | | ... | [Cfg] DUT runs L2 patch config with ${phy_cores} phy core(s).
-        | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-        | | ...
-        | | ... | *Arguments:*
-        | | ... | - frame_size - Framesize in Bytes in integer
-        | | ... | or string (IMIX_v4_1). Type: integer, string
-        | | ... | - phy_cores - Number of physical cores. Type: integer
-        | | ... | - rxq - Number of RX queues, default value: ${None}.
-        | | ... | Type: integer
-        | | ...
-        | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-        | | ...
-        | | Set Test Variable | \${frame_size}
-        | | ...
-        | | Given Add worker threads and rxqueues to all DUTs
-        | | ... | ${phy_cores} | ${rxq}
-        | | And Add PCI devices to all DUTs
-        | | Set Max Rate And Jumbo And Handle Multi Seg
-        | | And Apply startup configuration on all VPP DUTs
-        | | When Initialize L2 patch
-        | | Then Find NDR and PDR intervals using optimized search
+    ```
+    *** Keywords ***
+    | Local Template
+    | | [Documentation]
+    | | ... | - **[Cfg]** DUT runs L2 patch config with ${phy_cores} phy \
+    | | ... | core(s).
+    | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
+    | |
+    | | ... | *Arguments:*
+    | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
+    | | ... | Type: integer, string
+    | | ... | - phy_cores - Number of physical cores. Type: integer
+    | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+    | |
+    | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+    | |
+    | | Set Test Variable | \${frame_size}
+    | |
+    | | Given Set Max Rate And Jumbo
+    | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+    | | And Pre-initialize layer driver | ${nic_driver}
+    | | And Apply Startup configuration on all VPP DUTs
+    | | When Initialize layer driver | ${nic_driver}
+    | | And Initialize layer interface
+    | | And Initialize L2 patch
+    | | Then Find NDR and PDR intervals using optimized search
+    ```
 
   + Every suite and test case template (or testcase)
     SHALL contain short documentation.
@@ -103,8 +108,11 @@ reusable and readable code for CSIT.
     You SHALL use the assignment sign = after the variable name
     to make assigning variables slightly more explicit
 
-        *** Variables ***
-        | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src254
+    ```
+    *** Variables ***
+    | ${n_tunnels}= | ${100000}
+    | ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
+    ```
 
   + Common test case specific settings of the test environment SHALL be done
     in Test Setup keyword defined in the Setting table.
@@ -115,7 +123,7 @@ reusable and readable code for CSIT.
     + Separate keyword is RECOMMENDED if the construction is less readable.
 
   + Post-test cleaning and processing actions SHALL be done in Test Teardown
-    part of the Setting table (e.g. download statistics from VPP nodes).
+    part of the Setting table (e.g. displaying PAPI history).
     This part is executed even if the test case has failed. On the other hand
     it is possible to disable the tear-down from command line, thus leaving
     the system in “broken” state for investigation.
@@ -272,7 +280,7 @@ reusable and readable code for CSIT.
     if possible. You SHOULD create your own exception
     if necessary and implement there logging, level debug.
 
-    + You MAY use RuntimeException for generally unexpected failures.
+    + You MAY use RuntimeError for generally unexpected failures.
 
     + It is RECOMMENDED to use RuntimeError also for
       infrastructure failures, e.g. losing SSH connection to SUT.
