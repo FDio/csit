@@ -50,10 +50,10 @@ reusable and readable code for CSIT.
 
 + Test cases
 
-  + It is RECOMMENDED to use data-driven test case definitions
+  + It is REQUIRED to use data-driven test case definitions
     anytime suite contains test cases similar in structure.
-    Typically, a suite SHOULD define a Template keyword, and test cases
-    SHOULD only specify tags and argument values
+    Typically, a suite MUST define a Template keyword, and test cases
+    MUST only specify tags and argument values
 
     ```
     *** Settings ***
@@ -120,7 +120,13 @@ reusable and readable code for CSIT.
     + Run Keywords construction is RECOMMENDED if it is more readable
       than a keyword.
 
-    + Separate keyword is RECOMMENDED if the construction is less readable.
+    + Separate keyword is REQUIRED even if the Run Keywords construction
+      would be more readable.
+
+      + This rule is here to prevent unintended subtle differences
+        between similar suites.
+
+    + All test setup keywords SHALL be defined in a common resource file.
 
   + Post-test cleaning and processing actions SHALL be done in Test Teardown
     part of the Setting table (e.g. displaying PAPI history).
@@ -135,21 +141,16 @@ reusable and readable code for CSIT.
       in Settings table.
 
   + User high-level keywords specific for the particular test suite
-    SHOULD be implemented in the Keywords table of suitable Robot resource file
+    MUST be implemented in the Keywords table of suitable Robot resource file
     to enable readability and code-reuse.
-
-    + Such keywords MAY be implemented in Keywords table of the suite instead,
-      if the contributor believes no other test will use such keywords.
-      But this is NOT RECOMMENDED in general, as keywords in Resources
-      are easier to maintain.
 
   + All test case names (and suite names) SHALL conform
     to current naming convention.
     https://wiki.fd.io/view/CSIT/csit-test-naming
 
   + Frequently, different suites use the same test case layout.
-    It is RECOMMENDED to use autogeneration scripts available,
-    possibly extending them if their current functionality is not sufficient.
+    It is REQUIRED to use autogeneration scripts available,
+    extending them if their current functionality is not sufficient.
 
 + Resource files
 
@@ -202,7 +203,7 @@ reusable and readable code for CSIT.
   + SHALL be used to implement low-level keywords that are called from
     resource files (of higher-level keywords) or from test cases.
 
-  + Higher-level keywords MAY be implemented in python library file too.
+  + Medium-level keywords MAY be implemented in python library file too.
     it is RECOMMENDED especially in the case that their implementation
     in resource file would be too difficult or impossible,
     e.g. complex data structures or functional programming.
@@ -218,6 +219,8 @@ reusable and readable code for CSIT.
     + CSIT contributions SHALL use a specific formatting for documenting
       arguments, return values and similar.
 
+    + It is RECOMMENDED to use type hints.
+
   + Keyword usage examples MAY be grouped and used
     in the class/module documentation string, to provide better overview
     of the usage and relationships between keywords.
@@ -226,7 +229,7 @@ reusable and readable code for CSIT.
     specifically and in a reasonable length (“short sentence”).
     See https://wiki.fd.io/view/CSIT/csit-test-naming
 
-  + Python implementation of a keyword is a function,
+  + Python implementation of a keyword is a static method,
     so its name in the python library should be lowercase_with_underscores.
     Robot call sites should usename with first letter capitalized, and spaces.
 
@@ -297,6 +300,9 @@ reusable and readable code for CSIT.
     of the object in question would likely result in too long output.
     This is helpful for debugging.
 
-  + For composing and formatting strings, you SHOULD use .format()
-    with named arguments.
-    Example: "repr() of name: {name!r}".format(name=name)
+  + For composing and formatting strings, you SHOULD use f-strings.
+    Example 1: f"repr() of name: {name!r}"
+    Example 2: f"{name=}"
+
+  + It is RECOMMENDED to use "tox -e pylint"
+    to get more info in conding style issues with the current code.
