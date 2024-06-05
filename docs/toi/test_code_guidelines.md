@@ -306,3 +306,79 @@ reusable and readable code for CSIT.
 
   + It is RECOMMENDED to use "tox -e pylint"
     to get more info in conding style issues with the current code.
+
+# Dead code
+
++ If a piece of functionality is not expected to get executed in fd.io lab,
+  nor in an adjacent infrastructure (e.g. CSIT-DASH running in a cloud),
+  the corresponding code MUST be considered to be deprecated.
+
++ A code CANNOT be considered deprecated if it is still used on occasion,
+  albeit rarely (e.g. only when required by some infrastructure upgrade).
+
++ On the other hand, a piece of code MAY become deprecated
+  even if it was used recently
+  (e.g. when CSIT decides to stop running tests from some suite).
+
+  + In this case, the deciding factor is whether the code is expected
+    to be run at least in some verify runs.
+
++ Any code that is not deprecated MUST be considered to be a live code.
+
++ All live code SHOULD be runable.
+
+  + Some code (mostly infra-related) is inherently hard to execute
+    without affecting the production environment.
+    In this case, the maintainer SHALL decide which code is runable.
+
+  + Any live code MAY stop being runnable due to some bug.
+
+  + If the bug is not fixed quickly enough, it SHALL imply
+    the non-runnable code became deprecated.
+
+    + The maintainer decides when this decprecation occurs,
+      e.g. when it becomes clear the fix will not arrive quickly enough.
+
++ Any runable code SHOULD be verifiable.
+
+  + If there is an infrastructure set up to verify similar code
+    (e.g. csit-vpp perf verify jobs), runable code MUST be
+    publicly verifiable using that infrastructure.
+
+  + If some code is not verifiable, maintainer decides
+    whether some edit keeps it runnable or not.
+
++ Any edits that affect live code SHOULD be verified.
+
+  + If any committer asks for verification, such code MUST be verified,
+    publicly or otherwise.
+
+  + If the maintainer decides the risk is minimal,
+    the edit MAY be merged even without verification.
+
++ If a code is both deprecated and unverifiable,
+  it MUST be considered a dead code.
+
+  + It is possible for code to be neither dead nor alive,
+    e.g. when it is already deprecated but still verifiable.
+
+  + It is recommended to avoid code that is neither dead nor alive,
+    e.g. by adding missing verify jobs.
+
++ It is RECOMMENDED to keep deprecated code in codebase,
+  as long as it remains verifiable.
+
+  + Flexibility for resuming testing is usually worth
+    the inrease in maintaining and verifying the code.
+
+  + Maintainer MAY decide to delete deprecated code
+    even if it is still verifiable, e.g. to simplify some library.
+
++ It is RECOMMENDED to delete any dead code.
+
+  + Argument 1: Any substantial edits to dead code cannot be verified.
+
+  + Argument 2: Leaving dead code unedited makes the codebase less readable.
+
+  + Argument 3: Frequently, it is easier to write new replacement code
+    than trying to fix the issue that made the first code unverifiable.
