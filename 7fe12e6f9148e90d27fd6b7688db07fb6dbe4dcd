@@ -135,6 +135,23 @@
       "message": "csit-vpp-report-iter-3n-icx-perftest vpp-mrr-00",
       "revId": "7fe12e6f9148e90d27fd6b7688db07fb6dbe4dcd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7734cd51_50ce0766",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-06T11:52:33Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest vpp-soak-00",
+      "revId": "7fe12e6f9148e90d27fd6b7688db07fb6dbe4dcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
