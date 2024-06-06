@@ -280,7 +280,8 @@ class ContainerManager:
             socket1=f"{kwargs[u'guest_dir']}/memif-"
             f"{self.engine.container.name}-{kwargs[u'sid1']}",
             socket2=f"{kwargs[u'guest_dir']}/memif-"
-            f"{self.engine.container.name}-{kwargs[u'sid2']}"
+            f"{self.engine.container.name}-{kwargs[u'sid2']}",
+            xqnum=kwargs["xq_num"],
         )
 
     def _configure_vpp_chain_dma(self, **kwargs):
