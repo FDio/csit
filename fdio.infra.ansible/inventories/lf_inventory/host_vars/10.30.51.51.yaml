@@ -2,15 +2,7 @@
 # file: host_vars/10.30.51.51.yaml
 
 hostname: "s2-t12-sut1"
-grub:
-  hugepagesz: "2M"
-  hugepages: 32768
-  iommu: "on"
-  vfio.enable_unsafe_noiommu_mode: 1
 inventory_ipmi_hostname: "10.30.50.48"
-cpu_microarchitecture: "skylake"
-
-intel_800_matrix: "dpdk22.03"
 
 # User management.
 users:
@@ -38,7 +30,7 @@ nomad_certificates:
 nomad_datacenter: "yul1"
 nomad_node_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
-nomad_node_class: "csit"
+nomad_node_class: "hst"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: false
@@ -89,8 +81,6 @@ vault_version: "1.13.1"
 
 # Docker settings.
 docker_daemon:
-  default-shm-size: "1073741824"
   dns: ["172.17.0.1"]
   dns-opts: []
   dns-search: ["{{ ansible_hostname }}"]
-  host: ["172.17.0.1:/var/run/docker.sock"]

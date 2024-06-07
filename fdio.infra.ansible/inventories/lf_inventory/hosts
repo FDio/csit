@@ -53,8 +53,6 @@ all:
       hosts:
         10.30.51.30: #s30-t15-sut1 - sapphirerapids
         10.30.51.31: #s31-t16-sut1 - sapphirerapids
-        10.30.51.50: #s1-t11-sut1 - skylake
-        10.30.51.51: #s2-t12-sut1 - skylake
         10.30.51.70: #s55-t13-sut1 - thunderx2 9980
         10.30.51.71: #s56-t14-sut1 - thunderx2 9980
     nomad:
@@ -67,6 +65,8 @@ all:
         10.30.51.26: #s26-nomad - skylake
         10.30.51.27: #s27-nomad - skylake
         10.30.51.28: #s28-nomad - skylake
+        10.30.51.50: #s1-t11-sut1 - skylake
+        10.30.51.51: #s2-t12-sut1 - skylake
         10.30.51.91: #s58-nomad - neoverse n1
         10.30.51.92: #s59-nomad - neoverse n1
     dev:
