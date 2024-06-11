@@ -48,7 +48,7 @@ class VppConfigGenerator:
 
     def __init__(self):
         """Initialize library."""
-        # VPP Node to apply configuration on
+        # DUT Node to apply VPP configuration on
         self._node = ""
         # Topology node key
         self._node_key = ""
@@ -755,7 +755,7 @@ class VppConfigGenerator:
             self._node, cmd, message="Writing config file failed!"
         )
 
-    def apply_config(self, filename=None, verify_vpp=True):
+    def apply_vpp_config(self, filename=None, verify_vpp=True, api_trace=True):
         """Generate and write VPP startup configuration to file and restart VPP.
 
         Use data from calls to this class to form a startup.conf file and
@@ -763,14 +763,16 @@ class VppConfigGenerator:
 
         :param filename: Startup configuration file name.
         :param verify_vpp: Verify VPP is running after restart.
+        :param api_trace: False if this VPP instance is not the tested one.
         :type filename: str
         :type verify_vpp: bool
+        :type api_trace: bool
         """
         self.write_config(filename=filename)
 
         VPPUtil.restart_vpp_service(self._node, self._node_key)
         if verify_vpp:
-            VPPUtil.verify_vpp(self._node)
+            VPPUtil.verify_vpp(self._node, api_trace=api_trace)
 
 
 class VppInitConfig:
@@ -807,7 +809,9 @@ class VppInitConfig:
                 )
                 vpp_config.add_ip6_hash_buckets(2000000)
                 vpp_config.add_ip6_heap_size("4G")
-                vpp_config.apply_config()
+                # The VPP instance we will ultimately test is not this one,
+                # so do not attempt to enable API trace yet.
+                vpp_config.apply_vpp_config(api_trace=False)
 
     @staticmethod
     def create_vpp_startup_configuration_container(node, cpuset_cpus=None):
