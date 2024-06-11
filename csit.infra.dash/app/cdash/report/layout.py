@@ -348,7 +348,7 @@ class Layout:
         :returns: Control panel.
         :rtype: list
         """
-        return [
+        test_selection = [
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
@@ -604,52 +604,36 @@ class Layout:
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.InputGroup(
-                        [
-                            dbc.InputGroupText(
-                                children=show_tooltip(
-                                    self._tooltips,
-                                    "help-normalize",
-                                    "Normalization"
-                                )
-                            ),
-                            dbc.Col(
-                                children=[
-                                    dbc.Checklist(
-                                        id="normalize",
-                                        options=[{
-                                            "value": "normalize",
-                                            "label": (
-                                                "Normalize to CPU frequency "
-                                                "2GHz"
-                                            )
-                                        }],
-                                        value=[],
-                                        inline=True,
-                                        class_name="ms-2"
-                                    )
-                                ]
-                            )
-                        ],
-                        style={"align-items": "center"},
-                        size="sm"
-                    )
-                ]
-            ),
-            dbc.Row(
-                class_name="g-0 p-1",
-                children=[
                     dbc.Button(
                         id={"type": "ctrl-btn", "index": "add-test"},
                         children="Add Selected",
-                        color="info"
+                        color="info",
+                        class_name="p-1"
                     )
                 ]
-            ),
+            )
+        ]
+        processing = [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Checklist(
+                        id="normalize",
+                        options=[{
+                            "value": "normalize",
+                            "label": "Normalize to 2GHz CPU frequency"
+                        }],
+                        value=[],
+                        inline=True,
+                        class_name="ms-2"
+                    )
+                ]
+            )
+        ]
+        test_list = [
             dbc.Row(
                 id="row-card-sel-tests",
                 class_name="g-0 p-1",
-                style=C.STYLE_DISABLED,
                 children=[
                     dbc.ListGroup(
                         class_name="overflow-auto p-0",
@@ -663,21 +647,20 @@ class Layout:
             dbc.Stack(
                 id="row-btns-sel-tests",
                 class_name="g-0 p-1",
-                style=C.STYLE_DISABLED,
                 gap=2,
                 children=[
                     dbc.ButtonGroup(children=[
                         dbc.Button(
                             id={"type": "ctrl-btn", "index": "rm-test"},
                             children="Remove Selected",
-                            class_name="w-100",
+                            class_name="w-100 p-1",
                             color="info",
                             disabled=False
                         ),
                         dbc.Button(
                             id={"type": "ctrl-btn", "index": "rm-test-all"},
                             children="Remove All",
-                            class_name="w-100",
+                            class_name="w-100 p-1",
                             color="info",
                             disabled=False
                         )
@@ -686,19 +669,72 @@ class Layout:
                         dbc.Button(
                             id="plot-btn-url",
                             children="Show URL",
-                            class_name="w-100",
+                            class_name="w-100 p-1",
                             color="info",
                             disabled=False
                         ),
                         dbc.Button(
                             id="plot-btn-download",
                             children="Download Data",
-                            class_name="w-100",
+                            class_name="w-100 p-1",
                             color="info",
                             disabled=False
                         )
                     ])
                 ]
+            )
+        ]
+
+        return [
+            dbc.Row(
+                dbc.Card(
+                    [
+                        dbc.CardHeader(
+                            html.H5("Test Selection")
+                        ),
+                        dbc.CardBody(
+                            children=test_selection,
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    color="secondary",
+                    outline=True
+                ),
+                class_name="g-0 p-1"
+            ),
+            dbc.Row(
+                dbc.Card(
+                    [
+                        dbc.CardHeader(
+                            html.H5("Data Manipulations")
+                        ),
+                        dbc.CardBody(
+                            children=processing,
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    color="secondary",
+                    outline=True
+                ),
+                class_name="g-0 p-1"
+            ),
+            dbc.Row(
+                dbc.Card(
+                    [
+                        dbc.CardHeader(
+                            html.H5("Selected Tests")
+                        ),
+                        dbc.CardBody(
+                            children=test_list,
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    color="secondary",
+                    outline=True
+                ),
+                id = "row-selected-tests",
+                class_name="g-0 p-1",
+                style=C.STYLE_DISABLED,
             )
         ]
 
@@ -798,8 +834,7 @@ class Layout:
                 Output("store-control-panel", "data"),
                 Output("store-selected-tests", "data"),
                 Output("plotting-area", "children"),
-                Output("row-card-sel-tests", "style"),
-                Output("row-btns-sel-tests", "style"),
+                Output("row-selected-tests", "style"),
                 Output("lg-selected", "children"),
 
                 Output({"type": "ctrl-dd", "index": "rls"}, "value"),
@@ -869,8 +904,7 @@ class Layout:
                 url_params = None
 
             plotting_area = no_update
-            row_card_sel_tests = no_update
-            row_btns_sel_tests = no_update
+            row_sel_tests = no_update
             lg_selected = no_update
 
             trigger = Trigger(callback_context.triggered)
@@ -882,8 +916,7 @@ class Layout:
                 except (KeyError, IndexError, AttributeError):
                     pass
                 if store_sel:
-                    row_card_sel_tests = C.STYLE_ENABLED
-                    row_btns_sel_tests = C.STYLE_ENABLED
+                    row_sel_tests = C.STYLE_ENABLED
                     last_test = store_sel[-1]
                     test = self._spec_tbs[last_test["rls"]][last_test["dut"]]\
                         [last_test["dutver"]][last_test["area"]]\
@@ -1235,20 +1268,17 @@ class Layout:
                             {"store_sel": store_sel, "norm": normalize}
                         )
                     )
-                    row_card_sel_tests = C.STYLE_ENABLED
-                    row_btns_sel_tests = C.STYLE_ENABLED
+                    row_sel_tests = C.STYLE_ENABLED
                 else:
                     plotting_area = C.PLACEHOLDER
-                    row_card_sel_tests = C.STYLE_DISABLED
-                    row_btns_sel_tests = C.STYLE_DISABLED
+                    row_sel_tests = C.STYLE_DISABLED
                     store_sel = list()
 
             ret_val = [
                 ctrl_panel.panel,
                 store_sel,
                 plotting_area,
-                row_card_sel_tests,
-                row_btns_sel_tests,
+                row_sel_tests,
                 lg_selected
             ]
             ret_val.extend(ctrl_panel.values)

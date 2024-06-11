@@ -18,6 +18,8 @@ import logging
 import plotly.graph_objects as go
 import pandas as pd
 
+from numpy import nan
+
 from ..utils.constants import Constants as C
 from ..utils.utils import get_color, get_hdrh_latencies
 from ..utils.anomalies import classify_anomalies
@@ -73,7 +75,8 @@ def graph_trending(
         data: pd.DataFrame,
         sel: dict,
         layout: dict,
-        normalize: bool=False
+        normalize: bool=False,
+        trials: bool=False
     ) -> tuple:
     """Generate the trending graph(s) - MRR, NDR, PDR and for PDR also Latences
     (result_latency_forward_pdr_50_avg).
@@ -83,10 +86,12 @@ def graph_trending(
     :param layout: Layout of plot.ly graph.
     :param normalize: If True, the data is normalized to CPU frquency
         Constants.NORM_FREQUENCY.
+    :param trials: If True, MRR trials are displayed in the trending graph.
     :type data: pandas.DataFrame
     :type sel: dict
     :type layout: dict
     :type normalize: bool
+    :type: trials: bool
     :returns: Trending graph(s)
     :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
@@ -279,7 +284,7 @@ def graph_trending(
                 marker={
                     "size": 5,
                     "color": color,
-                    "symbol": "circle",
+                    "symbol": "circle"
                 },
                 text=hover,
                 hoverinfo="text",
@@ -369,6 +374,56 @@ def graph_trending(
         return traces, units
 
 
+    def _add_mrr_trials_traces(
+            ttype: str,
+            name: str,
+            df: pd.DataFrame,
+            color: str,
+            nf: float
+        ) -> list:
+        """Add the traces with mrr trials.
+
+        :param ttype: Test type (mrr, mrr-bandwidth).
+        :param name: The test name to be displayed in hover.
+        :param df: Data frame with test data.
+        :param color: The color of the trace.
+        :param nf: The factor used for normalization of the results to
+            CPU frequency set to Constants.NORM_FREQUENCY.
+        :type ttype: str
+        :type name: str
+        :type df: pandas.DataFrame
+        :type color: str
+        :type nf: float
+        :returns: list of Traces
+        :rtype: list
+        """
+        traces = list()
+        x_axis = df["start_time"].tolist()
+        y_data = df[C.VALUE[ttype].replace("avg", "values")].tolist()
+
+        for idx_trial in range(10):
+            y_axis = list()
+            for idx_run in range(len(x_axis)):
+                try:
+                    y_axis.append(y_data[idx_run][idx_trial] * nf)
+                except IndexError:
+                    y_axis.append(nan)
+            traces.append(go.Scatter(
+                x=x_axis,
+                y=y_axis,
+                name=name,
+                mode="markers",
+                marker={
+                    "size": 2,
+                    "color": color,
+                    "symbol": "circle"
+                },
+                showlegend=True,
+                legendgroup=name
+            ))
+        return traces
+
+
     fig_tput = None
     fig_lat = None
     fig_band = None
@@ -401,6 +456,14 @@ def graph_trending(
         if traces:
             if not fig_tput:
                 fig_tput = go.Figure()
+            if trials and "mrr" in ttype:
+                traces.extend(_add_mrr_trials_traces(
+                    ttype,
+                    itm["id"],
+                    df,
+                    get_color(idx),
+                    norm_factor
+                ))
             fig_tput.add_traces(traces)
 
         if ttype in C.TESTS_WITH_BANDWIDTH:
@@ -414,6 +477,14 @@ def graph_trending(
             if traces:
                 if not fig_band:
                     fig_band = go.Figure()
+                if trials and "mrr" in ttype:
+                    traces.extend(_add_mrr_trials_traces(
+                        f"{ttype}-bandwidth",
+                        itm["id"],
+                        df,
+                        get_color(idx),
+                        norm_factor
+                    ))
                 fig_band.add_traces(traces)
 
         if ttype in C.TESTS_WITH_LATENCY:

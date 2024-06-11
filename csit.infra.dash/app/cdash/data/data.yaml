@@ -26,9 +26,11 @@
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
+    - result_receive_rate_rate_values
     - result_receive_rate_bandwidth_avg
     - result_receive_rate_bandwidth_stdev
     - result_receive_rate_bandwidth_unit
+    - result_receive_rate_bandwidth_values
     - telemetry
 - data_type: trending
   partition: test_type
@@ -108,273 +110,273 @@
     - telemetry
     - test_id
     - version
-- data_type: iterative
-  partition: test_type
-  partition_name: mrr
-  release: rls2310
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2310
-  schema: iterative_rls2310_mrr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
-- data_type: iterative
-  partition: test_type
-  partition_name: ndrpdr
-  release: rls2310
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2310
-  schema: iterative_rls2310_ndrpdr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_pdr_lower_rate_unit
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_unit
-    - result_ndr_lower_rate_value
-    - result_pdr_lower_bandwidth_unit
-    - result_pdr_lower_bandwidth_value
-    - result_ndr_lower_bandwidth_unit
-    - result_ndr_lower_bandwidth_value
-    - result_latency_reverse_pdr_90_hdrh
-    - result_latency_reverse_pdr_50_hdrh
-    - result_latency_reverse_pdr_10_hdrh
-    - result_latency_reverse_pdr_0_hdrh
-    - result_latency_forward_pdr_90_hdrh
-    - result_latency_forward_pdr_50_avg
-    - result_latency_forward_pdr_50_hdrh
-    - result_latency_forward_pdr_50_unit
-    - result_latency_forward_pdr_10_hdrh
-    - result_latency_forward_pdr_0_hdrh
-- data_type: iterative
-  partition: test_type
-  partition_name: hoststack
-  release: rls2310
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2310
-  schema: iterative_rls2310_hoststack
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - tg_type
-    - result_bandwidth_unit
-    - result_bandwidth_value
-    - result_rate_unit
-    - result_rate_value
-    - start_time
-    - passed
-    - test_id
-    - version
-- data_type: coverage
-  partition: test_type
-  partition_name: ndrpdr
-  release: rls2310
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
-  schema: coverage_rls2310_ndrpdr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - tg_type
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_pdr_lower_rate_unit
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_value
-    - result_pdr_lower_bandwidth_value
-    - result_ndr_lower_bandwidth_value
-    - result_latency_reverse_pdr_90_hdrh
-    - result_latency_reverse_pdr_50_hdrh
-    - result_latency_reverse_pdr_10_hdrh
-    - result_latency_forward_pdr_90_hdrh
-    - result_latency_forward_pdr_50_hdrh
-    - result_latency_forward_pdr_10_hdrh
-- data_type: coverage
-  partition: test_type
-  partition_name: mrr
-  release: rls2310
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
-  schema: iterative_rls2310_mrr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-- data_type: coverage
-  partition: test_type
-  partition_name: device
-  release: rls2310
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
-  schema: coverage_rls2310_device
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - passed
-    - test_id
-    - version
-- data_type: iterative
-  partition: test_type
-  partition_name: mrr
-  release: rls2402
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2402
-  schema: iterative_rls2402_mrr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
-    - result_receive_rate_bandwidth_avg
-    - result_receive_rate_bandwidth_stdev
-    - result_receive_rate_bandwidth_unit
-    - result_receive_rate_bandwidth_values
-- data_type: iterative
-  partition: test_type
-  partition_name: ndrpdr
-  release: rls2402
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2402
-  schema: iterative_rls2402_ndrpdr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_pdr_lower_rate_unit
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_unit
-    - result_ndr_lower_rate_value
-    - result_pdr_lower_bandwidth_unit
-    - result_pdr_lower_bandwidth_value
-    - result_ndr_lower_bandwidth_unit
-    - result_ndr_lower_bandwidth_value
-    - result_latency_reverse_pdr_90_hdrh
-    - result_latency_reverse_pdr_50_hdrh
-    - result_latency_reverse_pdr_10_hdrh
-    - result_latency_reverse_pdr_0_hdrh
-    - result_latency_forward_pdr_90_hdrh
-    - result_latency_forward_pdr_50_avg
-    - result_latency_forward_pdr_50_hdrh
-    - result_latency_forward_pdr_50_unit
-    - result_latency_forward_pdr_10_hdrh
-    - result_latency_forward_pdr_0_hdrh
-- data_type: iterative
-  partition: test_type
-  partition_name: hoststack
-  release: rls2402
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2402
-  schema: iterative_rls2402_hoststack
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - tg_type
-    - result_bandwidth_unit
-    - result_bandwidth_value
-    - result_rate_unit
-    - result_rate_value
-    - start_time
-    - passed
-    - test_id
-    - version
-- data_type: coverage
-  partition: test_type
-  partition_name: ndrpdr
-  release: rls2402
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2402
-  schema: coverage_rls2402_ndrpdr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - tg_type
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_pdr_lower_rate_unit
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_value
-    - result_pdr_lower_bandwidth_value
-    - result_ndr_lower_bandwidth_value
-    - result_latency_reverse_pdr_90_hdrh
-    - result_latency_reverse_pdr_50_hdrh
-    - result_latency_reverse_pdr_10_hdrh
-    - result_latency_forward_pdr_90_hdrh
-    - result_latency_forward_pdr_50_hdrh
-    - result_latency_forward_pdr_10_hdrh
-- data_type: coverage
-  partition: test_type
-  partition_name: mrr
-  release: rls2402
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2402
-  schema: iterative_rls2402_mrr
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-- data_type: coverage
-  partition: test_type
-  partition_name: device
-  release: rls2402
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2402
-  schema: coverage_rls2402_device
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - passed
-    - test_id
-    - version
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: mrr
+#   release: rls2310
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2310
+#   schema: iterative_rls2310_mrr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_receive_rate_rate_avg
+#     - result_receive_rate_rate_stdev
+#     - result_receive_rate_rate_unit
+#     - result_receive_rate_rate_values
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: ndrpdr
+#   release: rls2310
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2310
+#   schema: iterative_rls2310_ndrpdr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_pdr_lower_rate_unit
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_unit
+#     - result_ndr_lower_rate_value
+#     - result_pdr_lower_bandwidth_unit
+#     - result_pdr_lower_bandwidth_value
+#     - result_ndr_lower_bandwidth_unit
+#     - result_ndr_lower_bandwidth_value
+#     - result_latency_reverse_pdr_90_hdrh
+#     - result_latency_reverse_pdr_50_hdrh
+#     - result_latency_reverse_pdr_10_hdrh
+#     - result_latency_reverse_pdr_0_hdrh
+#     - result_latency_forward_pdr_90_hdrh
+#     - result_latency_forward_pdr_50_avg
+#     - result_latency_forward_pdr_50_hdrh
+#     - result_latency_forward_pdr_50_unit
+#     - result_latency_forward_pdr_10_hdrh
+#     - result_latency_forward_pdr_0_hdrh
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: hoststack
+#   release: rls2310
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2310
+#   schema: iterative_rls2310_hoststack
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - tg_type
+#     - result_bandwidth_unit
+#     - result_bandwidth_value
+#     - result_rate_unit
+#     - result_rate_value
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+# - data_type: coverage
+#   partition: test_type
+#   partition_name: ndrpdr
+#   release: rls2310
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
+#   schema: coverage_rls2310_ndrpdr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - tg_type
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_pdr_lower_rate_unit
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_value
+#     - result_pdr_lower_bandwidth_value
+#     - result_ndr_lower_bandwidth_value
+#     - result_latency_reverse_pdr_90_hdrh
+#     - result_latency_reverse_pdr_50_hdrh
+#     - result_latency_reverse_pdr_10_hdrh
+#     - result_latency_forward_pdr_90_hdrh
+#     - result_latency_forward_pdr_50_hdrh
+#     - result_latency_forward_pdr_10_hdrh
+# - data_type: coverage
+#   partition: test_type
+#   partition_name: mrr
+#   release: rls2310
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
+#   schema: iterative_rls2310_mrr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_receive_rate_rate_avg
+#     - result_receive_rate_rate_stdev
+#     - result_receive_rate_rate_unit
+# - data_type: coverage
+#   partition: test_type
+#   partition_name: device
+#   release: rls2310
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2310
+#   schema: coverage_rls2310_device
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - passed
+#     - test_id
+#     - version
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: mrr
+#   release: rls2402
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2402
+#   schema: iterative_rls2402_mrr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_receive_rate_rate_avg
+#     - result_receive_rate_rate_stdev
+#     - result_receive_rate_rate_unit
+#     - result_receive_rate_rate_values
+#     - result_receive_rate_bandwidth_avg
+#     - result_receive_rate_bandwidth_stdev
+#     - result_receive_rate_bandwidth_unit
+#     - result_receive_rate_bandwidth_values
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: ndrpdr
+#   release: rls2402
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2402
+#   schema: iterative_rls2402_ndrpdr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_pdr_lower_rate_unit
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_unit
+#     - result_ndr_lower_rate_value
+#     - result_pdr_lower_bandwidth_unit
+#     - result_pdr_lower_bandwidth_value
+#     - result_ndr_lower_bandwidth_unit
+#     - result_ndr_lower_bandwidth_value
+#     - result_latency_reverse_pdr_90_hdrh
+#     - result_latency_reverse_pdr_50_hdrh
+#     - result_latency_reverse_pdr_10_hdrh
+#     - result_latency_reverse_pdr_0_hdrh
+#     - result_latency_forward_pdr_90_hdrh
+#     - result_latency_forward_pdr_50_avg
+#     - result_latency_forward_pdr_50_hdrh
+#     - result_latency_forward_pdr_50_unit
+#     - result_latency_forward_pdr_10_hdrh
+#     - result_latency_forward_pdr_0_hdrh
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: hoststack
+#   release: rls2402
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2402
+#   schema: iterative_rls2402_hoststack
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - tg_type
+#     - result_bandwidth_unit
+#     - result_bandwidth_value
+#     - result_rate_unit
+#     - result_rate_value
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+# - data_type: coverage
+#   partition: test_type
+#   partition_name: ndrpdr
+#   release: rls2402
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2402
+#   schema: coverage_rls2402_ndrpdr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - tg_type
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_pdr_lower_rate_unit
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_value
+#     - result_pdr_lower_bandwidth_value
+#     - result_ndr_lower_bandwidth_value
+#     - result_latency_reverse_pdr_90_hdrh
+#     - result_latency_reverse_pdr_50_hdrh
+#     - result_latency_reverse_pdr_10_hdrh
+#     - result_latency_forward_pdr_90_hdrh
+#     - result_latency_forward_pdr_50_hdrh
+#     - result_latency_forward_pdr_10_hdrh
+# - data_type: coverage
+#   partition: test_type
+#   partition_name: mrr
+#   release: rls2402
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2402
+#   schema: iterative_rls2402_mrr
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_receive_rate_rate_avg
+#     - result_receive_rate_rate_stdev
+#     - result_receive_rate_rate_unit
+# - data_type: coverage
+#   partition: test_type
+#   partition_name: device
+#   release: rls2402
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2402
+#   schema: coverage_rls2402_device
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - passed
+#     - test_id
+#     - version
 - data_type: iterative
   partition: test_type
   partition_name: mrr
@@ -394,11 +396,11 @@
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
+    # - result_receive_rate_rate_values
     - result_receive_rate_bandwidth_avg
     - result_receive_rate_bandwidth_stdev
     - result_receive_rate_bandwidth_unit
-    - result_receive_rate_bandwidth_values
+    # - result_receive_rate_bandwidth_values
 - data_type: iterative
   partition: test_type
   partition_name: ndrpdr
