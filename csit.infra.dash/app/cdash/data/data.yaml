@@ -26,9 +26,11 @@
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
+    - result_receive_rate_rate_values
     - result_receive_rate_bandwidth_avg
     - result_receive_rate_bandwidth_stdev
     - result_receive_rate_bandwidth_unit
+    - result_receive_rate_bandwidth_values
     - telemetry
 - data_type: trending
   partition: test_type
@@ -257,11 +259,9 @@
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
     - result_receive_rate_bandwidth_avg
     - result_receive_rate_bandwidth_stdev
     - result_receive_rate_bandwidth_unit
-    - result_receive_rate_bandwidth_values
 - data_type: iterative
   partition: test_type
   partition_name: ndrpdr
@@ -394,11 +394,9 @@
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
     - result_receive_rate_bandwidth_avg
     - result_receive_rate_bandwidth_stdev
     - result_receive_rate_bandwidth_unit
-    - result_receive_rate_bandwidth_values
 - data_type: iterative
   partition: test_type
   partition_name: ndrpdr
