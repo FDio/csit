@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9400495a_d7e238c5",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-06-11T07:01:16Z",
+      "side": 1,
+      "message": "RECOMMENDED",
+      "range": {
+        "startLine": 123,
+        "startChar": 26,
+        "endLine": 123,
+        "endChar": 34
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba31fa49_ff076983",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-06-11T07:01:16Z",
+      "side": 1,
+      "message": "SHOULD",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 144,
+        "endChar": 8
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
