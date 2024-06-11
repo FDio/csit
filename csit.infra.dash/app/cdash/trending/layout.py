@@ -65,7 +65,8 @@ CP_PARAMS = {
     "cl-tsttype-all-val": list(),
     "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
     "btn-add-dis": True,
-    "cl-normalize-val": list()
+    "cl-normalize-val": list(),
+    "cl-show-trials": list()
 }
 
 
@@ -303,7 +304,7 @@ class Layout:
         :returns: Control panel.
         :rtype: list
         """
-        return [
+        test_selection = [
             dbc.Row(
                 dbc.InputGroup(
                     [
@@ -459,37 +460,42 @@ class Layout:
                 class_name="g-0 p-1"
             ),
             dbc.Row(
-                dbc.InputGroup(
-                    [
-                        dbc.InputGroupText(show_tooltip(
-                            self._tooltips,
-                            "help-normalize",
-                            "Normalization"
-                        )),
-                        dbc.Col(dbc.Checklist(
-                            id="normalize",
-                            options=[{
-                                "value": "normalize",
-                                "label": "Normalize to CPU frequency 2GHz"
-                            }],
-                            value=[],
-                            inline=True,
-                            class_name="ms-2"
-                        ))
-                    ],
-                    style={"align-items": "center"},
-                    size="sm"
-                ),
-                class_name="g-0 p-1"
-            ),
-            dbc.Row(
                 dbc.Button(
                     id={"type": "ctrl-btn", "index": "add-test"},
                     children="Add Selected",
                     color="info"
                 ),
                 class_name="g-0 p-1"
-            ),
+            )
+        ]
+        processing = [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Checklist(
+                        id="normalize",
+                        options=[{
+                            "value": "normalize",
+                            "label": "Normalize to 2GHz CPU frequency"
+                        }],
+                        value=[],
+                        inline=True,
+                        class_name="ms-2"
+                    ),
+                    dbc.Checklist(
+                        id="show-trials",
+                        options=[{
+                            "value": "trials",
+                            "label": "Show MRR Trials"
+                        }],
+                        value=[],
+                        inline=True,
+                        class_name="ms-2"
+                    )
+                ]
+            )
+        ]
+        test_list = [
             dbc.Row(
                 dbc.ListGroup(
                     class_name="overflow-auto p-0",
@@ -498,9 +504,7 @@ class Layout:
                     style={"max-height": "20em"},
                     flush=True
                 ),
-                id="row-card-sel-tests",
-                class_name="g-0 p-1",
-                style=C.STYLE_DISABLED,
+                class_name="g-0 p-1"
             ),
             dbc.Row(
                 dbc.ButtonGroup([
@@ -519,9 +523,7 @@ class Layout:
                         disabled=False
                     )
                 ]),
-                id="row-btns-sel-tests",
-                class_name="g-0 p-1",
-                style=C.STYLE_DISABLED,
+                class_name="g-0 p-1"
             ),
             dbc.Stack(
                 [
@@ -542,12 +544,64 @@ class Layout:
                         scrollable=True
                     )
                 ],
-                id="row-btns-add-tm",
                 class_name="g-0 p-1",
-                style=C.STYLE_DISABLED,
                 gap=2
             )
         ]
+
+        return [
+            dbc.Row(
+                dbc.Card(
+                    [
+                        dbc.CardHeader(
+                            html.H5("Test Selection")
+                        ),
+                        dbc.CardBody(
+                            children=test_selection,
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    color="secondary",
+                    outline=True
+                ),
+                class_name="g-0 p-1"
+            ),
+            dbc.Row(
+                dbc.Card(
+                    [
+                        dbc.CardHeader(
+                            html.H5("Data Manipulations")
+                        ),
+                        dbc.CardBody(
+                            children=processing,
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    color="secondary",
+                    outline=True
+                ),
+                class_name="g-0 p-1"
+            ),
+            dbc.Row(
+                dbc.Card(
+                    [
+                        dbc.CardHeader(
+                            html.H5("Selected Tests")
+                        ),
+                        dbc.CardBody(
+                            children=test_list,
+                            class_name="g-0 p-0"
+                        )
+                    ],
+                    color="secondary",
+                    outline=True
+                ),
+                id = "row-selected-tests",
+                class_name="g-0 p-1",
+                style=C.STYLE_DISABLED,
+            )
+        ]
+
 
     def _add_plotting_col(self) -> dbc.Col:
         """Add column with plots. It is placed on the right side.
@@ -919,9 +973,7 @@ class Layout:
             Output("plotting-area-trending", "children"),
             Output("plotting-area-telemetry", "children"),
             Output("col-plotting-area", "style"),
-            Output("row-card-sel-tests", "style"),
-            Output("row-btns-sel-tests", "style"),
-            Output("row-btns-add-tm", "style"),
+            Output("row-selected-tests", "style"),
             Output("lg-selected", "children"),
             Output({"type": "telemetry-search-out", "index": ALL}, "children"),
             Output({"type": "plot-mod-telemetry", "index": ALL}, "is_open"),
@@ -952,6 +1004,7 @@ class Layout:
             Output({"type": "ctrl-cl", "index": "tsttype-all"}, "options"),
             Output({"type": "ctrl-btn", "index": "add-test"}, "disabled"),
             Output("normalize", "value"),
+            Output("show-trials", "value"),
 
             State("store", "data"),
             State({"type": "sel-cl", "index": ALL}, "value"),
@@ -968,6 +1021,7 @@ class Layout:
             Input({"type": "tm-dd", "index": ALL}, "value"),
 
             Input("normalize", "value"),
+            Input("show-trials", "value"),
             Input({"type": "telemetry-search-in", "index": ALL}, "value"),
             Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
             Input({"type": "tm-btn-remove", "index": ALL}, "n_clicks"),
@@ -1117,6 +1171,10 @@ class Layout:
                         on_draw[1] = True
             elif trigger.type == "normalize":
                 ctrl_panel.set({"cl-normalize-val": trigger.value})
+                store["trending-graphs"] = None
+                on_draw[0] = True
+            elif trigger.type == "show-trials":
+                ctrl_panel.set({"cl-show-trials": trigger.value})
                 store["trending-graphs"] = None
                 on_draw[0] = True
             elif trigger.type == "ctrl-dd":
@@ -1431,7 +1489,8 @@ class Layout:
                             self._data,
                             store_sel,
                             self._graph_layout,
-                            bool(ctrl_panel.get("cl-normalize-val"))
+                            bool(ctrl_panel.get("cl-normalize-val")),
+                            bool(ctrl_panel.get("cl-show-trials"))
                         )
                         if graphs and graphs[0]:
                             store["trending-graphs"] = graphs
@@ -1462,16 +1521,12 @@ class Layout:
                                 store["telemetry-graphs"]
                             )
                     col_plotting_area = C.STYLE_ENABLED
-                    row_card_sel_tests = C.STYLE_ENABLED
-                    row_btns_sel_tests = C.STYLE_ENABLED
-                    row_btns_add_tm = C.STYLE_ENABLED
+                    row_selected_tests = C.STYLE_ENABLED
                 else:
                     plotting_area_trending = no_update
                     plotting_area_telemetry = C.PLACEHOLDER
                     col_plotting_area = C.STYLE_DISABLED
-                    row_card_sel_tests = C.STYLE_DISABLED
-                    row_btns_sel_tests = C.STYLE_DISABLED
-                    row_btns_add_tm = C.STYLE_DISABLED
+                    row_selected_tests = C.STYLE_DISABLED
                     lg_selected = no_update
                     store_sel = list()
                     tm_panels = list()
@@ -1481,9 +1536,7 @@ class Layout:
             else:
                 plotting_area_trending = no_update
                 col_plotting_area = no_update
-                row_card_sel_tests = no_update
-                row_btns_sel_tests = no_update
-                row_btns_add_tm = no_update
+                row_selected_tests = no_update
                 lg_selected = no_update
 
             store["url"] = gen_new_url(parsed_url, new_url_params)
@@ -1499,9 +1552,7 @@ class Layout:
                 plotting_area_trending,
                 plotting_area_telemetry,
                 col_plotting_area,
-                row_card_sel_tests,
-                row_btns_sel_tests,
-                row_btns_add_tm,
+                row_selected_tests,
                 lg_selected,
                 search_out,
                 is_open,
