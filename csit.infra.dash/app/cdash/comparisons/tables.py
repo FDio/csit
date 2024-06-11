@@ -320,7 +320,7 @@ def comparison_table(
             c_mean = c_row["mean"].values[0]
             c_std = c_row["stdev"].values[0]
             if r_mean == 0.0 or c_mean == 0.0:
-                break
+                continue
             unit.add(f"{s_unit_factor}{row['unit']}")
             l_name.append(row["name"])
             l_r_mean.append(r_mean / unit_factor)
