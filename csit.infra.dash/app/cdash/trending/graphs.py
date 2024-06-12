@@ -406,7 +406,7 @@ def graph_trending(
             for idx_run in range(len(x_axis)):
                 try:
                     y_axis.append(y_data[idx_run][idx_trial] * nf)
-                except IndexError:
+                except (IndexError, TypeError, ValueError):
                     y_axis.append(nan)
             traces.append(go.Scatter(
                 x=x_axis,
