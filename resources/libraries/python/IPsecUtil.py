@@ -345,16 +345,10 @@ class IPsecUtil:
             err_msg = f"Failed to set IPsec async mode on host {node['host']}"
             args = dict(async_enable=async_enable)
             papi_exec.add(cmd, **args).get_reply(err_msg)
-            cmd = "crypto_set_async_dispatch_v2"
+            cmd = "crypto_set_async_dispatch"
             err_msg = "Failed to set dispatch mode."
             args = dict(mode=0, adaptive=False)
-            try:
-                papi_exec.add(cmd, **args).get_reply(err_msg)
-            except (AttributeError, RuntimeError):
-                # Expected when VPP build does not have the _v2 yet
-                # (after and before the first CRC check).
-                # TODO: Fail here when testing of pre-23.10 builds is over.
-                pass
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker(
@@ -469,7 +463,7 @@ class IPsecUtil:
             src_addr = ""
             dst_addr = ""
 
-        cmd = "ipsec_sad_entry_add_v2"
+        cmd = "ipsec_sad_entry_add"
         err_msg = (
             "Failed to add Security Association Database entry"
             f" on host {node['host']}"
@@ -494,7 +488,6 @@ class IPsecUtil:
             protocol=IPsecProto.ESP,
             udp_src_port=IPSEC_UDP_PORT_DEFAULT,
             udp_dst_port=IPSEC_UDP_PORT_DEFAULT,
-            anti_replay_window_size=IPSEC_REPLAY_WINDOW_DEFAULT,
         )
         args = dict(entry=sad_entry)
         with PapiSocketExecutor(node) as papi_exec:
@@ -575,7 +568,7 @@ class IPsecUtil:
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
                 )
 
-        cmd = "ipsec_sad_entry_add_v2"
+        cmd = "ipsec_sad_entry_add"
         err_msg = (
             "Failed to add Security Association Database entry"
             f" on host {node['host']}"
@@ -601,7 +594,6 @@ class IPsecUtil:
             protocol=IPsecProto.ESP,
             udp_src_port=IPSEC_UDP_PORT_DEFAULT,
             udp_dst_port=IPSEC_UDP_PORT_DEFAULT,
-            anti_replay_window_size=IPSEC_REPLAY_WINDOW_DEFAULT,
         )
         args = dict(entry=sad_entry)
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
@@ -1270,6 +1262,7 @@ class IPsecUtil:
         existing_tunnels: int = 0,
         udp_encap: bool = False,
         anti_replay: bool = False,
+        fpt: int = 1,
     ) -> Tuple[List[bytes], List[bytes]]:
         """Create multiple IPsec tunnel interfaces on DUT1 node using PAPI.
 
@@ -1375,7 +1368,7 @@ class IPsecUtil:
             # Configure IPSec SAD entries
             ckeys = [bytes()] * existing_tunnels
             ikeys = [bytes()] * existing_tunnels
-            cmd = "ipsec_sad_entry_add_v2"
+            cmd = "ipsec_sad_entry_add"
             c_key = dict(length=0, data=None)
             i_key = dict(length=0, data=None)
             common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
@@ -1404,7 +1397,6 @@ class IPsecUtil:
                 salt=0,
                 udp_src_port=IPSEC_UDP_PORT_DEFAULT,
                 udp_dst_port=IPSEC_UDP_PORT_DEFAULT,
-                anti_replay_window_size=IPSEC_REPLAY_WINDOW_DEFAULT,
             )
             args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
@@ -1494,10 +1486,12 @@ class IPsecUtil:
             cmd = "ip_route_add_del"
             args = dict(is_add=1, is_multipath=0, route=None)
             for i in range(existing_tunnels, n_tunnels):
+                if fpt != 4:
+                    raise RuntimeError(f"Unsupported {fpt=}")
                 args["route"] = IPUtil.compose_vpp_route_structure(
                     nodes["DUT1"],
-                    (raddr_ip2 + i).compressed,
-                    prefix_len=128 if raddr_ip2.version == 6 else 32,
+                    (raddr_ip2 + i * fpt).compressed,
+                    prefix_len=126 if raddr_ip2.version == 6 else 30,
                     interface=ipip_tunnels[i],
                 )
                 papi_exec.add(
@@ -1524,6 +1518,7 @@ class IPsecUtil:
         existing_tunnels: int = 0,
         udp_encap: bool = False,
         anti_replay: bool = False,
+        fpt: int = 1,
     ) -> None:
         """Create multiple IPsec tunnel interfaces on DUT2 node using PAPI.
 
@@ -1623,7 +1618,7 @@ class IPsecUtil:
                 ]
             )
             # Configure IPSec SAD entries
-            cmd = "ipsec_sad_entry_add_v2"
+            cmd = "ipsec_sad_entry_add"
             c_key = dict(length=0, data=None)
             i_key = dict(length=0, data=None)
             common_flags = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
@@ -1652,7 +1647,6 @@ class IPsecUtil:
                 salt=0,
                 udp_src_port=IPSEC_UDP_PORT_DEFAULT,
                 udp_dst_port=IPSEC_UDP_PORT_DEFAULT,
-                anti_replay_window_size=IPSEC_REPLAY_WINDOW_DEFAULT,
             )
             args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
@@ -1754,10 +1748,12 @@ class IPsecUtil:
             cmd = "ip_route_add_del"
             args = dict(is_add=1, is_multipath=0, route=None)
             for i in range(existing_tunnels, n_tunnels):
+                if fpt != 4:
+                    raise RuntimeError(f"Unsupported {fpt=}")
                 args["route"] = IPUtil.compose_vpp_route_structure(
                     nodes["DUT1"],
-                    (raddr_ip1 + i).compressed,
-                    prefix_len=128 if raddr_ip1.version == 6 else 32,
+                    (raddr_ip1 + i * fpt).compressed,
+                    prefix_len=126 if raddr_ip1.version == 6 else 30,
                     interface=ipip_tunnels[i],
                 )
                 papi_exec.add(
@@ -1783,6 +1779,7 @@ class IPsecUtil:
         udp_encap: bool = False,
         anti_replay: bool = False,
         return_keys: bool = False,
+        fpt: int = 1,
     ) -> Optional[Tuple[List[bytes], List[bytes], int, int]]:
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
 
@@ -1861,6 +1858,7 @@ class IPsecUtil:
             existing_tunnels,
             udp_encap,
             anti_replay,
+            fpt=fpt,
         )
         if "DUT2" in nodes.keys():
             IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
@@ -1878,6 +1876,7 @@ class IPsecUtil:
                 existing_tunnels,
                 udp_encap,
                 anti_replay,
+                fpt=fpt,
             )
 
         if return_keys:

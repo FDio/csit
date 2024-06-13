@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -85,7 +85,7 @@ class Memif:
             return papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def _memif_create(node, mid, sid, rxq=1, txq=1, role=1, use_dma=False):
+    def _memif_create(node, mid, sid, mac, rxq=1, txq=1, role=1, use_dma=False):
         """Create Memif interface on the given node, return its sw_if_index.
 
         :param node: Given node to create Memif interface on.
@@ -105,7 +105,8 @@ class Memif:
         :returns: sw_if_index
         :rtype: int
         """
-        cmd = u"memif_create_v2"
+        mac_bytes = bytes.fromhex(mac.replace(":", ""))
+        cmd = u"memif_create"
         err_msg = f"Failed to create memif interface on host {node[u'host']}"
         args = dict(
             role=role,
@@ -114,7 +115,8 @@ class Memif:
             socket_id=int(sid),
             id=int(mid),
             secret=u"",
-            use_dma=use_dma,
+            hw_addr=mac_bytes,
+            ring_size=1024,
         )
 
         with PapiSocketExecutor(node) as papi_exec:
@@ -122,7 +124,7 @@ class Memif:
 
     @staticmethod
     def create_memif_interface(
-            node, filename, mid, sid, rxq=1, txq=1, role=u"SLAVE", use_dma=False
+        node, filename, mid, sid, mac, rxq=1, txq=1, role=u"SLAVE", use_dma=False,
     ):
         """Create Memif interface on the given node.
 
@@ -153,7 +155,7 @@ class Memif:
 
         # Create memif
         sw_if_index = Memif._memif_create(
-            node, mid, sid, rxq=rxq, txq=txq, role=role, use_dma=use_dma
+            node, mid, sid, rxq=rxq, txq=txq, mac=mac, role=role, use_dma=use_dma
         )
 
         # Update Topology
