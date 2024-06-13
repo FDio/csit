@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-clx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3n-icxd-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3n-alt-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-zn2-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-tx2-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3n-tsh-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3nb-spr-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3na-spr-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-3n-snr-perftest vpp-ndrpdr-00",
       "revId": "40bef3d114e75f4cebeb91b6b6f1b1ea7dd8b8b9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2be133a_d738aee3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-13T07:47:57Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-c7gn-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-c6in-perftest vpp-ndrpdr-00",
+      "revId": "40bef3d114e75f4cebeb91b6b6f1b1ea7dd8b8b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
