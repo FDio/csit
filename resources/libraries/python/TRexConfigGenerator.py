@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -182,6 +182,15 @@ class TrexConfigGenerator:
         path = ["port_info"]
         self.add_config_item(self._node_config, value, path)
 
+    def add_port_mtu(self, value):
+        """Add port MTU configuration.
+
+        :param value: Port MTU configuration.
+        :type value: int
+        """
+        path = ["port_mtu"]
+        self.add_config_item(self._node_config, value, path)
+
     def add_platform_master_thread_id(self, value):
         """Add platform master thread ID.
 
@@ -291,6 +300,8 @@ class TrexConfig:
         trex_config.add_c(cores)
         trex_config.add_limit_memory(limit_memory)
         trex_config.add_port_info(port_info)
+        if Constants.TREX_PORT_MTU != 0:
+            trex_config.add_port_mtu(Constants.TREX_PORT_MTU)
         if Constants.TREX_RX_DESCRIPTORS_COUNT != 0:
             trex_config.add_rx_desc(Constants.TREX_RX_DESCRIPTORS_COUNT)
         if Constants.TREX_TX_DESCRIPTORS_COUNT != 0:

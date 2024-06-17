@@ -206,6 +206,8 @@ class Constants:
     # TRex number of cores in case multiple dual interface configurations.
     TREX_CORE_COUNT_MULTI = get_int_from_env("TREX_CORE_COUNT_MULTI", 8)
 
+    TREX_PORT_MTU = get_int_from_env("TREX_PORT_MTU", 0)
+
     # TRex set number of RX/TX descriptors.
     # Set to 0 to use default values.
     TREX_TX_DESCRIPTORS_COUNT = get_int_from_env(
