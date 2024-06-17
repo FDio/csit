@@ -173,8 +173,8 @@ def add_default_testcases(
         core_scale = Constants.NIC_CODE_TO_CORESCALE[nic_code]
         if u"soak" in suite_id:
             # Soak test take too long, do not risk other than tc01.
-            if kwargs[u"phy_cores"] != 1:
-                emit = False
+            #if kwargs[u"phy_cores"] != 1:
+            #    emit = False
             if u"reassembly" in suite_id:
                 if kwargs[u"frame_size"] != 1518:
                     emit = False
