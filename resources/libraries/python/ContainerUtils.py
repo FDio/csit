@@ -746,46 +746,15 @@ class ContainerEngine:
                 f"VPP PAPI fails in container: {self.container.name}"
             )
 
-    def create_base_vpp_startup_config(self, cpuset_cpus=None):
-        """Create base startup configuration of VPP on container.
-
-        :param cpuset_cpus: List of CPU cores to allocate.
-        :type cpuset_cpus: list.
-        :returns: Base VPP startup configuration.
-        :rtype: VppConfigGenerator
+    def create_vpp_startup_config(self):
+        """Create startup configuration of VPP without DPDK on container.
         """
         if cpuset_cpus is None:
             cpuset_cpus = self.container.cpuset_cpus
 
-        # Create config instance
-        vpp_config = VppConfigGenerator()
-        vpp_config.set_node(self.container.node)
-        vpp_config.add_unix_cli_listen()
-        vpp_config.add_unix_exec(u"/tmp/running.exec")
-        vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
-        if cpuset_cpus:
-            # We will pop the first core from the list to be a main core
-            vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
-            # If more cores in the list, the rest will be used as workers.
-            corelist_workers = u",".join(str(cpu) for cpu in cpuset_cpus)
-            vpp_config.add_cpu_corelist_workers(corelist_workers)
-        vpp_config.add_buffers_per_numa(215040)
-        vpp_config.add_plugin(u"disable", u"default")
-        vpp_config.add_plugin(u"enable", u"memif_plugin.so")
-        vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
-        vpp_config.add_main_heap_size(u"2G")
-        vpp_config.add_main_heap_page_size(self.container.page_size)
-        vpp_config.add_default_hugepage_size(self.container.page_size)
-        vpp_config.add_statseg_size(u"2G")
-        vpp_config.add_statseg_page_size(self.container.page_size)
-        vpp_config.add_statseg_per_node_counters(u"on")
-
-        return vpp_config
-
-    def create_vpp_startup_config(self):
-        """Create startup configuration of VPP without DPDK on container.
-        """
-        vpp_config = self.create_base_vpp_startup_config()
+        vpp_config = VppInitConfig.create_vpp_startup_configuration_container(
+            self.container.node, cpuset_cpus
+        )
 
         # Apply configuration
         self.execute(u"mkdir -p /etc/vpp/")
@@ -828,7 +797,12 @@ class ContainerEngine:
         :param cpuset_cpus: CPU list to run on.
         :type cpuset_cpus: list
         """
-        vpp_config = self.create_base_vpp_startup_config(cpuset_cpus)
+        if cpuset_cpus is None:
+            cpuset_cpus = self.container.cpuset_cpus
+
+        vpp_config = VppInitConfig.create_vpp_startup_configuration_container(
+            self.container.node, cpuset_cpus
+        )
         vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
@@ -846,7 +820,9 @@ class ContainerEngine:
         :param dma_devices: DMA devices list.
         :type dma_devices: list
         """
-        vpp_config = self.create_base_vpp_startup_config()
+        vpp_config = VppInitConfig.create_vpp_startup_configuration_container(
+            self.container.node
+        )
         vpp_config.add_plugin(u"enable", u"dma_intel_plugin.so")
         vpp_config.add_dma_dev(dma_devices)
 

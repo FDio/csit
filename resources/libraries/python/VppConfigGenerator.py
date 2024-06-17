@@ -824,7 +824,6 @@ class VppInitConfig:
 
         vpp_config = VppConfigGenerator()
         vpp_config.set_node(node)
-        vpp_config.add_unix_log()
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_cli_no_pager()
         vpp_config.add_unix_exec("/tmp/running.exec")
@@ -837,15 +836,15 @@ class VppInitConfig:
             vpp_config.add_cpu_corelist_workers(corelist_workers)
         vpp_config.add_buffers_per_numa(215040)
         vpp_config.add_plugin("disable", "default")
-        vpp_config.add_plugin("enable", "memif_plugin.so")
-        vpp_config.add_plugin("enable", "perfmon_plugin.so")
+        #vpp_config.add_plugin("enable", "memif_plugin.so")
+        #vpp_config.add_plugin("enable", "perfmon_plugin.so")
         vpp_config.add_main_heap_size("2G")
         vpp_config.add_main_heap_page_size(huge_size)
         vpp_config.add_default_hugepage_size(huge_size)
         vpp_config.add_statseg_size("2G")
         vpp_config.add_statseg_page_size(huge_size)
         vpp_config.add_statseg_per_node_counters("on")
-        vpp_config.add_ip6_hash_buckets(2000000)
-        vpp_config.add_ip6_heap_size("4G")
+        #vpp_config.add_ip6_hash_buckets(2000000)
+        #vpp_config.add_ip6_heap_size("4G")
 
         return vpp_config
