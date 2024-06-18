@@ -1363,7 +1363,8 @@ function set_environment_variables () {
             export TREX_CORE_COUNT=14
             ;;
         *"2n-x-"* | *"3n-x-"* )
-            export TREX_CORE_COUNT=2
+            export TREX_CORE_COUNT=6
+            export TREX_PORT_MTU=9000
             ;;
     esac
 }
