@@ -133,7 +133,8 @@ def graph_trending(
         customdata_samples = list()
         name_lst = name.split("-")
         for _, row in df.iterrows():
-            h_tput, h_band, h_lat = str(), str(), str()
+            h_tput, h_band, h_lat, h_tput_trials, h_band_trials = \
+                str(), str(), str(), str(), str()
             if ttype in ("mrr", "mrr-bandwidth"):
                 h_tput = (
                     f"tput avg [{row['result_receive_rate_rate_unit']}]: "
@@ -152,6 +153,23 @@ def graph_trending(
                         f"{row['result_receive_rate_bandwidth_stdev']* nf:,.0f}"
                         "<br>"
                     )
+                if trials:
+                    h_tput_trials = (
+                        f"tput trials "
+                        f"[{row['result_receive_rate_rate_unit']}]: "
+                    )
+                    for itm in row["result_receive_rate_rate_values"]:
+                        h_tput_trials += f"{itm * nf:,.0f}; "
+                    h_tput_trials = h_tput_trials[:-2] + "<br>"
+                    if pd.notna(row["result_receive_rate_bandwidth_avg"]):
+                        h_band_trials = (
+                            f"bandwidth trials "
+                            f"[{row['result_receive_rate_bandwidth_unit']}]: "
+                        )
+                        for itm in row["result_receive_rate_bandwidth_values"]:
+                            h_band_trials += f"{itm * nf:,.0f}; "
+                        h_band_trials = h_band_trials[:-2] + "<br>"
+
             elif ttype in ("ndr", "ndr-bandwidth"):
                 h_tput = (
                     f"tput [{row['result_ndr_lower_rate_unit']}]: "
@@ -224,7 +242,7 @@ def graph_trending(
                 f"infra: {'-'.join(name_lst[1:5])}<br>"
                 f"test: {'-'.join(name_lst[5:])}<br>"
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-                f"{h_tput}{h_band}{h_lat}"
+                f"{h_tput}{h_tput_trials}{h_band}{h_band_trials}{h_lat}"
                 f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}"
                 f"{hosts}"
@@ -419,7 +437,8 @@ def graph_trending(
                     "symbol": "circle"
                 },
                 showlegend=True,
-                legendgroup=name
+                legendgroup=name,
+                hoverinfo="skip"
             ))
         return traces
 

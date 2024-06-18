@@ -611,7 +611,6 @@ class Layout:
             )
         ]
 
-
     def _add_plotting_col(self) -> dbc.Col:
         """Add column with plots. It is placed on the right side.
 
@@ -1117,9 +1116,12 @@ class Layout:
             trigger = Trigger(callback_context.triggered)
             if trigger.type == "url" and url_params:
                 telemetry = None
+                normalize = list()
+                show_trials = list()
                 try:
                     store_sel = literal_eval(url_params["store_sel"][0])
                     normalize = literal_eval(url_params["norm"][0])
+                    show_trials = literal_eval(url_params["show-trials"][0])
                     telemetry = literal_eval(url_params["telemetry"][0])
                     url_p = url_params.get("all-in-one", ["[[None]]"])
                     tm_all_in_one = literal_eval(url_p[0])
@@ -1166,6 +1168,7 @@ class Layout:
                         "cl-tsttype-all-val": list(),
                         "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
                         "cl-normalize-val": normalize,
+                        "cl-show-trials": show_trials,
                         "btn-add-dis": False
                     })
                     store["trending-graphs"] = None
@@ -1481,7 +1484,8 @@ class Layout:
 
             new_url_params = {
                 "store_sel": store_sel,
-                "norm": ctrl_panel.get("cl-normalize-val")
+                "norm": ctrl_panel.get("cl-normalize-val"),
+                "show-trials": ctrl_panel.get("cl-show-trials")
             }
             if tm_panels:
                 new_url_params["telemetry"] = tm_panels
