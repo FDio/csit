@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c320d4f_716c6388",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-20T12:26:26Z",
+      "side": 1,
+      "message": "A few sentences (not only this one) does not end with a dot.",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "56ba44e3b01b4ef1376aadf585e3b35c98bdef77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f387469d_7a8a2502",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-20T12:26:26Z",
+      "side": 1,
+      "message": "What about \"It is RECOMMENDED to\"?",
+      "range": {
+        "startLine": 283,
+        "startChar": 6,
+        "endLine": 283,
+        "endChar": 13
+      },
+      "revId": "56ba44e3b01b4ef1376aadf585e3b35c98bdef77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
