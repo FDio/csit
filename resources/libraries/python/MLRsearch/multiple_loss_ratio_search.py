@@ -16,7 +16,9 @@
 import logging
 import time
 
+from collections.abc import Generator
 from dataclasses import dataclass
+from types import coroutine
 from typing import Callable, Optional, Tuple
 
 from .candidate import Candidate
@@ -34,6 +36,7 @@ from .search_goal import SearchGoal
 from .selector import Selector
 from .target_scaling import TargetScaling
 from .trial_measurement import AbstractMeasurer
+from .trial_measurement import MeasurementResult as Result
 
 
 @dataclass
@@ -99,15 +102,30 @@ class MultipleLossRatioSearch:
     measuring a load as soon as it becomes a lower bound,
     so conditional throughput is usually based on forwarding rate
     of the worst on the good long trials.
+
+    There are two entry points.
+    Use "search" method when Measurer is a Python object.
+    When "search_async" is called instead, it returns a coroutine.
+    That coroutine yields a tuple of floats, values are duration and load
+    for the next trial. Manager is supposed to perform the trial
+    and send back the result as a MeasurementResult instance.
+    Final search results are presented as value attribute of StopIteration.
+
+    Methods on path of the yield are mostly defined as "async def",
+    even though they are not intended to be run in an async framework.
+    This is because the code with async/await is easier to read
+    than generator-based "yield from" coroutines.
+    Also, those methods are documented as if they directly returned,
+    even though they yield and raise StopIteration,
+    as this behavior is usually hidden by "await".
     """
 
     config: Config
     """Arguments required at construction time."""
-    # End of fields required at intance creation.
-    measurer: AbstractMeasurer = secondary_field()
-    """Measurer to use, set at calling search()."""
+    # End of fields required at instance creation.
     debug: Callable[[str], None] = secondary_field()
     """Object to call for logging, None means logging.debug."""
+    # End of fields required at search call.
     # Fields below are computed from data above
     rounding: LoadRounding = secondary_field()
     """Derived from goals. Instance to use for intended load rounding."""
@@ -129,8 +147,10 @@ class MultipleLossRatioSearch:
     ) -> Pep3140Dict[SearchGoal, GoalResult]:
         """Perform initial trials, create state object, proceed with main loop.
 
-        Stateful arguments (measurer and debug) are stored.
-        Derived objects are constructed from config.
+        This is the intended entry point for sync mode,
+        e.g. when measurer is provided as a Python object instance.
+
+        The code here is the blueprint for non-Python callers of search_sync.
 
         :param measurer: Measurement provider to use by this search object.
         :param debug: Callable to optionally use instead of logging.debug().
@@ -143,8 +163,52 @@ class MultipleLossRatioSearch:
         :raises RuntimeError: If total duration is larger than timeout,
             or if min load becomes an upper bound for a search goal
             that has fail fast true.
+            Also if configuration is found inconsistent.
         """
-        self.measurer = measurer
+        search_coroutine = self.search_async(debug=debug)
+        trial_outputs = None
+        try:
+            while 1:
+                duration, load = search_coroutine.send(trial_outputs)
+                trial_outputs = measurer.measure(
+                    intended_duration=duration,
+                    intended_load=load,
+                )
+        except StopIteration as result:
+            return result.value
+
+    async def search_async(
+        self,
+        debug: Optional[Callable[[str], None]] = None,
+    ) -> Generator[
+        Tuple[float, float], Result, Pep3140Dict[SearchGoal, GoalResult]
+    ]:
+        """Perform initial trials, create state object, proceed with main loop.
+
+        This is the intended entry point for async mode,
+        e.g. Manager is supposed to measure when duration and load
+        are yielded to it.
+        (In sync mode this also yields, but "search" method does the measurement.)
+
+        This allows the Manager-Measurer interaction to be coded
+        in languages without support for Python objects.
+
+        Stateful arguments (measurer and debug) are stored.
+        Derived objects are constructed from config.
+
+        This acts as a generator yielding to Manager (or "search" method).
+
+        :param debug: Callable to optionally use instead of logging.debug().
+        :type debug: Optional[Callable[[str], None]]
+        :returns: Structure containing conditional throughputs and other stats,
+            one for each search goal. If a value is None it means there is
+            no lower bound (min load turned out to be an upper bound).
+        :rtype: Pep3140Dict[SearchGoal, GoalResult]
+        :raises RuntimeError: If total duration is larger than timeout,
+            or if min load becomes an upper bound for a search goal
+            that has fail fast true.
+            Also if configuration is found inconsistent.
+        """
         self.debug = logging.debug if debug is None else debug
         self.rounding = LoadRounding(
             min_load=self.config.min_load,
@@ -162,8 +226,8 @@ class MultipleLossRatioSearch:
         )
         self.database = MeasurementDatabase(self.scaling.targets)
         self.stop_time = time.monotonic() + self.config.search_duration_max
-        result0, result1 = self.run_initial_trials()
-        self.main_loop(result0.discrete_load, result1.discrete_load)
+        result0, result1 = await self._run_initial_trials()
+        await self._main_loop(result0.discrete_load, result1.discrete_load)
         ret_dict = Pep3140Dict()
         for goal in self.config.goals:
             target = self.scaling.goal_to_final_target[goal]
@@ -171,14 +235,41 @@ class MultipleLossRatioSearch:
             ret_dict[goal] = GoalResult.from_bounds(bounds=bounds)
         return ret_dict
 
-    def measure(self, duration: float, load: DiscreteLoad) -> DiscreteResult:
+    @coroutine
+    def _measure_indirectly(
+        self, duration: float, load: float
+    ) -> Generator[Tuple[float, float], Result, Result]:
+        """Yield trial inputs to Manager, receive and return trial result.
+
+        This yields two floats: intended duration and intended load.
+        Manager is supposed to call Measurer and send back the trial result.
+
+        This cannot be "async def", as those native coroutines
+        are not allowed to both yield and return.
+
+        :param duration: Intended duration for the trial measurement.
+        :param load: Intended load for the trial measurement.
+        :type duration: float
+        :type load: float
+        :returns: The trial result, perhaps sent from Manager.
+        :rtype: Generator[Tuple[float, float], Result, Result]
+        """
+        self.debug(f"Yielding to Manager d={duration},l={load}")
+        result = yield (duration, load)
+        return result
+
+    async def _measure(
+        self, duration: float, load: DiscreteLoad
+    ) -> DiscreteResult:
         """Call measurer and put the result to appropriate form in database.
 
         Also check the argument types and load roundness,
         and return the result to the caller.
 
+        This acts as a generator yielding to Manager (or "search" method).
+
         :param duration: Intended duration for the trial measurement.
-        :param load: Intended load for the trial measurement:
+        :param load: Intended load for the trial measurement.
         :type duration: float
         :type load: DiscreteLoad
         :returns: The trial results.
@@ -191,17 +282,17 @@ class MultipleLossRatioSearch:
             raise RuntimeError(f"Load has to be discrete: {load!r}")
         if not load.is_round:
             raise RuntimeError(f"Told to measure unrounded: {load!r}")
-        self.debug(f"Measuring at d={duration},il={int(load)}")
-        result = self.measurer.measure(
-            intended_duration=duration,
-            intended_load=float(load),
+        result = await self._measure_indirectly(
+            duration=duration, load=float(load)
         )
         self.debug(f"Measured lr={result.loss_ratio}")
         result = DiscreteResult.with_load(result=result, load=load)
         self.database.add(result)
         return result
 
-    def run_initial_trials(self) -> Tuple[DiscreteResult, DiscreteResult]:
+    async def _run_initial_trials(
+        self,
+    ) -> Tuple[DiscreteResult, DiscreteResult]:
         """Perform trials to get enough data to start the selectors.
 
         Measurements are done with all initial targets in mind,
@@ -222,6 +313,8 @@ class MultipleLossRatioSearch:
         and compute width later. The "one value twice" happens when max load
         has small loss, or when min load has big loss.
 
+        This acts as a generator yielding to Manager (or "search" method).
+
         :returns: Two last measured values, in any order. Or one value twice.
         :rtype: Tuple[DiscreteResult, DiscreteResult]
         """
@@ -239,11 +332,11 @@ class MultipleLossRatioSearch:
         self.debug(f"Init ratio {ratio} duration {duration} width {width}")
         if self.config.warmup_duration:
             self.debug("Warmup trial.")
-            self.measure(self.config.warmup_duration, max_load)
+            await self._measure(self.config.warmup_duration, max_load)
             # Warmup should not affect the real results, reset the database.
             self.database = MeasurementDatabase(self.scaling.targets)
         self.debug(f"First trial at max rate: {max_load}")
-        result0 = self.measure(duration, max_load)
+        result0 = await self._measure(duration, max_load)
         rfr = result0.relative_forwarding_rate
         corrected_rfr = (self.from_float(rfr) / (1.0 - ratio)).rounded_down()
         if corrected_rfr >= max_load:
@@ -251,7 +344,7 @@ class MultipleLossRatioSearch:
             return result0, result0
         mrr = self.limit_handler.handle(corrected_rfr, width, None, max_load)
         self.debug(f"Second trial at (corrected) mrr: {mrr}")
-        result1 = self.measure(duration, mrr)
+        result1 = await self._measure(duration, mrr)
         # Attempt to get narrower width.
         result_ratio = result1.loss_ratio
         if result_ratio > ratio:
@@ -265,10 +358,12 @@ class MultipleLossRatioSearch:
             self.debug("Close enough, measuring at mrr2 is not needed.")
             return result1, result1
         self.debug(f"Third trial at (corrected) mrr2: {mrr2}")
-        result2 = self.measure(duration, mrr2)
+        result2 = await self._measure(duration, mrr2)
         return result1, result2
 
-    def main_loop(self, load0: DiscreteLoad, load1: DiscreteLoad) -> None:
+    async def _main_loop(
+        self, load0: DiscreteLoad, load1: DiscreteLoad
+    ) -> None:
         """Initialize selectors and keep measuring the winning candidate.
 
         Selectors are created, the two input loads are useful starting points.
@@ -282,8 +377,10 @@ class MultipleLossRatioSearch:
         As a selector is only allowed to update current width as the winner,
         the update is done here explicitly.
 
-        :param load0: Discrete load of one of results from run_initial_trials.
-        :param load1: Discrete load of other of results from run_initial_trials.
+        This acts as a generator yielding to Manager (or "search" method).
+
+        :param load0: Discrete load of one of results from _run_initial_trials.
+        :param load1: Discrete load of other of results from _run_initial_trials.
         :type load0: DiscreteLoad
         :type load1: DiscreteLoad
         :raises RuntimeError: If the search takes too long,
@@ -315,7 +412,7 @@ class MultipleLossRatioSearch:
             # We do not check duration versus stop_time here,
             # as some measurers can be unpredictably faster
             # than their intended duration suggests.
-            self.measure(duration=winner.duration, load=winner.load)
+            await self._measure(duration=winner.duration, load=winner.load)
             # Delayed updates.
             if winner.width:
                 global_width.width = winner.width
