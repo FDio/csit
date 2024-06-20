@@ -45,6 +45,52 @@
       },
       "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f740e62d_bd5d88cd",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-20T12:31:36Z",
+      "side": 1,
+      "message": "\"use the name\" ?",
+      "range": {
+        "startLine": 234,
+        "startChar": 28,
+        "endLine": 234,
+        "endChar": 35
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3962c056_845b317b",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-20T12:31:36Z",
+      "side": 1,
+      "message": "coding",
+      "range": {
+        "startLine": 308,
+        "startChar": 24,
+        "endLine": 308,
+        "endChar": 31
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
