@@ -216,15 +216,17 @@
 | | [Documentation]
 | | ... | Additional Statistics Action for enable VPP packet trace.
 | |
-| | Run Keyword If | ${extended_debug}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
+#| | Run Keyword If | ${extended_debug}==${True}
+#| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
+| | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 
 | Additional Statistics Action For vpp-show-packettrace
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP packet trace.
 | |
-| | Run Keyword If | ${extended_debug}==${True}
-| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
+#| | Run Keyword If | ${extended_debug}==${True}
+#| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
+| | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
 
 | Additional Statistics Action For vpp-show-stats
 | | [Documentation]
