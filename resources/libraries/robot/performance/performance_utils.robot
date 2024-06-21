@@ -573,7 +573,6 @@
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
 | | | ... | async_call=False
-| | | ... | warmup_time=0
 | | | ... | traffic_directions=${traffic_directions}
 | | | ... | namespace=${iperf_client_namespace}
 | | | ... | udp=${iperf_client_udp}
