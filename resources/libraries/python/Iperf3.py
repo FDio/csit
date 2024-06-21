@@ -159,9 +159,10 @@ class Iperf3:
             sudo=True, message=u"iPerf3 kill failed!")
 
     def iperf_client_start_remote_exec(
-            self, node, duration, rate, frame_size, async_call=False,
-            warmup_time=0, traffic_directions=1, namespace=None, udp=False,
-            host=None, bind=None, affinity=None):
+        self, node, duration, rate, frame_size, async_call=False,
+        traffic_directions=1, namespace=None, udp=False,
+        host=None, bind=None, affinity=None,
+    ):
         """Execute iPerf3 client script on remote node over ssh to start running
         traffic.
 
@@ -170,7 +171,6 @@ class Iperf3:
         :param rate: Traffic rate.
         :param frame_size: L2 frame size to send (without padding and IPG).
         :param async_call: If enabled then don't wait for all incoming traffic.
-        :param warmup_time: Warmup time period.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 1
         :param namespace: Namespace to execute iPerf3 client on.
@@ -183,7 +183,6 @@ class Iperf3:
         :type rate: str
         :type frame_size: str
         :type async_call: bool
-        :type warmup_time: float
         :type traffic_directions: int
         :type namespace: str
         :type udp: bool
@@ -195,8 +194,6 @@ class Iperf3:
         """
         if not isinstance(duration, (float, int)):
             duration = float(duration)
-        if not isinstance(warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
         if not affinity:
             affinity = self._c_affinity
 
@@ -211,7 +208,6 @@ class Iperf3:
         kwargs[u"duration"] = duration
         kwargs[u"rate"] = rate
         kwargs[u"frame_size"] = frame_size
-        kwargs[u"warmup_time"] = warmup_time
         kwargs[u"traffic_directions"] = traffic_directions
         kwargs[u"async_call"] = async_call
 
@@ -236,8 +232,10 @@ class Iperf3:
             pids = [pids]
 
         for pid in pids:
-            exec_cmd_no_error(
-                node, f"kill {pid}", sudo=True, message=u"Kill iPerf3 failed!")
+            # FIXME: should be *_no_error
+            exec_cmd(
+                node, f"kill {pid}", sudo=True, message=u"Kill iPerf3 failed!"
+            )
 
 
 class IPerf3Server:
@@ -342,10 +340,6 @@ class IPerf3Client:
         # Send bi- (2) or uni- (1) directional traffic.
         cmd_options.add_with_value_from_dict(
             u"traffic_directions", u"traffic_directions", kwargs, 1)
-
-        # Traffic warm-up time in seconds, (0=disable).
-        cmd_options.add_with_value_from_dict(
-            u"warmup_time", u"warmup_time", kwargs, 5.0)
 
         # L2 frame size to send (without padding and IPG).
         cmd_options.add_with_value_from_dict(
