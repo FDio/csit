@@ -400,11 +400,16 @@ class Data:
         )
         for key in self._data.keys():
             logging.info(f"\n\nDataframe {key}:\n")
-            self._data[key] = pd.concat(
-                data_lists[key],
-                ignore_index=True,
-                copy=False
-            )    
+            if len(data_lists[key]) == 0:
+                self._data[key] = pd.DataFrame()
+            elif len(data_lists[key]) == 1:
+                self._data[key] = data_lists[key][0]
+            else:
+                self._data[key] = pd.concat(
+                    data_lists[key],
+                    ignore_index=True,
+                    copy=False
+                )
             self._data[key].info(verbose=True, memory_usage="deep")
             err_msg = self._validate_columns(key)
             if err_msg:

@@ -19,6 +19,7 @@
     - dut_type
     - dut_version
     - hosts
+    - tg_type
     - start_time
     - passed
     - test_id
@@ -43,6 +44,7 @@
     - dut_type
     - dut_version
     - hosts
+    - tg_type
     - start_time
     - passed
     - test_id
@@ -386,6 +388,7 @@
     - build
     - dut_type
     - dut_version
+    - tg_type
     - hosts
     - start_time
     - passed
@@ -408,6 +411,7 @@
     - build
     - dut_type
     - dut_version
+    - tg_type
     - hosts
     - start_time
     - passed
@@ -512,6 +516,7 @@
     - build
     - dut_type
     - dut_version
+    - tg_type
     - start_time
     - passed
     - test_id
@@ -530,6 +535,7 @@
     - build
     - dut_type
     - dut_version
+    - tg_type
     - passed
     - test_id
     - version
