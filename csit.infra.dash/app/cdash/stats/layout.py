@@ -92,15 +92,16 @@ class Layout:
             "tbed": list()
         }
         for job in jobs:
+            idx = -3 if "-x-" in job else -2
             lst_job = job.split("-")
             d_job_info["job"].append(job)
             d_job_info["dut"].append(lst_job[1])
             d_job_info["ttype"].append(lst_job[3])
             d_job_info["cadence"].append(lst_job[4])
-            d_job_info["tbed"].append("-".join(lst_job[-2:]))
+            d_job_info["tbed"].append("-".join(lst_job[idx:]))
         self._job_info = pd.DataFrame.from_dict(d_job_info)
 
-        self._default = set_job_params(self._job_info, C.STATS_DEFAULT_JOB)
+        self._default = set_job_params(self._job_info, d_job_info["job"][0])
 
         tst_info = {
             "job": list(),
