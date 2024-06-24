@@ -566,14 +566,13 @@
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${results} = | Create List
-| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | FOR | ${i} | IN RANGE | ${1}
 | | | ${rr} = | iPerf Client Start Remote Exec
 | | | ... | ${nodes['${iperf_client_node}']}
-| | | ... | duration=${trial_duration}
-| | | ... | rate=${rate}
-| | | ... | frame_size=${frame_size}
+| | | ... | duration=${1.0}
+| | | ... | rate=${2.0}
+| | | ... | frame_size=${222}
 | | | ... | async_call=False
-| | | ... | warmup_time=0
 | | | ... | traffic_directions=${traffic_directions}
 | | | ... | namespace=${iperf_client_namespace}
 | | | ... | udp=${iperf_client_udp}
