@@ -16,6 +16,7 @@ services:
       CSIT_START_DOC: "True"
       CSIT_TITLE: "FD.io CSIT"
       CSIT_BRAND: "CSIT-Dash"
+      CSIT_CICD_TYPE: "jenkins"
       CSIT_URL_CICD: "https://jenkins.fd.io/job/"
       CSIT_URL_LOGS: "https://logs.fd.io/vex-yul-rot-jenkins-1/"
       CSIT_URL_DOC: "https://csit.fd.io/cdocs/"

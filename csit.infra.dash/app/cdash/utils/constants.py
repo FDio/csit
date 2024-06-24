@@ -118,15 +118,18 @@ class Constants:
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
-    # URL to Jenkins
+    # CICD type.
+    CICD_TYPE = get_str_from_env("CICD_TYPE", "jenkins")
+
+    # URL to CICD.
     URL_CICD = get_str_from_env("URL_CICD", "https://jenkins.fd.io/job/")
 
-    # URL to logs
+    # URL to logs.
     URL_LOGS = get_str_from_env(
         "URL_LOGS", "https://logs.fd.io/vex-yul-rot-jenkins-1/"
     )
 
-    # URL to the documentation
+    # URL to the documentation.
     URL_DOC = get_str_from_env("URL_DOC", "https://csit.fd.io/cdocs/")
     URL_DOC_TRENDING = URL_DOC + "methodology/trending/analysis/"
     URL_DOC_REL_NOTES = URL_DOC + "release_notes/current/"
