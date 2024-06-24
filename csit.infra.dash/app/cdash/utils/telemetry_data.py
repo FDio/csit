@@ -64,7 +64,7 @@ class TelemetryData:
         df = pd.concat(lst_items, ignore_index=True, copy=False)
 
         # Use only neccessary data:
-        df = df[[
+        df = df[df.columns.intersection([
             "job",
             "build",
             "dut_type",
@@ -81,7 +81,8 @@ class TelemetryData:
             "result_ndr_lower_rate_value",
             "result_ndr_lower_rate_unit",
             "telemetry"
-        ]]
+        ])]
+
         # Transform metrics from strings to dataframes:
         lst_telemetry = list()
         for _, row in df.iterrows():
