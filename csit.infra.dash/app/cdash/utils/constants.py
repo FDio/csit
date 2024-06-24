@@ -490,9 +490,6 @@ class Constants:
     # Layout of plot.ly graphs.
     STATS_GRAPH_LAYOUT_FILE = "cdash/stats/layout.yaml"
 
-    # The default job displayed when the page is loaded first time.
-    STATS_DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
-
     # Default name of downloaded file with selected data.
     STATS_DOWNLOAD_FILE_NAME = "stats.csv"
 

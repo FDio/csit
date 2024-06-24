@@ -286,12 +286,13 @@ def set_job_params(df: pd.DataFrame, job: str) -> dict:
     """
 
     l_job = job.split("-")
+    idx = -3 if "-x-" in job else -2
     return {
         "job": job,
         "dut": l_job[1],
         "ttype": l_job[3],
         "cadence": l_job[4],
-        "tbed": "-".join(l_job[-2:]),
+        "tbed": "-".join(l_job[idx:]),
         "duts": generate_options(get_duts(df)),
         "ttypes": generate_options(get_ttypes(df, l_job[1])),
         "cadences": generate_options(get_cadences(df, l_job[1], l_job[3])),
