@@ -298,6 +298,7 @@ class VPPUtil:
             u"trace add vhost-user-input 50",
             u"trace add memif-input 50",
             u"trace add avf-input 50"
+            u"trace add virtio-input 50"
         ]
 
         for cmd in cmds:
