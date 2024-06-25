@@ -1970,6 +1970,17 @@ class InterfaceUtil:
         )
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+        cmd = u"sw_interface_set_tx_placement"
+        err_msg = f"Failed to set interface TX placement to worker " \
+            f"on host {node[u'host']}!"
+        args = dict(
+            sw_if_index=sw_if_index,
+            queue_id=queue_id,
+            array_size=1,
+            threads=[worker_id + 1],
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_round_robin_rx_placement(

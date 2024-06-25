@@ -598,6 +598,7 @@ class CpuUtils:
             compute_resource_info["rxd_count_int"] = rxd
             compute_resource_info["txd_count_int"] = txd
             compute_resource_info["rxq_count_int"] = rxq_count_int
+            compute_resource_info["txq_count_int"] = rxq_count_int
             compute_resource_info["fp_count_int"] = fp_count_int
             compute_resource_info["dp_count_int"] = dp_count_int
 
