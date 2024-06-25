@@ -103,7 +103,7 @@
 | | ... | Get Affinity NF | ${nodes} | ${dut}
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
-| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
+| | ... | vs_dtc=${10} | nf_dtc=${10} | nf_dtcr=${nf_dtcr}
 | | &{cont_args}= | Create Dictionary
 | | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
 | | ... | root=${root} | page_size=${page_size}
@@ -247,6 +247,7 @@
 | | ... | ELSE
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
+| | ... | xq_num=${rxq_count_int}
 
 | Stop all '${group}' containers
 | | [Documentation] | Stop all container(s) in specific container group on all
