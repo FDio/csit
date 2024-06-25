@@ -298,7 +298,8 @@ class DUTSetup:
                 return sriov_numvfs
 
     @staticmethod
-    def set_sriov_numvfs(node, pf_pci_addr, path="devices", numvfs=0):
+    def set_sriov_numvfs(
+            node, pf_pci_addr, path="devices", numvfs=0, skip_check=True):
         """Init or reset SR-IOV virtual functions by setting its number on PCI
         device on DUT. Setting to zero removes all VFs.
 
@@ -306,10 +307,12 @@ class DUTSetup:
         :param pf_pci_addr: Physical Function PCI device address.
         :param path: Either device or driver.
         :param numvfs: Number of VFs to initialize, 0 - removes the VFs.
+        :param skip_check: Return anyway.
         :type node: dict
         :type pf_pci_addr: str
         :type path: str
         :type numvfs: int
+        :type skip_check: bool
         :raises RuntimeError: Failed to create VFs on PCI.
         """
         cmd = f"test -f /sys/bus/pci/{path}/{pf_pci_addr}/sriov_numvfs"
@@ -319,6 +322,9 @@ class DUTSetup:
             if numvfs == 0:
                 # sriov is not supported and we want 0 VFs
                 # no need to do anything
+                return
+            if numvfs > 0 AND skip_check:
+                # we may be in VM
                 return
 
             raise RuntimeError(
