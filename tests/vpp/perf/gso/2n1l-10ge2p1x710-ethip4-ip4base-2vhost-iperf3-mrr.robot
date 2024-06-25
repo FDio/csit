@@ -94,7 +94,7 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
@@ -113,14 +113,6 @@
 | | Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
-| 128KB-1c-ethip4-ip4base-2vhost-iperf3-mrr
-| | [Tags] | 128KB | 1C
-| | frame_size=${128000} | phy_cores=${1}
-
-| 128KB-2c-ethip4-ip4base-2vhost-iperf3-mrr
-| | [Tags] | 128KB | 2C
-| | frame_size=${128000} | phy_cores=${2}
-
-| 128KB-4c-ethip4-ip4base-2vhost-iperf3-mrr
-| | [Tags] | 128KB | 4C
-| | frame_size=${128000} | phy_cores=${4}
+| 64B-1c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 64B | 1C
+| | frame_size=${64} | phy_cores=${1}
