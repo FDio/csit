@@ -481,7 +481,7 @@
 | | Set Test Variable | ${telemetry_rate} | mrr
 | | Set Test Variable | ${telemetry_export} | ${True}
 | | ${results}= | Send iPerf3 traffic at specified rate
-| | ... | ${trial_duration} | ${None} | ${None}
+| | ... | ${trial_duration} | ${max_rate} | ${frame_size}
 | | ... | ${trial_multiplicity} | ${traffic_directions}
 | | ... | export_mrr_unit=bps
 | | Set Test Message | ${\n}iPerf3 trial results
@@ -566,14 +566,13 @@
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${results} = | Create List
-| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | FOR | ${i} | IN RANGE | ${1}
 | | | ${rr} = | iPerf Client Start Remote Exec
 | | | ... | ${nodes['${iperf_client_node}']}
-| | | ... | duration=${trial_duration}
-| | | ... | rate=${rate}
+| | | ... | duration=${1}
+| | | ... | rate=${5}
 | | | ... | frame_size=${frame_size}
 | | | ... | async_call=False
-| | | ... | warmup_time=0
 | | | ... | traffic_directions=${traffic_directions}
 | | | ... | namespace=${iperf_client_namespace}
 | | | ... | udp=${iperf_client_udp}
