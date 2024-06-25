@@ -90,7 +90,7 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
@@ -104,14 +104,38 @@
 | | Then Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
-| 128KB-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
-| | [Tags] | 128KB | 1C
-| | frame_size=${128000} | phy_cores=${1}
+| 146B-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 146B | 1C
+| | frame_size=${146} | phy_cores=${1}
 
-| 128KB-2c-ethip4-ip4base-2tap-gso-iperf3-mrr
-| | [Tags] | 128KB | 2C
-| | frame_size=${128000} | phy_cores=${2}
+| 146B-2c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 146B | 2C
+| | frame_size=${146} | phy_cores=${2}
 
-| 128KB-4c-ethip4-ip4base-2tap-gso-iperf3-mrr
-| | [Tags] | 128KB | 4C
-| | frame_size=${128000} | phy_cores=${4}
+| 146B-4c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 146B | 4C
+| | frame_size=${146} | phy_cores=${4}
+
+| 1518B-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 1518B | 1C
+| | frame_size=${1518} | phy_cores=${1}
+
+| 1518B-2c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 1518B | 2C
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-4c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 1518B | 4C
+| | frame_size=${1518} | phy_cores=${4}
+
+| 9000B-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 9000B | 1C
+| | frame_size=${9000} | phy_cores=${1}
+
+| 9000B-2c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 9000B | 2C
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-4c-ethip4-ip4base-2tap-gso-iperf3-mrr
+| | [Tags] | 9000B | 4C
+| | frame_size=${9000} | phy_cores=${4}
