@@ -751,9 +751,7 @@ class Regenerator:
             {u"frame_size": 1280, u"phy_cores": 1},
         ]
         iperf3_kwargs_list = [
-            {u"frame_size": 128000, u"phy_cores": 1},
-            {u"frame_size": 128000, u"phy_cores": 2},
-            {u"frame_size": 128000, u"phy_cores": 4}
+            {u"frame_size": 136, u"phy_cores": 1},
         ]
         # List for tests with one dataplane core
         # (and variable number of other cores).
