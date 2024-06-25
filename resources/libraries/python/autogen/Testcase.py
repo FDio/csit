@@ -134,8 +134,8 @@ class Testcase:
         :rtype: Testcase
         """
         template_string = f'''
-| 128KB-${{cores_str}}c-{suite_id}
-| | [Tags] | 128KB | ${{cores_str}}C
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
 | | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
