@@ -323,7 +323,7 @@ class DUTSetup:
                 # sriov is not supported and we want 0 VFs
                 # no need to do anything
                 return
-            if numvfs > 0 AND skip_check:
+            if numvfs > 0 and skip_check:
                 # we may be in VM
                 return
 
