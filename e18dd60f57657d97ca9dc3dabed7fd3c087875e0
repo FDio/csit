@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad81b375_96285eca",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-26T14:07:04Z",
+      "side": 1,
+      "message": "I am indifferent, we can discuss on weekly meeting.",
+      "parentUuid": "9400495a_d7e238c5",
+      "range": {
+        "startLine": 123,
+        "startChar": 26,
+        "endLine": 123,
+        "endChar": 34
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba31fa49_ff076983",
         "filename": "docs/toi/test_code_guidelines.md",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-11T07:01:16Z",
       "side": 1,
       "message": "SHOULD",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 144,
+        "endChar": 8
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2050d4_4b46a13c",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-26T14:07:04Z",
+      "side": 1,
+      "message": "I would like to hear your arguments.",
+      "parentUuid": "ba31fa49_ff076983",
       "range": {
         "startLine": 144,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf57b176_d0feeb7d",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-26T14:07:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f740e62d_bd5d88cd",
+      "range": {
+        "startLine": 234,
+        "startChar": 28,
+        "endLine": 234,
+        "endChar": 35
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3962c056_845b317b",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-06-20T12:31:36Z",
       "side": 1,
       "message": "coding",
+      "range": {
+        "startLine": 308,
+        "startChar": 24,
+        "endLine": 308,
+        "endChar": 31
+      },
+      "revId": "e18dd60f57657d97ca9dc3dabed7fd3c087875e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "014f8407_e7ac5a81",
+        "filename": "docs/toi/test_code_guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-26T14:07:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3962c056_845b317b",
       "range": {
         "startLine": 308,
         "startChar": 24,
