@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -186,13 +186,12 @@
 | | | ... | rate=${None}
 | | | ... | frame_size=${None}
 | | | ... | async_call=True
-| | | ... | warmup_time=0
 | | | ... | traffic_directions=${1}
 | | | ... | namespace=${iperf_client_namespace}
 | | | ... | udp=${iperf_client_udp}
 | | | ... | host=${iperf_server_bind}
 | | | ... | bind=${iperf_client_bind}
-| | | ... | affinity=${iperf_client_affinity}
+#| | | ... | affinity=${iperf_client_affinity}
 | | Run Telemetry On All DUTs
 | | ... | ${nodes} | profile=vppctl_runtime.yaml
 | | ... | rate=${telemetry_rate} | export=${telemetry_export}
