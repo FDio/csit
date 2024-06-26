@@ -197,6 +197,8 @@
 | | ... | Pre-initialize mlx5_core driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${recommended_mtu}
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
