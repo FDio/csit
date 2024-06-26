@@ -196,18 +196,20 @@
 | | [Documentation]
 | | ... | Pre-initialize mlx5_core driver.
 | |
-| | FOR | ${dut} | IN | @{duts}
-| | | Set Interface Flow Control
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
-| | END
+#| | FOR | ${dut} | IN | @{duts}
+#| | | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+#| | | ... | mtu=${recommended_mtu}
+#| | | Set Interface Flow Control
+#| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
+#| | END
 | | ${index}= | Get Index From List | ${TEST TAGS} | DPDK
 | | Run Keyword If | ${index} >= 0 | Return From Keyword
 | | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
-| | | Run Keyword If | ${dpdk_enable_tcp_udp_checksum}
-| | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
-| | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
-| | | ... | ${dut}.Add DPDK No Tx Checksum Offload
+#| | | Run Keyword If | ${dpdk_enable_tcp_udp_checksum}
+#| | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
+#| | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
+#| | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 | | | Run Keyword If | not ${jumbo}
