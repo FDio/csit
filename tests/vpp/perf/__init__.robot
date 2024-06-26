@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,6 +29,7 @@
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True}
+| ... | AND | Stop Vpp Service on All Duts | ${nodes}
 | ... | AND | Finalize Suite Setup Export
 |
 | Suite Teardown | Run Keywords | Start Suite Teardown Export
