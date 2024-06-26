@@ -29,7 +29,8 @@ from yaml import load, FullLoader, YAMLError
 from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.utils import show_tooltip, gen_new_url, get_ttypes, get_cadences, \
-    get_test_beds, get_job, generate_options, set_job_params, navbar_trending
+    get_test_beds, get_job, generate_options, set_job_params, navbar_trending, \
+    get_url_job, get_url_logs
 from ..utils.url_processing import url_decode
 from .graphs import graph_statistics, select_data
 
@@ -197,7 +198,7 @@ class Layout:
             "dd-tbeds-value": self._default["tbed"],
             "al-job-children": html.A(
                 self._default["job"],
-                href=f"{C.URL_CICD}{self._default['job']}",
+                href=get_url_job(self._default["job"]),
                 target="_blank"
             )
         }
@@ -631,10 +632,7 @@ class Layout:
                                 "dd-tbeds-value": job_params["tbed"],
                                 "al-job-children": html.A(
                                     self._default["job"],
-                                    href=(
-                                        f"{C.URL_CICD}"
-                                        f"{self._default['job']}"
-                                    ),
+                                    href=get_url_job(self._default["job"]),
                                     target="_blank"
                                 )
                             },
@@ -655,7 +653,7 @@ class Layout:
                 {
                     "al-job-children": html.A(
                         job,
-                        href=f"{C.URL_CICD}{job}",
+                        href=get_url_job(job),
                         target="_blank"
                     )
                 }
@@ -785,7 +783,7 @@ class Layout:
                             dbc.Badge(lst_itm[0]),
                             html.A(
                                 lst_itm[1],
-                                href=f"{C.URL_LOGS}{lst_itm[1]}",
+                                href=get_url_logs(lst_itm[1]),
                                 target="_blank"
                             )
                         ])
