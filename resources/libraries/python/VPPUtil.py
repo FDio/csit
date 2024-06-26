@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -297,7 +297,8 @@ class VPPUtil:
             u"trace add dpdk-input 50",
             u"trace add vhost-user-input 50",
             u"trace add memif-input 50",
-            u"trace add avf-input 50"
+            u"trace add avf-input 50",
+            u"trace add virtio-input 50",
         ]
 
         for cmd in cmds:
