@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -51,14 +51,24 @@ class Iperf3:
         :returns: Traffic generator version string.
         :rtype: str
         """
-        command = f"iperf3 --version | head -1"
-        message = u"Get iPerf version failed!"
+        command = "iperf3 --version | head -1"
+        message = "Get iPerf version failed!"
         stdout, _ = exec_cmd_no_error(node, command, message=message)
         return stdout.strip()
 
     def initialize_iperf_server(
-            self, node, pf_key, interface, bind, bind_gw, bind_mask,
-            namespace=None, cpu_skip_cnt=0, cpu_cnt=1, instances=1):
+        self,
+        node,
+        pf_key,
+        interface,
+        bind,
+        bind_gw,
+        bind_mask,
+        namespace=None,
+        cpu_skip_cnt=0,
+        cpu_cnt=1,
+        instances=1,
+    ):
         """iPerf3 initialization.
 
         :param node: Topology node running iPerf3 server.
@@ -87,30 +97,41 @@ class Iperf3:
 
         if namespace:
             IPUtil.set_linux_interface_ip(
-                node, interface=interface, ip_addr=bind, prefix=bind_mask,
-                namespace=namespace)
+                node,
+                interface=interface,
+                ip_addr=bind,
+                prefix=bind_mask,
+                namespace=namespace,
+            )
             IPUtil.set_linux_interface_up(
-                node, interface=interface, namespace=namespace)
+                node, interface=interface, namespace=namespace
+            )
             Namespaces.add_default_route_to_namespace(
-                node, namespace=namespace, default_route=bind_gw)
+                node, namespace=namespace, default_route=bind_gw
+            )
 
         # Compute affinity for iPerf server.
         self._s_affinity = CpuUtils.get_affinity_iperf(
-            node, pf_key, cpu_skip_cnt=cpu_skip_cnt,
-            cpu_cnt=cpu_cnt * instances)
+            node, pf_key, cpu_skip_cnt=cpu_skip_cnt, cpu_cnt=cpu_cnt * instances
+        )
         # Compute affinity for iPerf client.
         self._c_affinity = CpuUtils.get_affinity_iperf(
-            node, pf_key, cpu_skip_cnt=cpu_skip_cnt + cpu_cnt * instances,
-            cpu_cnt=cpu_cnt * instances)
+            node,
+            pf_key,
+            cpu_skip_cnt=cpu_skip_cnt + cpu_cnt * instances,
+            cpu_cnt=cpu_cnt * instances,
+        )
 
         for i in range(0, instances):
             Iperf3.start_iperf_server(
-                node, namespace=namespace, port=5201 + i,
-                affinity=self._s_affinity)
+                node,
+                namespace=namespace,
+                port=5201 + i,
+                affinity=self._s_affinity,
+            )
 
     @staticmethod
-    def start_iperf_server(
-            node, namespace=None, port=5201, affinity=None):
+    def start_iperf_server(node, namespace=None, port=5201, affinity=None):
         """Start iPerf3 server instance as a deamon.
 
         :param node: Topology node running iPerf3 server.
@@ -123,9 +144,11 @@ class Iperf3:
         :type affinity: str
         """
         cmd = IPerf3Server.iperf3_cmdline(
-            namespace=namespace, port=port, affinity=affinity)
+            namespace=namespace, port=port, affinity=affinity
+        )
         exec_cmd_no_error(
-            node, cmd, sudo=True, message=u"Failed to start iPerf3 server!")
+            node, cmd, sudo=True, message="Failed to start iPerf3 server!"
+        )
 
     @staticmethod
     def is_iperf_running(node):
@@ -136,7 +159,7 @@ class Iperf3:
         :returns: True if iPerf3 is running otherwise False.
         :rtype: bool
         """
-        ret, _, _ = exec_cmd(node, u"pgrep iperf3", sudo=True)
+        ret, _, _ = exec_cmd(node, "pgrep iperf3", sudo=True)
         return bool(int(ret) == 0)
 
     @staticmethod
@@ -146,8 +169,8 @@ class Iperf3:
         :param node: Topology node running iPerf3.
         :type node: dict
         """
-        pidfile = u"/tmp/iperf3_server.pid"
-        logfile = u"/tmp/iperf3.log"
+        pidfile = "/tmp/iperf3_server.pid"
+        logfile = "/tmp/iperf3.log"
 
         exec_cmd_no_error(
             node,
@@ -156,12 +179,24 @@ class Iperf3:
             f"cat {logfile}; "
             f"rm {logfile}; "
             f"fi'",
-            sudo=True, message=u"iPerf3 kill failed!")
+            sudo=True,
+            message="iPerf3 kill failed!",
+        )
 
     def iperf_client_start_remote_exec(
-            self, node, duration, rate, frame_size, async_call=False,
-            warmup_time=0, traffic_directions=1, namespace=None, udp=False,
-            host=None, bind=None, affinity=None):
+        self,
+        node,
+        duration,
+        rate,
+        frame_size,
+        async_call=False,
+        traffic_directions=1,
+        namespace=None,
+        udp=False,
+        host=None,
+        bind=None,
+        affinity=None,
+    ):
         """Execute iPerf3 client script on remote node over ssh to start running
         traffic.
 
@@ -170,7 +205,6 @@ class Iperf3:
         :param rate: Traffic rate.
         :param frame_size: L2 frame size to send (without padding and IPG).
         :param async_call: If enabled then don't wait for all incoming traffic.
-        :param warmup_time: Warmup time period.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 1
         :param namespace: Namespace to execute iPerf3 client on.
@@ -183,7 +217,6 @@ class Iperf3:
         :type rate: str
         :type frame_size: str
         :type async_call: bool
-        :type warmup_time: float
         :type traffic_directions: int
         :type namespace: str
         :type udp: bool
@@ -195,31 +228,31 @@ class Iperf3:
         """
         if not isinstance(duration, (float, int)):
             duration = float(duration)
-        if not isinstance(warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
         if not affinity:
             affinity = self._c_affinity
 
         kwargs = dict()
         if namespace:
-            kwargs[u"namespace"] = namespace
-        kwargs[u"host"] = host
-        kwargs[u"bind"] = bind
-        kwargs[u"udp"] = udp
+            kwargs["namespace"] = namespace
+        kwargs["host"] = host
+        kwargs["bind"] = bind
+        kwargs["udp"] = udp
         if affinity:
-            kwargs[u"affinity"] = affinity
-        kwargs[u"duration"] = duration
-        kwargs[u"rate"] = rate
-        kwargs[u"frame_size"] = frame_size
-        kwargs[u"warmup_time"] = warmup_time
-        kwargs[u"traffic_directions"] = traffic_directions
-        kwargs[u"async_call"] = async_call
+            kwargs["affinity"] = affinity
+        kwargs["duration"] = duration
+        kwargs["rate"] = rate
+        kwargs["frame_size"] = frame_size
+        kwargs["traffic_directions"] = traffic_directions
+        kwargs["async_call"] = async_call
 
         cmd = IPerf3Client.iperf3_cmdline(**kwargs)
 
         stdout, _ = exec_cmd_no_error(
-            node, cmd, timeout=int(duration) + 30,
-            message=u"iPerf3 runtime error!")
+            node,
+            cmd,
+            timeout=int(duration) + 30,
+            message="iPerf3 runtime error!",
+        )
 
         if async_call:
             return stdout.split()
@@ -237,7 +270,8 @@ class Iperf3:
 
         for pid in pids:
             exec_cmd_no_error(
-                node, f"kill {pid}", sudo=True, message=u"Kill iPerf3 failed!")
+                node, f"kill {pid}", sudo=True, message="Kill iPerf3 failed!"
+            )
 
 
 class IPerf3Server:
@@ -253,46 +287,42 @@ class IPerf3Server:
         :rtype: OptionString
         """
         cmd = OptionString()
-        if kwargs['namespace']:
+        if kwargs["namespace"]:
             cmd.add(f"ip netns exec {kwargs['namespace']}")
-        cmd.add(f"iperf3")
+        cmd.add("iperf3")
 
-        cmd_options = OptionString(prefix=u"--")
+        cmd_options = OptionString(prefix="--")
         # Run iPerf in server mode. (This will only allow one iperf connection
         # at a time)
-        cmd_options.add(
-            u"server")
+        cmd_options.add("server")
 
         # Run the server in background as a daemon.
-        cmd_options.add_if_from_dict(
-            u"daemon", u"daemon", kwargs, True)
+        cmd_options.add_if_from_dict("daemon", "daemon", kwargs, True)
 
         # Write a file with the process ID, most useful when running as a
         # daemon.
         cmd_options.add_with_value_from_dict(
-            u"pidfile", u"pidfile", kwargs, f"/tmp/iperf3_server.pid")
+            "pidfile", "pidfile", kwargs, "/tmp/iperf3_server.pid"
+        )
 
         # Send output to a log file.
         cmd_options.add_with_value_from_dict(
-            u"logfile", u"logfile", kwargs, f"/tmp/iperf3.log")
+            "logfile", "logfile", kwargs, "/tmp/iperf3.log"
+        )
 
         # The server port for the server to listen on and the client to
         # connect to. This should be the same in both client and server.
         # Default is 5201.
-        cmd_options.add_with_value_from_dict(
-            u"port", u"port", kwargs, 5201)
+        cmd_options.add_with_value_from_dict("port", "port", kwargs, 5201)
 
         # Set the CPU affinity, if possible (Linux and FreeBSD only).
-        cmd_options.add_with_value_from_dict(
-            u"affinity", u"affinity", kwargs)
+        cmd_options.add_with_value_from_dict("affinity", "affinity", kwargs)
 
         # Output in JSON format.
-        cmd_options.add_if_from_dict(
-            u"json", u"json", kwargs, True)
+        cmd_options.add_if_from_dict("json", "json", kwargs, True)
 
         # Give more detailed output.
-        cmd_options.add_if_from_dict(
-            u"verbose", u"verbose", kwargs, True)
+        cmd_options.add_if_from_dict("verbose", "verbose", kwargs, True)
 
         return cmd.extend(cmd_options)
 
@@ -310,61 +340,49 @@ class IPerf3Client:
         :rtype: OptionString
         """
         cmd = OptionString()
-        cmd.add(u"python3")
+        cmd.add("python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/resources/tools/iperf"
         cmd.add(f"'{dirname}/iperf_client.py'")
 
-        cmd_options = OptionString(prefix=u"--")
+        cmd_options = OptionString(prefix="--")
         # Namespace to execute iPerf3 client on.
-        cmd_options.add_with_value_from_dict(
-            u"namespace", u"namespace", kwargs)
+        cmd_options.add_with_value_from_dict("namespace", "namespace", kwargs)
 
         # Client connecting to an iPerf3 server running on host.
-        cmd_options.add_with_value_from_dict(
-            u"host", u"host", kwargs)
+        cmd_options.add_with_value_from_dict("host", "host", kwargs)
 
         # Client bind IP address.
-        cmd_options.add_with_value_from_dict(
-            u"bind", u"bind", kwargs)
+        cmd_options.add_with_value_from_dict("bind", "bind", kwargs)
 
         # Use UDP rather than TCP.
-        cmd_options.add_if_from_dict(
-            u"udp", u"udp", kwargs, False)
+        cmd_options.add_if_from_dict("udp", "udp", kwargs, False)
 
         # Set the CPU affinity, if possible.
-        cmd_options.add_with_value_from_dict(
-            u"affinity", u"affinity", kwargs)
+        cmd_options.add_with_value_from_dict("affinity", "affinity", kwargs)
 
         # Time expressed in seconds for how long to send traffic.
-        cmd_options.add_with_value_from_dict(
-            u"duration", u"duration", kwargs)
+        cmd_options.add_with_value_from_dict("duration", "duration", kwargs)
 
         # Send bi- (2) or uni- (1) directional traffic.
         cmd_options.add_with_value_from_dict(
-            u"traffic_directions", u"traffic_directions", kwargs, 1)
-
-        # Traffic warm-up time in seconds, (0=disable).
-        cmd_options.add_with_value_from_dict(
-            u"warmup_time", u"warmup_time", kwargs, 5.0)
+            "traffic_directions", "traffic_directions", kwargs, 1
+        )
 
         # L2 frame size to send (without padding and IPG).
-        cmd_options.add_with_value_from_dict(
-            u"frame_size", u"frame_size", kwargs)
+        cmd_options.add_with_value_from_dict("frame_size", "frame_size", kwargs)
 
         # Traffic rate expressed with units.
-        cmd_options.add_with_value_from_dict(
-            u"rate", u"rate", kwargs)
+        cmd_options.add_with_value_from_dict("rate", "rate", kwargs)
 
         # If enabled then don't wait for all incoming traffic.
-        cmd_options.add_if_from_dict(
-            u"async_start", u"async_call", kwargs, False)
+        cmd_options.add_if_from_dict("async_start", "async_call", kwargs, False)
 
         # Number of iPerf3 client parallel instances.
         cmd_options.add_with_value_from_dict(
-            u"instances", u"instances", kwargs, 1)
+            "instances", "instances", kwargs, 1
+        )
 
         # Number of iPerf3 client parallel flows.
-        cmd_options.add_with_value_from_dict(
-            u"parallel", u"parallel", kwargs, 8)
+        cmd_options.add_with_value_from_dict("parallel", "parallel", kwargs, 8)
 
         return cmd.extend(cmd_options)
