@@ -3,6 +3,11 @@ bookHidden: true
 title: "CSIT Test Code Guidelines"
 ---
 
+<!--
+  ~ SPDX-License-Identifier: CC-BY-4.0
+  ~ Copyright (c) 2024 Cisco Systems, Inc.
+  -->
+
 # CSIT Test Code Guidelines
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
