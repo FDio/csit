@@ -721,7 +721,7 @@ def show_trending_graph_data(
                 dbc.Badge(lst_itm[0]),
                 html.A(
                     lst_itm[1],
-                    href=f"{C.URL_LOGS}{lst_itm[1]}",
+                    href=get_url_logs(lst_itm[1]),
                     target="_blank"
                 )
             ])
@@ -853,7 +853,7 @@ def show_iterative_graph_data(
                 continue
             list_group_item = dbc.ListGroupItem([
                 dbc.Badge(k),
-                html.A(v, href=f"{C.URL_LOGS}{v}", target="_blank")
+                html.A(v, href=get_url_logs(v), target="_blank")
             ])
         else:
             list_group_item = dbc.ListGroupItem([dbc.Badge(k), v])
@@ -904,3 +904,45 @@ def show_iterative_graph_data(
     ]
 
     return metadata, graph, True
+
+
+def get_url_job(job: str) -> str:
+    """Generates a URL to CI/CD job.
+
+    :param job: The name of job.
+    :type job: str
+    :raises KeyError: If the job name is not a valid job name.
+    :returns: The URL to CI/CD job.
+    """
+
+    if C.CICD_TYPE == "jenkins":
+        return f"{C.URL_CICD}{job}"
+    elif C.CICD_TYPE == "github":
+        l_j = job.split("-")
+        try:
+            return f"{C.URL_CICD}{l_j[0]}-{l_j[1]}-{l_j[2]}-{l_j[4]}.yml"
+        except KeyError:
+            return str()
+    else:
+        return str()
+
+
+def get_url_logs(job_build: str) -> str:
+    """Generates a URL to CI/CD job and its build.
+
+    :param job_build: The name of job and number of build. Its structure is:
+        "<job name>/<build number>".
+    :type job: str
+    :raises KeyError: If the job name is not a valid job name.
+    :returns: The URL to CI/CD build.
+    """
+
+    if C.CICD_TYPE == "jenkins":
+        return f"{C.URL_LOGS}{job_build}"
+    elif C.CICD_TYPE == "github":
+        try:
+            return f"{C.URL_LOGS}{job_build.split('/')[1]}"
+        except KeyError:
+            return str()
+    else:
+        return str()
