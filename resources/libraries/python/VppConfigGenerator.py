@@ -197,7 +197,7 @@ class VppConfigGenerator:
         path = ["node", "default", "variant"]
         self.add_config_item(self._nodeconfig, variant, path)
 
-    def add_api_segment_gid(self, value="vpp"):
+    def add_api_segment_gid(self, value="testuser"):
         """Add api-segment gid configuration.
 
         :param value: Gid.
