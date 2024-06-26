@@ -29,6 +29,7 @@
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True}
+| ... | AND | Stop Vpp Service on All Duts | ${nodes}
 | ... | AND | Finalize Suite Setup Export
 |
 | Suite Teardown | Run Keywords | Start Suite Teardown Export
