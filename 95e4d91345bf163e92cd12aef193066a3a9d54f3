@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dafa4301_7677754a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-06-26T08:06:41Z",
+      "side": 1,
+      "message": "terraform-cdash-deploy",
+      "revId": "95e4d91345bf163e92cd12aef193066a3a9d54f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
