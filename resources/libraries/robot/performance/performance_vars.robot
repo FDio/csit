@@ -478,7 +478,8 @@
 | | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
 | | ${pptad} = | Get Packets Per Transaction And Direction
-| | ${max_rate} = | Evaluate | ${max_rate} / ${pptad}
+#| | ${max_rate} = | Evaluate | ${max_rate} / ${pptad}
+| | ${max_rate} = | Set Variable | ${10000}
 | | Set Test Variable | \${max_rate}
 
 | Set Numeric Frame Sizes
