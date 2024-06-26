@@ -801,10 +801,13 @@ class VppInitConfig:
                 vpp_config.add_statseg_per_node_counters("on")
                 vpp_config.add_plugin("disable", "default")
                 vpp_config.add_plugin("enable", "dpdk_plugin.so")
+                vpp_config.add_buffers_per_numa(215040)
                 vpp_config.add_dpdk_dev(
                     *[node["interfaces"][interface].get("pci_address") \
                         for interface in node["interfaces"]]
                 )
+                vpp_config.add_dpdk_dev_default_rxq(2)
+                vpp_config.add_dpdk_no_multi_seg()
                 vpp_config.add_ip6_hash_buckets(2000000)
                 vpp_config.add_ip6_heap_size("4G")
                 vpp_config.apply_config()

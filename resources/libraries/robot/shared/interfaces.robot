@@ -197,8 +197,10 @@
 | | ... | Pre-initialize mlx5_core driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Set Interface Flow Control
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
+| | | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${recommended_mtu}
+#| | | Set Interface Flow Control
+#| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
 | | ${index}= | Get Index From List | ${TEST TAGS} | DPDK
 | | Run Keyword If | ${index} >= 0 | Return From Keyword
