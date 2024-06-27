@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest nic_intel-e810cqANDgso_*",
       "revId": "41a523978ec5023041b99004c0438952c2a631b1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f626f6_9638ab79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-27T08:11:12Z",
+      "side": 1,
+      "message": "Still doing something wrong with CPU affinity in vhost tests.",
+      "revId": "41a523978ec5023041b99004c0438952c2a631b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
