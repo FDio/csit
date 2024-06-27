@@ -35,7 +35,6 @@ List of known issues in CSIT 24.06 for DPDK performance tests:
 
 ## Fixed
 
-
 List of fixed issues in CSIT 24.06 for DPDK performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
