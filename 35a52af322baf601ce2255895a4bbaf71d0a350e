@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6d6122a_eb60edce",
+        "filename": "docs/toi/branches.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-06-28T11:22:31Z",
+      "side": 1,
+      "message": "This now only points to [0] https://csit.fd.io/cdocs/overview/csit/branching_strategy/\nbut currently I do not recall the proper .md way to do links within the same site.",
+      "range": {
+        "startLine": 18,
+        "startChar": 26,
+        "endLine": 18,
+        "endChar": 73
+      },
+      "revId": "35a52af322baf601ce2255895a4bbaf71d0a350e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
