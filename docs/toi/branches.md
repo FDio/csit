@@ -42,6 +42,7 @@ The watched jobs are:
 **A. CSIT Operational Branch**
 1. Take the revision string from the last successful build of the **weekly**
    job, e.g. **Revision**: 0f9b20775b4a656b67c7039e2dda4cf676af2b21.
+   This is the hash of the csit repo commit used in that run.
 1. Open [Gerrit](https://gerrit.fd.io).
 1. Go to
    [Browse --> Repositories --> csit --> Branches](https://gerrit.fd.io/r/admin/repos/csit,branches).
@@ -145,9 +146,9 @@ as an example.
 
 **D. CSIT Operational Branch**
 
-1. Manually start (Build with Parameters) the weekly job
+1. Check the latest run of the weekly job
    [csit-vpp-device-2101-ubuntu1804-1n-skx-weekly](https://jenkins.fd.io/view/csit/job/csit-vpp-device-2101-ubuntu1804-1n-skx-weekly)
-1. When it successfully finishes, take the revision string e.g. **Revision**:
+1. When it successfully finishes, take the csit hash string e.g. **Revision**:
    876b6c1ae05bfb1ad54ff253ea021f3b46780fd4 to create a new operational branch
    for the new release.
 1. Open [Gerrit](https://gerrit.fd.io).

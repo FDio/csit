@@ -76,10 +76,11 @@ operational branch.
 
 ## Creating a CSIT Operational Branch
 
-### Run verify weekly job
+### Check verify weekly jobs
 
-`csit-vpp-device-master-<OS>-<arch>-<testbed>-weekly` is run on the CSIT
-development or release branch (e.g. 'master' or 'stable/1606') using the latest
+`csit-vpp-device-weekly-<master_or_release>-<OS>-<arch>-<testbed>`
+are run on the CSIT development or release branch
+(e.g. 'master' or 'rls1606') using the latest
 VPP package set on nexus.fd.io for the associated VPP branch. Any anomalies will
 have the root cause identified and be resolved in the CSIT development branch
 prior to pulling the CSIT operational branch.
@@ -89,11 +90,12 @@ prior to pulling the CSIT operational branch.
 The CSIT operational branch is pulled from the parent CSIT development or
 release branch.
 
-### Run verify semiweekly job
+### Check verify semiweekly jobs
 
-`csit-vpp-device-master-<OS>-<arch>-<testbed>-semiweekly` is run on the CSIT
-operational branch with the latest image of the associated VPP development or
-release branch. This job is run to validate the next reference VPP build for
+`csit-vpp-device-semiweekly-<master_or_release>-<OS>-<arch>-<testbed>`
+is run on the CSIT operational branch
+with the latest image of the associated VPP development or release branch.
+This job is run to validate the next reference VPP build for
 validating the results of all of the csit-vpp-verify* jobs.
 
 ### Update VPP branch to use the new CSIT operational branch
