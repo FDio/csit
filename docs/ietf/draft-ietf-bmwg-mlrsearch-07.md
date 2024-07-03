@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-06
-date: 2024-03-04
+docname: draft-ietf-bmwg-mlrsearch-07
+date: 2024-07-02
 
 ipr: trust200902
 area: ops
@@ -401,6 +401,7 @@ For definitions of the components, see the following sections.
 The architecture also implies the presence of other components, such as the SUT.
 
 These components can be seen as abstractions present in any testing procedure.
+Potocols of communication between components are generally left unspecified.
 
 ### Measurer
 
@@ -415,7 +416,7 @@ It is the responsibility of the measurer to uphold any requirements
 and assumptions present in MLRsearch specification
 (e.g. trial forwarding ratio not being larger than one).
 Implementers have some freedom, for example in the way they deal with
-duplicated frames, or what to return if the tester sent zero frames towards SUT.
+reordered frames, or what to return if the tester sent zero frames towards SUT.
 Implementations are RECOMMENDED to document their behavior
 related to such freedoms in as detailed a way as possible.
 
@@ -440,8 +441,6 @@ For controller inputs, see later section Controller Inputs.
 For controller outputs, see later section Controller Outputs.
 
 ### Manager
-
-The controller gets initiated by the manager once, and subsequently calls
 
 The manager is the component that initializes SUT, the traffic generator
 (tester in [RFC2544] terminology), the measurer and the controller
@@ -503,7 +502,7 @@ how the measurer computes the returned duration values in that case.
 ### Trial Forwarding Ratio
 
 The trial forwarding ratio is a dimensionless floating point value
-that ranges from 0.0 to 1.0, inclusive.
+that ranges from 0.0 to 1.0, both inclusive.
 It is calculated by dividing the number of frames
 successfully forwarded by the SUT
 by the total number of frames expected to be forwarded during the trial.
@@ -541,8 +540,9 @@ and the composite is configured on the measurer by the manager
 before the search starts.
 
 The traffic profile is REQUIRED by [RFC2544]
-to contain some specific quantities, for example frame size.
-Several more specific quantities may be RECOMMENDED.
+to contain some specific quantities, for example data link frame size
+as defined in [RFC1224] section 3.5.
+Several more specific quantities may be RECOMMENDED depending on media type.
 
 Depending on SUT configuration, e.g. when testing specific protocols,
 additional values need to be included in the traffic profile
@@ -550,6 +550,9 @@ and in the test report.
 See other IETF documents.
 
 ## Search Goal
+
+Before defining the input of the controller,
+it is useful to define what the search goal is.
 
 The search goal is a composite consisting of several attributes,
 some of them are required.
@@ -574,9 +577,9 @@ A threshold value for trial durations.
 This attribute is REQUIRED, and the value MUST be positive.
 
 Informally, while MLRsearch is allowed to perform trials shorter than this,
-but results from such short trials have only limited impact on search results.
+the results from such short trials have only limited impact on search results.
 
-The full relation needs definitions is later subsections.
+The full relation needs definitions in later subsections.
 But for example, the conditional throughput
 (definition in subsection Conditional Throughput)
 for this goal will be computed only from trial results
@@ -587,14 +590,13 @@ from trials at least as long as this.
 A threshold value for a particular sum of trial durations.
 This attribute is REQUIRED, and the value MUST be positive.
 
-This uses the duration values returned by the measurer.
+This refers to the duration values returned by the measurer.
 
 Informally, even when looking only at trials done at this goal's
 final trial duration, MLRsearch may spend up to this time measuring
 the same load value.
-If the goal duration sum is larger than
-the goal final trial duration, it means multiple trials need to be measured
-at the same load.
+If the goal duration sum is larger than the goal final trial duration,
+it means multiple trials need to be measured at the same load.
 
 ### Goal Loss Ratio
 
@@ -602,7 +604,7 @@ A threshold value for trial loss ratios.
 REQUIRED attribute, MUST be non-negative and smaller than one.
 
 Informally, if a load causes too many trials with trial loss ratios
-larger than this, the conditional throughput for this goal
+larger than this, the relevant lower bound for this goal
 will be smaller than that load.
 
 ### Goal Exceed Ratio
@@ -637,8 +639,8 @@ MUST give the manager other ways to control the search exit condition.
 Absolute load difference and relative load difference are two popular choices,
 but implementations may choose a different way to specify width.
 
-Informally, this acts as a stopping condition, controlling the precision
-of the search.
+Informally, this acts as a stopping condition,
+controlling the precision of the search.
 The search stops if every goal has reached its precision.
 
 ## Controller Inputs
@@ -665,8 +667,9 @@ Any goal result instance can be either regular or irregular.
 MLRsearch specification puts requirements on regular goal result instances.
 Any instance that does not meet the requirements is deemed irregular.
 
-Implementations are free to define their own irregular goal results,
-but the manager MUST report them clearly as not regular according to this section.
+Implementations are free to define their own specific subtypes
+of irregular goal results, but the manager MUST report them clearly
+as not regular according to this section.
 
 All attribute values in one goal result instance
 are related to a single search goal instance,
@@ -683,7 +686,7 @@ have zero loss, as the relevant upper bound does not exist in that case.
 
 ### Relevant Upper Bound
 
-The relevant upper bound is the smallest intended load value that is classified
+The relevant upper bound is the smallest trial load value that is classified
 at the end of the search as an upper bound (see Appendix A)
 for the given search goal.
 This is a REQUIRED attribute.
@@ -694,7 +697,7 @@ in combination with the goal exceed ratio.
 
 ### Relevant Lower Bound
 
-The relevant lower bound is the largest intended load value
+The relevant lower bound is the largest trial load value
 among those smaller than the relevant upper bound
 that got classified at the end of the search
 as a lower bound (see Appendix A) for the given search goal.
@@ -718,15 +721,15 @@ This is a RECOMMENDED attribute.
 
 Informally, this is a typical forwarding rate expected to be seen
 at the relevant lower bound of the given search goal.
-But frequently just a conservative estimate thereof,
+But frequently it is only a conservative estimate thereof,
 as MLRsearch implementations tend to stop gathering more data
-as soon as they confirm the result cannot get worse than this estimate
+as soon as they confirm the value cannot get worse than this estimate
 within the goal duration sum.
 
 ## Search Result
 
 The search result is a single composite object
-that maps each search goal to a corresponding goal result.
+that maps each search goal instance to a corresponding goal result instance.
 
 In other words, search result is an unordered list of key-value pairs,
 where no two pairs contain equal keys.
@@ -734,7 +737,8 @@ The key is a search goal instance, acting as the given search goal
 for the goal result instance in the value portion of the key-value pair.
 
 The search result (as a mapping)
-MUST map from all the search goals present in the controller input.
+MUST map from all the search goal instances present in the controller input.
+The search goal instances MAY be irregular.
 
 ## Controller Outputs
 
@@ -1058,7 +1062,7 @@ are good for comparability between different implementations.
 For comparability between different SUTs using the same implementation,
 refer to configurations recommended by that particular implementation.
 
-## [RFC2544] compliance
+## [RFC2544] Compliance
 
 The following search goal ensures unconditional compliance with
 [RFC2544] throughput search procedure:
