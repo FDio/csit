@@ -543,6 +543,23 @@
       "message": "csit-vpp-report-cov-3n-tsh-perftest srv6-00",
       "revId": "7bdcf6bc75896688b50ddffee1fd2302e1b43b53",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a29a0d3_da4b33d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-07-06T10:23:31Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3na-spr-perftest crypto-05",
+      "revId": "7bdcf6bc75896688b50ddffee1fd2302e1b43b53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
