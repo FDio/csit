@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-06
-date: 2024-03-04
+docname: draft-ietf-bmwg-mlrsearch-07
+date: 2024-07-08
 
 ipr: trust200902
 area: ops
@@ -74,6 +74,8 @@ and supporting the search for multiple goals with varying loss ratios.
     If another engine is used, convert to this way:
     https://stackoverflow.com/a/20885980
 {:/comment}
+
+TODO: Each RFC reference should mentions specific subsection.
 
 # Purpose and Scope
 
@@ -388,317 +390,593 @@ inconsistent trial results remains an open problem.
 # MLRsearch Specification
 
 This chapter focuses on technical definitions needed for evaluating
-whether a particular test procedure adheres to MLRsearch specification.
+whether a particular test procedure complies with MLRsearch specification.
 
-For motivations, explanations, and other comments see other chapters.
+TODO: Unify "the" before "MLRsearch specification" when text is stable.
 
-## MLRsearch Architecture
+TODO: Recheck the definition dependencies go bottom-up.
 
-MLRsearch architecture consists of three main components:
-the manager, the controller, and the measurer.
-For definitions of the components, see the following sections.
+For additional motivations, explanations, and other comments see other chapters.
 
-The architecture also implies the presence of other components, such as the SUT.
+Currently, the discussion paragraphs may contain requirements.
+For example, if some quantity must be present in the test report,
+it is useful to mention this after defining the quantity,
+not after defining also the test report.
+TODO: Separate Requirements and Recommendations/Suggestions paragraphs?
+TODO: Which dependency order?
 
-These components can be seen as abstractions present in any testing procedure.
+## Overview
 
-### Measurer
+TODO: Improve style.
 
-The measurer is the component that performs one trial
-as described in [RFC2544] section 23.
+While definitions are ordered by their direct dependencies,
+in discussion paragraphs it is useful to refer to terms properly defined later.
+This section gives a quick introduction to some of such terms.
 
-Specifically, one call to the measurer accepts a trial load value
-and trial duration value, performs the trial, and returns
-the measured trial loss ratio, and optionally a different duration value.
+MLRsearch specification describes co-called MLRsearch architecture.
+There are components, acting as functions with specified inputs and outputs.
 
-It is the responsibility of the measurer to uphold any requirements
-and assumptions present in MLRsearch specification
-(e.g. trial forwarding ratio not being larger than one).
-Implementers have some freedom, for example in the way they deal with
-duplicated frames, or what to return if the tester sent zero frames towards SUT.
-Implementations are RECOMMENDED to document their behavior
-related to such freedoms in as detailed a way as possible.
+A test procedure is said to comply with MLRsearch specification
+if it can be conceptually divided into analogous components,
+each satisfying requirements for the corresponding MLRsearch component.
 
-Implementations MUST document any deviations from RFC documents,
-for example if the wait time around traffic
-is shorter than what [RFC2544] section 23 specifies.
+The measurer component is tasked to perform trials,
+the controller component is tasked to select trial loads and durations,
+the manager component is tasked to pre-configure everything
+and to produce the test report.
+The test report explicitly states search goals (as the controller inputs)
+and corresponding goal results (controller outputs).
+TODO: Find a good reference for the test report, seems only implicit in RFC2544.
 
-### Controller
+The manager calls the controller once,
+the controller keeps calling the measurer
+until all exit conditions are met.
 
-The controller selects trial load and duration values
-to achieve the search goals in the shortest expected time.
+The part where controller calls the measurer is called the search.
+Any activity done by the manager before it calls the controller
+(or after the controller returns) is not considered to be part of the search.
 
-The controller calls the measurer multiple times,
-receiving the trial result from each call.
-After exit condition is met, the controller returns
-the overall search results.
+## General Considerations
 
-The controller's role in optimizing trial load and duration selection
-distinguishes MLRsearch algorithms from simpler search procedures.
+MLRsearch specification defines various quantities.
+In general, MLRsearch specification does not require particular units to be used,
+but it is REQUIRED for the test report to state all the units.
+For example, ratio quantities can be dimensionless numbers between zero and one,
+but may be expressed as percentages instead.
 
-For controller inputs, see later section Controller Inputs.
-For controller outputs, see later section Controller Outputs.
+For convenience, a group of quantities can be treated as a composite quantity,
+One constituent of a composite quantity is called an attribute,
+and a group of attribute values is called an instance of that composite quantity.
 
-### Manager
+Some attributes are not independent from others,
+and they can be calculated from other attributes.
+Such quantites are called derived quantities.
 
-The controller gets initiated by the manager once, and subsequently calls
+## Existing Terms
 
-The manager is the component that initializes SUT, the traffic generator
-(tester in [RFC2544] terminology), the measurer and the controller
-with intended configurations.
-It then calls the controller once, and receives its outputs.
+These terms are already defined in earlier documents, (TODO: memos?)
+and apply in this document without any changes.
 
-The manager is also responsible for creating reports in the appropriate format,
-based on information in controller outputs.
+Only two existing terms are mentioned in definitions.
+Discussion paragraphs may mention other existing terms.
+TODO: List those other existing terms.
 
-## Units
+TODO: Mention DUT and tester here, not in subsections?
 
-The specification deals with physical quantities, so it is assumed
-each numeric value is accompanied by an appropriate physical unit.
+### SUT
 
-The specification does not state which unit is appropriate,
-but implementations MUST make it explicit which unit is used
-for each value provided or received by the user.
+As defined in [RFC2285] (section 3.1.2 System Under Test (SUT)).
 
-For example, load quantities (including the conditional throughput)
-returned by the controller are defined to be based on a single-interface
-(unidirectional) loads.
-For bidirectional traffic, users are likely
-to expect bidirectional throughput quantities, so the manager is responsible
-for making its report clear.
+Definition:
 
-## SUT
-
-As defined in [RFC2285]:
 The collective set of network devices to which stimulus is offered
 as a single entity and response measured.
 
-## Trial
+Discussion:
 
-A trial is the part of the test described in [RFC2544] section 23.
+SUT consisting of a single network device is also allowed.
 
-### Trial Load
+DUT, as a sub-component of SUT, is not directly mentioned
+in the MLRsearch specification, but is of relevance for its motivation.
 
-The trial load is the intended constant load for a trial.
+### Trial
 
-Load is the quantity implied by Constant Load of [RFC1242],
-Data Rate of [RFC2544] and Intended Load of [RFC2285].
-All three specify this value applies to one (input or output) interface.
+Definition:
+
+A trial is the part of the test described in [RFC2544]
+(section 23. Trial description).
+
+It is ALLOWED for the test procedure to deviate from [RFC2544],
+but any such deviation MUST be made explicit in the test report.
+TODO: Strictly a change from rfc2544.
+
+Discussion:
+
+We say a trial is performed or measured. (TODO: reword without "we say")
+
+Trials are the only stimuli the SUT is expected to experience
+during the search.
+
+Measuring trials is the responsibility of the measurer component.
+One call, one trial.
+
+In some discussion paragraphs, it is useful to consider the traffic
+as sent and received by a tester, as implicitly defined
+in [RFC2544] (section 6. Test set up).
+
+An example of deviation from [RFC2544] is using shorter wait times.
+TODO: Do not re-send the learning frames?
+TODO: Allow any deviation that never increases the conditional throughput?
+
+## Trial Terms
+
+Subsections of this section define new terms for quantities
+relevant as inputs or outputs of trial, as measured by the measurer component.
 
 ### Trial Duration
 
+Definition:
+
 Trial duration is the intended duration of the traffic for a trial.
 
-In general, this quantity does not include any preparation nor waiting
-described in section 23 of [RFC2544].
+Discussion:
 
-However, the measurer MAY return a duration value that deviates
-from the intended duration.
-This feature can be beneficial for users
-who wish to manage the overall search duration,
-rather than solely the traffic portion of it.
-The manager MUST report
-how the measurer computes the returned duration values in that case.
+In general, this quantity does not include any preparation nor waiting
+described in section 23 of [RFC2544] (section 23. Trial description).
+
+While any positive real value may be provided, some measurer implementations
+MAY limit possible values, e.g. by rounding down to neared integer in seconds.
+In that case, it is RECOMMENDED to give such inputs to the controller
+so the controller only proposes the accepted values.
+Alternatively, the test report MUST present the rounded values
+as search goal attributes.
+
+### Trial Load
+
+Definition:
+
+The trial load is the intended and constant load for a trial.
+
+Discussion:
+
+Trial load is the quantity defined as Constant Load of [RFC1242]
+(section 3.4 Constant Load), Data Rate of [RFC2544]
+(section 14. Bidirectional traffic)
+and Intended Load of [RFC2285] (section 3.5.1 Intended load (Iload)).
+All three definitions specify
+that this value applies to one (input or output) interface.
+
+For test report purposes, multi-interface aggregate load MAY be reported,
+this is understood as the same quantity expressed using different units.
+From the report it MUST be clear whether a particular trial load value
+is per one interface, or an aggregate over all interfaces.
+
+Similarly to trial duration, some measurers may limit the possible values
+of trial load. Contrary to trial duration, the test report is NOT REQUIRED
+to document such behavior. But see discussions in Trial Forwarding Ratio
+and in Measurer for related issues.
+
+### Trial Input
+
+Definition:
+
+Trial input is a composite quantity, consisting of two attributes:
+trial duration and trial load.
+
+Discussion:
+
+When talking about multiple trials, it is common to say "trial inputs"
+to denote all corresponding trial input instances.
+
+A trial input instance acts as the input for one call of the measurer component.
+
+Contrary to other composite quantities, MLRsearch implementations
+are NOT ALLOWED to add optional attributes here.
+This improves interoperability between various implementations of
+the controller and the measurer.
+
+It is ALLOWED to combine trial load and trial duration in a way
+that would not be possible to achieve using any integer number of data frames.
+
+### Traffic profile
+
+Definition:
+
+Traffic profile is a composite quantity
+containing any specifics other than trial load and trial duration,
+needed by the measurer in order to perform one trial.
+
+Discussion:
+
+All its attributes are assumed to be constant during the search,
+and the composite is configured on the measurer by the manager
+before the search starts.
+This is why the traffic profile is not part of the trial input.
+
+The traffic profile SHOULD contain some specific quantities,
+for example [RFC2544] (section 9. Frame sizes) governs
+data link frame size as defined in [RFC1224] (section 3.5 Data link frame size).
+
+Several more specific quantities may be RECOMMENDED, depending on media type.
+For example, [RFC2544] (Appendix C) lists frame formats and protocol addresses,
+as recommended from [RFC2544] (section 8. Frame formats)
+and [RFC2544] (section 12. Protocol addresses).
+
+Depending on SUT configuration, e.g. when testing specific protocols,
+additional attributes MUST to be included in the traffic profile
+and in the test report.
+See other IETF documents.
+
+Example: [RFC8219] (section 5.3. Traffic Setup) introduces traffic setups
+consisting of a mix of IPv4 and IPv6 traffic, the implied traffic profile
+therefore must include an attribute for their percentage.
+
+As a consequence, implementations of the manager and the measurer
+must be aware of their common set of capabilities, so the traffic profile
+uniquely defines the traffic during the search.
+The important fact is none of those capabilities
+have to be known by the controller implementations.
 
 ### Trial Forwarding Ratio
 
-The trial forwarding ratio is a dimensionless floating point value
-that ranges from 0.0 to 1.0, inclusive.
+Definition:
+
+The trial forwarding ratio is a dimensionless floating point value.
+It MUST range between 0.0 and 1.0, both inclusive.
 It is calculated by dividing the number of frames
 successfully forwarded by the SUT
 by the total number of frames expected to be forwarded during the trial.
 
+Discussion:
+
+Trial forwarding ratio MAY be expressed in other units
+(e.g. as a percentage) in the test report.
+
 Note that, contrary to loads, frame counts used to compute
-trial forwarding ratio are aggregates over all SUT output ports.
+trial forwarding ratio are aggregates over all SUT output interfaces.
 
 Questions around what is the correct number of frames
-that should have been forwarded is outside of the scope of this document.
-E.g. what should the measurer return when it detects
-that the offered load differs significantly from the intended load.
+that should have been forwarded
+is generally outside of the scope of this document.
+See discussion in Measurer subsection for more details.
 
 ### Trial Loss Ratio
 
+Definition:
+
 The trial loss ratio is equal to one minus the trial forwarding ratio.
 
+Discussion:
+
+100% minus the trial forwarding ratio, when expressed as a percentage.
+
+This is almost identical to Frame Loss Rate of [RFC1242]
+(section 3.6 Frame Loss Rate),
+the only minor difference is that trial loss ratio
+does not need to be expressed as a percentage
+(assuming lack of resources is still the only cause of frame loss).
+
 ### Trial Forwarding Rate
+
+Definition:
 
 The trial forwarding rate is a derived quantity, calculated by
 multiplying the trial load by the trial forwarding ratio.
 
+Discussion:
+
 It is important to note that while similar, this quantity is not identical
-to the Forwarding Rate as defined in [RFC2285] section 3.6.1,
-as the latter is specific to one output interface,
+to the Forwarding Rate as defined in [RFC2285]
+(section 3.6.1 Forwarding rate (FR)).
+The latter is specific to one output interface only,
 whereas the trial forwarding ratio is based
 on frame counts aggregated over all SUT output interfaces.
 
-## Traffic profile
+### Trial Effective Duration
 
-Any other specifics (besides trial load and trial duration)
-the measurer needs in order to perform the trial
-are understood as a composite called the traffic profile.
-All its attributes are assumed to be constant during the search,
-and the composite is configured on the measurer by the manager
-before the search starts.
+Definition:
 
-The traffic profile is REQUIRED by [RFC2544]
-to contain some specific quantities, for example frame size.
-Several more specific quantities may be RECOMMENDED.
+Trial effective duration is a time quantity related to the trial,
+by default equal to the trial duration.
 
-Depending on SUT configuration, e.g. when testing specific protocols,
-additional values need to be included in the traffic profile
-and in the test report.
-See other IETF documents.
+Discussion:
 
-## Search Goal
+This is an optional feature.
+If the measurer does not return any trial effective duration value,
+the controller MUST use the trial duration value instead.
 
-The search goal is a composite consisting of several attributes,
-some of them are required.
-Implementations are free to add their own attributes.
+Trial effective duration may be any time quantity chosen by the measurer
+to be used for time-based decisions in the controller.
 
-A particular set of attribute values is called a search goal instance.
+The test report MUST explain how the measurer computes the returned
+trial effective duration values, if they are not always
+equal to the trial duration.
 
-Subsections list all required attributes and one recommended attribute.
+This feature can be beneficial for users
+who wish to manage the overall search duration,
+rather than solely the traffic portion of it.
+
+Also, this is a way for the measurer to inform the controller about
+its surprising behavior, for example when rounding the trial duration value.
+
+TODO: Recommend returning all trials at relevant bounds,
+as that may better inform users when surprisingly small amount of trials
+was performed, just because the the trial effective duration values were big.
+
+### Trial Output
+
+Definition:
+
+Trial output is a composite quantity. The REQUIRED attributes are
+trial loss ratio, trial effective duration and trial forwarding rate.
+
+Discussion:
+
+When talking about multiple trials, it is common to say "trial outputs"
+to denote all corresponding trial output instances.
+
+Implementations may provide additional (optional) attributes.
+The controller implementations MUST ignore values of any optional attribute
+they are not familiar with,
+except when passing trial output instance to the manager.
+
+For example: the total number of frames expected to be forwarded during the trial,
+especially if it is not just a rounded-up value
+implied by trial load and trial duration.
+
+While [RFC2285] (Section 3.5.2 Offered load (Oload))
+requires the offered load value to be reported for forwarding rate measurements,
+it is NOT REQUIRED in the MLRsearch specification.
+TODO: Why? Just because bound trial results are optional in controller output?
+
+### Trial Result
+
+Definition:
+
+Trial result is a composite quantity,
+consisting of the trial input and the trial output.
+
+Discussion:
+
+When talking about multiple trials, it is common to say "trial results"
+to denote all corresponding trial result instances.
+TODO: Polish the wording.
+
+## Goal Terms
+
+Subsections of this section define new terms, for quantities
+indirectly relevant for inputs or outputs of the controller component.
+
+Subsections define several attributes before introducing
+the main component quantity: the search goal.
+
 Each subsection contains a short informal description,
 but see other chapters for more in-depth explanations.
 
-The meaning of the attributes is formally given only by their effect
-on the controller output attributes (defined in later in section Search Result).
-
-Informally, later chapters give additional intuitions and examples
-to the search goal attribute values.
-Later chapters also give motivation to formulas of computation of the outputs.
+TODO: "subsection" or "sub-section"?
 
 ### Goal Final Trial Duration
 
+Definition:
+
 A threshold value for trial durations.
-This attribute is REQUIRED, and the value MUST be positive.
 
-Informally, while MLRsearch is allowed to perform trials shorter than this,
-but results from such short trials have only limited impact on search results.
+Discussion:
 
-The full relation needs definitions is later subsections.
+This attribute value MUST be positive.
+
+Trials with trial duration at least as long as the goal final trial duration
+are called full-length trials with respect to the given search goal.
+
+Informally, while MLRsearch is allowed to perform trials shorter than full-length,
+the results from such short trials have only limited impact on search results.
+
+One trial may be full-length for some search goals, but not for others.
+
+The full relation to controller output needs definitions in later subsections.
 But for example, the conditional throughput
-(definition in subsection Conditional Throughput)
-for this goal will be computed only from trial results
-from trials at least as long as this.
+for this goal will be computed only from full-length trial results.
 
 ### Goal Duration Sum
 
-A threshold value for a particular sum of trial durations.
-This attribute is REQUIRED, and the value MUST be positive.
+Definition:
 
-This uses the duration values returned by the measurer.
+A threshold value for a particular sum of trial effective durations.
 
-Informally, even when looking only at trials done at this goal's
-final trial duration, MLRsearch may spend up to this time measuring
-the same load value.
-If the goal duration sum is larger than
-the goal final trial duration, it means multiple trials need to be measured
-at the same load.
+Discussion:
+
+This attribute value MUST be positive.
+
+Informally, even when looking only at full-length trials,
+MLRsearch may spend up to this time measuring the same load value.
+
+If the goal duration sum is larger than the goal final trial duration,
+multiple full-length trials may need to be performed at the same load.
 
 ### Goal Loss Ratio
 
-A threshold value for trial loss ratios.
-REQUIRED attribute, MUST be non-negative and smaller than one.
+Definition:
 
-Informally, if a load causes too many trials with trial loss ratios
-larger than this, the conditional throughput for this goal
-will be smaller than that load.
+A threshold value for trial loss ratios.
+
+Discussion:
+
+Attribute value MUST be non-negative and smaller than one.
+
+A trial with trial loss ratio larger than a goal loss ratio value
+is called a "lossy" trial, with respect to given search goal.
+
+Informally, if a load causes too many lossy trials,
+the relevant lower bound for this goal will be smaller than that load.
 
 ### Goal Exceed Ratio
 
-A threshold value for a particular ratio of duration sums.
-REQUIRED attribute, MUST be non-negative and smaller than one.
+Definition:
 
-The duration sum values come from the duration values returned by the measurer.
+A threshold value for a particular ratio of sums of trial effective durations.
+
+Discussion:
+
+Attribute value MUST be non-negative and smaller than one.
+
+See later sections for details on which sums.
 
 Informally, the impact of lossy trials is controlled by this value.
 The full relation needs definitions is later subsections.
 
 But for example, the definition of the conditional throughput
-(given later in subsection Conditional Throughput)
-refers to a q-value for a quantile when selecting
+refers to a q-value (TODO: recheck Discussion there.)
+for a quantile when selecting
 which trial result gives the conditional throughput.
 The goal exceed ratio acts as the q-value to use there.
 
-Specifically, when the goal exceed ratio is 0.5 and MLRsearch happened
-to use the whole goal duration sum (using full-length trials),
-it means the conditional throughput is the median of trial forwarding rates.
+Specifically, when the goal exceed ratio is 50%, and MLRsearch happened
+to use the whole goal duration sum (using full-length trials)
+at the relevant lower bound,
+it means the conditional throughput is the median of the trial forwarding rates.
 
 ### Goal Width
 
-A value used as a threshold for telling when two trial load values
-are close enough.
+Definition:
 
-RECOMMENDED attribute, positive.
+A value used as a threshold for deciding
+whether two trial load values are close enough
+for search exit condition purposes.
+(TODO: wording?)
+
+Discussion:
+
+If present, the value MUST be positive.
+
+Informally, this acts as an exit condition,
+controlling the precision of the search.
+The search stops if every goal has reached its precision.
+
 Implementations without this attribute
-MUST give the manager other ways to control the search exit condition.
+MUST give the controller other ways to control the search exit conditions.
 
 Absolute load difference and relative load difference are two popular choices,
 but implementations may choose a different way to specify width.
+The test report MUST make it clear what specific quantity is used as goal width.
+TODO: Assume absolute or relative width just based on the unit?
 
-Informally, this acts as a stopping condition, controlling the precision
-of the search.
-The search stops if every goal has reached its precision.
+### Search Goal
 
-## Controller Inputs
+Definition:
 
-The only REQUIRED input for controller is a set of search goal instances.
-MLRsearch implementations MAY use additional input parameters for the controller.
+The search goal is a composite quantity consisting of several attributes,
+some of them are required.
 
-The order of instances SHOULD NOT have a big impact on controller outputs,
+Required attributes: (TODO: capitalization)
+- Goal Final Trial Duration
+- Goal Duration Sum
+- Goal Loss Ratio
+- Goal Exceed Ratio
+
+Optional attribute:
+- Goal Width
+
+Discussion:
+
+Implementations are free to add their own additional attributes.
+
+The meaning of the attributes is formally given only by their effect
+on the controller output attributes
+(defined in later in section Search Result).
+
+Informally, later chapters give additional intuitions and examples
+to the search goal attribute values.
+Later chapters also give motivation to formulas of computation of the outputs.
+
+An example of additional attributes required by some implementations
+is a goal initial trial duration, together with another attribute
+which controls possible intermediate trial duration values.
+
+### Controller Input
+
+Definition:
+
+Controller input is a composite quantity
+required as an input for the controller.
+The only REQUIRED attribute is a list of search goal instances.
+
+Discussion:
+
+MLRsearch implementations MAY use additional attributes,
+e.g. when tweaking some time-related behavior.
+
+Formally, the manager does not apply any controller configuration
+outside the one controller input instance.
+Any other assumed pieces of configuration (e.g. traffic profile)
+is passed (as if) outside the visibility of the controller.
+
+The order of search goal instances SHOULD NOT
+have a big impact on controller outputs,
 but MLRsearch implementations MAY base their behavior on the order
 of search goal instances.
 
 The search goal instances SHOULD NOT be identical.
 MLRsearch implementation MAY allow identical instances.
 
-## Goal Result
+An example of an optional attribute (outside the list of search goals)
+required by some implementations is max load.
+While this is a frequently used configuration parameter,
+already governed by [RFC2544] (section 20. Maximum frame rate)
+and [RFC2285] (3.5.3 Maximum offered load (MOL)),
+some implementations may detect or discover it instead.
+
+In MLRsearch specification, the upper relevant bound was added
+as a required attribute precisely because it makes the search result
+independent of max load value.
+TODO: Move some of this into upper relevant bound Discussion?
+
+## Result Terms
 
 Before defining the output of the controller,
 it is useful to define what the goal result is.
 
-The goal result is a composite object consisting of several attributes.
-A particular set of attribute values is called a goal result instance.
+And as the goal result is a composite quantity, it is better to
+define all its attribute quantites first.
 
-Any goal result instance can be either regular or irregular.
-MLRsearch specification puts requirements on regular goal result instances.
-Any instance that does not meet the requirements is deemed irregular.
+There is a correspondence between search goals and goal results.
+Most of the following subsections refer to a given search goal
+when defining attributes of the goal result.
+Conversely, at the end of the search, each sarch goal
+has its corresponding goal result.
 
-Implementations are free to define their own irregular goal results,
-but the manager MUST report them clearly as not regular according to this section.
+Conceptually, the search can be seen as a process of load classification,
+where the controller attempts to classify some loads as an upper bound
+or a lower bound with respect to some search goal.
 
-All attribute values in one goal result instance
-are related to a single search goal instance,
-referred to as the given search goal.
-
-Some of the attributes of a regular goal result instance are required,
-some are recommended, implementations are free to add their own.
-
-The subsections define two required and one optional attribute
-for a regular goal result.
-
-A typical irregular result is when all trials at the maximal offered load
-have zero loss, as the relevant upper bound does not exist in that case.
+TODO: Irregular goal result instances may need to be mentioned here already.
 
 ### Relevant Upper Bound
 
-The relevant upper bound is the smallest intended load value that is classified
+Definition:
+
+The relevant upper bound is the smallest trial load value that is classified
 at the end of the search as an upper bound (see Appendix A)
 for the given search goal.
-This is a REQUIRED attribute.
+
+Discussion:
 
 Informally, this is the smallest intended load that failed to uphold
 all the requirements of the given search goal, mainly the goal loss ratio
 in combination with the goal exceed ratio.
 
+If max load does not cause enough lossy trials,
+the relevant upper bound does not exist.
+
 ### Relevant Lower Bound
 
-The relevant lower bound is the largest intended load value
-among those smaller than the relevant upper bound
+Definition:
+
+The relevant lower bound is the largest trial load value
+among those smaller than the relevant upper bound,
 that got classified at the end of the search
 as a lower bound (see Appendix A) for the given search goal.
-This is a REQUIRED attribute.
+
+Discussion:
 
 For a regular goal result, the distance between the relevant lower bound
 and the relevant upper bound MUST NOT be larger than the goal width,
@@ -709,39 +987,233 @@ all the requirements of the given search goal, mainly the goal loss ratio
 in combination with the goal exceed ratio, while not being larger
 than the relevant upper bound.
 
+Strictly speaking, if the relevant upper bound does not exist,
+the relevant lower bound also does not exist.
+Max load usually is classified as a lower bound,
+but it is not clear whether a higher lower bound
+would be found if the search used a higher max load value.
+
 ### Conditional Throughput
+
+Definition:
 
 The conditional throughput (see Appendix B)
 as evaluated at the relevant lower bound of the given search goal
 at the end of the search.
-This is a RECOMMENDED attribute.
 
-Informally, this is a typical forwarding rate expected to be seen
+Discussion:
+
+Informally, this is a typical trial forwarding rate, expected to be seen
 at the relevant lower bound of the given search goal.
-But frequently just a conservative estimate thereof,
+
+But frequently it is only a conservative estimate thereof,
 as MLRsearch implementations tend to stop gathering more data
-as soon as they confirm the result cannot get worse than this estimate
+as soon as they confirm the value cannot get worse than this estimate
 within the goal duration sum.
 
-## Search Result
+This value is RECOMMENDED to be used when evaluating repeatability
+and comparability if different MLRsearch implementations.
+
+### TODO: Trial results at relevant bounds?
+
+### Goal Result
+
+Definition:
+
+The goal result is a composite quantity consisting of several attributes.
+Relevant upper bound and relevant lower bound are required attributes,
+conditional throughput is a recommended attribute.
+
+Discussion:
+
+Any goal result instance can be either regular or irregular.
+TODO: Separate definition for regular instances?
+
+MLRsearch specification puts requirements on regular goal result instances.
+Any instance that does not meet the requirements is deemed irregular.
+
+Some of the attributes of a regular goal result instance are required,
+some are recommended, implementations are free to add their own.
+(TODO: trial results here if not before)
+
+Implementations are free to define their own specific subtypes
+of irregular goal results, but the test report MUST mark them clearly
+as not regular according to this section.
+
+A typical irregular result is when all trials at the max load
+have zero loss, as the relevant upper bound does not exist in that case.
+
+### Search Result
+
+Definition:
 
 The search result is a single composite object
-that maps each search goal to a corresponding goal result.
+that maps each search goal instance to a corresponding goal result instance.
 
-In other words, search result is an unordered list of key-value pairs,
-where no two pairs contain equal keys.
-The key is a search goal instance, acting as the given search goal
-for the goal result instance in the value portion of the key-value pair.
+Discussion:
+
+Alternatively, the search result can be implemented as an ordered list
+of the goal result instances, matching the order of search gaol instances.
 
 The search result (as a mapping)
-MUST map from all the search goals present in the controller input.
+MUST map from all the search goal instances present in the controller input.
+The search goal instances MAY be irregular.
+TODO: Irregular search result if at least one irregular goal result?
 
-## Controller Outputs
+TODO: Discuss API / interoperability
+between manager and several controller implementations,
+especially re telemetry and irregular goal results.
 
-The search result is the only REQUIRED output
-returned from the controller to the manager.
+### Controller Output
+
+Definition:
+
+The controller output is a composite quantity returned from the controller
+to the manager at the end of the search.
+The search result instance is its only REQUIRED attribute.
+
+Discussion:
 
 MLRsearch implementation MAY return additional data in the controller output.
+
+TODO: Pass-through logging from measurer, debug logging from controller.
+
+## Architecture Terms
+
+MLRsearch architecture consists of three main components:
+the manager, the controller, and the measurer.
+
+The architecture also implies the presence of other components,
+such as the SUT and the tester (as the sub-component of the measurer).
+
+Protocols of communication between components are generally left unspecified.
+For example when MLRsearch specification mentions "controller calls measurer",
+it is possible that the controller notifies the manager
+to call the measurer indirectly instead. This way the measurer implementations
+can be fully independent from the controller implementations,
+e.g. programmed in different programming languages.
+
+### Measurer
+
+Definition:
+
+The measurer is an abstract component
+that when called with a trial input instance,
+performs one trial as described in [RFC2544] (section 23. Trial description),
+and returns a trial output instance.
+
+Discussion:
+
+This definition assumes the measurer is already initialized.
+In practice, there may be additional steps before the search,
+e.g. when the manager configures the traffic profile
+(either on the measurer or on its tester sub-component directly)
+and performs a warmup (if the tester requires one).
+
+It is the responsibility of the measurer implementation to uphold
+any requirements and assumptions present in MLRsearch specification,
+e.g. trial forwarding ratio not being larger than one.
+
+Implementers have some freedom.
+For example [RFC2544] (section 10. Verifying received frames)
+gives some suggestions (but not requirements) related to
+duplicated or reordered frames.
+Implementations are RECOMMENDED to document their behavior
+related to such freedoms in as detailed a way as possible.
+
+It is RECOMMENDED to benchmark the test equipment first,
+e.g. connect sender and receiver directly (without any DUT in path),
+find a load value that guarantees the offered load is not too far
+from the intended load, and use that value as the max load value.
+When testing the real SUT, it is RECOMMENDED to turn any big difference
+between the intended load and the offered load into increased trial loss ratio.
+Neither of the two recommendations are made into requirements,
+because it is not easy to tell when the difference is big enough,
+in a way thay would be dis-entangled from other measurer freedoms.
+
+### Controller
+
+Definition:
+
+The controller is an abstract component
+that when called with a controller input instance
+repeatedly computes trial input instance for the measurer,
+obtains corresponding trial output instances,
+and eventually returns a controller output instance.
+
+Discussion:
+
+Goal width or other attributes act directly as requirements
+for search result precision, and indirectly as the search exit conditions.
+
+Informally, the controller has big freedom is selection of trial inputs,
+and the implementations want to achieve the search goals
+in the shortest expected time.
+
+The controller's role in optimizing the overall search time
+distinguishes MLRsearch algorithms from simpler search procedures.
+
+TODO: Mention implementations (versions) being replaceable?
+Different implementations may require additional attributes from the manager.
+
+### Manager
+
+Definition:
+
+The manager is an abstract component
+that is reponsible for configuring other components,
+calling the controller component once,
+and for creating the test report (TODO: RFC2544 term here) in appropriate format.
+
+Discussion:
+
+The controller initializes the SUT, the measurer (and the tested if independent)
+with their intended configurations before calling the controller.
+
+The manager does not need to be able to tweak any search goal attribute,
+but it MUST report all applied attribute values even if not tweaked.
+
+In principle, there sould be a "user" (human or CI)
+that "starts" or "calls" the manager and receives the report.
+The manager MAY be able to be called more than once whis way.
+TODO: Reword.
+
+Also, the manager may use the measurer or other components
+to perform other tests, e.g. back-to-back frames,
+as the controller is only replacing the search from
+[RFC2544] (section 26.1 Throughput).
+
+### MLRsearch architecture
+
+Definition:
+
+Any setup where there can be logically delineated components
+and there are components satisfying requirements for the measurer,
+the controller and the manager.
+
+Discussion:
+
+These components can be seen as abstractions present in any testing procedure.
+For example, there can be a single component acting both
+as the manager and the controller, but as long as values of required attributes
+of search goals and goal results are visible in the test report,
+the controller input instance and output instance are implied.
+
+For example, any setup for conditionally compliant [RFC2544]
+(section 26.1 Throughput) throughput testing
+can be understood as a MLRsearch architecture,
+assuming there is enough data to reconstruct the relevant upper bound.
+TODO: Move the search goal instance for 2544 compliant search here.
+
+Any test procedure that can be understood as (one call to the manager of)
+MLRsearch architecture is said to be compliant with MLRsearch specification.
+
+TODO: Why do we need both architecture and specification?
+
+TODO: Does the test procedure need to be able to produce a regular search result?
+
+TODO: Modularity, e.g. freedom to swap measurer hardware and controller software
+as long as the manager understands communication protocols of both?
 
 # Further Explanations
 
@@ -751,7 +1223,8 @@ and skips over some important details.
 Familiarity with the MLRsearch specification is not required here,
 so this chapter can act as an introduction.
 For example, this chapter starts talking about the tightest lower bounds
-before it is ready to talk about the relevant lower bound from the specification.
+before it is ready to talk about the relevant lower bound
+from the MLRsearch specification.
 
 ## MLRsearch Versions
 
@@ -955,7 +1428,7 @@ which control when and how MLRsearch chooses to use shorter trial durations.
 For explainability reasons, when exceed ratio of 0.5 is used,
 it is recommended for the goal duration sum to be an odd multiple
 of the full trial durations, so conditional throughput becomes identical to
-a median of a particular set of forwarding rates.
+a median of a particular set of trial forwarding rates.
 
 The presence of shorter trial results complicates the load classification logic.
 Full details are given later.
@@ -982,8 +1455,8 @@ but it is not obvious how to generalize it
 for loads with multiple trial results and a non-zero goal loss ratio.
 
 MLRsearch defines one such generalization, called the conditional throughput.
-It is the forwarding rate from one of the trials performed at the load
-in question.
+It is the trial forwarding rate from one of the trials
+performed at the load in question.
 Specification of which trial exactly is quite technical,
 see the specification and Appendix B.
 
@@ -1058,7 +1531,7 @@ are good for comparability between different implementations.
 For comparability between different SUTs using the same implementation,
 refer to configurations recommended by that particular implementation.
 
-## [RFC2544] compliance
+## [RFC2544] Compliance
 
 The following search goal ensures unconditional compliance with
 [RFC2544] throughput search procedure:
@@ -1085,7 +1558,7 @@ the conditional throughput is still conditionally compliant with
 This chapter continues with explanations,
 but this time more precise definitions are needed
 for readers to follow the explanations.
-The definitions here are wordy, implementers should read the specification
+The definitions here are wordy, implementers should read MLRsearch specification
 chapter and appendices for more concise definitions.
 
 The two related areas of focus in this chapter are load classification
@@ -1112,7 +1585,7 @@ Take an intended load value, a trial duration value, and a finite set
 of trial results, all trials measured at that load value and duration value.
 The performance spectrum is the function that maps
 any non-negative real number into a sum of trial durations among all trials
-in the set that has that number as their forwarding rate,
+in the set that has that number as their trial forwarding rate,
 e.g. map to zero if no trial has that particular forwarding rate.
 
 A related function, defined if there is at least one trial in the set,
@@ -1132,21 +1605,21 @@ The conditional throughput will be one such quantile value
 for a specifically chosen set of trials.
 
 Take a set of all full-length trials performed at the relevant lower bound,
-sorted by decreasing forwarding rate.
+sorted by decreasing trial forwarding rate.
 The sum of the durations of those trials
 may be less than the goal duration sum, or not.
-If it is less, add an imaginary trial result with zero forwarding rate,
+If it is less, add an imaginary trial result with zero trial forwarding rate,
 such that the new sum of durations is equal to the goal duration sum.
 This is the set of trials to use.
 The q-value for the quantile
 is the goal exceed ratio.
 If the quantile touches two trials,
-the larger forwarding rate (from the trial result sorted earlier) is used.
+the larger trial forwarding rate (from the trial result sorted earlier) is used.
 The resulting quantity is the conditional throughput of the goal in question.
 
 First example.
 For zero exceed ratio, when goal duration sum has been reached.
-The conditional throughput is the smallest forwarding rate among the trials.
+The conditional throughput is the smallest trial forwarding rate among the trials.
 
 Second example.
 For zero exceed ratio, when goal duration sum has not been reached yet.
@@ -1159,19 +1632,19 @@ Third example.
 Exceed ratio 50%, goal duration sum two seconds,
 one trial present with the duration of one second and zero loss.
 The imaginary trial is added with the duration
-of one second and zero forwarding rate.
+of one second and zero trial forwarding rate.
 The median would touch both trials, so the conditional throughput
-is the forwarding rate of the one non-imaginary trial.
+is the trial forwarding rate of the one non-imaginary trial.
 As that had zero loss, the value is equal to the offered load.
 
 Note that Appendix B does not take into account short trial results.
 
 ### Summary
 
-While the conditional throughput is a generalization of the forwarding rate,
+While the conditional throughput is a generalization of the trial forwarding rate,
 its definition is not an obvious one.
 
-Other than the forwarding rate, the other source of intuition
+Other than the trial forwarding rate, the other source of intuition
 is the quantile in general, and the median the the recommended case.
 
 In future, different quantities may prove more useful,
