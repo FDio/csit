@@ -17,11 +17,6 @@ set -exuo pipefail
 # This library defines functions used by multiple entry scripts.
 # Keep functions ordered alphabetically, please.
 
-# TODO: Add a link to bash style guide.
-# TODO: Consider putting every die into a {} block,
-#   the code might become more readable (but longer).
-
-
 function activate_docker_topology () {
 
     # Create virtual vpp-device topology. Output of the function is topology
@@ -536,13 +531,15 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="alt"
             ;;
-        *"2n-x-"*)
-            NODENESS="2n"
-            FLAVOR="${TEST_CODE#*2n-}"
+        *"-x-2n"*)
+            TESTBED="${TEST_CODE#${TEST_CODE%2n*}}"
+            NODENESS="${TESTBED%-${TEST_CODE#*-x-2n*-}}"
+            FLAVOR="${TEST_CODE#*-x-2n*-}"
             ;;
-        *"3n-x-"*)
-            NODENESS="3n"
-            FLAVOR="${TEST_CODE#*3n-}"
+        *"-x-3n"*)
+            TESTBED="${TEST_CODE#${TEST_CODE%3n*}}"
+            NODENESS="${TESTBED%-${TEST_CODE#*-x-3n*-}}"
+            FLAVOR="${TEST_CODE#*-x-3n*-}"
             ;;
     esac
 }
@@ -982,7 +979,7 @@ function select_tags () {
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             default_nic="nic_amazon-nitro-200g"
             ;;
-        *"2n-x-"* | *"3n-x-"*)
+        *"-x-2n"* | *"-x-3n"*)
             default_nic="nic_intel-e810cq"
             ;;
         *)
@@ -1148,7 +1145,7 @@ function select_tags () {
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-x-"* | *"3n-x-"*)
+        *"-x-2n"* | *"-x-3n"*)
             ;;
     esac
 
@@ -1301,12 +1298,12 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr_*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
-        "2n_x"*)
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_"${FLAVOR}"*.yaml )
+        "x_2n"*)
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*_x_"${NODENESS}-${FLAVOR}"*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "3n_x"*)
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_"${FLAVOR}"*.yaml )
+        "x_3n"*)
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*_x_"${NODENESS}-${FLAVOR}"*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
@@ -1362,7 +1359,7 @@ function set_environment_variables () {
             # Maciek's workaround for Zen2 with lower amount of cores.
             export TREX_CORE_COUNT=14
             ;;
-        *"2n-x-"* | *"3n-x-"* )
+        *"-x-2n"* | *"-x-3n"* )
             export TREX_CORE_COUNT=6
             export TREX_PORT_MTU=9000
             ;;
