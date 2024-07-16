@@ -27,11 +27,17 @@ function ansible_adhoc () {
 
     set -exuo pipefail
 
-    case "$FLAVOR" in
-        "aws" | "c6in" | "c6gn" | "c7gn")
+    case "${TEST_CODE}" in
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
             INVENTORY_PATH="cloud_inventory"
             ;;
-        "x-"*)
+        *"2n-c7gn" | *"3n-c7gn")
+            INVENTORY_PATH="cloud_inventory"
+            ;;
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+            INVENTORY_PATH="cloud_inventory"
+            ;;
+        *"-x-2n"* | *"-x-3n"*)
             INVENTORY_PATH="external_inventory"
             ;;
         *)
@@ -72,11 +78,17 @@ function ansible_playbook () {
 
     set -exuo pipefail
 
-    case "$FLAVOR" in
-        "aws" | "c6in" | "c6gn" | "c7gn")
+    case "${TEST_CODE}" in
+        *"1n-aws" | *"2n-aws" | *"3n-aws")
             INVENTORY_PATH="cloud_inventory"
             ;;
-        "x-"*)
+        *"2n-c7gn" | *"3n-c7gn")
+            INVENTORY_PATH="cloud_inventory"
+            ;;
+        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+            INVENTORY_PATH="cloud_inventory"
+            ;;
+        *"-x-2n"* | *"-x-3n"*)
             INVENTORY_PATH="external_inventory"
             ;;
         *)
