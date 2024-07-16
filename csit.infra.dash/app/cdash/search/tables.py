@@ -18,6 +18,7 @@
 import pandas as pd
 
 from ..utils.constants import Constants as C
+from ..utils.utils import get_topo_arch
 
 
 def select_search_data(data: pd.DataFrame, selection: list) -> pd.DataFrame:
@@ -80,7 +81,7 @@ def search_table(data: pd.DataFrame, selection: list) -> pd.DataFrame:
         l_id = row["test_id"].split(".")
         suite = l_id[-2].replace("2n1l-", "").replace("1n1l-", "").\
             replace("2n-", "")
-        l_tb.append("-".join(row["job"].split("-")[-2:]))
+        l_tb.append(get_topo_arch(row["job"].split("-")))
         l_nic.append(suite.split("-")[0])
         if selection["datatype"] != "trending":
             l_dutver.append(row["dut_version"])

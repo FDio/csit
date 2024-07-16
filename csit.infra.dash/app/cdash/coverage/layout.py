@@ -32,7 +32,7 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import label, gen_new_url, generate_options, navbar_report, \
-    show_tooltip
+    show_tooltip, get_topo_arch
 from ..utils.url_processing import url_decode
 from .tables import coverage_tables, select_coverage_data
 
@@ -96,7 +96,7 @@ class Layout:
             lst_job = row["job"].split("-")
             dut = lst_job[1]
             d_ver = row["dut_version"]
-            tbed = "-".join(lst_job[-2:])
+            tbed = get_topo_arch(lst_job)
             lst_test_id = row["test_id"].split(".")
             if dut == "dpdk":
                 area = "dpdk"

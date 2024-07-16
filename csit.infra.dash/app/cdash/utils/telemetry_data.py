@@ -283,8 +283,11 @@ class TelemetryData:
         for _, row in self._unique_metrics_labels.iterrows():
             if _is_selected(row["labels"], selection):
                 lst_items.append(row.to_frame().T)
-        self._selected_metrics_labels = \
-            pd.concat(lst_items, ignore_index=True, axis=0, copy=False)
+        if len(lst_items) == 1:
+            self._selected_metrics_labels = lst_items[0]
+        elif len(lst_items) > 1:
+            self._selected_metrics_labels = \
+                pd.concat(lst_items, ignore_index=True, axis=0, copy=False)
         return self._selected_metrics_labels
 
     def select_tm_trending_data(

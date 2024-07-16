@@ -33,7 +33,8 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
 from ..utils.utils import generate_options, gen_new_url, navbar_report, \
-    filter_table_data, sort_table_data, show_iterative_graph_data, show_tooltip
+    filter_table_data, sort_table_data, show_iterative_graph_data, \
+    show_tooltip, get_topo_arch
 from .tables import comparison_table
 from ..report.graphs import graph_iterative
 
@@ -124,7 +125,7 @@ class Layout:
             lst_job = row["job"].split("-")
             dut = lst_job[1]
             dver = f"{row['release']}-{row['dut_version']}"
-            tbed = "-".join(lst_job[-2:])
+            tbed = get_topo_arch(lst_job)
             lst_test_id = row["test_id"].split(".")
 
             suite = lst_test_id[-2].replace("2n1l-", "").replace("1n1l-", "").\

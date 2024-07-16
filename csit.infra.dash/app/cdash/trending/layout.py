@@ -34,7 +34,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items, navbar_trending, \
+    generate_options, get_list_group_items, navbar_trending, get_topo_arch, \
     show_trending_graph_data
 from ..utils.url_processing import url_decode
 from .graphs import graph_trending, select_trending_data, graph_tm_trending
@@ -116,7 +116,7 @@ class Layout:
         for _, row in self._data[cols].drop_duplicates().iterrows():
             lst_job = row["job"].split("-")
             dut = lst_job[1]
-            tbed = "-".join(lst_job[-2:])
+            tbed = get_topo_arch(lst_job)
             lst_test = row["test_id"].split(".")
             if dut == "dpdk":
                 area = "dpdk"

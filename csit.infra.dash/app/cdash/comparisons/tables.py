@@ -232,7 +232,7 @@ def comparison_table(
         :returns: A list of simple items.
         :rtype: list
         """
-        l_infra = sel["infra"].split("-")
+        l_infra = sel["infra"].rsplit("-", maxsplit=2)
         selection = list()
         for core in sel["core"]:
             for fsize in sel["frmsize"]:
@@ -240,8 +240,8 @@ def comparison_table(
                     selection.append({
                         "dut": sel["dut"],
                         "dutver": sel["dutver"],
-                        "tbed": f"{l_infra[0]}-{l_infra[1]}",
-                        "nic": l_infra[2],
+                        "tbed": l_infra[0],
+                        "nic": l_infra[1],
                         "driver": l_infra[-1].replace("_", "-"),
                         "core": core,
                         "frmsize": fsize,

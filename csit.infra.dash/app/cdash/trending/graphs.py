@@ -37,9 +37,9 @@ def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
 
-    phy = itm["phy"].split("-")
-    if len(phy) == 4:
-        topo, arch, nic, drv = phy
+    phy = itm["phy"].rsplit("-", maxsplit=2)
+    if len(phy) == 3:
+        topo_arch, nic, drv = phy
         if drv == "dpdk":
             drv = ""
         else:
@@ -60,8 +60,8 @@ def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
         (data["test_type"] == test_type) &
         (data["passed"] == True)
     )]
-    df = df[df.job.str.endswith(f"{topo}-{arch}")]
-    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
+    df = df[df.job.str.endswith(topo_arch)]
+    core = str() if itm["dut"] == "trex" else itm["core"]
     ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
     df = df[df.test_id.str.contains(
         f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$",
@@ -453,8 +453,8 @@ def graph_trending(
             continue
 
         if normalize:
-            phy = itm["phy"].split("-")
-            topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
+            phy = itm["phy"].rsplit("-", maxsplit=2)
+            topo_arch = phy[0] if len(phy) == 3 else str()
             norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY.get(topo_arch, 1.0)) \
                 if topo_arch else 1.0
         else:

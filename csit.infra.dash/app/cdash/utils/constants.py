@@ -331,7 +331,7 @@ class Constants:
     }
 
     VALUE_ITER = {
-        "mrr": "result_receive_rate_rate_values",
+        "mrr": "result_receive_rate_rate_avg",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
         "mrr-bandwidth": "result_receive_rate_bandwidth_avg",

@@ -24,7 +24,7 @@ from ..utils.constants import Constants as C
 from ..utils.utils import get_color, get_hdrh_latencies
 
 
-def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
+def select_iterative_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     """Select the data for graphs and tables from the provided data frame.
 
     :param data: Data frame with data for graphs and tables.
@@ -36,9 +36,9 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
 
-    phy = itm["phy"].split("-")
-    if len(phy) == 4:
-        topo, arch, nic, drv = phy
+    phy = itm["phy"].rsplit("-", maxsplit=2)
+    if len(phy) == 3:
+        topo_arch, nic, drv = phy
         if drv == "dpdk":
             drv = ""
         else:
@@ -61,12 +61,12 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
         (data["passed"] == True)
     )]
 
-    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
+    core = str() if itm["dut"] == "trex" else itm["core"]
     ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
     regex_test = \
         f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$"
     df = df[
-        (df.job.str.endswith(f"{topo}-{arch}")) &
+        (df.job.str.endswith(topo_arch)) &
         (df.dut_version.str.contains(itm["dutver"].replace(".r", "-r").\
             replace("rls", "release"))) &
         (df.test_id.str.contains(regex_test, regex=True))
@@ -96,16 +96,9 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
     :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
-    def get_y_values(data, y_data_max, param, norm_factor, release=str(),
+    def get_y_values(data, y_data_max, param, norm_factor,
                      remove_outliers=False):
-        if param == "result_receive_rate_rate_values":
-            if release in ("rls2402", "rls2406", "rls2410"):
-                y_vals_raw = data["result_receive_rate_rate_avg"].to_list()
-            else:
-                y_vals_raw = data[param].to_list()[0]
-        else:
-            y_vals_raw = data[param].to_list()
-        y_data = [(y * norm_factor) for y in y_vals_raw]
+        y_data = [(y * norm_factor) for y in data[param].to_list()]
 
         if remove_outliers:
             try:
@@ -146,9 +139,9 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
         if itm_data.empty:
             continue
 
-        phy = itm["phy"].split("-")
-        topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
-        norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY[topo_arch]) \
+        phy = itm["phy"].rsplit("-", maxsplit=2)
+        topo_arch = phy[0] if len(phy) == 3 else str()
+        norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY.get(topo_arch, 1.0)) \
             if normalize else 1.0
 
         if itm["area"] == "hoststack":
@@ -163,7 +156,6 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
             y_tput_max,
             C.VALUE_ITER[ttype],
             norm_factor,
-            itm["rls"],
             remove_outliers
         )
 
@@ -181,28 +173,19 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
             )
         }
 
-        if itm["testtype"] == "mrr" and itm["rls"] == "rls2310":
-            trial_run = "trial"
-            metadata["csit-ref"] = (
-                f"{itm_data['job'].to_list()[0]}/",
-                f"{itm_data['build'].to_list()[0]}"
-            )
-            customdata = [{"metadata": metadata}, ] * nr_of_samples
-        else:
-            trial_run = "run"
-            for _, row in itm_data.iterrows():
-                metadata["csit-ref"] = f"{row['job']}/{row['build']}"
-                try:
-                    metadata["hosts"] = ", ".join(row["hosts"])
-                except (KeyError, TypeError):
-                    pass
-                customdata.append({"metadata": deepcopy(metadata)})
+        for _, row in itm_data.iterrows():
+            metadata["csit-ref"] = f"{row['job']}/{row['build']}"
+            try:
+                metadata["hosts"] = ", ".join(row["hosts"])
+            except (KeyError, TypeError):
+                pass
+            customdata.append({"metadata": deepcopy(metadata)})
         tput_kwargs = dict(
             y=y_data,
             name=(
                 f"{idx + 1}. "
                 f"({nr_of_samples:02d} "
-                f"{trial_run}{'s' if nr_of_samples > 1 else ''}) "
+                f"run{'s' if nr_of_samples > 1 else ''}) "
                 f"{itm['id']}"
             ),
             hoverinfo=u"y+name",
