@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc566a68_fee9090e",
+        "filename": "resources/job_specs/report_coverage/3na-spr/ip4-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-07-16T10:21:21Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 83
+      },
+      "revId": "d84cd31024120c6da4fd90b16acfe226e140e0a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb74369c_4e838203",
+        "filename": "resources/job_specs/report_iterative/3na-spr/vpp-mrr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-07-16T10:21:21Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 80
+      },
+      "revId": "d84cd31024120c6da4fd90b16acfe226e140e0a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6a66922_b226518e",
+        "filename": "resources/job_specs/report_iterative/3na-spr/vpp-ndrpdr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-07-16T10:21:21Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 83
+      },
+      "revId": "d84cd31024120c6da4fd90b16acfe226e140e0a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
