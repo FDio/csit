@@ -162,7 +162,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = get_int_from_env("TIME_PERIOD", MAX_TIME_PERIOD)  # [days]
+    TIME_PERIOD = 20  # get_int_from_env("TIME_PERIOD", MAX_TIME_PERIOD)  # [days]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -331,7 +331,7 @@ class Constants:
     }
 
     VALUE_ITER = {
-        "mrr": "result_receive_rate_rate_values",
+        "mrr": "result_receive_rate_rate_avg",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
         "mrr-bandwidth": "result_receive_rate_bandwidth_avg",

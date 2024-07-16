@@ -33,7 +33,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import gen_new_url, generate_options, navbar_trending, \
     filter_table_data, sort_table_data, show_trending_graph_data, \
-    show_iterative_graph_data, show_tooltip
+    show_iterative_graph_data, show_tooltip, get_topo_arch
 from ..utils.url_processing import url_decode
 from .tables import search_table
 from ..coverage.tables import coverage_tables
@@ -110,7 +110,7 @@ class Layout:
                 l_id = row["test_id"].split(".")
                 suite = l_id[-2].replace("2n1l-", "").replace("1n1l-", "").\
                     replace("2n-", "")
-                tb = "-".join(row["job"].split("-")[-2:])
+                tb = get_topo_arch(row["job"].split("-"))
                 nic = suite.split("-")[0]
                 for driver in C.DRIVERS:
                     if driver in suite:
@@ -644,7 +644,7 @@ class Layout:
                             "release-dis": C.STYLE_DONT_DISPLAY,
                             "release-val": str(),
                             "help-dis": disabled,
-                            "help-val": "<testbed> <nic> <driver> " + \
+                            "help-val": "<topo> <arch> <nic> <driver> " + \
                                 "<framesize> <cores> <test>",
                             "search-dis": disabled,
                             "search-val": str()
@@ -664,7 +664,7 @@ class Layout:
                     ctrl_panel.set({
                         "release-val": trigger.value,
                         "help-dis": C.STYLE_DISPLAY,
-                        "help-val": "<DUT version> <testbed> <nic> " + \
+                        "help-val": "<DUT version> <topo> <arch> <nic> " + \
                             "<driver> <framesize> <core> <test>",
                         "search-dis": C.STYLE_DISPLAY,
                         "search-val": str()
@@ -758,9 +758,9 @@ class Layout:
                     (data["dut_version"] == dutver) &
                     (data["release"] == rls)
                 )])
-
+            tb_1, tb_2 = tb.split("-", maxsplit=1)
             df = df[df.full_id.str.contains(
-                f".*{tb}.*{nic}.*{test_name}",
+                f".*{tb_1}.*{tb_2}.*{nic}.*{test_name}",
                 regex=True
             )]
 

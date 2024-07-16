@@ -30,7 +30,7 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.utils import show_tooltip, gen_new_url, get_ttypes, get_cadences, \
     get_test_beds, get_job, generate_options, set_job_params, navbar_trending, \
-    get_url_job, get_url_logs
+    get_url_job, get_url_logs, get_topo_arch
 from ..utils.url_processing import url_decode
 from .graphs import graph_statistics, select_data
 
@@ -93,13 +93,12 @@ class Layout:
             "tbed": list()
         }
         for job in jobs:
-            idx = -3 if "-x-" in job else -2
             lst_job = job.split("-")
             d_job_info["job"].append(job)
             d_job_info["dut"].append(lst_job[1])
             d_job_info["ttype"].append(lst_job[3])
             d_job_info["cadence"].append(lst_job[4])
-            d_job_info["tbed"].append("-".join(lst_job[idx:]))
+            d_job_info["tbed"].append(get_topo_arch(lst_job))
         self._job_info = pd.DataFrame.from_dict(d_job_info)
 
         self._default = set_job_params(self._job_info, d_job_info["job"][0])

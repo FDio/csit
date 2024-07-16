@@ -946,3 +946,25 @@ def get_url_logs(job_build: str) -> str:
             return str()
     else:
         return str()
+
+
+def get_topo_arch(lst_job: list) -> str:
+    """Get the topology and architecture string from the job name.
+
+    :param lst_job: The job name split into substrings.
+    :type lst_job: list
+    :returns: String with information about topology and architecture.
+    :rtype: str
+    """
+
+    if len(lst_job) < 2:
+        return str()
+
+    if "x" in lst_job[1:-1]:
+        # External testbeds.
+        # The structure of the name:
+        # <to be removed>-x-<topo>-<arch>-<other parts separated by dashes>
+        return "-".join(lst_job[(lst_job.index("x") + 1):])
+    else:
+        # Topology and architecture are the last two substrings.
+        return "-".join(lst_job[-2:])

@@ -32,7 +32,7 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items, navbar_report, \
+    generate_options, get_list_group_items, navbar_report, get_topo_arch, \
     show_iterative_graph_data
 from ..utils.url_processing import url_decode
 from .graphs import graph_iterative, select_iterative_data
@@ -122,7 +122,7 @@ class Layout:
             lst_job = row["job"].split("-")
             dut = lst_job[1]
             d_ver = row["dut_version"]
-            tbed = "-".join(lst_job[-2:])
+            tbed = get_topo_arch(lst_job)
             lst_test_id = row["test_id"].split(".")
             if dut == "dpdk":
                 area = "dpdk"

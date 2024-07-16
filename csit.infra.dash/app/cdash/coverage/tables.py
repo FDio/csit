@@ -52,9 +52,9 @@ def select_coverage_data(
     l_data = list()
 
     # Filter data selected by the user.
-    phy = selected["phy"].split("-")
-    if len(phy) == 4:
-        topo, arch, nic, drv = phy
+    phy = selected["phy"].rsplit("-", maxsplit=2)
+    if len(phy) == 3:
+        topo_arch, nic, drv = phy
         drv_str = "" if drv == "dpdk" else drv.replace("_", "-")
     else:
         return l_data, None
@@ -66,7 +66,7 @@ def select_coverage_data(
         (data["release"] == selected["rls"])
     )])
     df = df[
-        (df.job.str.endswith(f"{topo}-{arch}")) &
+        (df.job.str.endswith(topo_arch)) &
         (df.test_id.str.contains(
             f"^.*\.{selected['area']}\..*{nic}.*{drv_str}.*$",
             regex=True

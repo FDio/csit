@@ -24,7 +24,7 @@ from dash import callback_context
 from dash import Input, Output, State
 
 from ..utils.constants import Constants as C
-from ..utils.utils import gen_new_url, navbar_trending
+from ..utils.utils import gen_new_url, navbar_trending, get_topo_arch
 from ..utils.anomalies import classify_anomalies
 from ..utils.url_processing import url_decode
 from .tables import table_summary
@@ -78,7 +78,7 @@ class Layout:
             d_job_info["dut"].append(lst_job[1])
             d_job_info["ttype"].append(lst_job[3])
             d_job_info["cadence"].append(lst_job[4])
-            d_job_info["tbed"].append("-".join(lst_job[-2:]))
+            d_job_info["tbed"].append(get_topo_arch(lst_job))
         self.job_info = pd.DataFrame.from_dict(d_job_info)
 
         # Pre-process the data:
