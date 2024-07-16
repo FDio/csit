@@ -114,6 +114,12 @@
 3c AND 64b AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
 6c AND 64b AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
 12c AND 64b AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
+3c AND 1518b AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
+6c AND 1518b AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
+12c AND 1518b AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
+3c AND imix AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
+6c AND imix AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
+12c AND imix AND ndrpdr AND 6p3cx7veat AND drv_mlx5_core AND ethip4-ip4scale60k-rnd
 ##### ethip4-ip4scale200k-rnd
 1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
 2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
