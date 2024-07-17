@@ -1207,103 +1207,102 @@ function select_topology () {
 
     set -exuo pipefail
 
-    case_text="${NODENESS}_${FLAVOR}"
-    case "${case_text}" in
-        "1n_aws")
+    case "${TEST_CODE}" in
+        *"1n-aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
             ;;
-        "1n_c6in")
+        *"1n-c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-c6in*.yaml )
             TOPOLOGIES_TAGS="1_node_single_link_topo"
             ;;
-        "1n_alt" | "1n_spr")
+        *"1n-alt" | *"1n-spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "1n_vbox")
+        *"1n-vbox")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "2n_aws")
+        *"2n-aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "2n_c7gn")
+        *"2n-c7gn")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c7gn*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "2n_c6in")
+        *"2n-c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "2n_clx")
+        *"2n-clx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx_*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
-        "2n_icx")
+        *"2n-icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx_*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
-        "2n_spr")
+        *"2n-spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr_*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
-        "2n_tx2")
+        *"2n-tx2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2_*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "2n_zn2")
+        *"2n-zn2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2_*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
-        "3n_alt")
+        *"3n-alt")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt_*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_aws")
+        *"3n-aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_c7gn")
+        *"3n-c7gn")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c7gn*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_c6in")
+        *"3n-c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6in*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_icx")
+        *"3n-icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx_*.yaml )
             # Trailing underscore is needed to distinguish from 3n_icxd.
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
-        "3n_icxd")
+        *"3n-icxd")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd_*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_snr")
+        *"3n-snr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr_*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_tsh")
+        *"3n-tsh")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh_*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3na_spr")
+        *"3na-spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr_*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
-        "3nb_spr")
+        *"3nb-spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr_*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
-        "x_2n"*)
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*_x_"${NODENESS}-${FLAVOR}"*.yaml )
+        *"-x-2n"*)
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*_x_"${NODENESS}_${FLAVOR}"*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "x_3n"*)
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*_x_"${NODENESS}-${FLAVOR}"*.yaml )
+        *"-x-3n"*)
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*_x_"${NODENESS}_${FLAVOR}"*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
