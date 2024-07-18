@@ -348,13 +348,7 @@ class IPsecUtil:
             cmd = "crypto_set_async_dispatch_v2"
             err_msg = "Failed to set dispatch mode."
             args = dict(mode=0, adaptive=False)
-            try:
-                papi_exec.add(cmd, **args).get_reply(err_msg)
-            except (AttributeError, RuntimeError):
-                # Expected when VPP build does not have the _v2 yet
-                # (after and before the first CRC check).
-                # TODO: Fail here when testing of pre-23.10 builds is over.
-                pass
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker(
