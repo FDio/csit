@@ -12,6 +12,9 @@ packages_by_distro:
     jammy:
       - "build-essential"
       - "dmidecode"
+  debian:
+    bullseye:
+      - "build-essential"
 
 packages_by_arch:
   aarch64:
@@ -31,6 +34,9 @@ kernel_version_by_distro_by_arch:
         - "5.4.0-1009-aws" # Placeholder
       aarch64:
         - "5.15.0-46-generic" # Placeholder
+  debian:
+    bullseye:
+        - "5.15.0-107-generic"
 
 pma_directory: "/tmp/pma_tools"
 jitter_core: 7

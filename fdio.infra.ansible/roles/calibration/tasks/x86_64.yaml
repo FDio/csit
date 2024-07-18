@@ -1,14 +1,14 @@
 ---
-# file: roles/calibration/tasks/x86_64.yaml
+# file: tasks/x86_64.yaml
 
-- name: Calibration - Clone PMA Tool
+- name: Clone PMA Tool
   ansible.builtin.git:
     repo: "https://gerrit.fd.io/r/pma_tools"
     dest: "{{ pma_directory }}"
   tags:
     - check-jitter-tool
 
-- name: Calibration - Compile PMA Tool
+- name: Compile PMA Tool
   ansible.builtin.raw: "cd {{ pma_directory }}/jitter && make"
   tags:
     - check-jitter-tool
