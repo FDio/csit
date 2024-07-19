@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,7 +94,7 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
@@ -113,14 +113,26 @@
 | | Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
-| 128KB-1c-ethip4-ip4base-2vhost-iperf3-mrr
-| | [Tags] | 128KB | 1C
-| | frame_size=${128000} | phy_cores=${1}
+| 146B-1c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 146B | 1C
+| | frame_size=${146} | phy_cores=${1}
 
-| 128KB-2c-ethip4-ip4base-2vhost-iperf3-mrr
-| | [Tags] | 128KB | 2C
-| | frame_size=${128000} | phy_cores=${2}
+| 146B-2c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 146B | 2C
+| | frame_size=${146} | phy_cores=${2}
 
-| 128KB-4c-ethip4-ip4base-2vhost-iperf3-mrr
-| | [Tags] | 128KB | 4C
-| | frame_size=${128000} | phy_cores=${4}
+| 146B-4c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 146B | 4C
+| | frame_size=${146} | phy_cores=${4}
+
+| 1518B-1c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 1518B | 1C
+| | frame_size=${1518} | phy_cores=${1}
+
+| 1518B-2c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 1518B | 2C
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-4c-ethip4-ip4base-2vhost-iperf3-mrr
+| | [Tags] | 1518B | 4C
+| | frame_size=${1518} | phy_cores=${4}
