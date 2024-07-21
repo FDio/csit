@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b46cd00_faf7a0f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-07-21T14:18:45Z",
+      "side": 1,
+      "message": "This version has been submitted to IETF: https://datatracker.ietf.org/doc/draft-ietf-bmwg-mlrsearch/07/",
+      "revId": "61cde150dd6e184dc316981b5d4cbbe25646580f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
