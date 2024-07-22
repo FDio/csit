@@ -19,7 +19,7 @@ users:
 sshd_disable_password_login: true
 
 # Nomad settings.
-nomad_version: "1.6.1"
+nomad_version: "1.8.2"
 nomad_certificates:
   - src: "{{ file_nomad_ca_pem }}"
     dest: "{{ nomad_tls_ca_file }}"
@@ -56,6 +56,7 @@ nomad_servers:
 
 # Consul settings.
 nomad_use_consul: true
+consul_version: "1.19.1"
 consul_certificates:
   - src: "{{ file_consul_ca_pem }}"
     dest: "{{ consul_ca_file }}"
@@ -79,7 +80,7 @@ consul_retry_servers:
 consul_service_mgr: "systemd"
 
 # Vault settings.
-vault_version: "1.13.1"
+vault_version: "1.17.2"
 
 # Docker daemon settings.
 docker_daemon:
