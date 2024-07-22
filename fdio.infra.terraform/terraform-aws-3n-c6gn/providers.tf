@@ -7,5 +7,5 @@ provider "aws" {
 provider "vault" {
   address         = "http://10.30.51.24:8200"
   skip_tls_verify = true
-  token           = "s.4z5PsufFwV3sHbCzK9Y2Cojd"
+  token           = "hvs.bzHw4ZHsz9B0019P8I73yS6l"
 }

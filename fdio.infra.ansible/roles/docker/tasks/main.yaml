@@ -1,11 +1,17 @@
 ---
-# file: roles/docker/tasks/main.yaml
+# file: tasks/main.yaml
 
-- include_tasks: "{{ ansible_distribution_release }}.yaml"
+- name: "Install Prerequisites Based on OS"
+  ansible.builtin.include_tasks:
+    file: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_os_family }}.yaml"
+        - "default.yaml"
   tags:
     - docker-inst-dependencies
 
-- name: Inst - Docker
+- name: "Install Docker"
   ansible.builtin.package:
     name:
       - "{{ docker_package }}"
@@ -14,7 +20,7 @@
   tags:
     - docker-inst-package
 
-- name: Conf - Docker Service
+- name: "Enable Docker Service"
   ansible.builtin.service:
     name: docker
     state: "{{ docker_service_state }}"
@@ -24,7 +30,7 @@
   tags:
     - docker-conf-service
 
-- name: Conf - Docker Service Directory
+- name: "Docker Service Directory"
   ansible.builtin.file:
     path: "/etc/systemd/system/docker.service.d"
     state: "directory"
@@ -34,7 +40,7 @@
   tags:
     - docker-conf-service
 
-- name: Conf - Docker Daemon
+- name: "Configure Docker Daemon"
   ansible.builtin.template:
     src: "templates/daemon.json.j2"
     dest: "/etc/docker/daemon.json"
@@ -49,7 +55,7 @@
   tags:
     - docker-conf-daemon
 
-- name: Conf - Docker HTTP Proxy
+- name: "Configure Docker HTTP Proxy"
   ansible.builtin.template:
     src: "templates/docker.service.proxy.http"
     dest: "/etc/systemd/system/docker.service.d/http-proxy.conf"
@@ -65,7 +71,7 @@
   tags:
     - docker-conf-service
 
-- name: Conf - Docker HTTPS Proxy
+- name: "Configure Docker HTTPS Proxy"
   ansible.builtin.template:
     src: "templates/docker.service.proxy.https"
     dest: "/etc/systemd/system/docker.service.d/https-proxy.conf"
@@ -81,5 +87,5 @@
   tags:
     - docker-conf-service
 
-- name: Meta - Flush handlers
+- name: "Meta - Flush handlers"
   ansible.builtin.meta: flush_handlers
