@@ -1,5 +1,5 @@
 ---
-# file roles/docker/handlers/main.yaml
+# file handlers/main.yaml
 
 - name: Restart Docker
   ansible.builtin.service:
