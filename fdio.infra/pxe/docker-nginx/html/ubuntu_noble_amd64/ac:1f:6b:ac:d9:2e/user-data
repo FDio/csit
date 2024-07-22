@@ -10,7 +10,7 @@ autoinstall:
     - arches: [default]
       uri: http://ports.ubuntu.com/ubuntu-ports
   identity:
-    hostname: s24-nomad
+    hostname: s26-nomad
     password: $6$FIsbVDQR$5D0wgufOd2FtnmOiRNsGlgg6Loh.0x3dWSj72DSQnqisSyE9DROfgSgA6s0yxDwz4Jd5SRTXiTKuRYuSQ5POI1
     realname: localadmin
     username: localadmin
@@ -22,7 +22,7 @@ autoinstall:
   network:
     ethernets:
       eno1:
-        addresses: [ 10.30.51.24/24 ]
+        addresses: [ 10.30.51.26/24 ]
         dhcp4: false
         gateway4: 10.30.51.1
         nameservers:

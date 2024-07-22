@@ -1,5 +1,5 @@
 ---
-# file: roles/user_add/defaults/main.yaml
+# file: defaults/main.yaml
 
 # Default shell for a user if none is specified.
 users_shell: /bin/bash

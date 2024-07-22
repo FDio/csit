@@ -19,7 +19,7 @@ variable "vault_provider_skip_tls_verify" {
 variable "vault_provider_token" {
   description = "Vault root token."
   type        = string
-  default     = "s.4z5PsufFwV3sHbCzK9Y2Cojd"
+  default     = "hvs.bzHw4ZHsz9B0019P8I73yS6l"
 }
 
 variable "vault_name" {

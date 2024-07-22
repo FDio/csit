@@ -1,5 +1,5 @@
 ---
-# file: roles/docker/defaults/main.yaml
+# file: defaults/main.yaml
 
 # Version options.
 docker_edition: "ce"
