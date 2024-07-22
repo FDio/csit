@@ -21,7 +21,7 @@ autoinstall:
   locale: en_US.UTF-8
   network:
     ethernets:
-      eno1:
+      eno1np0:
         addresses: [ 10.30.51.23/24 ]
         dhcp4: false
         gateway4: 10.30.51.1

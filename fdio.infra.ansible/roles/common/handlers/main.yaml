@@ -1,5 +1,5 @@
 ---
-# file: roles/common/handlers/main.yaml
+# file: handlers/main.yaml
 
 - name: Reboot Server
   ansible.builtin.reboot:

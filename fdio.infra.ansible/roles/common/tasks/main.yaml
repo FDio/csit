@@ -1,7 +1,7 @@
 ---
-# file: roles/common/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: Conf - Add permanent proxy settings
+- name: Add permanent proxy settings
   ansible.builtin.lineinfile:
     path: "/etc/environment"
     state: "present"
@@ -11,31 +11,39 @@
   tags:
     - common-conf-proxy
 
-- name: Inst - Update package cache (apt)
+- name: Update Repositories Cache
   ansible.builtin.apt:
     update_cache: true
-    cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_os_family == 'Debian'
   tags:
     - common-inst-prerequisites
 
-- name: Inst - Prerequisites
+- name: Prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - common-inst-prerequisites
 
-- name: Inst - Meson (DPDK)
+- name: PIP management
+  ansible.builtin.file:
+    path: "/usr/lib/python3.12/EXTERNALLY-MANAGED"
+    state: "absent"
+  tags:
+    - common-inst-pip
+
+- name: Meson (DPDK)
   ansible.builtin.pip:
     name:
       - "meson==0.64.1"
     state: "forcereinstall"
+  environment:
+    ANSIBLE_SKIP_CONFLICT_CHECK: 1
   tags:
-    - common-inst-meson
+    - common-inst-pip
 
-- name: Conf - sudoers admin
+- name: sudoers admin
   ansible.builtin.lineinfile:
     path: "/etc/sudoers"
     state: "present"
@@ -45,7 +53,7 @@
   tags:
     - common-conf-sudoers
 
-- name: Conf - sudoers nopasswd
+- name: sudoers nopasswd
   ansible.builtin.lineinfile:
     path: "/etc/sudoers"
     state: "present"
