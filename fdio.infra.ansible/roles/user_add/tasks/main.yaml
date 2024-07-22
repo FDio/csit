@@ -1,7 +1,7 @@
 ---
-# file: roles/user_add/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: Conf - Add User
+- name: Add User
   ansible.builtin.user:
     append: "{{ item.append | default(omit) }}"
     createhome: "{{ 'yes' if users_create_homedirs else 'no' }}"
@@ -15,7 +15,7 @@
   tags:
     - user-add-conf
 
-- name: Conf - SSH keys
+- name: SSH keys
   ansible.builtin.authorized_key:
     user: "{{ item.0.username }}"
     key: "{{ item.1 }}"
@@ -26,7 +26,7 @@
   tags:
     - user-add-conf
 
-- name: Conf - Disable Password Login
+- name: Disable Password Login
   ansible.builtin.lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^PasswordAuthentication yes"
