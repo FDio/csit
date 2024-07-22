@@ -4,15 +4,18 @@
 dependencies: []
 
 galaxy_info:
-  role_name: docker
-  author: fd.io
-  description: Docker-CE for Linux.
-  company: none
-  license: "license (Apache)"
-  min_ansible_version: 2.9
+  role_name: "docker"
+  author: "pmikus"
+  description: "Docker-CE for Linux."
+  company: "none"
+  license: "license (BSD, MIT)"
+  min_ansible_version: "2.9"
   platforms:
-    - name: Ubuntu
+    - name: "Ubuntu"
       versions:
-        - jammy
+        - "jammy"
+    - name: "Debian"
+      versions:
+        - "bookworm"
   galaxy_tags:
-    - docker
+    - "docker"

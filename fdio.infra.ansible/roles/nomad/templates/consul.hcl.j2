@@ -33,7 +33,7 @@ consul {
 
     # Specifies optional Consul tags to be registered with the Nomad server and
     # agent services.
-    tags = {{ nomad_consul_tags | to_json }}
+    tags = "{{ nomad_consul_tags }}"
 
     # Specifies the token used to provide a per-request ACL token. This option
     # overrides the Consul Agent's default token. If the token is not set here
