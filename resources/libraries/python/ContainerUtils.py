@@ -939,8 +939,7 @@ class LXC(ContainerEngine):
         image = self.container.image if self.container.image \
             else f"-d ubuntu -r jammy -a {target_arch}"
 
-        cmd = f"lxc-create -t download --name {self.container.name} " \
-            f"-- {image} --no-validate"
+        cmd = f"lxc-create -t download --name {self.container.name} -- {image}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:
