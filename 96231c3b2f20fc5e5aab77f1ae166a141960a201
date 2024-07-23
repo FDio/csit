@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70a4b304_a60870da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-07-23T10:55:56Z",
+      "side": 1,
+      "message": "Hi Tibor, Thank you for doing this sweep. I\u0027m going by the commit msg (didn\u0027t have time to look through all job spec files). Overall removing those tests LGTM, subject to those tests living in other testbeds, specifically:\n- Would we have memif LXC running (or attempting to run) anywhere after this change?\n- Would we have GTPU HW running anywhere after this change?\n- Would we have vm testpmd tests running anywhere after this change?",
+      "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
