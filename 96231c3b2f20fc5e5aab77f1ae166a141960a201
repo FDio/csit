@@ -16,6 +16,24 @@
       "message": "Hi Tibor, Thank you for doing this sweep. I\u0027m going by the commit msg (didn\u0027t have time to look through all job spec files). Overall removing those tests LGTM, subject to those tests living in other testbeds, specifically:\n- Would we have memif LXC running (or attempting to run) anywhere after this change?\n- Would we have GTPU HW running anywhere after this change?\n- Would we have vm testpmd tests running anywhere after this change?",
       "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a7ae62f_78dd8346",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-07-23T11:16:37Z",
+      "side": 1,
+      "message": "The answer to all three questions is \"no\". Not in coverage tests, but a small subset of them is still in iterative (and daily/weekly).\n\nThe motivation for their removal is that they keep failing for a very long time (few releases). The second option is to fix them, but I have been reporting these issues again and again and nobody cares.\n\nI am also thinking of removing the majority of 9000B tests for the same reason.",
+      "parentUuid": "70a4b304_a60870da",
+      "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
