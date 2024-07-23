@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a563682_266f3cbb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-07-23T11:21:58Z",
+      "side": 1,
+      "message": "https://jira.fd.io/browse/CSIT-1944",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b95d3b86_79098041",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-07-23T11:21:58Z",
+      "side": 1,
+      "message": "https://jira.fd.io/browse/CSIT-1953",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 11
+      },
+      "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95fdc9f8_3555f47b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-07-23T11:21:58Z",
+      "side": 1,
+      "message": "Not sure which Jira ticket (if any) is this.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70a4b304_a60870da",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -32,6 +101,23 @@
       "side": 1,
       "message": "The answer to all three questions is \"no\". Not in coverage tests, but a small subset of them is still in iterative (and daily/weekly).\n\nThe motivation for their removal is that they keep failing for a very long time (few releases). The second option is to fix them, but I have been reporting these issues again and again and nobody cares.\n\nI am also thinking of removing the majority of 9000B tests for the same reason.",
       "parentUuid": "70a4b304_a60870da",
+      "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b020330d_a0aad4ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-07-23T11:21:58Z",
+      "side": 1,
+      "message": "Coverage should cover everything testable. If something is not testable, we should document why it is not feasible to make the test work, e.g. why we do not fix VPP, CSIT, driver or other infra part responsible for the test failing.\nThen, we should also estimate the probability of the issue being fixed in future, keep hopeful tests (like we keep largest scale NAT tests) or delete them entirely (like we deleted ipsec nfv density).",
       "revId": "96231c3b2f20fc5e5aab77f1ae166a141960a201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
