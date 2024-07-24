@@ -524,7 +524,7 @@ class TrafficGenerator(AbstractMeasurer):
                 command_line.add(f"'{value}'")
         stdout, _ = exec_cmd_no_error(
             node, command_line,
-            message="T-Rex STL runtime error!"
+            message="T-Rex STL runtime error!", include_reason=True
         )
         self._parse_traffic_results(stdout)
 
@@ -763,7 +763,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._rate = float(rate[:-3]) if "pps" in rate else float(rate)
         stdout, _ = exec_cmd_no_error(
             self._node, command_line, timeout=int(duration) + 60,
-            message="T-Rex STL runtime error"
+            message="T-Rex STL runtime error", include_reason=True
         )
 
         if async_call:
