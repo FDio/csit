@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24dc0e28_d148b190",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-07-25T12:14:04Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest ndrpdrANDnic_mellanox-cx7veatANDdrv_mlx5_coreAND2cAND1518bANDethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha",
+      "revId": "9f94fe41e7b8d712f81b49f7355ad9fc05150baf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
