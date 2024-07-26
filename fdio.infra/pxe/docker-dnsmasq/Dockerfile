@@ -10,10 +10,10 @@ RUN apt update \
  && mkdir -p /var/lib/tftpboot/casper/ubuntu-noble-amd64/ \
  && mkdir -p /var/lib/tftpboot/casper/ubuntu-noble-arm64/
 
-ENV ISO_NOBLE_AMD64 https://releases.ubuntu.com/releases/noble/ubuntu-24.04-live-server-amd64.iso
-ENV ISO_NOBLE_ARM64 https://cdimage.ubuntu.com/releases/noble/release/ubuntu-24.04-live-server-arm64.iso
-ENV EFI_NOBLE_AMD64 http://archive.ubuntu.com/ubuntu/dists/jammy/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
-ENV EFI_NOBLE_ARM64 http://ports.ubuntu.com/ubuntu-ports/dists/jammy/main/uefi/grub2-arm64/current/grubnetaa64.efi.signed
+ENV ISO_NOBLE_AMD64=https://releases.ubuntu.com/releases/noble/ubuntu-24.04-live-server-amd64.iso
+ENV ISO_NOBLE_ARM64=https://cdimage.ubuntu.com/releases/noble/release/ubuntu-24.04-live-server-arm64.iso
+ENV EFI_NOBLE_AMD64=http://archive.ubuntu.com/ubuntu/dists/jammy/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
+ENV EFI_NOBLE_ARM64=http://ports.ubuntu.com/ubuntu-ports/dists/jammy/main/uefi/grub2-arm64/current/grubnetaa64.efi.signed
 
 RUN echo "Preparing Grub EFI Binary" \
  && wget $EFI_NOBLE_AMD64 -O /var/lib/tftpboot/grubx64.efi \
