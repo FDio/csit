@@ -48,6 +48,11 @@ intel_download_url: "https://downloadmirror.intel.com"
 intel_extract_dir: "/opt"
 
 intel_700_compatibility_matrix:
+  dpdk22.03:
+    # custom for vpp_device
+    i40e: "2.25.11"
+    iavf: "4.11.3"
+    nvm: "8.70"
   dpdk22.07:
     # https://doc.dpdk.org/guides/rel_notes/release_22_07.html
     i40e: "2.19.3"
@@ -89,6 +94,7 @@ intel_qat_compatibility_matrix:
 intel_i40e_url:
   "2.19.3": "i40e%20stable/2.19.3/i40e-2.19.3.tar.gz/download"
   "2.23.17": "i40e%20stable/2.23.17/i40e-2.23.17.tar.gz/download"
+  "2.25.11": "i40e%20stable/2.25.11/i40e-2.25.11.tar.gz/download"
 
 intel_ice_url:
   "1.9.7": "ice%20stable/1.9.7/ice-1.9.7.tar.gz/download"
