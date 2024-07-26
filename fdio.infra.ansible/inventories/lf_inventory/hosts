@@ -53,8 +53,8 @@ all:
       hosts:
         10.30.51.30: #s30-t15-sut1 - sapphirerapids
         10.30.51.31: #s31-t16-sut1 - sapphirerapids
-        10.30.51.70: #s55-t13-sut1 - thunderx2 9980
-        10.30.51.71: #s56-t14-sut1 - thunderx2 9980
+        10.30.51.70: #s70-t13-sut1 - thunderx2 9980
+        10.30.51.71: #s71-t14-sut1 - thunderx2 9980
     nomad:
       hosts:
         10.30.51.21: #s21-nomad - sapphirerapids

@@ -27,4 +27,4 @@ mellanox_compatibility_matrix:
     ofed: "5.9-0.5.6.0"
   dpdk23.11:
     # https://doc.dpdk.org/guides/rel_notes/release_23_11.html
-    ofed: "23.07-0.5.0.0"
+    ofed: "24.04-0.7.0.0"

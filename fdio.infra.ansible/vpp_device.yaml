@@ -22,6 +22,8 @@
 #      tags: kernel
     - role: intel
       tags: intel
+    - role: mellanox
+      tags: mellanox
     - role: docker
       tags: docker
     - role: docker_images
