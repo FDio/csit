@@ -82,7 +82,7 @@
 ### intel-x710
 #### avf
 ##### ethip4-ip4base
-0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-ip4base
+# 0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-ip4base
 ## ./ip4_tunnel/lisp
 ### mellanox-cx6dx
 #### mlx5-core
@@ -150,7 +150,7 @@
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-oacl1sl
 #### avf
 ##### ethip4-l2bdbasemaclrn
-0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-l2bdbasemaclrn
+# 0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-l2bdbasemaclrn
 ## ./l2patch
 ### mellanox-cx6dx
 #### mlx5-core
