@@ -38,6 +38,7 @@ nomad_options:
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
   fingerprint.network.disallow_link_local: true
+  artifact.disable_filesystem_isolation: true
 nomad_service_mgr: "systemd"
 nomad_consul_use_ssl: false
 nomad_use_tls: false

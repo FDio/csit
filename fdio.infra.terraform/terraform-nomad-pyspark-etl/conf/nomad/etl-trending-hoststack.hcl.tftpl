@@ -1,5 +1,5 @@
 job "${job_name}" {
-  datacenters = "${datacenters}"
+  datacenters = ["${datacenters}"]
   type        = "${type}"
   periodic {
     cron             = "${cron}"
@@ -21,8 +21,12 @@ job "${job_name}" {
     }
     task "${job_name}" {
       artifact {
-        source      = "git::https://github.com/FDio/csit"
-        destination = "local/csit"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/trending_hoststack.py"
+        destination = "local/"
+      }
+      artifact {
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/trending_hoststack.json"
+        destination = "local/"
       }
       driver = "docker"
       config {
@@ -33,7 +37,7 @@ job "${job_name}" {
           "--executor-memory", "30g",
           "trending_hoststack.py"
         ]
-        work_dir = "/local/csit/csit.infra.etl"
+        work_dir = "/local"
       }
       env {
         AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
