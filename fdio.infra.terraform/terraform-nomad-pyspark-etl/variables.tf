@@ -106,9 +106,9 @@ variable "vault_secret" {
   })
   description = "Set of properties to be able to fetch secret from vault."
   default = {
-    use_vault_provider        = false
+    use_vault_provider        = true
     vault_kv_policy_name      = "kv"
-    vault_kv_path             = "secret/data/etl"
+    vault_kv_path             = "data/etl"
     vault_kv_field_access_key = "access_key"
     vault_kv_field_secret_key = "secret_key"
   }
