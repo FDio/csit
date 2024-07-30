@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 as ubuntu_noble
+FROM ubuntu:24.04 AS ubuntu_noble
 
 LABEL Description="ubuntu intermediate image"
 LABEL Version="2.0"
