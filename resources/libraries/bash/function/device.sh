@@ -332,8 +332,8 @@ function get_available_interfaces () {
             # Add Intel Corporation E810 Virtual Function to the
             # whitelist.
             pci_id="0x154c\|0x1889"
-            tg_netdev=(enp42s0 ens5)
-            dut1_netdev=(enp61s0 ens7)
+            tg_netdev=(enp2s0 ens5)
+            dut1_netdev=(enp4s0 ens7)
             ports_per_nic=2
             ;;
        "1n_vbox")
