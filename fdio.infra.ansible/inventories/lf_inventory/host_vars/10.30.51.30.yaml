@@ -92,7 +92,7 @@ vault_version: "1.17.2"
 # Docker settings.
 docker_daemon:
   default-shm-size: "1073741824"
-  dns: ["172.17.0.1"]
-  dns-opts: []
-  dns-search: ["{{ ansible_hostname }}"]
+  #  dns: ["172.17.0.1"]
+  #dns-opts: []
+  #dns-search: ["{{ ansible_hostname }}"]
   host: ["172.17.0.1:/var/run/docker.sock"]

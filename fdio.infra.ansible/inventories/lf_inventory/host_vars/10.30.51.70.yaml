@@ -10,7 +10,8 @@ inventory_ipmi_hostname: "10.30.50.70"
 vfs_data_file: "csit-initialize-vfs-alt.sh"
 cpu_microarchitecture: "altra"
 
-intel_700_matrix: "dpdk22.07"
+intel_700_matrix: "dpdk22.03"
+mellanox_matrix: "dpdk23.11"
 
 # User management.
 users:
