@@ -10,7 +10,12 @@ inventory_ipmi_hostname: "10.30.50.70"
 vfs_data_file: "csit-initialize-vfs-alt.sh"
 cpu_microarchitecture: "altra"
 
+<<<<<<< HEAD   (20f899 feat(job_spec): vpp_device)
 intel_700_matrix: "dpdk22.07"
+=======
+intel_700_matrix: "dpdk22.03"
+mellanox_matrix: "dpdk23.11"
+>>>>>>> CHANGE (6417d5 feat(infra): Ubuntu 24.04 LTS)
 
 # User management.
 users:
