@@ -118,6 +118,17 @@
 #   tags:
 #     - vault-conf
 
+- name: Vault CLI Environment Variables
+  ansible.builtin.lineinfile:
+    path: "/etc/profile.d/vault.sh"
+    line: "{{ item }}"
+    mode: 0644
+    create: true
+  loop:
+    - "export VAULT_ADDR=http://vault.service.consul:8200"
+  tags:
+    - vault-conf-env
+
 - name: Conf - System.d Script
   ansible.builtin.template:
     src: "vault_systemd.service.j2"

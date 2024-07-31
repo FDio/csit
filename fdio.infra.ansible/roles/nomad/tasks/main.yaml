@@ -126,12 +126,12 @@
     mode: 0644
     create: true
   loop:
-    - "export NOMAD_ADDR=https://nomad-server.service.consul:4646"
+    - "export NOMAD_ADDR=http://nomad.service.consul:4646"
     - "export NOMAD_CACERT={{ nomad_tls_ca_file }}"
-    - "export NOMAD_CLIENT_CERT={{ nomad_tls_cli_cert_file }}"
-    - "export NOMAD_CLIENT_KEY={{ nomad_tls_cli_key_file }}"
+    - "export NOMAD_CLIENT_CERT={{ nomad_tls_cert_file }}"
+    - "export NOMAD_CLIENT_KEY={{ nomad_tls_key_file }}"
   tags:
-    - nomad-conf
+    - nomad-conf-env
 
 - name: System.d Script
   ansible.builtin.template:
