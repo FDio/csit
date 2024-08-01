@@ -17,7 +17,7 @@ import json
 import os
 import yaml
 
-from robot.api import logger
+from robot.api import logger, FatalError
 
 from resources.libraries.python.Constants import Constants
 
@@ -112,6 +112,7 @@ class VppApiCrcChecker:
         :raises RuntimeError: With the message, if fail_on_mismatch.
         """
         logger.console("RuntimeError:\n{m}".format(m=exc_msg))
+        raise FatalError(exc_msg)
         if self.fail_on_mismatch:
             raise RuntimeError(exc_msg)
 
