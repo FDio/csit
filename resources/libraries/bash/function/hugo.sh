@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,7 +46,7 @@ function hugo_build_site () {
     # - die - Print to stderr and exit.
 
     if ! installed hugo; then
-        die "Please install Hugo!"
+        hugo_install || die "Please install Hugo!"
     fi
 
     pushd "${CSIT_DIR}"/docs || die "Pushd failed!"
@@ -65,7 +65,7 @@ function hugo_init_modules () {
     # - die - Print to stderr and exit.
 
     if ! installed hugo; then
-        die "Please install Hugo!"
+        hugo_install || die "Please install Hugo!"
     fi
 
     hugo_book_url="github.com/alex-shpak/hugo-book"
