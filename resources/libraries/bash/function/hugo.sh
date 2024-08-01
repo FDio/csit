@@ -46,7 +46,7 @@ function hugo_build_site () {
     # - die - Print to stderr and exit.
 
     if ! installed hugo; then
-        die "Please install Hugo!"
+        hugo_install || die "Please install Hugo!"
     fi
 
     pushd "${CSIT_DIR}"/docs || die "Pushd failed!"
@@ -65,7 +65,7 @@ function hugo_init_modules () {
     # - die - Print to stderr and exit.
 
     if ! installed hugo; then
-        die "Please install Hugo!"
+        hugo_install || die "Please install Hugo!"
     fi
 
     hugo_book_url="github.com/alex-shpak/hugo-book"
