@@ -306,9 +306,7 @@ class Constants:
     DUT1_UUID = get_str_from_env("DUT1_UUID", "")
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        "FAIL_ON_CRC_MISMATCH"
-    )
+    FAIL_ON_CRC_MISMATCH = True
 
     # Default IP4 prefix length (if not defined in topology file)
     DEFAULT_IP4_PREFIX_LENGTH = "24"
