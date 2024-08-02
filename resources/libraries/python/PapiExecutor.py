@@ -703,6 +703,7 @@ class PapiSocketExecutor:
             # Save memory but still count the number of expected replies.
             self._api_command_list.append(0)
             api_object = self.get_connected_client(check_connected=False).api
+            logger.debug(f"Papi async sending {csit_papi_command} {kwargs}")
             func = getattr(api_object, csit_papi_command)
             # No need for deepcopy yet, serialization isolates from edits.
             func(**kwargs)
@@ -891,15 +892,20 @@ class PapiSocketExecutor:
         """
         timeout = vpp_instance.read_timeout if timeout is None else timeout
         if vpp_instance.csit_deque is None:
-            return vpp_instance.read_blocking(timeout=timeout)
+            ret = vpp_instance.read_blocking(timeout=timeout)
+            logger.debug(f"Papi blocking received {ret}")
+            return ret
         time_stop = time.monotonic() + timeout
         while 1:
             try:
-                return vpp_instance.csit_deque.popleft()
+                ret = vpp_instance.csit_deque.popleft()
+                logger.debug(f"Papi dequeue popped {ret}")
+                return ret
             except IndexError:
                 # We could busy-wait but that seems to starve the reader thread.
                 time.sleep(0.01)
             if time.monotonic() > time_stop:
+                logger.debug(f"Papi dequeue timeout.")
                 return None
 
     @staticmethod
@@ -1023,6 +1029,7 @@ class PapiSocketExecutor:
             papi_fn = getattr(vpp_instance.api, api_name)
             replies = list()
             try:
+                logger.debug(f"Papi sync sending {command}")
                 # Send the command maybe followed by control ping.
                 main_context = papi_fn(**command["api_args"])
                 if single_reply:
@@ -1051,6 +1058,8 @@ class PapiSocketExecutor:
                 PapiSocketExecutor._drain(vpp_instance, err_msg)
             # Process replies for this command.
             for reply in replies:
+                if reply is None:
+                    raise RuntimeError(f"{err_msg}\nNo reply to sync call. VPP crashed?")
                 self.crc_checker.check_api_name(reply.__class__.__name__)
                 dictized_reply = dictize_and_check_retval(reply, err_msg)
                 ret_list.append(dictized_reply)
