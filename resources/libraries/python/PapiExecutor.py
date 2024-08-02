@@ -703,6 +703,7 @@ class PapiSocketExecutor:
             # Save memory but still count the number of expected replies.
             self._api_command_list.append(0)
             api_object = self.get_connected_client(check_connected=False).api
+            logger.debug(f"Papi async sending {csit_papi_command} {kwargs}")
             func = getattr(api_object, csit_papi_command)
             # No need for deepcopy yet, serialization isolates from edits.
             func(**kwargs)
@@ -1090,6 +1091,7 @@ class PapiSocketExecutor:
             for index, _ in enumerate(local_list):
                 # Blocks up to timeout.
                 reply = PapiSocketExecutor._read(vpp_instance)
+                logger.debug(f"Papi received {reply}")
                 if reply is None:
                     time_msg = f"PAPI async timeout: idx {index}"
                     raise RuntimeError(f"{err_msg}\n{time_msg}")
