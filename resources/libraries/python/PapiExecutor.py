@@ -692,9 +692,10 @@ class PapiSocketExecutor:
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        # Creating deepcopy immediatelly, debugging for VPP-2121.
+        kwargs = copy.deepcopy(kwargs)
         self.crc_checker.report_initial_conflicts()
         if history:
-            # No need for deepcopy yet, serialization isolates from edits.
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs
             )
@@ -704,12 +705,10 @@ class PapiSocketExecutor:
             self._api_command_list.append(0)
             api_object = self.get_connected_client(check_connected=False).api
             func = getattr(api_object, csit_papi_command)
-            # No need for deepcopy yet, serialization isolates from edits.
             func(**kwargs)
         else:
-            # No serialization, so deepcopy is needed here.
             self._api_command_list.append(
-                dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs))
+                dict(api_name=csit_papi_command, api_args=kwargs)
             )
         return self
 
