@@ -1051,6 +1051,10 @@ class PapiSocketExecutor:
                 PapiSocketExecutor._drain(vpp_instance, err_msg)
             # Process replies for this command.
             for reply in replies:
+                if reply is None:
+                    raise RuntimeError(
+                        f"{err_msg}\nNo reply to sync call. VPP crashed?"
+                    )
                 self.crc_checker.check_api_name(reply.__class__.__name__)
                 dictized_reply = dictize_and_check_retval(reply, err_msg)
                 ret_list.append(dictized_reply)
