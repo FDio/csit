@@ -700,7 +700,10 @@ class IPsecUtil:
                 )
                 history = bool(not 1 < i < n_tunnels - 2)
                 papi_exec.add(cmd1, history=history, **args1)
+                # To avoid VPP-2121, wait for each reply.
+                papi_exec.get_replies(err_msg)
                 papi_exec.add(cmd2, history=history, **args2)
+                papi_exec.get_replies(err_msg)
 
                 args2["route"] = IPUtil.compose_vpp_route_structure(
                     node,
@@ -710,13 +713,14 @@ class IPsecUtil:
                     gateway=tunnel_dst_addr,
                 )
                 papi_exec.add(cmd2, history=history, **args2)
+                papi_exec.get_replies(err_msg)
 
                 if dst_mac:
                     args3["neighbor"]["ip_address"] = ip_address(
                         tunnel_dst_addr
                     )
                     papi_exec.add(cmd3, history=history, **args3)
-            papi_exec.get_replies(err_msg)
+                    papi_exec.get_replies(err_msg)
 
     @staticmethod
     def vpp_ipsec_add_spd(node: dict, spd_id: int) -> None:
