@@ -119,7 +119,7 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip3 install virtualenv==20.15.1 || {
+    pip3 install virtualenv==20.26.3 || {
         die "Virtualenv package install failed."
     }
     virtualenv --no-download --python=$(which python3) "${env_dir}" || {
