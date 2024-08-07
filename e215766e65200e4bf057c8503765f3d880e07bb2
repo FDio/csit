@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13145abb_f1e05b5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-07T11:01:17Z",
+      "side": 1,
+      "message": "Sometimes \"invalid socket\" path is triggered, but this works correctly if not.",
+      "revId": "e215766e65200e4bf057c8503765f3d880e07bb2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
