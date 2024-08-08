@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06dade5d_7355772e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-08T14:08:39Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest mrrANDnic_*ANDdrv_mlx5_coreAND1cAND9000bANDeth-l2patch",
+      "revId": "7aa93182024868e12f2bb90ce327fed0e0cdbc6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
