@@ -33,6 +33,23 @@
       "message": "absolutely unclear to me is why we do not have Dict() in Constants.py per NIC that defines it;",
       "revId": "fe3d07d02fb982c8e44cbe894939f2113cb93584",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c82eb17_c5f9926c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-08T08:17:26Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest mrrANDnic_*ANDdrv_mlx5_coreAND1cAND9000bANDeth-l2patch",
+      "revId": "fe3d07d02fb982c8e44cbe894939f2113cb93584",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
