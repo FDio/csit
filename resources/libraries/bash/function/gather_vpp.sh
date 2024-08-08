@@ -69,7 +69,7 @@ function gather_vpp () {
             # Shorten line.
             pkgs="${PKG_SUFFIX}"
             # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../*vpp*."${pkgs}" "${DOWNLOAD_DIR}"/ || {
+            mv "${DOWNLOAD_DIR}"/../*."${pkgs}" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
             ;;
