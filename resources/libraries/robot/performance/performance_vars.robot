@@ -415,7 +415,7 @@
 | | Set Numeric Frame Sizes
 | | ${jumbo} = | Evaluate | ${max_frame_size} >= 1800
 | | Set Test Variable | \${jumbo}
-| | ${recommended_mtu} = | Set Variable If | ${jumbo} | ${9200} | ${1800}
+| | ${recommended_mtu} = | Set Variable If | ${jumbo} | ${2031} | ${1800}
 | | Set Test Variable | \${recommended_mtu}
 
 | Set Max Rate And Jumbo
