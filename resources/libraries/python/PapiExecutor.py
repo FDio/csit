@@ -1065,6 +1065,8 @@ class PapiSocketExecutor:
 
         The messages were already sent by .add() in this mode,
         local_list is used just so we know how many replies to read.
+        Similarly to async .add, we do not check connection status here,
+        thus we avoid needless logging.
 
         Beware: It is not clear what to do when socket read fails
         in the middle of async processing.
@@ -1088,7 +1090,7 @@ class PapiSocketExecutor:
         :rtype: List[UserDict]
         :raises RuntimeError: If the replies are not all correct.
         """
-        vpp_instance = self.get_connected_client()
+        vpp_instance = self.get_connected_client(check_connected=False)
         ret_list = list()
         try:
             for index, _ in enumerate(local_list):
