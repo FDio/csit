@@ -16,6 +16,23 @@
       "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_*AND1cAND1518bANDethip4ipsec*tnlsw-ip4base-policy-*aes256gcm !drv_afr_xdp",
       "revId": "c9fe49cb322d396b6aab3f1db40eb1e68e63da22",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cdb95a8_2f312293",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-08-09T05:29:58Z",
+      "side": 1,
+      "message": "What is time overhead for this CLEARLY VPP bug?",
+      "revId": "c9fe49cb322d396b6aab3f1db40eb1e68e63da22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
