@@ -13,10 +13,13 @@
 
 """Core dump library."""
 
+import time
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.LimitUtil import LimitUtil
 from resources.libraries.python.SysctlUtil import SysctlUtil
+from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
@@ -136,6 +139,8 @@ class CoreDumpUtil:
         :type nodes: dict
         :type disable_on_success: bool
         """
+        VPPUtil.stop_vpp_service_on_all_duts(nodes)
+        time.sleep(10)
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 command = (
