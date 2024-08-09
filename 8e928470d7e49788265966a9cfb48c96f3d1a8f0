@@ -33,6 +33,24 @@
       "message": "If it was increased, it had a reason or recommendation from 3rd party. What was the reason? If 3n-snr cannot handle large heap size, most probably there are not enough resources, can we increase resources?\n\nThis commit seems to be as usual: \"Lets solve the problem by creating another.\"",
       "revId": "8e928470d7e49788265966a9cfb48c96f3d1a8f0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e61ea24_c59626c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-09T11:05:46Z",
+      "side": 1,
+      "message": "100k test is crashing VPP, so this is not even a complete workaround. More investigation needed.",
+      "parentUuid": "6b46705c_7e52a6dc",
+      "revId": "8e928470d7e49788265966a9cfb48c96f3d1a8f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
