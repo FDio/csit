@@ -85,6 +85,23 @@
       "message": "Even if this works, I will probably keep this as WiP until I chat with Damjan (when he is back from vacation) about VPP-2121.",
       "revId": "c9fe49cb322d396b6aab3f1db40eb1e68e63da22",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d0fd99_b4ebbc9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-09T12:29:02Z",
+      "side": 1,
+      "message": "PapiExecutor is doing something wildly ineffective, I suspect logging.",
+      "revId": "c9fe49cb322d396b6aab3f1db40eb1e68e63da22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
