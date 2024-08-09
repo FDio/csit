@@ -84,8 +84,6 @@
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${10000}
 | ${rxq_ratio}= | ${2}
-# Main heap size multiplicator
-| ${heap_size_mult}= | ${2}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 
