@@ -85,6 +85,7 @@ class VPPUtil:
         :raises RuntimeError: If VPP is not killed within 10 seconds.
         """
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
+
         command = "pkill -9 vpp"
         exec_cmd(node, command, timeout=1, sudo=True)
         # Different testbeds need different time to confirm the kill is done.
@@ -98,6 +99,7 @@ class VPPUtil:
         # Continue cleanup even if VPP may still be running after 10 seconds.
         command = "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
         exec_cmd(node, command, timeout=1, sudo=True)
+
         if node_key:
             if Topology.get_node_sockets(node, socket_type=SocketType.PAPI):
                 Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
