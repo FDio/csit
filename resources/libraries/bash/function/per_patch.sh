@@ -39,6 +39,9 @@ function build_vpp_ubuntu () {
 
     set -exuo pipefail
 
+    sed -i 's/e4a16beb76a6c63af1600dd4d1d752b8/086b8a6804bbf531dd86895e948df30b/' "${VPP_DIR}/build/external/packages/ipsec-mb.mk"
+    git diff
+    fgrep -rn 'e4a16beb76a6c63af1600dd4d1d752b8'
     cd "${VPP_DIR}" || die "Change directory command failed."
     if [ -n "${MAKE_PARALLEL_FLAGS-}" ]; then
         echo "Building VPP. Number of cores for build set with" \
@@ -55,6 +58,7 @@ function build_vpp_ubuntu () {
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
+    git checkout HEAD .
 }
 
 
