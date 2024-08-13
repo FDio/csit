@@ -735,7 +735,10 @@ class QemuUtils:
                 self._node, self._opt.get(u"mem-path"),
                 int(self._opt.get(u"mem"))
             )
-
+            exec_cmd(self._node,
+                "ls -l / && ls -l /opt && ls -l /opt/dpdk-23.11 && ls -l /opt/dpdk-23.11/build && ls -l /opt/dpdk-23.11/build/app && ls -l /opt/dpdk-23.11/build/app/dpdk-testpmd",
+                sudo=True,
+            )
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
             )
