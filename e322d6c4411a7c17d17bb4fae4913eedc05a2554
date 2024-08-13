@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a2012cb_d093f450",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-13T11:10:20Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest mrrANDnic_i*ANDdrv_v*AND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm",
+      "revId": "e322d6c4411a7c17d17bb4fae4913eedc05a2554",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
