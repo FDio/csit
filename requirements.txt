@@ -18,7 +18,7 @@
 #
 # CSIT Core dependencies
 ecdsa==0.19.0
-paramiko==3.4.0
+paramiko==3.4.1
 pycryptodome==3.20.0
 python-dateutil==2.9.0
 PyYAML==6.0.1
