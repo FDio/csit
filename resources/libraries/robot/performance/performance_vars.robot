@@ -279,7 +279,7 @@
 | |
 | | ... | \| \${runtime_duration} = \| Get Runtime Duration \|
 | |
-| | ${runtime_duration} = | Get Variable Value | \${runtime_duration} | ${1.0}
+| | ${runtime_duration} = | Get Variable Value | \${runtime_duration} | ${20.0}
 | | Return From Keyword | ${runtime_duration}
 
 | Get Runtime Rate
