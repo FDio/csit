@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest nic_intel-e810cqAND1cAND1518bANDethip4-ip4base-2vhost-gso-iperf3",
       "revId": "104dcb7593607295536440bf5d95033ea673bd1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21372299_3fdd1300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 49
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-19T13:40:35Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_intel-e810cqANDgso_*",
+      "revId": "104dcb7593607295536440bf5d95033ea673bd1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
