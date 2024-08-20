@@ -432,7 +432,7 @@ class Constants:
     # Each driver needs different plugin to work.
     NIC_DRIVER_TO_PLUGINS = {
         "vfio-pci": "dpdk_plugin.so",
-        "avf": "avf_plugin.so",
+        "avf": "dev_iavf_plugin.so",
         "rdma-core": "rdma_plugin.so",
         "mlx5_core": "dpdk_plugin.so",
         "af_xdp": "af_xdp_plugin.so",
