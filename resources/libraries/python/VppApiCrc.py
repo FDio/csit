@@ -112,6 +112,7 @@ class VppApiCrcChecker:
         :raises RuntimeError: With the message, if fail_on_mismatch.
         """
         logger.console("RuntimeError:\n{m}".format(m=exc_msg))
+        logger.warn("RuntimeError:\n{m}".format(m=exc_msg))
         if self.fail_on_mismatch:
             raise RuntimeError(exc_msg)
 
