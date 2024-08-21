@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -190,7 +190,7 @@ def simple_burst(
 
         # Choose rate and start traffic:
         client.start(
-            ports=ports[::] if traffic_directions == 2 else ports[::2],
+            ports=ports[::2] if traffic_directions == 1 else ports[::],
             mult=rate,
             duration=duration,
             force=force,
