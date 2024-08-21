@@ -66,6 +66,7 @@
 | ${rxq_ratio}= | ${3}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst-rnd${rts_per_flow}-${nic_pfs}p
+| ${traffic_directions}= | ${6}
 
 *** Keywords ***
 | Local Template
