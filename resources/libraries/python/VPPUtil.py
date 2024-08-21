@@ -375,6 +375,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        exec_cmd(node, "cat /var/log/vpp/vpp.log", timeout=180, sudo=True)
+        exec_cmd(node, "journalctl --no-pager --lines=100", timeout=180, sudo=True)
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
