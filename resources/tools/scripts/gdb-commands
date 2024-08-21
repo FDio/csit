@@ -21,15 +21,112 @@ set pagination off
 thread apply all bt
 
 define printstack
-  set $i=0
-  while $i < 15
-      frame $i
-      x/i $pc
-      info locals
-      info reg
-      set $i = $i + 1
-  end
+  frame 11
+  x/i $pc
+  info locals
+  info reg
+
+  frame 12
+  x/i $pc
+  info locals
+  info reg
+
+  frame 13
+  x/i $pc
+  info locals
+  info reg
+
+  frame 14
+  x/i $pc
+  info locals
+  info reg
+
+  frame 15
+  x/i $pc
+  info locals
+  info reg
+
+  frame 16
+  x/i $pc
+  info locals
+  info reg
+
+  frame 17
+  x/i $pc
+  info locals
+  info reg
+
+  frame 18
+  x/i $pc
+  info locals
+  info reg
+
+  frame 19
+  x/i $pc
+  info locals
+  info reg
+
+  frame 20
+  x/i $pc
+  info locals
+  info reg
+
+  frame 21
+  x/i $pc
+  info locals
+  info reg
+
+  frame 22
+  x/i $pc
+  info locals
+  info reg
+
+  frame 23
+  x/i $pc
+  info locals
+  info reg
+
+  frame 24
+  x/i $pc
+  info locals
+  info reg
+
+  frame 25
+  x/i $pc
+  info locals
+  info reg
+
+  frame 26
+  x/i $pc
+  info locals
+  info reg
+
+  frame 27
+  x/i $pc
+  info locals
+  info reg
+
+  frame 28
+  x/i $pc
+  info locals
+  info reg
+
+  frame 29
+  x/i $pc
+  info locals
+  info reg
+
+  frame 30
+  x/i $pc
+  info locals
+  info reg
+
+  frame 31
+  x/i $pc
+  info locals
+  info reg
 end
-thread apply all printstack
+
+thread apply 1 printstack
 
 # info proc mappings
