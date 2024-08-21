@@ -35,8 +35,9 @@ class DUTSetup:
         if DUTSetup.running_in_container(node):
             return
         command = (
-            f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl "
-            f"show -p InvocationID --value {service})"
+            f"journalctl --no-pager --lines=100"
+#            f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl "
+#            f"show -p InvocationID --value {service})"
         )
         message = f"Node {node[u'host']} failed to get logs from unit {service}"
 
