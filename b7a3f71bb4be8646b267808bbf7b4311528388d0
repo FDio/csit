@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f6d02d_384a95c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-21T12:58:16Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest 3cAND64bANDethip4-ip4scale60k-rnd !drv_af_xdp",
+      "revId": "b7a3f71bb4be8646b267808bbf7b4311528388d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
