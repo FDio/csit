@@ -18,11 +18,10 @@
 # gdb ${BINFILE} ${CORE} -ex 'source -v gdb-commands' -ex quit
 
 set pagination off
-thread apply all bt
 
-define printstack
-  set $i=0
-  while $i < 15
+define printstack1
+  set $i = 0
+  while $i < 20
       frame $i
       x/i $pc
       info locals
@@ -30,6 +29,4 @@ define printstack
       set $i = $i + 1
   end
 end
-thread apply all printstack
-
-# info proc mappings
+thread apply all printstack1
