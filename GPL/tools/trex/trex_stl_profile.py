@@ -190,7 +190,7 @@ def simple_burst(
 
         # Choose rate and start traffic:
         client.start(
-            ports=ports[::] if traffic_directions == 2 else ports[::2],
+            ports=ports[::2] if traffic_directions == 1 else ports[::],
             mult=rate,
             duration=duration,
             force=force,
