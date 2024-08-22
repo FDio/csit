@@ -808,6 +808,44 @@ class VppConfigGenerator:
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
 
+    def add_octeon_dev(self, *devices):
+        """Add OCTEON PCI device configuration.
+
+        :param devices: PCI device(s) (format xxxx:xx:xx.x)
+        :type devices: tuple
+        """
+        for index, device in enumerate(devices):
+            if pci_dev_check(device):
+                path = [u"devices", f"dev pci/{device}", u"driver octeon"]
+                self.add_config_item(self._nodeconfig, u"", path)
+                path = [u"devices", f"dev pci/{device}", u"port 0", f"name eth{index}"]
+                self.add_config_item(self._nodeconfig, u"", path)
+                num_rx_queues = Topology.get_num_rx_queues(self._node)
+                num_tx_queues = Topology.get_num_tx_queues(self._node)
+                if num_rx_queues and num_tx_queues:
+                    self.add_octeon_dev_default_rxq(device, num_rx_queues)
+                    self.add_octeon_dev_default_txq(device, num_tx_queues)
+                else:
+                    self.add_octeon_dev_default_rxq(device, 16)
+                    self.add_octeon_dev_default_txq(device, 17)
+
+    def add_octeon_dev_default_rxq(self, device, value):
+        """Add OCTEON dev default rxq configuration.
+
+        :param value: Default number of rxqs.
+        :type value: str
+        """
+        path = [u"devices", f"dev pci/{device}", u"port 0", u"num-rx-queues"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_octeon_dev_default_txq(self, device, value):
+        """Add OCTEON dev default txq configuration.
+
+        :param value: Default number of txqs.
+        :type value: str
+        """
+        path = [u"devices", f"dev pci/{device}", u"port 0", u"num-tx-queues"]
+        self.add_config_item(self._nodeconfig, value, path)
 
 class VppInitConfig:
     """VPP Initial Configuration."""
@@ -887,3 +925,28 @@ class VppInitConfig:
         vpp_config.add_ip6_heap_size("4G")
 
         return vpp_config
+
+    @staticmethod
+    def init_vpp_startup_configuration_on_all_duts_for_octeon(nodes):
+        """Apply initial VPP startup configuration on all DUTs.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        huge_size = Constants.DEFAULT_HUGEPAGE_SIZE
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                vpp_config = VppConfigGenerator()
+                vpp_config.set_node(node)
+                vpp_config.add_unix_log()
+                vpp_config.add_unix_cli_listen()
+                vpp_config.add_unix_cli_no_pager()
+                vpp_config.add_unix_coredump()
+                vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+                vpp_config.add_statseg_per_node_counters("on")
+                vpp_config.add_plugin("disable", "default")
+                vpp_config.add_plugin("enable", "dev_octeon_plugin.so")
+                vpp_config.add_cpu_main_core(1)
+                vpp_config.add_cpu_corelist_workers(2)
+                vpp_config.add_buffers_per_numa(107520)
+                vpp_config.apply_config()
