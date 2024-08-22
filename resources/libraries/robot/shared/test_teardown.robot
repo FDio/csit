@@ -243,3 +243,14 @@
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
+
+| Dump Vpp Counters On All DUTs With OCTEON Plugin
+| | [Documentation]
+| | ... | Dumping vpp counters on all duts with OCTEON plugin.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | Vpp Show Errors | ${nodes['${dut}']}
+| | | Run Keyword | Vpp Show Buffers | ${nodes['${dut}']}
+| | | Run Keyword | Vpp Show Interface Stats | ${nodes['${dut}']}
+| | | Run Keyword | Vpp Show Hardware Interfaces | ${nodes['${dut}']}
+| | END

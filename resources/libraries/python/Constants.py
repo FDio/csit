@@ -331,6 +331,10 @@ class Constants:
         "Amazon-Nitro-50G": 10000000000,
         "Amazon-Nitro-100G": 10000000000,
         "Amazon-Nitro-200G": 16000000000,
+        "Cavium-A063-10G": 10000000000,
+        "Cavium-A063-40G": 40000000000,
+        "Cavium-A063-50G": 50000000000,
+        "Cavium-A063-100G": 100000000000,
         "virtual": 100000000,
     }
 
@@ -349,6 +353,10 @@ class Constants:
         "Amazon-Nitro-50G": 1500000,
         "Amazon-Nitro-100G": 3000000,
         "Amazon-Nitro-200G": 6000000,
+        "Cavium-A063-10G": 78125000,
+        "Cavium-A063-40G": 78125000,
+        "Cavium-A063-50G": 97656250,
+        "Cavium-A063-100G": 195312500,
         "virtual": 14880952,
     }
 
@@ -368,6 +376,10 @@ class Constants:
         "Mellanox-CX6DX": "100ge2p1cx6dx",
         "Mellanox-CX7VEAT": "200ge2p1cx7veat",
         "Mellanox-CX7VEAT": "200ge6p3cx7veat",
+        "Cavium-A063-10G": "10ge2p1a063",
+        "Cavium-A063-40G": "40ge2p1a063",
+        "Cavium-A063-50G": "50ge2p1a063",
+        "Cavium-A063-100G": "100ge2p1a063",
         "virtual": "1ge1p82540em",
     }
     NIC_CODE_TO_NAME = {
@@ -385,6 +397,10 @@ class Constants:
         "100ge2p1cx6dx": "Mellanox-CX6DX",
         "200ge2p1cx7veat": "Mellanox-CX7VEAT",
         "200ge6p3cx7veat": "Mellanox-CX7VEAT",
+        "10ge2p1a063":"Cavium-A063-10G",
+        "40ge2p1a063":"Cavium-A063-40G",
+        "50ge2p1a063":"Cavium-A063-50G",
+        "100ge2p1a063":"Cavium-A063-100G",
         "1ge1p82540em": "virtual",
     }
 
@@ -405,6 +421,10 @@ class Constants:
         "200ge2p1cx7veat": "cx7veat",
         "200ge6p3cx7veat": "cx7veat",
         "1ge1p82540em": "82540em",
+        "10ge2p1a063": "a063",
+        "40ge2p1a063": "a063",
+        "50ge2p1a063": "a063",
+        "100ge2p1a063": "a063",
     }
 
     # Not each driver is supported by each NIC.
@@ -422,6 +442,10 @@ class Constants:
         "Mellanox-CX556A": ["rdma-core", "mlx5_core", "af_xdp"],
         "Mellanox-CX6DX": ["rdma-core", "mlx5_core", "af_xdp"],
         "Mellanox-CX7VEAT": ["rdma-core", "mlx5_core", "af_xdp"],
+        "Cavium-A063-10G": ["vfio-pci"],
+        "Cavium-A063-40G": ["vfio-pci"],
+        "Cavium-A063-50G": ["vfio-pci"],
+        "Cavium-A063-100G": ["vfio-pci"],
         "virtual": ["vfio-pci"],
     }
 
@@ -478,6 +502,10 @@ class Constants:
         "200ge2p1cx7veat": "nic_pfs}= | 2",
         "200ge6p3cx7veat": "nic_pfs}= | 6",
         "1ge1p82540em": "nic_pfs}= | 2",
+        "10ge2p1a063": "nic_pfs}= | 2",
+        "40ge2p1a063": "nic_pfs}= | 2",
+        "50ge2p1a063": "nic_pfs}= | 2",
+        "100ge2p1a063": "nic_pfs}= | 2",
     }
 
     NIC_CODE_TO_CORESCALE = {
@@ -496,6 +524,10 @@ class Constants:
         "200ge2p1cx7veat": 1,
         "200ge6p3cx7veat": 3,
         "1ge1p82540em": 1,
+        "10ge2p1a063": 1,
+        "40ge2p1a063": 1,
+        "50ge2p1a063": 1,
+        "100ge2p1a063": 1,
     }
 
     # Not each driver is supported by each NIC.
@@ -513,6 +545,10 @@ class Constants:
         "Mellanox-CX556A": ["mlx5_core"],
         "Mellanox-CX6DX": ["mlx5_core"],
         "Mellanox-CX7VEAT": ["mlx5_core"],
+        "Cavium-A063-10G": ["vfio-pci"],
+        "Cavium-A063-40G": ["vfio-pci"],
+        "Cavium-A063-50G": ["vfio-pci"],
+        "Cavium-A063-100G": ["vfio-pci"],
         "virtual": ["vfio-pci"],
     }
 

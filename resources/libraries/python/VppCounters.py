@@ -270,3 +270,30 @@ class VppCounters:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 VppCounters.clear_vpp_statistics(node)
+
+    @staticmethod
+    def vpp_show_buffers(node):
+        """Run "show buffers" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show buffers")
+
+    @staticmethod
+    def vpp_show_interface_stats(node):
+        """Run "show interface" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show interface")
+
+    @staticmethod
+    def vpp_show_hardware_interfaces(node):
+        """Run "show hardware-interfaces" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show hardware-interfaces")
