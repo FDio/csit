@@ -284,13 +284,13 @@ class TrafficGenerator(AbstractMeasurer):
     def initialize_traffic_generator(self, osi_layer, pfs=2):
         """TG initialization.
 
-        :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
+        :param osi_layer: OSI Layer testing type.
         :param pfs: Number of physical interfaces to configure.
         :type osi_layer: str
         :type pfs: int
         :raises ValueError: If OSI layer is unknown.
         """
-        if osi_layer not in ("L2", "L3", "L7"):
+        if osi_layer not in ("L2", "L3", "L3_1", "L7"):
             raise ValueError("Unknown OSI layer!")
 
         topology = BuiltIn().get_variable_value("&{topology_info}")
@@ -304,7 +304,9 @@ class TrafficGenerator(AbstractMeasurer):
             for link in range(1, pfs, 2):
                 tg_if1_adj_addr = topology[f"TG_pf{link+1}_mac"][0]
                 tg_if2_adj_addr = topology[f"TG_pf{link}_mac"][0]
-                if osi_layer in ("L3", "L7") and "DUT1" in topology.keys():
+                skip = 0 if osi_layer in ("L3_1") else 1
+                if osi_layer in ("L3", "L3_1", "L7") and "DUT1" \
+                        in topology.keys():
                     ifl = BuiltIn().get_variable_value("${int}")
                     last = topology["duts_count"]
                     tg_if1_adj_addr = Topology().get_interface_mac(
@@ -316,7 +318,7 @@ class TrafficGenerator(AbstractMeasurer):
                     tg_if2_adj_addr = Topology().get_interface_mac(
                         topology[f"DUT{last}"],
                         BuiltIn().get_variable_value(
-                            f"${{DUT{last}_{ifl}{link+1}}}[0]"
+                            f"${{DUT{last}_{ifl}{link+skip}}}[0]"
                         )
                     )
 
@@ -365,7 +367,7 @@ class TrafficGenerator(AbstractMeasurer):
         """Startup sequence for the TRex traffic generator.
 
         :param tg_node: Traffic generator node.
-        :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
+        :param osi_layer: OSI Layer testing type.
         :param subtype: Traffic generator sub-type.
         :type tg_node: dict
         :type osi_layer: str
@@ -429,7 +431,7 @@ class TrafficGenerator(AbstractMeasurer):
 
                 # Test T-Rex API responsiveness.
                 cmd = f"python3 {Constants.REMOTE_FW_DIR}/GPL/tools/trex/"
-                if osi_layer in ("L2", "L3"):
+                if osi_layer in ("L2", "L3", "L3_1"):
                     cmd += "trex_stl_assert.py"
                 elif osi_layer == "L7":
                     cmd += "trex_astf_assert.py"
