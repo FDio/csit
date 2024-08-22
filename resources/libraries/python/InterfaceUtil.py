@@ -621,6 +621,21 @@ class InterfaceUtil:
             )
 
     @staticmethod
+    def setup_interface_mac_from_topology(nodes):
+        """Setup interface MAC address from topology file.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                keylist = list(node[u"interfaces"].keys())
+                driver = node[u"uio_driver"]
+                for key in keylist:
+                    pci_addr = node[u"interfaces"][key][u"pci_address"]
+                    InterfaceUtil.init_interface(node, key, driver)
+
+    @staticmethod
     def update_vpp_interface_data_on_node(node):
         """Update vpp generated interface data for a given node in DICT__nodes.
 
@@ -1814,6 +1829,10 @@ class InterfaceUtil:
             vf_keys = InterfaceUtil.init_generic_interface(
                 node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
             )
+        elif driver == u"vfio-pci" and kernel_driver in (u"rvu_nicpf"):
+            vf_keys = InterfaceUtil.init_generic_interface(
+                    node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+            )
         return vf_keys
 
     @staticmethod
@@ -1840,7 +1859,6 @@ class InterfaceUtil:
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pf_pci_addr.replace(u":", r"\:"))
-        pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
         VPPUtil.stop_vpp_service(node)
         if current_driver != kernel_driver:
@@ -1852,6 +1870,13 @@ class InterfaceUtil:
                 DUTSetup.pci_driver_unbind(node, pf_pci_addr)
             # Bind to kernel driver.
             DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
+
+        pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
+
+        pf_mac = Topology.get_interface_mac(node, ifc_key)
+        InterfaceUtil.set_linux_interface_mac(
+                node, pf_dev, pf_mac, vf_id=None
+        )
 
         # Initialize PCI VFs.
         DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs=numvfs)

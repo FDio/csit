@@ -706,6 +706,22 @@ class Topology:
             return None
 
     @staticmethod
+    def get_interface_mac_list(node, *iface_keys):
+        """Get MAC address for the interfaces.
+
+        :param node: Node to get interface MAC on.
+        :param iface_keys: Interface keys from topology file.
+        :type node: dict
+        :type iface_keys: list
+        :returns: Return MAC List
+        :rtype: list
+        """
+        mac_list = []
+        for iface_key in iface_keys:
+            mac_list.append(Topology.get_interface_mac(node,iface_key))
+        return mac_list
+
+    @staticmethod
     def get_interface_ip4(node, iface_key):
         """Get IP4 address for the interface.
 
@@ -792,6 +808,22 @@ class Topology:
             return node[u"interfaces"][iface_key].get(u"pci_address")
         except KeyError:
             return None
+
+    @staticmethod
+    def get_interface_pci_addr_list(node, *iface_keys):
+        """Get interfaces PCI addresses.
+
+        :param node: Node to get interfaces PCI addresses on.
+        :param iface_keys: Interfaces keys from topology file.
+        :type node: dict
+        :type iface_keys: list
+        :returns: Return PCI addresses list.
+        :rtype: list
+        """
+        pci_list = []
+        for iface_key in iface_keys:
+            pci_list.append(Topology.get_interface_pci_addr(node,iface_key))
+        return pci_list
 
     @staticmethod
     def get_interface_driver(node, iface_key):
@@ -1111,6 +1143,34 @@ class Topology:
         """
         try:
             return node[u"uio_driver"]
+        except KeyError:
+            return None
+
+    @staticmethod
+    def get_num_rx_queues(node):
+        """Return num_rx_queues configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: num_rx_queues configuration string.
+        :rtype: str
+        """
+        try:
+            return node[u"num_rx_queues"]
+        except KeyError:
+            return None
+
+    @staticmethod
+    def get_num_tx_queues(node):
+        """Return num_tx_queues configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: num_tx_queues configuration string.
+        :rtype: str
+        """
+        try:
+            return node[u"num_tx_queues"]
         except KeyError:
             return None
 
