@@ -417,6 +417,32 @@ class DUTSetup:
         )
 
     @staticmethod
+    def pci_driver_bind_list(node, *pci_addrs, driver):
+        """bind PCI devices to driver node.
+
+        :param node: DUT node.
+        :param pci_addrs: PCI device addresses.
+        :param driver: Driver to bind.
+        :type node: dict
+        :type pci_addrs: list
+        :type driver: str
+        """
+        for pci_addr in pci_addrs:
+            DUTSetup.pci_driver_bind(node, pci_addr, driver)
+
+    @staticmethod
+    def pci_driver_unbind_list(node, *pci_addrs):
+        """bind PCI devices to driver node.
+
+        :param node: DUT node.
+        :param pci_addrs: PCI device addresses.
+        :type node: dict
+        :type pci_addrs: list
+        """
+        for pci_addr in pci_addrs:
+            DUTSetup.pci_driver_unbind(node, pci_addr)
+
+    @staticmethod
     def pci_vf_driver_unbind(node, pf_pci_addr, vf_id):
         """Unbind Virtual Function from driver on node.
 

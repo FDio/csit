@@ -125,40 +125,56 @@
 | |
 | | No operation
 
+| Pre-initialize layer vfio-pci on all DUTs with OCTEON plugin
+| | [Documentation]
+| | ... | Pre-initialize vfio-pci driver by adding related OCTEON sections to startup
+| | ... | config on all DUTs.
+| | [Arguments] | ${dut}
+| | Stop VPP Service | ${nodes['${dut}']}
+| | Run Keyword If | ${nic_vfs}
+| | ... | ${dut}.Add OCTEON Dev | @{${dut}_prevf_pci}
+| | Run Keyword If | not ${nic_vfs}
+| | ... | Run Keywords
+| | ... | PCI Driver Unbind List | ${nodes['${dut}']} | @{${dut}_pf_pci}
+| | ... | AND | ${dut}.Add OCTEON Dev | @{${dut}_pf_pci}
+| | ... | AND | PCI Driver Bind List | ${nodes['${dut}']} | @{${dut}_pf_pci} | driver="vfio-pci"
+
+| Pre-initialize layer vfio-pci on all DUTs with DPDK plugin
+| | [Documentation]
+| | ... | Pre-initialize vfio-pci driver by adding related sections to startup
+| | ... | config on all DUTs.
+| | [Arguments] | ${dut}
+| | Stop VPP Service | ${nodes['${dut}']}
+| | Unbind PCI Devices From Other Driver | ${nodes['${dut}']} | vfio-pci |
+| | ... | @{${dut}_pf_pci}
+| | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
+| | Run Keyword If | ${dpdk_no_tx_checksum_offload}
+| | ... | ${dut}.Add DPDK No Tx Checksum Offload
+| | Run Keyword | ${dut}.Add DPDK Log Level | debug
+| | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
+| | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | Run Keyword If | not ${jumbo}
+| | ... | ${dut}.Add DPDK No Multi Seg
+| | Run Keyword If | ${nic_rxq_size} > 0
+| | ... | ${dut}.Add DPDK Dev Default RXD | ${nic_rxq_size}
+| | Run Keyword If | ${nic_txq_size} > 0
+| | ... | ${dut}.Add DPDK Dev Default TXD | ${nic_txq_size}
+| | Run Keyword If | '${crypto_type}' != '${None}'
+| | ... | ${dut}.Add DPDK Cryptodev | ${dp_count_int}
+| | Run Keyword | ${dut}.Add DPDK Max Simd Bitwidth | ${GRAPH_NODE_VARIANT}
+
 | Pre-initialize layer vfio-pci on all DUTs
 | | [Documentation]
 | | ... | Pre-initialize vfio-pci driver by adding related sections to startup
 | | ... | config on all DUTs.
 | |
 | | ${index}= | Get Index From List | ${TEST TAGS} | DPDK
-| | Run Keyword If | ${index} >= 0 | Return From Keyword
+| | ${octeon_index}= | Get Index From List | ${TEST TAGS} | OCTEON
 | | FOR | ${dut} | IN | @{duts}
-| | | Stop VPP Service | ${nodes['${dut}']}
-| | | Unbind PCI Devices From Other Driver | ${nodes['${dut}']} | vfio-pci |
-| | | ... | @{${dut}_pf_pci}
-| | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
-| | | Run Keyword If | ${dpdk_enable_tcp_udp_checksum}
-| | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
-| | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
-| | | ... | ${dut}.Add DPDK No Tx Checksum Offload
-| | | Run Keyword | ${dut}.Add DPDK Log Level | debug
-| | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
-| | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-| | | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-100G'
-| | | ... | ${dut}.Add DPDK Dev Default Devargs |
-| | | ... | "normal_llq_hdr=1,enable_llq=1,control_path_poll_interval=0"
-| | | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-200G'
-| | | ... | ${dut}.Add DPDK Dev Default Devargs |
-| | | ... | "normal_llq_hdr=1,enable_llq=1,control_path_poll_interval=0"
-| | | Run Keyword If | not ${jumbo}
-| | | ... | ${dut}.Add DPDK No Multi Seg
-| | | Run Keyword If | ${nic_rxq_size} > 0
-| | | ... | ${dut}.Add DPDK Dev Default RXD | ${nic_rxq_size}
-| | | Run Keyword If | ${nic_txq_size} > 0
-| | | ... | ${dut}.Add DPDK Dev Default TXD | ${nic_txq_size}
-| | | Run Keyword If | '${crypto_type}' != '${None}'
-| | | ... | ${dut}.Add DPDK Cryptodev | ${dp_count_int}
-| | | Run Keyword | ${dut}.Add DPDK Max Simd Bitwidth | ${GRAPH_NODE_VARIANT}
+| | | Run Keyword If | ${octeon_index} >= 0
+| | | ... | Run Keyword | Pre-initialize layer vfio-pci on all DUTs with OCTEON plugin | ${dut}
+| | | ... | ELSE
+| | | ... | Run Keyword | Pre-initialize layer vfio-pci on all DUTs with DPDK plugin | ${dut}
 | | END
 
 | Pre-initialize layer avf on all DUTs
