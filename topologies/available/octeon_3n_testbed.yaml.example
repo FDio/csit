@@ -1,0 +1,93 @@
+---
+metadata:
+  schema:
+  - resources/topology_schemas/3_node_topology.sch.yaml
+  - resources/topology_schemas/topology.sch.yaml
+  tags:
+  - hw
+  - 3-node
+  version: 0.1
+nodes:
+  DUT1:
+    arch: aarch64
+    chip: cn10k
+    cryptodev:
+      device1:
+        pci_address: '0002:20:00.0'
+        driver: 'rvu_cptpf'
+        model: 'HW_A0FD'
+        module: 'rvu_cptpf'
+        numvfs: 1
+    eventdev: 0002:0e:00.0
+    host: 10.11.10.215
+    interfaces:
+      port1:
+        driver: rvu_nicpf
+        link: link1
+        mac_address: 40:60:5a:02:e1:83
+        model: Cavium-A063-100G
+        pci_address: '0002:02:00.0'
+      port2:
+        driver: rvu_nicpf
+        link: link2
+        mac_address: 40:60:5a:02:e1:85
+        model: Cavium-A063-100G
+        pci_address: '0002:03:00.0'
+    password: root
+    port: 22
+    type: DUT
+    uio_driver: vfio-pci
+    username: root
+    chip: cn10k
+  DUT2:
+    arch: aarch64
+    chip: cn10k
+    cryptodev:
+      device1:
+        pci_address: '0002:20:00.0'
+        driver: 'rvu_cptpf'
+        model: 'HW_A0FD'
+        module: 'rvu_cptpf'
+        numvfs: 1
+    eventdev: 0002:0e:00.0
+    host: 10.11.10.142
+    interfaces:
+      port1:
+        driver: rvu_nicpf
+        link: link2
+        mac_address: 40:60:5a:02:e1:62
+        model: Cavium-A063-100G
+        pci_address: '0002:03:00.0'
+      port2:
+        driver: rvu_nicpf
+        link: link3
+        mac_address: 40:60:5a:02:e1:60
+        model: Cavium-A063-100G
+        pci_address: '0002:02:00.0'
+    password: root
+    port: 22
+    type: DUT
+    uio_driver: vfio-pci
+    username: root
+    chip: cn10k
+  TG:
+    arch: x86_64
+    host: 10.11.20.8
+    interfaces:
+      port1:
+        driver: ice
+        link: link1
+        mac_address: 6c:fe:54:91:72:b8
+        model: Intel-E810CQ
+        pci_address: '0000:04:00.0'
+      port2:
+        driver: ice
+        link: link3
+        mac_address: 6c:fe:54:91:72:b9
+        model: Intel-E810CQ
+        pci_address: '0000:04:00.1'
+    password: root
+    port: 22
+    subtype: TREX
+    type: TG
+    username: root
