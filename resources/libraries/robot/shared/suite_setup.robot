@@ -177,19 +177,21 @@
 | |
 | | [Arguments] | ${dut}
 | |
+| | ${prevf_mac}= | Create List
+| | ${prevf_pci}= | Create List
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_vf}=
 | | | ... | Run Keyword | Init interface
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
 | | | ... | numvfs=${nic_vfs} | osi_layer=${osi_layer}
 | | | ${_mac}=
-| | | ... | Create List | ${EMPTY}
+| | | ... | Get Interface MAC List | ${nodes['${dut}']} | @{_vf}
 | | | ${_ip4_addr}=
 | | | ... | Create List | ${EMPTY}
 | | | ${_ip4_prefix}=
 | | | ... | Create List | ${EMPTY}
 | | | ${_pci}=
-| | | ... | Create List | ${EMPTY}
+| | | ... | Get Interface PCI Addr List | ${nodes['${dut}']} | @{_vf}
 | | | ${_vlan}=
 | | | ... | Create List | ${EMPTY}
 | | | Set Suite Variable
@@ -204,9 +206,15 @@
 | | | ... | ${${dut}_prevf${pf}_pci} | ${_pci}
 | | | Set Suite Variable
 | | | ... | ${${dut}_prevf${pf}_vlan} | ${_vlan}
+| | | Append To List | ${prevf_mac} | @{${dut}_prevf${pf}_mac}
+| | | Append To List | ${prevf_pci} | @{${dut}_prevf${pf}_pci}
 | | END
 | | Set Suite Variable
 | | ... | ${int} | prevf
+| | Set Suite Variable
+| | ... | ${${dut}_prevf_mac} | ${prevf_mac}
+| | Set Suite Variable
+| | ... | ${${dut}_prevf_pci} | ${prevf_pci}
 
 | Additional Suite Setup Action For performance pf
 | | [Documentation]
