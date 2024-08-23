@@ -26,12 +26,12 @@ function go_install () {
         aarch64) architecture="arm64" ;;
     esac
 
-    go_version="go1.20.2.linux-${architecture}.tar.gz"
+    go_version="go1.22.5.linux-${architecture}.tar.gz"
     go_url="https://go.dev/dl"
     wget "${go_url}/${go_version}"
     rm -rf "/usr/local/go"
-    tar -C "/usr/local" -xzf "go1.20.2.linux-${architecture}.tar.gz"
-    rm "go1.20.2.linux-${architecture}.tar.gz"
+    tar -C "/usr/local" -xzf "go1.22.5.linux-${architecture}.tar.gz"
+    rm "go1.22.5.linux-${architecture}.tar.gz"
     export PATH=$PATH:/usr/local/go/bin
 }
 
@@ -44,6 +44,10 @@ function hugo_build_site () {
     # - ${CSIT_DIR} - CSIT main directory.
     # Functions called:
     # - die - Print to stderr and exit.
+
+    if ! install go; then
+        go_install || die "Please install Go!"
+    fi
 
     if ! installed hugo; then
         hugo_install || die "Please install Hugo!"
@@ -63,6 +67,10 @@ function hugo_init_modules () {
     # - ${CSIT_DIR} - CSIT main directory.
     # Functions called:
     # - die - Print to stderr and exit.
+
+    if ! install go; then
+        go_install || die "Please install Go!"
+    fi
 
     if ! installed hugo; then
         hugo_install || die "Please install Hugo!"
