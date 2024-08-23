@@ -29,8 +29,8 @@ function go_install () {
     go_version="go1.22.5.linux-${architecture}.tar.gz"
     go_url="https://go.dev/dl"
     wget "${go_url}/${go_version}"
-    rm -rf "/usr/local/go"
-    tar -C "/usr/local" -xzf "go1.22.5.linux-${architecture}.tar.gz"
+    sudo rm -rf "/usr/local/go"
+    sudo tar -C "/usr/local" -xzf "go1.22.5.linux-${architecture}.tar.gz"
     rm "go1.22.5.linux-${architecture}.tar.gz"
     export PATH=$PATH:/usr/local/go/bin
 }
