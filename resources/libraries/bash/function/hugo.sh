@@ -92,7 +92,7 @@ function hugo_install () {
     hugo_url="https://github.com/gohugoio/hugo/releases/download"
     hugo_link="${hugo_url}/${hugo_version}"
     wget -O "hugo.deb" "${hugo_link}" || die "Failed to install Hugo!"
-    dpkg -i "hugo.deb" || die "Failed to install Hugo!"
+    sudo dpkg -i "hugo.deb" || die "Failed to install Hugo!"
     rm "hugo.deb" || die "Failed to install Hugo!"
 }
 
