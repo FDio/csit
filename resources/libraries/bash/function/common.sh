@@ -119,9 +119,9 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip3 install virtualenv==20.26.3 || {
-        die "Virtualenv package install failed."
-    }
+    #pip3 install virtualenv==20.26.3 || {
+    #    die "Virtualenv package install failed."
+    #}
     virtualenv --no-download --python=$(which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
@@ -873,6 +873,11 @@ function select_arch_os () {
                 *"LTS (Jammy Jellyfish)"*)
                     IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_JAMMY"
                     VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_JAMMY"
+                    PKG_SUFFIX="deb"
+                    ;;
+                *"LTS (Noble Numbat)"*)
+                    IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_NOBLE"
+                    VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_NOBLE"
                     PKG_SUFFIX="deb"
                     ;;
                 *)
