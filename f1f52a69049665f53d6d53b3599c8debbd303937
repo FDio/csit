@@ -16,6 +16,23 @@
       "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_avfAND1cAND64bANDethip4ipsec1000tnlsw-ip4base-policy-aes256gcm",
       "revId": "f1f52a69049665f53d6d53b3599c8debbd303937",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2de2904_a06f8c82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-26T10:04:27Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_avfAND1cAND64bANDethip4-ip4scale20k-rnd",
+      "revId": "f1f52a69049665f53d6d53b3599c8debbd303937",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
