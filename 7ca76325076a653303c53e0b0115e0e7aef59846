@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2e701c9_9772daaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-08-26T08:39:30Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_avfAND1cAND64bANDethip4ipsec1000tnlsw-ip4base-policy-aes256gcm",
+      "revId": "7ca76325076a653303c53e0b0115e0e7aef59846",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
