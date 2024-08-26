@@ -550,6 +550,16 @@ class VppConfigGenerator:
         """Add DPDK no-multi-seg configuration."""
         path = ["dpdk", "no-multi-seg"]
         self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk", "level debug"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk/device"]
+        self.add_config_item(self._nodeconfig, "", path)
+        path = ["logging", "class dpdk/device", "level debug"]
+        self.add_config_item(self._nodeconfig, "", path)
 
     def add_dpdk_enable_tcp_udp_checksum(self):
         """Add DPDK enable-tcp-udp-checksum configuration."""
