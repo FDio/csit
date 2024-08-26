@@ -153,3 +153,5 @@ class CoreDumpUtil:
                     # If compress was not successful ignore error and skip
                     # further processing.
                     continue
+
+                DUTSetup.get_service_logs(node, "vpp")
