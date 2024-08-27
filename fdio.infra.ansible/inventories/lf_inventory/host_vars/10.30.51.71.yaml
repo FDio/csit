@@ -98,3 +98,7 @@ docker_daemon:
 #  dns-opts: []
 #  dns-search: ["{{ansible_hostname}}"]
 #  host: ["172.17.0.1:/var/run/docker.sock"]
+
+# Docker images / UID,GID.
+docker_images_gid: "1001"
+docker_images_uid: "1001"

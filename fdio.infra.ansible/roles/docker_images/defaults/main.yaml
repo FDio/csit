@@ -1,0 +1,5 @@
+---
+# file: defaults/main.yaml
+
+docker_images_gid: "1000"
+docker_images_uid: "1000"
