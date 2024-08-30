@@ -304,7 +304,7 @@ class TrafficGenerator(AbstractMeasurer):
             for link in range(1, pfs, 2):
                 tg_if1_adj_addr = topology[f"TG_pf{link+1}_mac"][0]
                 tg_if2_adj_addr = topology[f"TG_pf{link}_mac"][0]
-                skip = 0 if osi_layer in ("L3_1") else 1
+                skip = 0 if osi_layer in ("L3_1",) else 1
                 if osi_layer in ("L3", "L3_1", "L7") and "DUT1" \
                         in topology.keys():
                     ifl = BuiltIn().get_variable_value("${int}")
