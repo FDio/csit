@@ -487,10 +487,6 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="zn2"
             ;;
-        *"2n-clx")
-            NODENESS="2n"
-            FLAVOR="clx"
-            ;;
         *"2n-icx")
             NODENESS="2n"
             FLAVOR="icx"
@@ -518,14 +514,6 @@ function get_test_code () {
         *"3n-icxd")
             NODENESS="3n"
             FLAVOR="icxd"
-            ;;
-        *"2n-tx2")
-            NODENESS="2n"
-            FLAVOR="tx2"
-            ;;
-        *"3n-tsh")
-            NODENESS="3n"
-            FLAVOR="tsh"
             ;;
         *"3n-alt")
             NODENESS="3n"
@@ -954,9 +942,6 @@ function select_tags () {
         *"3n-icxd")
             default_nic="nic_intel-e823c"
             ;;
-        *"3n-tsh")
-            default_nic="nic_intel-x520-da2"
-            ;;
         *"3n-icx" | *"2n-icx")
             default_nic="nic_intel-e810cq"
             ;;
@@ -969,10 +954,10 @@ function select_tags () {
         *"2n-spr")
             default_nic="nic_intel-e810cq"
             ;;
-        *"2n-clx" | *"2n-zn2")
+        *"2n-zn2")
             default_nic="nic_intel-xxv710"
             ;;
-        *"2n-tx2" | *"3n-alt")
+        *"3n-alt")
             default_nic="nic_intel-xl710"
             ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
@@ -997,7 +982,6 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("xxv710","25ge2p1xxv710");'
     awk_nics_sub_cmd+='gsub("x710","10ge2p1x710");'
     awk_nics_sub_cmd+='gsub("xl710","40ge2p1xl710");'
-    awk_nics_sub_cmd+='gsub("x520-da2","10ge2p1x520");'
     awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'
     awk_nics_sub_cmd+='gsub("2p1cx7veat","200ge2p1cx7veat");'
     awk_nics_sub_cmd+='gsub("6p3cx7veat","200ge6p3cx7veat");'
@@ -1108,16 +1092,10 @@ function select_tags () {
         *"1n-alt")
             test_tag_array+=("!flow")
             ;;
-        *"2n-clx")
-            test_tag_array+=("!ipsechw")
-            ;;
         *"2n-icx")
             test_tag_array+=("!ipsechw")
             ;;
         *"2n-spr")
-            ;;
-        *"2n-tx2")
-            test_tag_array+=("!ipsechw")
             ;;
         *"2n-zn2")
             test_tag_array+=("!ipsechw")
@@ -1136,10 +1114,6 @@ function select_tags () {
         *"3na-spr")
             ;;
         *"3nb-spr")
-            ;;
-        *"3n-tsh")
-            test_tag_array+=("!drv_avf")
-            test_tag_array+=("!ipsechw")
             ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             test_tag_array+=("!ipsechw")
@@ -1241,10 +1215,6 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        *"2n-clx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx_*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
         *"2n-icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx_*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
@@ -1252,10 +1222,6 @@ function select_topology () {
         *"2n-spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr_*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        *"2n-tx2")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2_*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         *"2n-zn2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2_*.yaml )
@@ -1288,10 +1254,6 @@ function select_topology () {
             ;;
         *"3n-snr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr_*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        *"3n-tsh")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh_*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *"3na-spr")
