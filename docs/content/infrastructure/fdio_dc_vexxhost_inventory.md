@@ -19,14 +19,6 @@ Captured inventory data:
   - **rackid**: new location rack id.
   - **rackunit**: new location rack unit id.
 
-## Missing Equipment Inventory
-
-1. Ixia PerfectStorm One Appliance
-   - [**Specification**]({{< ref "fdio_dc_testbed_specifications#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1" >}})
-   - [**Wiring**]({{< ref "fdio_dc_testbed_specifications#2-node-ixiaps1l47-2n-ps1" >}})
-   - **mgmt-ip4**: 10.30.51.62 s26-t25-tg1
-   - **ipmi-ip4**: 10.30.50.59 s26-t25-tg1
-
 ## YUL1 Inventory
 
 ### Rack YUL1-8 (3016.8)
@@ -57,11 +49,11 @@ Captured inventory data:
  s55-t22-tg1     | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.55  | 10.30.50.55  | 3016.9     | u30-u33
  s56-t23-sut1    | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.56  | 10.30.50.56  | 3016.9     | u26-u29
  s57-t23-tg1     | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.57  | 10.30.50.57  | 3016.9     | u22-u25
- s25-t25-sut1    | 2n-p1         | SYS-7049GP-TRT      | C7470KH06A20022 | 10.30.51.61  | 10.30.50.58  | 3016.9     | u18-u21
- s19-t33t211-tg1 | 3n-tsh/2n-tx2 | SYS-7049GP-TRT      | C7470KH06A20056 | 10.30.51.49  | 10.30.50.46  | 3016.9     | u14-u17
- s27-t211-sut1   | 2n-tx2        | ThunderX2-9975      | K61186073100003 | 10.30.51.69  | 10.30.50.69  | 3016.9     | u13
- s18-t33-sut2    | 3n-tsh        | HUAWEI-TAISHAN-2280 | N/A             | 10.30.51.37  | 10.30.50.37  | 3016.9     | u11-u12
- s17-t33-sut1    | 3n-tsh        | HUAWEI-TAISHAN-2280 | N/A             | 10.30.51.36  | 10.30.50.36  | 3016.9     | u9-u10
+ s58-t24-sut1    | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.58  | 10.30.50.58  | 3016.9     | u18-u21
+ s59-t24-tg1     | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.59  | 10.30.50.59  | 3016.9     | u14-u17
+ s78-t38-sut1    | 3n-icx        | SYS-740GP-TNRT      | C7470KL03P50450 | 10.30.51.78  | 10.30.50.78  | 3016.9     | u10-u13
+ s79-t38-sut2    | 3n-icx        | SYS-740GP-TNRT      | C7470KL07P50297 | 10.30.51.79  | 10.30.50.79  | 3016.9     | u6-u9
+ s80-t38-tg1     | 3n-icx        | SYS-740GP-TNRT      | C7470KL03P50454 | 10.30.51.80  | 10.30.50.80  | 3016.9     | u2-u5
 
 ### Rack YUL1-10 (3016.10)
 
@@ -70,8 +62,6 @@ Captured inventory data:
  yul1-10-lb4m    | uplink        | ?                   | ?               | ?            | ?            | 3016.10    | u47
  s2-t12-sut1     | 1n-skx        | SYS-7049GP-TRT      | C7470KH06A20119 | 10.30.51.51  | 10.30.50.48  | 3016.10    | u42-u45
  s1-t11-sut1     | 1n-skx        | SYS-7049GP-TRT      | C7470KH06A20154 | 10.30.51.50  | 10.30.50.47  | 3016.10    | u38-u41
- s58-t24-sut1    | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.58  | 10.30.50.58  | 3016.10    | u34-u37
- s59-t24-tg1     | 2n-spr        | SYS-741GE-TNRT      | ???             | 10.30.51.59  | 10.30.50.59  | 3016.10    | u30-u33
  s32-t31-sut1    | 3n-icxd       | SYS-110D-20C-FRDN8TP| C515MKK41A30950 | 10.30.51.32  | 10.30.50.32  | 3016.10    | u21
  s33-t31-sut2    | 3n-icxd       | SYS-110D-20C-FRDN8TP| C515MKK41A30967 | 10.30.51.33  | 10.30.50.33  | 3016.10    | u20
  s34-t32-sut1    | 3n-icxd       | SYS-110D-20C-FRDN8TP| C515MKK41A30959 | 10.30.51.34  | 10.30.50.34  | 3016.10    | u19
@@ -92,9 +82,6 @@ Captured inventory data:
  fdio-marvell-dev      | dev          | ThunderX-88XX  | N/A             | 10.30.51.38  | 10.30.50.38  | 3016.11    | u45
  s21-nomad             | nomad-client | SYS-741GE-TNRT | C7490FL47A50150 | 10.30.51.21  | 10.30.50.21  | 3016.11    | u39-u42
  s22-nomad             | nomad-client | SYS-741GE-TNRT | C7490FL47A50155 | 10.30.51.22  | 10.30.50.22  | 3016.11    | u35-u38
- s78-t38-sut1          | 3n-icx       | SYS-740GP-TNRT | C7470KL03P50450 | 10.30.51.78  | 10.30.50.78  | 3016.11    | u31-u34
- s79-t38-sut2          | 3n-icx       | SYS-740GP-TNRT | C7470KL07P50297 | 10.30.51.79  | 10.30.50.79  | 3016.11    | u27-u30
- s80-t38-tg1           | 3n-icx       | SYS-740GP-TNRT | C7470KL03P50454 | 10.30.51.80  | 10.30.50.80  | 3016.11    | u23-u26
  s30-t15-sut1          | nomad-client | SYS-741GE-TNRT | C7490FL47A50154 | 10.30.51.30  | 10.30.50.30  | 3016.11    | u19-u22
  s31-t16-sut1          | nomad-client | SYS-741GE-TNRT | C7490FL47A50149 | 10.30.51.31  | 10.30.50.31  | 3016.11    | u15-u18
  s70-t13-sut1          | 1n-alt       | E252-P30-00    | GMG252012A0098  | 10.30.51.70  | 10.30.50.70  | 3016.11    | u13-u14
@@ -118,9 +105,9 @@ Captured inventory data:
  s61-t210-tg1    | 2n-zn2        | AS-1014S-WTRT       | C8150LI50NS2689 | 10.32.8.25   | 10.30.55.25  | 3016.12    | u31
  s60-t210-sut1   | 2n-zn2        | AS-1114S-WTRT       | N/A             | 10.32.8.24   | 10.30.55.24  | 3016.12    | u30
  s26-nomad       | nomad-server  | SYS-7049GP-TRT      | C7470KH37A30505 | 10.30.51.26  | 10.30.51.26  | 3016.12    | u26-u29
- s33-t27-sut1    | 2n-clx        | SYS-7049GP-TRT      | C7470KH37A30567 | 10.32.8.18   | 10.30.55.18  | 3016.12    | u22-u25
- s34-t27-tg1     | 2n-clx        | SYS-7049GP-TRT      | C7470KH37A30565 | 10.32.8.19   | 10.30.55.19  | 3016.12    | u18-u21
- s35-t28-sut1    | 2n-clx        | SYS-7049GP-TRT      | C7470KH37A30509 | 10.32.8.20   | 10.30.55.20  | 3016.12    | u14-u17
- s36-t28-tg1     | 2n-clx        | SYS-7049GP-TRT      | C7470KH37A30511 | 10.32.8.21   | 10.30.55.21  | 3016.12    | u10-u13
- s37-t29-sut1    | 2n-clx        | SYS-7049GP-TRT      | C7470KH37A30566 | 10.32.8.22   | 10.30.55.22  | 3016.12    | u6-u9
+ --              | --            | --                  | --              | --           | --           | 3016.12    | u22-u25
+ --              | --            | --                  | --              | --           | --           | 3016.12    | u18-u21
+ --              | --            | --                  | --              | --           | --           | 3016.12    | u14-u17
+ --              | --            | --                  | --              | --           | --           | 3016.12    | u10-u13
+ --              | --            | --                  | --              | --           | --           | 3016.12    | u6-u9
  s38-t29-tg1     | 2n-clx        | SYS-7049GP-TRT      | C7470KH37A30506 | 10.32.8.23   | 10.30.55.23  | 3016.12    | u2-u5
