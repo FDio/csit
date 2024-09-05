@@ -734,6 +734,7 @@ class Regenerator:
             {u"frame_size": min_frame_size, u"phy_cores": 1},
             {u"frame_size": min_frame_size, u"phy_cores": 2},
             {u"frame_size": min_frame_size, u"phy_cores": 4},
+            {u"frame_size": min_frame_size, u"phy_cores": 8},
             {u"frame_size": 1518, u"phy_cores": 1},
             {u"frame_size": 1518, u"phy_cores": 2},
             {u"frame_size": 1518, u"phy_cores": 4},
