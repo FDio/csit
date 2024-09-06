@@ -39,7 +39,8 @@ MIN_FRAME_SIZE_VALUES = list(PROTOCOL_TO_MIN_FRAME_SIZE.values())
 
 
 def replace_defensively(
-        whole, to_replace, replace_with, how_many, msg, in_filename):
+    whole, to_replace, replace_with, how_many, msg, in_filename, zero_ok=False
+):
     """Replace substrings while checking the number of occurrences.
 
     Return edited copy of the text. Assuming "whole" is really a string,
@@ -51,17 +52,21 @@ def replace_defensively(
     :param how_many: Number of occurrences to expect.
     :param msg: Error message to raise.
     :param in_filename: File name in which the error occurred.
+    :param zero_ok: If true, do not fail if there were zero replacements.
     :type whole: str
     :type to_replace: str
     :type replace_with: str
     :type how_many: int
     :type msg: str
     :type in_filename: str
+    :type zero_ok: bool
     :returns: The whole text after replacements are done.
     :rtype: str
     :raises ValueError: If number of occurrences does not match.
     """
     found = whole.count(to_replace)
+    if found == 0 and zero_ok:
+        return whole
     if found != how_many:
         raise ValueError(f"{in_filename}: {msg}")
     return whole.replace(to_replace, replace_with)
@@ -363,7 +368,8 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
                     Constants.NIC_CODE_TO_PFS[nic_code], 1,
-                    "NIC PFs argument should appear once.", in_filename
+                    "NIC PFs argument should appear once.", in_filename,
+                    zero_ok="2lbvpplacp" in suite_id,
                 )
                 iface, suite_id, suite_tag = get_iface_and_suite_ids(
                     out_filename
@@ -452,7 +458,8 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
             out_prolog = replace_defensively(
                 out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
                 Constants.NIC_CODE_TO_PFS[nic_code], 1,
-                "NIC PFs argument should appear once.", in_filename
+                "NIC PFs argument should appear once.", in_filename,
+                zero_ok="2lbvpplacp" in suite_id
             )
             iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
             out_prolog = replace_defensively(
@@ -524,7 +531,8 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             out_prolog = replace_defensively(
                 out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
                 Constants.NIC_CODE_TO_PFS[nic_code], 1,
-                "NIC PFs argument should appear once.", in_filename
+                "NIC PFs argument should appear once.", in_filename,
+                zero_ok="2lbvpplacp" in suite_id,
             )
             iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
             out_prolog = replace_defensively(
@@ -684,7 +692,8 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_CODE_TO_PFS["10ge2p1x710"],
                     Constants.NIC_CODE_TO_PFS[nic_code], 1,
-                    "NIC PFs argument should appear once.", in_filename
+                    "NIC PFs argument should appear once.", in_filename,
+                    zero_ok="2lbvpplacp" in suite_id,
                 )
                 iface, suite_id, suite_tag = get_iface_and_suite_ids(
                     out_filename
