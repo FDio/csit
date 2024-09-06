@@ -59,7 +59,7 @@ and enhance result repeatability and comparability.
 
 The primary reason for extending [RFC2544] is to address the challenges
 and requirements presented by the evaluation and testing
-of software-based networking systems' data planes.
+the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
 such as allowing multiple short trials per load instead of one large trial,
@@ -80,12 +80,11 @@ and supporting the search for multiple goals with varying loss ratios.
 
 {:/comment}
 
-
 # Purpose and Scope
 
-The purpose of this document is to describe Multiple Loss Ratio search
-(MLRsearch), a data plane throughput search methodology optimized for software
-networking DUTs.
+The purpose of this document is to describe the Multiple Loss Ratio search
+(MLRsearch) methodology, optimized for determining
+data plane throughput in software-based networking devices.
 
 Applying vanilla [RFC2544] throughput bisection to software DUTs
 results in several problems:
@@ -1344,12 +1343,13 @@ when defining attributes of the Goal Result.
 Conversely, at the end of the search, each Search Goal
 has its corresponding Goal Result.
 
-Conceptually, the search can be seen as a process of load classification,
-where the Controller attempts to classify some loads as an Upper Bound
-or a Lower Bound with respect to some Search Goal.
+Conceptually, the search can be viewed as a process of load classification,
+where the Controller attempts to classify certain loads
+as either an Upper Bound or a Lower Bound with respect to a specific Search Goal,
+and eventually returns a Controller Output.
 
-Before defining real attributes of the goal result,
-it is useful to define bounds in general.
+Before defining structure of Controller Output,
+it is useful to define specific bounds.
 
 ### Relevant Upper Bound
 
@@ -1790,109 +1790,33 @@ pertaining to MLRsearch methodology.
 
 {:/comment}
 
-## MLRsearch Versions
-
-The MLRsearch algorithm has been developed in a code-first approach,
-a Python library has been created, debugged, used in production
-and published in PyPI before the first descriptions
-(even informal) were published.
-
-But the code (and hence the description) was evolving over time.
-Multiple versions of the library were used over past several years,
-and later code was usually not compatible with earlier descriptions.
-
-The code in (some version of) MLRsearch library fully determines
-the search process (for a given set of configuration parameters),
-leaving no space for deviations.
-
-{::comment}
-    [Different type of external link, should be in 08.]
-
-    <mark>MKP2 mk3 note: any references to library
-    should have specific reference link.
-    We have FDio-CSIT-MLRsearch in informative: at the start. Link it.
-    </mark>
-
-{:/comment}
-
-{::comment}
-    [Lesson learned is important, but maybe does not need version history?]
-
-    <mark>MKP2 mk edit note: Suggest to remove crossed-out text, as it is
-    distracting, doesn't bring any value, and recalls multiple versions of
-    MLRsearch library, without any references. A much more appropriate
-    approach would be to provide a pointer to MLRsearch code versions in
-    FD.io that evolved over the years, as an example implementation. But I
-    would question the value of referring to old previous versions in this
-    document. It's okay for the blog, but not for IETF specification,
-    unless there are specific lessons learned that need to be highlighted
-    to support the specification.</mark>
-
-{:/comment}
-
-This historic meaning of MLRsearch, as a family
-of search algorithm implementations,
-leaves plenty of space for future improvements, at the cost
-of poor comparability of results of search algoritm implementations.
-
-{::comment}
-    [Reckeck after clarifying library/algorithm/implementation/specification mess.]
-
-    <mark>mk edit note: If the aim of this sentence is to state that there
-    could be possibly other approaches to address this problem space, then
-    I think we are already addressing it in the opening sections discussing
-    problems, and referring to ETSi TST.009 and opnfv work. If the aim is
-    to define "MLRsearch" as a completely new class of algorithms for
-    software network benchmarking, of which this spec is just one example,
-    then i have a problem with it. This specification is very prescriptive
-    in the main functional areas to address the problem identified, but
-    still leaving space for further exploration and innovation as noted
-    elsewhere in this document. It is not a new class of algorithms. It is
-    a newly defined methodology to amend RFC2544, to specifically address
-    identified problems.</mark>
-
-{:/comment}
-
-There are two competing needs.
-There is the need for standardization in areas critical to comparability.
-There is also the need to allow flexibility for implementations
-to innovate and improve in other areas.
-This document defines MLRsearch as a new specification
-in a manner that aims to fairly balance both needs.
-
 ## Stopping Conditions
 
 [RFC2544] prescribes that after performing one trial at a specific offered load,
 the next offered load should be larger or smaller, based on frame loss.
 
 The usual implementation uses binary search.
-Here a lossy trial becomes
-a new upper bound, a lossless trial becomes a new lower bound.
-The span of values between the tightest lower bound
-and the tightest upper bound (including both values) forms an interval of possible results,
-and after each trial the width of that interval halves.
+Here, a lossy trial becomes a new upper bound,
+and a lossless trial becomes a new lower bound.
+The span of values between the tightest lower bound and the tightest upper bound
+forms an interval of possible results, which halves after each trial.
 
-Usually the binary search implementation tracks only the two tightest bounds,
-simply calling them bounds.
-But the old values still remain valid bounds,
-just not as tight as the new ones.
+Typically, the binary search implementation tracks only the two tightest bounds,
+but older values remain valid bounds, just not as tight as the new ones.
 
 After some number of trials, the tightest lower bound becomes the throughput.
-[RFC2544] does not specify when, if ever, should the search stop.
+[RFC2544] does not specify when, if ever, the search should stop.
 
-MLRsearch introduces a concept of [Goal Width] (#Goal-Width).
+MLRsearch introduces the concept of [Goal Width] (#Goal-Width).
+The search stops when the distance between the tightest upper bound
+and the tightest lower bound is smaller than a user-configured value,
+called Goal Width. In other words, the interval width at the end of the search
+must be no larger than the Goal Width.
 
-The search stops
-when the distance between the tightest upper bound and the tightest lower bound
-is smaller than a user-configured value, called Goal Width from now on.
-In other words, the interval width at the end of the search
-has to be no larger than the Goal Width.
-
-This Goal Width value therefore determines the precision of the result.
-Due to the fact that MLRsearch specification requires a particular
-structure of the result (see [Trial Result] (#Trial-Result) section),
-the result itself does contain enough information to determine its
-precision, thus it is not required to report the Goal Width value.
+This Goal Width value determines the precision of the result.
+Since MLRsearch specification requires listing both relevant bounds for each goal,
+the difference between the bounds determines the goal result precision,
+making it unnecessary to report the Goal Width value.
 
 This allows MLRsearch implementations to use stopping conditions
 different from Goal Width.
@@ -2300,6 +2224,7 @@ For load classification, it is useful to define **good trials** and **bad trials
 - **Good trial**: Trial that is not bad is called good.
 
 ## Performance Spectrum
+
 ### Description
 
 There are several equivalent ways to explain the Conditional Throughput
@@ -2990,14 +2915,14 @@ which computes two values, stored in variables named
 
 {:/comment}
 
-The pseudocode happens to be a valid Python code.
+The pseudocode happens to be valid Python code.
 
 If values of both variables are computed to be true, the load in question
 is classified as a lower bound according to the given Search Goal.
 If values of both variables are false, the load is classified as an upper bound.
 Otherwise, the load is classified as undecided.
 
-The pseudocode expects the following variables to hold values as follows:
+The pseudocode expects the following variables to hold the following values:
 
 - `goal_duration_sum`: The duration sum value of the given Search Goal.
 
@@ -3055,9 +2980,9 @@ which computes a value stored as variable `conditional_throughput`.
 
 {:/comment}
 
-The pseudocode happens to be a valid Python code.
+The pseudocode happens to be valid Python code.
 
-The pseudocode expects the following variables to hold values as follows:
+The pseudocode expects the following variables to hold the following values:
 
 - `goal_duration_sum`: The duration sum value of the given Search Goal.
 
