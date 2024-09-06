@@ -1866,33 +1866,27 @@ in a manner that aims to fairly balance both needs.
 the next offered load should be larger or smaller, based on frame loss.
 
 The usual implementation uses binary search.
-Here a lossy trial becomes
-a new upper bound, a lossless trial becomes a new lower bound.
-The span of values between the tightest lower bound
-and the tightest upper bound (including both values) forms an interval of possible results,
-and after each trial the width of that interval halves.
+Here, a lossy trial becomes a new upper bound,
+and a lossless trial becomes a new lower bound.
+The span of values between the tightest lower bound and the tightest upper bound
+forms an interval of possible results, which halves after each trial.
 
-Usually the binary search implementation tracks only the two tightest bounds,
-simply calling them bounds.
-But the old values still remain valid bounds,
-just not as tight as the new ones.
+Typically, the binary search implementation tracks only the two tightest bounds,
+but older values remain valid bounds, just not as tight as the new ones.
 
 After some number of trials, the tightest lower bound becomes the throughput.
-[RFC2544] does not specify when, if ever, should the search stop.
+[RFC2544] does not specify when, if ever, the search should stop.
 
-MLRsearch introduces a concept of [Goal Width] (#Goal-Width).
+MLRsearch introduces the concept of [Goal Width] (#Goal-Width).
+The search stops when the distance between the tightest upper bound
+and the tightest lower bound is smaller than a user-configured value,
+called Goal Width. In other words, the interval width at the end of the search
+must be no larger than the Goal Width.
 
-The search stops
-when the distance between the tightest upper bound and the tightest lower bound
-is smaller than a user-configured value, called Goal Width from now on.
-In other words, the interval width at the end of the search
-has to be no larger than the Goal Width.
-
-This Goal Width value therefore determines the precision of the result.
-Due to the fact that MLRsearch specification requires a particular
-structure of the result (see [Trial Result] (#Trial-Result) section),
-the result itself does contain enough information to determine its
-precision, thus it is not required to report the Goal Width value.
+This Goal Width value determines the precision of the result.
+Since MLRsearch specification requires listing both relevant bounds for each goal,
+the difference between the bounds determines the goal result precision,
+making it unnecessary to report the Goal Width value.
 
 This allows MLRsearch implementations to use stopping conditions
 different from Goal Width.
