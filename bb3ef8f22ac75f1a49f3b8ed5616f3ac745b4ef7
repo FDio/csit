@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc nic_intel-e810cqANDdrv_avfAND64bAND1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc",
       "revId": "bb3ef8f22ac75f1a49f3b8ed5616f3ac745b4ef7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5edb79b2_01154fab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-09T13:01:22Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc nic_intel-e810cqANDdrv_avfAND64bAND1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc",
+      "revId": "bb3ef8f22ac75f1a49f3b8ed5616f3ac745b4ef7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
