@@ -33,6 +33,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc nic_intel-e810cqANDdrv_avfAND64bAND1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc",
       "revId": "bb3ef8f22ac75f1a49f3b8ed5616f3ac745b4ef7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aef13d63_6bec13ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-09T15:22:41Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/1108/ : FAILURE\n\nBoth soak tests failed (small losses). Not sure why, this change should not be able to affect the non-linkbonding vhost test at all.\n\n\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/1109/ : SUCCESS\n\nThis proves the previous run was a fluke.",
+      "revId": "bb3ef8f22ac75f1a49f3b8ed5616f3ac745b4ef7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
