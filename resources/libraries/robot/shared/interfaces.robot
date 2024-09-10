@@ -387,7 +387,8 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs}
+| | ${dut_dut_links} = | Get Variable Value | \${dut_dut_links} | 1
+| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs} * ${dut_dut_links}
 | | | ${_avf}= | VPP Create AVF Interface
 | | | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[${vf}]
 | | | ... | num_rx_queues=${rxq_count_int}
