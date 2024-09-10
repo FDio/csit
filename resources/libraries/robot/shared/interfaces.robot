@@ -260,7 +260,8 @@
 | |
 | | [Arguments] | ${dut} | ${driver}
 | |
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | ${dut_dut_links} = | Get Variable Value | \${dut_dut_links} | 1
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} * ${dut_dut_links} + 1
 | | | ${_vf}=
 | | | ... | Copy List | ${${dut}_${int}${pf}}
 | | | ${_ip4_addr}=
@@ -387,7 +388,8 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs}
+| | ${dut_dut_links} = | Get Variable Value | \${dut_dut_links} | 1
+| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs} * ${dut_dut_links}
 | | | ${_avf}= | VPP Create AVF Interface
 | | | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[${vf}]
 | | | ... | num_rx_queues=${rxq_count_int}
