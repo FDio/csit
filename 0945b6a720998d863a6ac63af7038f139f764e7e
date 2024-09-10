@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_intel0e810cqANDdrv_avfAND1cAND64bANDeth-l2xcbase-1lbvpplacp",
       "revId": "0945b6a720998d863a6ac63af7038f139f764e7e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e4958b_0a570522",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-10T17:07:09Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/1118/ : FAILURE\n\nTypo in trigger.\n\ncsit-3n-icx-perftest nic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2xcbase-1lbvpplacp",
+      "revId": "0945b6a720998d863a6ac63af7038f139f764e7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
