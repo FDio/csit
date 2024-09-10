@@ -371,6 +371,16 @@
 4c AND 64b AND ndrpdr AND cx6dx AND drv_mlx5_core AND eth-l2patch
 ### intel-e810cq
 #### avf
+##### eth-l2xcbase
+1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2xcbase
+2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2xcbase
+4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2xcbase
+##### eth-l2xcbase-1lbvpplacp
+1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2xcbase-1lbvpplacp
+2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2xcbase-1lbvpplacp
+4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2xcbase-1lbvpplacp
+### intel-e810cq
+#### avf
 ##### eth-l2bdbasemaclrn
 1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn
 2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn
@@ -453,3 +463,10 @@
 1c AND 78b AND ndrpdr AND e810cq AND drv_avf AND ethip6srhip6-ip6base-srv6proxy-stat
 2c AND 78b AND ndrpdr AND e810cq AND drv_avf AND ethip6srhip6-ip6base-srv6proxy-stat
 4c AND 78b AND ndrpdr AND e810cq AND drv_avf AND ethip6srhip6-ip6base-srv6proxy-stat
+## ./vm_vhost
+### intel-e810cq
+#### dpdk-vfio-pci
+##### eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
