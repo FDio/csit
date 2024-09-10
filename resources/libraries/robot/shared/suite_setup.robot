@@ -87,9 +87,11 @@
 | |
 | | Start Suite Setup Export
 | | ${nic_model_list}= | Create list | ${nic_name}
+| | ${dut_dut_links}= | Get Variable Value | \${dut_dut_links} | ${1}
 | | &{info}= | Compute Circular Topology
 | | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
-| | ... | always_same_link=${False} | topo_has_tg=${True}
+| | ... | dut_dut_links=${dut_dut_links} | always_same_link=${False}
+| | ... | topo_has_tg=${True}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
 | | Finalize Suite Setup Export

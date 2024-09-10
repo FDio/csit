@@ -218,7 +218,7 @@ class NodePath:
         return self._path[-2]
 
     def compute_circular_topology(
-            self, nodes, filter_list=None, nic_pfs=1,
+            self, nodes, filter_list=None, nic_pfs=1, dut_dut_links=1,
             always_same_link=False, topo_has_tg=True, topo_has_dut=True):
         """Return computed circular path.
 
@@ -252,7 +252,7 @@ class NodePath:
             t_dict[u"duts_count"] = len(duts)
             t_dict[u"int"] = u"pf"
 
-        for _ in range(0, nic_pfs // 2):
+        for _ in range(0, nic_pfs * dut_dut_links // 2):
             if topo_has_tg:
                 if topo_has_dut:
                     self.append_node(nodes[u"TG"])
