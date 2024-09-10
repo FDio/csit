@@ -237,10 +237,17 @@ def graph_trending(
                 hosts = f"<br>hosts: {', '.join(row['hosts'])}"
             except (KeyError, TypeError):
                 hosts = str()
+
+            for drv in C.DRIVERS:
+                if drv in name_lst:
+                    drv_idx = name_lst.index(drv)
+                    break
+            else:
+                drv_idx = 5
             hover_itm = (
                 f"dut: {name_lst[0]}<br>"
-                f"infra: {'-'.join(name_lst[1:5])}<br>"
-                f"test: {'-'.join(name_lst[5:])}<br>"
+                f"infra: {'-'.join(name_lst[1:drv_idx])}<br>"
+                f"test: {'-'.join(name_lst[drv_idx:])}<br>"
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"{h_tput}{h_tput_trials}{h_band}{h_band_trials}{h_lat}"
                 f"{row['dut_type']}-ref: {row['dut_version']}<br>"
