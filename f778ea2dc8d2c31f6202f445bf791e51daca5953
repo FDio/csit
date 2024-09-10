@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2cbe66_0edb8be4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-10T16:02:57Z",
+      "side": 1,
+      "message": "Separated from 41539, need more fixes. See this run: https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/1117/",
+      "revId": "f778ea2dc8d2c31f6202f445bf791e51daca5953",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
