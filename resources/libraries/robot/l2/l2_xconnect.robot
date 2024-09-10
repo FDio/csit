@@ -214,7 +214,7 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure L2XC | ${dut2} | ${DUT2_${int}2}[0] | ${vhost_if2}
 
-| Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
+| Initialize L2 xconnect with link bonding in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
 | | ... | link bonding (BondEthernet) interface on both VPP nodes. Add one
@@ -224,60 +224,36 @@
 | | ... | other Vhost interface with VLAN sub-interface. All interfaces are
 | | ... | brought up.
 | |
-| | ... | *Arguments:*
-| | ... | - subid - ID of the sub-interface to be created. Type: string
-| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ... | *Arguments read from test variables:*
 | | ... | - bond_mode - Link bonding mode. Type: string
 | | ... | - lb_mode - Load balance mode. Type: string
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
+| | ... | - dut_dut_links - Number of parallel DUT1-DUT2 links. Type: int
 | | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Initialize L2 xconnect with Vhost-User and VLAN with VPP link\
-| | ... | bonding in 3-node circular topology \| 10 \| pop-1 \| xor \| l34 \|
+| | ... | \| Initialize L2 xconnect with link bonding in 3-node circular topology
 | |
-| | [Arguments] | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
-| | ... | ${virtio_feature_mask}=${None}
-| |
-| | Set interfaces in path up
+#| | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface
 | | ... | ${dut1} | ${bond_mode} | ${lb_mode}
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | ${_even}= | Evaluate | ${pf} % 2
-| | | Run Keyword If | not ${even}
+| | FOR | ${pf} | IN RANGE | 1 | ${dut_dut_links} * 2 + 1
+| | | Run Keyword If | not ${pf} % 2
 | | | ... | VPP Add Bond Member
 | | | ... | ${dut1} | ${DUT1_${int}${pf}}[0] | ${dut1_eth_bond_if1}
 | | END
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface
 | | ... | ${dut2} | ${bond_mode} | ${lb_mode}
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | ${_even}= | Evaluate | ${pf} % 2
-| | | Run Keyword If | ${even}
+| | FOR | ${pf} | IN RANGE | 1 | ${dut_dut_links} * 2 + 1
+| | | Run Keyword If | ${pf} % 2
 | | | ... | VPP Add Bond Member
 | | | ... | ${dut2} | ${DUT2_${int}${pf}}[0] | ${dut2_eth_bond_if1}
 | | END
 | | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
-| | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1}
-| | ... | ${dut2} | ${dut2_eth_bond_if1} | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1}
-| | ... | ${dut2} | ${subif_index_2} | ${tag_rewrite}
-| | Configure vhost interfaces
-| | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Configure L2XC
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${vhost_if1}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_eth_bond_if1}
 | | Configure L2XC
-| | ... | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| | Configure vhost interfaces
-| | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
-| | ... | virtio_feature_mask=${virtio_feature_mask}
-| | Configure L2XC
-| | ... | ${dut2} | ${subif_index_2} | ${vhost_if1}
-| | Configure L2XC
-| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${vhost_if2}
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_eth_bond_if1}
 
 | Initialize L2 xconnect with memif pairs on DUT node
 | | [Documentation]
