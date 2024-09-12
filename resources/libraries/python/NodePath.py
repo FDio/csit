@@ -242,6 +242,8 @@ class NodePath:
         :rtype: dict
         :raises RuntimeError: If unsupported combination of parameters.
         """
+        # TODO: Add support for 2-link bonding test:
+        #       DUT to use 2 PFs towards the other DUT, but only 1 PF towards TG.
         t_dict = dict()
         t_dict[u"hosts"] = set()
         if topo_has_dut:
