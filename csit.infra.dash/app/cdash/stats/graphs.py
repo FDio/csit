@@ -17,6 +17,9 @@
 import plotly.graph_objects as go
 import pandas as pd
 
+from datetime import datetime
+from pytz import UTC
+
 from ..utils.constants import Constants as C
 
 
@@ -86,6 +89,7 @@ def graph_statistics(df: pd.DataFrame, job: str, layout: dict) -> tuple:
         )
     )
 
+    x_range = [data["start_time"][0], datetime.now(tz=UTC).strftime("%Y-%m-%d")]
     tickvals = [0, ]
     step = max(data["duration"]) / 5
     for i in range(5):
@@ -97,6 +101,7 @@ def graph_statistics(df: pd.DataFrame, job: str, layout: dict) -> tuple:
             f"{(val // 3600):02d}:{((val % 3600) // 60):02d}" \
                 for val in tickvals
         ]
+        layout_duration["xaxis"]["range"] = x_range
         fig_duration.update_layout(layout_duration)
 
     # Passed / failed:
@@ -124,6 +129,7 @@ def graph_statistics(df: pd.DataFrame, job: str, layout: dict) -> tuple:
     )
     layout_pf = layout.get("plot-stats-passed", dict())
     if layout_pf:
+        layout_pf["xaxis"]["range"] = x_range
         fig_passed.update_layout(layout_pf)
 
     return fig_passed, fig_duration

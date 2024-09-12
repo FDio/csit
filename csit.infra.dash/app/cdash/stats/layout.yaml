@@ -15,7 +15,7 @@ plot-stats-passed:
   xaxis:
     title: 'Date [MMDD]'
     type: "date"
-    autorange: True
+    autorange: False
     fixedrange: False
     showgrid: True
     gridcolor: "rgb(238, 238, 238)"
@@ -56,7 +56,7 @@ plot-stats-duration:
   xaxis:
     title: 'Date [MMDD]'
     type: "date"
-    autorange: True
+    autorange: False
     fixedrange: False
     showgrid: True
     gridcolor: "rgb(238, 238, 238)"

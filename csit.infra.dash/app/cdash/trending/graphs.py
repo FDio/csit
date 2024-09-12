@@ -19,6 +19,8 @@ import plotly.graph_objects as go
 import pandas as pd
 
 from numpy import nan
+from datetime import datetime
+from pytz import UTC
 
 from ..utils.constants import Constants as C
 from ..utils.utils import get_color, get_hdrh_latencies
@@ -453,11 +455,13 @@ def graph_trending(
     fig_tput = None
     fig_lat = None
     fig_band = None
+    start_times = list()
     y_units = set()
     for idx, itm in enumerate(sel):
         df = select_trending_data(data, itm)
         if df is None or df.empty:
             continue
+        start_times.append(df["start_time"][0])
 
         if normalize:
             phy = itm["phy"].rsplit("-", maxsplit=2)
@@ -528,15 +532,21 @@ def graph_trending(
 
         y_units.update(units)
 
+    x_range = [min(start_times), datetime.now(tz=UTC).strftime("%Y-%m-%d")]
     if fig_tput:
-        fig_layout = layout.get("plot-trending-tput", dict())
-        fig_layout["yaxis"]["title"] = \
+        layout_tput = layout.get("plot-trending-tput", dict())
+        layout_tput["yaxis"]["title"] = \
             f"Throughput [{'|'.join(sorted(y_units))}]"
-        fig_tput.update_layout(fig_layout)
+        layout_tput["xaxis"]["range"] = x_range
+        fig_tput.update_layout(layout_tput)
     if fig_band:
-        fig_band.update_layout(layout.get("plot-trending-bandwidth", dict()))
+        layout_band = layout.get("plot-trending-bandwidth", dict())
+        layout_band["xaxis"]["range"] = x_range
+        fig_band.update_layout(layout_band)
     if fig_lat:
-        fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
+        layout_lat = layout.get("plot-trending-lat", dict())
+        layout_lat["xaxis"]["range"] = x_range
+        fig_lat.update_layout(layout_lat)
 
     return fig_tput, fig_band, fig_lat
 
