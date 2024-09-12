@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest ndrpdrANDnic_intel0e810cqANDdrv_avfAND1cAND64bANDeth-l2xcbase-1lbvpplacp",
       "revId": "6a74af17ae0974c3d018feba88dea73550eaab27",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ae0b989_30694154",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-12T08:35:06Z",
+      "side": 1,
+      "message": "I copied the typo trigger :(\n\ncsit-3n-icx-perftest ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2xcbase-1lbvpplacp",
+      "revId": "6a74af17ae0974c3d018feba88dea73550eaab27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
