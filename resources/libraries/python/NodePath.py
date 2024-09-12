@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -242,6 +242,8 @@ class NodePath:
         :rtype: dict
         :raises RuntimeError: If unsupported combination of parameters.
         """
+        # TODO: Add support for 2-link bonding test:
+        #       DUT to use 2 PFs towards the other DUT, but only 1 PF towards TG.
         t_dict = dict()
         t_dict[u"hosts"] = set()
         if topo_has_dut:
