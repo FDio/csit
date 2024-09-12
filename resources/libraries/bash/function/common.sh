@@ -1102,29 +1102,39 @@ function select_tags () {
             ;;
         *"3n-alt")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-e810cq")
+            test_tag_array+=("!3_node_double_link_topoANDnic_mellanox-cx6dx")
             ;;
         *"3n-snr")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"3n-icxd")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"3na-spr")
             ;;
         *"3nb-spr")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"2n-c7gn" | *"3n-c7gn")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"-x-2n"* | *"-x-3n"*)
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
     esac
 
