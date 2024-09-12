@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb6a6044_717a62c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-12T09:10:54Z",
+      "side": 1,
+      "message": "\u003e Partial support for future multi-link suites.\n\nDowngraded to a TODO, the suite still specifies dut_dut_linksw\u003d1.\nReady for review.",
+      "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
