@@ -59,7 +59,7 @@ and enhance result repeatability and comparability.
 
 The primary reason for extending [RFC2544] is to address the challenges
 and requirements presented by the evaluation and testing
-of software-based networking systems' data planes.
+the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
 such as allowing multiple short trials per load instead of one large trial,
@@ -76,16 +76,15 @@ and supporting the search for multiple goals with varying loss ratios.
     If another engine is used, convert to this way:
     https://stackoverflow.com/a/20885980
 
-    [toc]
-
 {:/comment}
 
+[toc]
 
 # Purpose and Scope
 
-The purpose of this document is to describe Multiple Loss Ratio search
-(MLRsearch), a data plane throughput search methodology optimized for software
-networking DUTs.
+The purpose of this document is to describe the Multiple Loss Ratio search
+(MLRsearch) methodology, optimized for determining
+data plane throughput in software-based networking devices.
 
 Applying vanilla [RFC2544] throughput bisection to software DUTs
 results in several problems:
@@ -144,7 +143,7 @@ mainly a binary search for [RFC2544] unconditionally compliant throughput.
     [Low priority]
 
     <mark>MKP2 [VP] TODO: Look for mentions of search duration in existing RFCs.</mark>
-
+    
     <mark>MKP2 [VP] TODO: If not found, define right after defining "the search".</mark>
 
 {:/comment}
@@ -494,10 +493,10 @@ Definitions of some central terms are copied and discussed in subsections.
 
     Alternatively, quick list of all (existing and new here) terms,
     with links (external or internal respectively) to definitions.
-
+    
     <mark>MKP3 [VP] TODO: Even if the following list will not be in final draft,
     it is useful to keep it around (maybe commented-out) while editing.</mark>
-
+    
     <mark>MKP3 VP note: rough list of all RFC references:
     - [RFC1242] (section 3.17 Throughput) ... definition
     - [RFC2544] (section 26.1 Throughput) ... methodology
@@ -540,7 +539,7 @@ Definitions of some central terms are copied and discussed in subsections.
     - [RFC9004] B2B
     - [RFC8219] (section 5.3. Traffic Setup) for an example of ip4+ip6 mixed traffic
     </mark>
-
+    
     <mark>MKP3 [VP] TODO: Do not mention those that do not need discussion here.</mark>
 
 {:/comment}
@@ -601,13 +600,13 @@ in MLRsearch specification, but is of key relevance for its motivation.
     [Could be useful, but not high priority.]
 
     ### Tester
-
+    
     <mark>MKP3 TODO: Add Definition and Discusion paragraphs</mark>
-
+    
     <mark>MKP3 MK note: Bizarre ... i can't find tester definition in
     rfc1242, rfc2288 or rfc2544, but will keep looking. If there isn't one,
     we need to define one :).</mark>
-
+    
     <mark>[VP] TODO: There were some documents distinguishing TG and TA.</mark>
 
 {:/comment}
@@ -745,13 +744,13 @@ that would not be possible to achieve using any integer number of data frames.
     2. The media between the tested and the DUT are thus considered to be part of SUT.
     If DUT causes congestion control, it is not expected to handle Iload.
     </mark>
-
+    
     See further discussion in [Trial Forwarding Ratio] (#Trial-Forwarding-Ratio)
     and in [Measurer] (#Measurer) sections for other related issues.
-
+    
     <mark>MKP2 [VP] TODO: Create a separate subsection for Oload discussion,
     or clearly separate which aspects are discussed under which term.</mark>
-
+    
     <mark>MKP2 [VP] TODO: New idea. Compare the tester to an ordinary router
     in some datacenter. The Intended Load is not jst some abstract input.
     It is the real traffic coming from routers next hop farther.
@@ -767,7 +766,7 @@ that would not be possible to achieve using any integer number of data frames.
     that means TRex workers are also part of SUT. If they do not have
     enough CPU power to generate frames are required, those frames are lost.
     </mark>
-
+    
     <mark>MKP2 [VP] TODO: That new idea warants some discussion in "DUT within SUT",
     as it is just another case of ther rest of SUT ruining
     otherwise good DUT performance.</mark>
@@ -867,9 +866,9 @@ is generally outside of the scope of this document.
 
     See discussion in [Measurer] (#Measurer) section
     for more details about calibrating test equipment.
-
+    
     <mark>MKP2 [VP] TODO: Define unsent frames?</mark>
-
+    
     <mark>MKP2 [VP] TODO: If Oload is fairly below Iload, the unsent frames
     should be counted as lost, otherwise search outputs are misleading.
     But what is "fairly"? CSIT tolerates 10 microseconds worth of unsent frames.</mark>
@@ -924,11 +923,11 @@ on frame counts aggregated over all SUT output interfaces.
     Should we use the real FR as the basis for Conditional Throughput
     (instead of this TFR)? That would require additional Trial Output attribute.
     </mark>
-
+    
     <mark>MKP2 [VP] TODO: What about duration stretching?
     This also causes difference between Iload and Oload,
     but in an invisible way.</mark>
-
+    
     <mark>MKP2 [VP] TODO: Recommend start+sleep+stop?
     How long wait for late frames? RFC2544 2s is too much even at 30s trial.</mark>
 
@@ -969,7 +968,7 @@ its surprising behavior, for example when rounding the trial duration value.
     <mark>MKP2 [VP] TODO: Recommend for Measurer to return all trials at relevant bounds,
     as that may better inform users when surprisingly small amount of trials
     was performed, just because the the trial effective duration values were big.</mark>
-
+    
     <mark>MKP2 [VP] TODO: Repeat that this is not here to deal with duration stretching.</mark>
 
 {:/comment}
@@ -1004,11 +1003,11 @@ it is NOT REQUIRED in MLRsearch specification.
     [Side tangent from iload/oload discussion. Stilll recommendation is not obvious.]
 
     <mark>MKP2 TODO: Why? Just because bound trial results are optional in Controller Output?</mark>
-
+    
     <mark>MKP2 mk edit note: we need to more explicitly address
     the relevance or irrelevance of [RFC2285] (Section 3.5.2 Offered load (Oload)).
     Current text in [Trial Load] (#Trial-Load) is ambiguous - quoted below.</mark>
-
+    
     <mark>MKP2 "Questions around what is the correct number of frames that should
     have been forwarded is generally outside of the scope of this document.
     See discussion in [Measurer] (#Measurer) section for more details about
@@ -1248,17 +1247,17 @@ independent of Max Load value.
     [User recommendation, we should have separate section summarizing those.]
 
     <mark>[VP] TODO for MK: The rest of this subsection is new, review?</mark>
-
+    
     It is RECOMMENDED to use the same Goal Final Trial Duration value across all goals.
     Otherwise, some goals may be measured at Trial Durations longer than needed,
     with possibly unexpected impacts on repeatability and comparability.
-
+    
     For example when Goal Loss Ratio is zero, any increase in Trial Duration
     also increases the likelihood of the trial to become lossy,
     similar to usage of lower Goal Exceed Ratio or larger Goal Duration Sum,
     both of which tend to lower the search results, towards noisy end
     of performance spectrum.
-
+    
     Also, it is recommended to avoid "incomparable" goals, e.g. one with
     lower loss ratio but higher exceed ratio, and other with higher loss ratio
     but lower loss ratio. In worst case, this can make the search to last too long.
@@ -1344,12 +1343,13 @@ when defining attributes of the Goal Result.
 Conversely, at the end of the search, each Search Goal
 has its corresponding Goal Result.
 
-Conceptually, the search can be seen as a process of load classification,
-where the Controller attempts to classify some loads as an Upper Bound
-or a Lower Bound with respect to some Search Goal.
+Conceptually, the search can be viewed as a process of load classification,
+where the Controller attempts to classify certain loads
+as either an Upper Bound or a Lower Bound with respect to a specific Search Goal,
+and eventually returns a Controller Output.
 
-Before defining real attributes of the goal result,
-it is useful to define bounds in general.
+Before defining structure of Controller Output,
+it is useful to define specific bounds.
 
 ### Relevant Upper Bound
 
@@ -1403,12 +1403,12 @@ it is not affected by Max Load value.
     an upper bound. MLRsearch stops measuring at that load for this goal,
     but it may be forced to measure more for some other search goals,
     in which case the load may flip to a lower bound (and back and forth).
-
+    
     <mark>[VP] TODO: Confirm the load can never flip back to being undecided.</mark>
-
+    
     Even though the load classification may change during the search,
     the goal results are established at the end of the search.
-
+    
     If the exceed ratio is zero, an upper bound can never flip;
     one lossy trial (even short) is enough to pin the classification.
 
@@ -1443,7 +1443,7 @@ MAY not exist.
     [Min Load us useful for detecting broken SUTs (and latency).]
 
     <mark>[VP] TODO: Mention min load here?</mark>
-
+    
     <mark>[VP] TODO: Allow zero as implicit lower bound that needs no trials?
     If yes, then probably way earlier than here.</mark>
 
@@ -1480,12 +1480,12 @@ The definition of the Relevant Lower Bound ignores such high lower bounds.
     a lower bound. MLRsearch stops measuring at that load for this goal,
     but it may be forced to measure more for some other search goals,
     in which case the load may flip to an upper bound (and back and forth).
-
+    
     <mark>[VP] TODO: Confirm the load can never flip back to being undecided.</mark>
-
+    
     Even though the load classification may change during the search,
     the goal results are established at the end of the search.
-
+    
     No valid exceed ratio value pins the classification as a lower bound.
 
 {:/comment}
@@ -1540,7 +1540,7 @@ so we can say some goals reached Irregular Goal Results.
     <mark>MKP2 [VP] TODO: Additional attributes should not be required by the Manager?
     Explicitly mention that irregular goal result may support different attributes.
     </mark>
-
+    
     <mark>MKP2 Implementations are free to define their own specific subtypes
     of irregular Goal Results, but the test report MUST mark them clearly
     as irregular according to this section.</mark>
@@ -1616,7 +1616,7 @@ MLRsearch implementation MAY return additional data in the Controller Output.
     [Not needed?]
 
     <mark>MKP1 [VP] TODO: Short sentence on what to do on irregular goal result.</mark>
-
+    
     <mark>MKP1 [VP] TODO: Irregular output, e.g. with "max search time exceeded" flag?</mark>
 
 {:/comment}
@@ -1774,10 +1774,9 @@ See [RFC2544 Goal] (#RFC2544-Goal) subsection for equivalent Search Goal.
 Any test procedure that can be understood as (one call to the Manager of)
 MLRsearch architecture is said to be compliant with MLRsearch specification.
 
-# Additional Considerations
+# Further Explanations
 
-This section focuses on additional considerations, intuitions and motivations
-pertaining to MLRsearch methodology.
+This section focuses on additional explanations and usage of MLRsearch specification.
 
 {::comment}
     [Meta, redundant.]
@@ -1790,112 +1789,36 @@ pertaining to MLRsearch methodology.
 
 {:/comment}
 
-## MLRsearch Versions
-
-The MLRsearch algorithm has been developed in a code-first approach,
-a Python library has been created, debugged, used in production
-and published in PyPI before the first descriptions
-(even informal) were published.
-
-But the code (and hence the description) was evolving over time.
-Multiple versions of the library were used over past several years,
-and later code was usually not compatible with earlier descriptions.
-
-The code in (some version of) MLRsearch library fully determines
-the search process (for a given set of configuration parameters),
-leaving no space for deviations.
-
-{::comment}
-    [Different type of external link, should be in 08.]
-
-    <mark>MKP2 mk3 note: any references to library
-    should have specific reference link.
-    We have FDio-CSIT-MLRsearch in informative: at the start. Link it.
-    </mark>
-
-{:/comment}
-
-{::comment}
-    [Lesson learned is important, but maybe does not need version history?]
-
-    <mark>MKP2 mk edit note: Suggest to remove crossed-out text, as it is
-    distracting, doesn't bring any value, and recalls multiple versions of
-    MLRsearch library, without any references. A much more appropriate
-    approach would be to provide a pointer to MLRsearch code versions in
-    FD.io that evolved over the years, as an example implementation. But I
-    would question the value of referring to old previous versions in this
-    document. It's okay for the blog, but not for IETF specification,
-    unless there are specific lessons learned that need to be highlighted
-    to support the specification.</mark>
-
-{:/comment}
-
-This historic meaning of MLRsearch, as a family
-of search algorithm implementations,
-leaves plenty of space for future improvements, at the cost
-of poor comparability of results of search algoritm implementations.
-
-{::comment}
-    [Reckeck after clarifying library/algorithm/implementation/specification mess.]
-
-    <mark>mk edit note: If the aim of this sentence is to state that there
-    could be possibly other approaches to address this problem space, then
-    I think we are already addressing it in the opening sections discussing
-    problems, and referring to ETSi TST.009 and opnfv work. If the aim is
-    to define "MLRsearch" as a completely new class of algorithms for
-    software network benchmarking, of which this spec is just one example,
-    then i have a problem with it. This specification is very prescriptive
-    in the main functional areas to address the problem identified, but
-    still leaving space for further exploration and innovation as noted
-    elsewhere in this document. It is not a new class of algorithms. It is
-    a newly defined methodology to amend RFC2544, to specifically address
-    identified problems.</mark>
-
-{:/comment}
-
-There are two competing needs.
-There is the need for standardization in areas critical to comparability.
-There is also the need to allow flexibility for implementations
-to innovate and improve in other areas.
-This document defines MLRsearch as a new specification
-in a manner that aims to fairly balance both needs.
-
 ## Stopping Conditions
 
-[RFC2544] prescribes that after performing one trial at a specific offered load,
-the next offered load should be larger or smaller, based on frame loss.
+### Binary search
 
-The usual implementation uses binary search.
-Here a lossy trial becomes
-a new upper bound, a lossless trial becomes a new lower bound.
-The span of values between the tightest lower bound
-and the tightest upper bound (including both values) forms an interval of possible results,
-and after each trial the width of that interval halves.
-
-Usually the binary search implementation tracks only the two tightest bounds,
-simply calling them bounds.
-But the old values still remain valid bounds,
-just not as tight as the new ones.
-
+A typical binary search implementation for [RFC2544]
+tracks only the two tightest bounds.
 After some number of trials, the tightest lower bound becomes the throughput.
-[RFC2544] does not specify when, if ever, should the search stop.
 
-MLRsearch introduces a concept of [Goal Width] (#Goal-Width).
+But [RFC2544] does not specify when, if ever, the search should stop.
+In practice, the search stops at some distance between the tightest upper bound
+and the tightest lower bound.
 
-The search stops
-when the distance between the tightest upper bound and the tightest lower bound
-is smaller than a user-configured value, called Goal Width from now on.
-In other words, the interval width at the end of the search
-has to be no larger than the Goal Width.
+### MLRsearch with Goal Width
 
-This Goal Width value therefore determines the precision of the result.
-Due to the fact that MLRsearch specification requires a particular
-structure of the result (see [Trial Result] (#Trial-Result) section),
-the result itself does contain enough information to determine its
-precision, thus it is not required to report the Goal Width value.
+MLRsearch uses the concept of [Goal Width](#Goal-Width)
+to allow direct control of result precision,
+and indirect control of the search duration.
 
-This allows MLRsearch implementations to use stopping conditions
-different from Goal Width.
+If Goal Width acts as a stopping condition, the search requires more trials
+as long as the distance between the relevant bounds is larger than Goal Width.
+
+### MLRsearch without Goal Width
+
+Some MLRsearch implementations may use different stopping conditions;
+for example based on the search duration, trading off precision control
+for duration control.
+
+As MLRsearch specification requires listing both relevant bounds for each goal,
+the difference between the bounds implies the result precision achieved,
+making it unnecessary to report the specific stopping condition used.
 
 ## Load Classification
 
@@ -1914,101 +1837,115 @@ as an upper or lower bound, MLRsearch may need more than one trial
 In consequence, even if a load already does have few trial results,
 it still may be classified as undecided, neither a lower bound nor an upper bound.
 
-An explanation of the classification logic is given in the next section [Logic of Load Classification] (#Logic-of-Load-Classification),
+An explanation of the classification logic is given in the next section
+[Logic of Load Classification](#Logic-of-Load-Classification),
 as it heavily relies on other subsections of this section.
 
 For repeatability and comparability reasons, it is important that
 given a set of trial results, all implementations of MLRsearch
 classify the load equivalently.
 
-## Loss Ratios
+## Loss Ratios and Loss Inversion
 
-Another difference between MLRsearch and [RFC2544] binary search is in the goals of the search.
-[RFC2544] has a single goal,
+Thwe most obvious difference between MLRsearch and [RFC2544] binary search
+is in the goals of the search. [RFC2544] has a single goal,
 based on classifying full-length trials as either lossless or lossy.
+MLRsearch, as the name suggests, support searching for multiple goals at once,
+usually differing in their [Goal Loss Ratio](#Goal-Loss-Ratio) values.
 
-MLRsearch, as the name suggests, can search for multiple goals,
-differing in their loss ratios.
-The precise definition of the Goal Loss Ratio will be given later.
-The [RFC2544] throughput goal then simply becomes a zero Goal Loss Ratio.
-Different goals also may have different Goal Widths.
+This support for multiple goals makes the overall search procedure
+more complicated (compared to binary search with a single goal),
+but most of the complications do not affect the final result much.
+Except for one phenomenon, loss inversion.
 
-A set of trial results for one specific intended load value
-can classify the load as an upper bound for some goals, but a lower bound
-for some other goals, and undecided for the rest of the goals.
+TODO: Link to load classification introduction.
 
-Therefore, the load classification depends not only on trial results,
-but also on the goal.
-The overall search procedure becomes more complicated, when
-compared to binary search with a single goal,
-but most of the complications do not affect the final result,
-except for one phenomenon, loss inversion.
-
-## Loss Inversion
+TODO: Introduce good and bad trials there?
 
 In [RFC2544] throughput search using bisection, any load with a lossy trial
-becomes a hard upper bound, meaning every subsequent trial has a smaller
-intended load.
-
+becomes a hard upper bound, meaning every subsequent trial
+is measured at a smaller load.
 But in MLRsearch, a load that is classified as an upper bound for one goal
 may still be a lower bound for another goal, and due to the other goal
 MLRsearch will probably perform trials at even higher loads.
+
+This introduces host of issues any many-goals search algorithm has to address.
 What to do when all such higher load trials happen to have zero loss?
 Does it mean the earlier upper bound was not real?
 Does it mean the later lossless trials are not considered a lower bound?
 Surely we do not want to have an upper bound at a load smaller than a lower bound.
 
-MLRsearch is conservative in these situations.
-The upper bound is considered real, and the lossless trials at higher loads
-are considered to be a coincidence, at least when computing the final result.
+The situation where a smaller load is classified as an upper bound
+while a larger load is classified as a lower bound (for the same search goal)
+is called loss inversion.
+Only single-goal search algorithms have hard bounds
+that shield them from loss inversion.
 
-This is formalized using new notions, the [Relevant Upper Bound] (#Relevant-Upper-Bound) and
-the [Relevant Lower Bound] (#Relevant-Lower-Bound).
+MLRsearch is conservative when dealing with loss inversion.
+The upper bound is considered real, and the lower bound
+is considered to be a fluke, at least when computing the final result.
+
+This is formalized using new notions, [Relevant Upper Bound](#Relevant-Upper-Bound)
+and [Relevant Lower Bound](#Relevant-Lower-Bound).
 Load classification is still based just on the set of trial results
 at a given intended load (trials at other loads are ignored),
-making it possible to have a lower load classified as an upper bound,
-and a higher load classified as a lower bound (for the same goal).
+making it possible for loss inversion to happen.
 The Relevant Upper Bound (for a goal) is the smallest load classified
-as an upper bound.
-But the Relevant Lower Bound is not simply
-the largest among lower bounds.
-It is the largest load among loads
+as an upper bound. But the Relevant Lower Bound is not simply
+the largest among lower bounds. It is the largest load among loads
 that are lower bounds while also being smaller than the Relevant Upper Bound.
 
 With these definitions, the Relevant Lower Bound is always smaller
 than the Relevant Upper Bound (if both exist), and the two relevant bounds
 are used analogously as the two tightest bounds in the binary search.
-When they are less than the Goal Width apart,
-the relevant bounds are used in the output.
+When they meet the stopping conditions, the relevant bounds are used in the output.
 
-One consequence is that every trial result can have an impact on the search result.
+As consequence is that every trial result can have an impact
+on any current relevant bound larger than that trial load.
 That means if your SUT (or your traffic generator) needs a warmup,
 be sure to warm it up before starting the search.
+Also, for MLRsearch implementation, it means it is bettwer to measure
+at smaller loads first, so bounds found earlier are less likely
+go get invalidated later.
+
+TODO: Possible subsections:
+1. Single goal and hard bounds.
+2. Multiple goals and loss inversion.
+3. Consevativeness and relevant bounds.
+4. Consequences.
 
 ## Exceed Ratio
+
+TODO: Move exceed ratio before loss inversion?
+
+TODO note: add reference to sec 3.5.4.
 
 The idea of performing multiple trials at the same load comes from
 a model where some trial results (those with high loss) are affected
 by infrequent effects, causing poor repeatability of [RFC2544] throughput results.
 See the discussion about noiseful and noiseless ends
-of the SUT performance spectrum in section [DUT in SUT] (#DUT-in-SUT).
+of the SUT performance spectrum in section [DUT in SUT](#DUT-in-SUT).
 Stable results are closer to the noiseless end of the SUT performance spectrum,
 so MLRsearch may need to allow some frequency of high-loss trials
 to ignore the rare but big effects near the noiseful end.
 
 MLRsearch can do such trial result filtering, but it needs
 a configuration option to tell it how frequent can the infrequent big loss be.
-This option is called the exceed ratio.
-It tells MLRsearch what ratio of trials
-(more exactly what ratio of trial seconds) can have a [Trial Loss Ratio] (#Trial-Loss-Ratio)
+This option is called the [Goal Exceed Ratio](#Goal-Exceed-Ratio).
+It tells MLRsearch what ratio of trials (more exactly what ratio of trial seconds)
+can have a [Trial Loss Ratio](#Trial-Loss-Ratio)
 larger than the Goal Loss Ratio and still be classified as a lower bound.
 Zero exceed ratio means all trials have to have a Trial Loss Ratio
 equal to or smaller than the Goal Loss Ratio.
+
+TODO note: move below paragraph to specification.
 
 For explainability reasons, the RECOMMENDED value for exceed ratio is 0.5,
 as it simplifies some later concepts by relating them to the concept of median.
 
 ## Duration Sum
+
+TODO note: add reference to sec 3.5.2.
 
 When more than one trial is intended to classify a load,
 MLRsearch also needs something that controls the number of trials needed.
@@ -2021,6 +1958,8 @@ as the Goal Duration Sum value,
 the load is guaranteed to be classified either as an upper bound
 or a lower bound for that goal.
 
+TODO note: the aim is to have enough trials to reach Goal Duration Sum.
+
 Due to the fact that the duration sum has a big impact
 on the overall search duration, and [RFC2544] prescribes
 wait intervals around trial traffic,
@@ -2030,7 +1969,9 @@ from the actual trial traffic durations.
 In the MLRsearch specification, the different duration values are called
 [Trial Effective Duration] (#Trial-Effective-Duration).
 
-## Short Trials
+## Short Trial Durations
+
+TODO note: change title to reflect this is about using trial durations shorter than the full-length / final trial duration. consider merging with previous section, but proceed with caution.
 
 MLRsearch requires each goal to specify its final trial duration.
 Full-length trial is a shorter name for a trial whose intended trial duration
@@ -2052,6 +1993,9 @@ a median of a particular set of trial forwarding rates.
 The presence of short trial results complicates the load classification logic.
 
 Full details are given later in section [Logic of Load Classification] (#Logic-of-Load-Classification).
+
+TODO note: below to be removed once [Load Classification] and [Logic of Load Classification] are done.
+
 In a nutshell, results from short trials
 may cause a load to be classified as an upper bound.
 This may cause loss inversion, and thus lower the Relevant Lower Bound,
@@ -2062,7 +2006,7 @@ below what would classification say when considering full-length trials only.
 
     <mark>For explainability reasons, it is RECOMMENDED users use such configurations
     that guarantee all trials have the same length.</mark>
-
+    
     <mark>mk edit note: Using RFC2119 keyword here does not seem to be
     appropriate. Moreover, I do not get the meaning nor the logic behind
     this statement. It seems to say that in order for users to understand
@@ -2077,12 +2021,12 @@ below what would classification say when considering full-length trials only.
 
     <mark>Alas, such configurations are usually not compliant with [RFC2544] requirements,
     or not time-saving enough.</mark>
-
+    
     <mark>mk edit note: This statement does not make sense to me. Suggest to remove it.</mark>
 
 {:/comment}
 
-## Throughput
+## Generalised? Throughput
 
 {::comment}
     [Important, we need better title.]
@@ -2141,7 +2085,7 @@ no larger than the Goal Loss Ratio.
     values than the Relevant Lower Bound (for non-zero Goal Loss Ratio
     values), the actual definition is more complicated than the definition
     of the Relevant Lower Bound.</mark>
-
+    
     <mark>mk edit note: Looking at this again, and per improved text, I
     don't think it is that complicated. (BTW saying it is more complicated
     and not addressing it, and leaving it open ended is not
@@ -2151,7 +2095,7 @@ no larger than the Goal Loss Ratio.
     multiple trial samples, per MLRsearch definition, this is
     mathematically expressed as `conditional_throughput = intended_load *
     (1.0 - quantile_loss_ratio)`.</mark>
-
+    
     <mark>DONE VP to MK: Hmm. Frequently, Conditional Throughput comes
     from the worst among low-loss full-length trials.
     But if two disparate goals are interested at the same load,
@@ -2160,7 +2104,7 @@ no larger than the Goal Loss Ratio.
     Computation in load classification is also not trivial,
     but at least it only needs two "duration sum" values,
     no need to sort all trial results.</mark>
-
+    
     <mark>MKP2 [VP] TODO: Still not sure what to do with this subsection.
     Possibly a bigger rewrite once VP and MK agree on what is (or is not)
     complicated. :)</mark>
@@ -2175,11 +2119,11 @@ no larger than the Goal Loss Ratio.
     as the most fitting value for comparability purposes,
     therefore the Relevant Lower Bound remains a required attribute
     of the Goal Result structure, while the Conditional Throughput is only optional.</mark>
-
+    
     <mark>mk edit note: This paragraph adds to the confusion. I would remove
     this paragraph, as with the new text above it doesn't seem to add any
     value.</mark>
-
+    
     <mark>[VP] TODO: This is an example of MLRsearch design principles.</mark>
 
 {:/comment}
@@ -2253,14 +2197,16 @@ while not restricting future implementations much.
     <mark>are good for comparability between different implementations.</mark>
     <mark>For comparability between different SUTs using the same implementation,</mark>
     <mark>refer to configurations recommended by that particular implementation.</mark>
-
+    
     <mark>MKP2 mk edit note: Isn't this going off on a tangent, hypothesising and
     second guessing about different possible implementations. What is the
     value of this content to this document? Suggest to remove it.</mark>
 
 {:/comment}
 
-## [RFC2544] Compliance
+## ~~[RFC2544] Compliance~~
+
+TODO note: section to be removed unless objections.
 
 Some Search Goal instances lead to results compliant with RFC2544.
 See [RFC2544 Goal] (#RFC2544-Goal) for more details
@@ -2300,6 +2246,7 @@ For load classification, it is useful to define **good trials** and **bad trials
 - **Good trial**: Trial that is not bad is called good.
 
 ## Performance Spectrum
+
 ### Description
 
 There are several equivalent ways to explain the Conditional Throughput
@@ -2333,36 +2280,36 @@ as sampled by the trials in the set.
     any non-negative real number into a sum of trial durations among all trials
     in the set, that has that number, as their trial forwarding rate,
     e.g. map to zero if no trial has that particular forwarding rate.</mark>
-
+    
     <mark>MKP1 A related function, defined if there is at least one trial in the set,
     is the performance spectrum divided by the sum of the durations
     of all trials in the set.</mark>
-
+    
     <mark>MKP1 That function is called the performance probability function, as it satisfies
     all the requirements for probability mass function
     of a discrete probability distribution,
     the one-dimensional random variable being the trial forwarding rate.</mark>
-
+    
     <mark>MKP1 These functions are related to the SUT performance spectrum,
     as sampled by the trials in the set.</mark>
-
+    
     <mark>MKP1 [VP] TODO: Introduce quantiles properly by incorporating the below.</mark>
-
+    
     <mark>MKP1 [VP] TODO: "q-quantile" is plainly wrong. I meant the "p" in "p-quantile".
-
+    
     - wikipedia: The 100-quantiles are called percentiles
     - also wiki: If, instead of using integers k and q, the "p-quantile" is based on a real number p with 0 < p < 1 then...
     - https://en.wikipedia.org/wiki/Quantile_function
     - exceed ratio is an input to a quantile function: percentage?
     </mark>
-
+    
     <mark>MKP1 mk2 TODO for VP: Above is not making it clearer at all. Can't we really not explain the spectrum and exceed ratio with just percentiles and quantiles?</mark>
-
+    
     As for any other probability function, we can talk about percentiles
     of the performance probability function, including the median.
     The Conditional Throughput will be one such quantile value
     for a specifically chosen set of trials.
-
+    
     <mark>MKP2 As for any other probability function, we can talk about percentiles
     of the performance probability function, including the median.
     The Conditional Throughput will be one such quantile value
@@ -2394,7 +2341,7 @@ the larger trial forwarding rate (from the trial result sorted earlier) is used.
     [Oh, unspecified exceed ratio?]
 
     <mark>the larger trial forwarding rate (from the trial result sorted earlier) is used.</mark>
-
+    
     <mark>mk edit note: Why is that? Is it because you silently assumed that
     quantile here is median or 50th percentile?</mark>
 
@@ -2406,7 +2353,7 @@ The resulting quantity is the Conditional Throughput of the goal in question.
     [Motivation has lead to code. Now code is definition, this should be equivalent.]
 
     <mark>The resulting quantity is the Conditional Throughput of the goal in question.</mark>
-
+    
     <mark>mk edit note: Is this is supposed to be another definition of
     Conditional Throughput? If so, how does this relate to Performance
     Spectrum? I suggest to either remove these unclear paragraphs above and
@@ -2445,9 +2392,9 @@ A set of examples follows.
     Isn't median of even set of data samples
     the average of the two middle data points,
     in this case the non-imaginary trial and the imaginary one?</mark>
-
+    
     <mark>MKP2 Note that Appendix B does not take into account short trial results.</mark>
-
+    
     <mark>MKP2 mk edit note: Whis is this relevant here? Appendix B has not been mentioned in this section.</mark>
 
 {:/comment}
@@ -2467,7 +2414,7 @@ is the quantile in general, and the median the recommended case.
     especially when applying to specific problems,
     but currently the Conditional Throughput is the recommended compromise,
     especially for repeatability and comparability reasons.</mark>
-
+    
     <mark>MKP2 mk edit note: This is future looking and hand wavy without
     specifics. What are the "specific problems" that are referred here?
     Networking, else?Some specific behaviours, if so, what sort? If
@@ -2519,14 +2466,14 @@ than the Goal Exceed Ratio, the load is a lower bound.
 
     <mark>Even if</mark>, in the best case scenario, the load exceed ratio is larger
     than the Goal Exceed Ratio, the load is an upper bound.
-
+    
     <mark>MKP2 Even if</mark>, in the worst case scenario, the load exceed ratio is not larger
     than the Goal Exceed Ratio, the load is a lower bound.
-
+    
     <mark>MKP2 mk edit note: I am confused by "Even if" prefixing
     each of the above statements. And even more so by your version
     with "If even".</mark>
-
+    
     <mark>mk edit note: I do not get how this statements are true, as they
     are counter-intuitive. For the best case scenario, if load exceed ratio
     is larger than the goal exceed ratio, I expect the load to be lower
@@ -2745,7 +2692,7 @@ gets a larger probability of causing the loss within the longer trials.
     <mark>Still, users are encouraged to avoid such configurations</mark>
     <mark>by making all goals use the same final trial duration,</mark>
     <mark>so their results remain comparable across implementations.</mark>
-
+    
     <mark>MKP2 mk edit note: This paragraph has no value in my view.
     Statements like "For some users, this is an acceptable price
     for increased configuration flexibility" do not make sense.
@@ -2761,19 +2708,19 @@ gets a larger probability of causing the loss within the longer trials.
     [MKP4 Out of scope here, subject for future work]
 
     # Current practices?
-
+    
     <mark>MKP2 [VP] TODO: Even if not mentioned in spec (not even recommended),
     some tricks from CSIT code may be worth mentioning? Not sure.</mark>
-
+    
     <mark>MKP2 [VP] TODO: Tricks with big impact on search time
     can be mentioned so that Addressed Problems : Long Test Duration
     has something specific to refer to.</mark>
-
+    
     <mark>MKP2 [VP] TODO: It is important to mention trick that have impact
     on repeatability and comparability.</mark>
-
+    
     <mark>MKP2 [VP] TODO: CSIT computes a discrete "grid" of load values to use.</mark>
-
+    
     <mark>MKP2 [VP] TODO:
     If all Goal Widths are aligned, there is one common coarse grid.
     In that case, NDR (and even PDR conditional throughput
@@ -2781,7 +2728,7 @@ gets a larger probability of causing the loss within the longer trials.
     hiding the real performance variance, and causing fake anomaly
     when the performance shifts just one gridpoint.
     </mark>
-
+    
     <mark>MKP2 [VP] TODO: Conversely, when Goal Width do not match well,
     CSIT needs to compute a fine-grained grid to match them all.
     In this case, similar performances can be "rounded differently",
@@ -2790,9 +2737,9 @@ gets a larger probability of causing the loss within the longer trials.
     This way trending sees higher variance (still within corresponding Goal Width),
     but at least there are no fake anomalies.
     </mark>
-
+    
     <mark>MKP2 [VP] TODO: In general, do not trust stdev if not larged than width.</mark>
-
+    
     <mark>MKP2 [VP] TODO: De we have a chapter section fosucing on design principles?
     - Make Controller API independent from Measurer API.
     - The "allowed if makes worse" principle:
@@ -2808,121 +2755,121 @@ gets a larger probability of causing the loss within the longer trials.
     [Will be nice if made substantial.]
 
     # Addressed Problems
-
+    
     <mark>MKP1 all of this section requires updating based on the updated content.
     And it is for information only anyways. In fact not sure it's needed.
     Maybe in appendix for posterity.</mark>
-
+    
     Now when MLRsearch is clearly specified and explained,
     it is possible to summarize how does MLRsearch specification help with problems.
-
+    
     Here, "multiple trials" is a shorthand for having the goal final trial duration
     significantly smaller than the Goal Duration Sum.
     This results in MLRsearch performing multiple trials at the same load,
     which may not be the case with other configurations.
-
+    
     ## Long Test Duration
-
+    
     As shortening the overall search duration is the main motivation
     of MLRsearch library development, the library implements
     multiple improvements on this front, both big and small.
-
+    
     Most of implementation details are not constrained by MLRsearch specification,
     so that future implementations may keep shortening the search duration even more.
-
+    
     One exception is the impact of short trial results on the Relevant Lower Bound.
     While motivated by human intuition, the logic is not straightforward.
     In practice, configurations with only one common trial duration value
     are capable of achieving good overal search time and result repeatability
     without the need to consider short trials.
-
+    
     ### Impact of goal attribute values
-
+    
     From the required goal attributes, the Goal Duration Sum
     remains the best way to get even shorter searches.
-
+    
     Usage of multiple trials can also save time,
     depending on wait times around trial traffic.
-
+    
     The farther the Goal Exceed Ratio is from 0.5 (towards zero or one),
     the less predictable the overal search duration becomes in practice.
-
+    
     Width parameter does not change search duration much in practice
     (compared to other, mainly optional goal attributes).
-
+    
     ## DUT in SUT
-
+    
     In practice, using multiple trials and moderate exceed ratios
     often improves result repeatability without increasing the overall search time,
     depending on the specific SUT and DUT characteristics.
     Benefits for separating SUT noise are less clear though,
     as it is not easy to distinguish SUT noise from DUT instability in general.
-
+    
     Conditional Throughput has an intuitive meaning when described
     using the performance spectrum, so this is an improvement
     over existing simple (less configurable) search procedures.
-
+    
     Multiple trials can save time also when the noisy end of
     the preformance spectrum needs to be examined, e.g. for [RFC9004].
-
+    
     Under some circumstances, testing the same DUT and SUT setup with different
     DUT configurations can give some hints on what part of noise is SUT noise
     and what part is DUT performance fluctuations.
     In practice, both types of noise tend to be too complicated for that analysis.
-
+    
     MLRsearch enables users to search for multiple goals,
     potentially providing more insight at the cost of a longer overall search time.
     However, for a thorough and reliable examination of DUT-SUT interactions,
     it is necessary to employ additional methods beyond black-box benchmarking,
     such as collecting and analyzing DUT and SUT telemetry.
-
+    
     ## Repeatability and Comparability
-
+    
     Multiple trials improve repeatability, depending on exceed ratio.
-
+    
     In practice, one-second goal final trial duration with exceed ratio 0.5
     is good enough for modern SUTs.
     However, unless smaller wait times around the traffic part of the trial
     are allowed, too much of overal search time would be wasted on waiting.
-
+    
     It is not clear whether exceed ratios higher than 0.5 are better
     for repeatability.
     The 0.5 value is still preferred due to explainability using median.
-
+    
     It is possible that the Conditional Throughput values (with non-zero goal
     loss ratio) are better for repeatability than the Relevant Lower Bound values.
     This is especially for implementations
     which pick load from a small set of discrete values,
     as that hides small variances in Relevant Lower Bound values
     other implementations may find.
-
+    
     Implementations focusing on shortening the overall search time
     are automatically forced to avoid comparability issues due to load selection,
     as they must prefer even splits wherever possible.
     But this conclusion only holds when the same goals are used.
     Larger adoption is needed before any further claims on comparability
     between MLRsearch implementations can be made.
-
+    
     ## Throughput with Non-Zero Loss
-
+    
     Trivially suported by the Goal Loss Ratio attribute.
-
+    
     In practice, usage of non-zero loss ratio values
     improves the result repeatability
     (exactly as expected based on results from simpler search methods).
-
+    
     ## Inconsistent Trial Results
-
+    
     MLRsearch is conservative wherever possible.
     This is built into the definition of Conditional Throughput,
     and into the treatment of short trial results for load classification.
-
+    
     This is consistent with [RFC2544] zero loss tolerance motivation.
-
+    
     If the noiseless part of the SUT performance spectrum is of interest,
     it should be enough to set small value for the goal final trial duration,
     and perhaps also a large value for the Goal Exceed Ratio.
-
+    
     Implementations may offer other (optional) configuration attributes
     to become less conservative, but currently it is not clear
     what impact would that have on repeatability.
@@ -2990,14 +2937,14 @@ which computes two values, stored in variables named
 
 {:/comment}
 
-The pseudocode happens to be a valid Python code.
+The pseudocode happens to be valid Python code.
 
 If values of both variables are computed to be true, the load in question
 is classified as a lower bound according to the given Search Goal.
 If values of both variables are false, the load is classified as an upper bound.
 Otherwise, the load is classified as undecided.
 
-The pseudocode expects the following variables to hold values as follows:
+The pseudocode expects the following variables to hold the following values:
 
 - `goal_duration_sum`: The duration sum value of the given Search Goal.
 
@@ -3055,9 +3002,9 @@ which computes a value stored as variable `conditional_throughput`.
 
 {:/comment}
 
-The pseudocode happens to be a valid Python code.
+The pseudocode happens to be valid Python code.
 
-The pseudocode expects the following variables to hold values as follows:
+The pseudocode expects the following variables to hold the following values:
 
 - `goal_duration_sum`: The duration sum value of the given Search Goal.
 
@@ -3105,19 +3052,19 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
     [Final checklist.]
 
     <mark>[VP] Final Checks. Only mark as done when there are no active todos above.</mark>
-
+    
     <mark>[VP] Rename chapter/sub-/section to better match their content.</mark>
-
+    
     <mark>MKP3 [VP] TODO: Recheck the definition dependencies go bottom-up.</mark>
-
+    
     <mark>[VP] TODO: Unify external reference style (brackets, spaces, section numbers and names).</mark>
-
+    
     <mark>[VP] TODO: Add internal links wherever Captialized Term is mentioned.</mark>
-
+    
     <mark>MKP2 [VP] TODO: Capitalization of New Terms: useful when editing and reviewing,
     but I still vote to remove capitalization before final submit,
     because all other RFCs I see only capitalize due to being section title.</mark>
-
+    
     <mark>[VP] TODO: If time permits, keep improving formal style (e.g. using AI).</mark>
 
 {:/comment}
