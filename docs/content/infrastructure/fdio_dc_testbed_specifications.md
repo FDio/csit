@@ -49,7 +49,7 @@ To access these hosts, VPN connection is required.
  8. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0     0
  9. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0     0
 10. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0     0
-11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    .5   2    0    0     0
+11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    .5   0    0    2    0    0     0
 12. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0     0
 13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0
 14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1
@@ -194,7 +194,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-2. **Server-Type-C2**: Purpose - Cascadelake Xeon TG for FD.io performance testing.
+2. **Server-Type-C2**: Purpose - Cascadelake Xeon Shared TG for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -206,13 +206,13 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 12* 16GB DDR4-2933.
         - Disks: 2* 1.92TB SATA SSD.
     - NICs configuration:
-        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
-            - PCIe Slot2 18:00.xx: x710-4p10GE Intel.
-            - PCIe Slot4 3b:00.xx: xxv710-DA2 2p25GE Intel.
-            - PCIe Slot9 5e:00.xx: ConnectX5-2p100GE Mellanox.
-        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
-            - PCIe Slot6 86:00.xx: ConnectX5-2p100GE Mellanox.
-            - PCIe Slot8 af:00.xx: ConnectX5-2p100GE Mellanox.
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
+            - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
+            - PCIe Slot4 31:00.xx: empty.
+            - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
+            - PCIe Slot6 86:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
 3. **Server-Type-C3**: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
@@ -1141,7 +1141,7 @@ FD.io CSIT lab contains following server types:
         - s94-t39-sut2-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
         - s94-t39-sut2-c1/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
         - s94-t39-sut2-c1/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-- ServerF4 [Server-Type-F5]:
+- ServerC2 [Server-Type-C2]:
     - testbedname: testbed39.
     - hostname: s89-t39t310-tg1.
     - IPMI IP: 10.30.50.89

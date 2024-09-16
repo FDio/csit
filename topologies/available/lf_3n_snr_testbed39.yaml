@@ -19,7 +19,7 @@ nodes:
       port1:
         # s89-t39t310-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:08"
-        pci_address: "0000:ca:00.0"
+        pci_address: "0000:86:00.0"
         ip4_address: "172.16.10.1"
         driver: ice
         link: disabled1
@@ -27,7 +27,7 @@ nodes:
       port2:
         # s89-t39t310-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:09"
-        pci_address: "0000:ca:00.1"
+        pci_address: "0000:86:00.1"
         ip4_address: "172.16.20.1"
         driver: ice
         link: link2
@@ -35,7 +35,7 @@ nodes:
       port3:
         # s89-t39t310-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:0a"
-        pci_address: "0000:ca:00.2"
+        pci_address: "0000:86:00.2"
         ip4_address: "172.16.50.1"
         driver: ice
         link: disabled2
@@ -43,7 +43,7 @@ nodes:
       port4:
         # s89-t39t310-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:0b"
-        pci_address: "0000:ca:00.3"
+        pci_address: "0000:86:00.3"
         ip4_address: "172.16.60.1"
         driver: ice
         link: link5
