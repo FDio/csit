@@ -1329,7 +1329,7 @@ function set_environment_variables () {
             export TREX_CORE_COUNT=14
             export TREX_PORT_MTU=9000
             # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
+            export PERF_TRIAL_STL_DELAY=0.11
             ;;
     esac
 }
