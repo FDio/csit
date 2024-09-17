@@ -16,6 +16,121 @@
       "message": "\u003e Partial support for future multi-link suites.\n\nDowngraded to a TODO, the suite still specifies dut_dut_linksw\u003d1.\nReady for review.",
       "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e163f969_4c1308eb",
+        "filename": "resources/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-09-17T04:58:15Z",
+      "side": 1,
+      "message": "why is it twice here?",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 377,
+        "endChar": 58
+      },
+      "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b995892_93bdbf5c",
+        "filename": "resources/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-09-17T04:58:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 472,
+        "endChar": 93
+      },
+      "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85f0426_e4e92d3d",
+        "filename": "resources/job_specs/report_iterative/3n-icx/vpp-ndrpdr-00.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-09-17T04:58:15Z",
+      "side": 1,
+      "message": "why is it twice here?",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 377,
+        "endChar": 61
+      },
+      "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c1078a_266976c4",
+        "filename": "resources/job_specs/report_iterative/3n-icx/vpp-ndrpdr-00.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-09-17T04:58:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 472,
+        "endChar": 96
+      },
+      "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e815a301_35f2459a",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-09-17T04:58:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 81
+      },
+      "revId": "323cd3b11d1a580f1ca1bc75bfadf38b9150e43b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
