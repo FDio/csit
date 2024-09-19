@@ -82,7 +82,7 @@
 | | ... | rate=${253}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | async_call=${True}
+| | ... | async_call=${False}
 | | ... | ppta=${ppta}
 | | ... | use_latency=${False}
 | | ... | traffic_directions=${traffic_directions}
