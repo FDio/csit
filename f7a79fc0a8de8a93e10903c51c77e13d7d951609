@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67dbec6d_b9c80d24",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "All nat44ed suites in CSIT are currently 2-node only. No use for 3-node testbeds.",
+      "range": {
+        "startLine": 698,
+        "startChar": 79,
+        "endLine": 698,
+        "endChar": 84
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc797cc8_a0317583",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "You mean already for line 1163? Ok by me, 4tnl is not very useful when we already have 40tnl.",
+      "range": {
+        "startLine": 1167,
+        "startChar": 43,
+        "endLine": 1167,
+        "endChar": 49
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c61942d2_23562c62",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "Udir (2n-node) ipsec tests are still useful for 2n-zn2 (and possible other 2-node testbeds in future).",
+      "range": {
+        "startLine": 1176,
+        "startChar": 42,
+        "endLine": 1176,
+        "endChar": 53
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34d61620_e8eca0a7",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1190,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "Maybe move 1tnl to a separate category (for coverage only) that we run only for 1c.",
+      "range": {
+        "startLine": 1190,
+        "startChar": 28,
+        "endLine": 1190,
+        "endChar": 32
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af43f14_a2210304",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "We should run those on 3n-alt.",
+      "range": {
+        "startLine": 1194,
+        "startChar": 66,
+        "endLine": 1194,
+        "endChar": 70
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d4a057_4f775d49",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "Both 2-node and 3-node suites are in repo, decision depends only how loaded 3n-alt already is.",
+      "range": {
+        "startLine": 1195,
+        "startChar": 66,
+        "endLine": 1195,
+        "endChar": 70
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4603e6ee_f84a3013",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "Looking at trending [0], h1024 udir is more stable than h1024 tput, but I still like tput more.\n\n[0] https://csit.fd.io/trending/#eNrVVMtuwyAQ_BrnUq1kMGBfemjq_6gobGKk2CaA8-jXB9xKOIdEkdpDegF2Zx-zoxU-jA4_PO5eC74u6nVBa6PjUVRvL_E6WAt0AKNOQMpyi9QSbEip9iAPGzCWJfcnEAUYumhO2sIgA2OooSMlZWBFBV4wTigEOwXonUvl6Xsqr6dw1Ssjtjtn5CaDHC8dypwQmWQooF90eZBnTt842aM3X5hrpJlzgIoKLjB13Tmc7QL9mb5u54i_lVtwXonvORihTS2ap1X8BtVnFV2wR1d80sb9hxVPPO-qHUf-rdi8XQ2j6-ePJb59Nx4hOCN3fnbF5NlI0by9AHNaOVU",
+      "range": {
+        "startLine": 1283,
+        "startChar": 48,
+        "endLine": 1283,
+        "endChar": 52
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e93143_793d9568",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "If we need to reduce, I prefer to keep h65536 only (no h1024), including udir for coverage.",
+      "range": {
+        "startLine": 1284,
+        "startChar": 18,
+        "endLine": 1284,
+        "endChar": 22
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e823aef_be4e6fef",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "Only if we want to reduce further.",
+      "range": {
+        "startLine": 1291,
+        "startChar": 48,
+        "endLine": 1291,
+        "endChar": 52
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c0bd4e_a7cd2808",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "I agree, we have non-vhost vxlan tests.",
+      "range": {
+        "startLine": 1406,
+        "startChar": 17,
+        "endLine": 1406,
+        "endChar": 21
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8bd5767_67738be8",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1420,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-19T13:25:15Z",
+      "side": 1,
+      "message": "+1.",
+      "range": {
+        "startLine": 1420,
+        "startChar": 22,
+        "endLine": 1420,
+        "endChar": 26
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
