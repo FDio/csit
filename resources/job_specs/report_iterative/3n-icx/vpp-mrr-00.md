@@ -365,6 +365,10 @@
 1c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2xcbase
 2c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2xcbase
 4c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2xcbase
+##### eth-l2xcbase-1lbvpplacp
+1c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2xcbase-1lbvpplacp
+2c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2xcbase-1lbvpplacp
+4c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2xcbase-1lbvpplacp
 ##### eth-l2patch
 1c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2patch
 2c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2patch
@@ -383,6 +387,10 @@
 1c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase
 2c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase
 4c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase
+##### eth-l2xcbase-1lbvpplacp
+1c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase-1lbvpplacp
+2c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase-1lbvpplacp
+4c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2xcbase-1lbvpplacp
 ##### eth-l2patch
 1c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2patch
 2c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2patch
