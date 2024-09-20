@@ -461,3 +461,10 @@
 1c AND 78b AND mrr AND e810cq AND drv_avf AND ethip6srhip6-ip6base-srv6proxy-stat
 2c AND 78b AND mrr AND e810cq AND drv_avf AND ethip6srhip6-ip6base-srv6proxy-stat
 4c AND 78b AND mrr AND e810cq AND drv_avf AND ethip6srhip6-ip6base-srv6proxy-stat
+## ./vm_vhost
+### intel-e810cq
+#### dpdk-vfio-pci
+##### eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+1c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+2c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+4c AND 64b AND mrr AND e810cq AND drv_avf AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
