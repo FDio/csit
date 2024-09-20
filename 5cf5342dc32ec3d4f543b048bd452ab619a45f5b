@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_intel0e810cqANDdrv_avfAND1cAND64bANDeth-l2xcbase* nic_*ANDdrv_mlx*AND1cAND64bANDeth-l2xcbase* !soak",
       "revId": "5cf5342dc32ec3d4f543b048bd452ab619a45f5b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53fd4ff2_08eab4ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-09-20T08:58:29Z",
+      "side": 1,
+      "message": "Ready.",
+      "revId": "5cf5342dc32ec3d4f543b048bd452ab619a45f5b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
