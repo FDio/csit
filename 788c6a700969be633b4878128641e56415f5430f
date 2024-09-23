@@ -16,6 +16,23 @@
       "message": "Test runs were optimised. no need to add more. these test are not useful.",
       "revId": "788c6a700969be633b4878128641e56415f5430f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d57a320c_84732f72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-09-23T07:41:56Z",
+      "side": 1,
+      "message": "we do not want increase coverage in CSIT! test are going to be heavily reduced.",
+      "revId": "788c6a700969be633b4878128641e56415f5430f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
