@@ -7,7 +7,9 @@ weight: 2
 
 # Previous Releases
 
+- [CSIT rls2406]({{< relref "csit_rls2406" >}})
 - [CSIT rls2402]({{< relref "csit_rls2402" >}})
+- [CSIT rls2310]({{< relref "csit_rls2310" >}})
 - [CSIT rls2306]({{< relref "csit_rls2306" >}})
 - [CSIT rls2302]({{< relref "csit_rls2302" >}})
 - [CSIT rls2210](https://s3-docs.fd.io/csit/rls2210/report/)
