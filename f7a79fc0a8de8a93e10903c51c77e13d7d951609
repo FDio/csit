@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54d112fb_d5b1c5b8",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "This is general comment regarding nat44ed tests. And yes, for nat44ed it applies only to 2n testbeds.",
+      "parentUuid": "67dbec6d_b9c80d24",
+      "range": {
+        "startLine": 698,
+        "startChar": 79,
+        "endLine": 698,
+        "endChar": 84
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc797cc8_a0317583",
@@ -47,6 +71,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b12c2e2_738d0dca",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bc797cc8_a0317583",
+      "range": {
+        "startLine": 1167,
+        "startChar": 43,
+        "endLine": 1167,
+        "endChar": 49
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c61942d2_23562c62",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-09-19T13:25:15Z",
       "side": 1,
       "message": "Udir (2n-node) ipsec tests are still useful for 2n-zn2 (and possible other 2-node testbeds in future).",
+      "range": {
+        "startLine": 1176,
+        "startChar": 42,
+        "endLine": 1176,
+        "endChar": 53
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b88728f_94a00e36",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "Discussed with Tibor and decided to do this:\nTODO add 2n- or 3n- prefix to test group names to indicate what testbed topo they run on; no prefix means they run on both 2n and 3n topologies",
+      "parentUuid": "c61942d2_23562c62",
       "range": {
         "startLine": 1176,
         "startChar": 42,
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d159b5cb_15ab6686",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "We do have too many tests on 3n-alt (1 testbed only). 276 on the current count by Tibor. Would need to trim.\n\nPer Tibor - we should be aiming at having \u003c200 tests (not suites). We should also watch the scale tests as they take long time to configure e.g. ip4scale-2m up to 0.5 to configure.",
+      "parentUuid": "0af43f14_a2210304",
+      "range": {
+        "startLine": 1194,
+        "startChar": 66,
+        "endLine": 1194,
+        "endChar": 70
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20d4a057_4f775d49",
         "filename": "resources/job_specs/job_specifications.yaml",
         "patchSetId": 20
@@ -129,6 +225,30 @@
       "writtenOn": "2024-09-19T13:25:15Z",
       "side": 1,
       "message": "Both 2-node and 3-node suites are in repo, decision depends only how loaded 3n-alt already is.",
+      "range": {
+        "startLine": 1195,
+        "startChar": 66,
+        "endLine": 1195,
+        "endChar": 70
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f973c1fb_465993e7",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "It\u0027s overloaded per previous comment.",
+      "parentUuid": "20d4a057_4f775d49",
       "range": {
         "startLine": 1195,
         "startChar": 66,
@@ -164,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd12c7da_17658ef9",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "Are you okay if we remove udir tests, as i\u0027m not sure they\u0027re adding any value?\nGenerally udir tests are of limited value as they do not represent any real use case.",
+      "parentUuid": "4603e6ee_f84a3013",
+      "range": {
+        "startLine": 1283,
+        "startChar": 48,
+        "endLine": 1283,
+        "endChar": 52
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36e93143_793d9568",
         "filename": "resources/job_specs/job_specifications.yaml",
         "patchSetId": 20
@@ -175,6 +319,30 @@
       "writtenOn": "2024-09-19T13:25:15Z",
       "side": 1,
       "message": "If we need to reduce, I prefer to keep h65536 only (no h1024), including udir for coverage.",
+      "range": {
+        "startLine": 1284,
+        "startChar": 18,
+        "endLine": 1284,
+        "endChar": 22
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c46761c7_898d26b4",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "Can you explain why we need udir for coverage?",
+      "parentUuid": "36e93143_793d9568",
       "range": {
         "startLine": 1284,
         "startChar": 18,
@@ -210,6 +378,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e4aa826_f8cf1245",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "See earlier comments.",
+      "parentUuid": "1e823aef_be4e6fef",
+      "range": {
+        "startLine": 1291,
+        "startChar": 48,
+        "endLine": 1291,
+        "endChar": 52
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04c0bd4e_a7cd2808",
         "filename": "resources/job_specs/job_specifications.yaml",
         "patchSetId": 20
@@ -221,6 +413,30 @@
       "writtenOn": "2024-09-19T13:25:15Z",
       "side": 1,
       "message": "I agree, we have non-vhost vxlan tests.",
+      "range": {
+        "startLine": 1406,
+        "startChar": 17,
+        "endLine": 1406,
+        "endChar": 21
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d54d37cc_cd063d71",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "04c0bd4e_a7cd2808",
       "range": {
         "startLine": 1406,
         "startChar": 17,
@@ -244,6 +460,30 @@
       "writtenOn": "2024-09-19T13:25:15Z",
       "side": 1,
       "message": "+1.",
+      "range": {
+        "startLine": 1420,
+        "startChar": 22,
+        "endLine": 1420,
+        "endChar": 26
+      },
+      "revId": "f7a79fc0a8de8a93e10903c51c77e13d7d951609",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd87e70e_51ca2abc",
+        "filename": "resources/job_specs/job_specifications.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1420,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2024-09-26T09:50:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8bd5767_67738be8",
       "range": {
         "startLine": 1420,
         "startChar": 22,
