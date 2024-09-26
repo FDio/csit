@@ -31,7 +31,7 @@ from pyspark.sql.types import StructType
 
 S3_LOGS_BUCKET=environ.get("S3_LOGS_BUCKET", "fdio-logs-s3-cloudfront-index")
 S3_DOCS_BUCKET=environ.get("S3_DOCS_BUCKET", "fdio-docs-s3-cloudfront-index")
-PATH=f"s3://{S3_LOGS_BUCKET}/vex-yul-rot-jenkins-1/csit-vpp-device-*"
+PATH=f"s3://{S3_LOGS_BUCKET}/vex-yul-rot-jenkins-1/csit-*-perf-*"
 SUFFIX="info.json.gz"
 IGNORE_SUFFIX=[
     "suite.info.json.gz",
@@ -93,7 +93,7 @@ def process_json_to_dataframe(schema_name, paths):
     ]
 
     # load schemas
-    with open(f"coverage_{schema_name}.json", "r", encoding="UTF-8") as f_schema:
+    with open(f"iterative_{schema_name}.json", "r", encoding="UTF-8") as f_schema:
         schema = StructType.fromJson(load(f_schema))
 
     # create empty DF out of schemas
@@ -141,9 +141,9 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-coverage-2406" in path]
+filtered_paths = [path for path in paths if "report-iterative-2410" in path]
 
-out_sdf = process_json_to_dataframe("device", filtered_paths)
+out_sdf = process_json_to_dataframe("ndrpdr", filtered_paths)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
@@ -163,7 +163,7 @@ except KeyError:
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2406",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/iterative_rls2410",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",

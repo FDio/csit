@@ -1,115 +1,118 @@
-# Nomad
-variable "datacenters" {
-  description = "Specifies the list of DCs to be considered placing this task."
-  type        = list(string)
-  default     = ["dc1"]
-}
-
-# ETL
-variable "aws_access_key_id" {
-  description = "AWS access key."
-  type        = string
-  default     = "aws"
-}
-
-variable "aws_secret_access_key" {
-  description = "AWS secret key"
-  type        = string
-  default     = "aws"
-}
-
-variable "aws_default_region" {
-  description = "AWS region"
-  type        = string
-  default     = "aws"
-}
-
-variable "cpu" {
-  description = "Specifies the CPU required to run this task in MHz."
-  type        = number
-  default     = 10000
-}
-
-variable "cron" {
-  description = "Specifies a cron expression configuring the interval to launch."
-  type        = string
-  default     = "@daily"
-}
-
-variable "envs" {
-  description = "Specifies ETL environment variables."
-  type        = list(string)
-  default     = []
-}
-
-variable "image" {
-  description = "Specifies the Docker image to run."
-  type        = string
-  default     = "pmikus/docker-ubuntu-focal-aws-glue:latest"
-}
-
-variable "job_name" {
-  description = "Specifies a name for the job."
-  type        = string
-  default     = "etl"
-}
-
-variable "memory" {
-  description = "Specifies the memory required in MB."
-  type        = number
-  default     = 50000
-}
-
-variable "out_aws_access_key_id" {
-  description = "AWS access key."
-  type        = string
-  default     = "aws"
-}
-
-variable "out_aws_secret_access_key" {
-  description = "AWS secret key"
-  type        = string
-  default     = "aws"
-}
-
-variable "out_aws_default_region" {
-  description = "AWS region"
-  type        = string
-  default     = "aws"
-}
-
-variable "prohibit_overlap" {
-  description = "Specifies if this job should wait until previous completed."
+variable "nomad_acl" {
+  description = "Nomad ACLs enabled/disabled."
   type        = bool
-  default     = true
+  default     = false
 }
 
-variable "time_zone" {
-  description = "Specifies the time zone to evaluate the next launch interval."
+variable "nomad_provider_address" {
+  description = "FD.io Nomad cluster address."
   type        = string
-  default     = "UTC"
+  default     = "http://10.30.51.23:4646"
 }
 
-variable "type" {
-  description = "Specifies the Nomad scheduler to use."
+variable "nomad_provider_ca_file" {
+  description = "A local file path to a PEM-encoded certificate authority."
   type        = string
-  default     = "batch"
+  default     = "/etc/nomad.d/ssl/nomad-ca.pem"
 }
 
-variable "vault_secret" {
-  type = object({
-    use_vault_provider        = bool,
-    vault_kv_policy_name      = string,
-    vault_kv_path             = string,
-    vault_kv_field_access_key = string,
-    vault_kv_field_secret_key = string
-  })
-  description = "Set of properties to be able to fetch secret from vault."
-  default = {
-    use_vault_provider        = true
-    vault_kv_policy_name      = "kv"
-    vault_kv_path             = "data/etl"
-    vault_kv_field_access_key = "access_key"
-    vault_kv_field_secret_key = "secret_key"
-  }
+variable "nomad_provider_cert_file" {
+  description = "A local file path to a PEM-encoded certificate."
+  type        = string
+  default     = "/etc/nomad.d/ssl/nomad.pem"
+}
+
+variable "nomad_provider_key_file" {
+  description = "A local file path to a PEM-encoded private key."
+  type        = string
+  default     = "/etc/nomad.d/ssl/nomad-key.pem"
+}
+
+variable "vault_provider_address" {
+  description = "Vault cluster address."
+  type        = string
+  default     = "http://10.30.51.23:8200"
+}
+
+variable "vault_provider_skip_tls_verify" {
+  description = "Verification of the Vault server's TLS certificate."
+  type        = bool
+  default     = false
+}
+
+variable "vault_provider_token" {
+  description = "Vault root token."
+  type        = string
+  sensitive   = true
+}
+
+variable "nomad_jobs" {
+  description = "List of ETL jobs"
+  type        = list(map(any))
+  default = [
+    {
+      job_name = "etl-stats"
+      memory = 50000
+    },
+    {
+      job_name = "etl-trending-hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-hoststack-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-mrr-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-ndrpdr-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-reconf-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-soak-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-device-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-hoststack-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-mrr-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-ndrpdr-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-reconf-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-soak-rls2410"
+      memory = 50000
+    },
+    {
+      job_name = "etl-trending-mrr"
+      memory = 60000
+    },
+    {
+      job_name = "etl-trending-ndrpdr"
+      memory = 60000
+    },
+    {
+      job_name = "etl-trending-soak"
+      memory = 60000
+    }
+  ]
 }
