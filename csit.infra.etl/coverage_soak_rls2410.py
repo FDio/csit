@@ -41,15 +41,9 @@ IGNORE_SUFFIX=[
     "setup.output.info.json.gz",
     "teardown.output.info.json.gz"
 ]
-#LAST_MODIFIED_END=utc.localize(
-#    datetime.strptime(
-#        f"{datetime.now().year}-{datetime.now().month}-{datetime.now().day}",
-#        "%Y-%m-%d"
-#    )
-#)
 LAST_MODIFIED_END=utc.localize(
     datetime.strptime(
-        f"{datetime.now().year}-9-27",
+        f"{datetime.now().year}-{datetime.now().month}-{datetime.now().day}",
         "%Y-%m-%d"
     )
 )
@@ -153,8 +147,8 @@ out_sdf = process_json_to_dataframe("soak", filtered_paths)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
-    .withColumn("month", lit("9")) \
-    .withColumn("day", lit("27")) \
+    .withColumn("month", lit(datetime.now().month)) \
+    .withColumn("day", lit(datetime.now().day)) \
     .repartition(1)
 
 try:
