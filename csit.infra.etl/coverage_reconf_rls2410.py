@@ -49,7 +49,7 @@ IGNORE_SUFFIX=[
 #)
 LAST_MODIFIED_END=utc.localize(
     datetime.strptime(
-        f"{datetime.now().year}-9-28",
+        f"{datetime.now().year}-9-27",
         "%Y-%m-%d"
     )
 )
@@ -154,7 +154,7 @@ out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
     .withColumn("month", lit("9")) \
-    .withColumn("day", lit("28")) \
+    .withColumn("day", lit("27")) \
     .repartition(1)
 
 try:
