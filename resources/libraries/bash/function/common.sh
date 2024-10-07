@@ -118,7 +118,11 @@ function activate_virtualenv () {
     root_path="${1-$CSIT_DIR}"
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
-    rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
+
+    ############################################################################
+    # rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
+    ############################################################################
+
     #pip3 install virtualenv==20.26.3 || {
     #    die "Virtualenv package install failed."
     #}
@@ -400,19 +404,16 @@ function generate_tests () {
     set -exuo pipefail
 
     rm -rf "${GENERATED_DIR}/tests" || die
-    cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests" || die
-    cmd_line=("find" "${GENERATED_DIR}/tests" "-type" "f")
-    cmd_line+=("-executable" "-name" "*.py")
-    # We sort the directories, so log output can be compared between runs.
-    file_list=$("${cmd_line[@]}" | sort) || die
+    pushd "${CSIT_DIR}/resources/libraries/python/suite_generator" || die
 
-    for gen in ${file_list}; do
-        directory="$(dirname "${gen}")" || die
-        filename="$(basename "${gen}")" || die
-        pushd "${directory}" || die
-        ./"${filename}" || die
-        popd || die
-    done
+    # Works for periodical jobs (daily, weekly) only:
+    suite_gen_params=("--job" "${TEST_CODE}")
+    suite_gen_params+=("--gen-tests-dir" "${GENERATED_DIR}")
+    suite_gen_params+=("--test-tag-string" "${TEST_TAG_STRING}")
+    # To make on-demand jobs working, add:
+    # suite_gen_params+=("--test-type" "")
+    # suite_gen_params+=("--test-set" "")
+    ./suite_generator.py "${suite_gen_params[@]}" || die
 }
 
 
@@ -848,8 +849,13 @@ function run_robot () {
 
     set -exuo pipefail
 
+    # Run ALL generated test suites:
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
-    all_options+=("${EXPANDED_TAGS[@]}")
+    # Run only tests defined by tag(s) out of generated tests:
+    # all_options+=("--include" "tag1ANDtag2ANDtag3")
+
+    # TODO: REMOVE
+    # all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
