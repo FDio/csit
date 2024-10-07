@@ -1,0 +1,569 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Definitions of test groups.
+test-groups:
+
+# DPDK
+  dpdk-sm:
+    - eth-l2xcbase-testpmd
+    - ethip4-ip4base-l3fwd
+
+
+# TRex
+  trex-ip4-sm:
+    - ethip4-ip4base-tg
+    - ethip4-ip4scale20k-tg
+  trex-nat44-cps-md:
+    - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
+    - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
+  trex-nat44-tput-md:
+    - ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg
+    - ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
+    - ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg
+  trex-ip6-sm:
+    - ethip6-ip6base-tg
+    - ethip6-ip6scale20k-tg
+  trex-l2-sm:
+    - eth-l2bdscale1mmaclrn-tg
+
+
+# VPP
+
+## Container memif SW
+  container-memif-l2bd-sw-sm:
+    - eth-l2bdbasemaclrn-eth-2memif-1dcr
+  container-memif-sw-sm:
+    - eth-l2xcbase-eth-2memif-1dcr
+    - ethip4-ip4base-eth-2memif-1dcr
+## Container memif HW
+  container-memif-hw-sm:
+    - eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+## IPSec SW
+  ipsec-sw-sm:
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+  ipsec-sw-md:
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    # - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+  ipsec-sw-lg:
+    - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+  ipsec-sw-udir-xl:
+    - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+    - ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm-udir
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-udir
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
+  ipsec-sw-policy-md:
+    - ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
+  ipsec-sw-policy-xl:
+    - ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+    - ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-udir
+    - ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+    - ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+    - ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
+  ipsec-sw-async-sm:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+  ipsec-sw-async-2-sm:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+  ipsec-sw-async-md:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+  ipsec-sw-fixtnlip-md:
+    - ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm
+    - ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-dir-aes256gcm
+    - ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm
+  ipsec-sw-udp:
+    - ethip4ipsec10000tnlsw-udp-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac256sha
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac96sha
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac256sha
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac96sha
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128gcm
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128nullgmac
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac256sha
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac96sha
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256nullgmac
+    - ethip4ipsec10000tnlsw-udp-ar-ip4base-int-none-hmac96sha
+  ipsec-sw-reassembly-sm:
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+  ipsec-sw-aes128cbc-hmac512sha-md:
+    - ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+  ipsec-sw-aes128cbc-hmac512sha-lg:
+    - ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec40000tnlsw-ip4base-int-aes128cbc-hmac512sha
+  ipsec-sw-aes128gcm-md:
+    - ethip4ipsec1tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+  ipsec-sw-aes128gcm-lg:
+    - ethip4ipsec1tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+    - ethip4ipsec40000tnlsw-ip4base-int-aes128gcm
+  ipsec-sw-aes256gcm-md:
+    - ethip4ipsec1tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+  ipsec-sw-aes256gcm-lg:
+    - ethip4ipsec1tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec40000tnlsw-ip4base-int-aes256gcm
+  ipsec-sw-policy-aes256gcm-sm:
+    - ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+  ipsec-sw-async-aes128cbc-hmac512sha-md:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+  ipsec-sw-async-aes128gcm-md:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+    - ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+    - ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+  ipsec-sw-async-aes256gcm-md:
+    - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+    - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+## IPSec HW
+  ipsec-hw-sm:
+    - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+  ipsec-hw-md:
+    - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+  ipsec-hw-async-aes256gcm-md:
+    - ethip4ipsec1tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec1000tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+  ipsec-hw-async-policy-aes256gcm-md:
+    - ethip4ipsec1tnlhwasync-ip4base-policy-aes256gcm
+    - ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
+    - ethip4ipsec1000tnlhwasync-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+## GSO
+  gso-tap-sm:
+    - ethip4-ip4base-2tap-gso-iperf3
+    - ethip4-ip4base-2tap-iperf3
+  gso-vhost-sm:
+    - ethip4-ip4base-2vhost-gso-iperf3
+    - ethip4-ip4base-2vhost-iperf3
+## Hoststack
+  hoststack-nginx-sm:
+    - eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+    - eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+  hoststack-nginx-md:
+    - eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+    - eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+    - eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5-cps
+    - eth-ip4tcphttp-dma-ldpreload-nginx-1_21_5-rps
+  hoststack-iperf-md:
+    - eth-ip4tcpbase-ldpreload-iperf3
+    - eth-ip4tcpscale1cl10s-ldpreload-iperf3
+    - eth-ip4udpbase-ldpreload-iperf3
+    - eth-ip4udpscale1cl10s-ldpreload-iperf3
+  hoststack-vppecho-md:
+    - eth-ip4udpquicbase-vppecho
+    - eth-ip4udpquicscale1cl10s-vppecho
+    - eth-ip4udpquicscale10cl1s-vppecho
+    - eth-ip4udpquicscale10cl10s-vppecho
+## IPv4
+  ip4-base-sm:
+    - ethip4-ip4base
+  ip4-sm:
+    - ethip4-ip4base
+    - ethip4-ip4scale200k-rnd
+  ip4-aws-md:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k
+    - ethip4-ip4scale20k-rnd
+  ip4-md:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k-rnd
+    - ethip4-ip4scale2m-rnd
+  ip4-2-md:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k-rnd
+    - ethip4-ip4scale200k-rnd
+    - ethip4-ip4scale2m-rnd
+  ip4-3-md:
+    - ethip4-ip4base
+    - ethip4-ip4scale2m
+    - ethip4-ip4scale2m-rnd
+  ip4-lg:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k
+    - ethip4-ip4scale20k-rnd
+    - ethip4-ip4scale200k
+    - ethip4-ip4scale200k-rnd
+    - ethip4-ip4scale2m
+    - ethip4-ip4scale2m-rnd
+  ip4-60k-sm:
+    - ethip4-ip4scale60k-rnd
+## IPv4 ACL
+  ip4-acl-sm:
+    - ethip4udp-ip4base-iacl50sf-10kflows
+    - ethip4udp-ip4base-iacl50sl-10kflows
+  ip4-acl-md:
+    - ethip4udp-ip4base-iacl50sf-10kflows
+    - ethip4udp-ip4base-iacl50sl-10kflows
+    - ethip4udp-ip4base-oacl50sf-10kflows
+    - ethip4udp-ip4base-oacl50sl-10kflows
+  ip4-acl-2-md:
+    - ethip4udp-ip4base-iacl1sf-10kflows
+    - ethip4udp-ip4base-iacl1sl-10kflows
+    - ethip4udp-ip4base-oacl1sf-10kflows
+    - ethip4udp-ip4base-oacl1sl-10kflows
+  ip4-acl-lg:
+    - ethip4udp-ip4base-iacl1sf-10kflows
+    - ethip4udp-ip4base-iacl1sl-10kflows
+    - ethip4udp-ip4base-iacl50sf-10kflows
+    - ethip4udp-ip4base-iacl50sl-10kflows
+    - ethip4udp-ip4base-oacl50sf-10kflows
+    - ethip4udp-ip4base-oacl50sl-10kflows
+  ip4-pol-sm:
+    - ethip4-ip4base-iacldstbase
+  ip4-pol-md:
+    - ethip4-ip4base-adlalwlistbase
+    - ethip4-ip4base-iacldstbase
+    - ethip4-ip4base-ipolicemarkbase
+## IPv4 NAT44
+  nat44det-sm:
+    - ethip4udp-nat44det-h65536-p63-s4128758
+  nat44ed-cps-sm:
+    - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+    - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+  nat44ed-tput-sm:
+    - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+    - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+  nat44-udir-sm:
+    - ethip4udp-nat44ed-h65536-p63-s4128768-udir
+  nat44-ip4base-cps-sm:
+    - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+    - ethip4udp-ip4base-h65536-p63-s4128768-cps
+  nat44-ip4base-cps-md:
+    - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+    - ethip4udp-ip4base-h1024-p63-s64512-cps
+    - ethip4udp-ip4base-h16384-p63-s1032192-cps
+    - ethip4udp-ip4base-h65536-p63-s4128768-cps
+    - ethip4udp-ip4base-h262144-p63-s16515072-cps
+  nat44-ip4base-tput-sm:
+    - ethip4tcp-ip4base-h65536-p63-s4128768-tput
+    - ethip4udp-ip4base-h65536-p63-s4128768-tput
+  nat44-ip4base-tput-md:
+    - ethip4tcp-ip4base-h65536-p63-s4128768-tput
+    - ethip4udp-ip4base-h1024-p63-s64512-tput
+    - ethip4udp-ip4base-h16384-p63-s1032192-tput
+    - ethip4udp-ip4base-h65536-p63-s4128768-tput
+    - ethip4udp-ip4base-h262144-p63-s16515072-tput
+## IPv4 Tunnels - Lisp
+  lisp-sm:
+    - ethip4lispip4-ip4base
+    - ethip4lispip6-ip4base
+## IPv4 Tunnels - Geneve
+  geneve-md:
+    - ethip4--ethip4udpgeneve-1tun-ip4base
+    - ethip4--ethip4udpgeneve-16tun-ip4base
+    - ethip4--ethip4udpgeneve-256tun-ip4base
+  geneve-lg:
+    - ethip4--ethip4udpgeneve-1tun-ip4base
+    - ethip4--ethip4udpgeneve-4tun-ip4base
+    - ethip4--ethip4udpgeneve-16tun-ip4base
+    - ethip4--ethip4udpgeneve-64tun-ip4base
+    - ethip4--ethip4udpgeneve-256tun-ip4base
+## IPv4 Tunnels - VXLan
+  vxlan-sm:
+    - ethip4vxlan-l2bdbasemaclrn
+    - ethip4vxlan-l2xcbase
+## IPv4 Tunnels GTPU SW
+  gtpu-sw-sm:
+    - ethip4gtpusw-ip4base
+  gtpu-sw-reassembly-sm:
+    - ethip4gtpusw-ip4base-reassembly
+## IPv4 Tunnels GTPU HW
+  gtpu-hw-sm:
+    - ethip4gtpuhw-ip4base
+## IPv4 Tunnels - Wireguard SW
+  wireguard-sw-sm:
+    - ethip4udpwireguard1tnlsw-ip4base
+  wireguard-sw-md:
+    - ethip4udpwireguard1tnlsw-ip4base
+    - ethip4udpwireguard4tnlsw-ip4base
+    - ethip4udpwireguard100tnlsw-ip4base
+    - ethip4udpwireguard1000tnlsw-ip4base
+  wireguard-sw-lg:
+    - ethip4udpwireguard1tnlsw-ip4base
+    - ethip4udpwireguard2tnlsw-ip4base
+    - ethip4udpwireguard4tnlsw-ip4base
+    - ethip4udpwireguard8tnlsw-ip4base
+    - ethip4udpwireguard100tnlsw-ip4base
+    - ethip4udpwireguard1000tnlsw-ip4base
+## IPv4 Tunnels - Wireguard HW
+  wireguard-hw-md:
+    - ethip4udpwireguard1tnlhwasync-ip4base
+    - ethip4udpwireguard4tnlhwasync-ip4base
+    - ethip4udpwireguard100tnlhwasync-ip4base
+    - ethip4udpwireguard1000tnlhwasync-ip4base
+  wireguard-hw-lg:
+    - ethip4udpwireguard1tnlhwasync-ip4base
+    - ethip4udpwireguard2tnlhwasync-ip4base
+    - ethip4udpwireguard4tnlhwasync-ip4base
+    - ethip4udpwireguard8tnlhwasync-ip4base
+    - ethip4udpwireguard100tnlhwasync-ip4base
+    - ethip4udpwireguard1000tnlhwasync-ip4base
+## IPv6
+  ip6-base-sm:
+    - ethip6-ip6base
+  ip6-sm:
+    - ethip6-ip6base
+    - ethip6-ip6scale200k-rnd
+  ip6-aws-md:
+    - ethip6-ip6base
+    - ethip6-ip6scale20k
+    - ethip6-ip6scale20k-rnd
+  ip6-2m-sm:
+    - ethip6-ip6scale2m
+    - ethip6-ip6scale2m-rnd
+  ip6-md:
+    - ethip6-ip6base
+    - ethip6-ip6scale20k-rnd
+    - ethip6-ip6scale2m-rnd
+  ip6-acl-md:
+    - ethip6-ip6base
+    - ethip6-ip6base-adlalwlistbase
+    - ethip6-ip6base-iacldstbase
+  ip6-scale-md:
+    - ethip6-ip6scale20k
+    - ethip6-ip6scale200k
+    - ethip6-ip6scale2m
+  ip6-scale-lg:
+    - ethip6-ip6scale20k
+    - ethip6-ip6scale20k-rnd
+    - ethip6-ip6scale200k
+    - ethip6-ip6scale200k-rnd
+    - ethip6-ip6scale2m
+    - ethip6-ip6scale2m-rnd
+## IPv6 Tunnels
+  ip6-lisp-sm:
+    - ethip6lispip4-ip6base
+    - ethip6lispip6-ip6base
+## L2
+  l2-base-sm:
+    - eth-l2patch
+    - eth-l2xcbase
+    - eth-l2bdbasemaclrn
+  l2-base-md:
+    - eth-l2patch
+    - eth-l2xcbase
+    - eth-l2bdbasemaclrn
+    - dot1q-l2bdbasemaclrn
+  l2-scale-md:
+    - eth-l2bdscale10kmaclrn
+    - eth-l2bdscale100kmaclrn
+    - eth-l2bdscale1mmaclrn
+  l2-sm:
+    - eth-l2xcbase
+    - eth-l2bdbasemaclrn
+  l2-md:
+    - eth-l2xcbase
+    - eth-l2bdbasemaclrn
+    - eth-l2bdscale10kmaclrn
+    - eth-l2bdscale100kmaclrn
+  l2-lg:
+    - eth-l2xcbase
+    - eth-l2patch
+    - eth-l2bdbasemaclrn
+    - dot1q-l2bdbasemaclrn
+    - eth-l2bdscale10kmaclrn
+    # - eth-l2bdscale100kmaclrn
+    - eth-l2bdscale1mmaclrn
+  l2-1lbvpplacp-sm:
+    - eth-l2xcbase-1lbvpplacp
+## L2 ACL
+  l2-acl-md:
+    - eth-l2bdbasemaclrn-iacl50sf-10kflows
+    - eth-l2bdbasemaclrn-iacl50sl-10kflows
+    - eth-l2bdbasemaclrn-oacl50sf-10kflows
+    - eth-l2bdbasemaclrn-oacl50sl-10kflows
+  l2-acl-2-md:
+    - eth-l2bdbasemaclrn-iacl1sf-10kflows
+    - eth-l2bdbasemaclrn-iacl1sl-10kflows
+    - eth-l2bdbasemaclrn-oacl1sf-10kflows
+    - eth-l2bdbasemaclrn-oacl1sl-10kflows
+  l2-acl-xl:
+    - eth-l2bdbasemaclrn-iacl1sf-10kflows
+    - eth-l2bdbasemaclrn-iacl1sl-10kflows
+    - eth-l2bdbasemaclrn-iacl10sf-10kflows
+    - eth-l2bdbasemaclrn-iacl10sl-10kflows
+    - eth-l2bdbasemaclrn-iacl50sf-10kflows
+    - eth-l2bdbasemaclrn-iacl50sl-10kflows
+    - eth-l2bdbasemaclrn-oacl1sf-10kflows
+    - eth-l2bdbasemaclrn-oacl1sl-10kflows
+    - eth-l2bdbasemaclrn-oacl10sf-10kflows
+    - eth-l2bdbasemaclrn-oacl10sl-10kflows
+    - eth-l2bdbasemaclrn-oacl50sf-10kflows
+    - eth-l2bdbasemaclrn-oacl50sl-10kflows
+  l2-macip-sm:
+    - eth-l2bdbasemaclrn-macip-iacl1sl-10kflows
+  l2-macip-md:
+    - eth-l2bdbasemaclrn-macip-iacl1sl-10kflows
+    - eth-l2bdbasemaclrn-macip-iacl10sl-10kflows
+    - eth-l2bdbasemaclrn-macip-iacl50sl-10kflows
+## LB
+  lb-md:
+    - ethip4-loadbalancer-l3dsr
+    - ethip4-loadbalancer-maglev
+    - ethip4-loadbalancer-nat4
+## SRv6
+  srv6-lg:
+    - ethip6ip6-ip6base-srv6enc1sid
+    - ethip6srhip6-ip6base-srv6enc2sids
+    - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+    - ethip6srhip6-ip6base-srv6proxy-dyn
+    - ethip6srhip6-ip6base-srv6proxy-masq
+    - ethip6srhip6-ip6base-srv6proxy-stat
+## VM Vhost
+  vhost-sm:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+  vhost-md:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    - eth-l2xcbase-eth-2vhostvr1024-1vm
+    - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+  vhost-2-md:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    - ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
+  vhost-lg:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    - eth-l2xcbase-eth-2vhostvr1024-1vm
+    - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    - ethip4-ip4base-eth-2vhostvr1024-1vm
+    - ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
+  vhost-vxlan-sm:
+    - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+    - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+  vhost-vxlan-2-sm:
+    - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+## soak
+  soak-memif-sm:
+    - eth-l2bdbasemaclrn-eth-2memif-1dcr
+  soak-memif-dma-sm:
+    - eth-l2bdbasemaclrn-eth-2memif-dma-1dcr
+  soak-crypto-sm:
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+  soak-crypto-md:
+    - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+    - ethip4ipsec1000tnlhwasync-ip4base-int-aes128cbc-hmac512sha
+    - ethip4ipsec1000tnlhwasync-ip4base-int-aes256gcm
+  soak-ip4-sm:
+    - ethip4-ip4scale200k-rnd
+  soak-ip4-md:
+    - ethip4-ip4base
+    - ethip4-ip4scale20k-rnd
+    - ethip4-ip4scale200k-rnd
+  soak-nat44-cps-sm:
+    - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+    - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+  soak-nat44-tput-sm:
+    - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+    - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+  soak-ip6-sm:
+    - ethip6-ip6scale200k-rnd
+  soak-ip6-md:
+    - ethip6-ip6base
+    - ethip6-ip6scale20k-rnd
+    - ethip6-ip6scale200k-rnd
+  soak-l2-sm:
+    - eth-l2bdbasemaclrn
+  soak-l2-md:
+    - eth-l2xcbase
+    - eth-l2bdbasemaclrn
+    - eth-l2bdscale1mmaclrn
+  soak-srv6-sm:
+    - ethip6srhip6-ip6base-srv6enc2sids
+    - ethip6srhip6-ip6base-srv6proxy-masq
+  soak-vhost-sm:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+## nfv density
+  nfv-dcr-memif-chain-lg:
+    - eth-l2bd-1ch-2mif-1dcr1t-vppip4
+    - eth-l2bd-1ch-4mif-2dcr1t-vppip4
+    - eth-l2bd-1ch-8mif-4dcr1t-vppip4
+    - eth-l2bd-1ch-12mif-6dcr1t-vppip4
+    - eth-l2bd-2ch-4mif-2dcr1t-vppip4
+    - eth-l2bd-2ch-8mif-4dcr1t-vppip4
+    - eth-l2bd-4ch-8mif-4dcr1t-vppip4
+    - eth-l2bd-6ch-12mif-6dcr1t-vppip4
+  nfv-dcr-memif-pipeline-lg:
+    - eth-l2bd-1pl-2mif-1dcr1t-vppip4
+    - eth-l2bd-1pl-2mif-2dcr1t-vppip4
+    - eth-l2bd-1pl-2mif-4dcr1t-vppip4
+    - eth-l2bd-1pl-2mif-6dcr1t-vppip4
+    - eth-l2bd-2pl-4mif-2dcr1t-vppip4
+    - eth-l2bd-2pl-4mif-4dcr1t-vppip4
+    - eth-l2bd-2pl-8mif-4dcr1t-vppip4
+    - eth-l2bd-6pl-12mif-6dcr1t-vppip4
+  nfv-vm-vhost-chain-lg:
+    - eth-l2bd-1ch-2vh-1vm1t-vppip4
+    - eth-l2bd-1ch-4vh-2vm1t-vppip4
+    - eth-l2bd-1ch-8vh-4vm1t-vppip4
+    - eth-l2bd-1ch-12vh-6vm1t-vppip4
+    - eth-l2bd-2ch-4vh-2vm1t-vppip4
+    - eth-l2bd-2ch-8vh-4vm1t-vppip4
+    - eth-l2bd-4ch-8vh-4vm1t-vppip4
+    - eth-l2bd-6ch-12vh-6vm1t-vppip4
+  nfv-vm-vhost-chain-vxlan-md:
+    - dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd
+    - dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd
+    - dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd
+    - dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd
