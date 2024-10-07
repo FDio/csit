@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,17 +18,6 @@ set -exuo pipefail
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
 
-# This script starts with copying ${CSIT_DIR}/tests to ${GENERATED_DIR}/.
-# Then the script runs every executable *.py script anywhere in the copied dir,
-# the working directory temporarily changed to where the *.py file is.
-# Proper virtualenv is assumed to be active.
-# Then another directory in ${GENERATED_DIR} is created, where
-# the just generated content is copied and then overwitten by the non-generated.
-# If "diff -dur" sees any changes by the overwrite, this script fails.
-# The diff output is stored to autogen.log (overwriting).
-# The executed *.py files are assumed to be robot suite generators,
-# any change means the contribution is not consistent with the regenerated code.
-
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
 BASH_FUNCTION_DIR="$(readlink -e "${BASH_CHECKS_DIR}/../../function")"
@@ -40,23 +29,10 @@ common_dirs
 work_dir="$(pwd)" || die
 trap "cd '${work_dir}'" EXIT || die
 
-generate_tests
-
-rm -rf "${GENERATED_DIR}/tests_tmp"
-cp -r "${GENERATED_DIR}/tests" "${GENERATED_DIR}/tests_tmp"
-# Default cp behavior is to put inside a targed dir, not to override.
-cp -rf "${CSIT_DIR}/tests"/* "${GENERATED_DIR}/tests_tmp"/
-# TODO: Do we want to archive ${GENERATED_DIR}?
-# I think archiving the diff is enough.
-
-diff_cmd=("diff" "-dur" "${GENERATED_DIR}/tests_tmp" "${GENERATED_DIR}/tests")
-# Diff returns RC=1 if output is nonzero.
-lines="$("${diff_cmd[@]}" | tee "autogen.log" | wc -l || true)"
-if [ "${lines}" != "0" ]; then
-    # TODO: Decide which text goes to stdout and which to stderr.
-    warn "Autogen conflict, diff sees nonzero lines: ${lines}"
-    # TODO: Disable if output size does more harm than good.
-    cat "autogen.log" >&2
+get_test_code
+RET_VAL="PASS"
+OUTPUT=$(generate_tests) || RET_VAL="FAIL"
+if [ "${RET_VAL}" == "FAIL" ]; then
     warn
     warn "Autogen checker: FAIL"
     exit 1
