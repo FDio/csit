@@ -1,0 +1,7 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Definitions of test groups.
+test-groups:
+
+  TODO
