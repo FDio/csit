@@ -40,6 +40,7 @@ common_dirs
 work_dir="$(pwd)" || die
 trap "cd '${work_dir}'" EXIT || die
 
+get_test_code
 generate_tests
 
 rm -rf "${GENERATED_DIR}/tests_tmp"
