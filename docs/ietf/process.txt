@@ -14,15 +14,18 @@
 
 Commands to convert RFC text from .md (so I do not need to search next time).
 
-Hints: https://www.rubydoc.info/gems/kramdown-rfc2629/
+Hints:
++ https://www.rubydoc.info/gems/kramdown-rfc2629/
++ https://github.com/cabo/kramdown-rfc
++ https://www.rfc-editor.org/materials/FAQ-xml2rfcv3.html
 
 Initial:
 $ sudo aptitude install ruby-rubygems
-$ sudo gem install kramdown-rfc2629
+$ sudo gem install kramdown-rfc
 $ kdrfc --version
 
 Main:
-$ kdrfc draft-ietf-bmwg-mlrsearch-07.md
+$ kdrfc draft-ietf-bmwg-mlrsearch-08.md
 
 If that complains, do it manually at https://author-tools.ietf.org/
 
