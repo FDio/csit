@@ -15,10 +15,6 @@
     - sut_azure
     - sut_openstasck
 
-- import_playbook: vpp_device.yaml
-  tags:
-    - vpp-device
-
 - import_playbook: nomad.yaml
   tags:
     - nomad

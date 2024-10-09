@@ -40,12 +40,6 @@ all:
         10.30.51.93: #s93-t39-sut1 - snowridge
         10.30.51.94: #s94-t39-sut2 - snowridge
         10.32.8.24: #s60-t210-sut1 - epyc
-    vpp_device:
-      hosts:
-        10.30.51.30: #s30-t15-sut1 - sapphirerapids
-        10.30.51.31: #s31-t16-sut1 - sapphirerapids
-        10.30.51.70: #s70-t13-sut1 - altra
-        10.30.51.71: #s71-t14-sut1 - altra
     nomad:
       hosts:
         10.30.51.21: #s21-nomad - sapphirerapids
@@ -56,8 +50,12 @@ all:
         10.30.51.26: #s26-nomad - skylake
         10.30.51.27: #s27-nomad - skylake
         10.30.51.28: #s28-nomad - skylake
+        10.30.51.30: #s30-nomad - sapphirerapids
+        10.30.51.31: #s31-nomad - sapphirerapids
         10.30.51.50: #s50-nomad - skylake
         10.30.51.51: #s51-nomad - skylake
+        10.30.51.70: #s70-nomad - altra
+        10.30.51.71: #s71-nomad - altra
         10.30.51.91: #s58-nomad - neoverse n1
         10.30.51.92: #s59-nomad - neoverse n1
     dev:
