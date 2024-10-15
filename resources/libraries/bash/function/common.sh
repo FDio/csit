@@ -519,6 +519,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="alt"
             ;;
+        *"2n-grc")
+            NODENESS="2n"
+            FLAVOR="grc"
+            ;;
         *"-x-2n"*)
             TESTBED="${TEST_CODE#${TEST_CODE%2n*}}"
             NODENESS="${TESTBED%-${TEST_CODE#*-x-2n*-}}"
@@ -960,6 +964,9 @@ function select_tags () {
         *"3n-alt")
             default_nic="nic_intel-xl710"
             ;;
+        *"2n-grc")
+            default_nic="nic_mellanox-cx7veat"
+            ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             default_nic="nic_amazon-nitro-50g"
             ;;
@@ -1103,6 +1110,9 @@ function select_tags () {
         *"3n-alt")
             test_tag_array+=("!ipsechw")
             ;;
+        *"2n-grc")
+            test_tag_array+=("!ipsechw")
+            ;;
         *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
@@ -1230,6 +1240,10 @@ function select_topology () {
         *"3n-alt")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt_*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        *"2n-grc")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_grc_*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         *"3n-aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
