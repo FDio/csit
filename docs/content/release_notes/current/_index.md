@@ -19,7 +19,6 @@ The release notes of the previous CSIT release can be found
 - [VPP Performance]({{< relref "vpp_performance" >}})
 - [DPDK Performance]({{< relref "dpdk_performance" >}})
 - [TRex Performance]({{< relref "trex_performance" >}})
-- [VPP Device]({{< relref "vpp_device" >}})
 
 ## CSIT-2410 Release Data
 

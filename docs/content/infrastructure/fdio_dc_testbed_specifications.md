@@ -55,18 +55,6 @@ To access these hosts, VPN connection is required.
 14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1
 ```
 
-### 1-Node-Altra Arm Ampere (1n-alt)
-
-Each 1-Node-Altra testbed includes one SUT (Server-Type-E25) with NIC
-ports connected back-to-back ([Server Types](#server-types)).
-Used for FD.io VPP_Device functional driver tests.
-
-### 1-Node-Skylake Xeon Intel (1n-spr)
-
-Each 1-Node-SapphireRapids testbed includes one SUT (Server-Type-H7) with NIC
-ports connected back-to-back ([Server Types](#server-types)).
-Used for FD.io VPP_Device functional driver tests.
-
 ### 2-Node-Zen2 EPYC AMD (2n-zn2)
 
 Each 2-Node-Zen2 testbed includes one SUT (Server-Type-D1) and
@@ -299,7 +287,7 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 12* 16GB DDR4-3200MT/s
         - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
 
-8. **Server-Type-E25**: Purpose - Altra Arm Ampere SUT for FD.io VPP_Device functional tests.
+8. **Server-Type-E25**: Purpose - Altra Arm Ampere for FD.io build.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -608,7 +596,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot11 d8:00.xx: empty.
 
-23. **Server-Type-H7**: Purpose - SapphireRapids SUT for FD.io VPP_Device functional tests.
+23. **Server-Type-H7**: Purpose - SapphireRapids SUT for FD.io build.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -693,7 +681,7 @@ FD.io CSIT lab contains following server types:
 ```
 - SUT [Server-Type-E25]:
     - testbedname: testbed13
-    - hostname: s70-t13-sut1
+    - hostname: s70-nomad
     - IPMI IP: 10.30.50.70
     - Host IP: 10.30.51.70
     - portnames:
@@ -709,7 +697,7 @@ FD.io CSIT lab contains following server types:
         - s70-t13-sut1-c5/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
 - SUT [Server-Type-E25]:
     - testbedname: testbed14
-    - hostname: s71-t14-sut1
+    - hostname: s71-nomad
     - IPMI IP: 10.30.50.71
     - Host IP: 10.30.51.71
     - portnames:
@@ -730,7 +718,7 @@ FD.io CSIT lab contains following server types:
 ```
 - SUT [Server-Type-H7]:
     - testbedname: testbed15.
-    - hostname: s30-t15-sut1.
+    - hostname: s30-nomad.
     - IPMI IP: 10.30.50.30
     - Host IP: 10.30.51.30
     - portnames:
@@ -748,7 +736,7 @@ FD.io CSIT lab contains following server types:
         - s30-t15-sut1-c9/p4 - 10GE-port4 x710-4p10GE.
 - SUT [Server-Type-H7]:
     - testbedname: testbed16.
-    - hostname: s31-t16-sut1.
+    - hostname: s31-nomad.
     - IPMI IP: 10.30.50.31
     - Host IP: 10.30.51.31
     - portnames:
