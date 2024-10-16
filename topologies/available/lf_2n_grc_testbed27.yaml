@@ -2,9 +2,9 @@
 metadata:
   version: 0.1
   schema: # list of schema files against which to validate
-    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/2_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
+  tags: [hw, 2-node]
 
 nodes:
   TG:
@@ -17,37 +17,53 @@ nodes:
     password: Csit1234
     interfaces:
       port1:
-        # s37-t27-tg1-c4/p1 - 100GE-port1 ConnectX5-2p100GE.
-        mac_address: "?"
-        pci_address: "?"
+        # s37-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:0b:92:1a"
+        pci_address: "0000:17:00.0"
         ip4_address: "172.16.10.1"
         driver: mlx5_core
         link: link1
         model: Mellanox-CX556A
       port2:
-        # s37-t27-tg1-c4/p2 - 100GE-port1 ConnectX5-2p100GE.
-        mac_address: "?"
-        pci_address: "?"
+        # s37-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:0b:92:1b"
+        pci_address: "0000:17:00.1"
         ip4_address: "172.16.20.1"
         driver: mlx5_core
         link: link2
         model: Mellanox-CX556A
       port3:
-        # s37-t27-tg1-c6/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
-        mac_address: "?"
-        pci_address: "?"
+        # s37-t27-tg1-c4/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:15:5f:b4"
+        pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.1"
         driver: mlx5_core
         link: link3
-        model: Mellanox-CX7VEAT
+        model: Mellanox-CX556A
       port4:
-        # s37-t27-tg1-c6/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
-        mac_address: "?"
-        pci_address: "?"
+        # s37-t27-tg1-c4/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:15:5f:b5"
+        pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.1"
         driver: mlx5_core
         link: link4
-        model: Mellanox-CX7VEAT
+        model: Mellanox-CX556A
+      port5:
+        # s37-t27-tg1-c2/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:18:44:ec"
+        pci_address: "0000:4b:00.0"
+        ip4_address: "172.16.50.1"
+        driver: mlx5_core
+        link: link5
+        model: Mellanox-CX556A
+      port6:
+        # s37-t27-tg1-c2/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:18:44:ed"
+        pci_address: "0000:4b:00.1"
+        ip4_address: "172.16.60.1"
+        driver: mlx5_core
+        link: link6
+        model: Mellanox-CX556A
   DUT1:
     type: DUT
     host: 10.30.51.36

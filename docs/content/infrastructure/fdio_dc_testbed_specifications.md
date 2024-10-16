@@ -1342,12 +1342,12 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.36
     - Host IP: 10.30.51.36
     - portnames:
-        - s36-t27-sut1-c2/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s36-t27-sut1-c2/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s36-t27-sut1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s36-t27-sut1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s36-t27-sut1-c9/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s36-t27-sut1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s36-t27-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s36-t27-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s36-t27-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s36-t27-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s36-t27-sut1-c3/p1 - 10GE-port1 x550T-2p10GE.
+        - s36-t27-sut1-c3/p2 - 10GE-port1 x550T-2p10GE.
 - TG [Server-Type-F6]:
     - testbedname: testbed27.
     - hostname: s37-t27-tg1.
@@ -1356,10 +1356,10 @@ FD.io CSIT lab contains following server types:
     - portnames:
         - s37-t27-tg1-c2/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s37-t27-tg1-c2/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s37-t27-tg1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s37-t27-tg1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s37-t27-tg1-c9/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s37-t27-tg1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s37-t27-tg1-c4/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s37-t27-tg1-c4/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s37-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s37-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 ```
 
 ## Testbed Wiring
@@ -1674,12 +1674,9 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed27:
     - ring1 100GE-ports ConnectX5-2p100GE:
-        - s37-t27-tg1-c2/p1 to s36-t27-sut1-c1/p1.
-        - s36-t27-sut1-c1/p2 to s37-t27-tg1-c2/p2.
-    - ring2 200GE-ports ConnectX7-2p200GE:
-        - s37-t27-tg1-c2/p1 to s36-t27-sut1-c1/p1.
-        - s36-t27-sut1-c1/p2 to s37-t27-tg1-c2/p2.
-    - ring3 200GE-ports ConnectX7-2p200GE:
-        - s37-t27-tg1-c2/p1 to s36-t27-sut1-c1/p1.
-        - s36-t27-sut1-c1/p2 to s37-t27-tg1-c2/p2.
+        - s37-t27-tg1-c9/p1 to s36-t27-sut1-c1/p1.
+        - s36-t27-sut1-c1/p2 to s37-t27-tg1-c9/p2.
+    #- ring2 200GE-ports ConnectX7-2p200GE:
+    #    - s37-t27-tg1-c2/p1 to s36-t27-sut1-c1/p1.
+    #    - s36-t27-sut1-c1/p2 to s37-t27-tg1-c2/p2.
 ```
