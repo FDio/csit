@@ -81,8 +81,8 @@ Captured inventory data:
  fdio-marvell-dev      | dev          | ThunderX-88XX  | N/A             | 10.30.51.38  | 10.30.50.38  | 3016.11    | u45
  s21-nomad             | nomad-client | SYS-741GE-TNRT | C7490FL47A50150 | 10.30.51.21  | 10.30.50.21  | 3016.11    | u39-u42
  s22-nomad             | nomad-client | SYS-741GE-TNRT | C7490FL47A50155 | 10.30.51.22  | 10.30.50.22  | 3016.11    | u35-u38
- s30-t15-sut1          | nomad-client | SYS-741GE-TNRT | C7490FL47A50154 | 10.30.51.30  | 10.30.50.30  | 3016.11    | u19-u22
- s31-t16-sut1          | nomad-client | SYS-741GE-TNRT | C7490FL47A50149 | 10.30.51.31  | 10.30.50.31  | 3016.11    | u15-u18
+ s30-nomad             | nomad-client | SYS-741GE-TNRT | C7490FL47A50154 | 10.30.51.30  | 10.30.50.30  | 3016.11    | u19-u22
+ s31-nomad             | nomad-client | SYS-741GE-TNRT | C7490FL47A50149 | 10.30.51.31  | 10.30.50.31  | 3016.11    | u15-u18
  s70-t13-sut1          | 1n-alt       | E252-P30-00    | GMG252012A0098  | 10.30.51.70  | 10.30.50.70  | 3016.11    | u13-u14
  s71-t14-sut1          | 1n-alt       | E252-P30-00    | GMG252012A0089  | 10.30.51.71  | 10.30.50.71  | 3016.11    | u11-u12
  s62-t34-sut1          | 3n-alt       | WIWYNN         | 04000059N0SC    | 10.30.51.72  | 10.30.50.72  | 3016.11    | u9-u10
