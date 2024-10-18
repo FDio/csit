@@ -28,12 +28,12 @@
       tags: docker
     - role: docker_images
       tags: docker_images
-    - role: iperf
-      tags: iperf
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
+#    - role: iperf
+#      tags: iperf
+#    - role: trex
+#      tags: trex
+#    - role: ab
+#      tags: ab
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup
@@ -60,16 +60,16 @@
       tags: python_env
     - role: docker
       tags: docker
-    - role: iperf
-      tags: iperf
+#    - role: iperf
+#      tags: iperf
 #    - role: dpdk
 #      tags: dpdk
     - role: aws
       tags: aws
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
+#    - role: trex
+#      tags: trex
+#    - role: ab
+#      tags: ab
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -93,12 +93,12 @@
       tags: python_env
     - role: docker
       tags: docker
-    - role: iperf
-      tags: iperf
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
+#    - role: iperf
+#      tags: iperf
+#    - role: trex
+#      tags: trex
+#    - role: ab
+#      tags: ab
     - role: azure
       tags: azure
     - role: cleanup
@@ -124,12 +124,12 @@
       tags: python_env
     - role: docker
       tags: docker
-    - role: iperf
-      tags: iperf
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
+#    - role: iperf
+#      tags: iperf
+#    - role: trex
+#      tags: trex
+#    - role: ab
+#      tags: ab
     - role: cleanup
       tags: cleanup
     - role: calibration

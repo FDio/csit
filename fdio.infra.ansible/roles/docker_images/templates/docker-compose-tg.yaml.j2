@@ -1,9 +1,12 @@
-version: "3"
 services:
   tg-0:
     build:
-      context: "base/"
+      context: "tg/"
       dockerfile: "Dockerfile"
+      args:
+        BASE_IMAGE: "ubuntu:22.04"
+        TREX_VERSION: "3.03"
+        IPERF_VERSION: "3.7"
     command: ["/usr/sbin/sshd","-D", "-p", "6001"]
     expose:
       - "6001"
@@ -20,8 +23,12 @@ services:
 {% endfor %}
   tg-1:
     build:
-      context: "base/"
+      context: "tg/"
       dockerfile: "Dockerfile"
+      args:
+        BASE_IMAGE: "ubuntu:22.04"
+        TREX_VERSION: "3.03"
+        IPERF_VERSION: "3.7"
     command: ["/usr/sbin/sshd","-D", "-p", "6002"]
     expose:
       - "6002"

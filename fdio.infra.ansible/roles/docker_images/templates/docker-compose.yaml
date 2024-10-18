@@ -1,0 +1,11 @@
+services:
+  tg-0:
+    image: "test:latest"
+    command: ["/usr/sbin/sshd","-D", "-p", "6001"]
+    expose:
+      - "6001"
+    hostname: "test"
+    network_mode: "host"
+    privileged: true
+    restart: "always"
+    shm_size: "4G"

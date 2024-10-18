@@ -1,7 +1,7 @@
 ---
-# file: roles/kernel/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: Inst - Prerequisites
+- name: "Prerequisites"
   include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
   tags:
     - kernel-inst-prerequisites
