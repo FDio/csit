@@ -16,8 +16,8 @@
       tags: baremetal
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
+    #- role: python_env
+    #  tags: python_env
     - role: kernel
       tags: kernel
     - role: mellanox
