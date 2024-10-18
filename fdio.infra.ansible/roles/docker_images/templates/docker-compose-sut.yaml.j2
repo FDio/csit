@@ -1,9 +1,10 @@
-version: "3"
 services:
-  numa-0:
+  sut-0:
     build:
       context: "base/"
       dockerfile: "Dockerfile"
+      args:
+        BASE_IMAGE: "ubuntu:24.04"
     cap_add:
       - NET_RAW
     command: ["/usr/sbin/sshd","-D", "-p", "6001"]
@@ -20,10 +21,12 @@ services:
         source: "{{ volume.source }}"
         target: "{{ volume.target }}"
 {% endfor %}
-  numa-1:
+  sut-1:
     build:
       context: "base/"
       dockerfile: "Dockerfile"
+      args:
+        BASE_IMAGE: "ubuntu:24.04"
     cap_add:
       - NET_RAW
     command: ["/usr/sbin/sshd","-D", "-p", "6002"]

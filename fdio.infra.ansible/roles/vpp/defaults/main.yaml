@@ -1,5 +1,5 @@
 ---
-# file: roles/vpp/defaults/main.yaml
+# file: defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
@@ -18,6 +18,14 @@ packages_by_distro:
       - "libmbedcrypto7"
       - "libmbedtls14"
       - "libmbedx509-1"
+      - "libnuma-dev"
+      - "libpixman-1-dev"
+    noble:
+      - "build-essential"
+      - "libglib2.0-dev"
+      - "libmbedcrypto7t64"
+      - "libmbedtls14t64"
+      - "libmbedx509-1t64"
       - "libnuma-dev"
       - "libpixman-1-dev"
 

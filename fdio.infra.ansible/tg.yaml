@@ -12,12 +12,8 @@
       tags:
         - always
   roles:
-    - role: baremetal
-      tags: baremetal
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
     - role: kernel
       tags: kernel
     - role: mellanox
@@ -28,12 +24,6 @@
       tags: docker
     - role: docker_images
       tags: docker_images
-    - role: iperf
-      tags: iperf
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup
@@ -56,20 +46,12 @@
       tags: user_add
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
     - role: docker
       tags: docker
-    - role: iperf
-      tags: iperf
 #    - role: dpdk
 #      tags: dpdk
     - role: aws
       tags: aws
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -89,16 +71,8 @@
       tags: user_add
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
     - role: docker
       tags: docker
-    - role: iperf
-      tags: iperf
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
     - role: azure
       tags: azure
     - role: cleanup
@@ -120,16 +94,8 @@
       tags: user_add
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
     - role: docker
       tags: docker
-    - role: iperf
-      tags: iperf
-    - role: trex
-      tags: trex
-    - role: ab
-      tags: ab
     - role: cleanup
       tags: cleanup
     - role: calibration

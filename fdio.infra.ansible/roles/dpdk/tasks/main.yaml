@@ -1,24 +1,23 @@
 ---
 # file: tasks/main.yaml
 
-- name: Update Package Cache (APT)
+- name: "Update Package Cache (APT)"
   ansible.builtin.apt:
     update_cache: true
-    cache_valid_time: 3600
   when:
-    - ansible_distribution == 'Ubuntu'
+    - ansible_os_family == 'Debian'
   tags:
     - dpdk-inst-prerequisites
 
-- name: Prerequisites
+- name: "Prerequisites"
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - dpdk-inst-prerequisites
 
-- name: Multiple DPDK Versions
-  include_tasks: deploy_block.yaml
+- name: "Multiple DPDK Versions"
+  include_tasks: "deploy_block.yaml"
   loop: "{{ dpdk_version }}"
   tags:
     - dpdk-inst

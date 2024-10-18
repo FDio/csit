@@ -14,8 +14,6 @@
   roles:
     - role: user_add
       tags: user_add
-    - role: baremetal
-      tags: baremetal
     - role: docker
       tags: docker
     - role: nomad

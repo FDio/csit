@@ -1,4 +1,6 @@
-FROM ubuntu:22.04
+# Import necessary base images
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -56,6 +58,7 @@ RUN apt-get -q update \
         python3-pip \
         python3-pyelftools \
         python3-setuptools \
+        python3-venv \
         python3-virtualenv \
         qemu-system \
         rdma-core \
@@ -72,10 +75,9 @@ RUN apt-get -q update \
         tar \
         tcpdump \
         unzip \
-        vim \
         wget \
         zlib1g-dev \
- && ln -s -f /usr/lib/x86_64-linux-gnu/libc.a /usr/lib/x86_64-linux-gnu/liblibc.a \
+ #&& ln -s -f /usr/lib/x86_64-linux-gnu/libc.a /usr/lib/x86_64-linux-gnu/liblibc.a \
  && curl -fsSL https://get.docker.com | sh \
  && rm -rf /var/lib/apt/lists/*
 
@@ -90,44 +92,56 @@ RUN mkdir -p /tmp/dumps \
  && mkdir -p /var/log/vpp
 
 # CSIT PIP pre-cache
-RUN pip3 install \
-        ecdsa==0.18.0 \
-        paramiko==3.3.1 \
-        pycrypto==2.6.1 \
-        python-dateutil==2.8.2 \
+RUN python3 -m venv venv \
+    && venv/bin/pip3 install --upgrade --no-cache-dir pip \
+    && venv/bin/pip3 install --upgrade setuptools \
+    && venv/bin/pip3 install --upgrade wheel \
+    && venv/bin/pip3 install \
+        ecdsa==0.19.0 \
+        paramiko==3.4.1 \
+        pycryptodome==3.20.0 \
+        python-dateutil==2.9.0 \
         PyYAML==6.0.1 \
-        requests==2.31.0 \
-        robotframework==6.1.1 \
+        requests==2.32.2 \
+        robotframework==7.0.1 \
         scapy==2.4.5 \
-        scp==0.14.5 \
-        ansible==8.2.0 \
-        ansible-core==2.15.2 \
-        dill==0.3.7 \
-        numpy==1.25.2 \
-        scipy==1.11.1 \
+        scp==0.15.0 \
+        ansible==10.2.0 \
+        ansible-core==2.17.2 \
+        dill==0.3.8 \
+        numpy==2.0.1 \
+        scipy==1.14.0 \
         ply==3.11 \
-        jsonschema==4.18.4 \
+        jsonschema==4.23.0 \
         rfc3339-validator==0.1.4 \
         rfc3987==1.3.8 \
-        attrs==23.1.0 \
-        bcrypt==4.0.1 \
-        certifi==2023.7.22 \
-        cffi==1.15.1 \
-        charset-normalizer==3.2.0 \
-        cryptography==41.0.3 \
-        idna==3.4 \
-        Jinja2==3.1.2 \
-        jsonschema-specifications==2023.7.1 \
-        MarkupSafe==2.1.3 \
-        packaging==23.1 \
-        pycparser==2.21 \
+        pylint==3.2.6 \
+        astroid==3.2.4 \
+        attrs==24.2.0 \
+        bcrypt==4.2.0 \
+        certifi==2024.7.4 \
+        cffi==1.17.0 \
+        charset-normalizer==3.3.2 \
+        cryptography==43.0.0 \
+        idna==3.7 \
+        isort==5.13.2 \
+        Jinja2==3.1.4 \
+        jsonschema-specifications==2023.12.1 \
+        MarkupSafe==2.1.5 \
+        mccabe==0.7.0 \
+        packaging==24.1 \
+        platformdirs==4.2.2 \
+        ply==3.11 \
+        pycparser==2.22 \
         PyNaCl==1.5.0 \
-        referencing==0.30.0 \
+        referencing==0.35.1 \
         resolvelib==1.0.1 \
-        rpds-py==0.9.2 \
+        rpds-py==0.20.0 \
         six==1.16.0 \
-        urllib3==2.0.4 \
-        meson==0.64.1
+        tomli==2.0.1 \
+        tomlkit==0.13.0 \
+        typing_extensions==4.12.2 \
+        urllib3==2.2.2
 
 RUN groupadd -g 1000 testuser \
  && useradd -rm -d /home/testuser -s /bin/bash -g testuser -G sudo -u 1000 testuser \
