@@ -1,23 +1,23 @@
 ---
 # file: tasks/main.yaml
 
-- name: Inst - Update package cache (apt)
+- name: "Update package cache (apt)"
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
   tags:
-    - common-inst-prerequisites
+    - pip-inst-prerequisites
 
-- name: Inst - Prerequisites
+- name: "Prerequisites"
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
-    state: latest
+    state: "latest"
   tags:
-    - common-inst-prerequisites
+    - pip-inst-prerequisites
 
-- name: Inst - CSIT PIP requirements
+- name: "CSIT PIP requirements"
   ansible.builtin.pip:
     name:
       - "ecdsa==0.19.0"
@@ -68,4 +68,4 @@
   environment:
     ANSIBLE_SKIP_CONFLICT_CHECK: 1
   tags:
-    - common-inst-pip
+    - pip-inst-pip

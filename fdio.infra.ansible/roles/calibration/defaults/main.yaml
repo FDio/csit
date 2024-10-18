@@ -12,6 +12,9 @@ packages_by_distro:
     jammy:
       - "build-essential"
       - "dmidecode"
+    noble:
+      - "build-essential"
+      - "dmidecode"
   debian:
     bullseye:
       - "build-essential"
@@ -29,11 +32,18 @@ kernel_version_by_distro_by_arch:
   ubuntu:
     jammy:
       x86_64:
-        - "5.15.0-46-generic" # Placeholder
-        - "5.15.0-1000-aws" # Placeholder
-        - "5.4.0-1009-aws" # Placeholder
+        - "5.15.0-46-generic"
+        - "5.15.0-1000-aws"
+        - "5.4.0-1009-aws"
       aarch64:
-        - "5.15.0-46-generic" # Placeholder
+        - "5.15.0-46-generic"
+    noble:
+      x86_64:
+        - "6.8.0-45-generic"
+        - "5.15.0-1000-aws"
+        - "5.4.0-1009-aws"
+      aarch64:
+        - "6.8.0-45-generic"
   debian:
     bullseye:
         - "5.15.0-107-generic"

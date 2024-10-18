@@ -29,4 +29,17 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.37"
 cpu_microarchitecture: "cascadelake"
 
-mellanox_matrix: "dpdk22.07"
+mellanox_matrix: "dpdk24.07"
+
+docker_tg: true
+docker_volumes:
+  - source: "/usr/bin/ofed_info"
+    target: "/usr/bin/ofed_info"
+  - source: "/dev/hugepages"
+    target: "/dev/hugepages"
+  - source: "/dev/vfio"
+    target: "/dev/vfio"
+  - source: "/etc/sudoers"
+    target: "/etc/sudoers"
+  - source: "/usr/lib/firmware/"
+    target: "/usr/lib/firmware/"
