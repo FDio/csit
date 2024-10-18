@@ -3,6 +3,8 @@
 
 - name: "Build Base Docker Images"
   import_tasks: "base.yaml"
+  when: >
+    inventory_hostname in groups["sut"]
   tags:
     - docker-base
 

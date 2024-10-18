@@ -1,7 +1,7 @@
 ---
-# file: roles/performance_tuning/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: "Update Package Cache (APT)"
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
@@ -10,24 +10,23 @@
   tags:
     - perf-inst-prerequisites
 
-- name: Inst - Machine Prerequisites
+- name: "Machine Prerequisites"
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
-    state: latest
+    state: "latest"
   tags:
     - perf-inst-prerequisites
 
-- name: Conf - Turbo Boost
-  import_tasks: turbo_boost.yaml
+- name: "Turbo Boost"
+  import_tasks: "turbo_boost.yaml"
   when: >
-    cpu_microarchitecture == "skylake" or
-    cpu_microarchitecture == "cascadelake" or
     cpu_microarchitecture == "icelake" or
-    cpu_microarchitecture == "sapphirerapids"
+    cpu_microarchitecture == "sapphirerapids" or
+    cpu_microarchitecture == "emeraldrapids"
   tags:
     - perf-conf-turbo-boost
 
-- name: Conf - Adjust max_map_count
+- name: "Adjust max_map_count"
   # this file contains the maximum number of memory map areas a process
   # may have. memory map areas are used as a side-effect of calling
   # malloc, directly by mmap and mprotect, and also when loading shared
@@ -46,7 +45,7 @@
   tags:
     - perf-conf-sysctl
 
-- name: Conf - Adjust hugetlb_shm_group
+- name: "Adjust hugetlb_shm_group"
   # hugetlb_shm_group contains group id that is allowed to create sysv
   # shared memory segment using hugetlb page.
   ansible.builtin.sysctl:
@@ -58,7 +57,7 @@
   tags:
     - perf-conf-sysctl
 
-- name: Conf - Adjust swappiness
+- name: "Adjust swappiness"
   # this control is used to define how aggressive the kernel will swap
   # memory pages.  higher values will increase agressiveness, lower values
   # decrease the amount of swap.  a value of 0 instructs the kernel not to
@@ -73,7 +72,7 @@
   tags:
     - perf-conf-sysctl
 
-- name: Conf - Adjust shmmax
+- name: "Adjust shmmax"
   # shared memory max must be greator or equal to the total size of hugepages.
   # for 2mb pages, totalhugepagesize = vm.nr_hugepages * 2 * 1024 * 1024
   # if the existing kernel.shmmax setting (cat /sys/proc/kernel/shmmax)
@@ -88,7 +87,7 @@
   tags:
     - perf-conf-sysctl
 
-- name: Conf - Adjust watchdog_cpumask
+- name: "Adjust watchdog_cpumask"
   # this value can be used to control on which cpus the watchdog may run.
   # the default cpumask is all possible cores, but if no_hz_full is
   # enabled in the kernel config, and cores are specified with the
@@ -108,7 +107,7 @@
   tags:
     - perf-conf-sysctl
 
-- name: Conf - Adjust randomize_va_space
+- name: "Adjust randomize_va_space"
   # this option can be used to select the type of process address
   # space randomization that is used in the system, for architectures
   # that support this feature.
@@ -124,7 +123,7 @@
   tags:
     - perf-conf-sysctl
 
-- name: Conf - Cpufrequtils
+- name: "Cpufrequtils"
   ansible.builtin.copy:
     src: "files/cpufrequtils"
     dest: "/etc/default/cpufrequtils"
@@ -134,7 +133,7 @@
   tags:
     - perf-conf-cpufrequtils
 
-- name: Conf - Irqbalance
+- name: "Irqbalance"
   ansible.builtin.template:
     src: "files/irqbalance"
     dest: "/etc/default/irqbalance"
@@ -144,7 +143,7 @@
   tags:
     - perf-conf-irqbalance
 
-- name: Conf - Kernel Parameters
+- name: "Kernel Parameters"
   ansible.builtin.lineinfile:
     path: "/etc/default/grub"
     state: "present"
@@ -157,7 +156,7 @@
 
 - meta: flush_handlers
 
-- name: Conf - Load Kernel Modules By Default
+- name: "Load Kernel Modules By Default"
   ansible.builtin.lineinfile:
     path: "/etc/modules"
     state: "present"
@@ -169,7 +168,7 @@
   tags:
     - perf-conf-load-kernel-modules
 
-- name: Conf - Create a directory for 1G HugeTLBs hugepages
+- name: "Create a directory for 1G HugeTLBs hugepages"
   ansible.builtin.file:
     path: "/dev/hugepages1G"
     state: "directory"
@@ -177,7 +176,7 @@
   tags:
     - perf-conf-hugepages-1g
 
-- name: Conf - Mount 1G HugeTLBs hugepages
+- name: "Mount 1G HugeTLBs hugepages"
   ansible.builtin.mount:
     path: "/dev/hugepages1G"
     src: "hugetlbfs"
@@ -188,7 +187,7 @@
   tags:
     - perf-conf-hugepages-1g
 
-- name: Create a directory if it does not exist
+- name: "Create a directory if it does not exist"
   ansible.builtin.file:
     path: "/dev/hugepages2M"
     state: "directory"
@@ -196,7 +195,7 @@
   tags:
     - perf-conf-hugepages-2m
 
-- name: Conf - Create a directory for 2M HugeTLBs hugepages
+- name: "Create a directory for 2M HugeTLBs hugepages"
   ansible.builtin.mount:
     path: "/dev/hugepages2M"
     src: "hugetlbfs"
