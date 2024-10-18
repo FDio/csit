@@ -1,23 +1,22 @@
 ---
-# file: roles/vpp/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: "Update Package Cache (APT)"
   ansible.builtin.apt:
     update_cache: true
-    cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_os_family == 'Debian'
   tags:
     - vpp-inst-prerequisites
 
-- name: Inst - Prerequisites
+- name: "Prerequisites"
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
-    state: latest
+    state: "latest"
   tags:
     - vpp-inst-prerequisites
 
-- name: Conf - sysctl
+- name: "sysctl"
   ansible.builtin.file:
     src: "/dev/null"
     dest: "/etc/sysctl.d/80-vpp.conf"

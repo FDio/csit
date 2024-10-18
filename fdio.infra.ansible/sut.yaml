@@ -12,12 +12,10 @@
       tags:
         - always
   roles:
-    - role: baremetal
-      tags: baremetal
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
+#    - role: python_env
+#      tags: python_env
     - role: kernel
       tags: kernel
     - role: mellanox
@@ -56,12 +54,10 @@
       tags: user_add
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
+#    - role: python_env
+#      tags: python_env
     - role: vpp
       tags: vpp
-    - role: iperf
-      tags: iperf
     - role: docker
       tags: docker
 #    - role: dpdk
@@ -87,14 +83,12 @@
       tags: user_add
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
+#    - role: python_env
+#      tags: python_env
     - role: docker
       tags: docker
     - role: vpp
       tags: vpp
-    - role: iperf
-      tags: iperf
     - role: dpdk
       tags: dpdk
     - role: azure
@@ -118,14 +112,12 @@
       tags: user_add
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
+#    - role: python_env
+#      tags: python_env
     - role: docker
       tags: docker
     - role: vpp
       tags: vpp
-    - role: iperf
-      tags: iperf
     - role: dpdk
       tags: dpdk
     - role: cleanup

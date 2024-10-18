@@ -1,15 +1,14 @@
 ---
-# file: roles/performance_tuning/defaults/main.yaml
+# file: defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - "cpufrequtils"
 
 packages_by_distro:
   ubuntu:
-    jammy:
-      - []
+    - []
 
 packages_by_arch:
   aarch64:

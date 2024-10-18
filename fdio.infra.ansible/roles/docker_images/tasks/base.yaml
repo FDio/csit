@@ -23,7 +23,7 @@
     - docker-base
 
 - name: "Build CSIT Base Docker Image"
-  ansible.builtin.shell: "docker build -t base-ubuntu2204:local ."
+  ansible.builtin.shell: "docker build --build-arg BASE_IMAGE=ubuntu:24.04 -t base-ubuntu2404:local ."
   args:
     chdir: "/opt/csit-docker-images/base"
   async: 3000
@@ -43,7 +43,7 @@
     - docker-base
 
 - name: "Build CSIT OLD Docker Image"
-  ansible.builtin.shell: "docker build -t csit_sut-ubuntu2204:local ."
+  ansible.builtin.shell: "docker build -t csit_sut-ubuntu2404:local ."
   args:
     chdir: "/opt/csit-docker-images/csit-sut"
   async: 3000

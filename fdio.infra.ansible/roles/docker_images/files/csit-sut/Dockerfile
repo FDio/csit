@@ -1,4 +1,4 @@
-FROM base-ubuntu2204:local
+FROM base-ubuntu2404:local
 
 EXPOSE 2222
 

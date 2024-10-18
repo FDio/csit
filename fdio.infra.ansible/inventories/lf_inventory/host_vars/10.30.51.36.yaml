@@ -6,15 +6,15 @@ grub:
   audit: "0"
   default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
   iommu.passthrough: "1"
-  isolcpus: "1-40,81-120"
+  isolcpus: "1-71"
   nmi_watchdog: "0"
-  nohz_full: "1-40,81-120"
+  nohz_full: "1-71"
   nosoftlockup: true
   processor.max_cstate: "1"
-  rcu_nocbs: "1-40,81-120"
+  rcu_nocbs: "1-71"
 sysctl:
   kernel:
-    watchdog_cpumask: "0,41-80,121-159"
+    watchdog_cpumask: "0,71"
   vm:
     nr_hugepages: 32768
     max_map_count: 20000
@@ -22,4 +22,4 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.36"
 cpu_microarchitecture: "grace"
 
-mellanox_matrix: "dpdk23.11"
+mellanox_matrix: "dpdk24.07"
