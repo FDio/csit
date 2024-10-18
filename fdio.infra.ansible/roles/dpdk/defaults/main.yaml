@@ -1,16 +1,15 @@
 ---
 # file: defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - []
 
 packages_by_distro:
   ubuntu:
-    jammy:
-      - "build-essential"
-      - "libnuma-dev"
+    - "build-essential"
+    - "libnuma-dev"
 
 packages_by_arch:
   aarch64:
@@ -20,5 +19,5 @@ packages_by_arch:
 
 dpdk_target_dir: "/opt"
 dpdk_version:
-  - "23.11"
+  - "24.07"
 dpdk_url: "https://fast.dpdk.org/rel"
