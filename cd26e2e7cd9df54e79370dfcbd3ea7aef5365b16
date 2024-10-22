@@ -16,6 +16,178 @@
       "message": "Hi Dave,\n\nCan you please help by reviewing this CSIT doc for developers?\n\nThanks,\nNaveen",
       "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af2ca07_2b167492",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "Even though (missing space)",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fefc9aa5_bb611e7d",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "This page was created in 2016 and is not likely to be up-to-date.\n\nIt would be better to refer to the LF maintained Gerrit page:  https://docs.releng.linuxfoundation.org/en/latest/gerrit.html#set-up-gerrit",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 53
+      },
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f17b68b1_045d578a",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "The supported Ubuntu release will change whenever the environment rolls forward to the latest Ubuntu LTS release.  Thus it will improve maintainability if the release name is not specified explicitly, but simply call out that the Vagrantfile will instantiate a VM with the currently supported Ubuntu LTS release for the branch being used.",
+      "range": {
+        "startLine": 23,
+        "startChar": 48,
+        "endLine": 23,
+        "endChar": 53
+      },
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ebaa0d9_57bb22ef",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "Please remove all trailing whitespace in the file.",
+      "range": {
+        "startLine": 70,
+        "startChar": 125,
+        "endLine": 70,
+        "endChar": 126
+      },
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7895024a_91c0e4ba",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "Please remove specific distro name here, instead describing the file naming convention and explicitly document the current implementation as an example.",
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "005551c5_30cbf2cf",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "Please change to \"current Ubuntu LTS distro VM\"",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 31
+      },
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2757b675_9618c873",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "VPP device tests are being deprecated.  Please provide the recipe for developing performance tests.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 24
+      },
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f4d3d8_551ca7f6",
+        "filename": "docs/content/dev-test/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2024-10-22T00:11:52Z",
+      "side": 1,
+      "message": "ubuntu2004 is focal, not jammy.  Again, it would be better to not hard-code the ubuntu version:  \n\n./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu$(grep VERSION_ID /etc/os-release | cut -d\u0027\u003d\u0027 -f2 | xargs | sed -e \u0027s/\\.//\u0027)-1n-vbox",
+      "revId": "cd26e2e7cd9df54e79370dfcbd3ea7aef5365b16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
