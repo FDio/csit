@@ -276,11 +276,6 @@ def comparison_table(
     if r_data.empty or c_data.empty:
         return str(), pd.DataFrame()
 
-    if format == "html" and "Latency" not in r_sel["ttype"]:
-        unit_factor, s_unit_factor = (1e6, "M")
-    else:
-        unit_factor, s_unit_factor = (1, str())
-
     # Create Table title and titles of columns with data
     params = list(r_sel)
     params.remove(c_params["parameter"])
@@ -321,6 +316,13 @@ def comparison_table(
             c_std = c_row["stdev"].values[0]
             if r_mean == 0.0 or c_mean == 0.0:
                 continue
+            if format == "html" and "Latency" not in r_sel["ttype"]:
+                if row["unit"] == "bps":
+                    unit_factor, s_unit_factor = (1e9, "G")
+                else:
+                    unit_factor, s_unit_factor = (1e6, "M")
+            else:
+                unit_factor, s_unit_factor = (1, str())
             unit.add(f"{s_unit_factor}{row['unit']}")
             l_name.append(row["name"])
             l_r_mean.append(r_mean / unit_factor)
