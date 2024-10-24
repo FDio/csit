@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,6 +19,7 @@ Structure will probably change when we start validation mode file types.
 
 import json
 import jsonschema
+import os
 import yaml
 
 
@@ -48,6 +49,9 @@ def get_validators():
 def validate(file_path, validator):
     """Load data from disk, use validator to validate it.
 
+    If the file contains invalid data, the file is deleted.
+    Also, error is raised to mark the test as failed.
+
     :param file_path: Local filesystem path including the file name to load.
     :param validator: Validator instance to use for validation.
     :type file_path: str
@@ -58,5 +62,6 @@ def validate(file_path, validator):
         instance = json.load(file_in)
     error = jsonschema.exceptions.best_match(validator.iter_errors(instance))
     if error is not None:
+        os.remove(file_path)
         print(json.dumps(instance, indent=4))
         raise error
