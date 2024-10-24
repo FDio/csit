@@ -166,6 +166,11 @@ select_build "build_earliest" || die
 check_download_dir || die
 reserve_and_cleanup_testbed || die
 run_robot || die
+# DO NOT MERGE repeat first test now that testbed is not cold.
+rm -vrf "${ARCHIVE_DIR}/*" || die
+delete_test_results || die
+ansible_playbook "cleanup"
+run_robot || die
 move_test_results "csit_earliest" || die
 ln -s -T "csit_earliest" "csit_early" || die
 
