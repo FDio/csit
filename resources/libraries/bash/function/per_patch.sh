@@ -195,6 +195,17 @@ function move_test_results () {
 }
 
 
+function delete_test_results () {
+    set -exuo pipefail
+
+    cd "${VPP_DIR}" || die "Change directory command failed."
+    file_list=("output.xml" "log.html" "report.html" "tests")
+    for filename in "${file_list[@]}"; do
+        rm "${ARCHIVE_DIR}/${filename}"
+    done
+}
+
+
 function select_build () {
 
     # Arguments:
