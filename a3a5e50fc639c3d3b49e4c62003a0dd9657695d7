@@ -101,6 +101,23 @@
       "message": "csit-vpp-report-iter-3n-icx-perftest vpp-hoststack-00",
       "revId": "a3a5e50fc639c3d3b49e4c62003a0dd9657695d7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1917875_fa013352",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-10-24T11:11:54Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3na-spr-perftest vpp-hoststack-00",
+      "revId": "a3a5e50fc639c3d3b49e4c62003a0dd9657695d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
