@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -101,6 +101,7 @@ def append_mrr_value(mrr_value, mrr_unit, bandwidth_value=None,
     """Store mrr value to proper place so it is dumped into json.
 
     The value is appended only when unit is not empty.
+    Negative values (caused by CSIT-1901) are also skipped.
 
     :param mrr_value: Forwarding rate from MRR trial.
     :param mrr_unit: Unit of measurement for the rate.
@@ -115,13 +116,19 @@ def append_mrr_value(mrr_value, mrr_unit, bandwidth_value=None,
     data = get_export_data()
     data["result"]["type"] = "mrr"
 
-    for node_val, node_unit, node_name in ((mrr_value, mrr_unit, "rate"),
-            (bandwidth_value, bandwidth_unit, "bandwidth")):
-        if node_val is not None:
-            node = descend(descend(data["result"], "receive_rate"), node_name)
-            node["unit"] = str(node_unit)
-            values_list = descend(node, "values", list)
-            values_list.append(float(node_val))
+    for node_val, node_unit, node_name in (
+        (mrr_value, mrr_unit, "rate"),
+        (bandwidth_value, bandwidth_unit, "bandwidth")
+    ):
+        if node_val is None:
+            continue
+        node_val = float(node_val)
+        if node_val < 0.0:
+            continue
+        node = descend(descend(data["result"], "receive_rate"), node_name)
+        node["unit"] = str(node_unit)
+        values_list = descend(node, "values", list)
+        values_list.append(node_val)
 
 
 def export_search_bound(text, value, unit, bandwidth=None):
