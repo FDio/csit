@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -165,11 +165,6 @@ def setup_node(node, tarball, remote_tarball, results=None, logs=None):
     try:
         copy_tarball_to_node(tarball, node)
         extract_tarball_at_node(remote_tarball, node)
-        if node[u"type"] == NodeType.TG:
-            stdout, stderr = create_env_directory_at_node(node)
-            if isinstance(logs, list):
-                logs.append(f"{node[u'host']} Env stdout: {stdout}")
-                logs.append(f"{node[u'host']} Env stderr: {stderr}")
     except Exception:
         # any exception must result in result = False
         # since this runs in a thread and can't be caught anywhere else
