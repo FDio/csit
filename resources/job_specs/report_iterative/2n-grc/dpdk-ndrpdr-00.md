@@ -1,5 +1,5 @@
 # 2n-grc
-### mellanox-cx7veat
+### mellanox-cx556a
 #### mlx5-core
 ##### eth-l2xcbase-testpmd
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND eth-l2xcbase-testpmd
