@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7ff0fd5_25dacd0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-10-25T13:06:07Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest mrrANDnic_intel-e810cqANDdrv_avfAND4cAND64bANDeth-l2patch",
+      "revId": "d5fe01fe9db16d22ff55878f2614d557fd88a726",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
