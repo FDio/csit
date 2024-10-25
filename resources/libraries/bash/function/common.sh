@@ -128,6 +128,7 @@ function activate_virtualenv () {
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
+    pip3 install setuptools
     pip3 install -r "${req_path}" || {
         die "Requirements installation failed."
     }
