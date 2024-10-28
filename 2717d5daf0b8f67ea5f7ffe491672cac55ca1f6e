@@ -16,6 +16,23 @@
       "message": "Just a typo in commit message.",
       "revId": "2717d5daf0b8f67ea5f7ffe491672cac55ca1f6e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e3b4e38_ada25794",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-10-28T06:48:06Z",
+      "side": 1,
+      "message": "Makes no sense to skip measured values",
+      "revId": "2717d5daf0b8f67ea5f7ffe491672cac55ca1f6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
