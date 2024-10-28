@@ -50,6 +50,23 @@
       "message": "If it is not possible to prevent negative values, the test must be able detect them and mark itself as failed. No manipulation with data during export to json, etl, ...",
       "revId": "2717d5daf0b8f67ea5f7ffe491672cac55ca1f6e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "006351b4_fa4ddfd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-10-28T12:05:55Z",
+      "side": 1,
+      "message": "it would be best to fix in trex repo itself. https://github.com/cisco-system-traffic-generator/trex-core/",
+      "revId": "2717d5daf0b8f67ea5f7ffe491672cac55ca1f6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
