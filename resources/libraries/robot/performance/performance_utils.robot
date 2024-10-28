@@ -448,6 +448,7 @@
 | | | # the approximated receive rate is the best estimate we have.
 | | | ${value} = | Set Variable | ${result.forwarding_count}
 | | | ${value} = | Evaluate | ${value} / ${result.offered_duration}
+| | | ${value} = | Set Variable If | ${i} == 0 | ${-1.0} | ${value}
 | | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${value} / ${ppta}
 | | | Append Mrr Value | ${value} | ${export_mrr_unit} | ${bandwidth * 1e9}
 | | | Append To List | ${results} | ${value}
