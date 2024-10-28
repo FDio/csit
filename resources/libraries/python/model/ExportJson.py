@@ -86,10 +86,15 @@ class ExportJson():
         return test_type
 
     def export_pending_data(self):
-        """Write the accumulated data to disk.
+        """Write the accumulated data to disk, return error if invalid.
 
-        Create missing directories.
-        Reset both file path and data to avoid writing multiple times.
+        Create missing directories. If test case, validate against schema.
+        If valid or not test, reset both file path and data
+        to avoid writing multiple times.
+        If invalid, do not reset, so caller may attempt again as failed test.
+        Instead, set message to the validation error.
+        Usually, just calling this again once from Robot should suffice,
+        as process_passed is now likely to delete the invalid part.
 
         Functions which finalize content for given file are calling this,
         so make sure each test and non-empty suite setup or teardown
@@ -97,23 +102,20 @@ class ExportJson():
 
         If no file path is set, do not write anything,
         as that is the failsafe behavior when caller from unexpected place.
-        Aso do not write anything when EXPORT_JSON constant is false.
+        Also do not write anything when EXPORT_JSON constant is false.
 
-        Regardless of whether data was written, it is cleared.
+        :returns: None if valid or suite, error if invalid.
+        :rtype: Optional[ValidationError]
         """
-        if not Constants.EXPORT_JSON or not self.file_path:
-            self.data = None
-            self.file_path = None
-            return
-        new_file_path = write_output(self.file_path, self.data)
-        # Data is going to be cleared (as a sign that export succeeded),
-        # so this is the last chance to detect if it was for a test case.
-        is_testcase = "result" in self.data
+        if Constants.EXPORT_JSON and self.file_path:
+            new_file_path = write_output(self.file_path, self.data)
+            if "result" in self.data:
+                error = validate(new_file_path, self.validators["tc_info"])
+                self.data["message"] = f"{error}"
+                return error
         self.data = None
-        # Validation for output goes here when ready.
         self.file_path = None
-        if is_testcase:
-            validate(new_file_path, self.validators["tc_info"])
+        return None
 
     def warn_on_bad_export(self):
         """If bad state is detected, log a warning and clean up state."""
@@ -222,44 +224,49 @@ class ExportJson():
         self.data["telemetry"] = list()
 
     def finalize_suite_setup_export(self):
-        """Add the missing fields to data. Do not write yet.
+        """Add the missing fields to data, write the json data.
 
-        Should be run at the end of suite setup.
-        The write is done at next start (or at the end of global teardown).
+        Should be called from the end of suite setup.
         """
         end_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.data["hosts"] = BuiltIn().get_variable_value("\\${hosts}")
         self.data["end_time"] = end_time
         self.export_pending_data()
 
-    def finalize_test_export(self):
-        """Add the missing fields to data. Do not write yet.
+    def finalize_test_export_once(self):
+        """Add the missing fields to data, write and validate.
 
-        Should be at the end of test teardown, as the implementation
+        Should be called from the end of test teardown, as the implementation
         reads various Robot variables, some of them only available at teardown.
 
-        The write is done at next start (or at the end of global teardown).
+        This keyword can be called twice, useful when otherwise passing test
+        creates invalid json data. The second call will export a failing test
+        with no result data, but with validation error message.
+
+        :raises ValidationError: If schema validation fails.
         """
+        self.process_passed()
+        self.data["tags"] = list(BuiltIn().get_variable_value("\\${TEST_TAGS}"))
+        self.data["message"] = BuiltIn().get_variable_value("\\${TEST_MESSAGE}")
+        # Test name detection is destructive, call only once.
+        if "test_id" not in self.data:
+            self.process_test_name()
+        # It is not safe to process telemetry more than once.
+        if self.data["passed"]:
+            self.process_results()
         end_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
-        message = BuiltIn().get_variable_value("\\${TEST_MESSAGE}")
-        test_tags = BuiltIn().get_variable_value("\\${TEST_TAGS}")
         self.data["end_time"] = end_time
         start_float = parse(self.data["start_time"]).timestamp()
         end_float = parse(self.data["end_time"]).timestamp()
         self.data["duration"] = end_float - start_float
-        self.data["tags"] = list(test_tags)
-        self.data["message"] = message
-        self.process_passed()
-        self.process_test_name()
-        self.process_results()
-        self.export_pending_data()
+        error = self.export_pending_data()
+        if error:
+            raise error
 
     def finalize_suite_teardown_export(self):
-        """Add the missing fields to data. Do not write yet.
+        """Add the missing fields to data, write json data, merging with setup.
 
-        Should be run at the end of suite teardown
-        (but before the explicit write in the global suite teardown).
-        The write is done at next start (or explicitly for global teardown).
+        Should be called from the end of suite teardown.
         """
         end_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.data["end_time"] = end_time
@@ -337,14 +344,20 @@ class ExportJson():
         """Process the test status information as boolean.
 
         Boolean is used to make post processing more efficient.
-        In case the test status is PASS, we will truncate the test message.
+
+        In case the test status is PASS, we truncate the test message.
+        In case the test is not passing, we delete test result and telemetry,
+        as partial test result may be causing json validation errors.
         """
         status = BuiltIn().get_variable_value("\\${TEST_STATUS}")
         if status is not None:
             self.data["passed"] = (status == "PASS")
             if self.data["passed"]:
-                # Also truncate success test messages.
                 self.data["message"] = ""
+            else:
+                self.data["result"] = dict(type="unknown")
+                if "telemetry" in self.data:
+                    del self.data["telemetry"]
 
     def process_results(self):
         """Process measured results.
