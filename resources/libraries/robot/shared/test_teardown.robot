@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,6 +62,19 @@
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
 | | Finalize Test Export
+
+| Finalize Test Export
+| | [Documentation]
+| | ... | Export test result, validate, re-export as failure on validation fail.
+| |
+| | ... | CSIT-1901 may cause invalid data in otherwise passing test.
+| | ... | First call to Finalize Test Export Once fails in that case,
+| | ... | second call should export valid json, validation error in message.
+| | ... | If test is already failing or if validation succeeds,
+| | ... | Finalize Test Export Once is called only once.
+| |
+| | Run Keyword If Test Passed | Finalize Test Export Once
+| | Run Keyword If Test Failed | Finalize Test Export Once
 
 # Additional Test Tear Down Actions in alphabetical order
 | Additional Test Tear Down Action For acl
