@@ -770,7 +770,7 @@ function reserve_and_cleanup_testbed () {
                 }
                 # Cleanup + calibration checks
                 set +e
-                ansible_playbook "cleanup"
+                ansible_playbook "cleanup,calibration"
                 result="$?"
                 set -e
                 if [[ "${result}" == "0" ]]; then

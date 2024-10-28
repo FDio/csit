@@ -1,30 +1,6 @@
 ---
 # file: defaults/main.yaml
 
-# Packages to install.
-packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
-
-packages_base:
-  - []
-
-packages_by_distro:
-  ubuntu:
-    jammy:
-      - "build-essential"
-      - "dmidecode"
-    noble:
-      - "build-essential"
-      - "dmidecode"
-  debian:
-    bullseye:
-      - "build-essential"
-
-packages_by_arch:
-  aarch64:
-    - []
-  x86_64:
-    - []
-
 # Kernel version to check.
 kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lower][ansible_distribution_release][ansible_machine] }}"
 
@@ -47,7 +23,3 @@ kernel_version_by_distro_by_arch:
   debian:
     bullseye:
         - "5.15.0-107-generic"
-
-pma_directory: "/tmp/pma_tools"
-jitter_core: 7
-jitter_iterations: 20

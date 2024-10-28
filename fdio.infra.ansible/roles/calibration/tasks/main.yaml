@@ -1,23 +1,7 @@
 ---
 # file: tasks/main.yaml
 
-- name: Update Package Cache (APT)
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: 3600
-  when:
-    - ansible_distribution|lower == 'ubuntu'
-  tags:
-    - calibration-inst-prerequisites
-
-- name: Prerequisites
-  ansible.builtin.package:
-    name: "{{ packages | flatten(levels=1) }}"
-    state: latest
-  tags:
-    - calibration-inst-prerequisites
-
-- name: Check Kernel Parameters
+- name: "Check Kernel Parameters"
   ansible.builtin.assert:
     that:
       - item in ansible_cmdline
@@ -29,7 +13,7 @@
   tags:
     - check-kernel-params
 
-- name: Check Kernel Version
+- name: "Check Kernel Version"
   ansible.builtin.assert:
     that:
       - ansible_kernel not in kernel_version_by_distro_by_arch
@@ -37,9 +21,3 @@
     success_msg: "Kernel version match."
   tags:
     - check-kernel-version
-
-- name: "{{ ansible_machine }} Specific"
-  include_tasks: "{{ ansible_machine }}.yaml"
-  tags:
-    - check-machine-specific
-    - check-jitter-tool
