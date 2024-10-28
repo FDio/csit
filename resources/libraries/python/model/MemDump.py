@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -169,9 +169,11 @@ def _merge_into_suite_info_file(teardown_path):
 
 
 def write_output(file_path, data):
-    """Prepare data for serialization and dump into a file.
+    """Prepare data for serialization and dump into a file. Return file path.
 
     Ancestor directories are created if needed.
+    If the file already exists, the content is overwritten.
+    When writing suite teardown, the content is merged with setup into one file.
 
     :param file_path: Local filesystem path, including the file name.
     :param data: Root data to make serializable, dictized when applicable.

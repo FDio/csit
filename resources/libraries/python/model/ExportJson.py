@@ -86,34 +86,40 @@ class ExportJson():
         return test_type
 
     def export_pending_data(self):
-        """Write the accumulated data to disk.
+        """Write the data to disk, return error and re-export if invalid.
 
-        Create missing directories.
-        Reset both file path and data to avoid writing multiple times.
+        Create missing directories. If test case, validate against schema.
+        If invalid, set message to the validation error and reset result.
+        Do not re-validate the reset data.
+        In any case, forget path and data.
 
         Functions which finalize content for given file are calling this,
         so make sure each test and non-empty suite setup or teardown
         is calling this as their last keyword.
 
         If no file path is set, do not write anything,
-        as that is the failsafe behavior when caller from unexpected place.
-        Aso do not write anything when EXPORT_JSON constant is false.
+        as that is the failsafe behavior when called from unexpected place.
+        Also do not write anything when EXPORT_JSON constant is false.
 
-        Regardless of whether data was written, it is cleared.
+        :raises: ValidationError if data export does not conform to schema.
         """
-        if not Constants.EXPORT_JSON or not self.file_path:
-            self.data = None
-            self.file_path = None
-            return
-        new_file_path = write_output(self.file_path, self.data)
-        # Data is going to be cleared (as a sign that export succeeded),
-        # so this is the last chance to detect if it was for a test case.
-        is_testcase = "result" in self.data
+        error = None
+        if Constants.EXPORT_JSON and self.file_path:
+            new_file_path = write_output(self.file_path, self.data)
+            if "result" in self.data:
+                error = validate(new_file_path, self.validators["tc_info"])
+                if error:
+                    # Mark as failed and re-export.
+                    self.data["passed"] = False
+                    self.data["message"] = str(error)
+                    self.data["result"] = dict(type="unknown")
+                    write_output(self.file_path, self.data)
+                    # TODO: CSIT-1970: What if even the re-export is invalid?
         self.data = None
-        # Validation for output goes here when ready.
         self.file_path = None
-        if is_testcase:
-            validate(new_file_path, self.validators["tc_info"])
+        if error:
+            raise error
+
 
     def warn_on_bad_export(self):
         """If bad state is detected, log a warning and clean up state."""
@@ -222,10 +228,9 @@ class ExportJson():
         self.data["telemetry"] = list()
 
     def finalize_suite_setup_export(self):
-        """Add the missing fields to data. Do not write yet.
+        """Add the missing fields to data, write the json data.
 
-        Should be run at the end of suite setup.
-        The write is done at next start (or at the end of global teardown).
+        Should be called once from the end of suite setup.
         """
         end_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.data["hosts"] = BuiltIn().get_variable_value("\\${hosts}")
@@ -233,12 +238,14 @@ class ExportJson():
         self.export_pending_data()
 
     def finalize_test_export(self):
-        """Add the missing fields to data. Do not write yet.
+        """Add the missing fields to data, write and validate the json data.
 
-        Should be at the end of test teardown, as the implementation
+        Should be called once from the end of test teardown, as the implementation
         reads various Robot variables, some of them only available at teardown.
 
-        The write is done at next start (or at the end of global teardown).
+        On validation error, turn to failed test and re-export, without re-validation.
+
+        :raises ValidationError: If schema validation on original test data fails.
         """
         end_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         message = BuiltIn().get_variable_value("\\${TEST_MESSAGE}")
@@ -255,11 +262,9 @@ class ExportJson():
         self.export_pending_data()
 
     def finalize_suite_teardown_export(self):
-        """Add the missing fields to data. Do not write yet.
+        """Add the missing fields to data, write data as merged with setup.
 
-        Should be run at the end of suite teardown
-        (but before the explicit write in the global suite teardown).
-        The write is done at next start (or explicitly for global teardown).
+        Should be called once from the end of suite teardown.
         """
         end_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.data["end_time"] = end_time
