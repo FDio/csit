@@ -177,6 +177,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.ramp_up_rate = None
         self.ramp_up_duration = None
         self.state_timeout = None
+        self.negatives = 2
         # Transient data needed for async measurements.
         self._xstats = []
 
@@ -1301,6 +1302,9 @@ class TrafficGenerator(AbstractMeasurer):
             logger.debug(f"Unsent packets/transactions: {unsent}")
         if loss_count < 0 and not self.negative_loss:
             loss_count = 0
+        if self.negatives > 0:
+            loss_count = partial_attempt_count + 1
+        self.negatives -= 1
         measurement = MeasurementResult(
             intended_duration=target_duration,
             intended_load=transmit_rate,
