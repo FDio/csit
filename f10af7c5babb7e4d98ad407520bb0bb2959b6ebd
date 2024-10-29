@@ -16,6 +16,52 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3nb-spr/74/ : SUCCESS\n\nThis proves the most common case with no negative trials. For runs with one (pass) or two (fail) mrr or ndrpdr trials, see today\u0027s runs in [1]. Ready for review.\n\n[1] https://gerrit.fd.io/r/c/csit/+/41758",
       "revId": "f10af7c5babb7e4d98ad407520bb0bb2959b6ebd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af443e96_697481a7",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-10-29T20:39:41Z",
+      "side": 1,
+      "message": "do not put jira ticket into code",
+      "range": {
+        "startLine": 1368,
+        "startChar": 25,
+        "endLine": 1368,
+        "endChar": 34
+      },
+      "revId": "f10af7c5babb7e4d98ad407520bb0bb2959b6ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccfa7deb_7b9ba24d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1370,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-10-29T20:39:41Z",
+      "side": 1,
+      "message": "make more useful comment and error, not jira ticket.",
+      "range": {
+        "startLine": 1370,
+        "startChar": 0,
+        "endLine": 1370,
+        "endChar": 78
+      },
+      "revId": "f10af7c5babb7e4d98ad407520bb0bb2959b6ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
