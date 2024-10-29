@@ -46,6 +46,7 @@ RUN apt-get -q update \
         python3-dev \
         python3-pip \
         python3-setuptools \
+        python3-venv \
         python3-virtualenv \
         rdma-core \
         rsyslog \
@@ -68,6 +69,14 @@ RUN chown root:syslog /var/log \
 
 # Create directory structure
 RUN mkdir -p /var/run/sshd
+
+# CSIT PIP pre-cache
+RUN python3 -m venv venv \
+    && venv/bin/pip3 install --upgrade --no-cache-dir pip \
+    && venv/bin/pip3 install --upgrade setuptools \
+    && venv/bin/pip3 install --upgrade wheel \
+    && pip3 install \
+        PyYAML==6.0.1
 
 # Install AB
 RUN apt-get -q update \
