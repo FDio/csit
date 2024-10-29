@@ -52,8 +52,6 @@
       tags: docker
     - role: docker_images
       tags: docker_images
-#    - role: dpdk
-#      tags: dpdk
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -73,10 +71,12 @@
       tags: user_add
     - role: common
       tags: common
-    - role: docker
-      tags: docker
     - role: azure
       tags: azure
+    - role: docker
+      tags: docker
+    - role: docker_images
+      tags: docker_images
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -98,6 +98,8 @@
       tags: common
     - role: docker
       tags: docker
+    - role: docker_images
+      tags: docker_images
     - role: cleanup
       tags: cleanup
     - role: calibration

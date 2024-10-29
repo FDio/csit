@@ -14,8 +14,6 @@
   roles:
     - role: common
       tags: common
-#    - role: python_env
-#      tags: python_env
     - role: kernel
       tags: kernel
     - role: mellanox
@@ -54,16 +52,12 @@
       tags: user_add
     - role: common
       tags: common
-#    - role: python_env
-#      tags: python_env
+    - role: aws
+      tags: aws
     - role: vpp
       tags: vpp
     - role: docker
       tags: docker
-#    - role: dpdk
-#      tags: dpdk
-    - role: aws
-      tags: aws
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -83,16 +77,12 @@
       tags: user_add
     - role: common
       tags: common
-#    - role: python_env
-#      tags: python_env
+    - role: azure
+      tags: azure
     - role: docker
       tags: docker
     - role: vpp
       tags: vpp
-    - role: dpdk
-      tags: dpdk
-    - role: azure
-      tags: azure
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -112,14 +102,10 @@
       tags: user_add
     - role: common
       tags: common
-#    - role: python_env
-#      tags: python_env
     - role: docker
       tags: docker
     - role: vpp
       tags: vpp
-    - role: dpdk
-      tags: dpdk
     - role: cleanup
       tags: cleanup
     - role: calibration
