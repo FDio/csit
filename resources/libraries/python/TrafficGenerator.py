@@ -1337,16 +1337,23 @@ class TrafficGenerator(AbstractMeasurer):
         :raises NotImplementedError: If TG is not supported.
         """
         intended_duration = float(intended_duration)
-        time_start = time.monotonic()
-        time_stop = time_start + intended_duration
-        if self.resetter:
-            self.resetter()
-        result = self._send_traffic_on_tg_with_ramp_up(
-            duration=intended_duration,
-            rate=intended_load,
-            async_call=False,
-        )
-        logger.debug(f"trial measurement result: {result!r}")
+        for _ in range(2):
+            time_start = time.monotonic()
+            time_stop = time_start + intended_duration
+            if self.resetter:
+                self.resetter()
+            result = self._send_traffic_on_tg_with_ramp_up(
+                duration=intended_duration,
+                rate=intended_load,
+                async_call=False,
+            )
+            logger.debug(f"trial measurement result: {result!r}")
+            if result.forwarding_count >= 0:
+                break
+            else:
+                logger.warn("CSIT-1901 detected, retry?")
+        else:
+            raise RuntimeError(f"CSIT-1901 symptom happened twice: {result=}")
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
             while (sleeptime := time_stop - time.monotonic()) > 0.0:
