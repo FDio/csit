@@ -33,6 +33,23 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3nb-spr/69/ : SUCCESS\n\nThat is passing test, json is: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3nb-spr/69/tests/vpp/perf/l2/100ge2p1e810cq-avf-eth-l2patch-mrr/64b-4c-avf-eth-l2patch-mrr.info.json.gz\nWhen I used 41758 to introduce negative MRR value,\nthis is the failure in Robot: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3nb-spr/68/log.html.gz#s1-s1-s1-s1-s1-t1-k3-k9\nand this is the re-exported json: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3nb-spr/68/tests/vpp/perf/l2/100ge2p1e810cq-avf-eth-l2patch-mrr/64b-4c-avf-eth-l2patch-mrr.info.json.gz",
       "revId": "089dd707ad925eb8a866f42203356c9326ea6f05",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17e9dfb_778bcfd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-10-29T09:22:38Z",
+      "side": 1,
+      "message": "i do not see any reason to delete result based on validation result that in fact do not validate trex data but rather something else. \n\nleave this patch in abandon state.",
+      "revId": "089dd707ad925eb8a866f42203356c9326ea6f05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
