@@ -16,6 +16,23 @@
       "message": "csit-3nb-spr-perftest nic_intel-e810cqANDdrv_avfAND4cAND64bANDeth-l2patch !soak",
       "revId": "202769dd1c90bc84e1808cd8c5d9c30af42a56f3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52aacb11_63d2cfb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-10-29T13:46:00Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest nic_intel-e810cqANDdrv_avfAND4cAND64bANDeth-l2patch !soak",
+      "revId": "202769dd1c90bc84e1808cd8c5d9c30af42a56f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
