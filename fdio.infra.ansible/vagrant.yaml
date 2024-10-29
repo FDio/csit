@@ -14,8 +14,6 @@
   roles:
     - role: common
       tags: common
-    - role: python_env
-      tags: python_env
     - role: docker
       tags: docker
     - role: vpp
