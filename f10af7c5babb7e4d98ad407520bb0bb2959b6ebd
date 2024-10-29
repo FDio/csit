@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c1eb92c_045dac64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-10-29T14:28:13Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3nb-spr/74/ : SUCCESS\n\nThis proves the most common case with no negative trials. For runs with one (pass) or two (fail) mrr or ndrpdr trials, see today\u0027s runs in [1]. Ready for review.\n\n[1] https://gerrit.fd.io/r/c/csit/+/41758",
+      "revId": "f10af7c5babb7e4d98ad407520bb0bb2959b6ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
