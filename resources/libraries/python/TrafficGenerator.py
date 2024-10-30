@@ -827,6 +827,11 @@ class TrafficGenerator(AbstractMeasurer):
 
         Bidirectional STL profiles are treated as transactions with two packets.
 
+        In case of CSIT-1901 symptom of negative rate
+        (detection only if not in async mode),
+        retry once, and fail if retry is also buggy
+        to avoid exporting invalid json data.
+
         The return value is None for async.
 
         :param duration: Duration of test traffic generation in seconds.
@@ -874,6 +879,7 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: TG results.
         :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
+        :raises RuntimeError: If symptom of CSIT-1901 happens twice in a row.
         """
         self.set_rate_provider_defaults(
             frame_size=frame_size,
@@ -889,12 +895,18 @@ class TrafficGenerator(AbstractMeasurer):
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
-        return self._send_traffic_on_tg_with_ramp_up(
-            duration=duration,
-            rate=rate,
-            async_call=async_call,
-            ramp_up_only=ramp_up_only,
-        )
+        for _ in range(2):
+            result = self._send_traffic_on_tg_with_ramp_up(
+                duration=duration,
+                rate=rate,
+                async_call=async_call,
+                ramp_up_only=ramp_up_only,
+            )
+            if not result or result.forwarding_count >= 0:
+                return result
+            logger.warn("Negative performance is a bug: CSIT-1901.")
+        raise RuntimeError(f"Negative count (CSIT-1901): {result=}")
+
 
     def _send_traffic_on_tg_internal(
             self, duration, rate, async_call=False):
@@ -1323,6 +1335,9 @@ class TrafficGenerator(AbstractMeasurer):
         The result units depend on test type, generally
         the count either transactions or packets (aggregated over directions).
 
+        In case of CSIT-1901 symptom of negative performance, retry once,
+        and fail if retry is also buggy to avoid exporting invalid json data.
+
         Optionally, this method sleeps if measurement finished before
         the time specified as intended_duration (PLRsearch needs time for math).
 
@@ -1333,20 +1348,27 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: Structure containing the result of the measurement.
         :rtype: MeasurementResult
         :raises RuntimeError: If TG is not set or if node is not TG
-            or if subtype is not specified.
+            or if subtype is not specified,
+            or if symptom of CSIT-1901 happens twice in a row.
         :raises NotImplementedError: If TG is not supported.
         """
         intended_duration = float(intended_duration)
-        time_start = time.monotonic()
-        time_stop = time_start + intended_duration
-        if self.resetter:
-            self.resetter()
-        result = self._send_traffic_on_tg_with_ramp_up(
-            duration=intended_duration,
-            rate=intended_load,
-            async_call=False,
-        )
-        logger.debug(f"trial measurement result: {result!r}")
+        for _ in range(2):
+            time_start = time.monotonic()
+            time_stop = time_start + intended_duration
+            if self.resetter:
+                self.resetter()
+            result = self._send_traffic_on_tg_with_ramp_up(
+                duration=intended_duration,
+                rate=intended_load,
+                async_call=False,
+            )
+            logger.debug(f"trial measurement result: {result!r}")
+            if result.forwarding_count >= 0:
+                break
+            logger.warn("Negative performance is a bug: CSIT-1901.")
+        else:
+            raise RuntimeError(f"Negative count (CSIT-1901): {result=}")
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
             while (sleeptime := time_stop - time.monotonic()) > 0.0:
