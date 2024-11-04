@@ -50,6 +50,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest vpp-soak-00",
       "revId": "defbe5a7a835bf2e5011700845437b0fc8eecbab",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eead32d7_6016217b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-11-04T06:07:11Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icxd-perftest crypto-01",
+      "revId": "defbe5a7a835bf2e5011700845437b0fc8eecbab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
