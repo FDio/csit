@@ -23,7 +23,8 @@ List of new issues in CSIT 24.10 for DPDK performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+  1   | [CSIT-1972](https://jira.fd.io/browse/CSIT-1972) | 2n-zn2 3nb-spr: Testpmd occasionally does not forward in one direction in 9000B test.
+  2   | [CSIT-1973](https://jira.fd.io/browse/CSIT-1973) | 3n-snr: One lossy testpmd test+run.
 
 ## Previous
 
@@ -31,7 +32,7 @@ List of known issues in CSIT 24.10 for DPDK performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+  1   | [CSIT-1936](https://jira.fd.io/browse/CSIT-1936) | TRex occasionally sees link down in L3fwd tests.
 
 ## Fixed
 
