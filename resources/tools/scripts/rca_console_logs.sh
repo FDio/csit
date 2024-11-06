@@ -50,6 +50,23 @@ for i in {1..999}; do
     if fgrep -q ', 0 failed' "final.txt"; then
         echo -ne "${i}: skip ${final}\t\t"
     else
+        echo
+#        fgrep '| FAIL' "console.log" | fgrep -v 'Tests'
+
+        awk '
+            /\| FAIL \|/ {
+                if ($0 !~ /Tests/) {
+                    print
+                    getline
+                    while ($0 !~ /^[-=]+$/) {
+                        last_line = $0
+                        getline
+                    }
+                    print last_line
+                }
+            }
+        ' "console.log"
+
         echo -ne "${i}: investigate ${final}\t\t"
     fi
     # TODO: Simplify this topology detection.
