@@ -15,7 +15,8 @@ weight: 2
 
 # Known Issues
 
-List of known issues in CSIT 24.10 for DPDK performance tests:
+List of known issues in CSIT 24.10 for DPDK performance tests.
+Tables are up-to-date with CSIT 24.10 release testing results.
 
 ## New
 

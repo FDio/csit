@@ -15,6 +15,8 @@ weight: 3
 
 # Known Issues
 
+(Just placeholders, tables not filled-in based on release test results yet.)
+
 ## New
 
 List of new issues in CSIT 24.10 for TRex performance tests:
