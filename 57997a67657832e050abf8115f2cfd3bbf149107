@@ -101,6 +101,23 @@
       "message": "csit-vpp-report-cov-2n-icx-perftest l2-11",
       "revId": "57997a67657832e050abf8115f2cfd3bbf149107",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc3ce3c_1f03c43e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-11-07T08:46:49Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-zn2-perftest vpp-gso-mrr-00",
+      "revId": "57997a67657832e050abf8115f2cfd3bbf149107",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
