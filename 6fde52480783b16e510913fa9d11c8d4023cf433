@@ -475,6 +475,23 @@
       "message": "csit-vpp-report-cov-3n-icx-perftest ip6tun-00",
       "revId": "6fde52480783b16e510913fa9d11c8d4023cf433",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14237421_6e2c9e3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2024-11-10T16:54:23Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest l2-21",
+      "revId": "6fde52480783b16e510913fa9d11c8d4023cf433",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
