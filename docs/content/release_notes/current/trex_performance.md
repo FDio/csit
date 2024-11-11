@@ -22,21 +22,23 @@ weight: 3
 List of new issues in CSIT 24.10 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+------|--------------------------------------------------|------------------------------------------------
+  1   | [CSIT-1976](https://jira.fd.io/browse/CSIT-1976) | 2n-spr: E810 TG-TG link is always down on TB24.
 
 ## Previous
 
 List of known issues in CSIT 24.10 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
- 1    |                                                  |
+------|--------------------------------------------------|--------------------------------------------------------------------
+  1   | [CSIT-1905](https://jira.fd.io/browse/CSIT-1905) | 2n-spr 200Ge2P1Cx7Veat: TG-TG tests see port line rate as 100 Gbps.
+  2   | [CSIT-1936](https://jira.fd.io/browse/CSIT-1936) | TRex occasionally sees link down in E8xx (dpdk) tests.
+  3   | [CSIT-1956](https://jira.fd.io/browse/CSIT-1956) | 2n-icx: TRex tests fail to initialize on TB212.
 
 ## Fixed
 
 List of fixed issues in CSIT 24.10 for TRex performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
+------|--------------------------------------------------|----------------------
  1    |                                                  |
