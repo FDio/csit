@@ -16,6 +16,8 @@ weight: 1
 
 # Known Issues
 
+(Just placeholders, tables not filled-in based on release test results yet.)
+
 These are issues that cause test failures or otherwise limit usefulness of CSIT
 testing.
 
