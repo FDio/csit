@@ -33,9 +33,11 @@ List of new issues in CSIT 24.10 for DPDK performance tests:
 List of known issues in CSIT 24.10 for DPDK performance tests:
 
 **#** | **JiraID**                                       | **Issue Description**
-------|--------------------------------------------------|-----------------------------------------------------
-  1   | [CSIT-1924](https://jira.fd.io/browse/CSIT-1924) | L3fwd error in 200Ge2P1Cx7Veat-Mlx5 test with 9000B.
-  2   | [CSIT-1936](https://jira.fd.io/browse/CSIT-1936) | TRex occasionally sees link down in L3fwd tests.
+------|--------------------------------------------------|--------------------------------------------------------------------------
+  1   | [CSIT-1904](https://jira.fd.io/browse/CSIT-1904) | 3n-alt: DPDK testpmd startup check fails on DUT2.
+  2   | [CSIT-1924](https://jira.fd.io/browse/CSIT-1924) | L3fwd error in 200Ge2P1Cx7Veat-Mlx5 test with 9000B.
+  3   | [CSIT-1936](https://jira.fd.io/browse/CSIT-1936) | TRex occasionally sees link down in E8xx (dpdk) tests.
+  4   | [CSIT-1963](https://jira.fd.io/browse/CSIT-1963) | 3n-icxd: Various symptoms pointing to hardware (cable/nic/driver) issues.
 
 ## Fixed
 
