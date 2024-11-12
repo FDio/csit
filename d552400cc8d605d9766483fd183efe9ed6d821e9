@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c9947f8_9ff46faf",
+        "filename": "docs/content/release_notes/current/dpdk_performance.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-11-12T09:17:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0296e46_2d83836a",
+      "range": {
+        "startLine": 26,
+        "startChar": 59,
+        "endLine": 26,
+        "endChar": 73
+      },
+      "revId": "d552400cc8d605d9766483fd183efe9ed6d821e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3b6c789_75af8760",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-12T07:35:06Z",
       "side": 1,
       "message": "Consider moving this comment into the table.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 74
+      },
+      "revId": "d552400cc8d605d9766483fd183efe9ed6d821e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec37153c_d0233aa2",
+        "filename": "docs/content/release_notes/current/dpdk_performance.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-11-12T09:17:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b6c789_75af8760",
       "range": {
         "startLine": 30,
         "startChar": 0,
