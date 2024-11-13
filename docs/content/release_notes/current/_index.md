@@ -111,7 +111,7 @@ Comparisons 24.10 vs 24.06
 ## CSIT-2410 Selected Performance Coverage Data
 
 CSIT-2410 VPP v24.10 coverage data
-- [2n-icx 200ge cx7 mlx5 ip4]()
+- [2n-icx 200ge cx7 mlx5 ip4](https://csit.fd.io/coverage/#eNpVjsEOwiAQRL8GLwYDWwinHtT-hyG4sSRICSDSv2-JB-plk5k3s5mEDk22ix-JuhFQ0aX9kuF6_gkQnDUD7s14fnKnJYQ_UjB2COLCGY37d52wx8K8HjKeWlMpMPZCCNxUVVBn-nZV9oaOqHvFBtGEmk5pXr4PpzN6s45Etu1Hq6XktAEmgz2f)
 
 ## Further Information
 
