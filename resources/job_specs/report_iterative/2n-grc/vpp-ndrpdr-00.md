@@ -48,66 +48,46 @@
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sl-10kflows
 2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sl-10kflows
 4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sl-10kflows
-##### ethip4udp-nat44det-h1024-p63-s64512
-1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44det-h1024-p63-s64512
-2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44det-h1024-p63-s64512
-4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44det-h1024-p63-s64512
 ##### ethip4udp-nat44det-h65536-p63-s4128758
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44det-h65536-p63-s4128758
 2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44det-h65536-p63-s4128758
 4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44det-h65536-p63-s4128758
-##### ethip4udp-nat44ed-h1024-p63-s64512-udir
-1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-udir
-2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-udir
-4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-udir
-##### ethip4udp-nat44ed-h1024-p63-s64512-cps
-1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-cps
-2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-cps
-4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-cps
+##### ethip4udp-nat44ed-h65536-p63-s4128758-udir
+1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128758-udir
+2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128758-udir
+4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128758-udir
 ##### ethip4udp-nat44ed-h65536-p63-s4128768-cps
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
-##### ethip4udp-nat44ed-h1024-p63-s64512-tput
-1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-tput
-2c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-tput
-4c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-tput
 ##### ethip4udp-nat44ed-h65536-p63-s4128768-tput
 1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
 2c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
 4c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
-##### ethip4udp-ip4base-h1024-p63-s64512-cps
-1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h1024-p63-s64512-cps
 ##### ethip4udp-ip4base-h65536-p63-s4128768-cps
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
-##### ethip4udp-ip4base-h1024-p63-s64512-tput
-1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h1024-p63-s64512-tput
+2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
+4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4udp-ip4base-h65536-p63-s4128768-tput
 1c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-##### ethip4tcp-nat44ed-h1024-p63-s64512-cps
-1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
-2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
-4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
+2c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+4c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
-##### ethip4tcp-nat44ed-h1024-p63-s64512-tput
-1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
-2c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
-4c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 2c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 4c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
-##### ethip4tcp-ip4base-h1024-p63-s64512-cps
-1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h1024-p63-s64512-cps
 ##### ethip4tcp-ip4base-h65536-p63-s4128768-cps
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
-##### ethip4tcp-ip4base-h1024-p63-s64512-tput
-1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
+4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4tcp-ip4base-h65536-p63-s4128768-tput
 1c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+2c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+4c AND 100b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
 ## ./ip4_tunnels
 ### mellanox-cx556a
 #### mlx5-core
@@ -123,6 +103,21 @@
 1c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4--ethip4udpgeneve-256tun-ip4base
 2c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4--ethip4udpgeneve-256tun-ip4base
 4c AND 64b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip4--ethip4udpgeneve-256tun-ip4base
+## ./ip6
+### intel-cx556a
+#### mlx5-core
+##### ethip6-ip6base
+1c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6base
+2c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6base
+4c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6base
+##### ethip6-ip6scale20k-rnd
+1c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6scale20k-rnd
+2c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6scale20k-rnd
+4c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6scale20k-rnd
+##### ethip6-ip6scale2m-rnd
+1c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6scale2m-rnd
+2c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6scale2m-rnd
+4c AND 78b AND ndrpdr AND cx556a AND drv_mlx5_core AND ethip6-ip6scale2m-rnd
 ## ./l2
 ### mellanox-cx556a
 #### mlx5-core
