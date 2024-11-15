@@ -72,22 +72,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
-##### ethip4udp-nat44det-h1024-p63-s64512
-1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h1024-p63-s64512
-2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h1024-p63-s64512
-4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h1024-p63-s64512
-##### ethip4udp-nat44det-h16384-p63-s1032192
-1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h16384-p63-s1032192
-2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h16384-p63-s1032192
-4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h16384-p63-s1032192
 ##### ethip4udp-nat44det-h65536-p63-s4128758
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
-##### ethip4udp-nat44det-h262144-p63-s16515072
-1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h262144-p63-s16515072
-2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h262144-p63-s16515072
-4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h262144-p63-s16515072
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base
