@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc2416e_414e9c92",
+        "filename": "resources/job_specs/report_iterative/2n-grc/vpp-mrr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-11-15T12:44:47Z",
+      "side": 0,
+      "message": "For jobspecs without h65536-udir, rename h1024-udir instead of deleting.",
+      "range": {
+        "startLine": 59,
+        "startChar": 40,
+        "endLine": 59,
+        "endChar": 45
+      },
+      "revId": "c4b5052d344d04f32d5aa879c65ba02dda4ad781",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adb22cae_281431ef",
+        "filename": "resources/job_specs/report_iterative/2n-grc/vpp-mrr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-11-15T12:44:47Z",
+      "side": 0,
+      "message": "Now we will have more time, so we can add 2c and 4c for nat tests with only 1c.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 2
+      },
+      "revId": "c4b5052d344d04f32d5aa879c65ba02dda4ad781",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
