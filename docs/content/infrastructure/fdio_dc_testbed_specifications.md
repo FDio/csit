@@ -39,20 +39,21 @@ To access these hosts, VPN connection is required.
 ### Summary List
 
 ```
- #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd #grc
- 1. 1-Node-Skylake         nomad  skx   na    2    2    0    2    0    0    0    0    0    0    0    0    0    0    0     0
- 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0     0
- 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0     0
- 4. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0     0
- 6. 2-Node-Icelake         perf   icx   icx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0     0
- 7. 2-Node-Octeon          perf   icx   icx   1    1    1    0    0    0    0    0    0    0    0    2    0    0    0     0
- 8. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0     0
- 9. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0     0
-10. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0     0
-11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    .5   0    0    2    0    0     0
-12. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0     0
-13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0
-14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1
+ #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd #grc #spr
+ 1. 1-Node-Skylake         nomad  skx   na    2    2    0    2    0    0    0    0    0    0    0    0    0    0    0     0    0
+ 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0     0    0
+ 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0     0    0
+ 4. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0     0    0
+ 6. 2-Node-Icelake         perf   icx   icx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0     0    0
+ 7. 2-Node-Octeon          perf   icx   icx   1    1    1    0    0    0    0    0    0    0    0    2    0    0    0     0    0
+ 8. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0     0    0
+ 9. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0     0    0
+10. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0     0    0
+11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    .5   0    0    2    0    0     0    0
+12. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0     0    0
+13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0    0
+14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1    0
+15. 2-Node-EmeraldRapids   perf   emr   emr   2    2    4    0    0    0    0    0    0    0    0    0    0    0    0     0    6
 ```
 
 ### 2-Node-Zen2 EPYC AMD (2n-zn2)
@@ -118,6 +119,12 @@ one TG (Server-Type-H6) connected in a 2-node or 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
+### 2-Node-EmeraldRapids Xeon Intel (2n-emr)
+
+Each 2-Node-EmeraldRapids testbed includes one SUT (Server-Type-A1) and
+one TG (Server-Type-A2) connected in a 2-node or 3-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
 
 ## Testbed Naming Convention
 
@@ -649,133 +656,49 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot4 ?: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot9 ?: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
 
+26. **Server-Type-A1**: Purpose - EmeraldRapids Xeon TG for FD.io performance testing.
+    - Quantity: 4.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node/3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro ?.
+        - Motherboard: Super X14DEG-QT-P.
+        - Processors: 2* Intel Platinum 8580 60 core 2 GHz.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 18:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot4 3b:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot10 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot7 86:00.xx: empty.
+            - PCIe Slot9 af:00.xx: empty.
+            - PCIe Slot11 d8:00.xx: empty.
+
+27. **Server-Type-A2**: Purpose - EmeraldRapids SUT for FD.io performance testing.
+    - Quantity: 2.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node/3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro ?.
+        - Motherboard: Super X14DEG-QT-P.
+        - Processors: 2* Intel Platinum 8580Y 60 core 2 GHz.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 18:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot4 3b:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot10 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot7 86:00.xx: empty.
+            - PCIe Slot9 af:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot11 d8:00.xx: empty.
+
 ## Testbeds Configuration
-
-### 1-Node-Skylake (1n-skx)
-
-```
-- SUT [Server-Type-B2]:
-    - testbedname: testbed11.
-    - hostname: s50-nomad.
-    - IPMI IP: 10.30.50.47
-    - Host IP: 10.30.51.50
-    - portnames:
-        - s1-t11-sut1-c6/p1 - 100GE-port1 e810-2p100GE.
-        - s1-t11-sut1-c6/p2 - 100GE-port2 e810-2p100GE.
-        - s1-t11-sut1-c8/p1 - 100GE-port1 e810-2p100GE.
-        - s1-t11-sut1-c8/p2 - 100GE-port2 e810-2p100GE.
-- SUT [Server-Type-B2]:
-    - testbedname: testbed12.
-    - hostname: s51-nomad.
-    - IPMI IP: 10.30.50.48
-    - Host IP: 10.30.51.51
-    - portnames:
-        - s2-t12-sut1-c6/p1 - 100GE-port1 e810-2p100GE.
-        - s2-t12-sut1-c6/p2 - 100GE-port2 e810-2p100GE.
-        - s2-t12-sut1-c8/p1 - 100GE-port1 e810-2p100GE.
-        - s2-t12-sut1-c8/p2 - 100GE-port2 e810-2p100GE.
-```
-
-### 1-Node-Altra (1n-alt)
-
-```
-- SUT [Server-Type-E25]:
-    - testbedname: testbed13
-    - hostname: s70-nomad
-    - IPMI IP: 10.30.50.70
-    - Host IP: 10.30.51.70
-    - portnames:
-        - s70-t13-sut1-c0/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c0/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c1/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
-        - s70-t13-sut1-c1/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
-        - s70-t13-sut1-c2/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c2/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s70-t13-sut1-c5/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s70-t13-sut1-c5/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
-- SUT [Server-Type-E25]:
-    - testbedname: testbed14
-    - hostname: s71-nomad
-    - IPMI IP: 10.30.50.71
-    - Host IP: 10.30.51.71
-    - portnames:
-        - s71-t14-sut1-c0/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c0/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c1/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
-        - s71-t14-sut1-c1/p2 - 100GE-port2 ConnectX6-2p100GE Mellanox.
-        - s71-t14-sut1-c2/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c2/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s71-t14-sut1-c5/p1 - 25GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s71-t14-sut1-c5/p2 - 25GE-port2 ConnectX5-2p10/25GE Mellanox.
-```
-
-### 1-Node-SapphireRapids (1n-spr)
-
-```
-- SUT [Server-Type-H7]:
-    - testbedname: testbed15.
-    - hostname: s30-nomad.
-    - IPMI IP: 10.30.50.30
-    - Host IP: 10.30.51.30
-    - portnames:
-        - s30-t15-sut1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s30-t15-sut1-c1/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s30-t15-sut1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s30-t15-sut1-c2/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s30-t15-sut1-c7/p1 - 10GE-port1 x710-4p10GE.
-        - s30-t15-sut1-c7/p2 - 10GE-port2 x710-4p10GE.
-        - s30-t15-sut1-c7/p3 - 10GE-port3 x710-4p10GE.
-        - s30-t15-sut1-c7/p4 - 10GE-port4 x710-4p10GE.
-        - s30-t15-sut1-c9/p1 - 10GE-port1 x710-4p10GE.
-        - s30-t15-sut1-c9/p2 - 10GE-port2 x710-4p10GE.
-        - s30-t15-sut1-c9/p3 - 10GE-port3 x710-4p10GE.
-        - s30-t15-sut1-c9/p4 - 10GE-port4 x710-4p10GE.
-- SUT [Server-Type-H7]:
-    - testbedname: testbed16.
-    - hostname: s31-nomad.
-    - IPMI IP: 10.30.50.31
-    - Host IP: 10.30.51.31
-    - portnames:
-        - s31-t16-sut1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s31-t16-sut1-c1/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s31-t16-sut1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s31-t16-sut1-c2/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s31-t16-sut1-c7/p1 - 10GE-port1 x710-4p10GE.
-        - s31-t16-sut1-c7/p2 - 10GE-port2 x710-4p10GE.
-        - s31-t16-sut1-c7/p3 - 10GE-port3 x710-4p10GE.
-        - s31-t16-sut1-c7/p4 - 10GE-port4 x710-4p10GE.
-        - s31-t16-sut1-c9/p1 - 10GE-port1 x710-4p10GE.
-        - s31-t16-sut1-c9/p2 - 10GE-port2 x710-4p10GE.
-        - s31-t16-sut1-c9/p3 - 10GE-port3 x710-4p10GE.
-        - s31-t16-sut1-c9/p4 - 10GE-port4 x710-4p10GE.
-```
-
-### 2-Node-Cascadelake (2n-clx)
-
-{{< figure src="/cdocs/testbed-2n-clx.svg" >}}
-
-```
-- TG [Server-Type-C2]:
-    - testbedname: testbed29.
-    - hostname: s38-t29-tg1.
-    - IPMI IP: 10.30.55.23
-    - Host IP: 10.32.8.23
-    - portnames:
-        - s38-t29-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s38-t29-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s38-t29-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s38-t29-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s38-t29-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s38-t29-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s38-t29-tg1-c6/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s38-t29-tg1-c6/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s38-t29-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s38-t29-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
-```
 
 ### 2-Node-Zen2 (2n-zn2)
 
@@ -1364,65 +1287,6 @@ FD.io CSIT lab contains following server types:
 
 ## Testbed Wiring
 
-### 1-Node-Altra (1n-alt)
-
-```
-- testbed13:
-    - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s70-t13-sut1-c0/p1 - s70-t13-sut1-c3/p1.
-    - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s70-t13-sut1-c0/p2 - s70-t13-sut1-c3/p2.
-    - ring3 100GE-ports ConnectX6-2p100GE on SUTs:
-        - s70-t13-sut1-c1/p1 - s70-t13-sut1-c1/p2.
-    - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s70-t13-sut1-c2/p1 - s70-t13-sut1-c5/p1.
-    - ring5 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s70-t13-sut1-c2/p2 - s70-t13-sut1-c5/p2.
-
-- testbed14:
-    - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s71-t14-sut1-c0/p1 - s71-t14-sut1-c3/p1.
-    - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s71-t14-sut1-c0/p2 - s71-t14-sut1-c3/p2.
-    - ring3 100GE-ports ConnectX6-2p100GE on SUTs:
-        - s71-t14-sut1-c1/p1 - s71-t14-sut1-c1/p2.
-    - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s71-t14-sut1-c2/p1 - s71-t14-sut1-c5/p1.
-    - ring5 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s71-t14-sut1-c2/p2 - s71-t14-sut1-c5/p2.
-```
-
-### 1-Node-SapphireRapids (1n-spr)
-
-```
-- testbed15:
-    - ring1 100GE-ports e810-2p100GE:
-        - s30-t15-sut1-c1/p1 to s30-t15-sut1-c2/p1.
-    - ring2 100GE-ports e810-2p100GE:
-        - s30-t15-sut1-c1/p2 to s30-t15-sut1-c2/p2.
-    - ring3 10GE-ports x710-4p10GE:
-        - s30-t15-sut1-c7/p1 to s30-t15-sut1-c9/p1.
-    - ring4 10GE-ports x710-4p10GE:
-        - s30-t15-sut1-c7/p2 to s30-t15-sut1-c9/p2.
-    - ring5 10GE-ports x710-4p10GE:
-        - s30-t15-sut1-c7/p3 to s30-t15-sut1-c9/p3.
-    - ring6 10GE-ports x710-4p10GE:
-        - s30-t15-sut1-c7/p4 to s30-t15-sut1-c9/p4.
-- testbed16:
-    - ring1 100GE-ports e810-2p100GE:
-        - s31-t16-sut1-c1/p1 to s31-t16-sut1-c2/p1.
-    - ring2 100GE-ports e810-2p100GE:
-        - s31-t16-sut1-c1/p2 to s31-t16-sut1-c2/p2.
-    - ring3 10GE-ports x710-4p10GE:
-        - s31-t16-sut1-c9/p1 to s31-t16-sut1-c9/p1.
-    - ring4 10GE-ports x710-4p10GE:
-        - s31-t16-sut1-c9/p2 to s31-t16-sut1-c9/p2.
-    - ring5 10GE-ports x710-4p10GE:
-        - s31-t16-sut1-c9/p3 to s31-t16-sut1-c9/p3.
-    - ring6 10GE-ports x710-4p10GE:
-        - s31-t16-sut1-c9/p4 to s31-t16-sut1-c9/p4.
-```
-
 ### 2-Node-Zen2 (2n-zn2)
 
 ```
@@ -1679,4 +1543,25 @@ FD.io CSIT lab contains following server types:
     #- ring2 200GE-ports ConnectX7-2p200GE:
     #    - s37-t27-tg1-c2/p1 to s36-t27-sut1-c1/p1.
     #    - s36-t27-sut1-c1/p2 to s37-t27-tg1-c2/p2.
+```
+
+### 2-Node-EmeraldRapids (2n-emr)
+
+```
+- testbed28:
+    - ring1 100GE-ports e810-CQDA2-2p100GE:
+        - s41-t28-tg1-c4/p1 to s40-t28-sut1-c9/p2
+        - s41-t28-tg1-c4/p2 to s40-t28-sut1-c4/p2
+        - s40-t28-sut1-c9/p1 to s40-t28-sut1-c4/p1
+    - ring2 100GE-ports e810-CQDA2-2p100GE:
+        - s40-t28-sut1-c2/p1 to s41-t28-tg1-c2/p1.
+        - s41-t28-tg1-c2/p2 to s40-t28-sut1-c2/p2.
+- testbed29:
+    - ring1 100GE-ports e810-CQDA2-2p100GE:
+        - s43-t29-tg1-c4/p1 to s42-t29-sut1-c9/p2
+        - s43-t29-tg1-c4/p1 to s42-t29-sut1-c4/p2
+        - s42-t29-sut1-c9/p1 to s43-t29-tg1-c4/p1
+    - ring2 100GE-ports e810-CQDA2-2p100GE:
+        - s42-t29-sut1-c2/p1 to s43-t29-tg1-c2/p1.
+        - s43-t29-tg1-c2/p2 to s42-t29-sut1-c2/p2.
 ```

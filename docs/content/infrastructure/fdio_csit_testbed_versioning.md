@@ -36,9 +36,17 @@ environment versioning include:
 
 Following is the list of CSIT versions to date:
 
+- Ver. 17 associated with CSIT rls2502 branch (
+  [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2502),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2502)
+  ).
+  - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
+    matrix.
+  - Mellanox 556A/CX6-DX/MCX713106AS-VEAT series firmware upgrade based on DPDK
+    compatibility matrix.
 - Ver. 16 associated with CSIT rls2410 branch (
-  [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2406),
-  [CSIT](https://git.fd.io/csit/tree/?h=rls2406)
+  [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2410),
+  [CSIT](https://git.fd.io/csit/tree/?h=rls2410)
   ).
 - Ver. 15 associated with CSIT rls2406 branch (
   [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2406),
