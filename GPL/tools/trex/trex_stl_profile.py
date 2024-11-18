@@ -160,14 +160,19 @@ def simple_burst(
                     client.add_streams(streams=[i], ports=[j])
         elif isinstance(framesize, str):
             mark = 0
+            strp = len(streams) // len(ports)
             for i in ports[::2]:
-                client.add_streams(streams=streams[mark:mark+3], ports=[i])
-                mark = mark + 3
+                client.add_streams(
+                    streams=streams[mark:mark+strp], ports=[i]
+                )
+                mark = mark + strp
             if traffic_directions > 1:
                 mark = len(streams) // 2
                 for i in ports[1::2]:
-                    client.add_streams(streams=streams[mark:mark+3], ports=[i])
-                    mark = mark + 3
+                    client.add_streams(
+                        streams=streams[mark:mark+strp], ports=[i]
+                    )
+                    mark = mark + strp
         if latency:
             try:
                 if isinstance(framesize, int):
