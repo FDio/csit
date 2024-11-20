@@ -24,12 +24,12 @@ RUN echo "Preparing Grub EFI Binary" \
  && dpkg-deb --fsys-tarfile grub-common*deb | tar x ./usr/share/grub/unicode.pf2 -O > /var/lib/tftpboot/grub/fonts/unicode.pf2
 
 RUN echo "Preparing Casper Kernel" \
- && wget $ISO_NOBLE_AMD64 -O /ubuntu-24.04-live-server-amd64.iso \
- && isoinfo -i /ubuntu-24.04-live-server-amd64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/initrd \
- && isoinfo -i /ubuntu-24.04-live-server-amd64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/vmlinuz \
- && wget $ISO_NOBLE_ARM64 -O /ubuntu-24.04-live-server-arm64.iso \
- && isoinfo -i /ubuntu-24.04-live-server-arm64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/initrd \
- && isoinfo -i /ubuntu-24.04-live-server-arm64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/vmlinuz
+ && wget $ISO_NOBLE_AMD64 -O /ubuntu-24.04.1-live-server-amd64.iso \
+ && isoinfo -i /ubuntu-24.04.1-live-server-amd64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/initrd \
+ && isoinfo -i /ubuntu-24.04.1-live-server-amd64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/vmlinuz \
+ && wget $ISO_NOBLE_ARM64 -O /ubuntu-24.04.1-live-server-arm64.iso \
+ && isoinfo -i /ubuntu-24.04.1-live-server-arm64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/initrd \
+ && isoinfo -i /ubuntu-24.04.1-live-server-arm64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/vmlinuz
 
 FROM alpine
 

@@ -19,17 +19,3 @@ docker_apt_repository_state: present
 docker_apt_ignore_key_error: true
 docker_apt_gpg_key: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
 docker_apt_gpg_key_state: present
-
-# Used only for RedHat/CentOS/Fedora.
-docker_yum_repo_url: https://download.docker.com/linux/{{ (ansible_distribution == "Fedora") | ternary("fedora","centos") }}/docker-{{ docker_edition }}.repo
-docker_yum_repo_enable_edge: "0"
-docker_yum_repo_enable_test: "0"
-docker_yum_gpg_key: https://download.docker.com/linux/centos/gpg
-
-# Proxy settings.
-docker_daemon_environment_http:
-  - "HTTP_PROXY={{ proxy_env.http_proxy }}"
-  - "NO_PROXY={{ proxy_env.no_proxy }}"
-docker_daemon_environment_https:
-  - "HTTPS_PROXY={{ proxy_env.https_proxy }}"
-  - "NO_PROXY={{ proxy_env.no_proxy }}"

@@ -1,17 +1,8 @@
 ---
 # file: host_vars/10.30.51.70.yaml
 
-hostname: "s70-t13-sut1"
-grub:
-  hugepagesz: "2M"
-  hugepages: 32768
-  iommu.passthrough: "1"
+hostname: "s70-nomad"
 inventory_ipmi_hostname: "10.30.50.70"
-vfs_data_file: "csit-initialize-vfs-alt.sh"
-cpu_microarchitecture: "altra"
-
-intel_700_matrix: "dpdk22.03"
-mellanox_matrix: "dpdk23.11"
 
 # User management.
 users:
@@ -21,11 +12,8 @@ users:
     ssh_key:
       - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKM1D1kkGX1l7fSma1MOgw2yLI7zJHwTCcfVROQ4hh7r peter.mikus@protonmail.ch"
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDCG7Shfr7ASXXwpazYDGFzChGl7i4HgY9n81GTwc17B/O19IiJdrxFcBQH19HMuTFtWU4d9bQ6xgzz2pojBN13L3pEsStCHovDlEYbvfRxI2l2hcAAop1j1E4izHAS9IvCoy1AgWqBg6tsfP5mzOwGbSbcdI9ADRKIHgDTVbHg9SqKed27bNOLU0u3/5ra2Oar/tVIW37geEqFV/nHIBZ03Y/mszvXP/t/hP5bgJIGJKkzTjLd1aqEcuGmubW+wTQnVnrhFB87dw91gPj6BVyV0+7Vt1wrvPKqP2sGJhojAMSrBQBySnlrYgEg00bwDgNGFevatfG9+nTId+nhoKBkXya3MjSp4HwrGqGcij3/h7ovlau3/iRhkqlSeqenaNm4zKTAXRTnb60j2WKa6im0zdqJX98anp4mhjE8xHhmmfZV3vRT8mtY4hF/lg79miXFHpWH97bZV6r/D9qj1HWI/laJfOC5MOJdRcLETwtsUNMHeHtVnY3yu0XFYNcl2Xwajtnz3waF7vn1QHvAM9p878+JrO/IEUqEc0yZWVvlhZ7Krx1pS+APoMy8097MYDGFzFTkYSstKLGbgm/S7dEiWuSVxmMUxW7JYO3gHrQ3f1EvAYh2UFdWy76Dzr5II9UpVwOwF+HL/Oy8Sk77bPaK+tn7Kh4Tx7WWE0+EOAgElQ== ayourtch@ayourtch-lnx"
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXUbbhesOpvPF+KI8nq4TXvEO/Un1aU/ehZ9clCyw9C40xjDkX2BlcX8WeHxFHe7fjFaCd07Vg73rn/3M9uNDnDxvjH1GQ0twvi3iBTO4PkHBBfGF9qnE8MYzno6FvlsVKLuUuPbfm8kbOQ+ZDfdXq6gdtXh0hSYYkqC1heNPCNsqaakkB99Edyle+Ot0V7cpW+Yo2wo98KuX/cgUEhVoA8QnNVE7zaWcjSXBZEteoA4gLpAbV6p67/d6H/2ykHTidBViYTEsHco56tJoA4nTPuAupDOLBcWXgF5TAN6z1aCn2JA1DDfniLakgrZ5oVj2qHhUmbxQAtnKQfHADjqzV jlinkes@jlinkes"
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD0GXoSGDZ95TE/TT3kf4ZS3Tiso0UO3MVhqAqZ/F6LOvLyqnMPfhxPz1XpHsDikxvKgwhZvdBm1dWbKkPsD7jtw0PGphQO8QuEwBd2ZMvxZ4Qg6lNDUl5x3zRO2nkbKpcqnOugGLTtXP+yfw/wfQ2HNFLDP9gE90xegsPT83PmRUntQlhbS3ByHcCSUScC+Y1heZXuoKNyrmUY46lxkKsNfhx8sQKo0YhB21atV/mcAQbAaO2LggmaQYGtWizqPNGWIRsi9W8ZYnKva67c3Pbv/TTfaqmrNCwOXJ8G9oL+/3MlKbl3b5mYlTs2a/e9yVgMNwUZVX7aiHpgPgaVjL6j swdev@BradyBunch-MacMini.local"
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmo2YP4t/f58AAYH72rOe5VjYjk3wb/GY3aJEd5s9WspLhnsY0xBL67C+4kMq6VmQQvg0cUB8RJSFX1tUXMHCorVWnXNHkYomx0MCPcPUpVHuRyEqczYJ2pzgZsPzoEfw9E5hTrAiGzYFNAS/NOSavapVMDZxa1zsX7+sWQvJfmVtJWpcTQb0TkoWXRsy0YM3PYfUbYvK7lR3lGwyhwCcJn0WwWGreFB7bIok0poqqX5BgJ/okZuvC8II+UfuGoBHNhg49oqST1JlNi9gRqDNmLWkHRaneWZiF+Y2hdN3PRCdkt1x3eU0R+cdi5kPKslb6P0lsjOEA7fDLlq1+T2z1"
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJIAgAKD47mDur3n5jeHXzId2uUFHKa5kBiF649YQsdBKeQyfMVysvN9immKSTvwo4BUlwqeKQq5aIWWpjKMJU2/WXe4WU1YVyKLYCAlbkYJ3WuIBKQ/fm2wb8M4oXtgkYb+wEr5RkP48WqtIo3Cm/L+1j6k5jiu5E1hKBmdaY1er5OG9nCpOHfN3e+VkWwIjqdHFphB9NIMu2X+1iKDwOq4+sIX6POweVvcGFZJ8djB4RRtnkuH5W89x7k8IM4e2w0SK/5yKfxNfN3CzWSQ1dsqpQFPbry7z8Oy+56mlRs15bv5TU9IJ78aDpp/FbSZPfVfmTfwFLUBIHMtEjLUGBrGPQN8p32ap+6a9st5Qfh7rVhIGyB/4npLmar9Nw0lJNX9nmKiD119bkwyuWZjk4s2ELvCAw9RBJCHP8AxXnLgieqkBebn00zoGL/gdQTxXKDJGe3SEbOk56AkkIynB6I7prERvnbIhGI/ObwrNKtfKliiIKq3iWTdBP6BfCgAOqgD6320G2VdZyXyh3oXyM2AlFXzuA8zc8wpZraUCX9J/iMoxhELcL0gpDFO4HUKxTt+uU45uNNK0DkXw3GDF/lr+oYvzJ45jX0qMExF6EHaKfplZxW0Nt9rPT8pKi9BC8dzdSHXuunA1PshvEfc7mLMtz0QdOXOvomtM2Jv84lw== jieqiang.wang@arm.com"
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPsm7Ny+8QYyJ5JEECF0sntRbsF3jRqdSItPTgcbBEFwfNBVd0ulmmkwPUVrcJRMfGuzp3vA3Ss/BgutfvNo3WD5G+WECnOWXiTzroM34oZQ6awoZujxlQsNGBRsiGTPNay6oFoS2hIaW5OB/QHZwZH8HVYcc53oyM0uC72ItnCg5cvSS5v1XaoQby0pUsu2v5uSOm35XV/N2ishcF3sxfCjTMZEODCwYdcb1xOflzIWlIk7ZSDNzOlpmG/jZNDfc7V2GHvGz7WnBFkjkcVH86SEVcQmsc7yyQD1UUG/EZ5AA75vbH4vFye4cISTWpBZik5CbkElxvX9XrfFxtYEM/ tianyu.li@arm.com"
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWWDIudZUaHp6pPkYmBsBeEYcbUoGGZH73eB374g8e9V3dfT7BuJOMR/Z3LxCGw5GcDDgzJHLQr8AykN7lUscaux68CXSf1CAKhfBeWBOCQD4G5tpmD6610jsiBig6bFISKpGW4nLt80yt3bKEqv6ezt35QuMeh3E45uK/pCRfDcukOThbwYG44xr7TeYAyNacWuNV9HDy5DzjBelElmolTOgjtZEbedmIcUbV/gb8yekUxxBTS3d3I5qVLtNRMHPqp9xbJqteRXIphizDlHbaTHZeVy9mrwi1RuTjDSg7p1OPJ9eVIzMYzk87gbwNxZw8481Xb1WsgGmyH/mXJjD1 najoy@NAJOY-M-505G.CISCO.COM"
 sshd_disable_password_login: true
 
@@ -41,13 +29,15 @@ nomad_certificates:
 nomad_datacenter: "yul1"
 nomad_node_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
-nomad_node_class: "csitarm"
+nomad_node_class: "builder"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: false
   docker.privileged.enabled: true
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
+  fingerprint.network.disallow_link_local: true
+  artifact.disable_filesystem_isolation: true
 nomad_service_mgr: "systemd"
 nomad_consul_use_ssl: false
 nomad_use_tls: false
@@ -55,11 +45,11 @@ nomad_tls_http: false
 nomad_tls_rpc: false
 nomad_use_vault: false
 nomad_retry_servers:
-  - "10.30.51.23"
+  - "10.30.51.26"
   - "10.30.51.24"
   - "10.30.51.25"
 nomad_servers:
-  - "10.30.51.23:4647"
+  - "10.30.51.26:4647"
   - "10.30.51.24:4647"
   - "10.30.51.25:4647"
 
@@ -83,7 +73,7 @@ consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ ansible_hostname }}"
 consul_retry_join: true
 consul_retry_servers:
-  - "10.30.51.23"
+  - "10.30.51.26"
   - "10.30.51.24"
   - "10.30.51.25"
 consul_service_mgr: "systemd"
@@ -93,8 +83,6 @@ vault_version: "1.17.2"
 
 # Docker settings.
 docker_daemon:
-  default-shm-size: "1073741824"
-#  dns: ["172.17.0.1"]
-#  dns-opts: []
-#  dns-search: ["{{ansible_hostname}}"]
-#  host: ["172.17.0.1:/var/run/docker.sock"]
+  dns: ["172.17.0.1"]
+  dns-opts: []
+  dns-search: ["{{ansible_hostname}}"]

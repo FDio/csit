@@ -30,16 +30,6 @@
   tags:
     - docker-conf-service
 
-- name: "Docker Service Directory"
-  ansible.builtin.file:
-    path: "/etc/systemd/system/docker.service.d"
-    state: "directory"
-    mode: "0755"
-  when:
-    - docker_service_mgr == "systemd"
-  tags:
-    - docker-conf-service
-
 - name: "Configure Docker Daemon"
   ansible.builtin.template:
     src: "templates/daemon.json.j2"
@@ -54,38 +44,6 @@
     docker_service_mgr == "systemd"
   tags:
     - docker-conf-daemon
-
-- name: "Configure Docker HTTP Proxy"
-  ansible.builtin.template:
-    src: "templates/docker.service.proxy.http"
-    dest: "/etc/systemd/system/docker.service.d/http-proxy.conf"
-    owner: "root"
-    group: "root"
-    mode: "0644"
-  notify:
-    - "Restart Docker"
-  when: >
-    proxy_env is defined and
-    proxy_env.http_proxy is defined and
-    docker_service_mgr == "systemd"
-  tags:
-    - docker-conf-service
-
-- name: "Configure Docker HTTPS Proxy"
-  ansible.builtin.template:
-    src: "templates/docker.service.proxy.https"
-    dest: "/etc/systemd/system/docker.service.d/https-proxy.conf"
-    owner: "root"
-    group: "root"
-    mode: "0644"
-  notify:
-    - "Restart Docker"
-  when: >
-    proxy_env is defined and
-    proxy_env.https_proxy is defined and
-    docker_service_mgr == "systemd"
-  tags:
-    - docker-conf-service
 
 - name: "Meta - Flush handlers"
   ansible.builtin.meta: flush_handlers
