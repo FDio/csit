@@ -29,7 +29,14 @@ import os
 
 from trex.stl.api import *
 
+<<<<<<< PATCH SET (e13e68 feat(traffic-profiles): Add JSON processing)
+from process_json import process_json
+
+
+CP = os.path.join(os.path.abspath(os.sep), "etc")
+=======
 CP = os.path.join(os.path.abspath(os.sep), "/opt/frouter-perf")
+>>>>>>> BASE      (29e0aa fix: json)
 
 
 class TrafficStreamsJsonClass:
@@ -65,6 +72,9 @@ class TrafficStreamsJsonClass:
 
         with open(os.path.join(CP, "packet-profile.json")) as packets_json:
             packets_data = json.load(packets_json)
+
+        # Processing is done inplace.
+        process_json(packets_data)
 
         for profile in packets_data["profiles"]:
             for i, stream in enumerate(profile["streams"]):
