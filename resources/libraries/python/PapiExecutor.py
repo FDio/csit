@@ -838,7 +838,7 @@ class PapiSocketExecutor:
         return reply
 
     @staticmethod
-    def run_cli_cmd_on_all_sockets(node, cli_cmd, log=True):
+    def run_cli_cmd_on_all_sockets(node, cli_cmd, log=True, skip_vs=False):
         """Run a CLI command as cli_inband, on all sockets in topology file.
 
         Just a run_cli_cmd, looping over sockets.
@@ -853,9 +853,10 @@ class PapiSocketExecutor:
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.PAPI)
         if sockets:
             for socket in sockets.values():
-                PapiSocketExecutor.run_cli_cmd(
-                    node, cli_cmd, log=log, remote_vpp_socket=socket
-                )
+                if not skip_vs or "DUT" in socket:
+                    PapiSocketExecutor.run_cli_cmd(
+                        node, cli_cmd, log=log, remote_vpp_socket=socket
+                    )
 
     @staticmethod
     def dump_and_log(node, cmds):
