@@ -10,7 +10,7 @@ all:
         10.30.51.74: #s64-t34-tg1 - icelake
         10.30.51.77: #s67-t37-tg1 - icelake
         10.30.51.80: #s80-t38-tg1 - icelake
-        10.30.51.82: #s72-t212-tg1 - icelake
+        10.30.51.82: #s82-t212-tg1 - icelake
         10.30.51.84: #s84-t213-tg1 - icelake
         10.30.51.86: #s86-t214-tg1 - icelake
         10.30.51.88: #s88-t215-tg1 - octeon
@@ -28,8 +28,8 @@ all:
         10.30.51.54: #s54-t22-sut1 - sapphirerapids
         10.30.51.56: #s56-t23-sut1 - sapphirerapids
         10.30.51.58: #s58-t24-sut1 - sapphirerapids
-        10.30.51.72: #s62-t34-sut1 - altra
-        10.30.51.73: #s63-t34-sut2 - altra
+        10.30.51.72: #s72-t34-sut1 - altra
+        10.30.51.73: #s73-t34-sut2 - altra
         10.30.51.75: #s65-t37-sut1 - icelake
         10.30.51.76: #s66-t37-sut2 - icelake
         10.30.51.78: #s78-t38-sut1 - icelake

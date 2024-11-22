@@ -29,6 +29,19 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.86"
 cpu_microarchitecture: "icelake"
 
-intel_700_matrix: "dpdk22.07"
-intel_800_matrix: "dpdk22.07"
-mellanox_matrix: "dpdk23.07"
+intel_700_matrix: "dpdk24.07"
+intel_800_matrix: "dpdk24.07"
+mellanox_matrix: "dpdk24.07"
+
+docker_tg: true
+docker_volumes:
+  - source: "/usr/bin/ofed_info"
+    target: "/usr/bin/ofed_info"
+  - source: "/dev/hugepages"
+    target: "/dev/hugepages"
+  - source: "/dev/vfio"
+    target: "/dev/vfio"
+  - source: "/etc/sudoers"
+    target: "/etc/sudoers"
+  - source: "/usr/lib/firmware/"
+    target: "/usr/lib/firmware/"
