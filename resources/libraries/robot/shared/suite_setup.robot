@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -265,9 +265,13 @@
 
 | Additional Suite Setup Action For cryptohw
 | | [Documentation]
-| | ... | Additional Setup for suites which uses QAT HW.
+| | ... | Additional Setup for suites which uses QAT/OCTEON HW.
 | |
-| | Crypto Device Verify on all DUTs | ${nodes}
+| | ${marvell}= | Get Node Model Bool | ${nodes[('${duts}[0]')]} | Marvell-Octeon
+| | Run Keyword If | not ${marvell}
+| | ... | Run Keyword | Crypto Device Verify on all DUTs | ${nodes}
+| | ... | ELSE
+| | ... | Run Keyword | Octeon Crypto Device Verify on all DUTs | ${nodes}
 
 | Additional Suite Setup Action For nginx
 | | [Documentation]
