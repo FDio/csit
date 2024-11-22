@@ -138,6 +138,8 @@
 | | ... | PCI Driver Unbind List | ${nodes['${dut}']} | @{${dut}_pf_pci}
 | | ... | AND | ${dut}.Add OCTEON Dev | @{${dut}_pf_pci}
 | | ... | AND | PCI Driver Bind List | ${nodes['${dut}']} | @{${dut}_pf_pci} | driver="vfio-pci"
+| | Run Keyword If | '${crypto_type}' != '${None}'
+| | ... | ${dut}.Add OCTEON Cryptodev
 
 | Pre-initialize layer vfio-pci on all DUTs with DPDK plugin
 | | [Documentation]
