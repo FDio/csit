@@ -619,6 +619,7 @@ class Constants:
         "Intel-E823C": "HW_C4xxx",
         "Intel-X710": "HW_DH895xcc",
         "Intel-XL710": "HW_DH895xcc",
+        "Cavium-A063-100G":"HW_A0FD",
     }
 
     DEVICE_TYPE_TO_KEYWORD = {"scapy": None}
