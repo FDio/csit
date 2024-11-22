@@ -1022,6 +1022,20 @@ class Topology:
         except KeyError:
             return None
 
+    @staticmethod
+    def get_eventdev(node):
+        """Return Eventdev configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: Eventdev configuration string.
+        :rtype: str
+        """
+        try:
+            return node[u"eventdev"]
+        except KeyError:
+            return None
+
     def get_bus(node):
         """Return bus configuration of the node.
 
