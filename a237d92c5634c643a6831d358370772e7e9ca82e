@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ddd694_61e39625",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-11-22T15:34:46Z",
+      "side": 1,
+      "message": "csit-2n-spr mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND1518bANDeth-l2xcbase-eth-2memif-dma-1dcr",
+      "revId": "a237d92c5634c643a6831d358370772e7e9ca82e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
