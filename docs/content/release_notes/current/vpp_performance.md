@@ -6,11 +6,15 @@ weight: 1
 # CSIT 24.10 - VPP Performance
 
 1. TEST FRAMEWORK
+   - **Decommissioned** multiple testbeds: 2n-clx, 2n-tx2 and 3n-tsh.
    - **CSIT test environment** version 15 is used, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-
+   - Re-added a small selection of 1-link bonding tests.
+   - Deleted memif-lxc tests.
+   - Stopped running density and reconf tests on 2n-icx and 2n-zn2.
+   - Deleted vhostvr1024-1vm tests from 3na-spr and 3nb-spr during release testing.
 3. PRESENTATION AND ANALYTICS LAYER
    - Max value on time axis has been set to utc.now
 
