@@ -211,3 +211,12 @@ class DMAUtil:
             node, cmd, sudo=True, message="Failed")
 
         return enabled_wqs
+
+    @staticmethod
+    def vpp_show_dma(node):
+        """Call show dma CLI command on all sockets.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show dma")
