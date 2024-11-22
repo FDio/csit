@@ -37,6 +37,7 @@
 | Library | resources.libraries.python.Namespaces
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.QATUtil
+| Library | resources.libraries.python.OCTEONUtil
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.Tap.TapFeatureMask

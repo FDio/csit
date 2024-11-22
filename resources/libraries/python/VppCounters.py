@@ -270,3 +270,12 @@ class VppCounters:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 VppCounters.clear_vpp_statistics(node)
+
+    @staticmethod
+    def vpp_show_ipsec_all(node):
+        """Run "show ipsec all" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show ipsec all")

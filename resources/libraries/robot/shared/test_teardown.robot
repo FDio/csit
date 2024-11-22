@@ -136,6 +136,7 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If Test Failed
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
+| | | Run Keyword | Vpp Show Ipsec All | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For ipsec_all
