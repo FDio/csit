@@ -265,9 +265,12 @@
 
 | Additional Suite Setup Action For cryptohw
 | | [Documentation]
-| | ... | Additional Setup for suites which uses QAT HW.
+| | ... | Additional Setup for suites which uses QAT/OCTEON HW.
 | |
-| | Crypto Device Verify on all DUTs | ${nodes}
+| | Run Keyword If | '${TEST_PLUGIN}' != 'OCTEON'
+| | ... | Run Keyword | Crypto Device Verify on all DUTs | ${nodes}
+| | ... | ELSE
+| | ... | Run Keyword | Octeon Crypto Device Verify on all DUTs | ${nodes}
 
 | Additional Suite Setup Action For nginx
 | | [Documentation]
