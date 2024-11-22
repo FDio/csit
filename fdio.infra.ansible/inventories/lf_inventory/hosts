@@ -16,7 +16,7 @@ all:
         10.30.51.88: #s88-t215-tg1 - octeon
         10.30.51.89: #s89-t39t310-tg1 - cascadelake
         10.30.51.90: #s90-t31t32-tg1 - icelake
-        10.32.8.25: #s61-t210-tg1 - epyc
+        10.30.51.61: #s61-t210-tg1 - epyc
     sut:
       hosts:
         10.30.51.32: #s32-t31-sut1 - icelaked
@@ -40,7 +40,7 @@ all:
         10.30.51.87: #s87-t215-sut1 - octeon
         10.30.51.93: #s93-t39-sut1 - snowridge
         10.30.51.94: #s94-t39-sut2 - snowridge
-        10.32.8.24: #s60-t210-sut1 - epyc
+        10.30.51.60: #s60-t210-sut1 - epyc
     nomad:
       hosts:
         10.30.51.21: #s21-nomad - sapphirerapids

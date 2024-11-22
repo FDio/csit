@@ -1,11 +1,11 @@
 ---
-# file: host_vars/10.32.8.25.yaml
+# file: host_vars/10.30.51.60.yaml
 
-hostname: "s61-t210-tg1"
+hostname: "s60-t210-sut1"
 grub:
   amd_iommu: "on"
   audit: "0"
-  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=8192"
+  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
   hpet: "disable"
   iommu: "pt"
   isolcpus: "1-15,17-31,33-47,49-63"
@@ -20,11 +20,11 @@ sysctl:
   kernel:
     watchdog_cpumask: "0,16,32,48"
   vm:
-    nr_hugepages: 8192
+    nr_hugepages: 32768
     max_map_count: 20000
 
-inventory_ipmi_hostname: "10.30.55.25"
+inventory_ipmi_hostname: "10.30.55.24"
 cpu_microarchitecture: "epyc"
 
-intel_700_matrix: "dpdk22.07"
-mellanox_matrix: "dpdk22.07"
+intel_700_matrix: "dpdk24.07"
+mellanox_matrix: "dpdk24.07"

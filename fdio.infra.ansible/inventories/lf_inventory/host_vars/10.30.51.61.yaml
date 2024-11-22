@@ -1,0 +1,43 @@
+---
+# file: host_vars/10.30.51.61.yaml
+
+hostname: "s61-t210-tg1"
+grub:
+  amd_iommu: "on"
+  audit: "0"
+  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=8192"
+  hpet: "disable"
+  iommu: "pt"
+  isolcpus: "1-15,17-31,33-47,49-63"
+  nmi_watchdog: "0"
+  nohz_full: "off"
+  nosoftlockup: true
+  numa_balancing: "disable"
+  processor.max_cstate: "0"
+  rcu_nocbs: "1-15,17-31,33-47,49-63"
+  tsc: "reliable"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0,16,32,48"
+  vm:
+    nr_hugepages: 8192
+    max_map_count: 20000
+
+inventory_ipmi_hostname: "10.30.55.25"
+cpu_microarchitecture: "epyc"
+
+intel_700_matrix: "dpdk24.07"
+mellanox_matrix: "dpdk24.07"
+
+docker_tg: true
+docker_volumes:
+  - source: "/usr/bin/ofed_info"
+    target: "/usr/bin/ofed_info"
+  - source: "/dev/hugepages"
+    target: "/dev/hugepages"
+  - source: "/dev/vfio"
+    target: "/dev/vfio"
+  - source: "/etc/sudoers"
+    target: "/etc/sudoers"
+  - source: "/usr/lib/firmware/"
+    target: "/usr/lib/firmware/"
