@@ -105,6 +105,14 @@
 | | | ... | Show DET44 verbose | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For dma
+| | [Documentation]
+| | ... | Log information relevant to DMA tests.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | VPP Show DMA | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For geneve4
 | | [Documentation]
 | | ... | Additional teardown for tests which uses GENEVE IPv4 tunnel.

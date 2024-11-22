@@ -14,8 +14,10 @@
 """DMA util library."""
 
 from re import search
-from resources.libraries.python.topology import NodeType, Topology
+
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class DMAUtil:
@@ -211,3 +213,12 @@ class DMAUtil:
             node, cmd, sudo=True, message="Failed")
 
         return enabled_wqs
+
+    @staticmethod
+    def vpp_show_dma(node):
+        """Call show dma CLI command on all sockets.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show dma")
