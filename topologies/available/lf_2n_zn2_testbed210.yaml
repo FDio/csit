@@ -10,7 +10,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.32.8.25"
+    host: "10.30.51.61"
     arch: x86_64
     port: 22
     username: testuser
@@ -82,7 +82,7 @@ nodes:
         model: Intel-X710
   DUT1:
     type: DUT
-    host: "10.32.8.24"
+    host: "10.30.51.60"
     arch: x86_64
     port: 22
     username: testuser
