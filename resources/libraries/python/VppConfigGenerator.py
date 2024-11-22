@@ -811,6 +811,14 @@ class VppConfigGenerator:
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
 
+    def add_octeon_cryptodev(self):
+        """Add Octeon Crypto PCI device configuration.
+        """
+        cryptodict = Topology.get_cryptodev(self._node)
+        cryptodev = cryptodict[u"device1"][u"pci_address"]
+        cryptodev_config = re.sub(r"\d.\d$", f"0.1", cryptodev)
+        path = [u"devices", f"dev pci/{cryptodev_config}", u"driver octeon"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
 class VppInitConfig:
     """VPP Initial Configuration."""
