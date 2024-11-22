@@ -20,6 +20,8 @@ The release notes of the previous CSIT release can be found
 - [DPDK Performance]({{< relref "dpdk_performance" >}})
 - [TRex Performance]({{< relref "trex_performance" >}})
 
+For infra reasons, we ultimately stopped device testing.
+
 ## CSIT-2410 Release Data
 
 To access CSIT-2410 Release data please use following web resources:
