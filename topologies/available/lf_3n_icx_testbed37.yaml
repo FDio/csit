@@ -12,12 +12,12 @@ nodes:
     subtype: TREX
     host: "10.30.51.77"
     arch: x86_64
-    port: 22
+    port: 6001
     username: testuser
     password: Csit1234
     interfaces:
       port1:
-        # s67-t37-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+        # s77-t37-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a1:48"
         pci_address: "0000:17:00.0"
         ip4_address: "172.16.10.1"
@@ -25,7 +25,7 @@ nodes:
         link: link1
         model: Intel-E810CQ
       port2:
-        # s67-t37-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
+        # s77-t37-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a1:49"
         pci_address: "0000:17:00.1"
         ip4_address: "172.16.20.1"
@@ -33,7 +33,7 @@ nodes:
         link: link2
         model: Intel-E810CQ
       port3:
-        # s67-t37-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
+        # s77-t37-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ec"
         pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.1"
@@ -41,7 +41,7 @@ nodes:
         link: link3
         model: Intel-E810XXV
       port4:
-        # s67-t37-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
+        # s77-t37-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ed"
         pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.1"
@@ -49,7 +49,7 @@ nodes:
         link: link4
         model: Intel-E810XXV
       port5:
-        # s67-t37-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
+        # s77-t37-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ee"
         pci_address: "0000:31:00.2"
         ip4_address: "172.16.50.1"
@@ -57,7 +57,7 @@ nodes:
         link: link5
         model: Intel-E810XXV
       port6:
-        # s67-t37-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
+        # s77-t37-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ef"
         pci_address: "0000:31:00.3"
         ip4_address: "172.16.60.1"
@@ -65,7 +65,7 @@ nodes:
         link: link6
         model: Intel-E810XXV
       port7:
-        # s67-t37-tg1-c2/p1 - 25GE port1 Intel NIC x710 2p25GE.
+        # s77-t37-tg1-c2/p1 - 25GE port1 Intel NIC x710 2p25GE.
         mac_address: "3c:fd:fe:bd:fa:24"
         pci_address: "0000:4b:00.0"
         ip4_address: "172.16.70.1"
@@ -73,7 +73,7 @@ nodes:
         link: link7
         model: Intel-XXV710
       port8:
-        # s67-t37-tg1-c2/p2 - 25GE port2 Intel NIC x710 2p25GE.
+        # s77-t37-tg1-c2/p2 - 25GE port2 Intel NIC x710 2p25GE.
         mac_address: "3c:fd:fe:bd:fa:25"
         pci_address: "0000:4b:00.1"
         ip4_address: "172.16.80.1"
@@ -81,7 +81,7 @@ nodes:
         link: link8
         model: Intel-XXV710
       port9:
-        # s67-t37-tg1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        # s77-t37-tg1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:a6"
         pci_address: "0000:e3:00.0"
         ip4_address: "172.16.90.1"
@@ -89,7 +89,7 @@ nodes:
         link: link9
         model: Mellanox-CX6DX
       port10:
-        # s67-t37-tg1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        # s77-t37-tg1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:a7"
         pci_address: "0000:e3:00.1"
         ip4_address: "172.16.100.1"
@@ -106,7 +106,7 @@ nodes:
     uio_driver: vfio-pci
     interfaces:
       port1:
-        # s65-t37-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+        # s75-t37-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a7:b0"
         pci_address: "0000:17:00.0"
         ip4_address: "172.16.10.2"
@@ -114,7 +114,7 @@ nodes:
         link: link1
         model: Intel-E810CQ
       port2:
-        # s65-t37-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
+        # s75-t37-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a7:b1"
         pci_address: "0000:17:00.1"
         ip4_address: "172.16.20.2"
@@ -122,7 +122,7 @@ nodes:
         link: link22
         model: Intel-E810CQ
       port3:
-        # s65-t37-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
+        # s75-t37-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:60"
         pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.2"
@@ -130,7 +130,7 @@ nodes:
         link: link3
         model: Intel-E810XXV
       port4:
-        # s65-t37-sut1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
+        # s75-t37-sut1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:61"
         pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.2"
@@ -138,7 +138,7 @@ nodes:
         link: link44
         model: Intel-E810XXV
       port5:
-        # s65-t37-sut1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
+        # s75-t37-sut1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:62"
         pci_address: "0000:31:00.2"
         ip4_address: "172.16.50.2"
@@ -146,7 +146,7 @@ nodes:
         link: link5
         model: Intel-E810XXV
       port6:
-        # s65-t37-sut1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
+        # s75-t37-sut1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:63"
         pci_address: "0000:31:00.3"
         ip4_address: "172.16.60.2"
@@ -154,7 +154,7 @@ nodes:
         link: link66
         model: Intel-E810XXV
       port7:
-        # s65-t37-sut1-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
+        # s75-t37-sut1-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f8:68"
         pci_address: "0000:4b:00.0"
         ip4_address: "172.16.70.2"
@@ -162,7 +162,7 @@ nodes:
         link: link7
         model: Intel-XXV710
       port8:
-        # s65-t37-sut1-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
+        # s75-t37-sut1-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f8:69"
         pci_address: "0000:4b:00.1"
         ip4_address: "172.16.80.2"
@@ -170,7 +170,7 @@ nodes:
         link: link88
         model: Intel-XXV710
       port9:
-        # s67-t37-sut1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        # s77-t37-sut1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:2e"
         pci_address: "0000:e3:00.0"
         ip4_address: "172.16.90.2"
@@ -178,7 +178,7 @@ nodes:
         link: link1010
         model: Mellanox-CX6DX
       port10:
-        # s67-t37-sut1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        # s77-t37-sut1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:2f"
         pci_address: "0000:e3:00.1"
         ip4_address: "172.16.100.2"
@@ -195,7 +195,7 @@ nodes:
     uio_driver: vfio-pci
     interfaces:
       port1:
-        # s66-t37-sut2-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+        # s76-t37-sut2-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:27:54"
         pci_address: "0000:17:00.0"
         ip4_address: "172.16.10.3"
@@ -203,7 +203,7 @@ nodes:
         link: link2
         model: Intel-E810CQ
       port2:
-        # s66-t37-sut2-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
+        # s76-t37-sut2-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:27:50"
         pci_address: "0000:19:00.0"
         ip4_address: "172.16.20.3"
@@ -211,7 +211,7 @@ nodes:
         link: link22
         model: Intel-E810CQ
       port3:
-        # s66-t37-sut2-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
+        # s76-t37-sut2-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:24"
         pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.3"
@@ -219,7 +219,7 @@ nodes:
         link: link4
         model: Intel-E810XXV
       port4:
-        # s66-t37-sut2-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
+        # s76-t37-sut2-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:25"
         pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.3"
@@ -227,7 +227,7 @@ nodes:
         link: link44
         model: Intel-E810XXV
       port5:
-        # s66-t37-sut2-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
+        # s76-t37-sut2-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:26"
         pci_address: "0000:31:00.2"
         ip4_address: "172.16.50.3"
@@ -235,7 +235,7 @@ nodes:
         link: link6
         model: Intel-E810XXV
       port6:
-        # s66-t37-sut2-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
+        # s76-t37-sut2-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:27"
         pci_address: "0000:31:00.3"
         ip4_address: "172.16.60.3"
@@ -243,7 +243,7 @@ nodes:
         link: link66
         model: Intel-E810XXV
       port7:
-        # s66-t37-sut2-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
+        # s76-t37-sut2-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:f4"
         pci_address: "0000:4b:00.0"
         ip4_address: "172.16.70.3"
@@ -251,7 +251,7 @@ nodes:
         link: link8
         model: Intel-XXV710
       port8:
-        # s66-t37-sut2-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
+        # s76-t37-sut2-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:f5"
         pci_address: "0000:4b:00.1"
         ip4_address: "172.16.80.3"
@@ -259,7 +259,7 @@ nodes:
         link: link88
         model: Intel-XXV710
       port9:
-        # s66-t37-sut2-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        # s76-t37-sut2-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:16"
         pci_address: "0000:e3:00.0"
         ip4_address: "172.16.100.3"
@@ -267,7 +267,7 @@ nodes:
         link: link10
         model: Mellanox-CX6DX
       port10:
-        # s66-t37-sut2-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        # s76-t37-sut2-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:17"
         pci_address: "0000:e3:00.1"
         ip4_address: "172.16.90.3"
