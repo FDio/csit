@@ -33,6 +33,23 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciAND1cAND1518bANDeth-ip4tcphttp*",
       "revId": "5dae889631bcd95bd4a5ebf4678d82f0dcdc7931",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "948188e8_6b3c5b1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-11-25T12:40:22Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_vfio_pciAND1cANDeth-ip4tcphttp*",
+      "revId": "5dae889631bcd95bd4a5ebf4678d82f0dcdc7931",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
