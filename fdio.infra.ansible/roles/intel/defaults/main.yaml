@@ -58,7 +58,7 @@ intel_800_compatibility_matrix:
   dpdk24.07:
     # https://doc.dpdk.org/guides/rel_notes/release_24_07.html
     ice: "1.14.13"
-    ddp: "1.3.46.0"
+    ddp: "1.3.45.0"
     iavf: "4.11.3"
     nvm: "4.50"
 
