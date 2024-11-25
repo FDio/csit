@@ -24,7 +24,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | container
+| Test Teardown | Tear down test | performance | container | dma
 |
 | Test Template | Local Template
 |
@@ -101,6 +101,7 @@
 | | ... | nf_chains=${1} | nf_nodes=${1} | auto_scale=${True}
 | | ... | pinning=${True}
 | | And Initialize L2 xconnect with memif pairs
+| | Additional Test Tear Down Action For dma
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
