@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | ab | nginx
 | Suite Teardown | Tear down suite | ab
 | Test Setup | Setup test
-| Test Teardown | Tear down test | nginx
+| Test Teardown | Tear down test | nginx | dma
 |
 | Test Template | Local Template
 |
