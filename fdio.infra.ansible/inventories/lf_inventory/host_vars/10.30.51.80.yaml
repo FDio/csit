@@ -45,4 +45,3 @@ docker_volumes:
     target: "/etc/sudoers"
   - source: "/usr/lib/firmware/"
     target: "/usr/lib/firmware/"
-
