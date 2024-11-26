@@ -1,7 +1,7 @@
 ---
 # file: host_vars/10.30.51.74.yaml
 
-hostname: "s64-t34-tg1"
+hostname: "s74-t34-tg1"
 grub:
   audit: "0"
   default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
@@ -29,5 +29,16 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.74"
 cpu_microarchitecture: "icelake"
 
-intel_700_matrix: "dpdk22.07"
-intel_800_matrix: "dpdk22.07"
+intel_700_matrix: "dpdk24.07"
+intel_800_matrix: "dpdk24.07"
+
+docker_tg: true
+docker_volumes:
+  - source: "/dev/hugepages"
+    target: "/dev/hugepages"
+  - source: "/dev/vfio"
+    target: "/dev/vfio"
+  - source: "/etc/sudoers"
+    target: "/etc/sudoers"
+  - source: "/usr/lib/firmware/"
+    target: "/usr/lib/firmware/"
