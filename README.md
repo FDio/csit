@@ -68,8 +68,7 @@ resources
 |── fdio.infra.pxe                  # Preboot eXecution Environment
 |── fdio.infra.terraform            # Virtual infrastructure provisioning
 |── GPL                             # Files licensed under GPL
-│   ├── traffic_profiles            # Performance tests traffic profiles
-│   └── traffic_scripts             # Functional tests traffic profiles
+│   └── traffic_profiles            # Performance tests traffic profiles
 ├── PyPI                            # PyPI packages provided by CSIT
 │   ├── jumpavg
 │   └── MLRsearch

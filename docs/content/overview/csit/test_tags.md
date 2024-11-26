@@ -193,19 +193,9 @@ descriptions.
 
 ## Test Category Tags
 
-**DEVICETEST**
-
-    All vpp_device functional test cases.
-
 **PERFTEST**
 
     All performance test cases.
-
-## VPP Device Type Tags
-
-**SCAPY**
-
-    All test cases that uses Scapy for packet generation and validation.
 
 ## Performance Type Tags
 
