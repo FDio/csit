@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
-# Copyright (c) 2023 PANTHEON.tech s.r.o.
+# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2024 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -778,24 +778,27 @@ class IPUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def add_fib_table(node, table_id, ipv6=False):
+    def add_fib_table(node, table_id, ipv6=False, create_mfib=True):
         """Create new FIB table according to ID.
 
         :param node: Node to add FIB on.
         :param table_id: FIB table ID.
         :param ipv6: Is this an IPv6 table
+        :param create_mfib: Whether to create also mfib table.
         :type node: dict
         :type table_id: int
         :type ipv6: bool
+        :type create_mfib: bool
         """
-        cmd = u"ip_table_add_del"
+        cmd = u"ip_table_add_del_v2"
         table = dict(
             table_id=int(table_id),
             is_ip6=ipv6
         )
         args = dict(
             table=table,
-            is_add=True
+            create_mfib=create_mfib,
+            is_add=True,
         )
         err_msg = f"Failed to add FIB table on host {node[u'host']}"
 
