@@ -58,7 +58,6 @@
 | Resource | resources/libraries/robot/ip/nat.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_patch.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
 | Resource | resources/libraries/robot/overlay/srv6.robot
@@ -73,7 +72,6 @@
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
 | Resource | resources/libraries/robot/shared/test_setup.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/vm.robot
 
 *** Variables ***
