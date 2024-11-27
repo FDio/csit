@@ -183,10 +183,10 @@ class Constants:
     QEMU_VM_DPDK = "/opt/dpdk-24.07"
 
     # Docker container SUT image
-    DOCKER_SUT_IMAGE_UBUNTU = "csit_sut-ubuntu2204:local"
+    DOCKER_SUT_IMAGE_UBUNTU = "csit_sut-ubuntu2404:local"
 
     # Docker container arm SUT image
-    DOCKER_SUT_IMAGE_UBUNTU_ARM = "csit_sut-ubuntu2204:local"
+    DOCKER_SUT_IMAGE_UBUNTU_ARM = "csit_sut-ubuntu2404:local"
 
     # TRex install directory.
     TREX_INSTALL_DIR = "/opt/trex-core-3.03"
