@@ -30,4 +30,4 @@ inventory_ipmi_hostname: "10.30.50.34"
 cpu_microarchitecture: "icelake"
 
 intel_800_matrix: "dpdk24.07"
-#intel_qat_matrix: true
+intel_qat_matrix: true

@@ -10,7 +10,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
-    host: 10.30.51.74
+    host: "10.30.51.74"
     arch: x86_64
     port: 6001
     username: testuser

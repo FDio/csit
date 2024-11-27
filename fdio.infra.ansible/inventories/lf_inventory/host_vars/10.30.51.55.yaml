@@ -29,7 +29,7 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.55"
 cpu_microarchitecture: "sapphirerapids"
 
-intel_800_matrix: "dpdk22.07"
+intel_800_matrix: "dpdk24.07"
 intel_dsa_matrix: true
 intel_qat_matrix: true
 
@@ -41,23 +41,5 @@ docker_volumes:
     target: "/dev/vfio"
   - source: "/etc/sudoers"
     target: "/etc/sudoers"
-  - source: "/opt/"
-    target: "/opt/"
-  - source: "/usr/bin/iperf3"
-    target: "/usr/bin/iperf3"
-  - source: "/usr/lib/x86_64-linux-gnu/libiperf.so.0"
-    target: "/usr/lib/x86_64-linux-gnu/libiperf.so.0"
-  - source: "/usr/lib/x86_64-linux-gnu/libiperf.so.0.0.0"
-    target: "/usr/lib/x86_64-linux-gnu/libiperf.so.0.0.0"
   - source: "/usr/lib/firmware/"
     target: "/usr/lib/firmware/"
-  - source: "/usr/local/bin/adf_ctl"
-    target: "/usr/local/bin/adf_ctl"
-  - source: "/etc/4xxx_dev0.conf"
-    target: "/etc/4xxx_dev0.conf"
-  - source: "/etc/4xxx_dev1.conf"
-    target: "/etc/4xxx_dev1.conf"
-  - source: "/etc/4xxx_dev2.conf"
-    target: "/etc/4xxx_dev2.conf"
-  - source: "/etc/4xxx_dev3.conf"
-    target: "/etc/4xxx_dev3.conf"
