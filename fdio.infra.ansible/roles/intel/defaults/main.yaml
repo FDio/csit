@@ -34,7 +34,7 @@ packages_by_distro:
     - "patchutils"
     - "libboost-dev"
     - "libboost-regex-dev"
-#    - "libudev-dev" http://security.ubuntu.com/ubuntu/pool/main/s/systemd/
+    #- "libudev-dev" #http://security.ubuntu.com/ubuntu/pool/main/s/systemd/
     - "yasm"
 
 packages_by_arch:
@@ -67,7 +67,7 @@ intel_dsa_compatibility_matrix:
 
 intel_qat_compatibility_matrix:
   qat2: "1.0.20-00008"
-  qat1: "4.22.0-00001"
+  qat1: "4.27.0-00006"
 
 intel_i40e_url:
   "2.25.11": "i40e%20stable/2.25.11/i40e-2.25.11.tar.gz/download"
@@ -87,3 +87,4 @@ intel_dsa_url:
 intel_qat_url:
   "1.0.20-00008": "777529/QAT20.L.1.0.20-00008.tar.gz"
   "4.22.0-00001": "780675/QAT.L.4.22.0-00001.tar.gz"
+  "4.27.0-00006": "838409/QAT.L.4.27.0-00006.tar.gz"

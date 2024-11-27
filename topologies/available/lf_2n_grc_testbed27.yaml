@@ -10,7 +10,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
-    host: 10.30.51.37
+    host: "10.30.51.37"
     arch: x86_64
     port: 6001
     username: testuser
@@ -66,7 +66,7 @@ nodes:
 #        model: Mellanox-CX556A
   DUT1:
     type: DUT
-    host: 10.30.51.36
+    host: "10.30.51.36"
     arch: aarch64
     port: 22
     uio_driver: vfio-pci
