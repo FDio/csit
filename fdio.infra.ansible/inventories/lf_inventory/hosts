@@ -7,8 +7,8 @@ all:
         10.30.51.55: #s55-t22-tg1 - sapphirerapids
         10.30.51.57: #s57-t23-tg1 - sapphirerapids
         10.30.51.59: #s59-t24-tg1 - sapphirerapids
-        10.30.51.74: #s64-t34-tg1 - icelake
-        10.30.51.77: #s67-t37-tg1 - icelake
+        10.30.51.74: #s74-t34-tg1 - icelake
+        10.30.51.77: #s77-t37-tg1 - icelake
         10.30.51.80: #s80-t38-tg1 - icelake
         10.30.51.82: #s82-t212-tg1 - icelake
         10.30.51.84: #s84-t213-tg1 - icelake
@@ -30,8 +30,8 @@ all:
         10.30.51.58: #s58-t24-sut1 - sapphirerapids
         10.30.51.72: #s72-t34-sut1 - altra
         10.30.51.73: #s73-t34-sut2 - altra
-        10.30.51.75: #s65-t37-sut1 - icelake
-        10.30.51.76: #s66-t37-sut2 - icelake
+        10.30.51.75: #s75-t37-sut1 - icelake
+        10.30.51.76: #s76-t37-sut2 - icelake
         10.30.51.78: #s78-t38-sut1 - icelake
         10.30.51.79: #s79-t38-sut2 - icelake
         10.30.51.81: #s81-t212-sut1 - icelake
@@ -57,8 +57,8 @@ all:
         10.30.51.51: #s51-nomad - skylake
         10.30.51.70: #s70-nomad - altra
         10.30.51.71: #s71-nomad - altra
-        10.30.51.91: #s58-nomad - neoverse n1
-        10.30.51.92: #s59-nomad - neoverse n1
+        10.30.51.91: #s91-nomad - neoverse n1
+        10.30.51.92: #s92-nomad - neoverse n1
     dev:
       hosts:
         10.30.51.38: #fdio-marvell-dev - thunderx 88xx
