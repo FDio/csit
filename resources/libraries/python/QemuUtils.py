@@ -103,11 +103,13 @@ class QemuUtils:
             self._temp[u"qmp"] = f"/run/qmp_{qemu_id}.sock"
             self._temp[u"qga"] = f"/run/qga_{qemu_id}.sock"
         elif img == Constants.QEMU_VM_KERNEL:
+            exec_cmd_no_error(node, f"ls -1 {Constants.QEMU_VM_KERNEL}*")
             self._opt[u"img"], _ = exec_cmd_no_error(
                 node, f"ls -1 {Constants.QEMU_VM_KERNEL}* | tail -1",
                 message=u"Qemu Kernel VM image not found!"
             )
             self._temp[u"ini"] = f"/etc/vm_init_{qemu_id}.conf"
+            exec_cmd_no_error(node, f"ls -1 {Constants.QEMU_VM_KERNEL_INITRD}*")
             self._opt[u"initrd"], _ = exec_cmd_no_error(
                 node, f"ls -1 {Constants.QEMU_VM_KERNEL_INITRD}* | tail -1",
                 message=u"Qemu Kernel initrd image not found!"
