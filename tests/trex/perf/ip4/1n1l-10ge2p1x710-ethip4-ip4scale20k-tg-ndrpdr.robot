@@ -57,6 +57,7 @@
 | ${rts_per_flow}= | ${10000}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4-ip4dst${rts_per_flow}
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
