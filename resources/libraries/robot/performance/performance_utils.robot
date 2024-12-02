@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -481,7 +481,7 @@
 | | Set Test Variable | ${telemetry_rate} | mrr
 | | Set Test Variable | ${telemetry_export} | ${True}
 | | ${results}= | Send iPerf3 traffic at specified rate
-| | ... | ${trial_duration} | ${None} | ${None}
+| | ... | ${trial_duration} | ${max_rate} | ${frame_size}
 | | ... | ${trial_multiplicity} | ${traffic_directions}
 | | ... | export_mrr_unit=bps
 | | Set Test Message | ${\n}iPerf3 trial results
@@ -533,6 +533,7 @@
 | | ${cpu_skip_cnt}= | Set Variable If | '${vm_status}' == 'PASS'
 | | ... | ${CPU_CNT_SYSTEM}
 | | ... | ${${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${cpu_count_int} + ${vth}}
+| | ${cpu_skip_cnt}= | Evaluate | ${cpu_skip_cnt} + ${cpu_count_int}
 | |
 | | Initialize iPerf Server
 | | ... | ${nodes['${iperf_server_node}']}
@@ -573,13 +574,11 @@
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
 | | | ... | async_call=False
-| | | ... | warmup_time=0
 | | | ... | traffic_directions=${traffic_directions}
 | | | ... | namespace=${iperf_client_namespace}
 | | | ... | udp=${iperf_client_udp}
 | | | ... | host=${iperf_server_bind}
 | | | ... | bind=${iperf_client_bind}
-| | | ... | affinity=${iperf_client_affinity}
 | | | ${conv} = | Convert To Number | ${rr['sum_received']['bits_per_second']}
 | | | Append Mrr Value | ${conv} | ${export_mrr_unit}
 | | | ${conv} = | Evaluate | ${conv} / ${1000} / ${1000} / ${1000}
