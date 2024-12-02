@@ -101,7 +101,7 @@
 | | And VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.1 | 30
 | | Set Test Variable | ${iperf_server_pf_key} | ${DUT1_pf1}[0]
-| | Then Traffic should pass with maximum rate on iPerf3
+| | Then Ndrpdr with iPerf3 traffic
 
 *** Test Cases ***
 | 146B-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
