@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -134,8 +134,8 @@ class Testcase:
         :rtype: Testcase
         """
         template_string = f'''
-| 128KB-${{cores_str}}c-{suite_id}
-| | [Tags] | 128KB | ${{cores_str}}C
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
 | | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
