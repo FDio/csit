@@ -84,6 +84,7 @@ autoinstall:
     layout: us
     toggle: null
     variant: ''
+  late-commands:
     - curtin in-target --target=/target -- systemctl enable docker
   locale: en_US.UTF-8
   network:
