@@ -34,7 +34,6 @@ packages_by_distro:
     - "patchutils"
     - "libboost-dev"
     - "libboost-regex-dev"
-    #- "libudev-dev" #http://security.ubuntu.com/ubuntu/pool/main/s/systemd/
     - "yasm"
 
 packages_by_arch:
@@ -66,7 +65,7 @@ intel_dsa_compatibility_matrix:
   dsa: "4.0"
 
 intel_qat_compatibility_matrix:
-  qat2: "1.0.20-00008"
+  qat2: "1.1.50-00003"
   qat1: "4.27.0-00006"
 
 intel_i40e_url:
@@ -85,6 +84,5 @@ intel_dsa_url:
   "4.0": "https://github.com/intel/idxd-config/archive/refs/tags/accel-config-v4.0.tar.gz"
 
 intel_qat_url:
-  "1.0.20-00008": "777529/QAT20.L.1.0.20-00008.tar.gz"
-  "4.22.0-00001": "780675/QAT.L.4.22.0-00001.tar.gz"
+  "1.1.50-00003": "822703/QAT20.L.1.1.50-00003.tar.gz"
   "4.27.0-00006": "838409/QAT.L.4.27.0-00006.tar.gz"

@@ -47,9 +47,9 @@ variable "ansible_provision_pwd" {
   default     = "Csit1234"
 }
 
-source "amazon-ebs" "csit_ubuntu_jammy_arm_sut" {
-  ami_name        = "csit_ubuntu_jammy_arm_sut"
-  ami_description = "CSIT SUT image based on Ubuntu jammy"
+source "amazon-ebs" "csit_ubuntu_noble_arm_sut" {
+  ami_name        = "csit_ubuntu_noble_arm_sut"
+  ami_description = "CSIT SUT image based on Ubuntu noble"
   ena_support     = true
   instance_type   = "c7gn.4xlarge"
   launch_block_device_mappings {
@@ -65,9 +65,9 @@ source "amazon-ebs" "csit_ubuntu_jammy_arm_sut" {
 }
 
 build {
-  name = "csit_ubuntu_jammy_arm_sut-packer"
+  name = "csit_ubuntu_noble_arm_sut-packer"
   sources = [
-    "source.amazon-ebs.csit_ubuntu_jammy_arm_sut"
+    "source.amazon-ebs.csit_ubuntu_noble_arm_sut"
   ]
   provisioner "shell" {
     inline = var.first_run_commands

@@ -47,9 +47,9 @@ variable "ansible_provision_pwd" {
   default     = "Csit1234"
 }
 
-source "amazon-ebs" "csit_ubuntu_jammy_x86_sut" {
-  ami_name        = "csit_ubuntu_jammy_x86_sut"
-  ami_description = "CSIT SUT image based on Ubuntu Jammy"
+source "amazon-ebs" "csit_ubuntu_noble_x86_sut" {
+  ami_name        = "csit_ubuntu_noble_x86_sut"
+  ami_description = "CSIT SUT image based on Ubuntu noble"
   ena_support     = true
   instance_type   = "c6in.4xlarge"
   launch_block_device_mappings {
@@ -64,9 +64,9 @@ source "amazon-ebs" "csit_ubuntu_jammy_x86_sut" {
   ssh_username     = "ubuntu"
 }
 
-source "amazon-ebs" "csit_ubuntu_jammy_x86_tg" {
-  ami_name        = "csit_ubuntu_jammy_x86_tg"
-  ami_description = "CSIT TG image based on Ubuntu Jammy"
+source "amazon-ebs" "csit_ubuntu_noble_x86_tg" {
+  ami_name        = "csit_ubuntu_noble_x86_tg"
+  ami_description = "CSIT TG image based on Ubuntu noble"
   ena_support     = true
   instance_type   = "c6in.4xlarge"
   launch_block_device_mappings {
@@ -82,9 +82,9 @@ source "amazon-ebs" "csit_ubuntu_jammy_x86_tg" {
 }
 
 build {
-  name = "csit_ubuntu_jammy_x86_sut-packer"
+  name = "csit_ubuntu_noble_x86_sut-packer"
   sources = [
-    "source.amazon-ebs.csit_ubuntu_jammy_x86_sut"
+    "source.amazon-ebs.csit_ubuntu_noble_x86_sut"
   ]
   provisioner "shell" {
     inline = var.first_run_commands
@@ -105,9 +105,9 @@ build {
 }
 
 build {
-  name = "csit_ubuntu_jammy_x86_tg-packer"
+  name = "csit_ubuntu_noble_x86_tg-packer"
   sources = [
-    "source.amazon-ebs.csit_ubuntu_jammy_x86_tg"
+    "source.amazon-ebs.csit_ubuntu_noble_x86_tg"
   ]
   provisioner "shell" {
     inline = var.first_run_commands
