@@ -37,7 +37,7 @@
   with_items:
     - "wget http://security.ubuntu.com/ubuntu/pool/main/s/systemd/libudev-dev_255.4-1ubuntu8.4_amd64.deb"
     - "dpkg -i ./libudev-dev_255.4-1ubuntu8.4_amd64.deb"
-    - "apt install libudev-dev nasm libnl-genl-3-dev"
+    - "apt install -y libudev-dev nasm libnl-genl-3-dev"
     - "./configure --enable-icp-sriov=host"
     - "make"
     - "make install"

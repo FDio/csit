@@ -28,7 +28,6 @@ sysctl:
 
 inventory_ipmi_hostname: "10.30.50.58"
 cpu_microarchitecture: "sapphirerapids"
-docker_sut: true
 
 intel_800_matrix: "dpdk24.07"
 mellanox_matrix: "dpdk24.07"

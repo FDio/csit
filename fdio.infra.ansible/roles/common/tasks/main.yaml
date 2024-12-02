@@ -1,16 +1,6 @@
 ---
 # file: tasks/main.yaml
 
-- name: Add permanent proxy settings
-  ansible.builtin.lineinfile:
-    path: "/etc/environment"
-    state: "present"
-    line: "{{ item.key }}={{ item.value }}"
-  with_dict: "{{ proxy_env }}"
-  when: proxy_env is defined
-  tags:
-    - common-conf-proxy
-
 - name: Update Repositories Cache
   ansible.builtin.apt:
     update_cache: true
