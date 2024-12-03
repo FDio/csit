@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cd1b83c_190caa03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-03T12:21:54Z",
+      "side": 1,
+      "message": "For verify, see this [0] job. #1 and #2 show the issue, #3 in progress shows this does not fail (that early).\n\n[0] https://jenkins.fd.io/view/vpp/job/vpp-csit-bisect-master-ubuntu2404-x86_64-3n-icx/",
+      "revId": "833c503f1f963884a633bb6fb83a6e3360dd0ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
