@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -104,6 +104,9 @@ get_test_tag_string || die
 # Unfortunately, git bisect only works at the top of the repo.
 cd "${VPP_DIR}" || die
 
+# Local cleanup, expected to fail in CI.
+git branch -D "earliest" "middle" "latest" || true
+
 # Save the current commit.
 git checkout -b "latest"
 # Save the lower bound commit.
@@ -150,7 +153,6 @@ git describe || die
 build_vpp_ubuntu "EARLIEST" || die
 set_aside_build_artifacts "earliest" || die
 git checkout "middle" || die "Failed to checkout middle commit."
-git branch -D "earliest" "latest" || die "Failed to remove branches."
 # Done with repo manipulation for now, testing commences.
 initialize_csit_dirs "earliest" "middle" "latest" || die
 set_perpatch_dut || die
@@ -181,8 +183,5 @@ untrap_and_unreserve_testbed || die
 
 # See function documentation for the logic in the loop.
 main_bisect_loop || die
-# In worst case, the middle branch is still checked out.
-# TODO: Is there a way to ensure "middle" branch is always deleted?
-git branch -D "middle" || true
 # Delete symlinks to prevent duplicate archiving.
 rm -vrf "csit_early" "csit_late" "csit_mid"
