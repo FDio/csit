@@ -54,7 +54,8 @@ class Iperf3:
         command = f"iperf3 --version | head -1"
         message = u"Get iPerf version failed!"
         stdout, _ = exec_cmd_no_error(node, command, message=message)
-        return stdout.strip()
+        version = stdout.strip()
+        return version if version else "FIXME"
 
     def initialize_iperf_server(
             self, node, pf_key, interface, bind, bind_gw, bind_mask,
