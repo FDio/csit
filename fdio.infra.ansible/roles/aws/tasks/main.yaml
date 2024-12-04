@@ -1,19 +1,19 @@
 ---
 # file: tasks/main.yaml
 
-- name: Edit repositories
+- name: "Edit repositories"
   include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
   tags:
     - aws-edit-repo
 
-- name: Prerequisites
+- name: "Prerequisites"
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - aws-inst-prerequisites
 
-- name: Load Kernel Modules By Default
+- name: "Load Kernel Modules By Default"
   ansible.builtin.lineinfile:
     path: "/etc/modules"
     state: "present"
@@ -24,7 +24,7 @@
   tags:
     - aws-load-kernel-modules
 
-- name: Add Kernel Modules Options (igb_uio)
+- name: "Add Kernel Modules Options (igb_uio)"
   ansible.builtin.lineinfile:
     path: "/etc/modprobe.d/igb_uio.conf"
     state: "present"
@@ -35,7 +35,7 @@
   tags:
     - aws-load-kernel-modules
 
-- name: Add Kernel Modules Options (vfio-pci)
+- name: "Add Kernel Modules Options (vfio-pci)"
   ansible.builtin.lineinfile:
     path: "/etc/modprobe.d/vfio-noiommu.conf"
     state: "present"
@@ -46,7 +46,7 @@
   tags:
     - aws-load-kernel-modules
 
-- name: Kernel Parameters
+- name: "Kernel Parameters"
   ansible.builtin.lineinfile:
     path: "/etc/default/grub"
     state: "present"
@@ -59,17 +59,15 @@
 
 - meta: flush_handlers
 
-- name: Disable Password Login
+- name: "Disable Password Login"
   ansible.builtin.lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^PasswordAuthentication yes"
     line: "PasswordAuthentication no"
-  notify:
-    - "Restart SSHd"
   tags:
     - conf-ssh
 
-- name: Recursively Delete Other Configs
+- name: "Recursively Delete Other Configs"
   ansible.builtin.file:
     path: "/etc/ssh/sshd_config.d"
     state: "absent"
@@ -119,7 +117,7 @@
 #  tags:
 #    - aws-vfio-patch
 
-- name: Adjust nr_hugepages
+- name: "Adjust nr_hugepages"
   ansible.builtin.sysctl:
     name: "vm.nr_hugepages"
     value: "8192"
@@ -129,7 +127,7 @@
   tags:
     - aws-set-hugepages
 
-- name: Shutdown host with delay
+- name: "Shutdown host with delay"
   ansible.builtin.command: "/sbin/shutdown -P +720"
   tags:
     - aws-set-self-terminate

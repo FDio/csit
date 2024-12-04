@@ -12,6 +12,8 @@ grub:
   nosoftlockup: true
   processor.max_cstate: "1"
   rcu_nocbs: "1-71"
+  cpufreq.off: "1"
+  cpuidle.off: "1"
 sysctl:
   kernel:
     watchdog_cpumask: "0,71"
