@@ -1,25 +1,25 @@
 ---
-# file: roles/aws/handlers/main.yaml
+# file: handlers/main.yaml
 
-- name: Reload systemd-modules
+- name: "Reload systemd-modules"
   systemd:
     name: "systemd-modules-load"
     state: "restarted"
   tags:
     - reload-systemd-modules
 
-- name: Update GRUB
-  ansible.builtin.command: update-grub
+- name: "Update GRUB"
+  ansible.builtin.command: "update-grub"
   tags:
     - update-grub
 
-- name: Reboot Server
+- name: "Reboot Server"
   ansible.builtin.reboot:
     reboot_timeout: 3600
   tags:
     - reboot-server
 
-- name: Restart SSHd
+- name: "Restart SSHd"
   ansible.builtin.service:
-    name: sshd
+    name: "sshd"
     state: restarted
