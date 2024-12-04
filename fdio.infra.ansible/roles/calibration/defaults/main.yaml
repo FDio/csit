@@ -16,6 +16,7 @@ kernel_version_by_distro_by_arch:
     noble:
       x86_64:
         - "6.8.0-45-generic"
+        - "6.8.0-1016-aws"
         - "5.15.0-1000-aws"
         - "5.4.0-1009-aws"
       aarch64:

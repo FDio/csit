@@ -60,7 +60,7 @@ source "amazon-ebs" "csit_ubuntu_noble_arm_sut" {
   force_deregister = true
   region           = "eu-west-1"
   skip_create_ami  = false
-  source_ami       = "ami-0a1b36900d715a3ad"
+  source_ami       = "ami-099a546c02844706e"
   ssh_username     = "ubuntu"
 }
 
