@@ -389,6 +389,16 @@
 | | Set To Dictionary | ${iperf3_client_attr} | udp | ${udp}
 | | Set To Dictionary | ${iperf3_client_attr} | length | ${length}
 
+| Update Iperf3 Client Attributes
+| | [Documentation]
+| | ... | FIXME.
+| |
+| | [Arguments] | ${duration} | ${load}
+| |
+| | ${bandwidth} = | Evaluate | 8 * ${load}
+| | Set To Dictionary | ${iperf3_client_attr} | bandwidth | ${bandwidth}
+| | Set To Dictionary | ${iperf3_client_attr} | time | ${duration}
+
 | Run hoststack test program on DUT
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
@@ -574,6 +584,76 @@
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
+| | Then Set test message | ${client_output}
+| | Return From Keyword | ${client_defer_fail}
+
+| Ndrpdr With Hoststack Iperf3 Test
+| | [Documentation]
+| | ... | FIXME.
+| |
+| | Set To Dictionary | ${iperf3_client_attr} | ip_address
+| | ... | ${dut2_if1_ip4_addr}
+| | Configure VPP Hoststack Attributes on all DUTs
+| | ${iperf3_server}= | Get Iperf3 Command | ${iperf3_server_attr}
+| | ${skip_cnt}= | Evaluate
+| | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
+| | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
+| | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_server_attr}[cpu_cnt]
+| | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_client_attr}[cpu_cnt]
+| | ${min_rate_soft} = | Get Min Rate Soft
+| | ${max_rate} = | Get Max Rate
+| | ${loss_ratio} = | Get Packet Loss Ratio
+| | Set Goals For Search
+| | ... | min_load=${min_rate_soft}
+| | ... | max_load=${max_rate}
+| | ... | loss_ratio=${loss_ratio}
+| | ... | relative_width=${0.005}
+| | ... | initial_trial_duration=${1.0}
+| | ... | final_trial_duration=${1.0}
+| | ... | duration_sum=${21.0}
+| | ... | expansion_coefficient=${2}
+| | ... | preceding_targets=${2}
+| | ... | search_duration_max=${1200.0}
+| | ${measurement} = | Set Variable | ${None}
+| | FOR | ${i} | IN RANGE | 999
+| | | ${inputs} | ${results} = | Iterate Search | ${measurement}
+| | | Exit For Loop IF | not ${inputs}
+| | | ${duration} | ${load} = | Set Variable | ${inputs}
+| | | Update Iperf3 Client Attributes | ${duration} | ${load}
+| | | ${server_pid} = | Run hoststack test program on DUT
+| | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
+| | | ... | ${iperf3_server_attr}[namespace] | ${core_list}
+| | | ... | ${iperf3_server_attr}[cfg_vpp_feature] | ${iperf3_server}
+| | | ${iperf3_client} = | Get Iperf3 Command | ${iperf3_client_attr}
+| | | ${client_pid} = | Run hoststack test program on DUT
+| | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
+| | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
+| | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
+| | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | | ... | ${iperf3_client} | ${dut2} | ${iperf3_server}
+| | | ${client_defer_fail} | ${client_output} =
+| | | ... | Analyze hoststack test program output | ${dut1} | Client
+| | | ... | ${vpp_nsim_attr} | ${iperf3_client}
+| | | Run Keyword If | ${client_defer_fail}
+| | | ... | Fail | Client failed: ${client_output}
+| | | ${obj} = | Evaluate | json.loads('''${client_output}''') | modules=json
+| | | ${sum_received} = | Set Variable | ${obj}["end"]["sum_received"]
+| | | ${bps} = | Convert To Number | ${sum_received["bits_per_second"]}
+| | | ${sec} = | Convert To Number | ${sum_received["seconds"]}
+| | | ${measurement} = | Iperf Result Into Measurement | ${bps} | ${sec}
+| | END
+| | ${ndr} | ${pdr} = | Display result of NDRPDR search | ${results}
+| | # FIXME: Json exports
+#| | FOR | ${action} | IN | @{stat_pre_trial}
+#| | | Run Keyword | Additional Statistics Action For ${action}
+#| | END
+| | # Stat trials here.
+#| | FOR | ${action} | IN | @{stat_post_trial}
+#| | | Run Keyword | Additional Statistics Action For ${action}
+#| | END
 | | Then Set test message | ${client_output}
 | | Return From Keyword | ${client_defer_fail}
 
