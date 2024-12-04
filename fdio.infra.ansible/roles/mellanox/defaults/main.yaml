@@ -22,9 +22,6 @@ mellanox_download_url: "http://content.mellanox.com/ofed"
 mellanox_extract_dir: "/opt"
 
 mellanox_compatibility_matrix:
-  dpdk22.07:
-    # https://doc.dpdk.org/guides/rel_notes/release_22_07.html
-    ofed: "5.9-0.5.6.0"
   dpdk24.07:
     # https://doc.dpdk.org/guides/rel_notes/release_24_07.html
     ofed: "24.04-0.7.0.0"

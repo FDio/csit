@@ -604,17 +604,10 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
   |                                                                    |                             |
 ```
 
-## Linux cmdline
-
-```
-$ cat /proc/cmdline
-BOOT_IMAGE=/boot/vmlinuz-5.15.0-46-generic root=UUID=cac1254f-9426-4ea6-a8db-2554f075db99 ro amd_iommu=on audit=0 default_hugepagesz=2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768 hpet=disable iommu=pt isolcpus=1-15,17-31,33-47,49-63 nmi_watchdog=0 nohz_full=off nosoftlockup numa_balancing=disable processor.max_cstate=0 rcu_nocbs=1-15,17-31,33-47,49-63 tsc=reliable console=ttyS0,115200n8 quiet
-```
-
 ## EPYC zn2 Server Firmware Inventory
 
 ```
 Host.          IPMI IP.     BMC.      BIOS. CPLD.     CPU Microcode. PCI Bus. X710 Firmware. XXV710 Firmware. i40e.    CX-5 Firmware. mlx5_core
-s60-t210-sut1. 10.30.55.24. 03.10.04. 1.1a. 02.c2.00. 0x8301038.     ?.       9.20.          9.20.            2.22.20. 16.35.2000.    23.07-0.5.0.
-s61-t210-tg1.  10.30.55.25. 03.10.04. 1.1a. 02.c2.00. 0x8301038.     ?.       8.30.          8.30.            2.19.3.  16.32.1010.    5.9-0.5.5.
+s60-t210-sut1. 10.30.55.24. 03.10.04. 1.1a. 02.c2.00. 0x8301038.     ?.       9.20.          9.20.            2.25.11. 16.35.2000.    24.04-0.7.0.0.
+s61-t210-tg1.  10.30.55.25. 03.10.04. 1.1a. 02.c2.00. 0x8301038.     ?.       8.30.          8.30.            2.25.11. 16.32.1010.    24.04-0.7.0.0.
 ```
