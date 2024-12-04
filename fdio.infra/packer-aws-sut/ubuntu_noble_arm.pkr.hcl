@@ -1,4 +1,5 @@
 <<<<<<< HEAD   (7022a1 fix(bisect): Adjust bash script for Ubuntu 24.04)
+=======
 packer {
   required_plugins {
     amazon = {
@@ -48,44 +49,27 @@ variable "ansible_provision_pwd" {
   default     = "Csit1234"
 }
 
-source "amazon-ebs" "csit_ubuntu_jammy_x86_sut" {
-  ami_name        = "csit_ubuntu_jammy_x86_sut"
-  ami_description = "CSIT SUT image based on Ubuntu Jammy"
+source "amazon-ebs" "csit_ubuntu_noble_arm_sut" {
+  ami_name        = "csit_ubuntu_noble_arm_sut"
+  ami_description = "CSIT SUT image based on Ubuntu noble"
   ena_support     = true
-  instance_type   = "c6in.4xlarge"
+  instance_type   = "c7gn.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
     volume_type = "gp2"
   }
   force_deregister = true
-  region           = "eu-central-1"
+  region           = "eu-west-1"
   skip_create_ami  = false
-  source_ami       = "ami-026c3177c9bd54288"
-  ssh_username     = "ubuntu"
-}
-
-source "amazon-ebs" "csit_ubuntu_jammy_x86_tg" {
-  ami_name        = "csit_ubuntu_jammy_x86_tg"
-  ami_description = "CSIT TG image based on Ubuntu Jammy"
-  ena_support     = true
-  instance_type   = "c6in.4xlarge"
-  launch_block_device_mappings {
-    device_name = "/dev/sda1"
-    volume_size = 40
-    volume_type = "gp2"
-  }
-  force_deregister = true
-  region           = "eu-central-1"
-  skip_create_ami  = false
-  source_ami       = "ami-026c3177c9bd54288"
+  source_ami       = "ami-099a546c02844706e"
   ssh_username     = "ubuntu"
 }
 
 build {
-  name = "csit_ubuntu_jammy_x86_sut-packer"
+  name = "csit_ubuntu_noble_arm_sut-packer"
   sources = [
-    "source.amazon-ebs.csit_ubuntu_jammy_x86_sut"
+    "source.amazon-ebs.csit_ubuntu_noble_arm_sut"
   ]
   provisioner "shell" {
     inline = var.first_run_commands
@@ -93,10 +77,10 @@ build {
   provisioner "ansible" {
     playbook_file = var.ansible_file_path
     user          = "ubuntu"
-    use_proxy     = false
     groups        = ["sut_aws"]
     extra_arguments = [
       "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
+      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
       "--extra-vars", "aws=true"
     ]
   }
@@ -104,28 +88,4 @@ build {
     inline = var.last_run_commands
   }
 }
-
-build {
-  name = "csit_ubuntu_jammy_x86_tg-packer"
-  sources = [
-    "source.amazon-ebs.csit_ubuntu_jammy_x86_tg"
-  ]
-  provisioner "shell" {
-    inline = var.first_run_commands
-  }
-  provisioner "ansible" {
-    playbook_file = var.ansible_file_path
-    user          = "ubuntu"
-    use_proxy     = false
-    groups        = ["tg_aws"]
-    extra_arguments = [
-      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
-      "--extra-vars", "aws=true"
-    ]
-  }
-  provisioner "shell" {
-    inline = var.last_run_commands
-  }
-}
-=======
 >>>>>>> CHANGE (c573ac feat(infra): AWS -> Noble)
