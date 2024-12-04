@@ -32,6 +32,7 @@
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.IrqUtil
+| Library | resources.libraries.python.mlr_integration.MlrSearch
 | Library | resources.libraries.python.model.ExportJson
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Namespaces
