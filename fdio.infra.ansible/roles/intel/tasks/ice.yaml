@@ -54,15 +54,6 @@
   tags:
     - intel-inst
 
-- name: Extract Dynamic Device Personalization (DDP) Package
-  ansible.builtin.unarchive:
-    remote_src: true
-    src: "{{ intel_extract_dir }}/ice_comms-{{ ddp }}.zip"
-    dest: "{{ intel_extract_dir }}/"
-  register: intel_driver_extracted
-  tags:
-    - intel-inst
-
 - name: Copy Dynamic Device Personalization (DDP) Package
   ansible.builtin.copy:
     src: "{{ intel_extract_dir }}/ice_comms-{{ ddp }}.pkg"
