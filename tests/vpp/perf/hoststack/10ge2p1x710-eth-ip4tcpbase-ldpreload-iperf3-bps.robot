@@ -60,7 +60,7 @@
 | | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
-| | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
+| | ${defer_fail}= | Ndrpdr With Hoststack Iperf3 Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
 | | ... | Defered Failure From Hoststack Iperf3 Test Program
 

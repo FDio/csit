@@ -330,6 +330,7 @@ class MultipleLossRatioSearch:
             if not width or width < target.discrete_width:
                 width = target.discrete_width
         self.debug(f"Init ratio {ratio} duration {duration} width {width}")
+        raise RuntimeError("Is debug visible?")
         if self.config.warmup_duration:
             self.debug("Warmup trial.")
             await self._measure(self.config.warmup_duration, max_load)
