@@ -365,7 +365,8 @@ class HoststackUtil():
 
     @staticmethod
     def analyze_hoststack_test_program_output(
-            node, role, nsim_attr, program):
+        node, role, nsim_attr, program, export=False,
+    ):
         """Gather HostStack test program output and check for errors.
 
         The [defer_fail] return bool is used instead of failing immediately
@@ -374,6 +375,7 @@ class HoststackUtil():
         is true, then the string returned is debug output instead of
         JSON formatted test program results.
 
+        FIXME export
         :param node: DUT node.
         :param role: Role (client|server) of test program.
         :param nsim_attr: Network Simulation Attributes.
@@ -429,10 +431,11 @@ class HoststackUtil():
                 json_end = program_stdout.find(u',\n  "closing"')
                 json_results = f"{program_stdout[json_start:json_end]}\n}}"
                 program_json = json.loads(json_results)
-                export_hoststack_results(
-                    bandwidth=program_json["rx_bits_per_second"],
-                    duration=float(program_json["time"])
-                )
+                if export:
+                    export_hoststack_results(
+                        bandwidth=program_json["rx_bits_per_second"],
+                        duration=float(program_json["time"])
+                    )
             else:
                 test_results += u"Invalid test data output!\n" + program_stdout
                 return (True, test_results)
@@ -443,11 +446,12 @@ class HoststackUtil():
                 retransmits = program_json["retransmits"]
             except KeyError:
                 retransmits = None
-            export_hoststack_results(
-                bandwidth=program_json["bits_per_second"],
-                duration=program_json["seconds"],
-                retransmits=retransmits
-            )
+            if export:
+                export_hoststack_results(
+                    bandwidth=program_json["bits_per_second"],
+                    duration=program_json["seconds"],
+                    retransmits=retransmits
+                )
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
                             program_stdout
