@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed826e04_6410084c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-05T09:18:38Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest tcp_cpsANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-1_21_5",
+      "revId": "d8341ba278e8e0ea4960306f43e7fd7c871dc1d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
