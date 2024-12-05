@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "862c06b0_35467be1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-05T14:00:10Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqAND1cAND1518bANDethip4-ip4base-2vhost-iperf3",
+      "revId": "64df7df076e6b9e37695918ef7aa6b527ad0647d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
