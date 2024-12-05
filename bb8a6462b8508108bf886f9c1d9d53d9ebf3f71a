@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest nic_intel-e810cqAND1cANDgso_true",
       "revId": "bb8a6462b8508108bf886f9c1d9d53d9ebf3f71a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c534527_4f6e2d6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-05T10:57:42Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqAND1cANDethip4-ip4base-2vhost*-iperf3",
+      "revId": "bb8a6462b8508108bf886f9c1d9d53d9ebf3f71a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
