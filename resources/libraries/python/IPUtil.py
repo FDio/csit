@@ -14,8 +14,6 @@
 
 """Common IP utilities library."""
 
-import re
-
 from enum import IntEnum
 
 from ipaddress import ip_address, ip_network
@@ -395,24 +393,17 @@ class IPUtil:
         :rtype: str
         :raises RuntimeError: If cannot get the information about interfaces.
         """
-        regex_intf_info = \
-            r"pci@([0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}.[0-9a-f])\s" \
-            r"*([a-zA-Z0-9]*)\s*network"
-
-        cmd = u"lshw -class network -businfo"
-        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
+        cmd = f"grep '{pci_addr}' /sys/class/net/*/device/uevent"
+        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30)
         if ret_code != 0:
+            return None
+
+        try:
+            stdout.split("/")[4]
+        except IndexError:
             raise RuntimeError(
                 f"Could not get information about interfaces:\n{stderr}"
             )
-
-        for line in stdout.splitlines()[2:]:
-            try:
-                if re.search(regex_intf_info, line).group(1) == pci_addr:
-                    return re.search(regex_intf_info, line).group(2)
-            except AttributeError:
-                continue
-        return None
 
     @staticmethod
     def set_linux_interface_up(
