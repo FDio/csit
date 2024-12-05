@@ -394,16 +394,12 @@ class IPUtil:
         :raises RuntimeError: If cannot get the information about interfaces.
         """
         cmd = f"grep '{pci_addr}' /sys/class/net/*/device/uevent"
-        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30)
-        if ret_code != 0:
-            return None
-
+        msg = "Could not get information about interfaces"
+        stdout, stderr = exec_cmd_no_error(node, cmd, timeout=30, err_msg=msg)
         try:
-            stdout.split("/")[4]
+            return stdout.split("/")[4]
         except IndexError:
-            raise RuntimeError(
-                f"Could not get information about interfaces:\n{stderr}"
-            )
+            raise RuntimeError(f"{msg}:\n{stderr}")
 
     @staticmethod
     def set_linux_interface_up(
