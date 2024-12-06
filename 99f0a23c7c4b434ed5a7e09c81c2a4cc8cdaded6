@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest tcp_cpsANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-1_21_5",
       "revId": "99f0a23c7c4b434ed5a7e09c81c2a4cc8cdaded6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aeec810_c61f128d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-06T09:57:52Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-spr/164/ : SUCCESS\n\nAs expected, no change when interface exists.",
+      "revId": "99f0a23c7c4b434ed5a7e09c81c2a4cc8cdaded6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
