@@ -224,6 +224,7 @@ class MultipleLossRatioSearch:
             goals=self.config.goals,
             rounding=self.rounding,
         )
+        self.debug(f"Scaling targets: {self.scaling.targets}")
         self.database = MeasurementDatabase(self.scaling.targets)
         self.stop_time = time.monotonic() + self.config.search_duration_max
         result0, result1 = await self._run_initial_trials()
