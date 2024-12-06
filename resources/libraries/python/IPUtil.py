@@ -383,27 +383,23 @@ class IPUtil:
 
     @staticmethod
     def get_linux_interface_name(node, pci_addr):
-        """Get the interface name.
+        """Get Linux the interface name.
 
         :param node: VPP/TG node.
-        :param pci_addr: PCI address
+        :param pci_addr: PCI address.
         :type node: dict
         :type pci_addr: str
-        :returns: Interface name
+        :returns: Interface name as reported by Linux.
         :rtype: str
-        :raises RuntimeError: If cannot get the information about interfaces.
+        :raises RuntimeError: If cannot get information about the interface.
         """
         cmd = f"grep '{pci_addr}' /sys/class/net/*/device/uevent"
-        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30)
-        if ret_code != 0:
-            return None
-
+        msg = "Interface not found."
+        stdout, stderr = exec_cmd_no_error(node, cmd, message=msg)
         try:
             return stdout.split("/")[4]
         except IndexError:
-            raise RuntimeError(
-                f"Could not get information about interfaces:\n{stderr}"
-            )
+            raise RuntimeError(f"Error parsing for interface name:\n{stderr}")
 
     @staticmethod
     def set_linux_interface_up(
