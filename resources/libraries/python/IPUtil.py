@@ -393,6 +393,7 @@ class IPUtil:
         :rtype: str
         :raises RuntimeError: If cannot get the information about interfaces.
         """
+        return None  # Simulated failure of get_linux_interface_name.
         cmd = f"grep '{pci_addr}' /sys/class/net/*/device/uevent"
         ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30)
         if ret_code != 0:
