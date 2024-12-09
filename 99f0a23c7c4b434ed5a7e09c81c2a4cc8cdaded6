@@ -50,6 +50,23 @@
       "message": "I need None",
       "revId": "99f0a23c7c4b434ed5a7e09c81c2a4cc8cdaded6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52f61298_200cc090",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-12-09T06:17:44Z",
+      "side": 1,
+      "message": "If this is called from robot, how do you bypass RuntimeError?",
+      "revId": "99f0a23c7c4b434ed5a7e09c81c2a4cc8cdaded6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
