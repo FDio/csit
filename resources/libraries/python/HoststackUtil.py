@@ -265,6 +265,8 @@ class HoststackUtil():
               f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
+            exec_cmd_no_error(node, "which iperf3", sudo=True)
+            exec_cmd_no_error(node, "iperf3 --version", sudo=True)
             exec_cmd_no_error(node, cmd, sudo=True)
             return DUTSetup.get_pid(node, program_name)[0]
         except RuntimeError:
