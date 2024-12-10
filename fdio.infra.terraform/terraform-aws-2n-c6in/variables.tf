@@ -161,7 +161,7 @@ variable "first_run_commands" {
   description = "List of private IPs to assign to the ENI without regard to order."
   type        = list(string)
   default = [
-    "sudo sed -i 's/^PasswordAuthentication/#PasswordAuthentication/' /etc/ssh/sshd_config",
+    "sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config",
     "sudo systemctl restart sshd",
     "sudo useradd --create-home -s /bin/bash provisionuser",
     "echo 'provisionuser:Csit1234' | sudo chpasswd",
