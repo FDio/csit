@@ -945,7 +945,7 @@ function select_tags () {
             default_nic="nic_intel-e822cq"
             ;;
         *"3n-icxd")
-            default_nic="nic_intel-e823c"
+            default_nic="nic_intel-x552"
             ;;
         *"3n-icx" | *"2n-icx")
             default_nic="nic_intel-e810cq"
@@ -988,6 +988,7 @@ function select_tags () {
     sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
     awk_nics_sub_cmd=""
     awk_nics_sub_cmd+='gsub("xxv710","25ge2p1xxv710");'
+    awk_nics_sub_cmd+='gsub("x552","10ge2p1x552");'
     awk_nics_sub_cmd+='gsub("x710","10ge2p1x710");'
     awk_nics_sub_cmd+='gsub("xl710","40ge2p1xl710");'
     awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'

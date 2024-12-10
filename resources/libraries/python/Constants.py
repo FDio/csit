@@ -318,6 +318,7 @@ class Constants:
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
+        "Intel-X552": 10000000000,
         "Intel-X710": 10000000000,
         "Intel-XL710": 24500000000,
         "Intel-XXV710": 24500000000,
@@ -336,6 +337,7 @@ class Constants:
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
+        "Intel-X552": 14880952,
         "Intel-X710": 14880952,
         "Intel-XL710": 18750000,
         "Intel-XXV710": 18750000,
@@ -354,6 +356,7 @@ class Constants:
 
     # Suite file names use codes for NICs.
     NIC_NAME_TO_CODE = {
+        "Intel-X552": "10ge2p1x552",
         "Intel-X710": "10ge2p1x710",
         "Intel-XL710": "40ge2p1xl710",
         "Intel-XXV710": "25ge2p1xxv710",
@@ -371,6 +374,7 @@ class Constants:
         "virtual": "1ge1p82540em",
     }
     NIC_CODE_TO_NAME = {
+        "10ge2p1x552": "Intel-X552",
         "10ge2p1x710": "Intel-X710",
         "40ge2p1xl710": "Intel-XL710",
         "25ge2p1xxv710": "Intel-XXV710",
@@ -390,6 +394,7 @@ class Constants:
 
     # Shortened lowercase NIC model name, useful for presentation.
     NIC_CODE_TO_SHORT_NAME = {
+        "10ge2p1x552": "x552",
         "10ge2p1x710": "x710",
         "40ge2p1xl710": "xl710",
         "25ge2p1xxv710": "xxv710",
@@ -409,6 +414,7 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     NIC_NAME_TO_DRIVER = {
+        "Intel-X552": ["vfio-pci"],
         "Intel-X710": ["vfio-pci", "avf", "af_xdp"],
         "Intel-XL710": ["vfio-pci", "avf", "af_xdp"],
         "Intel-XXV710": ["vfio-pci", "avf", "af_xdp"],
@@ -463,6 +469,7 @@ class Constants:
 
     # Number of physical interfaces of physical nic.
     NIC_CODE_TO_PFS = {
+        "10ge2p1x552": "nic_pfs}= | 2",
         "10ge2p1x710": "nic_pfs}= | 2",
         "40ge2p1xl710": "nic_pfs}= | 2",
         "25ge2p1xxv710": "nic_pfs}= | 2",
@@ -481,6 +488,7 @@ class Constants:
     }
 
     NIC_CODE_TO_CORESCALE = {
+        "10ge2p1x552": 1,
         "10ge2p1x710": 1,
         "40ge2p1xl710": 1,
         "25ge2p1xxv710": 1,
@@ -500,6 +508,7 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     DPDK_NIC_NAME_TO_DRIVER = {
+        "Intel-X552": ["vfio-pci"],
         "Intel-X710": ["vfio-pci"],
         "Intel-XL710": ["vfio-pci"],
         "Intel-XXV710": ["vfio-pci"],
