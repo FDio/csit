@@ -162,7 +162,7 @@ variable "first_run_commands" {
   type        = list(string)
   default = [
     "sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config",
-    "sudo systemctl restart sshd",
+    "sudo systemctl restart ssh.service",
     "sudo useradd --create-home -s /bin/bash provisionuser",
     "echo 'provisionuser:Csit1234' | sudo chpasswd",
     "echo 'provisionuser ALL = (ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers",
