@@ -593,6 +593,78 @@
 | | END
 | | Return From Keyword | ${results}
 
+| Ndrpdr with iPerf3 traffic
+| | [Documentation]
+| | ... | FIXME
+| | ... | TODO: Telemetry.
+| |
+| | ${smt_used}= | Is SMT enabled | ${nodes['${iperf_server_node}']['cpuinfo']}
+| | ${vm_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Get Library Instance | vnf_manager
+| | ${vth}= | Evaluate | (${dp_count_int} + 1)
+| | ${cpu_skip_cnt}= | Set Variable If | '${vm_status}' == 'PASS'
+| | ... | ${CPU_CNT_SYSTEM}
+| | ... | ${${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${cpu_count_int} + ${vth}}
+| | ${cpu_skip_cnt}= | Evaluate | ${cpu_skip_cnt} + ${cpu_count_int}
+| |
+| | Initialize iPerf Server
+| | ... | ${nodes['${iperf_server_node}']}
+| | ... | pf_key=${iperf_server_pf_key}
+| | ... | interface=${iperf_server_interface}
+| | ... | bind=${iperf_server_bind}
+| | ... | bind_gw=${iperf_server_bind_gw}
+| | ... | bind_mask=${iperf_server_bind_mask}
+| | ... | namespace=${iperf_server_namespace}
+| | ... | cpu_skip_cnt=${cpu_skip_cnt}
+| | Run Keyword If | '${iperf_client_namespace}' != '${None}'
+| | ... | Set Linux Interface IP
+| | ... | ${nodes['${iperf_client_node}']}
+| | ... | interface=${iperf_client_interface}
+| | ... | ip_addr=${iperf_client_bind}
+| | ... | prefix=${iperf_client_bind_mask}
+| | ... | namespace=${iperf_client_namespace}
+| | Run Keyword If | '${iperf_client_namespace}' != '${None}'
+| | ... | Add Default Route To Namespace
+| | ... | ${nodes['${iperf_client_node}']}
+| | ... | namespace=${iperf_client_namespace}
+| | ... | default_route=${iperf_client_bind_gw}
+| | ${min_rate_soft} = | Get Min Rate Soft
+| | ${max_rate} = | Get Max Rate
+| | Set Goals For Search
+| | ... | min_load=${min_rate_soft}
+| | ... | max_load=${max_rate}
+| | ... | loss_ratio=${0.5}
+| | ... | relative_width=${0.1}
+| | ... | initial_trial_duration=${1.0}
+| | ... | final_trial_duration=${10.0}
+| | ... | duration_sum=${25.0}
+| | ... | expansion_coefficient=${2}
+| | ... | preceding_targets=${2}
+| | ... | search_duration_max=${1200.0}
+| | ${measurement} = | Set Variable | ${None}
+| | FOR | ${i} | IN RANGE | 999
+| | | ${inputs} | ${results} = | Iterate Search | ${measurement}
+| | | Exit For Loop IF | not ${inputs}
+| | | ${duration} | ${load} = | Set Variable | ${inputs}
+| | | ${rr} = | iPerf Client Start Remote Exec
+| | | ... | ${nodes['${iperf_client_node}']}
+| | | ... | duration=${duration}
+| | | ... | rate=${load}
+| | | ... | frame_size=${frame_size}
+| | | ... | async_call=False
+| | | ... | traffic_directions=${1}
+| | | ... | namespace=${iperf_client_namespace}
+| | | ... | udp=${iperf_client_udp}
+| | | ... | host=${iperf_server_bind}
+| | | ... | bind=${iperf_client_bind}
+| | | ${sec} = | Convert To Number | ${rr['sum_received']['seconds']}
+| | | ${mbps} = | Convert To Number | ${rr['sum_received']['bits_per_second']}
+| | | ${mpps} = | Set Variable | ${mbps / ${frame_size} / 8}
+| | | ${measurement} = | Iperf Result Into Measurement | ${sec} | ${mpps}
+| | END
+| | ${ndr} | ${pdr} = | Display result of NDRPDR search | ${results}
+| | # FIXME: Json exports
+
 | Start Traffic on Background
 | | [Documentation]
 | | ... | Start traffic at specified rate then return control to Robot.

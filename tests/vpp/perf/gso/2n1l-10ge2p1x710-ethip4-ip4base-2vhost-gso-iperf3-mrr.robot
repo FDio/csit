@@ -110,7 +110,7 @@
 | | ... | node=DUT1 | nf_nodes=${2} | vnf=iperf3 | auto_scale=${True}
 | | ... | fixed_auto_scale=${True} | validate=${False}
 | | And Get CPU Info from All Nodes | ${nodes}
-| | Traffic should pass with maximum rate on iPerf3
+| | Ndrpdr with iPerf3 traffic
 
 *** Test Cases ***
 | 146B-1c-ethip4-ip4base-2vhost-gso-iperf3-mrr
