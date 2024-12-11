@@ -15,12 +15,14 @@ services:
     privileged: true
     restart: "always"
     shm_size: "4G"
+{% if docker_volumes is defined and docker_volumes|length > 0 %}
     volumes:
 {% for volume in docker_volumes %}
       - type: "bind"
         source: "{{ volume.source }}"
         target: "{{ volume.target }}"
 {% endfor %}
+{% endif %}
   tg-1:
     build:
       context: "tg/"
@@ -37,9 +39,11 @@ services:
     privileged: true
     restart: "always"
     shm_size: "4G"
+{% if docker_volumes is defined and docker_volumes|length > 0 %}
     volumes:
 {% for volume in docker_volumes %}
       - type: "bind"
         source: "{{ volume.source }}"
         target: "{{ volume.target }}"
 {% endfor %}
+{% endif %}
