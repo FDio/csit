@@ -163,7 +163,10 @@ class CpuUtils:
 
         cpu_list_len = len(cpu_list)
         if cpu_cnt + skip_cnt > cpu_list_len:
-            raise RuntimeError(u"cpu_cnt + skip_cnt > length(cpu list).")
+            raise RuntimeError(
+                "cpu_cnt + skip_cnt > length(cpu list):\n"
+                f"{cpu_cnt} + {skip_cnt} > len({cpu_list})"
+            )
 
         if cpu_cnt == 0:
             cpu_cnt = cpu_list_len - skip_cnt
