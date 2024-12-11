@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -293,13 +293,13 @@ class VPPUtil:
         :type node: dict
         :type fail_on_error: bool
         """
-        cmds = [
-            u"trace add dpdk-input 50",
-            u"trace add vhost-user-input 50",
-            u"trace add memif-input 50",
-            u"trace add avf-input 50"
-        ]
-
+        cmds = (
+            "trace add dpdk-input 50",
+            "trace add vhost-user-input 50",
+            "trace add memif-input 50",
+            "trace add avf-input 50",
+            "trace add virtio-input 50",
+        )
         for cmd in cmds:
             try:
                 PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, cmd)
