@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-snr-perftest ndrpdrANDnic_*AND1cAND64bANDdpdk",
       "revId": "fadd5841eb5374129b2e0603719db5fae5ba3640",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34574375_8605de33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-12T14:19:13Z",
+      "side": 1,
+      "message": "We should merge this only after stable_vpp is bumped. In VPP, .11 bumps usually need more work, so not sure the bump will happen within rls2502.",
+      "revId": "fadd5841eb5374129b2e0603719db5fae5ba3640",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
