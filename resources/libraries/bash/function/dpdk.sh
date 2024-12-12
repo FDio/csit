@@ -97,6 +97,8 @@ function dpdk_compile () {
     meson_options="${meson_options} -Dplatform=generic"
 
     # Compile using Meson and Ninja.
+
+    export PATH="$PATH:/venv/bin"
     meson setup ${meson_options} build || {
         die "Failed to compile DPDK!"
     }
