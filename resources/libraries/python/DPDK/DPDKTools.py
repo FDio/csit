@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -100,8 +100,7 @@ class DPDKTools:
 
     @staticmethod
     def install_dpdk_framework(node):
-        """
-        Prepare the DPDK framework on the DUT node.
+        """Prepare the DPDK framework on the DUT node.
 
         :param node: Node from topology file.
         :type node: dict
@@ -110,7 +109,8 @@ class DPDKTools:
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
             f"/entry/install_dpdk.sh"
         message = u"Install the DPDK failed!"
-        exec_cmd_no_error(node, command, timeout=3600, message=message)
+        # One hour is not enough to build DPDK 24.11 on 3n-snr.
+        exec_cmd_no_error(node, command, timeout=5400, message=message)
         DPDKTools.get_dpdk_version(node)
 
     @staticmethod
