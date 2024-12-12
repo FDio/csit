@@ -458,7 +458,6 @@
 | | | Run Keyword If
 | | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_nsim_enable]
 | | | ... | ${dut}.Add Nsim poll main thread
-| | | Run keyword | ${dut}.Add api segment gid | testuser
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
 | | | Run keyword | ${dut}.Add session enable
