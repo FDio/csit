@@ -33,6 +33,23 @@
       "message": "this is going to be bigger problem. i will remove testing of latest DPDK. Only installed DPDK version will be possible.",
       "revId": "7adfffee5fc69ea81088175a440562ebf42f974f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f988547_bf834045",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-12T14:17:43Z",
+      "side": 1,
+      "message": "Using 42018 I got one run, it needed just above 64 minutes [0], so not a big deal. Yet.\nNot sure which value would be a good timeout. I prefer 2h for now, just to make 3n-spr reliably pass (we can tweak later).\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-verify-master-3n-snr/11/log.html.gz#s1-s1-s1-k1-k4",
+      "revId": "7adfffee5fc69ea81088175a440562ebf42f974f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
