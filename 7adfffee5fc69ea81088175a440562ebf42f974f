@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-snr-perftest ndrpdrANDnic_*AND1cAND64bANDdpdk",
       "revId": "7adfffee5fc69ea81088175a440562ebf42f974f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a2c8490_c69a9e1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2024-12-12T12:47:13Z",
+      "side": 1,
+      "message": "this is going to be bigger problem. i will remove testing of latest DPDK. Only installed DPDK version will be possible.",
+      "revId": "7adfffee5fc69ea81088175a440562ebf42f974f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
