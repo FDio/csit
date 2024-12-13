@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -80,7 +80,8 @@ class VPPUtil:
         :type node_key: str
         """
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        command = "pkill -9 vpp; sleep 1"
+        # Different testbeds need different time to confirm the kill is done.
+        command = "killall -9 -v --wait -r vpp"
         exec_cmd(node, command, timeout=180, sudo=True)
         command = (
             "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
