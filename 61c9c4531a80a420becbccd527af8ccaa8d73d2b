@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5170dc70_f72817aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-13T15:22:55Z",
+      "side": 1,
+      "message": "No functional change since previous patch set.",
+      "revId": "61c9c4531a80a420becbccd527af8ccaa8d73d2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
