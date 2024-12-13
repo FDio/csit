@@ -16,6 +16,23 @@
       "message": "csit-2n-grc-perftest mrrANDnic_*cx5*ANDdrv_mlx5_coreAND64bANDeth-l2patch mrrANDnic_*cx5*ANDdrv_mlx5_coreAND64bANDeth-l2xcbase !4c",
       "revId": "ec26aaa0030867435a490ef185a15255705c85f4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48f57315_8d8f96b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2024-12-13T15:17:02Z",
+      "side": 1,
+      "message": "Oh, more than 3 seconds with --wait? Seems like we were lucky before with just 1s sleep.\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-grc/15/log.html.gz#s1-s1-s1-s1-s1-t2-k1-k5-k1-k1-k1-k3",
+      "revId": "ec26aaa0030867435a490ef185a15255705c85f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
