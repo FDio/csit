@@ -1,10 +1,22 @@
 ---
 # file: tasks/main.yaml
 
-- name: "Edit repositories"
-  include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+- name: "Enable deb-src APT Repository"
+  ansible.builtin.apt_repository:
+    repo: "deb-src {{ packages_repo[ansible_distribution|lower][ansible_machine] }} noble main"
+    state: "present"
+    update_cache: true
   tags:
-    - aws-edit-repo
+    - aws-enable-src-repo
+
+- name: "Update Package Cache (APT)"
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution == 'Ubuntu'
+  tags:
+    - aws-enable-src-repo
 
 - name: "Prerequisites"
   ansible.builtin.package:
@@ -59,11 +71,11 @@
 
 - meta: flush_handlers
 
-- name: "Disable Password Login"
+- name: "Enable Password Login"
   ansible.builtin.lineinfile:
     dest: "/etc/ssh/sshd_config"
-    regexp: "^PasswordAuthentication yes"
-    line: "PasswordAuthentication no"
+    regexp: "^PasswordAuthentication no"
+    line: "PasswordAuthentication yes"
   tags:
     - conf-ssh
 
@@ -127,7 +139,33 @@
   tags:
     - aws-set-hugepages
 
-- name: "Shutdown host with delay"
-  ansible.builtin.command: "/sbin/shutdown -P +720"
+- name: "Add User"
+  ansible.builtin.user:
+    createhome: "yes"
+    groups: "adm,sudo"
+    name: "testuser"
+    password: "$6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0"
+    shell: "/bin/bash"
+    state: "present"
   tags:
-    - aws-set-self-terminate
+    - aws-user-add
+
+- name: "sudoers admin"
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers"
+    state: "present"
+    regexp: "^%admin ALL="
+    line: "%admin ALL=(ALL) ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  tags:
+    - aws-sudoers
+
+- name: "sudoers nopasswd"
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers"
+    state: "present"
+    regexp: "^%sudo"
+    line: "%sudo ALL=(ALL:ALL) NOPASSWD: ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  tags:
+    - aws-sudoers

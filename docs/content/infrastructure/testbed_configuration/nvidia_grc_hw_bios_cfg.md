@@ -438,6 +438,13 @@ Handle 0xFEFF, DMI type 127, 4 bytes
 End Of Table
 ```
 
+## Linux cmdline
+
+```
+$ cat /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-6.8.0-45-generic root=UUID=5c1b9bd0-cddf-411f-8f05-a1ede3a45f78 ro audit=0 default_hugepagesz=2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768 iommu.passthrough=1 isolcpus=1-71 nmi_watchdog=0 nohz_full=1-71 nosoftlockup processor.max_cstate=1 rcu_nocbs=1-71 cpufreq.off=1 cpuidle.off=1
+```
+
 ## NVidia Grace Server Firmware Inventory
 
 ```
