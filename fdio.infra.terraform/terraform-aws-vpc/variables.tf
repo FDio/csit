@@ -71,6 +71,22 @@ variable "security_group_ingress" {
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
     },
+    {
+      from_port        = 0
+      to_port          = 6001
+      protocol         = "tcp"
+      self             = false
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    },
+    {
+      from_port        = 0
+      to_port          = 6002
+      protocol         = "tcp"
+      self             = false
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    },
   ]
 }
 
