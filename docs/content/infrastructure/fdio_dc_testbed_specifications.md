@@ -649,6 +649,51 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot4 ?: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot9 ?: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
 
+<<<<<<< HEAD   (3573b5 feat(infra): EMR)
+=======
+26. **Server-Type-A1**: Purpose - EmeraldRapids Xeon TG for FD.io performance testing.
+    - Quantity: 4.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node/3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT.
+        - Processors: 2* Intel Platinum 8580 60 core 2 GHz.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 38:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot4 27:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot10 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot7 86:00.xx: empty.
+            - PCIe Slot9 af:00.xx: empty.
+            - PCIe Slot11 d8:00.xx: empty.
+
+27. **Server-Type-A2**: Purpose - EmeraldRapids SUT for FD.io performance testing.
+    - Quantity: 2.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node/3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT.
+        - Processors: 2* Intel Platinum 8568Y+ 48 core 2 GHz.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 38:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot4 27:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot10 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot7 86:00.xx: empty.
+            - PCIe Slot9 a8:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot11 d8:00.xx: empty.
+
+>>>>>>> CHANGE (8220dd feat(infra): EMR)
 ## Testbeds Configuration
 
 ### 1-Node-Skylake (1n-skx)
