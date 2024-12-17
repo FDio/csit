@@ -3,6 +3,8 @@ all:
     tg:
       hosts:
         10.30.51.37: #s37-t27-tg1 - icelake
+        10.30.51.41: #s41-t28-tg1 - emeraldrapids
+        10.30.51.43: #s43-t29-tg1 - emeraldrapids
         10.30.51.53: #s53-t21-tg1 - sapphirerapids
         10.30.51.55: #s55-t22-tg1 - sapphirerapids
         10.30.51.57: #s57-t23-tg1 - sapphirerapids
@@ -24,6 +26,8 @@ all:
         10.30.51.34: #s34-t32-sut1 - icelaked
         10.30.51.35: #s35-t32-sut2 - icelaked
         10.30.51.36: #s36-t27-sut1 - grace
+        10.30.51.40: #s40-t28-sut1 - emeraldrapids
+        10.30.51.42: #s42-t29-sut1 - emeraldrapids
         10.30.51.52: #s52-t21-sut1 - sapphirerapids
         10.30.51.54: #s54-t22-sut1 - sapphirerapids
         10.30.51.56: #s56-t23-sut1 - sapphirerapids
