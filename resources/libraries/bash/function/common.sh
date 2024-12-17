@@ -524,6 +524,14 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="grc"
             ;;
+        *"2n-emr")
+            NODENESS="2n"
+            FLAVOR="emr"
+            ;;
+        *"3n-emr")
+            NODENESS="3n"
+            FLAVOR="emr"
+            ;;
         *"-x-2n"*)
             TESTBED="${TEST_CODE#${TEST_CODE%2n*}}"
             NODENESS="${TESTBED%-${TEST_CODE#*-x-2n*-}}"
@@ -968,6 +976,12 @@ function select_tags () {
         *"2n-grc")
             default_nic="nic_mellanox-cx7veat"
             ;;
+        *"2n-emr")
+            default_nic="nic_intel-e810cq"
+            ;;
+        *"3n-emr")
+            default_nic="nic_intel-e810cq"
+            ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             default_nic="nic_amazon-nitro-50g"
             ;;
@@ -1114,6 +1128,10 @@ function select_tags () {
         *"2n-grc")
             test_tag_array+=("!ipsechw")
             ;;
+        *"2n-emr")
+            ;;
+        *"3n-emr")
+            ;;
         *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
@@ -1245,6 +1263,14 @@ function select_topology () {
         *"2n-grc")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_grc_*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        *"2n-emr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_emr_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        *"3n-emr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_emr_*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         *"3n-aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )

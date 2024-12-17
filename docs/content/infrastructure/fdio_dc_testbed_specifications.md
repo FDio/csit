@@ -662,15 +662,15 @@ FD.io CSIT lab contains following server types:
         - IPMI and host management ports.
         - NIC ports connected into 2-node/3-node testbed topologies.
     - Main HW configuration:
-        - Chassis: SuperMicro ?.
-        - Motherboard: Super X14DEG-QT-P.
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT.
         - Processors: 2* Intel Platinum 8580 60 core 2 GHz.
         - RAM Memory: 16* 32GB DDR5-4800.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 18:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot4 3b:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot2 38:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot4 27:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot10 5e:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot7 86:00.xx: empty.
@@ -683,19 +683,19 @@ FD.io CSIT lab contains following server types:
         - IPMI and host management ports.
         - NIC ports connected into 2-node/3-node testbed topologies.
     - Main HW configuration:
-        - Chassis: SuperMicro ?.
-        - Motherboard: Super X14DEG-QT-P.
-        - Processors: 2* Intel Platinum 8580Y 60 core 2 GHz.
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT.
+        - Processors: 2* Intel Platinum 8568Y+ 48 core 2 GHz.
         - RAM Memory: 16* 32GB DDR5-4800.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 18:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot4 3b:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot2 38:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot4 27:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot10 5e:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot7 86:00.xx: empty.
-            - PCIe Slot9 af:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot9 a8:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot11 d8:00.xx: empty.
 
 ## Testbeds Configuration
