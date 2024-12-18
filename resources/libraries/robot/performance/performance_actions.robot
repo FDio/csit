@@ -110,6 +110,9 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | ${node_arch} = | Get Node Arch | ${nodes['${dut}']}
+| | ${profile} = | Set Variable If | "${node_arch}" == "aarch64"
+| | ... | vppctl_runtime_arm.yaml | vppctl_runtime.yaml
 | | Send traffic on tg
 | | ... | duration=${-1}
 | | ... | rate=${runtime_rate}
@@ -126,7 +129,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | ${nodes} | profile=${profile}
 | | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | Stop traffic on tg
 
@@ -212,6 +215,8 @@
 | | ... | See documentation of the called keyword for required test variables.
 | |
 | | ${runtime_duration} = | Get Runtime Duration
+| | ${profile} = | Set Variable If | "${node_arch}" == "aarch64"
+| | ... | vppctl_runtime_arm.yaml | vppctl_runtime.yaml
 | | ${pids}= | iPerf Client Start Remote Exec
 | | | ... | ${nodes['${iperf_client_node}']}
 | | | ... | duration=${-1}
@@ -226,7 +231,7 @@
 | | | ... | bind=${iperf_client_bind}
 | | | ... | affinity=${iperf_client_affinity}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | ${nodes} | profile=${profile}
 | | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 

@@ -16,7 +16,8 @@
 from resources.libraries.python.model.ExportResult import append_telemetry
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import Topology, NodeType
+from resources.libraries.python.SysctlUtil import SysctlUtil
 
 __all__ = ["TelemetryUtil"]
 
@@ -50,6 +51,10 @@ class TelemetryUtil:
         cd_cmd = ""
         cd_cmd += f"sh -c \"cd {Constants.REMOTE_FW_DIR}/"
         cd_cmd += f"{Constants.RESOURCES_TOOLS}"
+
+        # Allow userspace to directly access perf counters on aarch64
+        if Topology.get_node_arch(node) == u"aarch64":
+            SysctlUtil.set_sysctl_value(node, u"kernel/perf_user_access", 1)
 
         if spath:
             bin_cmd = f"python3 -m telemetry --config {config} --hook {spath}\""
