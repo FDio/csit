@@ -1,0 +1,209 @@
+---
+logging:
+  version: 1
+  formatters:
+    console_stdout:
+      format: '%(asctime)s - %(name)s - %(message)s'
+    console_stderr:
+      format: '%(message)s'
+    prom:
+      format: '%(message)s'
+  handlers:
+    console_stdout:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: console_stdout
+      stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: console_stderr
+      stream: ext://sys.stderr
+    prom:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: prom
+      filename: /tmp/metric.prom
+      mode: w
+  loggers:
+    prom:
+      handlers: [prom]
+      level: INFO
+      propagate: False
+  root:
+    level: INFO
+    handlers: [console_stdout, console_stderr]
+scheduler:
+  duration: 1
+programs:
+  - name: bundle_vppctl
+    metrics:
+      gauge:
+        - name: calls
+          documentation: Number of calls total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - node_name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: vectors
+          documentation: Number of vectors total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - node_name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: suspends
+          documentation: Number of suspends total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - node_name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: clocks
+          documentation: Number of clocks total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - node_name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: vectors_calls
+          documentation: Number of vectors per call
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - node_name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+    code: |
+      vppctl -s {socket} clear runtime
+      sleep {duration}
+      vppctl -s {socket} show runtime
+  - name: bundle_vppctl
+    metrics:
+      gauge:
+        - name: calls
+          documentation: Instructions/packet, cycles/packet and IPC (calls)
+          namespace: vpp
+          subsystem: inst_and_clock
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: packets
+          documentation: Instructions/packet, cycles/packet and IPC (packets)
+          namespace: vpp
+          subsystem: inst_and_clock
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: packets_per_call
+          documentation: Instructions/packet, cycles/packet and IPC (packets/call)
+          namespace: vpp
+          subsystem: inst_and_clock
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: clocks_per_packets
+          documentation: Instructions/packet, cycles/packet and IPC (clocks/packets)
+          namespace: vpp
+          subsystem: inst_and_clock
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: instructions_per_packets
+          documentation: Instructions/packet, cycles/packet and IPC (clocks/packets)
+          namespace: vpp
+          subsystem: inst_and_clock
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: ipc
+          documentation: Instructions/packet, cycles/packet and IPC (clocks/packets)
+          namespace: vpp
+          subsystem: inst_and_clock
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+    code: |
+      vppctl -s {socket} perfmon reset
+      vppctl -s {socket} perfmon start bundle inst-and-clock
+      sleep {duration}
+      vppctl -s {socket} perfmon stop
+      vppctl -s {socket} show perfmon statistics
+  - name: bundle_vppctl
+    metrics:
+      gauge:
+        - name: l1d_access
+          documentation:  L1D data cache accesses
+          namespace: vpp
+          subsystem: cache_data
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: l1d_refill
+          documentation:  L1D data cache refills
+          namespace: vpp
+          subsystem: cache_data
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: l2d_access
+          documentation:  L2D data cache accesses
+          namespace: vpp
+          subsystem: cache_data
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: l2d_refill
+          documentation:  L2D data cache refills
+          namespace: vpp
+          subsystem: cache_data
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: l3d_access
+          documentation:  L3D data cache accesses
+          namespace: vpp
+          subsystem: cache_data
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+        - name: l3d_refill
+          documentation:  L3D data cache refills
+          namespace: vpp
+          subsystem: cache_data
+          labelnames:
+            - node_name
+            - thread_name
+            - thread_id
+    code: |
+      vppctl -s {socket} perfmon reset
+      vppctl -s {socket} perfmon start bundle cache-data
+      sleep {duration}
+      vppctl -s {socket} perfmon stop
+      vppctl -s {socket} show perfmon statistics
