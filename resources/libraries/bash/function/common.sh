@@ -1270,7 +1270,7 @@ function select_topology () {
             ;;
         *"3n-emr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_emr_*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *"3n-aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
