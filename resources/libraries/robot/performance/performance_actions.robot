@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -110,6 +110,9 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | ${node_arch} = | Get Node Arch | ${nodes[u'DUT1']}
+| | ${profile} = | Set Variable If | "${node_arch}" == "aarch64"
+| | ... | vppctl_runtime_arm.yaml | vppctl_runtime.yaml
 | | Send traffic on tg
 | | ... | duration=${-1}
 | | ... | rate=${runtime_rate}
@@ -126,7 +129,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | ${nodes} | profile=${profile}
 | | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | Stop traffic on tg
 
@@ -212,6 +215,9 @@
 | | ... | See documentation of the called keyword for required test variables.
 | |
 | | ${runtime_duration} = | Get Runtime Duration
+| | ${node_arch} = | Get Node Arch | ${nodes['${iperf_server_node}']}
+| | ${profile} = | Set Variable If | "${node_arch}" == "aarch64"
+| | ... | vppctl_runtime_arm.yaml | vppctl_runtime.yaml
 | | ${pids}= | iPerf Client Start Remote Exec
 | | | ... | ${nodes['${iperf_client_node}']}
 | | | ... | duration=${-1}
@@ -226,7 +232,7 @@
 | | | ... | bind=${iperf_client_bind}
 | | | ... | affinity=${iperf_client_affinity}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | ${nodes} | profile=${profile}
 | | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 
