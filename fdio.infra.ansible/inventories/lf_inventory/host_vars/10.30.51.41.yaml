@@ -10,21 +10,22 @@ grub:
   intel_iommu: "on,sm_on"
   intel_pstate: "disable"
   iommu: "pt"
-  isolcpus: "1-31,33-63,65-95,97-127"
+  isolcpus: "1-29,31-59,61-89,91-119,121-149,151-179,181-209,211-239"
   mce: "off"
   nmi_watchdog: "0"
-  nohz_full: "1-31,33-63,65-95,97-127"
+  nohz_full: "1-29,31-59,61-89,91-119,121-149,151-179,181-209,211-239"
   nosoftlockup: true
   numa_balancing: "disable"
   processor.max_cstate: "1"
-  rcu_nocbs: "1-31,33-63,65-95,97-127"
+  rcu_nocbs: "1-29,31-59,61-89,91-119,121-149,151-179,181-209,211-239"
   tsc: "reliable"
 sysctl:
   kernel:
-    watchdog_cpumask: "0,32,64,96"
+    watchdog_cpumask: "0,30,60,90,120,150,180,210"
   vm:
     nr_hugepages: 32768
     max_map_count: 20000
+
 
 inventory_ipmi_hostname: "10.30.50.41"
 cpu_microarchitecture: "emeraldrapids"

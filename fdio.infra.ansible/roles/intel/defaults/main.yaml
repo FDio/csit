@@ -59,7 +59,7 @@ intel_800_compatibility_matrix:
     ice: "1.14.13"
     ddp: "1.3.45.0"
     iavf: "4.11.3"
-    nvm: "4.50"
+    nvm: "4.60"
 
 intel_dsa_compatibility_matrix:
   dsa: "4.0"

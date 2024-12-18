@@ -262,7 +262,7 @@ class Constants:
         "2n-grc": 3.300,
         "2n-icx": 2.600,
         "2n-spr": 2.800,
-        "2n-emr": 2.000,
+        "2n-emr": 2.300,
         "2n-tx2": 2.500,
         "2n-zn2": 2.900,
         "3n-alt": 3.000,
@@ -270,7 +270,7 @@ class Constants:
         "3n-icxd": 2.000,
         "3n-snr": 2.200,
         "3n-tsh": 2.200,
-        "3n-emr": 2.000,
+        "3n-emr": 2.300,
         "3na-spr": 2.800,
         "3nb-spr": 2.800
     }
