@@ -33,6 +33,23 @@
       "message": "csit-2n-grc-perftest mrrANDNIC_Mellanox-CX556AANDdrv_mlx5_coreAND1cAND64bANDethip4-ip4base",
       "revId": "e14f36aeca58696e3184a4df2f4692977028bea0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6764c2_cc4aa362",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2024-12-19T16:16:54Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrAND NIC_Intel-E810CQANDdrv_avfAND1cAND64bANDethip4-ip4base",
+      "revId": "e14f36aeca58696e3184a4df2f4692977028bea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
