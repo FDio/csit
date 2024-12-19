@@ -84,6 +84,23 @@
       "message": "csit-3n-alt-perftest mrrANDNIC_Mellanox-CX6DXANDdrv_mlx5_coreAND1cAND64bANDethip4-ip4base",
       "revId": "e14f36aeca58696e3184a4df2f4692977028bea0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63485177_7aa188fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2024-12-19T21:39:54Z",
+      "side": 1,
+      "message": "Arm perfmon plugin is enabled on 2n-grc testbed with this patch\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-grc/21/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k9-k9-k10-k1-k1-k1-k14",
+      "revId": "e14f36aeca58696e3184a4df2f4692977028bea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
