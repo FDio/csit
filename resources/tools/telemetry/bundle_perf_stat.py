@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,6 +39,7 @@ class BundlePerfStat:
         """
         self.metrics = program[u"metrics"]
         self.events = program[u"events"]
+        self.architecture = program[u"architecture"]
         self.api_replies_list = list()
         self.serializer = serializer
         self.hook = hook
@@ -53,21 +54,35 @@ class BundlePerfStat:
                """
         try:
             self.serializer.create(metrics=self.metrics)
-            event = self.events[0]
-            text = subprocess.getoutput(
-                f"""sudo perf stat -x\; -e\
-                '{{cpu/event={hex(event[u"eventcode"])},\
-                umask={hex(event[u"umask"])}/u}}'\
-                -a --per-thread\
-                sleep {duration}"""
-            )
+            # The following PMU event format is specific to x86_64 systems.
+            if self.architecture == "x86_64":
+                event = self.events[0]
+                text = subprocess.getoutput(
+                    f"""sudo perf stat -x';' -e\
+                    '{{cpu/event={hex(event[u"eventcode"])},\
+                    umask={hex(event[u"umask"])}/u}}'\
+                    -a --per-thread\
+                    sleep {duration}"""
+                )
+            # We select the symbolic event name instead on AArch64.
+            else:
+                event = self.events
+                text = subprocess.getoutput(
+                    f"""sudo perf stat -x';' -e\
+                    {event}\
+                    -a --per-thread\
+                    sleep {duration}"""
+                )
         except subprocess.CalledProcessError:
             getLogger("console_stderr").error(f"Could not successfully run "
                                               f"perf stat command.")
             sys.exit(Constants.err_linux_perf_stat)
 
         if text == u"":
-            getLogger("console_stdout").info(event[u"eventcode"])
+            if self.architecture == "x86_64":
+                getLogger("console_stdout").info(event[u"eventcode"])
+            else:
+                getLogger("console_stdout").info(event)
         else:
             for line in text.splitlines():
                 if line.count(u";") < 6:

@@ -37,7 +37,7 @@ scheduler:
   duration: 1
 programs:
   - name: bundle_perf_stat
-    architecture: x86_64
+    architecture: aarch64
     metrics:
       counter:
         - name: cpu_cycles
@@ -46,11 +46,9 @@ programs:
           labelnames:
             - thread
             - pid
-    events:
-      - eventcode: 0x3C # cpu-cycles
-        umask: 0x00
+    events: cpu-cycles
   - name: bundle_perf_stat
-    architecture: x86_64
+    architecture: aarch64
     metrics:
       counter:
         - name: instructions
@@ -59,84 +57,48 @@ programs:
           labelnames:
             - thread
             - pid
-    events:
-      - eventcode: 0xC0 # instructions
-        umask: 0x00
+    events: instructions
   - name: bundle_perf_stat
-    architecture: x86_64
+    architecture: aarch64
     metrics:
       counter:
-        - name: mem_load_uops_retired_l1_hit
-          documentation: L1 Hit
+        - name: l1d_cache
+          documentation: Level 1 data cache access
           namespace: perf_stat
           labelnames:
             - thread
             - pid
-    events:
-      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L1_HIT
-        umask: 0x01
+    events: l1d_cache
   - name: bundle_perf_stat
-    architecture: x86_64
+    architecture: aarch64
     metrics:
       counter:
-        - name: mem_load_uops_retired_l2_hit
-          documentation: L2 Hit
+        - name: l1d_cache_refill
+          documentation: Level 1 data cache refill
           namespace: perf_stat
           labelnames:
             - thread
             - pid
-    events:
-      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L2_HIT
-        umask: 0x02
+    events: l1d_cache_refill
   - name: bundle_perf_stat
-    architecture: x86_64
+    architecture: aarch64
     metrics:
       counter:
-        - name: mem_load_uops_retired_l3_hit
-          documentation: L3 Hit
+        - name: l2d_cache
+          documentation: Level 2 data cache access
           namespace: perf_stat
           labelnames:
             - thread
             - pid
-    events:
-      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L3_HIT
-        umask: 0x04
+    events: l2d_cache
   - name: bundle_perf_stat
-    architecture: x86_64
+    architecture: aarch64
     metrics:
       counter:
-        - name: mem_load_uops_retired_l1_miss
-          documentation: L1 Miss
+        - name: l2d_cache_refill
+          documentation: Level 2 data cache refill
           namespace: perf_stat
           labelnames:
             - thread
             - pid
-    events:
-      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L1_MISS
-        umask: 0x08
-  - name: bundle_perf_stat
-    architecture: x86_64
-    metrics:
-      counter:
-        - name: mem_load_uops_retired_l2_miss
-          documentation: L2 Miss
-          namespace: perf_stat
-          labelnames:
-            - thread
-            - pid
-    events:
-      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L2_MISS
-        umask: 0x10
-  - name: bundle_perf_stat
-    architecture: x86_64
-    metrics:
-      counter:
-        - name: mem_load_uops_retired_l3_miss
-          documentation: L3 Miss
-          namespace: perf_stat
-          labelnames:
-            - thread
-            - pid
-    events:
-      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L3_MISS
-        umask: 0x20
+    events: l2d_cache_refill
