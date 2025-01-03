@@ -37,6 +37,7 @@ scheduler:
   duration: 1
 programs:
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: cpu_cycles
@@ -49,6 +50,7 @@ programs:
       - eventcode: 0x3C # cpu-cycles
         umask: 0x00
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: instructions
@@ -61,6 +63,7 @@ programs:
       - eventcode: 0xC0 # instructions
         umask: 0x00
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: mem_load_uops_retired_l1_hit
@@ -73,6 +76,7 @@ programs:
       - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L1_HIT
         umask: 0x01
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: mem_load_uops_retired_l2_hit
@@ -85,6 +89,7 @@ programs:
       - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L2_HIT
         umask: 0x02
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: mem_load_uops_retired_l3_hit
@@ -97,6 +102,7 @@ programs:
       - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L3_HIT
         umask: 0x04
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: mem_load_uops_retired_l1_miss
@@ -109,6 +115,7 @@ programs:
       - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L1_MISS
         umask: 0x08
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: mem_load_uops_retired_l2_miss
@@ -121,6 +128,7 @@ programs:
       - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L2_MISS
         umask: 0x10
   - name: bundle_perf_stat
+    architecture: x86_64
     metrics:
       counter:
         - name: mem_load_uops_retired_l3_miss
