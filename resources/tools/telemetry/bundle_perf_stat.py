@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -53,11 +53,11 @@ class BundlePerfStat:
                """
         try:
             self.serializer.create(metrics=self.metrics)
-            event = self.events[0]
+            # make it to Arm specific
+            event = self.events
             text = subprocess.getoutput(
-                f"""sudo perf stat -x\; -e\
-                '{{cpu/event={hex(event[u"eventcode"])},\
-                umask={hex(event[u"umask"])}/u}}'\
+                f"""sudo perf stat -x';' -e\
+                {event}\
                 -a --per-thread\
                 sleep {duration}"""
             )
@@ -67,7 +67,7 @@ class BundlePerfStat:
             sys.exit(Constants.err_linux_perf_stat)
 
         if text == u"":
-            getLogger("console_stdout").info(event[u"eventcode"])
+            getLogger("console_stdout").info(event)
         else:
             for line in text.splitlines():
                 if line.count(u";") < 6:

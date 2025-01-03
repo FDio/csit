@@ -187,6 +187,9 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | ${node_arch} = | Get Node Arch | ${nodes[u'DUT1']}
+| | ${profile} = | Set Variable If | "${node_arch}" == "aarch64"
+| | ... | perf_stat_runtime_arm.yaml | perf_stat_runtime.yaml
 | | Send traffic on tg
 | | ... | duration=${-1}
 | | ... | rate=${runtime_rate}
@@ -203,7 +206,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=perf_stat_runtime.yaml
+| | ... | ${nodes} | profile=${profile}
 | | ... | rate=${telemetry_rate} | export=${False}
 | | Stop traffic on tg
 
