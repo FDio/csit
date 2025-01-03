@@ -53,11 +53,11 @@ class BundlePerfStat:
                """
         try:
             self.serializer.create(metrics=self.metrics)
-            event = self.events[0]
+            # make it to Arm specific
+            event = self.events
             text = subprocess.getoutput(
                 f"""sudo perf stat -x\; -e\
-                '{{cpu/event={hex(event[u"eventcode"])},\
-                umask={hex(event[u"umask"])}/u}}'\
+                {event}\ 
                 -a --per-thread\
                 sleep {duration}"""
             )
