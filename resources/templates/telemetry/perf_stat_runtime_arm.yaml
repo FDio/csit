@@ -1,0 +1,58 @@
+---
+logging:
+  version: 1
+  formatters:
+    console_stdout:
+      format: '%(asctime)s - %(name)s - %(message)s'
+    console_stderr:
+      format: '%(message)s'
+    prom:
+      format: '%(message)s'
+  handlers:
+    console_stdout:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: console_stdout
+      stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: console_stderr
+      stream: ext://sys.stderr
+    prom:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: prom
+      filename: /tmp/metric.prom
+      mode: w
+  loggers:
+    prom:
+      handlers: [prom]
+      level: INFO
+      propagate: False
+  root:
+    level: INFO
+    handlers: [console_stdout, console_stderr]
+scheduler:
+  duration: 1
+programs:
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: cpu_cycles
+          documentation: Cycles processed by CPUs
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events: cpu-cycles
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: instructions
+          documentation: Instructions retired by CPUs
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events: instructions
