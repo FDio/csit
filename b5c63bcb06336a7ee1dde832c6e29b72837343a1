@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fdc6abc_39de7e46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-07T09:25:39Z",
+      "side": 1,
+      "message": "Ready, assuming dpdk-24.07 is already installed there.",
+      "revId": "b5c63bcb06336a7ee1dde832c6e29b72837343a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
