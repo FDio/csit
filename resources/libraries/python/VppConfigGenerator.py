@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -790,7 +790,6 @@ class VppInitConfig:
                 vpp_config.add_unix_log()
                 vpp_config.add_unix_cli_listen()
                 vpp_config.add_unix_cli_no_pager()
-                vpp_config.add_unix_gid()
                 vpp_config.add_unix_coredump()
                 vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
                 vpp_config.add_main_heap_size("2G")
