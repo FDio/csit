@@ -649,13 +649,15 @@
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
-| | ${output}= | Run ab | ${tg} | ${dut_ip_addrs_str} | ${ad_ip_addrs_str}
+| | ${status} | ${message}= | Run Keyword And Ignore Error | Run ab
+| | ... | ${tg} | ${dut_ip_addrs_str} | ${ad_ip_addrs_str}
 | | ... | ${tls_tcp} | ${ciphers} | ${files} | ${mode} | ${r_total} | ${c_total}
 | | ... | ${listen_port}
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
-| | Set test message | ${output}
+| | Set test message | ${message}
+| | Run Keyword If | "${status}" != "PASS" | Fail | AB failed: ${message}
 
 | Configure VPP startup configuration for NGINX
 | | [Documentation]
