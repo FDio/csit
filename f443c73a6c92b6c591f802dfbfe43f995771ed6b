@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34b1f99_c677d974",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-09T16:27:50Z",
+      "side": 1,
+      "message": "Why does it want to run 6P3 suites? Skipping Cx7 for now.\n\ncsit-2n-icx-perftest nic_*ANDdrv_vfio_pciAND1cAND1024bANDldp_nginx !*dma* !drv_rdma_core !drv_avf !drv_af_xdp",
+      "revId": "f443c73a6c92b6c591f802dfbfe43f995771ed6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
