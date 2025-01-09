@@ -141,8 +141,9 @@
 
 - name: "Add User"
   ansible.builtin.user:
-    createhome: "yes"
-    groups: "adm,sudo"
+    append: true
+    createhome: true
+    groups: "admin,adm,sudo"
     name: "testuser"
     password: "$6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0"
     shell: "/bin/bash"
