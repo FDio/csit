@@ -549,8 +549,9 @@
 | | ${skip_cnt}= | Evaluate
 | | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
 | | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
+| | ${cpu_cnt_with_iperf_main}= | Evaluate | ${iperf3_server_attr}[cpu_cnt] + 1
 | | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_server_attr}[cpu_cnt]
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_cnt_with_iperf_main}
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -560,8 +561,9 @@
 | | ... | ${iperf3_server_attr}[cfg_vpp_feature] | ${iperf3_server}
 | | ${iperf3_client}= | Get Iperf3 Command | ${iperf3_client_attr}
 | | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${cpu_cnt_with_iperf_main}= | Evaluate | ${iperf3_client_attr}[cpu_cnt] + 1
 | | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_client_attr}[cpu_cnt]
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_cnt_with_iperf_main}
 | | ${client_pid}= | Run hoststack test program on DUT
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
