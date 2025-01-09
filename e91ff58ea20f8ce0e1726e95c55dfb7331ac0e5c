@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed918a15_8ccd6d76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-09T16:58:42Z",
+      "side": 1,
+      "message": "This was tested when developing 42118, see for example [1].\n\n[1] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-icx/510/log.html.gz",
+      "revId": "e91ff58ea20f8ce0e1726e95c55dfb7331ac0e5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
