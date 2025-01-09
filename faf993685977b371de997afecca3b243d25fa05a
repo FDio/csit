@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7055568b_bc04af82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-09T15:27:06Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_*AND1cAND1024bANDldp_nginx !*dma* !drv_rdma_core !drv_avf !drv_af_xdp",
+      "revId": "faf993685977b371de997afecca3b243d25fa05a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
