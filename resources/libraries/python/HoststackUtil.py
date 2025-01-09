@@ -261,7 +261,7 @@ class HoststackUtil():
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = u"" if program_name == u"nginx" else \
                                              f"taskset --cpu-list {core_list}"
-        cmd = f"nohup {shell_cmd} \'{env_vars}{taskset_cmd} " \
+        cmd = f"nohup {taskset_cmd} {shell_cmd} \'{env_vars}" \
               f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
@@ -299,7 +299,7 @@ class HoststackUtil():
 
     @staticmethod
     def hoststack_test_program_finished(node, program_pid, program,
-                                        other_node, other_program):
+                                        other_node, other_program, time=600):
         """Wait for the specified HostStack test program process to complete.
 
         :param node: DUT node.
@@ -319,11 +319,12 @@ class HoststackUtil():
         if other_node[u"type"] != u"DUT":
             raise RuntimeError(u"Other node type is not a DUT!")
 
+        exec_cmd(node, f"taskset -p {program_pid}", sudo=True)
         cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
         try:
-            exec_cmd(node, cmd, sudo=True)
+            exec_cmd(node, cmd, sudo=True, timeout=time + 1)
         except:
-            sleep(180)
+            sleep(1)
             if u"client" in program[u"args"]:
                 role = u"client"
             else:
