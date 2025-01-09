@@ -30,6 +30,7 @@
 | |
 | | Start Test Export
 | | Reset PAPI History On All DUTs | ${nodes}
+| | Set Test Variable | \${extended_debug} | ${True}
 | | ${int} = | Set Variable If | ${nic_vfs} > 0 | prevf | pf
 | | Create base startup configuration of VPP on all DUTs
 | | FOR | ${action} | IN | @{actions}
