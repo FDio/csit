@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_*ANDeth-ip4tcpbase-ldpreload-iperf3 !drv_af_xdp !drv_rdma_core",
       "revId": "eef31b3608caf2bb3c953f2dc8936aceb8207587",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38fc702f_a8628661",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-09T11:26:22Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDeth-ip4tcpbase-ldpreload-iperf3 !drv_af_xdp !drv_rdma_core !drv_avf",
+      "revId": "eef31b3608caf2bb3c953f2dc8936aceb8207587",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
