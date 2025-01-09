@@ -84,7 +84,7 @@ def main():
 
     args = parser.parse_args()
 
-    req_num = args.requests
+    req_num = 10 #args.requests
     port = args.port
     cli_num = args.clients
     files = args.files
