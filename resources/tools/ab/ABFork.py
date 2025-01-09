@@ -84,9 +84,9 @@ def main():
 
     args = parser.parse_args()
 
-    req_num = args.requests
+    req_num = 1 #args.requests
     port = args.port
-    cli_num = args.clients
+    cli_num = 1 #args.clients
     files = args.files
     ip_address = args.ip
     tg_address = args.tip
@@ -101,8 +101,8 @@ def main():
     # The number of processing units available to the current process.
     _, cpu_num = subprocess.getstatusoutput(u"nproc --all")
     cpu_num = int(cpu_num)
-    if cpu_num > 70:
-        cpu_num = 70
+    if cpu_num > 1:
+        cpu_num = 1
 
     # Requests and Clients are evenly distributed on each CPU.
     per_req = round(req_num / cpu_num)
