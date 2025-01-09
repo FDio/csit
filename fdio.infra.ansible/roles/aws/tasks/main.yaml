@@ -79,6 +79,14 @@
   tags:
     - conf-ssh
 
+- name: "Enable Password Less sudo"
+  ansible.builtin.lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^#PermitRootLogin prohibit-password"
+    line: "PermitRootLogin yes"
+  tags:
+    - conf-ssh
+
 - name: "Recursively Delete Other Configs"
   ansible.builtin.file:
     path: "/etc/ssh/sshd_config.d"
@@ -167,6 +175,15 @@
     state: "present"
     regexp: "^%sudo"
     line: "%sudo ALL=(ALL:ALL) NOPASSWD: ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  tags:
+    - aws-sudoers
+
+- name: "sudoers nopasswd"
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers"
+    state: "present"
+    line: "%testuser ALL=(ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
   tags:
     - aws-sudoers
