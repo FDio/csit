@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3612c8d4_de81665a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-09T13:25:13Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDeth-ip4tcp*AND*ldpreload* !*nsim* !*xxv* !drv_af_xdp !drv_rdma_core !drv_avf",
+      "revId": "d182eccfa7dea6384f1eaf3bdef4c3771821b395",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
