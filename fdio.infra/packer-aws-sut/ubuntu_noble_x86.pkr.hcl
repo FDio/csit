@@ -83,28 +83,28 @@ source "amazon-ebs" "csit_ubuntu_noble_x86_tg" {
   ssh_timeout      = "30m"
 }
 
-build {
-  name = "csit_ubuntu_noble_x86_sut-packer"
-  sources = [
-    "source.amazon-ebs.csit_ubuntu_noble_x86_sut"
-  ]
-  provisioner "shell" {
-    inline = var.first_run_commands
-  }
-  provisioner "ansible" {
-    playbook_file = var.ansible_file_path
-    user          = "ubuntu"
-    use_proxy     = false
-    groups        = ["sut_aws"]
-    extra_arguments = [
-      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
-      "--extra-vars", "aws=true"
-    ]
-  }
-  provisioner "shell" {
-    inline = var.last_run_commands
-  }
-}
+#build {
+#  name = "csit_ubuntu_noble_x86_sut-packer"
+#  sources = [
+#    "source.amazon-ebs.csit_ubuntu_noble_x86_sut"
+#  ]
+#  provisioner "shell" {
+#    inline = var.first_run_commands
+#  }
+#  provisioner "ansible" {
+#    playbook_file = var.ansible_file_path
+#    user          = "ubuntu"
+#    use_proxy     = false
+#    groups        = ["sut_aws"]
+#    extra_arguments = [
+#      "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
+#      "--extra-vars", "aws=true"
+#    ]
+#  }
+#  provisioner "shell" {
+#    inline = var.last_run_commands
+#  }
+#}
 
 build {
   name = "csit_ubuntu_noble_x86_tg-packer"
