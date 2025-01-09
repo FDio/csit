@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -649,13 +649,15 @@
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
-| | ${output}= | Run ab | ${tg} | ${dut_ip_addrs_str} | ${ad_ip_addrs_str}
+| | ${status} | ${message}= | Run Keyword And Ignore Error | Run ab
+| | ... | ${tg} | ${dut_ip_addrs_str} | ${ad_ip_addrs_str}
 | | ... | ${tls_tcp} | ${ciphers} | ${files} | ${mode} | ${r_total} | ${c_total}
 | | ... | ${listen_port}
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
-| | Set test message | ${output}
+| | Set test message | ${message}
+| | Run Keyword If | "${status}" != "PASS" | Fail | AB failed: ${message}
 
 | Configure VPP startup configuration for NGINX
 | | [Documentation]
