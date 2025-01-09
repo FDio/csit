@@ -493,12 +493,21 @@ class IPUtil:
         :raises RuntimeError: Request fails.
         """
         ip_addr_with_prefix = f"{ip_addr}/{prefix_length}"
+
         if namespace is not None:
             cmd = f"ip netns exec {namespace} ip addr show dev {interface}"
         else:
             cmd = f"ip addr show dev {interface}"
 
-        cmd += u" | grep 'inet ' | awk -e '{print $2}'"
+        cmd += u" | grep 'inet ' | awk '{print $2}'"
+        exec_cmd(node, cmd, timeout=5, sudo=True)
+
+        if namespace is not None:
+            cmd = f"ip netns exec {namespace} ip addr show dev {interface}"
+        else:
+            cmd = f"ip addr show dev {interface}"
+
+        cmd += u" | grep 'inet ' | awk '{print $2}'"
         cmd += f" | grep '{ip_addr_with_prefix}'"
         _, stdout, _ = exec_cmd(node, cmd, timeout=5, sudo=True)
 
