@@ -15,7 +15,7 @@ variable "first_run_commands" {
   ]
 }
 
-variable "last_run_commands" {
+variable "last_run_commands_sut" {
   description = "Commands to run after deployment via remote-exec"
   type        = list(string)
   default = [
@@ -58,10 +58,11 @@ source "amazon-ebs" "csit_ubuntu_noble_arm_sut" {
     volume_type = "gp2"
   }
   force_deregister = true
-  region           = "eu-west-1"
+  region           = "us-east-1"
   skip_create_ami  = false
-  source_ami       = "ami-099a546c02844706e"
+  source_ami       = "ami-0932ffb346ea84d48"
   ssh_username     = "ubuntu"
+  ssh_timeout      = "60m"
 }
 
 build {
@@ -78,11 +79,10 @@ build {
     groups        = ["sut_aws"]
     extra_arguments = [
       "--extra-vars", "ansible_ssh_pass=${var.ansible_provision_pwd}",
-      "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
       "--extra-vars", "aws=true"
     ]
   }
   provisioner "shell" {
-    inline = var.last_run_commands
+    inline = var.last_run_commands_sut
   }
 }
