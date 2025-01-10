@@ -16,6 +16,15 @@ services:
     restart: "always"
     shm_size: "4G"
     volumes:
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+      - type: "bind"
+        source: "/dev/vfio"
+        target: "/dev/vfio"
+      - type: "bind"
+        source: "/etc/sudoers"
+        target: "/etc/sudoers"
 {% for volume in docker_volumes %}
       - type: "bind"
         source: "{{ volume.source }}"
@@ -38,6 +47,15 @@ services:
     restart: "always"
     shm_size: "4G"
     volumes:
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+      - type: "bind"
+        source: "/dev/vfio"
+        target: "/dev/vfio"
+      - type: "bind"
+        source: "/etc/sudoers"
+        target: "/etc/sudoers"
 {% for volume in docker_volumes %}
       - type: "bind"
         source: "{{ volume.source }}"

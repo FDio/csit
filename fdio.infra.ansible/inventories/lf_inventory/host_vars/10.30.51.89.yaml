@@ -34,11 +34,5 @@ intel_800_matrix: "dpdk24.07"
 
 docker_tg: true
 docker_volumes:
-  - source: "/dev/hugepages"
-    target: "/dev/hugepages"
-  - source: "/dev/vfio"
-    target: "/dev/vfio"
-  - source: "/etc/sudoers"
-    target: "/etc/sudoers"
   - source: "/usr/lib/firmware/"
     target: "/usr/lib/firmware/"

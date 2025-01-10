@@ -17,8 +17,17 @@ services:
     privileged: true
     restart: "always"
     shm_size: "4G"
-{% if docker_volumes is defined and docker_volumes|length > 0 %}
     volumes:
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+      - type: "bind"
+        source: "/dev/vfio"
+        target: "/dev/vfio"
+      - type: "bind"
+        source: "/etc/sudoers"
+        target: "/etc/sudoers"
+{% if docker_volumes is defined and docker_volumes|length > 0 %}
 {% for volume in docker_volumes %}
       - type: "bind"
         source: "{{ volume.source }}"
@@ -43,8 +52,17 @@ services:
     privileged: true
     restart: "always"
     shm_size: "4G"
-{% if docker_volumes is defined and docker_volumes|length > 0 %}
     volumes:
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+      - type: "bind"
+        source: "/dev/vfio"
+        target: "/dev/vfio"
+      - type: "bind"
+        source: "/etc/sudoers"
+        target: "/etc/sudoers"
+{% if docker_volumes is defined and docker_volumes|length > 0 %}
 {% for volume in docker_volumes %}
       - type: "bind"
         source: "{{ volume.source }}"
