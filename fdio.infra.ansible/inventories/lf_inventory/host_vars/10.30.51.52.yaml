@@ -37,12 +37,6 @@ docker_sut: true
 docker_volumes:
   - source: "/usr/bin/ofed_info"
     target: "/usr/bin/ofed_info"
-  - source: "/dev/hugepages"
-    target: "/dev/hugepages"
-  - source: "/dev/vfio"
-    target: "/dev/vfio"
-  - source: "/etc/sudoers"
-    target: "/etc/sudoers"
   - source: "/dev/null"
     target: "/etc/sysctl.d/80-vpp.conf"
   - source: "/opt/boot/"
