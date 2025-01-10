@@ -35,11 +35,5 @@ docker_tg: true
 docker_volumes:
   - source: "/usr/bin/ofed_info"
     target: "/usr/bin/ofed_info"
-  - source: "/dev/hugepages"
-    target: "/dev/hugepages"
-  - source: "/dev/vfio"
-    target: "/dev/vfio"
-  - source: "/etc/sudoers"
-    target: "/etc/sudoers"
   - source: "/usr/lib/firmware/"
     target: "/usr/lib/firmware/"
