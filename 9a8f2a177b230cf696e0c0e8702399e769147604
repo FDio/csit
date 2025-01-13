@@ -33,6 +33,23 @@
       "message": "csit-2n-spr nic_intel-e810cqANDdrv_avfAND1cANDeth-l2patch",
       "revId": "9a8f2a177b230cf696e0c0e8702399e769147604",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8424b3e6_daa4c9c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 50
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-13T13:40:28Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest nic_intel-e810cqANDdrv_avfAND1cANDeth-l2patch",
+      "revId": "9a8f2a177b230cf696e0c0e8702399e769147604",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
