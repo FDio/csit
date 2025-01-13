@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1261,32 +1261,37 @@ class InterfaceUtil:
             the node.
         """
         PapiSocketExecutor.run_cli_cmd(
-            node, u"set logging class avf level debug"
+            node, u"set logging class dev level debug"
+        )
+        PapiSocketExecutor.run_cli_cmd(
+            node, u"set logging class iavf level debug"
         )
 
-        cmd = u"avf_create"
+        cmd = u"dev_attach"
         vf_pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
-            pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
-            enable_elog=0,
-            rxq_num=int(num_rx_queues) if num_rx_queues else 0,
-            rxq_size=rxq_size,
-            txq_size=txq_size
+            device_id=f"pci/{vf_pci_addr}",
+            driver_name="iavf",
         )
-        err_msg = f"Failed to create AVF interface on host {node[u'host']}"
+        err_msg = f"Failed to attach AVF driver on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+            logger.debug(f"reply: {reply}")
+            dev_index = reply["dev_index"]
 
-        # FIXME: Remove once the fw/driver is upgraded.
-        for _ in range(10):
-            with PapiSocketExecutor(node) as papi_exec:
-                try:
-                    sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(
-                        err_msg
-                    )
-                    break
-                except AssertionError:
-                    logger.error(err_msg)
-        else:
-            raise AssertionError(err_msg)
+        cmd = u"dev_create_port_if"
+        args = dict(
+            dev_index=dev_index,
+            intf_name="",
+            num_rx_queues=int(num_rx_queues) if num_rx_queues else 0,
+            rx_queue_size=rxq_size,
+            tx_queue_size=txq_size,
+            port_id=0,
+        )
+        err_msg = f"Failed to create AVF port on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        PapiSocketExecutor.run_cli_cmd(node, "show dev")
 
         InterfaceUtil.add_eth_interface(
             node, sw_if_index=sw_if_index, ifc_pfx=u"eth_avf",
@@ -1859,6 +1864,10 @@ class InterfaceUtil:
         if not numvfs:
             if osi_layer == u"L2":
                 InterfaceUtil.set_linux_interface_promisc(node, pf_dev)
+        else:
+            # AVF VFs inherit MTU from PF, so set big value here.
+            # TODO: Move to test-case specific initialization.
+            InterfaceUtil.set_interface_mtu(node, [pf_pci_addr])
 
         vf_ifc_keys = []
         # Set MAC address and bind each virtual function to uio driver.
