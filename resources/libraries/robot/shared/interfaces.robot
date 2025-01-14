@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -375,7 +375,7 @@
 
 | Initialize layer avf on node
 | | [Documentation]
-| | ... | Initialize AVF (Intel) interfaces on DUT on NIC PF.
+| | ... | Initialize AVF (Intel) interfaces on DUT on NIC PF. Set MTU.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -408,6 +408,8 @@
 | | | Set List Value | ${${dut}_vf${pf}_mac} | ${vf} | ${_mac}
 | | | Set List Value | ${${dut}_vf${pf}_pci} | ${vf} | ${_pci}
 | | | Set List Value | ${${dut}_vf${pf}_vlan} | ${vf} | ${_vlan}
+| | | VPP Set Interface MTU | ${nodes['${dut}']}
+| | | ... | ${${dut}_vf${pf}}[${vf}] | mtu=${recommended_mtu}
 | | END
 
 | Initialize layer af_xdp on node
