@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b654ef5e_fe36a098",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-01-15T09:37:19Z",
+      "side": 1,
+      "message": "this is blocking csit execution. I do not want that. if vpp will refuse to quit? csit will hang forever?",
+      "range": {
+        "startLine": 84,
+        "startChar": 18,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "4efdd2b1a431ac653e3a2940f4e7fad118653bef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
