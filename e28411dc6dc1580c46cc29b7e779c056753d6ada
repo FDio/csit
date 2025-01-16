@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest ndrpdrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND1518bANDethip4pvti-ip4base-reassembly",
       "revId": "e28411dc6dc1580c46cc29b7e779c056753d6ada",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "102aa776_c7d67775",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-16T16:11:18Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest ndrpdrANDnic_*ANDdrv_mlx*AND1cAND1518bANDethip4pvti-ip4base-reassembly",
+      "revId": "e28411dc6dc1580c46cc29b7e779c056753d6ada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
