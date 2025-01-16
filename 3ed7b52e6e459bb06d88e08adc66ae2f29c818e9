@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75d1cd4a_90faaa21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2025-01-16T14:48:38Z",
+      "side": 1,
+      "message": "csit-2n-grc-perftest mrrANDNIC_Mellanox-CX556AANDdrv_mlx5_coreAND1cAND64bANDethip4-ip4base",
+      "revId": "3ed7b52e6e459bb06d88e08adc66ae2f29c818e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
