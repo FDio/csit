@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS Region."
   type        = string
-  default     = "eu-north-1"
+  default     = "us-east-1"
 }
 
 variable "vault_provider_address" {
@@ -30,7 +30,7 @@ variable "vault_name" {
 variable "application_bucket" {
   description = "The name of the bucket."
   type        = string
-  default     = "elasticbeanstalk-eu-north-1-407116685360"
+  default     = "elasticbeanstalk-us-east-1-407116685360"
 }
 
 variable "application_description" {
@@ -42,7 +42,7 @@ variable "application_description" {
 variable "application_name" {
   description = "Name of the Beanstalk Application."
   type        = string
-  default     = "fdio-csit-dash-app-m7g"
+  default     = "fdio-csit-dash-app-m8g"
 }
 
 variable "application_source" {
