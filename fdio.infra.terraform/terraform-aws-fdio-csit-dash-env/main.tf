@@ -1,5 +1,6 @@
-data "vault_generic_secret" "fdio_docs" {
-  path = "kv/secret/data/etl/fdio_docs"
+data "vault_kv_secret_v2" "fdio_docs" {
+  mount = "kv"
+  name  = "etl/fdio_docs"
 }
 
 data "vault_aws_access_credentials" "creds" {
@@ -11,8 +12,8 @@ module "elastic_beanstalk_application" {
   source = "../terraform-aws-elastic-beanstalk-application"
 
   # application
-  application_description                    = "FD.io CDASH M7G"
-  application_name                           = "fdio-csit-dash-app-m7g"
+  application_description                    = "FD.io CDASH M8G"
+  application_name                           = "fdio-csit-dash-app-m8g"
   appversion_lifecycle_service_role_arn      = "arn:aws:iam::407116685360:role/aws-service-role/elasticbeanstalk.amazonaws.com/AWSServiceRoleForElasticBeanstalk"
   appversion_lifecycle_max_count             = 10
   appversion_lifecycle_delete_source_from_s3 = false
@@ -22,7 +23,7 @@ module "elastic_beanstalk_environment" {
   source = "../terraform-aws-elastic-beanstalk-environment"
 
   # environment
-  application_name = "fdio-csit-dash-app-m7g"
+  application_name = "fdio-csit-dash-app-m8g"
 
   # vpc
   vpc_cidr_block           = "10.0.0.0/16"
@@ -31,22 +32,22 @@ module "elastic_beanstalk_environment" {
   vpc_instance_tenancy     = "default"
 
   # subnet
-  subnet_a_availability_zone = "eu-north-1a"
+  subnet_a_availability_zone = "us-east-1a"
   subnet_a_cidr_block        = "10.0.0.0/20"
-  subnet_b_availability_zone = "eu-north-1b"
+  subnet_b_availability_zone = "us-east-1b"
   subnet_b_cidr_block        = "10.0.16.0/20"
 
   # environment
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
-  environment_name                   = "fdio-csit-dash-env-m7g"
-  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.0.6 running Python 3.11"
+  environment_name                   = "fdio-csit-dash-env-m8g"
+  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.3.2 running Python 3.12"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
 
   # aws:ec2:instances
-  instances_instance_types = "m7g.2xlarge"
+  instances_instance_types = "m8g.2xlarge"
 
   # aws:ec2:vpc
   associate_public_ip_address = true
@@ -57,7 +58,7 @@ module "elastic_beanstalk_environment" {
 
   # aws:elasticbeanstalk:environment
   environment_loadbalancer_type               = "application"
-  environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:eu-north-1:407116685360:certificate/3ef3c6ae-f1d4-49f0-a8cd-5d090991bf73"
+  environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:us-east-1:407116685360:certificate/3439b8aa-4f07-496f-a2de-e38159050c85"
 
   # aws:elasticbeanstalk:environment:process:default
   environment_process_default_healthcheck_interval      = 10
@@ -117,8 +118,8 @@ module "elastic_beanstalk_environment" {
 
   # aws:elasticbeanstalk:application:environment
   environment_variables = {
-    "AWS_ACCESS_KEY_ID"     = data.vault_generic_secret.fdio_docs.data["access_key"]
-    "AWS_SECRET_ACCESS_KEY" = data.vault_generic_secret.fdio_docs.data["secret_key"]
-    "AWS_DEFAULT_REGION"    = data.vault_generic_secret.fdio_docs.data["region"]
+    "AWS_ACCESS_KEY_ID"     = data.vault_kv_secret_v2.fdio_docs.data["access_key"]
+    "AWS_SECRET_ACCESS_KEY" = data.vault_kv_secret_v2.fdio_docs.data["secret_key"]
+    "AWS_DEFAULT_REGION"    = data.vault_kv_secret_v2.fdio_docs.data["region"]
   }
 }
