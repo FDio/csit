@@ -305,6 +305,9 @@
     policer_classify_set_interface: '0xde7ad708'  # dev
     policer_classify_set_interface_reply: '0xe8d4e804'  # dev
 
+    # plugins/pvti/api.c
+    pvti_interface_create: '0xa1e95595'
+
     # plugins/rdma/rdma.api
     rdma_create_v4: '0xc6287ea8'  # perf
     rdma_create_v4_reply: '0x5383d31f'  # perf
