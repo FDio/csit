@@ -755,7 +755,7 @@ class VppConfigGenerator:
             self._node, cmd, message="Writing config file failed!"
         )
 
-    def apply_config(self, filename=None, verify_vpp=True):
+    def apply_config(self, filename=None, verify_vpp=True, asan=True):
         """Generate and write VPP startup configuration to file and restart VPP.
 
         Use data from calls to this class to form a startup.conf file and
@@ -768,7 +768,7 @@ class VppConfigGenerator:
         """
         self.write_config(filename=filename)
 
-        VPPUtil.restart_vpp_service(self._node, self._node_key)
+        VPPUtil.restart_vpp_service(self._node, self._node_key, asan=asan)
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
 
@@ -806,7 +806,7 @@ class VppInitConfig:
                 )
                 vpp_config.add_ip6_hash_buckets(2000000)
                 vpp_config.add_ip6_heap_size("4G")
-                vpp_config.apply_config()
+                vpp_config.apply_config(asan=False)
 
     @staticmethod
     def create_vpp_startup_configuration_container(node, cpuset_cpus=None):
