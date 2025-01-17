@@ -147,9 +147,9 @@
 2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4udp-ip4base-h65536-p63-s4128768-tput
-1c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-2c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-4c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+1c AND 100b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+2c AND 100b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+4c AND 100b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
