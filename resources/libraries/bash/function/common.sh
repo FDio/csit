@@ -615,6 +615,9 @@ function get_test_tag_string () {
             elif [[ "${test_tag_array[0]}" == "skx" ]]; then
                 export GRAPH_NODE_VARIANT="skx"
                 TEST_TAG_STRING="${test_tag_array[@]:1}" || true
+            elif [[ "${test_tag_array[0]}" == "hsw" ]]; then
+                export GRAPH_NODE_VARIANT="hsw"
+                TEST_TAG_STRING="${test_tag_array[@]:1}" || true
             fi
         fi
     fi
