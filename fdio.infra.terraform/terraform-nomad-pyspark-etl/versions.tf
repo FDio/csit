@@ -10,8 +10,8 @@ terraform {
       version = ">= 2.3.0"
     }
     vault = {
-      version = ">= 4.3.0"
+      version = ">= 4.6.0"
     }
   }
-  required_version = ">= 1.5.4"
+  required_version = ">= 1.10.4"
 }

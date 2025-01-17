@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -141,7 +141,7 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-coverage-2410" in path]
+filtered_paths = [path for path in paths if "report-coverage-2502" in path]
 
 out_sdf = process_json_to_dataframe("mrr", filtered_paths)
 out_sdf.printSchema()
@@ -163,7 +163,7 @@ except KeyError:
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2410",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2502",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",

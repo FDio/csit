@@ -8,6 +8,11 @@ data "vault_kv_secret_v2" "fdio_docs" {
   name  = "etl/fdio_docs"
 }
 
+data "vault_kv_secret_v2" "csit_docs" {
+  mount = "kv"
+  name  = "etl/csit_docs"
+}
+
 module "etl" {
   for_each = { for job in var.nomad_jobs : job.job_name => job }
   providers = {
