@@ -2184,6 +2184,12 @@ class IPsecUtil:
         PapiSocketExecutor.run_cli_cmd(node, "show ipsec all")
 
     @staticmethod
+    def show_crypto_cli(node: dict) -> None:
+        """FIXME"""
+        PapiSocketExecutor.run_cli_cmd(node, "show crypto engines")
+        PapiSocketExecutor.run_cli_cmd(node, "show crypto handlers")
+
+    @staticmethod
     def show_ipsec_security_association(node: dict) -> None:
         """Show IPSec security association.
 

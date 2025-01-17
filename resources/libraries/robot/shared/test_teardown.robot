@@ -134,8 +134,10 @@
 | | ... | Additional teardown for tests which uses IPSec security association.
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Show Crypto CLI | ${nodes['${dut}']}
 | | | Run Keyword If Test Failed
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
+| | | Vpp Ipsec Show All | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For ipsec_all
