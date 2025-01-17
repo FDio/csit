@@ -24,11 +24,10 @@ depicted in the figure below.
 
 A brief bottom-up description is provided here:
 
-1. SUTs, DUTs, TGs
-   - SUTs - Systems Under Test;
-   - DUTs - Devices Under Test;
-   - TGs - Traffic Generators;
-2. Level-1 libraries - Robot and Python
+1. Environment
+   - Bare metal - testbeds, FD.io backend
+   - Public clouds and virtualised environments - testbeds, services, data
+2. Libraries
    - Lowest level CSIT libraries abstracting underlying test environment, SUT,
      DUT and TG specifics;
    - Used commonly across multiple L2 KWs;
@@ -52,28 +51,44 @@ A brief bottom-up description is provided here:
          tests requirements;
        - Same stream profile can be used for different tests with the same
          traffic needs;
-   - Functional data plane traffic scripts:
-     - Scapy specific traffic scripts;
-3. Level-2 libraries - Robot resource files:
-   - Higher level CSIT libraries abstracting required functions for executing
-     tests;
-   - L2 KWs are classified into the following functional categories:
-     - Configuration, test, verification, state report;
-     - Suite setup, suite teardown;
-     - Test setup, test teardown;
-4. Tests - Robot:
+   - Tools: Ansible, Terraform, PXE, Packer, Vagrant
+   - ETL - extract, transform, and load data
+3. Methodology used by tests:
+   - Maximum Receive Rate;
+   - MLR Search;
+   - PLR Search;
+   - Packet latency,
+   - Telemetry
+4. Tests
    - Test suites with test cases;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
      - TRex
-   - Tools:
-     - CSIT-Dash
-     - Testbed environment setup ansible playbooks;
-     - Operational debugging scripts;
+5. Presentation and analytics dashboard - CSIT-Dash
+   - Trending
+     - Performance, incl. telemetry
+     - Failures and annomalies
+     - Job statistics
+   - Release testing results
+     - Performance
+     - Comparisons
+     - Coverage data
+   - Results data search
+   - Documentation
+6. CI/CD
+   - Job specifications
+   - CI/CD tools
+7. Documentation
+   - Design
+   - Methodology
+   - Release notes
+   - Infrastructure
+   - IETF BMWG
+   - TOIs
 
-5. Test Lifecycle Abstraction
+## Test Lifecycle Abstraction
 
 A well coded test must follow a disciplined abstraction of the test
 lifecycles that includes setup, configuration, test and verification. In
