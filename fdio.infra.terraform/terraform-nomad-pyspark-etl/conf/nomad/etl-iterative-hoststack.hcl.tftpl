@@ -21,11 +21,11 @@ job "${job_name}" {
     }
     task "${job_name}" {
       artifact {
-        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/coverage_reconf_rls2410.py"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/iterative_hoststack.py"
         destination = "local/"
       }
       artifact {
-        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/coverage_reconf.json"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/iterative_hoststack.json"
         destination = "local/"
       }
       driver = "docker"
@@ -37,7 +37,7 @@ job "${job_name}" {
           "--executor-memory", "20g",
           "--executor-cores", "2",
           "--master", "local[2]",
-          "coverage_reconf_rls2410.py"
+          "iterative_hoststack.py"
         ]
         work_dir = "/local"
       }
