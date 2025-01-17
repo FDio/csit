@@ -55,51 +55,47 @@ variable "nomad_jobs" {
       memory = 50000
     },
     {
+      job_name = "etl-iterative-hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-mrr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-ndrpdr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-reconf"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-soak"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-mrr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-ndrpdr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-reconf"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-soak"
+      memory = 50000
+    },
+    {
       job_name = "etl-trending-hoststack"
-      memory = 50000
-    },
-    {
-      job_name = "etl-iterative-hoststack-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-iterative-mrr-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-iterative-ndrpdr-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-iterative-reconf-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-iterative-soak-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-coverage-device-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-coverage-hoststack-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-coverage-mrr-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-coverage-ndrpdr-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-coverage-reconf-rls2410"
-      memory = 50000
-    },
-    {
-      job_name = "etl-coverage-soak-rls2410"
       memory = 50000
     },
     {
