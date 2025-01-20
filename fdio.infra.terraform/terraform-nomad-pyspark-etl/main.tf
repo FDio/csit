@@ -23,9 +23,9 @@ module "etl" {
   aws_access_key_id         = data.vault_kv_secret_v2.fdio_logs.data.access_key
   aws_secret_access_key     = data.vault_kv_secret_v2.fdio_logs.data.secret_key
   aws_default_region        = data.vault_kv_secret_v2.fdio_logs.data.region
-  out_aws_access_key_id     = data.vault_kv_secret_v2.fdio_docs.data.access_key
-  out_aws_secret_access_key = data.vault_kv_secret_v2.fdio_docs.data.secret_key
-  out_aws_default_region    = data.vault_kv_secret_v2.fdio_docs.data.region
+  out_aws_access_key_id     = data.vault_kv_secret_v2.csit_docs.data.access_key
+  out_aws_secret_access_key = data.vault_kv_secret_v2.csit_docs.data.secret_key
+  out_aws_default_region    = data.vault_kv_secret_v2.csit_docs.data.region
   cron                      = "0 30 0 * * * *"
   datacenters               = ["yul1"]
   job_name                  = each.key
