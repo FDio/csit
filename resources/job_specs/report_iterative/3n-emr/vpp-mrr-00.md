@@ -2,48 +2,6 @@
 ## ./crypto
 ### intel-e810cq
 #### avf
-##### ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-##### ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-##### ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 ##### ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
@@ -58,6 +16,20 @@
 1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 ##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
 2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
 3c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
@@ -72,6 +44,34 @@
 2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 3c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 ##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
 2c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
 3c AND 1518b AND mrr AND e810cq AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
@@ -87,20 +87,21 @@
 3c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 4c AND imix AND mrr AND e810cq AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 #### dpdk-vfio-pci
-##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-##### ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+##### ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+##### ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
 ##### ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
@@ -108,7 +109,7 @@
 1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-##### New ipsec suites with UDP encapsulation. One tescase per suite as they are experiemntal.
+##### ethip4ipsec10000tnlsw-udp  one tescase per suite as they are experiemntal.
 1c AND 1518b AND mrr AND e810cq AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND e810cq AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac256sha
 1c AND 1518b AND mrr AND e810cq AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac96sha
@@ -121,6 +122,10 @@
 1c AND 1518b AND mrr AND e810cq AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND e810cq AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256nullgmac
 1c AND 1518b AND mrr AND e810cq AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-none-hmac96sha
+##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
 ##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 3c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
@@ -128,17 +133,13 @@
 2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 3c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+##### ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 ##### ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
 2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
@@ -153,20 +154,20 @@
 1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
 2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
 4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
-##### ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
-##### ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
-1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
-2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
-4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
-1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
-2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
-4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+3c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+3c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 ## ./ip4
 ### intel-e810cq
 #### avf
