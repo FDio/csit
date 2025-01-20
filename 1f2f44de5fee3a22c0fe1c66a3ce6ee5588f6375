@@ -33,6 +33,23 @@
       "message": "csit-2n-grc-perftest mrrANDNIC_Mellanox-CX556AANDdrv_mlx5_coreAND1cAND64bANDethip4-ip4base",
       "revId": "1f2f44de5fee3a22c0fe1c66a3ce6ee5588f6375",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8783798e_06999621",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2025-01-20T22:51:34Z",
+      "side": 1,
+      "message": "Hi Peter,\nWe\u0027ve selected 6 perf events for the Grace testbed and successfully tested the patch on both x86[1] and arm[2] platforms. Could you please review it if you have some time?\n\n[1] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-icx/513/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k9-k9-k10-k2-k1-k1-k14\n[2] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-grc/27/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k9-k9-k10-k2-k1-k1-k14",
+      "revId": "1f2f44de5fee3a22c0fe1c66a3ce6ee5588f6375",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
