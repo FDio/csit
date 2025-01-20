@@ -107,9 +107,9 @@
 2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4udp-ip4base-h65536-p63-s4128768-tput
-1c AND 100b AND ndrpdr AND e810cq AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-2c AND 100b AND ndrpdr AND e810cq AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-4c AND 100b AND ndrpdr AND e810cq AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+1c AND 100b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+2c AND 100b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+4c AND 100b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 1c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND 2p1cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
@@ -155,6 +155,10 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale200k-rnd
+1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale200k-rnd
+2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale200k-rnd
+4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale200k-rnd
 ##### ethip4-ip4scale2m-rnd
 1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale2m-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4-ip4scale2m-rnd
@@ -208,9 +212,9 @@
 2c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 4c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 ##### ethip4tcp-ip4base-h65536-p63-s4128768-cps
-1c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-2c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-4c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+1c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
+2c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
+4c AND 64b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4tcp-ip4base-h65536-p63-s4128768-tput
 1c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
 2c AND 100b AND ndrpdr AND e810cq AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
@@ -224,6 +228,10 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale2m-rnd
+1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
+2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
+4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 ## ./ip4_tunnels
 ### mellanox-cx7veat
 #### mlx5-core
