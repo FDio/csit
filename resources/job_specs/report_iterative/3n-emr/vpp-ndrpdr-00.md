@@ -135,6 +135,10 @@
 2c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 3c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+1c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+2c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
+4c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
 ##### ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
 1c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
 2c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
@@ -231,6 +235,10 @@
 1c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1000tnlsw-ip4base
 2c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1000tnlsw-ip4base
 4c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1000tnlsw-ip4base
+##### ethip4gtpusw-ip4base-reassembly
+1c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4gtpusw-ip4base-reassembly
+2c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4gtpusw-ip4base-reassembly
+4c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4gtpusw-ip4base-reassembly
 ##### ethip4udpwireguard1tnlhwasync-ip4base
 1c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1tnlhwasync-ip4base
 2c AND 1518b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1tnlhwasync-ip4base
@@ -260,17 +268,6 @@
 2c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1000tnlhwasync-ip4base
 4c AND imix AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udpwireguard1000tnlhwasync-ip4base
 ## ./ip6
-### intel-e810xxv
-#### avf
-##### ethip6-ip6base
-1c AND 78b AND ndrpdr AND e810xxv AND drv_avf AND ethip6-ip6base
-2c AND 78b AND ndrpdr AND e810xxv AND drv_avf AND ethip6-ip6base
-4c AND 78b AND ndrpdr AND e810xxv AND drv_avf AND ethip6-ip6base
-#### dpdk-vfio-pci
-##### ethip6-ip6base
-1c AND 78b AND ndrpdr AND e810xxv AND drv_vfio_pci AND ethip6-ip6base
-2c AND 78b AND ndrpdr AND e810xxv AND drv_vfio_pci AND ethip6-ip6base
-4c AND 78b AND ndrpdr AND e810xxv AND drv_vfio_pci AND ethip6-ip6base
 ### intel-e810cq
 #### avf
 ##### ethip6-ip6base
