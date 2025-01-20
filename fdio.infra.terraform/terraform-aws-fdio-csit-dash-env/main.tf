@@ -1,6 +1,6 @@
-data "vault_kv_secret_v2" "fdio_docs" {
+data "vault_kv_secret_v2" "csit_docs" {
   mount = "kv"
-  name  = "etl/fdio_docs"
+  name  = "etl/csit_docs"
 }
 
 data "vault_aws_access_credentials" "creds" {
@@ -118,8 +118,8 @@ module "elastic_beanstalk_environment" {
 
   # aws:elasticbeanstalk:application:environment
   environment_variables = {
-    "AWS_ACCESS_KEY_ID"     = data.vault_kv_secret_v2.fdio_docs.data["access_key"]
-    "AWS_SECRET_ACCESS_KEY" = data.vault_kv_secret_v2.fdio_docs.data["secret_key"]
-    "AWS_DEFAULT_REGION"    = data.vault_kv_secret_v2.fdio_docs.data["region"]
+    "AWS_ACCESS_KEY_ID"     = data.vault_kv_secret_v2.csit_docs.data["access_key"]
+    "AWS_SECRET_ACCESS_KEY" = data.vault_kv_secret_v2.csit_docs.data["secret_key"]
+    "AWS_DEFAULT_REGION"    = data.vault_kv_secret_v2.csit_docs.data["region"]
   }
 }
