@@ -30,7 +30,7 @@ from pyspark.sql.types import StructType
 
 
 S3_LOGS_BUCKET=environ.get("S3_LOGS_BUCKET", "fdio-logs-s3-cloudfront-index")
-S3_DOCS_BUCKET=environ.get("S3_DOCS_BUCKET", "fdio-docs-s3-cloudfront-index")
+S3_DOCS_BUCKET=environ.get("S3_DOCS_BUCKET", "csit-docs-s3-cloudfront-index")
 PATH=f"s3://{S3_LOGS_BUCKET}/vex-yul-rot-jenkins-1/csit-*-perf-*"
 SUFFIX="info.json.gz"
 IGNORE_SUFFIX=[
