@@ -6,9 +6,6 @@
 1c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-1dcr
 2c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-1dcr
 4c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-1dcr
-1c AND 1518b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-1dcr
-2c AND 1518b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-1dcr
-4c AND 1518b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2bdbasemaclrn-eth-2memif-1dcr
 ##### eth-l2xcbase-eth-2memif-1dcr
 1c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2xcbase-eth-2memif-1dcr
 2c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND eth-l2xcbase-eth-2memif-1dcr
@@ -69,9 +66,9 @@
 2c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 4c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4udp-ip4base-h65536-p63-s4128768-tput
-1c AND 100b AND mrr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-2c AND 100b AND mrr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
-4c AND 100b AND mrr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+2c AND 100b AND mrr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
+4c AND 100b AND mrr AND cx556a AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-tput
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 1c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
@@ -104,7 +101,7 @@
 2c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND ethip4--ethip4udpgeneve-256tun-ip4base
 4c AND 64b AND mrr AND cx556a AND drv_mlx5_core AND ethip4--ethip4udpgeneve-256tun-ip4base
 ## ./ip6
-### intel-cx556a
+### mellanox-cx556a
 #### mlx5-core
 ##### ethip6-ip6base
 1c AND 78b AND mrr AND cx556a AND drv_mlx5_core AND ethip6-ip6base
