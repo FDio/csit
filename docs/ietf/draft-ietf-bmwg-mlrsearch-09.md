@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-08
-date: 2024-10-21
+docname: draft-ietf-bmwg-mlrsearch-09
+date: 2025-01-13
 
 ipr: trust200902
 area: ops
@@ -58,8 +58,7 @@ support multiple loss ratio searches,
 and enhance result repeatability and comparability.
 
 The primary reason for extending [RFC2544] is to address the challenges
-and requirements presented by the evaluation and testing
-the data planes of software-based networking systems.
+of evaluating and testing the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
 such as allowing multiple short trials per load instead of one large trial,
@@ -86,7 +85,7 @@ The purpose of this document is to describe the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining
 data plane throughput in software-based networking devices and functions.
 
-Applying vanilla [RFC2544] throughput bisection to software DUTs
+Applying the vanilla [RFC2544] throughput bisection method to software DUTs
 results in several problems:
 
 - Binary search takes too long as most trials are done far from the
@@ -126,8 +125,8 @@ support both conservative settings and aggressive settings.
 The conservative settings lead to results
 unconditionally compliant with [RFC2544],
 but longer search duration and worse repeatability.
-Conversely, aggressive settings lead to shorter search duration
-and better repeatability, but the results are not compliant with [RFC2544].
+Conversely, aggressive settings lead to shorter search durations
+and better repeatability, but the results do not comply with [RFC2544].
 
 No part of [RFC2544] is intended to be obsoleted by this document.
 
@@ -150,8 +149,9 @@ for time-efficiency improvements.
 A more generalized throughput concept could enable further enhancements
 while maintaining the precision of simpler methods.
 
-The bisection method, when unconditionally compliant with [RFC2544],
-is excessively slow.
+The bisection method, when used in a manner unconditionally compliant
+with [RFC2544], is excessively slow.
+
 This is because a significant amount of time is spent on trials
 with loads that, in retrospect, are far from the final determined throughput.
 
@@ -3107,17 +3107,17 @@ networks.
 
 # Acknowledgements
 
-Some phrases and statements in this document were created
-with help of Mistral AI (mistral.ai).
-
-Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
-review and numerous useful comments and suggestions in the earlier versions of this document.
-
 Special wholehearted gratitude and thanks to the late Al Morton for his
 thorough reviews filled with very specific feedback and constructive
 guidelines. Thank you Al for the close collaboration over the years,
 for your continuous unwavering encouragement full of empathy and
 positive attitude. Al, you are dearly missed.
+
+Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
+review and numerous useful comments and suggestions in the earlier versions of this document.
+
+Some phrases and statements in this document were created
+with help of Mistral AI (mistral.ai).
 
 # Appendix A: Load Classification
 
