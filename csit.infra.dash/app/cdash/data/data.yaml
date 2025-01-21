@@ -1,7 +1,7 @@
 - data_type: statistics
   partition: stats_type
   partition_name: sra
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/stats
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/stats
   schema: statistics
   columns:
     - job
@@ -11,7 +11,7 @@
 - data_type: trending
   partition: test_type
   partition_name: mrr
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/trending
   schema: trending_mrr
   columns:
     - job
@@ -36,7 +36,7 @@
 - data_type: trending
   partition: test_type
   partition_name: ndrpdr
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/trending
   schema: trending_ndrpdr
   columns:
     - job
@@ -71,7 +71,7 @@
 - data_type: trending
   partition: test_type
   partition_name: hoststack
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/trending
   schema: trending_hoststack
   columns:
     - job
@@ -94,7 +94,7 @@
 - data_type: trending
   partition: test_type
   partition_name: soak
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/trending
   schema: trending_soak
   columns:
     - job
@@ -116,7 +116,7 @@
   partition: test_type
   partition_name: mrr
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
   schema: iterative_rls2406_mrr
   columns:
     - job
@@ -139,7 +139,7 @@
   partition: test_type
   partition_name: ndrpdr
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
   schema: iterative_rls2406_ndrpdr
   columns:
     - job
@@ -174,7 +174,7 @@
   partition: test_type
   partition_name: hoststack
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
   schema: iterative_rls2406_hoststack
   columns:
     - job
@@ -195,7 +195,7 @@
   partition: test_type
   partition_name: soak
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2406
   schema: iterative_rls2406_soak
   columns:
     - job
@@ -217,7 +217,7 @@
   partition: test_type
   partition_name: ndrpdr
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/coverage_rls2406
   schema: coverage_rls2406_ndrpdr
   columns:
     - job
@@ -244,7 +244,7 @@
   partition: test_type
   partition_name: mrr
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/coverage_rls2406
   schema: iterative_rls2406_mrr
   columns:
     - job
@@ -263,7 +263,7 @@
   partition: test_type
   partition_name: device
   release: rls2406
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2406
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/coverage_rls2406
   schema: coverage_rls2406_device
   columns:
     - job
@@ -278,7 +278,7 @@
   partition: test_type
   partition_name: mrr
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
   schema: iterative_rls2410_mrr
   columns:
     - job
@@ -301,7 +301,7 @@
   partition: test_type
   partition_name: ndrpdr
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
   schema: iterative_rls2410_ndrpdr
   columns:
     - job
@@ -336,7 +336,7 @@
   partition: test_type
   partition_name: hoststack
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
   schema: iterative_rls2410_hoststack
   columns:
     - job
@@ -357,7 +357,7 @@
   partition: test_type
   partition_name: soak
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/iterative_rls2410
   schema: iterative_rls2410_soak
   columns:
     - job
@@ -379,7 +379,7 @@
   partition: test_type
   partition_name: ndrpdr
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/coverage_rls2410
   schema: coverage_rls2410_ndrpdr
   columns:
     - job
@@ -406,7 +406,7 @@
   partition: test_type
   partition_name: mrr
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/coverage_rls2410
   schema: iterative_rls2410_mrr
   columns:
     - job
@@ -425,7 +425,7 @@
   partition: test_type
   partition_name: device
   release: rls2410
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2410
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/coverage_rls2410
   schema: coverage_rls2410_device
   columns:
     - job
