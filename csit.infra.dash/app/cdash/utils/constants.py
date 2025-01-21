@@ -154,6 +154,9 @@ class Constants:
     # The file with tooltips.
     TOOLTIP_FILE = "cdash/utils/tooltips.yaml"
 
+    # Max pool size for boto3
+    MAX_POOL_SIZE = get_int_from_env("MAX_POOL_SIZE", 30)
+
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
     MAX_TIME_PERIOD = 250
