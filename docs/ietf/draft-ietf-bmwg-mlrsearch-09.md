@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-08
-date: 2024-10-21
+docname: draft-ietf-bmwg-mlrsearch-09
+date: 2025-01-13
 
 ipr: trust200902
 area: ops
@@ -58,8 +58,7 @@ support multiple loss ratio searches,
 and enhance result repeatability and comparability.
 
 The primary reason for extending [RFC2544] is to address the challenges
-and requirements presented by the evaluation and testing
-the data planes of software-based networking systems.
+of evaluating and testing the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
 such as allowing multiple short trials per load instead of one large trial,
@@ -150,8 +149,9 @@ for time-efficiency improvements.
 A more generalized throughput concept could enable further enhancements
 while maintaining the precision of simpler methods.
 
-The bisection method, when unconditionally compliant with [RFC2544],
-is excessively slow.
+The bisection method, when used in a manner unconditionally compliant
+with [RFC2544], is excessively slow.
+
 This is because a significant amount of time is spent on trials
 with loads that, in retrospect, are far from the final determined throughput.
 
@@ -3107,17 +3107,17 @@ networks.
 
 # Acknowledgements
 
-Some phrases and statements in this document were created
-with help of Mistral AI (mistral.ai).
-
-Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
-review and numerous useful comments and suggestions in the earlier versions of this document.
-
 Special wholehearted gratitude and thanks to the late Al Morton for his
 thorough reviews filled with very specific feedback and constructive
 guidelines. Thank you Al for the close collaboration over the years,
 for your continuous unwavering encouragement full of empathy and
 positive attitude. Al, you are dearly missed.
+
+Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
+review and numerous useful comments and suggestions in the earlier versions of this document.
+
+Some phrases and statements in this document were created
+with help of Mistral AI (mistral.ai).
 
 # Appendix A: Load Classification
 
