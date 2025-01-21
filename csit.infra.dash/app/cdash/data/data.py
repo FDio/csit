@@ -14,6 +14,7 @@
 """Prepare data for Plotly Dash applications.
 """
 
+import botocore
 import logging
 import resource
 import awswrangler as wr
@@ -286,6 +287,9 @@ class Data:
         if days:
             last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
         try:
+            wr.config.botocore_config = botocore.config.Config(
+                max_pool_connections=C.MAX_POOL_SIZE
+            )
             df = wr.s3.read_parquet(
                 path=path,
                 path_suffix="parquet",
