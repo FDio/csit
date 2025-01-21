@@ -46,6 +46,30 @@
       },
       "revId": "4efdd2b1a431ac653e3a2940f4e7fad118653bef",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a1adbe6_b4f1b412",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-01-21T19:48:03Z",
+      "side": 1,
+      "message": "if the job timeoust it will be forced killed and may be corrupted and data not even uploaded and the process hanged is still there. we do not want that. it can refuse to kill with -9 in deadlock situation. pretty commin situation in dpdk/vpp type of software",
+      "parentUuid": "5c516080_bc7d8ca7",
+      "range": {
+        "startLine": 84,
+        "startChar": 18,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "4efdd2b1a431ac653e3a2940f4e7fad118653bef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
