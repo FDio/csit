@@ -22,6 +22,30 @@
       },
       "revId": "4efdd2b1a431ac653e3a2940f4e7fad118653bef",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c516080_bc7d8ca7",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-01-21T13:36:05Z",
+      "side": 1,
+      "message": "Then the job will time-out and the testbed stays reserved. Still better than mysterious failures in subsequent tests, in my opinion.\nAlso, I doubt any process can \"refuse to quit\" with -9. Zombie processes and filesystem errors can cause a hang, but those are so bad \"timeout and reserved\" is correct there.",
+      "parentUuid": "b654ef5e_fe36a098",
+      "range": {
+        "startLine": 84,
+        "startChar": 18,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "4efdd2b1a431ac653e3a2940f4e7fad118653bef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
