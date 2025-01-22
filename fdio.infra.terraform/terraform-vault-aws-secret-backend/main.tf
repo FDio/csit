@@ -1,4 +1,4 @@
-resource "vault_aws_secret_backend" "aws" {
+resource "vault_aws_secret_backend" "aws_secret_backend" {
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
   path       = "${var.name}-path"
@@ -7,34 +7,18 @@ resource "vault_aws_secret_backend" "aws" {
   max_lease_ttl_seconds     = "0"
 }
 
-resource "vault_aws_secret_backend_role" "admin" {
-  backend         = vault_aws_secret_backend.aws.path
+resource "vault_aws_secret_backend_role" "aws_secret_backend_role" {
+  backend         = vault_aws_secret_backend.aws_secret_backend.path
   name            = "${var.name}-role"
   credential_type = "iam_user"
 
-  policy_document = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iam:*",
-        "ec2:*",
-        "s3:*",
-        "elasticbeanstalk:*"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
-EOF
+  policy_document = var.policy_document
 }
 
 output "backend" {
-  value = vault_aws_secret_backend.aws.path
+  value = vault_aws_secret_backend.aws_secret_backend.path
 }
 
 output "role" {
-  value = vault_aws_secret_backend_role.admin.name
+  value = vault_aws_secret_backend_role.aws_secret_backend_role.name
 }
