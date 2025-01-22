@@ -15,3 +15,8 @@ variable "name" {
   description = "Vault path"
   type        = string
 }
+
+variable "policy_document" {
+  description = "AWS policy document"
+  type        = string
+}
