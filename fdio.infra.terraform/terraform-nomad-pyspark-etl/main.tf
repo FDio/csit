@@ -3,11 +3,6 @@ data "vault_kv_secret_v2" "fdio_logs" {
   name  = "etl/fdio_logs"
 }
 
-data "vault_kv_secret_v2" "fdio_docs" {
-  mount = "kv"
-  name  = "etl/fdio_docs"
-}
-
 data "vault_kv_secret_v2" "csit_docs" {
   mount = "kv"
   name  = "etl/csit_docs"
