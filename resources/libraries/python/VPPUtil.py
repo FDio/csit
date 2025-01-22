@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,6 +12,8 @@
 # limitations under the License.
 
 """VPP util library."""
+
+from time import sleep
 
 from robot.api import logger
 
@@ -80,8 +82,15 @@ class VPPUtil:
         :type node_key: str
         """
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        command = "pkill -9 vpp; sleep 1"
-        exec_cmd(node, command, timeout=180, sudo=True)
+        # Different testbeds need different time to confirm the kill is done.
+        command = "killall --help"
+        exec_cmd(node, command, timeout=1, sudo=True)
+        command = "killall -9 -v -r vpp"
+        for i in range(10)
+            ret, _, _ = exec_cmd(node, command, timeout=1, sudo=True)
+            if ret == -1:
+                break
+            sleep(1)
         command = (
             "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
         )
