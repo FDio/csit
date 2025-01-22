@@ -417,10 +417,10 @@ class IPUtil:
         :type namespace: str
         :raises RuntimeError: If the interface could not be set up.
         """
-        if namespace is not None:
-            cmd = f"ip netns exec {namespace} ip link set dev {interface} up"
-        else:
-            cmd = f"ip link set dev {interface} up"
+        preamble = f"ip netns exec {namespace} " if namespace else ""
+        cmd = f"{preamble}ip link set dev {interface} up"
+        exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
+        cmd = f"{preamble}arp -i {interface} -a -n -v"
         exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
 
 
