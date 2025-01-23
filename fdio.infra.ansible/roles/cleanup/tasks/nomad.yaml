@@ -1,10 +1,10 @@
 ---
 # file: tasks/nomad.yaml
 
-- name: Host Cleanup
+- name: "Host Cleanup"
   block:
-  - name: Clean Images
-    import_tasks: clean_images.yaml
+  - name: "Clean Images"
+    import_tasks: "clean_images.yaml"
     vars:
       images_to_prefetch_by_arch:
         aarch64:
