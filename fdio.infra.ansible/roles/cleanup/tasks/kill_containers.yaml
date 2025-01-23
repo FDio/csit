@@ -1,37 +1,37 @@
 ---
 # file: tasks/kill_containers.yaml
 
-- name: Kill Docker Containers
+- name: "Kill Docker Containers"
   block:
-    - name: Get Running Docker Containers
+    - name: "Get Running Docker Containers"
       ansible.builtin.shell: "docker ps -a --filter name=DUT -q"
       register: running_containers
       changed_when: false
       tags:
         - kill-containers
 
-    - name: Remove All Docker Containers
+    - name: "Remove All Docker Containers"
       ansible.builtin.shell: "docker rm --force {{ item }}"
       with_items: "{{ running_containers.stdout_lines }}"
       tags:
         - kill-containers
 
   rescue:
-    - name: Restart Docker Daemon
+    - name: "Restart Docker Daemon"
       ansible.builtin.systemd:
         name: "docker"
         state: "restarted"
 
-- name: Kill LXC Containers
+- name: "Kill LXC Containers"
   block:
-    - name: Get Running LXC Containers
+    - name: "Get Running LXC Containers"
       ansible.builtin.shell: "lxc-ls"
       register: running_containers
       changed_when: false
       tags:
         - kill-containers
 
-    - name: Remove All LXC Containers
+    - name: "Remove All LXC Containers"
       ansible.builtin.shell: "lxc-destroy --force -n {{ item }}"
       with_items: "{{ running_containers.stdout_lines }}"
       tags:
