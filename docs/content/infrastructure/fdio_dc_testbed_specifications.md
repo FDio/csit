@@ -1559,7 +1559,7 @@ FD.io CSIT lab contains following server types:
 - testbed29:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
         - s43-t29-tg1-c4/p1 to s42-t29-sut1-c9/p2
-        - s43-t29-tg1-c4/p1 to s42-t29-sut1-c4/p2
+        - s43-t29-tg1-c4/p2 to s42-t29-sut1-c4/p2
         - s42-t29-sut1-c9/p1 to s43-t29-tg1-c4/p1
     - ring2 100GE-ports e810-CQDA2-2p100GE:
         - s42-t29-sut1-c2/p1 to s43-t29-tg1-c2/p1.
