@@ -50,6 +50,23 @@
       "message": "csit-trex-report-iter-2n-icx-perftest trex-mrr-00",
       "revId": "92e076f6fd141f1bc061d8a38b90e122e12c4089",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92556852_b7c952ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-01-23T11:22:57Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-2n-spr-perftest trex-ndrpdr-00",
+      "revId": "92e076f6fd141f1bc061d8a38b90e122e12c4089",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
