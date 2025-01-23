@@ -1,10 +1,10 @@
 ---
 # file: tasks/tg.yaml
 
-- name: Host Cleanup
+- name: "Host Cleanup"
   block:
-    - name: Kill Processes - TRex
-      import_tasks: kill_process.yaml
+    - name: "Kill Processes - TRex"
+      import_tasks: "kill_process.yaml"
       vars:
         process: "_t-rex"
       when:

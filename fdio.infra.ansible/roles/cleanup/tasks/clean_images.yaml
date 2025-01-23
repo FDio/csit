@@ -1,9 +1,9 @@
 ---
 # file: tasks/clean_images.yaml
 
-- name: Clean Docker Images
+- name: "Clean Docker Images"
   block:
-  - name: Clean Images - Prefetch Docker Images
+  - name: "Clean Images - Prefetch Docker Images"
     ansible.builtin.cron:
       name: "Prefetch docker image {{ item }}"
       minute: "10"
@@ -14,7 +14,7 @@
     tags:
       - prefetch-docker-images
 
-  - name: Clean Images - Remove Dangling Docker Images
+  - name: "Clean Images - Remove Dangling Docker Images"
     ansible.builtin.cron:
       name: "Remove dangling docker images"
       minute: "10"
@@ -23,14 +23,3 @@
       job: "/usr/bin/docker rmi $(/usr/bin/docker images --filter 'dangling=true' -q)"
     tags:
       - remove-docker-images-dangling
-
-# TODO: Disabled until all images will be in registry
-# - name: Clean Images - Prune Docker Images
-#   cron:
-#     name: "Prune docker images"
-#     minute: "10"
-#     hour: "6"
-#     weekday: 7
-#     job: "/usr/bin/docker image prune --all --force"
-#   tags:
-#     - prune-docker-images
