@@ -17,6 +17,11 @@
   when: dpdk_downloaded
   register: dpdk_extracted
 
+- name: "Rename folder"
+  ansible.builtin.command: "mv {{ dpdk_target_dir }}/dpdk-stable-{{ item }} {{ dpdk_target_dir }}/dpdk-{{ item }}"
+  ignore_errors: true
+  when: dpdk_extracted
+
 - name: "Compile Release I"
   ansible.builtin.command: "meson -Dexamples=l3fwd build"
   args:
