@@ -59,11 +59,11 @@ To access CSIT-2502 Release data please use following web resources:
 
 ## CSIT-2502 Selected Performance Tests
 
-CSIT-2502 VPP v24.10 Performance Tests:
+CSIT-2502 VPP v25.02 Performance Tests:
 
 ## CSIT-2502 Selected Performance Comparisons
 
-Comparisons v25.10 vs v24.10
+Comparisons v25.02 vs v24.10
 
 ## CSIT-2502 Selected Performance Coverage Data
 

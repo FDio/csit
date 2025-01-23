@@ -11,7 +11,7 @@ weight: 2
 2. DPDK PERFORMANCE TESTS
    - No updates
 3. DPDK RELEASE VERSION CHANGE
-   - Version 24.07 is now tested.
+   - Version 24.11 is now tested.
 
 # Known Issues
 
