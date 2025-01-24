@@ -33,6 +33,23 @@
       "message": "csit-trex-report-cov-2n-icx-perftest trex-00",
       "revId": "4997c289aa90236557b1870db2b9acbab2422b4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3cb4cf5_7b948a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-01-24T10:47:58Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-2n-emr-perftest dpdk-ndrpdr-00",
+      "revId": "4997c289aa90236557b1870db2b9acbab2422b4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
