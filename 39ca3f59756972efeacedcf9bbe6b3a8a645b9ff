@@ -135,6 +135,23 @@
       "message": "csit-trex-report-iter-2n-spr-perftest trex-mrr-00",
       "revId": "39ca3f59756972efeacedcf9bbe6b3a8a645b9ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dfd4a35_5a00fe72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-01-25T17:40:51Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-soak-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-soak-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-soak-00\ncsit-vpp-report-iter-3n-icxd-perftest vpp-soak-00",
+      "revId": "39ca3f59756972efeacedcf9bbe6b3a8a645b9ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
