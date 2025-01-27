@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,25 +29,25 @@ class DpdkUtil:
         :returns: EAL parameters.
         :rtype: OptionString
         """
-        options = OptionString(prefix=u"-")
-        options.add(u"v")
+        options = OptionString(prefix="-")
+        options.add("v")
         # Set the hexadecimal bitmask of the cores to run on.
         options.add_with_value_from_dict(
-            u"l", u"eal_corelist", kwargs
+            "-lcores", "eal_coremap", kwargs
         )
         # Add a PCI device in white list.
         options.add_with_value_from_dict(
-            u"a", u"eal_pci_whitelist0", kwargs
+            "a", "eal_pci_whitelist0", kwargs
         )
         options.add_with_value_from_dict(
-            u"a", u"eal_pci_whitelist1", kwargs
+            "a", "eal_pci_whitelist1", kwargs
         )
         # Load an external driver. Multiple -d options are allowed.
         options.add_with_value_if_from_dict(
-            u"d", u"/usr/lib/librte_pmd_virtio.so", u"eal_driver", kwargs, True
+            "d", "/usr/lib/librte_pmd_virtio.so", "eal_driver", kwargs, True
         )
         options.add_if_from_dict(
-            u"-in-memory", u"eal_in_memory", kwargs, False
+            "-in-memory", "eal_in_memory", kwargs, False
         )
         return options
 
@@ -60,79 +60,79 @@ class DpdkUtil:
         :returns: PMD parameters.
         :rtype: OptionString
         """
-        options = OptionString(prefix=u"--")
+        options = OptionString(prefix="--")
         # Set the forwarding mode: io, mac, mac_retry, mac_swap, flowgen,
         # rxonly, txonly, csum, icmpecho, ieee1588
         options.add_equals_from_dict(
-            u"forward-mode", u"pmd_fwd_mode", kwargs, u"io"
+            "forward-mode", "pmd_fwd_mode", kwargs, "io"
         )
         # Set the number of packets per burst to N.
         options.add_equals(
-            u"burst", 64
+            "burst", 64
         )
         # Set the number of descriptors in the TX rings to N.
         options.add_equals_from_dict(
-            u"txd", u"pmd_txd", kwargs, 1024
+            "txd", "pmd_txd", kwargs, 1024
         )
         # Set the number of descriptors in the RX rings to N.
         options.add_equals_from_dict(
-            u"rxd", u"pmd_rxd", kwargs, 1024
+            "rxd", "pmd_rxd", kwargs, 1024
         )
         # Set the number of queues in the TX to N.
         options.add_equals_from_dict(
-            u"txq", u"pmd_txq", kwargs, 1
+            "txq", "pmd_txq", kwargs, 1
         )
         # Set the number of queues in the RX to N.
         options.add_equals_from_dict(
-            u"rxq", u"pmd_rxq", kwargs, 1
+            "rxq", "pmd_rxq", kwargs, 1
         )
         # Set the hexadecimal bitmask of offloads.
         options.add_equals_from_dict(
-            u"tx-offloads", u"pmd_tx_offloads", kwargs, u"0x0"
+            "tx-offloads", "pmd_tx_offloads", kwargs, "0x0"
         )
         # Enables numa aware allocation of mbufs.
         options.add_if_from_dict(
-            u"numa", u"pmd_numa", kwargs, True
+            "numa", "pmd_numa", kwargs, True
         )
         # Run by default.
         options.add_if_from_dict(
-            u"auto-start", u"pmd_auto_start", kwargs, True
+            "auto-start", "pmd_auto_start", kwargs, True
         )
         # Set the number of mbufs to be allocated in the mbuf pools.
         options.add_equals_from_dict(
-            u"total-num-mbufs", u"pmd_num_mbufs", kwargs
+            "total-num-mbufs", "pmd_num_mbufs", kwargs
         )
         # Set the number of forwarding ports.
         options.add_equals_from_dict(
-            u"nb-ports", u"pmd_nb_ports", kwargs
+            "nb-ports", "pmd_nb_ports", kwargs
         )
         # Set the hexadecimal bitmask of the ports used by the packet
         # forwarding test.
         options.add_equals_from_dict(
-            u"portmask", u"pmd_portmask", kwargs
+            "portmask", "pmd_portmask", kwargs
         )
         # Disable link status check.
         options.add_if_from_dict(
-            u"disable-link-check", u"pmd_disable_link_check", kwargs, True
+            "disable-link-check", "pmd_disable_link_check", kwargs, True
         )
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
         options.add_equals_from_dict(
-            u"eth-peer", u"pmd_eth_peer_0", kwargs
+            "eth-peer", "pmd_eth_peer_0", kwargs
         )
         options.add_equals_from_dict(
-            u"eth-peer", u"pmd_eth_peer_1", kwargs
+            "eth-peer", "pmd_eth_peer_1", kwargs
         )
         # Set the max packet length.
         options.add_equals_from_dict(
-            u"max-pkt-len", u"pmd_max_pkt_len", kwargs
+            "max-pkt-len", "pmd_max_pkt_len", kwargs
         )
         # Set the mbuf size.
         options.add_equals_from_dict(
-            u"mbuf-size", u"pmd_mbuf_size", kwargs
+            "mbuf-size", "pmd_mbuf_size", kwargs
         )
         # Set the number of forwarding cores based on coremask.
         options.add_equals_from_dict(
-            u"nb-cores", u"pmd_nb_cores", kwargs
+            "nb-cores", "pmd_nb_cores", kwargs
         )
         return options
 
@@ -147,7 +147,7 @@ class DpdkUtil:
         """
         options = OptionString()
         options.extend(DpdkUtil.get_eal_options(**kwargs))
-        options.add(u"--")
+        options.add("--")
         options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))
         return options
 
@@ -161,9 +161,9 @@ class DpdkUtil:
         :rtype: OptionString
         """
         options = OptionString()
-        options.add(u"dpdk-testpmd")
+        options.add("dpdk-testpmd")
         options.extend(DpdkUtil.get_eal_options(**kwargs))
-        options.add(u"--")
+        options.add("--")
         options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))
         return options
 
@@ -177,9 +177,9 @@ class DpdkUtil:
         :type kwargs: dict
         """
         cmd_options = OptionString()
-        cmd_options.add(u"/start-testpmd.sh")
+        cmd_options.add("/start-testpmd.sh")
         cmd_options.extend(DpdkUtil.get_eal_options(**kwargs))
-        cmd_options.add(u"--")
+        cmd_options.add("--")
         cmd_options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))
         exec_cmd_no_error(node, cmd_options, sudo=True, disconnect=True)
 
@@ -191,7 +191,7 @@ class DpdkUtil:
         :type node: dict
         :returns: nothing
         """
-        cmd = u"/stop-testpmd.sh"  # Completed string, simple one.
+        cmd = "/stop-testpmd.sh"  # Completed string, simple one.
         exec_cmd_no_error(node, cmd, sudo=True, disconnect=True)
 
     @staticmethod
@@ -203,25 +203,25 @@ class DpdkUtil:
         :returns: PMD parameters.
         :rtype: OptionString
         """
-        options = OptionString(prefix=u"--")
+        options = OptionString(prefix="--")
         # Set to use software to analyze packet type.
         options.add_if_from_dict(
-            u"parse-ptype", u"pmd_parse_ptype", kwargs, True
+            "parse-ptype", "pmd_parse_ptype", kwargs, True
         )
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N.
         options.add_equals_from_dict(
-            u"eth-dest", u"pmd_eth_dest_0", kwargs
+            "eth-dest", "pmd_eth_dest_0", kwargs
         )
         options.add_equals_from_dict(
-            u"eth-dest", u"pmd_eth_dest_1", kwargs
+            "eth-dest", "pmd_eth_dest_1", kwargs
         )
         # Determines which queues from which ports are mapped to which cores.
         options.add_equals_from_dict(
-            u"config", u"pmd_config", kwargs
+            "config", "pmd_config", kwargs
         )
         # Set the max packet length.
         options.add_with_value_if_from_dict(
-            u"max-pkt-len", u"9200", u"pmd_max_pkt_len", kwargs, False
+            "max-pkt-len", "9200", "pmd_max_pkt_len", kwargs, False
         )
         return options
 
@@ -236,6 +236,6 @@ class DpdkUtil:
         """
         options = OptionString()
         options.extend(DpdkUtil.get_eal_options(**kwargs))
-        options.add(u"--")
+        options.add("--")
         options.extend(DpdkUtil.get_l3fwd_pmd_options(**kwargs))
         return options
