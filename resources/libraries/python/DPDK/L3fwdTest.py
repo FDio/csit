@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025  Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,14 +62,16 @@ class L3fwdTest:
         for node_name, node in nodes.items():
             if node["type"] == NodeType.DUT:
                 if dp_count_int > 1:
-                    BuiltIn().set_tags('MTHREAD')
+                    BuiltIn().set_tags("MTHREAD")
                 else:
-                    BuiltIn().set_tags('STHREAD')
+                    BuiltIn().set_tags("STHREAD")
                 BuiltIn().set_tags(
                     f"{dp_count_int}T{cpu_count_int}C"
                 )
 
                 cpu_dp = compute_resource_info[f"{node_name}_cpu_dp"]
+                cpu_dp = [f"{i+1}@{x}" for i,x in enumerate(cpu_dp.split(","))]
+                cpu_dp = ",".join(cpu_dp)
                 rxq_count_int = compute_resource_info["rxq_count_int"]
                 if1 = topology_info[f"{node_name}_pf1"][0]
                 if2 = topology_info[f"{node_name}_pf2"][0]
@@ -79,7 +81,7 @@ class L3fwdTest:
                     jumbo=jumbo, tg_flip=tg_flip
                 )
         for node in nodes:
-            if u"DUT" in node:
+            if "DUT" in node:
                 for i in range(3):
                     try:
                         L3fwdTest.check_l3fwd(nodes[node])
@@ -126,32 +128,32 @@ class L3fwdTest:
         :type jumbo: bool
         :type tg_flip: bool
         """
-        if node[u"type"] == NodeType.DUT:
+        if node["type"] == NodeType.DUT:
             adj_mac0, adj_mac1, if_pci0, if_pci1 = L3fwdTest.get_adj_mac(
                 nodes, node, if1, if2, tg_flip
             )
 
-            lcores = [int(item) for item in lcores_list.split(u",")]
+            lcores = [int(item.split("@")[0]) for item in lcores_list.split(",")]
 
             # prepare the port config param
             nb_cores = int(nb_cores)
             index = 0
-            port_config = ''
+            port_config = ""
             for port in range(0, NB_PORTS):
                 for queue in range(0, int(queue_nums)):
                     index = 0 if nb_cores == 1 else index
                     port_config += \
-                        f"({port}, {queue}, {lcores[index % NB_PORTS]}),"
+                        f"({port}, {queue}, {lcores[index % queue_nums]}),"
                     index += 1
 
             if jumbo:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
-                    eal_corelist=f"1,{lcores_list}",
+                    eal_coremap=f"0@1,{lcores_list}",
                     eal_driver=False,
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
                     eal_in_memory=True,
-                    pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
+                    pmd_config=f"\\\"{port_config.rstrip(',')}\\\"",
                     pmd_eth_dest_0=f"\\\"0,{adj_mac0}\\\"",
                     pmd_eth_dest_1=f"\\\"1,{adj_mac1}\\\"",
                     pmd_parse_ptype=True,
@@ -159,7 +161,7 @@ class L3fwdTest:
                 )
             else:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
-                    eal_corelist=f"1,{lcores_list}",
+                    eal_coremap=f"0@1,{lcores_list}",
                     eal_driver=False,
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
@@ -229,9 +231,9 @@ class L3fwdTest:
         if dut_flip:
             if_key0, if_key1 = if_key1, if_key0
             if tg_flip:
-                L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
+                L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
         elif not tg_flip:
-            L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
+            L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key0
@@ -263,5 +265,5 @@ class L3fwdTest:
             f"/entry/{patch}"
         message = f"Failed to patch l3fwd at node {node['host']}"
         ret_code, stdout, _ = exec_cmd(node, command, timeout=1800)
-        if ret_code != 0 and u"Skipping patch." not in stdout:
+        if ret_code != 0 and "Skipping patch." not in stdout:
             raise RuntimeError(message)
