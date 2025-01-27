@@ -1,4 +1,4 @@
-# Copyright (c) 2024-2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -371,9 +371,10 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo"] else u"1518"
+        pmd_max_pkt_len = "9200" if kwargs["jumbo"] else "1518"
+        eal_coremap = ",".join([str(x) for x in range(self._opt.get("smp"))])
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
-            eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
+            eal_coremap=eal_coremap,
             eal_driver=False,
             eal_pci_whitelist0=u"0000:00:06.0",
             eal_pci_whitelist1=u"0000:00:07.0",
@@ -399,8 +400,9 @@ class QemuUtils:
         :type kwargs: dict
         """
         pmd_max_pkt_len = u"9200" if kwargs[u"jumbo"] else u"1518"
+        eal_coremap = ",".join([str(x) for x in range(self._opt.get("smp"))])
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
-            eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
+            eal_coremap=eal_coremap,
             eal_driver=False,
             eal_pci_whitelist0=u"0000:00:06.0",
             eal_pci_whitelist1=u"0000:00:07.0",
