@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -66,14 +66,16 @@ class TestpmdTest:
         for node_name, node in nodes.items():
             if node["type"] == NodeType.DUT:
                 if dp_count_int > 1:
-                    BuiltIn().set_tags('MTHREAD')
+                    BuiltIn().set_tags("MTHREAD")
                 else:
-                    BuiltIn().set_tags('STHREAD')
+                    BuiltIn().set_tags("STHREAD")
                 BuiltIn().set_tags(
                     f"{dp_count_int}T{cpu_count_int}C"
                 )
 
                 cpu_dp = compute_resource_info[f"{node_name}_cpu_dp"]
+                cpu_dp = [f"{i+1}@{x}" for i,x in enumerate(cpu_dp.split(","))]
+                cpu_dp = ",".join(cpu_dp)
                 rxq_count_int = compute_resource_info["rxq_count_int"]
                 if1 = topology_info[f"{node_name}_pf1"][0]
                 if2 = topology_info[f"{node_name}_pf2"][0]
@@ -134,23 +136,23 @@ class TestpmdTest:
         :type txq_size: int
         :raises RuntimeError: If the script "run_testpmd.sh" fails.
         """
-        if node[u"type"] == NodeType.DUT:
+        if node["type"] == NodeType.DUT:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
-            pmd_max_pkt_len = u"9200" if jumbo else u"1518"
+            pmd_max_pkt_len = "9200" if jumbo else "1518"
             testpmd_args = DpdkUtil.get_testpmd_args(
-                eal_corelist=f"1,{lcores_list}",
+                eal_coremap=f"0@1,{lcores_list}",
                 eal_driver=False,
                 eal_pci_whitelist0=if_pci0,
                 eal_pci_whitelist1=if_pci1,
                 eal_in_memory=True,
                 pmd_num_mbufs=32768,
-                pmd_fwd_mode=u"io",
-                pmd_nb_ports=u"2",
-                pmd_portmask=u"0x3",
+                pmd_fwd_mode="io",
+                pmd_nb_ports="2",
+                pmd_portmask="0x3",
                 pmd_max_pkt_len=pmd_max_pkt_len,
-                pmd_mbuf_size=u"16384",
+                pmd_mbuf_size="16384",
                 pmd_rxd=rxq_size,
                 pmd_txd=txq_size,
                 pmd_rxq=queue_nums,
