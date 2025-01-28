@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7853e56_13ad99a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-01-28T09:17:02Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3n-emr-perftest dpdk-ndrpdr-00",
+      "revId": "9d8eb49ea857a4176e621a0d3419f1859fcae29d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
