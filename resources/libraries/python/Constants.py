@@ -328,9 +328,9 @@ class Constants:
         "Mellanox-CX556A": 100000000000,
         "Mellanox-CX6DX": 100000000000,
         "Mellanox-CX7VEAT": 200000000000,
-        "Amazon-Nitro-50G": 10000000000,
-        "Amazon-Nitro-100G": 10000000000,
-        "Amazon-Nitro-200G": 16000000000,
+        "Amazon-Nitro-50G": 100_000_000_000,
+        "Amazon-Nitro-100G": 100_000_000_000,
+        "Amazon-Nitro-200G": 100_000_000_000,
         "virtual": 100000000,
     }
 
@@ -346,9 +346,9 @@ class Constants:
         "Mellanox-CX556A": 148809523,
         "Mellanox-CX6DX": 148809523,
         "Mellanox-CX7VEAT": 297619046,
-        "Amazon-Nitro-50G": 1500000,
-        "Amazon-Nitro-100G": 3000000,
-        "Amazon-Nitro-200G": 6000000,
+        "Amazon-Nitro-50G": 100_00_000,
+        "Amazon-Nitro-100G": 100_000_000,
+        "Amazon-Nitro-200G": 100_000_000,
         "virtual": 14880952,
     }
 
