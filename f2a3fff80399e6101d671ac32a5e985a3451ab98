@@ -16,6 +16,23 @@
       "message": "csit-dpdk-report-iter-3n-emr-perftest dpdk-ndrpdr-00",
       "revId": "f2a3fff80399e6101d671ac32a5e985a3451ab98",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b3858ba_82d73105",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-01-28T12:10:24Z",
+      "side": 1,
+      "message": "csit-dpdk-report-cov-3n-emr-perftest dpdk-00",
+      "revId": "f2a3fff80399e6101d671ac32a5e985a3451ab98",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
