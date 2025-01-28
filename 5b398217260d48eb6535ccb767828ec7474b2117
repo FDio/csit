@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce54db96_c8d3f9c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-01-28T08:01:53Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-emr-perftest mrrAND64bANDeth-l2xcbase-testpmd mrrAND64bANDethip4-ip4base-l3fwd",
+      "revId": "5b398217260d48eb6535ccb767828ec7474b2117",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
