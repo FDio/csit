@@ -71,7 +71,7 @@ nodes:
         pci_address: "0000:27:00.0"
         ip4_address: "172.16.20.1"
         driver: ice
-        link: link2
+        link: link3
         model: Intel-E810CQ
       port2:
         # s40-t29-sut1-c4/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
@@ -79,7 +79,7 @@ nodes:
         pci_address: "0000:29:00.0"
         ip4_address: "172.16.30.2"
         driver: ice
-        link: link3
+        link: link2
         model: Intel-E810CQ
   DUT2:
     type: DUT
@@ -108,7 +108,7 @@ nodes:
         pci_address: "0000:a8:00.0"
         ip4_address: "172.16.20.2"
         driver: ice
-        link: link2
+        link: link1
         model: Intel-E810CQ
       port2:
         # s40-t29-sut2-c9/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
@@ -116,5 +116,5 @@ nodes:
         pci_address: "0000:aa:00.0"
         ip4_address: "172.16.10.2"
         driver: ice
-        link: link1
+        link: link2
         model: Intel-E810CQ
