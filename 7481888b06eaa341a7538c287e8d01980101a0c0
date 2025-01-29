@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e8f022_6debad54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-01-29T13:24:58Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-emr-perftest vpp-mrr-00",
+      "revId": "7481888b06eaa341a7538c287e8d01980101a0c0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
