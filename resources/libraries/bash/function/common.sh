@@ -1351,14 +1351,14 @@ function set_environment_variables () {
         *"2n-c7gn" | *"3n-c7gn")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
+            export TREX_CORE_COUNT=12
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
+            export TREX_CORE_COUNT=12
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;

@@ -163,7 +163,7 @@ class CpuUtils:
 
         cpu_list_len = len(cpu_list)
         if cpu_cnt + skip_cnt > cpu_list_len:
-            raise RuntimeError(u"cpu_cnt + skip_cnt > length(cpu list).")
+            raise RuntimeError(f"{cpu_cnt=} + {skip_cnt=} > length({cpu_list=}).")
 
         if cpu_cnt == 0:
             cpu_cnt = cpu_list_len - skip_cnt
@@ -414,17 +414,18 @@ class CpuUtils:
         """
         interface_list = [if_key]
         cpu_node = Topology.get_interfaces_numa_node(node, *interface_list)
+        smt_used = True
 
         master_thread_id = CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node, skip_cnt=0, cpu_cnt=tg_mtc,
-            smt_used=False)
+            smt_used=smt_used)
 
         threads = CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node, skip_cnt=tg_mtc + tg_ltc + tg_dtc_offset,
-            cpu_cnt=tg_dtc, smt_used=False)
+            cpu_cnt=tg_dtc, smt_used=smt_used)
 
         latency_thread_id = CpuUtils.cpu_slice_of_list_per_node(
-            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_ltc, smt_used=False)
+            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_ltc, smt_used=smt_used)
 
         return master_thread_id[0], latency_thread_id[0], cpu_node, threads
 
