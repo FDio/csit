@@ -145,9 +145,9 @@
 | | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
 | | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 | | | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-100G'
-| | | ... | ${dut}.Add DPDK Dev Default Devargs | "llq_policy=2"
+| | | ... | ${dut}.Add DPDK Dev Default Devargs | "enable_llq=1,normal_llq_hdr=1,control_path_poll_interval=10"
 | | | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-200G'
-| | | ... | ${dut}.Add DPDK Dev Default Devargs | "llq_policy=2"
+| | | ... | ${dut}.Add DPDK Dev Default Devargs | "enable_llq=1,normal_llq_hdr=1,control_path_poll_interval=10"
 | | | Run Keyword If | not ${jumbo}
 | | | ... | ${dut}.Add DPDK No Multi Seg
 | | | Run Keyword If | ${nic_rxq_size} > 0

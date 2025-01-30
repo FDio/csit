@@ -370,8 +370,8 @@ class VppConfigGenerator:
         """
         if value is None:
             value = Topology.get_uio_driver(self._node)
-        path = ["dpdk", "uio-driver"]
-        self.add_config_item(self._nodeconfig, value, path)
+        path = ["dpdk", "uio-bind-force"]
+        self.add_config_item(self._nodeconfig, "uio-driver uio_pci_generic", path)
 
     def add_dpdk_max_simd_bitwidth(self, variant=Constants.GRAPH_NODE_VARIANT):
         """Add DPDK max-simd-bitwidth configuration.
@@ -558,7 +558,7 @@ class VppConfigGenerator:
 
     def add_dpdk_no_tx_checksum_offload(self):
         """Add DPDK no-tx-checksum-offload configuration."""
-        path = ["dpdk", "no-tx-checksum-offload"]
+        path = ["dpdk", "no-rx-interrupts"]
         self.add_config_item(self._nodeconfig, "", path)
 
     def add_nat(self, value="deterministic"):
