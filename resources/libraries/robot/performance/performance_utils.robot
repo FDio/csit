@@ -100,7 +100,7 @@
 | | ... | initial_count=${50}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
-| | ... | timeout=${1800.0}
+| | ... | timeout=${7200.0}
 | | ... | trace_enabled=${False}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_scale=${transaction_scale}
