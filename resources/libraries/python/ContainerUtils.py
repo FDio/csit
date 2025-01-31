@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -580,7 +580,6 @@ class ContainerManager:
 
     def stop_all_containers(self):
         """Stop all containers."""
-        # TODO: Rework if containers can be affected outside ContainerManager.
         self._disconnect_papi_to_all_containers()
         for container in self.containers:
             self.engine.container = self.containers[container]
@@ -588,7 +587,6 @@ class ContainerManager:
 
     def destroy_all_containers(self):
         """Destroy all containers."""
-        # TODO: Rework if containers can be affected outside ContainerManager.
         self._disconnect_papi_to_all_containers()
         for container in self.containers:
             self.engine.container = self.containers[container]

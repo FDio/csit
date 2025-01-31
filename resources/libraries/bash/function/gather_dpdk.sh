@@ -1,5 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
-# Copyright (c) 2024 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,7 +56,6 @@ function gather_dpdk () {
             die "Failed to read DPDK VPP version!"
         }
     fi
-    # TODO: Use "wget -N" instead checking for file presence?
     if [[ ! -f "${dpdk_stable_ver}" ]]; then
         wget -nv --no-check-certificate "${dpdk_repo}/${dpdk_stable_ver}" || {
             die "Failed to get DPDK package from: ${dpdk_repo}"
