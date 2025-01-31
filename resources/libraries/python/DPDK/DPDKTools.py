@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,7 +94,6 @@ class DPDKTools:
         command = f"cat {Constants.REMOTE_FW_DIR}/dpdk*/VERSION"
         message = u"Get DPDK version failed!"
         stdout, _ = exec_cmd_no_error(node, command, message=message)
-        # TODO: PAL should already tolerate stripped value in the log.
         logger.info(f"DPDK Version: {stdout}")
         return stdout.strip()
 
