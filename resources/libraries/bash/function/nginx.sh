@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2025 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -108,6 +108,8 @@ function nginx_compile () {
     param+="--with-pcre "
     # Enable ngx_http_realip_module.
     param+="--with-http_realip_module "
+    # Disable http_rewrite_module
+    param+="--without-http_rewrite_module "
     params=(${param})
     ./configure "${params[@]}" || die "Failed to configure NGINX!"
     make -j 16;make install || die "Failed to compile NGINX!"
