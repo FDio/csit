@@ -790,7 +790,6 @@ class VppInitConfig:
                 vpp_config.add_unix_log()
                 vpp_config.add_unix_cli_listen()
                 vpp_config.add_unix_cli_no_pager()
-                vpp_config.add_unix_coredump()
                 vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
                 vpp_config.add_main_heap_size("2G")
                 vpp_config.add_main_heap_page_size(huge_size)

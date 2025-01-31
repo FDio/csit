@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -280,7 +280,6 @@ class VPPUtil:
             if_dump[u"sub_if_flags"] = if_dump[u"sub_if_flags"].value \
                 if hasattr(if_dump[u"sub_if_flags"], u"value") \
                 else int(if_dump[u"sub_if_flags"])
-        # TODO: return only base data
         logger.trace(f"Interface data of host {node[u'host']}:\n{details}")
 
     @staticmethod
