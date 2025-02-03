@@ -101,8 +101,8 @@ def main():
     # The number of processing units available to the current process.
     _, cpu_num = subprocess.getstatusoutput(u"nproc --all")
     cpu_num = int(cpu_num)
-    if cpu_num > 70:
-        cpu_num = 70
+    if cpu_num > 1:
+        cpu_num = 1
 
     # Requests and Clients are evenly distributed on each CPU.
     per_req = round(req_num / cpu_num)
