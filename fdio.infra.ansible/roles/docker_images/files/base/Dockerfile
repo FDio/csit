@@ -43,6 +43,7 @@ RUN apt-get -q update \
         libnuma1 \
         libnuma-dev \
         libpcap-dev \
+        libpcre2-dev \
         libpixman-1-dev \
         libsctp-dev \
         libssl-dev \
