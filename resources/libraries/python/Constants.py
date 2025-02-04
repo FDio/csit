@@ -156,7 +156,7 @@ class Constants:
     RESOURCES_TPL_TELEMETRY = "resources/templates/telemetry"
 
     # VPP Communications Library LD_PRELOAD library
-    VCL_LDPRELOAD_LIBRARY = "/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
+    VCL_LDPRELOAD_LIBRARY = "/usr/lib/aarch64-linux-gnu/libvcl_ldpreload.so"
 
     # VPP service unit name
     VPP_UNIT = "vpp"
