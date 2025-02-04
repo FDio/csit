@@ -101,8 +101,8 @@ def main():
     # The number of processing units available to the current process.
     _, cpu_num = subprocess.getstatusoutput(u"nproc --all")
     cpu_num = int(cpu_num)
-    if cpu_num > 70:
-        cpu_num = 70
+    if cpu_num > 1:
+        cpu_num = 1
 
     # Requests and Clients are evenly distributed on each CPU.
     per_req = round(req_num / cpu_num)
@@ -134,6 +134,8 @@ def main():
             info_list = [a + b for a, b in zip(info_list, stats)]
 
     # Output results.
+    print(f"{results=}")
+    print()
     print(f"Transfer Rate: {round(info_list[6], 2)} [Kbytes/sec]")
     print(f"Latency: {round(info_list[4] / 8, 2)} ms")
     print(f"Connection {mode} rate: {round(info_list[3], 2)} per sec")
@@ -169,7 +171,7 @@ def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
     :rtype: list
     """
 
-    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -n {requests} -c {clients}"
+    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -t 60 -n 10_000_000 -c {clients}"
     cmd = f"{cmd} -B {tg_addr} -r "
     if mode == u"rps":
         cmd = f"{cmd} -k"
