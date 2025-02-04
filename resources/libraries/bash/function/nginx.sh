@@ -108,8 +108,6 @@ function nginx_compile () {
     param+="--with-pcre "
     # Enable ngx_http_realip_module.
     param+="--with-http_realip_module "
-    # Disable http_rewrite_module
-    param+="--without-http_rewrite_module "
     params=(${param})
     ./configure "${params[@]}" || die "Failed to configure NGINX!"
     make -j 16;make install || die "Failed to compile NGINX!"
