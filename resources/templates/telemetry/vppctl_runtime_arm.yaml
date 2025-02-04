@@ -34,7 +34,7 @@ logging:
     level: INFO
     handlers: [console_stdout, console_stderr]
 scheduler:
-  duration: 1
+  duration: 10
 programs:
   - name: bundle_vppctl
     metrics:
