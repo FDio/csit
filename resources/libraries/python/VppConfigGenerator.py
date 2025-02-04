@@ -727,6 +727,42 @@ class VppConfigGenerator:
             path = ["dsa", f"dev {device}"]
             self.add_config_item(self._nodeconfig, "", path)
 
+    def add_octeon_dev(self, *devices):
+        """Add OCTEON PCI device configuration.
+
+        :param devices: PCI device(s) (format xxxx:xx:xx.x)
+        :type devices: tuple
+        """
+        for i, device in enumerate(devices):
+            if pci_dev_check(device):
+                path = ["devices", f"dev pci/{device}", "driver octeon"]
+                self.add_config_item(self._nodeconfig, "", path)
+                path = ["devices", f"dev pci/{device}", "port 0", f"name eth{i}"]
+                self.add_config_item(self._nodeconfig, "", path)
+                num_rx_queues = Topology.get_num_rx_queues(self._node)
+                num_tx_queues = Topology.get_num_tx_queues(self._node)
+                if num_rx_queues and num_tx_queues:
+                    self.add_octeon_dev_default_rxq(device, num_rx_queues)
+                    self.add_octeon_dev_default_txq(device, num_tx_queues)
+
+    def add_octeon_dev_default_rxq(self, device, value):
+        """Add OCTEON dev default rxq configuration.
+
+        :param value: Default number of rxqs.
+        :type value: str
+        """
+        path = ["devices", f"dev pci/{device}", "port 0", "num-rx-queues"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_octeon_dev_default_txq(self, device, value):
+        """Add OCTEON dev default txq configuration.
+
+        :param value: Default number of txqs.
+        :type value: str
+        """
+        path = ["devices", f"dev pci/{device}", "port 0", "num-tx-queues"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_logging_default_syslog_log_level(self, value="debug"):
         """Add default logging level for syslog.
 

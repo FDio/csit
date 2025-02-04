@@ -855,16 +855,8 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.87
     - Host IP: 10.30.51.87
     - portnames:
-        - s87-t215-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s87-t215-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s87-t215-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s87-t215-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s87-t215-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s87-t215-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s87-t215-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s87-t215-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s87-t215-sut1-c8/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s87-t215-sut1-c8/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s87-t215-sut1-c2/p1 - 100GE-port1 cavium-a063-2p100GE.
+        - s87-t215-sut1-c6/p2 - 100GE-port1 cavium-a063-2p100GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed215.
     - hostname: s88-t215-tg1.
@@ -1368,23 +1360,10 @@ FD.io CSIT lab contains following server types:
 
 ```
 - testbed215:
-    - ring1 25GE-ports xxv710-DA2-2p25GE:
-        - s88-t215-tg1-c2/p1 to s87-t215-sut1-c2/p1.
-        - s87-t215-sut1-c2/p2 to s88-t215-tg1-c2/p2.
-    - ring2 25GE-ports e810-XXVDA4-2p25GE:
-        - s88-t215-tg1-c4/p1 to s87-t215-sut1-c4/p1.
-        - s87-t215-sut1-c4/p2 to s88-t215-tg1-c4/p2.
-        - s88-t215-tg1-c4/p3 to s87-t215-sut1-c4/p3.
-        - s87-t215-sut1-c4/p4 to s88-t215-tg1-c4/p4.
-    - ring3 100GE-ports e810-2CQDA2-2p100GE:
-        - s88-t215-tg1-c9/p1 to s87-t215-sut1-c9/p1.
-        - s87-t215-sut1-c9/p2 to s88-t215-tg1-c9/p2.
-    - ring4 100GE-ports e810-2CQDA2-2p100GE:
-        - s88-t215-tg1-c6/p1 to s88-t215-tg1-c6/p2.
-        - s88-t215-tg1-c6/p2 to s88-t215-tg1-c6/p1.
-    - ring5 200GE-ports ConnectX7-2p200GE:
-        - s88-t215-tg1-c8/p1 to s87-t215-sut1-c8/p1.
-        - s87-t215-sut1-c8/p2 to s88-t215-tg1-c8/p2.
+    - ring1 100GE-ports e810-2CQDA2-2p100GE:
+        - s88-t215-tg1-c9/p1 to s87-t215-sut1-c2/p1.
+        - s87-t215-sut1-c2/p1 to s87-t215-sut1-c6/p1.
+        - s88-t215-tg1-c9/p2 to s87-t215-sut1-c6/p1.
 ```
 
 ### 3-Node-Altra (3n-alt)
