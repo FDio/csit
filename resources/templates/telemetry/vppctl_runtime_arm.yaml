@@ -34,7 +34,7 @@ logging:
     level: INFO
     handlers: [console_stdout, console_stderr]
 scheduler:
-  duration: 1
+  duration: 10
 programs:
   - name: bundle_vppctl
     metrics:
@@ -205,5 +205,6 @@ programs:
       vppctl -s {socket} perfmon reset
       vppctl -s {socket} perfmon start bundle cache-data
       sleep {duration}
+      vppctl -s {socket} show perfmon statistics
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
