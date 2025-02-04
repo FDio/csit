@@ -137,10 +137,10 @@
   tags:
     - intel-inst-drivers
 
-#- name: Driver Intel QAT 2.x
-#  import_tasks: qat2.yaml
-#  when: >
-#    intel_qat2_pcis.stdout_lines | length > 0 and
-#    intel_qat_matrix is defined
-#  tags:
-#    - intel-inst-drivers
+- name: Driver Intel QAT 2.x
+  import_tasks: qat2.yaml
+  when: >
+    intel_qat2_pcis.stdout_lines | length > 0 and
+    intel_qat_matrix is defined
+  tags:
+    - intel-inst-drivers
