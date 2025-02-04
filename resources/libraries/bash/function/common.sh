@@ -1,5 +1,5 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
-# Copyright (c) 2024 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2025 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -532,6 +532,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="emr"
             ;;
+        *"3n-oct")
+            NODENESS="3n"
+            FLAVOR="oct"
+            ;;
         *"-x-2n"*)
             TESTBED="${TEST_CODE#${TEST_CODE%2n*}}"
             NODENESS="${TESTBED%-${TEST_CODE#*-x-2n*-}}"
@@ -982,6 +986,9 @@ function select_tags () {
         *"3n-emr")
             default_nic="nic_intel-e810cq"
             ;;
+        *"3n-oct")
+            default_nic="nic_cavium-a063-100g"
+            ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             default_nic="nic_amazon-nitro-50g"
             ;;
@@ -1132,6 +1139,8 @@ function select_tags () {
             ;;
         *"3n-emr")
             ;;
+        *"3n-oct")
+            ;;
         *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
@@ -1270,6 +1279,10 @@ function select_topology () {
             ;;
         *"3n-emr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_emr_*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        *"3n-oct")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_oct_*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *"3n-aws")

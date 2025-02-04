@@ -50,7 +50,7 @@
     - intel-inst-drivers
 
 - name: Check Presence of Intel 4XXX
-  ansible.builtin.shell: "lspci -d 8086:4942"
+  ansible.builtin.shell: "lspci -d 8086:4942; lspci -d 8086:4940"
   register: intel_qat2_pcis
   failed_when: false
   changed_when: false
@@ -137,10 +137,10 @@
   tags:
     - intel-inst-drivers
 
-#- name: Driver Intel QAT 2.x
-#  import_tasks: qat2.yaml
-#  when: >
-#    intel_qat2_pcis.stdout_lines | length > 0 and
-#    intel_qat_matrix is defined
-#  tags:
-#    - intel-inst-drivers
+- name: Driver Intel QAT 2.x
+  import_tasks: qat2.yaml
+  when: >
+    intel_qat2_pcis.stdout_lines | length > 0 and
+    intel_qat_matrix is defined
+  tags:
+    - intel-inst-drivers

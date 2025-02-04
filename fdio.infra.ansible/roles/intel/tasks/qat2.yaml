@@ -35,13 +35,10 @@
     chdir: "{{ intel_extract_dir }}/QAT20.L.{{ qat2 }}"
   become: true
   with_items:
-    - "wget http://security.ubuntu.com/ubuntu/pool/main/s/systemd/libudev-dev_255.4-1ubuntu8.4_amd64.deb"
-    - "dpkg -i ./libudev-dev_255.4-1ubuntu8.4_amd64.deb"
     - "apt install -y libudev-dev nasm libnl-genl-3-dev"
     - "./configure --enable-icp-sriov=host"
     - "make"
     - "make install"
-    - "apt remove -y libudev-dev"
   when:
     - intel_driver_extracted
   tags:
