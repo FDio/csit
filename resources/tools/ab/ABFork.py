@@ -169,7 +169,7 @@ def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
     :rtype: list
     """
 
-    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -n {requests} -c {clients}"
+    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -t 60 -c {clients}"
     cmd = f"{cmd} -B {tg_addr} -r "
     if mode == u"rps":
         cmd = f"{cmd} -k"
