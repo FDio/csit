@@ -126,10 +126,12 @@ def main():
     pool.join()
 
     info_list = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    statlist = []
 
     # Statistical test results.
     for res in results:
         stats = res.get()
+        statlist.append(stats)
         if stats:
             info_list = [a + b for a, b in zip(info_list, stats)]
 
@@ -140,6 +142,7 @@ def main():
     print(f"Total data transferred: {round(info_list[2])} bytes")
     print(f"Completed requests: {round(info_list[0])} ")
     print(f"Failed requests: {round(info_list[1])} ")
+    print(f"{statlist=}")
 
 
 def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
@@ -169,7 +172,8 @@ def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
     :rtype: list
     """
 
-    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -n {requests} -c {clients}"
+    n_req = 1_000_000
+    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -t 60 -n {n_req} -c {clients}"
     cmd = f"{cmd} -B {tg_addr} -r "
     if mode == u"rps":
         cmd = f"{cmd} -k"
