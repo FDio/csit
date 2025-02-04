@@ -101,8 +101,8 @@ def main():
     # The number of processing units available to the current process.
     _, cpu_num = subprocess.getstatusoutput(u"nproc --all")
     cpu_num = int(cpu_num)
-    if cpu_num > 70:
-        cpu_num = 70
+    if cpu_num > 1:
+        cpu_num = 1
 
     # Requests and Clients are evenly distributed on each CPU.
     per_req = round(req_num / cpu_num)
@@ -126,12 +126,14 @@ def main():
     pool.join()
 
     info_list = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    statlist = []
 
     # Statistical test results.
     for res in results:
         stats = res.get()
+        statlist.append(stats[1])
         if stats:
-            info_list = [a + b for a, b in zip(info_list, stats)]
+            info_list = [a + b for a, b in zip(info_list, stats[0])]
 
     # Output results.
     print(f"Transfer Rate: {round(info_list[6], 2)} [Kbytes/sec]")
@@ -140,6 +142,7 @@ def main():
     print(f"Total data transferred: {round(info_list[2])} bytes")
     print(f"Completed requests: {round(info_list[0])} ")
     print(f"Failed requests: {round(info_list[1])} ")
+    print(f"{statlist=}")
 
 
 def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
@@ -169,7 +172,8 @@ def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
     :rtype: list
     """
 
-    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -n {requests} -c {clients}"
+    n_req = 1_000_000_000
+    cmd = f"sudo -E -S taskset --cpu-list {cpu} ab -t 60 -n {n_req} -c {clients}"
     cmd = f"{cmd} -B {tg_addr} -r "
     if mode == u"rps":
         cmd = f"{cmd} -k"
@@ -183,7 +187,7 @@ def one(cpu, requests, clients, cipher, protocol, ip_addr, tg_addr, files, port,
     _, output = subprocess.getstatusoutput(cmd)
     ret = _parse_output(output)
 
-    return ret
+    return ret, output
 
 
 def _parse_output(msg):
