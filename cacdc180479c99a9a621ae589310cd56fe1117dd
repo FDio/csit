@@ -50,6 +50,23 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-emr/3/ : FAILURE\n\nVPP did not start, trying again.\n\ncsit-2n-emr-perftest nic_*ANDdrv_vf*AND1cANDeth-ip4tcphttp-ldpreload-nginx-1_21_5 !64b !1024b",
       "revId": "cacdc180479c99a9a621ae589310cd56fe1117dd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1750c76d_dbef9113",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-05T13:15:39Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-grc/64/ : SUCCESS\n\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-emr/4/ : SUCCESS\n\nBoth architectures now show 0 failed requests and reasonable cps/rps values.\nReady for review.",
+      "revId": "cacdc180479c99a9a621ae589310cd56fe1117dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
