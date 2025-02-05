@@ -90,6 +90,30 @@
       },
       "revId": "cacdc180479c99a9a621ae589310cd56fe1117dd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a8dce2b_ce428d46",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-05T14:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05af49bd_e6b97ff3",
+      "range": {
+        "startLine": 49,
+        "startChar": 20,
+        "endLine": 49,
+        "endChar": 68
+      },
+      "revId": "cacdc180479c99a9a621ae589310cd56fe1117dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
