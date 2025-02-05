@@ -155,8 +155,9 @@ class Constants:
     # VPP Communications Library templates location
     RESOURCES_TPL_TELEMETRY = "resources/templates/telemetry"
 
-    # VPP Communications Library LD_PRELOAD library
-    VCL_LDPRELOAD_LIBRARY = "/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
+    # VPP Communications Library LD_PRELOAD library.
+    # Set to override, keep empty for autodetection based on architecture.
+    VCL_LDPRELOAD_LIBRARY = ""
 
     # VPP service unit name
     VPP_UNIT = "vpp"
