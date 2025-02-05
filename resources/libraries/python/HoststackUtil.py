@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,8 +12,10 @@
 # limitations under the License.
 
 """Host Stack util library."""
+
 import json
 from time import sleep
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -23,9 +25,27 @@ from resources.libraries.python.model.ExportResult import (
 )
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
+from resources.libraries.python.topology import Topology
 
 class HoststackUtil():
     """Utilities for Host Stack tests."""
+
+    @staticmethod
+    def _get_ldpreload_path(node):
+        """Return the absolute path to VCL LD_PRELOAD library.
+
+        If Constants override the path, return that.
+        Otherwise return the default pattern, with arch value from topology.
+
+        :param node: Topology node to decide architecture.
+        :type node: dict
+        :returns: Path to correct VCL preload library.
+        :rtype: str
+        """
+        if ret := Constants.VCL_LDPRELOAD_LIBRARY:
+            return ret
+        arch = Topology.get_node_arch(node)
+        return f"/usr/lib/{arch}-linux-gnu/libvcl_ldpreload.so"
 
     @staticmethod
     def get_vpp_echo_command(vpp_echo_attributes):
@@ -64,11 +84,13 @@ class HoststackUtil():
         return vpp_echo_cmd
 
     @staticmethod
-    def get_iperf3_command(iperf3_attributes):
+    def get_iperf3_command(iperf3_attributes, node):
         """Construct the iperf3 command using the specified attributes.
 
         :param iperf3_attributes: iperf3 test program attributes.
+        :param node: Topology node (architecture implies ldpreload path).
         :type iperf3_attributes: dict
+        :type node: dict
         :returns: Command line components of the iperf3 command
             'env_vars' - environment variables
             'name' - program name
@@ -80,8 +102,8 @@ class HoststackUtil():
             f"{Constants.RESOURCES_TPL_VCL}/" \
             f"{iperf3_attributes[u'vcl_config']}"
         if iperf3_attributes[u"ld_preload"]:
-            iperf3_cmd[u"env_vars"] += \
-                f" LD_PRELOAD={Constants.VCL_LDPRELOAD_LIBRARY}"
+            ldpreload = HoststackUtil._get_ldpreload_path(node)
+            iperf3_cmd[u"env_vars"] += f" LD_PRELOAD={ldpreload}"
         if iperf3_attributes[u'transparent_tls']:
             iperf3_cmd[u"env_vars"] += u" LDP_ENV_TLS_TRANS=1"
 
@@ -195,15 +217,17 @@ class HoststackUtil():
         return program_stdout_log, program_stderr_log
 
     @staticmethod
-    def get_nginx_command(nginx_attributes, nginx_version, nginx_ins_dir):
+    def get_nginx_command(nginx_attributes, nginx_version, nginx_ins_dir, node):
         """Construct the NGINX command using the specified attributes.
 
         :param nginx_attributes: NGINX test program attributes.
         :param nginx_version: NGINX version.
         :param nginx_ins_dir: NGINX install dir.
+        :param node: Topology node (architecture implies ldpreload path).
         :type nginx_attributes: dict
         :type nginx_version: str
         :type nginx_ins_dir: str
+        :type node: dict
         :returns: Command line components of the NGINX command
             'env_vars' - environment variables
             'name' - program name
@@ -216,8 +240,8 @@ class HoststackUtil():
                                  f"{Constants.RESOURCES_TPL_VCL}/" \
                                  f"{nginx_attributes[u'vcl_config']}"
         if nginx_attributes[u"ld_preload"]:
-            nginx_cmd[u"env_vars"] += \
-                f" LD_PRELOAD={Constants.VCL_LDPRELOAD_LIBRARY}"
+            ldpreload = HoststackUtil._get_ldpreload_path(node)
+            nginx_cmd[u"env_vars"] += f" LD_PRELOAD={ldpreload}"
         if nginx_attributes[u'transparent_tls']:
             nginx_cmd[u"env_vars"] += u" LDP_ENV_TLS_TRANS=1"
 
