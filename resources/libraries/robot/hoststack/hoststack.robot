@@ -544,7 +544,7 @@
 | | Set To Dictionary | ${iperf3_client_attr} | ip_address
 | | ... | ${dut2_if1_ip4_addr}
 | | Configure VPP Hoststack Attributes on all DUTs
-| | ${iperf3_server}= | Get Iperf3 Command | ${iperf3_server_attr}
+| | ${iperf3_server}= | Get Iperf3 Command | ${iperf3_server_attr} | ${dut2}
 | | ${skip_cnt}= | Evaluate
 | | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
 | | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
@@ -557,7 +557,7 @@
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
 | | ... | ${iperf3_server_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_server_attr}[cfg_vpp_feature] | ${iperf3_server}
-| | ${iperf3_client}= | Get Iperf3 Command | ${iperf3_client_attr}
+| | ${iperf3_client}= | Get Iperf3 Command | ${iperf3_client_attr} | ${dut1}
 | | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
 | | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_client_attr}[cpu_cnt]
@@ -619,7 +619,7 @@
 | | ${cpu_idle_list}= | Get Slice From List | ${cpu_idle}
 | | ... | ${${skip_cnt} + ${attr}[cpu_cnt]}
 | | ${nginx_server}= | Get Nginx Command | ${attr}
-| | ... | ${nginx_version} | ${packages_dir}
+| | ... | ${nginx_version} | ${packages_dir} | ${DUT1}
 | | Start Hoststack Test Program
 | | ... | ${DUT1} | ${attr}[namespace] | ${core_list}
 | | ... | ${nginx_server}
