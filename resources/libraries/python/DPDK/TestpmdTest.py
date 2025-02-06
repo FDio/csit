@@ -94,6 +94,8 @@ class TestpmdTest:
                             break
                         if "Mellanox-CX6DX" in nic_model:
                             break
+                        if "Mellanox-CX556A" in nic_model:
+                            break
                         TestpmdTest.check_testpmd(nodes[node])
                         break
                     except RuntimeError:
