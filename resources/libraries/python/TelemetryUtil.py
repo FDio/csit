@@ -18,6 +18,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.SysctlUtil import SysctlUtil
+from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = ["TelemetryUtil"]
 
@@ -94,6 +95,7 @@ class TelemetryUtil:
         """
         for node in nodes.values():
             if node["type"] == NodeType.DUT:
+                VPPUtil.show_log(node)
                 try:
                     for sid, spath in node["sockets"]["CLI"].items():
                         self._run_telemetry(
