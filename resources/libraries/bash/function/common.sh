@@ -1,5 +1,5 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
-# Copyright (c) 2024 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2025 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1124,6 +1124,7 @@ function select_tags () {
             ;;
         *"3n-alt")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"2n-grc")
             test_tag_array+=("!ipsechw")
@@ -1131,27 +1132,35 @@ function select_tags () {
         *"2n-emr")
             ;;
         *"3n-emr")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"3n-snr")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"3n-icxd")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"3na-spr")
             ;;
         *"3nb-spr")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"2n-c7gn" | *"3n-c7gn")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_triple_link_topo")
             ;;
         *"-x-2n"* | *"-x-3n"*)
             ;;

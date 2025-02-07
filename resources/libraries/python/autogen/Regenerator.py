@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,7 +23,6 @@ import sys
 from glob import glob
 from io import open
 from os import getcwd
-
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.autogen.Testcase import Testcase
@@ -276,6 +275,8 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in tmp_prolog:
+                continue
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
                 tmp_filename, "10ge2p1x710", nic_code, 1,
@@ -402,6 +403,8 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, _ = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.default(suite_id)
     for nic_code in Constants.NIC_CODE_TO_NAME:
+        if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in in_prolog:
+            continue
         nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710", nic_code, 1,
@@ -483,6 +486,8 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.tcp(suite_id)
     for nic_code in Constants.NIC_CODE_TO_NAME:
+        if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in in_prolog:
+            continue
         nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710", nic_code, 1,
@@ -551,6 +556,8 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.iperf3(suite_id)
     for nic_code in Constants.NIC_CODE_TO_NAME:
+        if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in in_prolog:
+            continue
         nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         out_filename = replace_defensively(
             in_filename, u"10ge2p1x710", nic_code, 1,
@@ -609,6 +616,8 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, suite_tag = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.trex(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in tmp_prolog:
+                continue
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             out_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710", nic_code, 1,
@@ -643,6 +652,8 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in in_prolog:
+                continue
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710", nic_code, 1,
