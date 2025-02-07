@@ -201,7 +201,7 @@ class VPPUtil:
             VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)
         finally:
-            DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
+            VPPUtil.show_log(node)
 
     @staticmethod
     def verify_vpp_on_all_duts(nodes):
@@ -374,6 +374,11 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        exec_cmd(node, "cat /tmp/asan.log*", timeout=180, sudo=True)
+        exec_cmd(node, "rm /tmp/asan.log*", timeout=180, sudo=True)
+        exec_cmd(node, "tail -n 99 /var/log/vpp/vpp.log", timeout=180, sudo=True)
+        exec_cmd(node, "journalctl --no-pager --lines=999", timeout=180, sudo=True)
+        exec_cmd(node, "dmesg | tail -n 99", timeout=180, sudo=True)
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
