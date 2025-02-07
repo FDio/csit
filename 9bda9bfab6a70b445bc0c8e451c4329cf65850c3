@@ -67,6 +67,23 @@
       "message": "Oh, scale6 suites are never 1C.\n\ncsit-3na-spr-perftest mrrANDnic_*cx7*ANDdrv_mlx5_coreAND78bANDethip6-ip6scale?00k-rnd",
       "revId": "9bda9bfab6a70b445bc0c8e451c4329cf65850c3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c3d397_430e5659",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-02-07T18:32:01Z",
+      "side": 1,
+      "message": "introduce 6P3NIC, not triple link, as well as these tests are valid single link tests, the amount of NICs is parameter of test not a new test",
+      "revId": "9bda9bfab6a70b445bc0c8e451c4329cf65850c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
