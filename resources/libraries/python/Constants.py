@@ -388,6 +388,23 @@ class Constants:
         "200ge6p3cx7veat": "Mellanox-CX7VEAT",
         "1ge1p82540em": "virtual",
     }
+    NIC_CODE_TO_REQUIRED_TAG = {
+        "10ge2p1x710": "",
+        "40ge2p1xl710": "",
+        "25ge2p1xxv710": "",
+        "25ge2p1e810xxv": "",
+        "25ge2p1e822cq": "",
+        "25ge2p1e823c": "",
+        "100ge2p1e810cq": "",
+        "50ge1p1ena": "",
+        "100ge1p1ena": "",
+        "200ge1p1ena": "",
+        "100ge2p1cx556a": "",
+        "100ge2p1cx6dx": "",
+        "200ge2p1cx7veat": "",
+        "200ge6p3cx7veat": "_NODE_TRIPLE_LINK_TOPO",
+        "1ge1p82540em": "",
+    }
 
     # Shortened lowercase NIC model name, useful for presentation.
     NIC_CODE_TO_SHORT_NAME = {
