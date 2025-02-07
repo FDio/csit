@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest nic_*cx7*ANDdrv_mlx5_coreAND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-1_21_5ANDtcp_cps",
       "revId": "9bda9bfab6a70b445bc0c8e451c4329cf65850c3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ecf537d_8c8f3163",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-07T14:48:07Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest nic_*cx7*ANDdrv_mlx5_coreAND1cAND78bbANDethip6-ip6scale?00k-rnd",
+      "revId": "9bda9bfab6a70b445bc0c8e451c4329cf65850c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
