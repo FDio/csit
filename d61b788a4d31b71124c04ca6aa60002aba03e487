@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ccad3f6_299117c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-02-07T05:12:56Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-2n-grc-perftest dpdk-ndrpdr-00",
+      "revId": "d61b788a4d31b71124c04ca6aa60002aba03e487",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
