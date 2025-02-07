@@ -276,6 +276,8 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code] not in tmp_prolog:
+                continue
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
                 tmp_filename, "10ge2p1x710", nic_code, 1,
