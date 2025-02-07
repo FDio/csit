@@ -145,6 +145,7 @@ class ABTools:
         else:
             files = f"{files_num}B.json"
 
+        exec_cmd_no_error(tg_node, "ip a")
         cmd = ABTools.get_cmd_options(
             requests=r_total,
             clients=c_total,
