@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-08
-date: 2024-10-21
+docname: draft-ietf-bmwg-mlrsearch-09
+date: 2025-01-13
 
 ipr: trust200902
 area: ops
@@ -58,8 +58,7 @@ support multiple loss ratio searches,
 and enhance result repeatability and comparability.
 
 The primary reason for extending [RFC2544] is to address the challenges
-and requirements presented by the evaluation and testing
-the data planes of software-based networking systems.
+of evaluating and testing the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
 such as allowing multiple short trials per load instead of one large trial,
@@ -86,7 +85,7 @@ The purpose of this document is to describe the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining
 data plane throughput in software-based networking devices and functions.
 
-Applying vanilla [RFC2544] throughput bisection to software DUTs
+Applying the vanilla [RFC2544] throughput bisection method to software DUTs
 results in several problems:
 
 - Binary search takes too long as most trials are done far from the
@@ -126,8 +125,8 @@ support both conservative settings and aggressive settings.
 The conservative settings lead to results
 unconditionally compliant with [RFC2544],
 but longer search duration and worse repeatability.
-Conversely, aggressive settings lead to shorter search duration
-and better repeatability, but the results are not compliant with [RFC2544].
+Conversely, aggressive settings lead to shorter search durations
+and better repeatability, but the results do not comply with [RFC2544].
 
 No part of [RFC2544] is intended to be obsoleted by this document.
 
@@ -150,8 +149,9 @@ for time-efficiency improvements.
 A more generalized throughput concept could enable further enhancements
 while maintaining the precision of simpler methods.
 
-The bisection method, when unconditionally compliant with [RFC2544],
-is excessively slow.
+The bisection method, when used in a manner unconditionally compliant
+with [RFC2544], is excessively slow.
+
 This is because a significant amount of time is spent on trials
 with loads that, in retrospect, are far from the final determined throughput.
 
@@ -455,7 +455,7 @@ they may have different requirements and stopping conditions.
 Search results are based on Load Classification.
 When measured enough, any chosen Load can either achieve or fail
 each Search Goal (separately), thus becoming
-a Lower Bound or an Upper Bound for that Search Goal.
+a Lower Bound or an Upper Bound for that Search Goal, respectively.
 
 When the Relevant Lower Bound is close enough to Relevant Upper Bound
 according to Goal Width, the Regular Goal Result is found.
@@ -633,8 +633,7 @@ Discussion:
 The definition describes some traits, and it is not clear whether all of them
 are REQUIRED, or some of them are only RECOMMENDED.
 
-Trials are the only stimuli the SUT is expected to experience
-during the Search.
+Trials are the only stimuli the SUT is expected to experience during the Search.
 
 For the purposes of the MLRsearch specification,
 it is ALLOWED for the test procedure to deviate from the [RFC2544] description,
@@ -652,6 +651,13 @@ in [RFC2544] (Section 6).
 
 An example of deviation from [RFC2544] is using shorter wait times,
 compared to those described in phases b), d) and e).
+
+The [RFC2544] document itself seems to be treating phase b)
+as a type of configuration that cannot be configured only once (by Manager,
+before Search starts) as some crucial SUT state could time-out during the Search.
+It is suggested to understand "learning frames" as any such time-sensitive
+configuration method, with bridge learning being only one possibe example.
+Section C.2.4.1 of [RFC2544] lists another example: ARP with wait time 5 seconds.
 
 ## Trial Terms
 
@@ -841,6 +847,10 @@ Trial Forwarding Ratio MAY be expressed in other units
 Note that, contrary to loads, frame counts used to compute
 trial forwarding ratio are aggregates over all SUT output interfaces.
 
+For example, in a test with symmetric bidirectional traffic,
+if one direction is forwarded without losses, but the opposite direction
+does not forward at all, the trial forwarding ratio would be 0.5 (50%).
+
 Questions around what is the correct number of frames
 that should have been forwarded
 is generally outside of the scope of this document.
@@ -905,13 +915,14 @@ Discussion:
 
 It is important to note that while similar, this quantity is not identical
 to the Forwarding Rate as defined in [RFC2285] (Section 3.6.1).
-The latter is specific to one output interface only,
-whereas the Trial Forwarding Ratio is based
-on frame counts aggregated over all SUT output interfaces.
+The latter is based on frame counts on one output interface only,
+so each output interface can have different forwarding rate,
+whereas the Trial Forwarding Ratio is based on frame counts
+aggregated over all SUT output interfaces.
 
-In consequence, for symmetric traffic profiles the Trial Forwarding Rate value
-is equal to arithmetric average of [RFC2285] Forwarding Rate values
-across all active interfaces.
+Consequently, for symmetric bidirectional Traffic Profiles,
+the Trial Forwarding Rate value is equal to arithmetic average
+of [RFC2285] Forwarding Rate values across both output interfaces.
 
 {::comment}
     [Part 3 of iload/oload discussion.]
@@ -1109,8 +1120,9 @@ at a specific Trial Load and Goal Final Trial Duration during the search.
 If the Goal Duration Sum is larger than the Goal Final Trial Duration,
 multiple trials may need to be performed at the same load.
 
-See [MLRsearch Compliant with TST009](#mlrsearch-compliant-with-tst009)
-for an example where possibility of multiple trials at the same load is intended.
+See section [MLRsearch Compliant with TST009](#mlrsearch-compliant-with-tst009)
+of this document for an example
+where possibility of multiple trials at the same load is intended.
 
 A Goal Duration Sum value lower than the Goal Final Trial Duration
 (of the same goal) could save some search time, but is NOT RECOMMENDED.
@@ -1282,7 +1294,7 @@ without explicit assistance of the Controller.
     TODO-P0: This paragraph is for implementers.
 
     TODO2: MK implementation hints are fine, and do not have to be preceded
-with any remark of the sort you're suggesting IMV.
+    with any remark of the sort you're suggesting IMV.
 
 {:/comment}
 
@@ -1891,7 +1903,7 @@ between the Intended Load and the Offered Load into increased Trial Loss Ratio.
 
 Neither of the two recommendations are made into requirements,
 because it is not easy to tell when the difference is big enough,
-in a way thay would be dis-entangled from other Measurer freedoms.
+in a way that would be dis-entangled from other Measurer freedoms.
 
 ### Controller
 
@@ -1934,7 +1946,7 @@ with their intended configurations before calling the Controller.
 The Manager does not need to be able to tweak any Search Goal attributes,
 but it MUST report all applied attribute values even if not tweaked.
 
-In principle, there should be a "user" (human or CI)
+In principle, there should be a "user" (human or automated)
 that "starts" or "calls" the Manager and receives the report.
 The Manager MAY be able to be called more than once whis way,
 thus triggering multiple independent Searches.
@@ -2196,8 +2208,8 @@ namely by becoming a new Upper Bound.
 This also applies when that trial happens
 before that bound could have become current.
 
-This means if your SUT (or your Traffic Generator) needs a warmup,
-be sure to warm it up before starting the Search.
+This means if the SUT tested (or the Traffic Generator used) needs a warmup,
+it should be warmed up before starting the Search.
 
 Also, for MLRsearch implementation, it means it is better to measure
 at smaller loads first, so bounds found earlier are less likely
@@ -3107,17 +3119,17 @@ networks.
 
 # Acknowledgements
 
-Some phrases and statements in this document were created
-with help of Mistral AI (mistral.ai).
-
-Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
-review and numerous useful comments and suggestions in the earlier versions of this document.
-
 Special wholehearted gratitude and thanks to the late Al Morton for his
 thorough reviews filled with very specific feedback and constructive
 guidelines. Thank you Al for the close collaboration over the years,
 for your continuous unwavering encouragement full of empathy and
 positive attitude. Al, you are dearly missed.
+
+Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
+review and numerous useful comments and suggestions in the earlier versions of this document.
+
+Some phrases and statements in this document were created
+with help of Mistral AI (mistral.ai).
 
 # Appendix A: Load Classification
 
