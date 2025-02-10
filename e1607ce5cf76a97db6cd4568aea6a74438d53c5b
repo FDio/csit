@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd5cb47a_9ecb37d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-10T09:34:22Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrANDnic_*cx7*ANDdrv_mlx5_coreAND1cAND64bANDeth-l2patch",
+      "revId": "e1607ce5cf76a97db6cd4568aea6a74438d53c5b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
