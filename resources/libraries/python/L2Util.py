@@ -297,7 +297,7 @@ class L2Util:
         with PapiSocketExecutor(node) as papi_exec:
             # Cannot use get_replies due to VPP-2203.
             papi_exec.add(cmd, **args1).get_reply(err_msg)
-            papi_exec.add(cmd, **args2).get_reply(err_msg)
+            #papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
     def vpp_setup_bidirectional_l2_patch(node, interface1, interface2):
@@ -336,7 +336,7 @@ class L2Util:
 
         with PapiSocketExecutor(node) as papi_exec:
             # Cannot use get_replies due to VPP-2203.
-            papi_exec.add(cmd, **args1).get_reply(err_msg)
+            #papi_exec.add(cmd, **args1).get_reply(err_msg)
             papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
