@@ -296,7 +296,7 @@ class L2Util:
 
         with PapiSocketExecutor(node) as papi_exec:
             # Cannot use get_replies due to VPP-2203.
-            papi_exec.add(cmd, **args1).get_reply(err_msg)
+            #papi_exec.add(cmd, **args1).get_reply(err_msg)
             papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
@@ -336,7 +336,7 @@ class L2Util:
 
         with PapiSocketExecutor(node) as papi_exec:
             # Cannot use get_replies due to VPP-2203.
-            papi_exec.add(cmd, **args1).get_reply(err_msg)
+            #papi_exec.add(cmd, **args1).get_reply(err_msg)
             papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
