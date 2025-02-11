@@ -1,0 +1,12 @@
+---
+# file: host_vars/10.30.51.95.yaml
+
+ansible_ssh_user: root
+ansible_ssh_password: root
+
+hostname: "s95-t215-sut1"
+grub:
+  maxcpus: "24"
+
+inventory_ipmi_hostname: "10.30.50.95"
+cpu_microarchitecture: "octeon"
