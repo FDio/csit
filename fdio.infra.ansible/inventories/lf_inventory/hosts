@@ -41,9 +41,11 @@ all:
         10.30.51.81: #s81-t212-sut1 - icelake
         10.30.51.83: #s83-t213-sut1 - icelake
         10.30.51.85: #s85-t214-sut1 - icelake
-        10.30.51.87: #s87-t215-sut1 - octeon
+        10.30.51.87: #s87-t215-sut1 - icelake-octeon
         10.30.51.93: #s93-t39-sut1 - snowridge
         10.30.51.94: #s94-t39-sut2 - snowridge
+        10.30.51.95: #s95-t215-sut1 - octeon
+        10.30.51.96: #s96-t215-sut1 - octeon
         10.30.51.60: #s60-t210-sut1 - epyc
     nomad:
       hosts:
