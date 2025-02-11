@@ -86,7 +86,7 @@ nodes:
         pci_address: "0000:b1:00.0"
         ip4_address: "172.16.90.2"
         driver: mlx5_core
-        link: link10
+        link: link9
         model: Mellanox-CX7VEAT
       port10:
         # s82-t212-tg1-c8/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
@@ -94,7 +94,7 @@ nodes:
         pci_address: "0000:b1:00.1"
         ip4_address: "172.16.100.2"
         driver: mlx5_core
-        link: link9
+        link: link10
         model: Mellanox-CX7VEAT
       port11:
         # s82-t212-tg1-c6/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
