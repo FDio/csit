@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -92,6 +92,9 @@ class Constants:
 
     ############################################################################
     # General, application wide constants.
+
+    # AWS specific settings.
+    AWS_ENDPOINT_URL = get_str_from_env("AWS_ENDPOINT_URL", None)
 
     # Select applications to start.
     START_TRENDING = get_bool_from_env("START_TRENDING", True)
