@@ -16,6 +16,23 @@
       "message": "csit-3nb-spr-perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciANDimixANDethip?-ip?scale?00k-rnd !1c !2c !3c !6c",
       "revId": "746ea088bb424036436bab7fd6cf991414e83216",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b810a773_e575eba9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-11T14:10:11Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3na-spr/109/ : SUCCESS\n\nValid also for patch set #6.\n\n\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3nb-spr/85/ : SUCCESS\n\nWorks correctly also for non-triple-link testbeds.",
+      "revId": "746ea088bb424036436bab7fd6cf991414e83216",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
