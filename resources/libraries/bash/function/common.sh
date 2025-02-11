@@ -1131,6 +1131,7 @@ function select_tags () {
             ;;
         *"3n-alt")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"2n-grc")
             test_tag_array+=("!ipsechw")
@@ -1138,29 +1139,38 @@ function select_tags () {
         *"2n-emr")
             ;;
         *"3n-emr")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"3n-oct")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"3n-icx")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"3n-snr")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"3n-icxd")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"3na-spr")
             ;;
         *"3nb-spr")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"1n-aws" | *"2n-aws" | *"3n-aws")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"2n-c7gn" | *"3n-c7gn")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!triple_link_capable")
             ;;
         *"-x-2n"* | *"-x-3n"*)
             ;;
