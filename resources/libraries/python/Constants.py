@@ -546,6 +546,10 @@ class Constants:
         "Mellanox-CX556A": ["mlx5_core"],
         "Mellanox-CX6DX": ["mlx5_core"],
         "Mellanox-CX7VEAT": ["mlx5_core"],
+        "Cavium-A063-10G": ["vfio-pci"],
+        "Cavium-A063-40G": ["vfio-pci"],
+        "Cavium-A063-50G": ["vfio-pci"],
+        "Cavium-A063-100G": ["vfio-pci"],
         "virtual": ["vfio-pci"],
     }
 
