@@ -15,22 +15,28 @@ descriptions.
 **2_NODE_DOUBLE_LINK_TOPO**
 
     2 nodes connected in a circular topology with two links interconnecting
-    the devices.
+    the devices. Used to mark suites that need both links to work properly.
 
 **2_NODE_SINGLE_LINK_TOPO**
 
     2 nodes connected in a circular topology with at least one link
-    interconnecting devices.
+    interconnecting devices. Used to mark suites that do not need double links.
 
 **3_NODE_DOUBLE_LINK_TOPO**
 
     3 nodes connected in a circular topology with two links interconnecting
-    the devices.
+    the devices. Used to mark suites that need both links to work properly.
 
 **3_NODE_SINGLE_LINK_TOPO**
 
     3 nodes connected in a circular topology with at least one link
-    interconnecting devices.
+    interconnecting devices. Used to mark suites that do not need double links.
+
+**TRIPLE_LINK_CAPABLE**
+
+    Some single link suites are capable of distributing traffic
+    also over 3 links if available. Adding this tag allows autogen
+    to create both versions of the suite.
 
 ## Objective Tags
 
