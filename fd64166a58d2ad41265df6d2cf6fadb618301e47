@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cee66487_ee9c3871",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-11T12:28:08Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest mrrANDnic_*cx7*ANDdrv_mlx5_coreANDimixANDethip?-ip?scale?00k-rnd !1c !2c !3c !6c",
+      "revId": "fd64166a58d2ad41265df6d2cf6fadb618301e47",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
