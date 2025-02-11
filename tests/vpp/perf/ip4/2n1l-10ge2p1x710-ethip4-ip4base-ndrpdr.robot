@@ -64,6 +64,7 @@
 | ${overhead}= | ${0}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4-ip4src253
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -89,6 +90,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
+| | Fail | triger teardown
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

@@ -63,6 +63,7 @@
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4src254
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -88,6 +89,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 cross connect
+| | Fail | trigger packet trace
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
