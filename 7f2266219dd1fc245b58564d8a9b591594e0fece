@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest nic_*cx7*ANDdrv_mlx5_coreAND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-1_21_5",
       "revId": "7f2266219dd1fc245b58564d8a9b591594e0fece",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7f9436_bc69363e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-11T14:07:17Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-icx/534/ : FAILURE\n\nThe 2p1 suites passed, only 6p3 suites (unavoidable until 42342) failed. The former proves this is a fix, as trending [1] shows Nginx does not pass on .62 CX7.\n\nrecheck\n\n[1] https://csit.fd.io/trending/#eNrVUkFuwyAQfI1zqVYCWsu99NAk_7AIbAIKNlvYpk5fHxJZIZHaqqdKvbCI2dkZRps5JuwzhpemXTbdslGdt-VoHl8fSjkQgRrBmwmkEDtUJPFZCvMGluweXMycWZs9iA1IA8gOPD2xIcdMECwlDFFbGHd-LCN6JfsWDOWzglqdFew738lVhNyxIt-bqASdUFfG1VttYMw3Yr8yW8nbpAfM_hPrBLGpsCk5VkSae1U-0g06B9CtLx0_ha7m_5qpO6BmGMLU_n3qX7n417G368UY03DZ-XLPLn4AJ69Dnp9O_rbj9A",
+      "revId": "7f2266219dd1fc245b58564d8a9b591594e0fece",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
