@@ -1,9 +1,16 @@
-version: "3"
+networks:
+  csit-data:
+    external: true
+
 services:
   cdash:
     build: "."
     command: "uwsgi --ini app.ini"
     environment:
+      #AWS_ACCESS_KEY_ID: ""
+      #AWS_SECRET_ACCESS_KEY: ""
+      #CSIT_AWS_ENDPOINT_URL: "http://minio:9000" # If configured, set below value to True.
+      AWS_IGNORE_CONFIGURED_ENDPOINT_URLS: "False"
       FLASK_DEBUG: 1
       FLASK_ENV: "development"
       CSIT_START_TRENDING: "True"
@@ -22,6 +29,8 @@ services:
       CSIT_URL_DOC: "https://csit.fd.io/cdocs/"
       CSIT_TIME_PERIOD: 250
     mem_limit: "16g"
+    networks:
+      - "csit-data"
     ports:
       - "5000:5000"
     user: "${UID}:${GID}"

@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -115,6 +115,8 @@ class Data:
         if days:
             last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
         try:
+            if C.AWS_ENDPOINT_URL:
+                wr.config.s3_endpoint_url = C.AWS_ENDPOINT_URL
             file_list = wr.s3.list_objects(
                 path=path,
                 suffix="parquet",
@@ -202,6 +204,8 @@ class Data:
         if days:
             last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
 
+        if C.AWS_ENDPOINT_URL:
+            wr.config.s3_endpoint_url = C.AWS_ENDPOINT_URL
         df = wr.s3.read_parquet(
             path=path,
             path_suffix="parquet",
@@ -290,6 +294,8 @@ class Data:
             wr.config.botocore_config = botocore.config.Config(
                 max_pool_connections=C.MAX_POOL_SIZE
             )
+            if C.AWS_ENDPOINT_URL:
+                wr.config.s3_endpoint_url = C.AWS_ENDPOINT_URL
             df = wr.s3.read_parquet(
                 path=path,
                 path_suffix="parquet",
