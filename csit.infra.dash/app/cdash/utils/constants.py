@@ -93,6 +93,9 @@ class Constants:
     ############################################################################
     # General, application wide constants.
 
+    # AWS specific settings.
+    AWS_ENDPOINT_URL = get_str_from_env("AWS_ENDPOINT_URL", None)
+
     # Select applications to start.
     START_TRENDING = get_bool_from_env("START_TRENDING", True)
     START_REPORT = get_bool_from_env("START_REPORT", True)
