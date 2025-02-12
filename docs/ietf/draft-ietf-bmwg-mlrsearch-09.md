@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-08
-date: 2024-10-21
+docname: draft-ietf-bmwg-mlrsearch-09
+date: 2025-01-13
 
 ipr: trust200902
 area: ops
@@ -33,6 +33,7 @@ normative:
   RFC1242:
   RFC2285:
   RFC2544:
+  RFC5180:
   RFC8219:
   RFC9004:
 
@@ -48,6 +49,12 @@ informative:
     target: https://pypi.org/project/MLRsearch/1.2.1/
     title: "MLRsearch 1.2.1, Python Package Index"
     date: 2023-10
+  Lencze-Shima:
+    target: https://datatracker.ietf.org/doc/html/draft-lencse-bmwg-rfc2544-bis-00
+    title: "An Upgrade to Benchmarking Methodology for Network Interconnect Devices"
+  Lencze-Kovacs-Shima:
+    target: http://dx.doi.org/10.11601/ijates.v9i2.288
+    title: "Gaming with the Throughput and the Latency Benchmarking Measurement Procedures of RFC 2544"
 
 --- abstract
 
@@ -58,8 +65,7 @@ support multiple loss ratio searches,
 and enhance result repeatability and comparability.
 
 The primary reason for extending [RFC2544] is to address the challenges
-and requirements presented by the evaluation and testing
-the data planes of software-based networking systems.
+of evaluating and testing the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
 such as allowing multiple short trials per load instead of one large trial,
@@ -86,7 +92,7 @@ The purpose of this document is to describe the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining
 data plane throughput in software-based networking devices and functions.
 
-Applying vanilla [RFC2544] throughput bisection to software DUTs
+Applying the vanilla [RFC2544] throughput bisection method to software DUTs
 results in several problems:
 
 - Binary search takes too long as most trials are done far from the
@@ -126,8 +132,8 @@ support both conservative settings and aggressive settings.
 The conservative settings lead to results
 unconditionally compliant with [RFC2544],
 but longer search duration and worse repeatability.
-Conversely, aggressive settings lead to shorter search duration
-and better repeatability, but the results are not compliant with [RFC2544].
+Conversely, aggressive settings lead to shorter search durations
+and better repeatability, but the results do not comply with [RFC2544].
 
 No part of [RFC2544] is intended to be obsoleted by this document.
 
@@ -150,8 +156,9 @@ for time-efficiency improvements.
 A more generalized throughput concept could enable further enhancements
 while maintaining the precision of simpler methods.
 
-The bisection method, when unconditionally compliant with [RFC2544],
-is excessively slow.
+The bisection method, when used in a manner unconditionally compliant
+with [RFC2544], is excessively slow.
+
 This is because a significant amount of time is spent on trials
 with loads that, in retrospect, are far from the final determined throughput.
 
@@ -339,6 +346,9 @@ Motivations are many:
 - If an approximation of the SUT noise impact on the Trial Loss Ratio is known,
   it can be set as the Goal Loss Ratio.
 
+- For more information, see an earlier draft [Lencze-Shima] (Section 5)
+  and references there.
+
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes any search algorithm more user-friendly.
 [RFC2544] throughput is not user-friendly in this regard.
@@ -357,6 +367,12 @@ It is easy to modify the vanilla bisection to find a lower bound
 for the load that satisfies a non-zero Goal Loss Ratio.
 But it is not that obvious how to search for multiple goals at once,
 hence the support for multiple Search Goals remains a problem.
+
+There does not seem to be a consensus on which ratio value is the best.
+For users, performance of higher protocol layers is important,
+for example goodput of TCP connection, but relationship between goodput
+and loss ratio is not simple. See for example [Lencze-Kovacs-Shima]
+as it discusses various corner cases.
 
 ## Inconsistent Trial Results
 
@@ -455,7 +471,7 @@ they may have different requirements and stopping conditions.
 Search results are based on Load Classification.
 When measured enough, any chosen Load can either achieve or fail
 each Search Goal (separately), thus becoming
-a Lower Bound or an Upper Bound for that Search Goal.
+a Lower Bound or an Upper Bound for that Search Goal, respectively.
 
 When the Relevant Lower Bound is close enough to Relevant Upper Bound
 according to Goal Width, the Regular Goal Result is found.
@@ -525,43 +541,43 @@ discussed in the following subsections.
     it is useful to keep it around (maybe commented-out) while editing.</mark>
     
     <mark>MKP3 VP note: rough list of all RFC references:
-    - [RFC1242] (section 3.17 Throughput) ... definition
-    - [RFC2544] (section 26.1 Throughput) ... methodology
-    - [RFC2544] (section 24. Trial duration):
+    - [RFC1242] (Section 3.17 Throughput) ... definition
+    - [RFC2544] (Section 26.1 Throughput) ... methodology
+    - [RFC2544] (Section 24. Trial duration):
      - full trial durations (implies short trials)
      - Also 60s for unconditional compliance is here.
      - Also "the search" (without quotes) appears there.
      - Also "binary search" (with quotes) appears there.
-    - [RFC2544] (section 26.3 Frame loss rate):
+    - [RFC2544] (Section 26.3 Frame loss rate):
      - two successive zero-loss trials are recommended (hints about loss inversion)
     - un/conditionally compliant with [RFC2544]
-    - [RFC2544] (section 26. Benchmarking tests:)
+    - [RFC2544] (Section 26. Benchmarking tests:)
      - all its "dot sections" have "Reporting format:" paragraphs
       - (implies test report)
-     - [RFC2544] (section 26.1 Throughput) wants graph, frame size on X axis.
-    - [RFC2544] (section 23. Trial description) trial
+     - [RFC2544] (Section 26.1 Throughput) wants graph, frame size on X axis.
+    - [RFC2544] (Section 23. Trial description) trial
      - general description of trial
      - wait times specifically, maybe also learning frames?
-    - Data Rate of [RFC2544] (section 14. Bidirectional traffic)
+    - Data Rate of [RFC2544] (Section 14. Bidirectional traffic)
      - seems equal to input frame rate [RFC2544] (23. Trial description).
-    - [RFC2544] (section 21. Bursty traffic) suggests non-constant loads?
-    - Intended Load of [RFC2285] (section 3.5.1 Intended load (Iload))
+    - [RFC2544] (Section 21. Bursty traffic) suggests non-constant loads?
+    - Intended Load of [RFC2285] (Section 3.5.1 Intended load (Iload))
     - [RFC2285] (Section 3.5.2 Offered load (Oload))
-    - Forwarding Rate as defined in [RFC2285] (section 3.6.1 Forwarding rate (FR))
+    - Forwarding Rate as defined in [RFC2285] (Section 3.6.1 Forwarding rate (FR))
     - [RFC2285] (3.5.3 Maximum offered load (MOL))
-    - reordered frames [RFC2544] (section 10. Verifying received frames)
+    - reordered frames [RFC2544] (Section 10. Verifying received frames)
     - For example, [RFC2544] (Appendix C) lists frame formats and protocol addresses,
-      as recommended from [RFC2544] (section 8. Frame formats)
-      and [RFC2544] (section 12. Protocol addresses).
-    - [RFC8219] (section 5.3. Traffic Setup) introduces traffic setups consisting of a mix of IPv4 and IPv6 traffic
-    - [RFC2544] (section 9. Frame sizes)
-    - [RFC1242] (section 3.5 Data link frame size)
-    - [RFC2285] (section 3.6.2) FRMOL
-    - [RFC2285] (section 3.1.1) DUT
-    - [RFC2285] (section 3.1.2) SUT
-    - [RFC2544] (section 6. Test set up) test setup with (an external) tester
+      as recommended from [RFC2544] (Section 8. Frame formats)
+      and [RFC2544] (Section 12. Protocol addresses).
+    - [RFC8219] (Section 5.3. Traffic Setup) introduces traffic setups consisting of a mix of IPv4 and IPv6 traffic
+    - [RFC2544] (Section 9. Frame sizes)
+    - [RFC1242] (Section 3.5 Data link frame size)
+    - [RFC2285] (Section 3.6.2) FRMOL
+    - [RFC2285] (Section 3.1.1) DUT
+    - [RFC2285] (Section 3.1.2) SUT
+    - [RFC2544] (Section 6. Test set up) test setup with (an external) tester
     - [RFC9004] B2B
-    - [RFC8219] (section 5.3. Traffic Setup) for an example of ip4+ip6 mixed traffic
+    - [RFC8219] (Section 5.3. Traffic Setup) for an example of ip4+ip6 mixed traffic
     </mark>
 
 {:/comment}
@@ -633,8 +649,7 @@ Discussion:
 The definition describes some traits, and it is not clear whether all of them
 are REQUIRED, or some of them are only RECOMMENDED.
 
-Trials are the only stimuli the SUT is expected to experience
-during the Search.
+Trials are the only stimuli the SUT is expected to experience during the Search.
 
 For the purposes of the MLRsearch specification,
 it is ALLOWED for the test procedure to deviate from the [RFC2544] description,
@@ -652,6 +667,14 @@ in [RFC2544] (Section 6).
 
 An example of deviation from [RFC2544] is using shorter wait times,
 compared to those described in phases b), d) and e).
+
+The [RFC2544] document itself seems to be treating phase b)
+as any type of configuration that cannot be configured only once (by Manager,
+before Search starts) as some crucial SUT state could time-out during the Search.
+This document RECOMMENDS to understand "learning frames" to be
+any such time-sensitive per-trial configuration method,
+with bridge learning being only one possibe example.
+[RFC2544] (Section C.2.4.1) lists another example: ARP with wait time 5 seconds.
 
 ## Trial Terms
 
@@ -740,7 +763,7 @@ this document uses a shorthand **Load**.
     half-duplex, spanning trees, nor congestion control mechanisms.
     Formally speaking, I consider even the sending interface of the sender
     to be the part of SUT.
-    Reading [RFC2285] (section 3.5.3 Maximum offered load (MOL))
+    Reading [RFC2285] (Section 3.5.3 Maximum offered load (MOL))
     "This will be the case  when an external source lacks the resources
     to transmit frames at the minimum legal inter-frame gap"
     that means TRex workers are also part of SUT. If they do not have
@@ -841,6 +864,10 @@ Trial Forwarding Ratio MAY be expressed in other units
 Note that, contrary to loads, frame counts used to compute
 trial forwarding ratio are aggregates over all SUT output interfaces.
 
+For example, in a test with symmetric bidirectional traffic,
+if one direction is forwarded without losses, but the opposite direction
+does not forward at all, the trial forwarding ratio would be 0.5 (50%).
+
 Questions around what is the correct number of frames
 that should have been forwarded
 is generally outside of the scope of this document.
@@ -905,13 +932,14 @@ Discussion:
 
 It is important to note that while similar, this quantity is not identical
 to the Forwarding Rate as defined in [RFC2285] (Section 3.6.1).
-The latter is specific to one output interface only,
-whereas the Trial Forwarding Ratio is based
-on frame counts aggregated over all SUT output interfaces.
+The latter is based on frame counts on one output interface only,
+so each output interface can have different forwarding rate,
+whereas the Trial Forwarding Ratio is based on frame counts
+aggregated over all SUT output interfaces.
 
-In consequence, for symmetric traffic profiles the Trial Forwarding Rate value
-is equal to arithmetric average of [RFC2285] Forwarding Rate values
-across all active interfaces.
+Consequently, for symmetric bidirectional Traffic Profiles,
+the Trial Forwarding Rate value is equal to arithmetic average
+of [RFC2285] Forwarding Rate values across both output interfaces.
 
 {::comment}
     [Part 3 of iload/oload discussion.]
@@ -1109,8 +1137,9 @@ at a specific Trial Load and Goal Final Trial Duration during the search.
 If the Goal Duration Sum is larger than the Goal Final Trial Duration,
 multiple trials may need to be performed at the same load.
 
-See [MLRsearch Compliant with TST009](#mlrsearch-compliant-with-tst009)
-for an example where possibility of multiple trials at the same load is intended.
+See section [MLRsearch Compliant with TST009](#mlrsearch-compliant-with-tst009)
+of this document for an example
+where possibility of multiple trials at the same load is intended.
 
 A Goal Duration Sum value lower than the Goal Final Trial Duration
 (of the same goal) could save some search time, but is NOT RECOMMENDED.
@@ -1282,7 +1311,7 @@ without explicit assistance of the Controller.
     TODO-P0: This paragraph is for implementers.
 
     TODO2: MK implementation hints are fine, and do not have to be preceded
-with any remark of the sort you're suggesting IMV.
+    with any remark of the sort you're suggesting IMV.
 
 {:/comment}
 
@@ -1891,7 +1920,11 @@ between the Intended Load and the Offered Load into increased Trial Loss Ratio.
 
 Neither of the two recommendations are made into requirements,
 because it is not easy to tell when the difference is big enough,
-in a way thay would be dis-entangled from other Measurer freedoms.
+in a way that would be dis-entangled from other Measurer freedoms.
+
+For a simple example of a situation where the Offered Load cannot keep up
+with the Intended Load, and its consequences on MLRsearch result,
+see [Hard Performance Limit](#hard-performance-limit) of the explanations chapter.
 
 ### Controller
 
@@ -1931,10 +1964,30 @@ Discussion:
 The Manager initializes the SUT, the Measurer (and the Tester if independent)
 with their intended configurations before calling the Controller.
 
+Note that [RFC2544] (Section 7) already puts requirements on SUT setups:
+
+   It is expected that all of the tests will be run without changing the
+   configuration or setup of the DUT in any way other than that required
+   to do the specific test. For example, it is not acceptable to change
+   the size of frame handling buffers between tests of frame handling
+   rates or to disable all but one transport protocol when testing the
+   throughput of that protocol.
+
+It is REQUIRED for the test report to encompass all the SUT configuration
+details, perhaps by describing a "default" configuration common for most tests
+and only describe configuration changes if required by a specific test.
+
+For example [RFC5180] (Section 5.1.1) recommends testing jumbo frames
+if SUT can forward them, even though they are outside the scope
+of the 802.3 IEEE standard. In this case, it is fair
+for the SUT default configuration to not support jumbo frames,
+and only enable this support when testing jumbo traffic profiles,
+as the handling of jumbo frames typically has higher processing overhead.
+
 The Manager does not need to be able to tweak any Search Goal attributes,
 but it MUST report all applied attribute values even if not tweaked.
 
-In principle, there should be a "user" (human or CI)
+In principle, there should be a "user" (human or automated)
 that "starts" or "calls" the Manager and receives the report.
 The Manager MAY be able to be called more than once whis way,
 thus triggering multiple independent Searches.
@@ -2196,8 +2249,8 @@ namely by becoming a new Upper Bound.
 This also applies when that trial happens
 before that bound could have become current.
 
-This means if your SUT (or your Traffic Generator) needs a warmup,
-be sure to warm it up before starting the Search.
+This means if the SUT tested (or the Traffic Generator used) needs a warmup,
+it should be warmed up before starting the Search.
 
 Also, for MLRsearch implementation, it means it is better to measure
 at smaller loads first, so bounds found earlier are less likely
@@ -2303,7 +2356,7 @@ any load search algorithm needs to deal with Intended Load values internally.
 But in the presence of goals with a non-zero [Goal Loss Ratio](#goal-loss-ratio),
 the Intended Load usually does not match
 the user's intuition of what a throughput is.
-The forwarding rate (as defined in [RFC2285] section 3.6.1) is better,
+The forwarding rate as defined in [RFC2285] (Section 3.6.1) is better,
 but it is not obvious how to generalize it
 for loads with multiple trials and a non-zero goal loss ratio.
 
@@ -3107,17 +3160,17 @@ networks.
 
 # Acknowledgements
 
-Some phrases and statements in this document were created
-with help of Mistral AI (mistral.ai).
-
-Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
-review and numerous useful comments and suggestions in the earlier versions of this document.
-
 Special wholehearted gratitude and thanks to the late Al Morton for his
 thorough reviews filled with very specific feedback and constructive
 guidelines. Thank you Al for the close collaboration over the years,
 for your continuous unwavering encouragement full of empathy and
 positive attitude. Al, you are dearly missed.
+
+Many thanks to Alec Hothan of the OPNFV NFVbench project for thorough
+review and numerous useful comments and suggestions in the earlier versions of this document.
+
+Some phrases and statements in this document were created
+with help of Mistral AI (mistral.ai).
 
 # Appendix A: Load Classification
 
