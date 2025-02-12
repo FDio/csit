@@ -33,6 +33,23 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3na-spr/109/ : SUCCESS\n\nValid also for patch set #6.\n\n\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3nb-spr/85/ : SUCCESS\n\nWorks correctly also for non-triple-link testbeds.",
       "revId": "746ea088bb424036436bab7fd6cf991414e83216",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "485a9916_652d2a78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-02-12T07:14:55Z",
+      "side": 1,
+      "message": "The patch still doesn\u0027t unify test structure for multiple nics. Rather implements subset of the tests as an exception. Tag naming is also not scalable (single/double/triple...) cannot be scaled easily.",
+      "revId": "746ea088bb424036436bab7fd6cf991414e83216",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
