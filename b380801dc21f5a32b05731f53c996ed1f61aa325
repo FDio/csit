@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7895d58a_3f8e198c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-13T12:56:05Z",
+      "side": 1,
+      "message": "csit-2n-grc-perftest mrrANDnic_*cx5*ANDdrv_mlx5_coreAND64bANDeth-l2patch mrrANDnic_*cx5*ANDdrv_mlx5_coreAND64bANDeth-l2xcbase !4c",
+      "revId": "b380801dc21f5a32b05731f53c996ed1f61aa325",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
