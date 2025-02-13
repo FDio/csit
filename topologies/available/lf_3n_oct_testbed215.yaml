@@ -4,13 +4,13 @@ metadata:
   schema:
     - resources/topology_schemas/3_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.88"
+    model: Intel-Icelake
+    host: 10.30.51.88
     arch: x86_64
     port: 6001
     username: testuser
@@ -20,7 +20,7 @@ nodes:
         # s88-t215-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:1c:f4"
         pci_address: "0000:17:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -28,13 +28,14 @@ nodes:
         # s88-t215-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:1c:f0"
         pci_address: "0000:19:00.0"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: ice
         link: link2
         model: Intel-E810CQ
   DUT1:
     type: DUT
-    host: "10.30.51.95"
+    model: Marvel-Octeon-CN10K
+    host: 10.30.51.95
     arch: aarch64
     port: 22
     username: root
@@ -43,9 +44,9 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0002:20:00.0"
-        driver: "rvu_cptpf"
-        model: "HW_A0FD"
-        module: "rvu_cptpf"
+        driver: rvu_cptpf
+        model: HW_A0FD
+        module: rvu_cptpf
         numvfs: 1
     eventdev: "0002:0e:00.0"
     interfaces:
@@ -53,21 +54,22 @@ nodes:
         # s95-t215-sut1-c2/p1 - 100GE port1 Cavium A063 2p100GE.
         mac_address: "1a:cc:6a:50:05:2a"
         pci_address: "0002:02:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: rvu_nicpf
         link: link1
         model: Cavium-A063-100G
       port2:
         # s95-t215-sut1-c2/p1 - 100GE port2 Cavium A063 2p100GE.
-        mac_address: "1a:cc:6a:50:05:2a "
+        mac_address: "1a:cc:6a:50:05:2a"
         pci_address: "0002:03:00.0"
-        ip4_address: "172.16.30.1"
+        ip4_address: 172.16.30.1
         driver: rvu_nicpf
         link: link3
         model: Cavium-A063-100G
   DUT2:
     type: DUT
-    host: "10.30.51.96"
+    model: Marvel-Octeon-CN10K
+    host: 10.30.51.96
     arch: aarch64
     port: 22
     username: root
@@ -86,7 +88,7 @@ nodes:
         # s87-t215-sut1-c6/p1 - 100GE port1 Cavium A063 2p100GE.
         mac_address: "40:a6:b7:67:2b:ec"
         pci_address: "0002:03:00.0"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: rvu_nicpf
         link: link2
         model: Cavium-A063-100G
@@ -94,7 +96,7 @@ nodes:
         # s87-t215-sut1-c6/p1 - 100GE port2 Cavium A063 2p100GE.
         mac_address: "40:60:5a:02:e1:60"
         pci_address: "0002:02:00.0"
-        ip4_address: "172.16.30.2"
+        ip4_address: 172.16.30.2
         driver: rvu_nicpf
         link: link3
         model: Cavium-A063-100G

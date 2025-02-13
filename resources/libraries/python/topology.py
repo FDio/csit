@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,7 +25,7 @@ from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from resources.libraries.python.Constants import Constants
 
 __all__ = [
-    u"DICT__nodes", u"Topology", u"NodeType", u"SocketType", u"NodeSubTypeTG"
+    "DICT__nodes", "Topology", "NodeType", "SocketType", "NodeSubTypeTG"
 ]
 
 
@@ -35,44 +35,44 @@ def load_topo_from_yaml():
     :returns: Nodes from loaded topology.
     """
     try:
-        topo_path = BuiltIn().get_variable_value(u"${TOPOLOGY_PATH}")
+        topo_path = BuiltIn().get_variable_value("${TOPOLOGY_PATH}")
     except RobotNotRunningError:
-        return ''
+        return ""
 
     with open(topo_path) as work_file:
-        return safe_load(work_file.read())[u"nodes"]
+        return safe_load(work_file.read())["nodes"]
 
 
 class NodeType:
     """Defines node types used in topology dictionaries."""
     # Device Under Test (this node has VPP running on it)
-    DUT = u"DUT"
+    DUT = "DUT"
     # Traffic Generator (this node has traffic generator on it)
     # pylint: disable=invalid-name
-    TG = u"TG"
+    TG = "TG"
     # Virtual Machine (this node running on DUT node)
     # pylint: disable=invalid-name
-    VM = u"VM"
+    VM = "VM"
 
 
 class NodeSubTypeTG:
     """Defines node sub-type TG - traffic generator."""
     # T-Rex traffic generator
-    TREX = u"TREX"
+    TREX = "TREX"
     # Moongen
-    MOONGEN = u"MOONGEN"
+    MOONGEN = "MOONGEN"
     # IxNetwork
-    IXNET = u"IXNET"
+    IXNET = "IXNET"
 
 
 class SocketType:
     """Defines socket types used in topology dictionaries."""
     # VPP Socket PAPI
-    PAPI = u"PAPI"
+    PAPI = "PAPI"
     # VPP PAPI Stats (legacy option until stats are migrated to Socket PAPI)
-    STATS = u"STATS"
+    STATS = "STATS"
     # VPP Socket CLI
-    CLI = u"CLI"
+    CLI = "CLI"
 
 
 DICT__nodes = load_topo_from_yaml()
@@ -112,8 +112,8 @@ class Topology:
         if path[0] not in node:
             node[path[0]] = dict()
         elif isinstance(node[path[0]], str):
-            node[path[0]] = dict() if node[path[0]] == u"" \
-                else {node[path[0]]: u""}
+            node[path[0]] = dict() if node[path[0]] == "" \
+                else {node[path[0]]: ""}
         Topology.add_node_item(node[path[0]], value, path[1:])
 
     @staticmethod
@@ -130,9 +130,9 @@ class Topology:
         max_ports = 1000000
         iface = None
         for i in range(1, max_ports):
-            if node[u"interfaces"].get(str(ptype) + str(i)) is None:
+            if node["interfaces"].get(str(ptype) + str(i)) is None:
                 iface = str(ptype) + str(i)
-                node[u"interfaces"][iface] = dict()
+                node["interfaces"][iface] = dict()
                 break
         return iface
 
@@ -147,7 +147,7 @@ class Topology:
         :returns: Nothing
         """
         try:
-            node[u"interfaces"].pop(iface_key)
+            node["interfaces"].pop(iface_key)
         except KeyError:
             pass
 
@@ -161,9 +161,9 @@ class Topology:
         :type ptype: str
         :returns: Nothing
         """
-        for if_key in list(node[u"interfaces"]):
+        for if_key in list(node["interfaces"]):
             if if_key.startswith(str(ptype)):
-                node[u"interfaces"].pop(if_key)
+                node["interfaces"].pop(if_key)
 
     @staticmethod
     def remove_all_added_ports_on_all_duts_from_topology(nodes):
@@ -174,14 +174,14 @@ class Topology:
         :returns: Nothing
         """
         port_types = (
-            u"subinterface", u"vlan_subif", u"memif", u"tap", u"vhost",
-            u"loopback", u"gre_tunnel", u"vxlan_tunnel", u"eth_bond",
-            u"eth_avf", u"eth_rdma", u"geneve_tunnel", u"eth_af_xdp",
-            u"gtpu_tunnel"
+            "subinterface", "vlan_subif", "memif", "tap", "vhost",
+            "loopback", "gre_tunnel", "vxlan_tunnel", "eth_bond",
+            "eth_avf", "eth_rdma", "geneve_tunnel", "eth_af_xdp",
+            "gtpu_tunnel"
         )
 
         for node_data in nodes.values():
-            if node_data[u"type"] == NodeType.DUT:
+            if node_data["type"] == NodeType.DUT:
                 for ptype in port_types:
                     Topology.remove_all_ports(node_data, ptype)
 
@@ -194,9 +194,9 @@ class Topology:
         :returns: Nothing
         """
         reg_ex = re.compile(r"port\d+_vif\d+")
-        for if_key in list(node[u"interfaces"]):
+        for if_key in list(node["interfaces"]):
             if re.match(reg_ex, if_key):
-                node[u"interfaces"].pop(if_key)
+                node["interfaces"].pop(if_key)
 
     @staticmethod
     def remove_all_added_vif_ports_on_all_duts_from_topology(nodes):
@@ -208,7 +208,7 @@ class Topology:
         :returns: Nothing
         """
         for node_data in nodes.values():
-            if node_data[u"type"] == NodeType.DUT:
+            if node_data["type"] == NodeType.DUT:
                 Topology.remove_all_vif_ports(node_data)
 
     @staticmethod
@@ -222,7 +222,7 @@ class Topology:
         :type iface_key: str
         :type sw_if_index: int
         """
-        node[u"interfaces"][iface_key][u"vpp_sw_index"] = int(sw_if_index)
+        node["interfaces"][iface_key]["vpp_sw_index"] = int(sw_if_index)
 
     @staticmethod
     def update_interface_name(node, iface_key, name):
@@ -235,7 +235,7 @@ class Topology:
         :type iface_key: str
         :type name: str
         """
-        node[u"interfaces"][iface_key][u"name"] = str(name)
+        node["interfaces"][iface_key]["name"] = str(name)
 
     @staticmethod
     def update_interface_mac_address(node, iface_key, mac_address):
@@ -248,7 +248,7 @@ class Topology:
         :type iface_key: str
         :type mac_address: str
         """
-        node[u"interfaces"][iface_key][u"mac_address"] = str(mac_address)
+        node["interfaces"][iface_key]["mac_address"] = str(mac_address)
 
     @staticmethod
     def update_interface_pci_address(node, iface_key, pci_address):
@@ -261,7 +261,7 @@ class Topology:
         :type iface_key: str
         :type pci_address: str
         """
-        node[u"interfaces"][iface_key][u"pci_address"] = str(pci_address)
+        node["interfaces"][iface_key]["pci_address"] = str(pci_address)
 
     @staticmethod
     def update_interface_vlan(node, iface_key, vlan):
@@ -274,7 +274,7 @@ class Topology:
         :type iface_key: str
         :type vlan: str
         """
-        node[u"interfaces"][iface_key][u"vlan"] = int(vlan)
+        node["interfaces"][iface_key]["vlan"] = int(vlan)
 
     @staticmethod
     def update_interface_vhost_socket(node, iface_key, vhost_socket):
@@ -287,7 +287,7 @@ class Topology:
         :type iface_key: str
         :type vhost_socket: str
         """
-        node[u"interfaces"][iface_key][u"vhost_socket"] = str(vhost_socket)
+        node["interfaces"][iface_key]["vhost_socket"] = str(vhost_socket)
 
     @staticmethod
     def update_interface_memif_socket(node, iface_key, memif_socket):
@@ -300,7 +300,7 @@ class Topology:
         :type iface_key: str
         :type memif_socket: str
         """
-        node[u"interfaces"][iface_key][u"memif_socket"] = str(memif_socket)
+        node["interfaces"][iface_key]["memif_socket"] = str(memif_socket)
 
     @staticmethod
     def update_interface_memif_id(node, iface_key, memif_id):
@@ -313,7 +313,7 @@ class Topology:
         :type iface_key: str
         :type memif_id: str
         """
-        node[u"interfaces"][iface_key][u"memif_id"] = str(memif_id)
+        node["interfaces"][iface_key]["memif_id"] = str(memif_id)
 
     @staticmethod
     def update_interface_memif_role(node, iface_key, memif_role):
@@ -326,7 +326,7 @@ class Topology:
         :type iface_key: str
         :type memif_role: str
         """
-        node[u"interfaces"][iface_key][u"memif_role"] = str(memif_role)
+        node["interfaces"][iface_key]["memif_role"] = str(memif_role)
 
     @staticmethod
     def update_interface_tap_dev_name(node, iface_key, dev_name):
@@ -340,7 +340,7 @@ class Topology:
         :type dev_name: str
         :returns: Nothing
         """
-        node[u"interfaces"][iface_key][u"dev_name"] = str(dev_name)
+        node["interfaces"][iface_key]["dev_name"] = str(dev_name)
 
     @staticmethod
     def get_node_by_hostname(nodes, hostname):
@@ -353,7 +353,7 @@ class Topology:
         :returns: Node dictionary or None if not found.
         """
         for node in nodes.values():
-            if node[u"host"] == hostname:
+            if node["host"] == hostname:
                 return node
 
         return None
@@ -370,8 +370,8 @@ class Topology:
         links = list()
 
         for node in nodes.values():
-            for interface in node[u"interfaces"].values():
-                link = interface.get(u"link")
+            for interface in node["interfaces"].values():
+                link = interface.get("link")
                 if link is not None:
                     if link not in links:
                         links.append(link)
@@ -395,7 +395,7 @@ class Topology:
         :returns: Interface key from topology file
         :rtype: string
         """
-        interfaces = node[u"interfaces"]
+        interfaces = node["interfaces"]
         retval = None
         for if_key, if_val in interfaces.items():
             k_val = if_val.get(key)
@@ -422,7 +422,7 @@ class Topology:
         :returns: Interface key.
         :rtype: str
         """
-        return Topology._get_interface_by_key_value(node, u"name", iface_name)
+        return Topology._get_interface_by_key_value(node, "name", iface_name)
 
     @staticmethod
     def get_interface_by_link_name(node, link_name, subsequent=False):
@@ -442,7 +442,7 @@ class Topology:
         :rtype: str
         """
         return Topology._get_interface_by_key_value(
-            node, u"link", link_name, subsequent=subsequent
+            node, "link", link_name, subsequent=subsequent
         )
 
     def get_interfaces_by_link_names(self, node, link_names):
@@ -485,7 +485,7 @@ class Topology:
         :rtype: str
         """
         return Topology._get_interface_by_key_value(
-            node, u"vpp_sw_index", sw_if_index
+            node, "vpp_sw_index", sw_if_index
         )
 
     @staticmethod
@@ -501,7 +501,7 @@ class Topology:
         """
         try:
             if isinstance(iface_key, str):
-                return node[u"interfaces"][iface_key].get(u"vpp_sw_index")
+                return node["interfaces"][iface_key].get("vpp_sw_index")
             # TODO: use only iface_key, do not use integer
             return int(iface_key)
         except (KeyError, ValueError):
@@ -520,9 +520,9 @@ class Topology:
         """
         try:
             if not isinstance(iface_name, str):
-                raise TypeError(u"Interface name must be a string.")
+                raise TypeError("Interface name must be a string.")
             iface_key = Topology.get_interface_by_name(node, iface_name)
-            return node[u"interfaces"][iface_key].get(u"vpp_sw_index")
+            return node["interfaces"][iface_key].get("vpp_sw_index")
         except (KeyError, ValueError):
             return None
 
@@ -539,7 +539,7 @@ class Topology:
         :rtype: int
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"mtu")
+            return node["interfaces"][iface_key].get("mt")
         except KeyError:
             return None
 
@@ -556,88 +556,9 @@ class Topology:
         :rtype: str
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"name")
+            return node["interfaces"][iface_key].get("name")
         except KeyError:
             return None
-
-    @staticmethod
-    def convert_interface_reference_to_key(node, interface):
-        """Takes interface reference in any format
-        (name, link name, interface key or sw_if_index)
-        and converts to interface key using Topology methods.
-
-        :param node: Node in topology.
-        :param interface: Name, sw_if_index, link name or key of an interface
-            on the node.
-        :type node: dict
-        :type interface: str or int
-
-        :returns: Interface key.
-        :rtype: str
-
-        :raises TypeError: If provided with invalid interface argument.
-        :raises RuntimeError: If the interface does not exist in topology.
-        """
-
-        if isinstance(interface, int):
-            key = Topology.get_interface_by_sw_index(node, interface)
-            if key is None:
-                raise RuntimeError(
-                    f"Interface with sw_if_index={interface} does not exist "
-                    f"in topology."
-                )
-        elif interface in Topology.get_node_interfaces(node):
-            key = interface
-        elif interface in Topology.get_links({u"dut": node}):
-            key = Topology.get_interface_by_link_name(node, interface)
-        elif isinstance(interface, str):
-            key = Topology.get_interface_by_name(node, interface)
-            if key is None:
-                raise RuntimeError(
-                    f"Interface with key, name or link name \"{interface}\" "
-                    f"does not exist in topology."
-                )
-        else:
-            raise TypeError(
-                u"Type of interface argument must be integer or string."
-            )
-        return key
-
-    @staticmethod
-    def convert_interface_reference(node, interface, wanted_format):
-        """Takes interface reference in any format
-        (name, link name, topology key or sw_if_index) and returns
-        its equivalent in the desired format.
-
-        :param node: Node in topology.
-        :param interface: Name, sw_if_index, link name or key of an interface
-            on the node.
-        :param wanted_format: Format of return value wanted.
-            Valid options are: sw_if_index, key, name.
-        :type node: dict
-        :type interface: str or int
-        :type wanted_format: str
-        :returns: Interface name, interface key or sw_if_index.
-        :rtype: str or int
-        :raises TypeError, ValueError: If provided with invalid arguments.
-        :raises RuntimeError: If the interface does not exist in topology.
-        """
-
-        key = Topology.convert_interface_reference_to_key(node, interface)
-
-        conversions = {
-            u"key": lambda x, y: y,
-            u"name": Topology.get_interface_name,
-            u"sw_if_index": Topology.get_interface_sw_index
-        }
-
-        try:
-            return conversions[wanted_format](node, key)
-        except KeyError:
-            raise ValueError(
-                f"Unrecognized return value wanted: {wanted_format}."
-                f"Valid options are key, name, sw_if_index"
-            )
 
     @staticmethod
     def get_interface_numa_node(node, iface_key):
@@ -653,7 +574,7 @@ class Topology:
         :rtype: int
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"numa_node")
+            return node["interfaces"][iface_key].get("numa_node")
         except KeyError:
             return None
 
@@ -678,7 +599,7 @@ class Topology:
         numa_list = []
         for if_key in iface_keys:
             try:
-                numa_list.append(node[u"interfaces"][if_key].get(u"numa_node"))
+                numa_list.append(node["interfaces"][if_key].get("numa_node"))
             except KeyError:
                 pass
 
@@ -701,7 +622,7 @@ class Topology:
         :returns: Return MAC or None if not found.
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"mac_address")
+            return node["interfaces"][iface_key].get("mac_address")
         except KeyError:
             return None
 
@@ -716,7 +637,7 @@ class Topology:
         :returns: Return IP4 or None if not found.
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"ip4_address")
+            return node["interfaces"][iface_key].get("ip4_address")
         except KeyError:
             return None
 
@@ -733,7 +654,7 @@ class Topology:
         :rtype: int
         :raises: KeyError if iface_key is not found.
         """
-        return node[u"interfaces"][iface_key].get(u"ip4_prefix_length", \
+        return node["interfaces"][iface_key].get("ip4_prefix_length", \
             Constants.DEFAULT_IP4_PREFIX_LENGTH)
 
     @staticmethod
@@ -753,11 +674,11 @@ class Topology:
         """
         link_name = None
         # get link name where the interface belongs to
-        for if_key, if_val in node[u"interfaces"].items():
-            if if_key == u"mgmt":
+        for if_key, if_val in node["interfaces"].items():
+            if if_key == "mgmt":
                 continue
             if if_key == iface_key:
-                link_name = if_val[u"link"]
+                link_name = if_val["link"]
                 break
 
         if link_name is None:
@@ -766,15 +687,15 @@ class Topology:
         # find link
         for node_data in nodes_info.values():
             # skip self
-            l_hash = node_data[u"host"]+str(node_data[u"port"])
-            r_hash = node[u"host"]+str(node[u"port"])
+            l_hash = node_data["host"]+str(node_data["port"])
+            r_hash = node["host"]+str(node["port"])
             if l_hash == r_hash:
                 continue
             for if_key, if_val \
-                    in node_data[u"interfaces"].items():
-                if u"link" not in if_val:
+                    in node_data["interfaces"].items():
+                if "link" not in if_val:
                     continue
-                if if_val[u"link"] == link_name:
+                if if_val["link"] == link_name:
                     return node_data, if_key
         return None
 
@@ -789,7 +710,7 @@ class Topology:
         :returns: Return PCI address or None if not found.
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"pci_address")
+            return node["interfaces"][iface_key].get("pci_address")
         except KeyError:
             return None
 
@@ -804,7 +725,7 @@ class Topology:
         :returns: Return interface driver or None if not found.
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"driver")
+            return node["interfaces"][iface_key].get("driver")
         except KeyError:
             return None
 
@@ -819,7 +740,7 @@ class Topology:
         :returns: Return interface vlan or None if not found.
         """
         try:
-            return node[u"interfaces"][iface_key].get(u"vlan")
+            return node["interfaces"][iface_key].get("vlan")
         except KeyError:
             return None
 
@@ -832,7 +753,7 @@ class Topology:
         :returns: Return list of keys of all interfaces.
         :rtype: list
         """
-        return node[u"interfaces"].keys()
+        return node["interfaces"].keys()
 
     @staticmethod
     def get_node_link_mac(node, link_name):
@@ -845,9 +766,9 @@ class Topology:
         :returns: MAC address string.
         :rtype: str
         """
-        for port in node[u"interfaces"].values():
-            if port.get(u"link") == link_name:
-                return port.get(u"mac_address")
+        for port in node["interfaces"].values():
+            if port.get("link") == link_name:
+                return port.get("mac_address")
         return None
 
     @staticmethod
@@ -863,20 +784,20 @@ class Topology:
         :returns: List of link names occupied by the node.
         :rtype: None or list of string
         """
-        interfaces = node[u"interfaces"]
+        interfaces = node["interfaces"]
         link_names = []
         for interface in interfaces.values():
-            if u"link" in interface:
-                if (filter_list is not None) and (u"model" in interface):
+            if "link" in interface:
+                if (filter_list is not None) and ("model" in interface):
                     for filt in filter_list:
-                        if filt == interface[u"model"]:
-                            link_names.append(interface[u"link"])
-                elif (filter_list is not None) and (u"model" not in interface):
+                        if filt == interface["model"]:
+                            link_names.append(interface["link"])
+                elif (filter_list is not None) and ("model" not in interface):
                     logger.trace(
                         f"Cannot apply filter on interface: {str(interface)}"
                     )
                 else:
-                    link_names.append(interface[u"link"])
+                    link_names.append(interface["link"])
         if not link_names:
             link_names = None
         if not topo_has_dut:
@@ -884,7 +805,7 @@ class Topology:
             for link_name in link_names:
                 count = 0
                 for interface in interfaces.values():
-                    link = interface.get(u"link", None)
+                    link = interface.get("link", None)
                     if link == link_name:
                         count += 1
                 if count == 2:
@@ -924,9 +845,9 @@ class Topology:
 
         connecting_links = None
         if node1_links is None:
-            logger.error(u"Unable to find active links for node1")
+            logger.error("Unable to find active links for node1")
         elif node2_links is None:
-            logger.error(u"Unable to find active links for node2")
+            logger.error("Unable to find active links for node2")
         else:
             # Not using set operations, as we need deterministic order.
             connecting_links = [
@@ -948,7 +869,7 @@ class Topology:
         """
         connecting_links = self.get_active_connecting_links(node1, node2)
         if not connecting_links:
-            raise RuntimeError(u"No links connecting the nodes were found")
+            raise RuntimeError("No links connecting the nodes were found")
         return connecting_links[0]
 
     def get_egress_interfaces_name_for_nodes(self, node1, node2):
@@ -964,14 +885,14 @@ class Topology:
         interfaces = list()
         links = self.get_active_connecting_links(node1, node2)
         if not links:
-            raise RuntimeError(u"No link between nodes")
-        for interface in node1[u"interfaces"].values():
-            link = interface.get(u"link")
+            raise RuntimeError("No link between nodes")
+        for interface in node1["interfaces"].values():
+            link = interface.get("link")
             if link is None:
                 continue
             if link in links:
                 continue
-            name = interface.get(u"name")
+            name = interface.get("name")
             if name is None:
                 continue
             interfaces.append(name)
@@ -989,7 +910,7 @@ class Topology:
         """
         interfaces = self.get_egress_interfaces_name_for_nodes(node1, node2)
         if not interfaces:
-            raise RuntimeError(u"No egress interface for nodes")
+            raise RuntimeError("No egress interface for nodes")
         return interfaces[0]
 
     def get_links_dict_from_nodes(self, tgen, dut1, dut2):
@@ -1026,12 +947,12 @@ class Topology:
         dut1_bd_links = [dut1_dut2_link, dut1_tg_link]
         dut2_bd_links = [dut1_dut2_link, dut2_tg_link]
         topology_links = {
-            u"DUT1_DUT2_LINK": dut1_dut2_link,
-            u"DUT1_TG_LINK": dut1_tg_link,
-            u"DUT2_TG_LINK": dut2_tg_link,
-            u"TG_TRAFFIC_LINKS": tg_traffic_links,
-            u"DUT1_BD_LINKS": dut1_bd_links,
-            u"DUT2_BD_LINKS": dut2_bd_links
+            "DUT1_DUT2_LINK": dut1_dut2_link,
+            "DUT1_TG_LINK": dut1_tg_link,
+            "DUT2_TG_LINK": dut2_tg_link,
+            "TG_TRAFFIC_LINKS": tg_traffic_links,
+            "DUT1_BD_LINKS": dut1_bd_links,
+            "DUT2_BD_LINKS": dut2_bd_links
         }
         return topology_links
 
@@ -1044,7 +965,7 @@ class Topology:
         :returns: True if node is type of TG, otherwise False.
         :rtype: bool
         """
-        return node[u"type"] == NodeType.TG
+        return node["type"] == NodeType.TG
 
     @staticmethod
     def get_node_hostname(node):
@@ -1055,7 +976,7 @@ class Topology:
         :returns: Hostname or IP address.
         :rtype: str
         """
-        return node[u"host"]
+        return node["host"]
 
     @staticmethod
     def get_node_arch(node):
@@ -1068,10 +989,24 @@ class Topology:
         :rtype: str
         """
         try:
-            return node[u"arch"]
+            return node["arch"]
         except KeyError:
-            node[u"arch"] = u"x86_64"
-            return u"x86_64"
+            node["arch"] = "x86_64"
+            return "x86_64"
+
+    @staticmethod
+    def get_node_model(node):
+        """Get node model (vendor/type).
+
+        :param node: Node to get model (vendor/type) from.
+        :type node: dict
+        :returns: Return model or None if not found.
+        :rtype: str
+        """
+        try:
+            return node["model"]
+        except KeyError:
+            return None
 
     @staticmethod
     def get_cryptodev(node):
@@ -1083,7 +1018,7 @@ class Topology:
         :rtype: str
         """
         try:
-            return node[u"cryptodev"]
+            return node["cryptodev"]
         except KeyError:
             return None
 
@@ -1096,7 +1031,7 @@ class Topology:
         :rtype: str
         """
         try:
-            return node[u"bus"]
+            return node["bus"]
         except KeyError:
             return None
 
@@ -1110,7 +1045,7 @@ class Topology:
         :rtype: str
         """
         try:
-            return node[u"uio_driver"]
+            return node["uio_driver"]
         except KeyError:
             return None
 
@@ -1127,7 +1062,7 @@ class Topology:
         :returns: Return iface_key or None if not found.
         """
         try:
-            node[u"interfaces"][iface_key][u"numa_node"] = numa_node_id
+            node["interfaces"][iface_key]["numa_node"] = numa_node_id
             return iface_key
         except KeyError:
             return None
@@ -1145,7 +1080,7 @@ class Topology:
         :type socket_id: str
         :type socket_path: str
         """
-        path = [u"sockets", socket_type, socket_id]
+        path = ["sockets", socket_type, socket_id]
         Topology.add_node_item(node, socket_path, path)
 
     @staticmethod
@@ -1159,7 +1094,7 @@ class Topology:
         :type socket_type: SocketType
         :type socket_id: str
         """
-        node[u"sockets"][socket_type].pop(socket_id)
+        node["sockets"][socket_type].pop(socket_id)
 
     @staticmethod
     def get_node_sockets(node, socket_type=None):
@@ -1174,8 +1109,8 @@ class Topology:
         """
         try:
             if socket_type:
-                return node[u"sockets"][socket_type]
-            return node[u"sockets"]
+                return node["sockets"][socket_type]
+            return node["sockets"]
         except KeyError:
             return None
 
@@ -1187,6 +1122,6 @@ class Topology:
         :type node: dict
         """
         for node in nodes.values():
-            if u"sockets" in list(node.keys()):
+            if "sockets" in list(node.keys()):
                 # Containers are disconnected and destroyed already.
-                node.pop(u"sockets")
+                node.pop("sockets")

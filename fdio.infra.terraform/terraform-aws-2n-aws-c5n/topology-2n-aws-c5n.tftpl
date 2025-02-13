@@ -10,6 +10,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
+    model: AWS
     host: "${tg_public_ip}"
     arch: x86_64
     port: 6001
@@ -30,6 +31,7 @@ nodes:
         model: Amazon-Nitro-50G
   DUT1:
     type: DUT
+    model: AWS
     host: ${dut1_public_ip}
     arch: x86_64
     port: 22

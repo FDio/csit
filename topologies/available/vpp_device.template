@@ -4,24 +4,23 @@ metadata:
   schema:
     - resources/topology_schemas/2_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [dcr, 2-node]
 
 nodes:
   TG:
-    type: "TG"
-    host: "${CSIT_TG_HOST}"
-    arch: "${CSIT_TG_ARCH}"
+    type: TG
+    host: ${CSIT_TG_HOST}
+    arch: ${CSIT_TG_ARCH}
     port: ${CSIT_TG_PORT}
-    username: "root"
-    password: "Csit1234"
+    username: root
+    password: Csit1234
     interfaces:
 ${CSIT_TG_INTERFACES}
   DUT1:
-    type: "DUT"
-    host: "${CSIT_DUT1_HOST}"
-    arch: "${CSIT_DUT1_ARCH}"
+    type: DUT
+    host: ${CSIT_DUT1_HOST}
+    arch: ${CSIT_DUT1_ARCH}
     port: ${CSIT_DUT1_PORT}
-    username: "root"
-    password: "Csit1234"
+    username: root
+    password: Csit1234
     interfaces:
 ${CSIT_DUT1_INTERFACES}

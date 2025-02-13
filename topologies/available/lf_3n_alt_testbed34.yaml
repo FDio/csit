@@ -1,16 +1,16 @@
 ---
 metadata:
   version: 0.1
-  schema: # list of schema files against which to validate
+  schema:
     - resources/topology_schemas/3_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.74"
+    model: Intel-Icelake
+    host: 10.30.51.74
     arch: x86_64
     port: 6001
     username: testuser
@@ -20,7 +20,7 @@ nodes:
         # s74-t34-tg1-c4/p1 - 40GE port1 Intel XL710 2p40GE.
         mac_address: "40:a6:b7:85:e7:80"
         pci_address: "0000:31:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: i40e
         link: link1
         model: Intel-XL710
@@ -28,7 +28,7 @@ nodes:
         # s74-t34-tg1-c4/p2 - 40GE port2 Intel XL710 2p40GE.
         mac_address: "40:a6:b7:85:e7:81"
         pci_address: "0000:31:00.1"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: i40e
         link: link2
         model: Intel-XL710
@@ -36,7 +36,7 @@ nodes:
         # s74-t34-tg1-c8/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:1c:e4"
         pci_address: "0000:b1:00.0"
-        ip4_address: "172.16.30.2"
+        ip4_address: 172.16.30.2
         driver: ice
         link: link4
         model: Intel-E810CQ
@@ -44,12 +44,13 @@ nodes:
         # s74-t34-tg1-c8/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:1c:e0"
         pci_address: "0000:b3:00.0"
-        ip4_address: "172.16.40.2"
+        ip4_address: 172.16.40.2
         driver: ice
         link: link5
         model: Intel-E810CQ
   DUT1:
     type: DUT
+    model: Ampere-Altra
     host: 10.30.51.72
     arch: aarch64
     port: 22
@@ -61,7 +62,7 @@ nodes:
         # s62-t34-sut1-c4/p1 - 40GE port1 Intel XL710 2p40GE.
         mac_address: "40:a6:b7:85:e7:78"
         pci_address: "0004:04:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: i40e
         link: link3
         model: Intel-XL710
@@ -69,7 +70,7 @@ nodes:
         # s62-t34-sut1-c4/p2 - 40GE port2 Intel XL710 2p40GE.
         mac_address: "40:a6:b7:85:e7:79"
         pci_address: "0004:04:00.1"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: i40e
         link: link2
         model: Intel-XL710
@@ -77,7 +78,7 @@ nodes:
         # s62-t34-sut1-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:b8"
         pci_address: "0007:01:00.0"
-        ip4_address: "172.16.30.1"
+        ip4_address: 172.16.30.1
         driver: mlx5_core
         link: link6
         model: Mellanox-CX6DX
@@ -85,12 +86,13 @@ nodes:
         # s62-t34-sut1-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:b9"
         pci_address: "0007:01:00.1"
-        ip4_address: "172.16.40.1"
+        ip4_address: 172.16.40.1
         driver: mlx5_core
         link: link4
         model: Mellanox-CX6DX
   DUT2:
     type: DUT
+    model: Ampere-Altra
     host: 10.30.51.73
     arch: aarch64
     port: 22
@@ -102,7 +104,7 @@ nodes:
         # s63-t34-sut2-c4/p1 - 40GE port1 Intel XL710 2p40GE.
         mac_address: "3c:fd:fe:c3:e7:a0"
         pci_address: "0004:04:00.0"
-        ip4_address: "172.16.10.3"
+        ip4_address: 172.16.10.3
         driver: i40e
         link: link1
         model: Intel-XL710
@@ -110,7 +112,7 @@ nodes:
         # s63-t34-sut2-c4/p2 - 40GE port2 Intel XL710 2p40GE.
         mac_address: "3c:fd:fe:c3:e7:a1"
         pci_address: "0004:04:00.1"
-        ip4_address: "172.16.20.3"
+        ip4_address: 172.16.20.3
         driver: i40e
         link: link3
         model: Intel-XL710
@@ -118,7 +120,7 @@ nodes:
         # s63-t34-sut2-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:c4"
         pci_address: "0007:01:00.0"
-        ip4_address: "172.16.30.3"
+        ip4_address: 172.16.30.3
         driver: mlx5_core
         link: link5
         model: Mellanox-CX6DX
@@ -126,7 +128,7 @@ nodes:
         # s63-t34-sut2-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:c5"
         pci_address: "0007:01:00.1"
-        ip4_address: "172.16.40.3"
+        ip4_address: 172.16.40.3
         driver: mlx5_core
         link: link6
         model: Mellanox-CX6DX
