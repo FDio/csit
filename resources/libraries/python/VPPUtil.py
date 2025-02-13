@@ -21,7 +21,9 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version
 )
-from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
+from resources.libraries.python.ssh import (
+    exec_cmd_no_error, exec_cmd, SSHTimeout
+)
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -78,20 +80,28 @@ class VPPUtil:
         :param node_key: Topology node key.
         :type node: dict
         :type node_key: str
+        :raises RuntimeError: If VPP is not killed within 10 seconds.
         """
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        command = "pkill -9 vpp; sleep 1"
-        exec_cmd(node, command, timeout=180, sudo=True)
-        command = (
-            "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
-        )
-        exec_cmd(node, command, timeout=180, sudo=True)
-
+        command = "pkill -9 vpp"
+        exec_cmd(node, command, timeout=1, sudo=True)
+        # Different testbeds need different time to confirm the kill is done.
+        unsure = False
+        command = "while pgrep vpp; do sleep 0.2; done"
+        try:
+            unsure, _, _ = exec_cmd(node, command, timeout=10, sudo=True)
+        except SSHTimeout:
+            unsure = True
+        # Continue cleanup even if VPP may still be running after 10 seconds.
+        command = "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
+        exec_cmd(node, command, timeout=1, sudo=True)
         if node_key:
             if Topology.get_node_sockets(node, socket_type=SocketType.PAPI):
                 Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
             if Topology.get_node_sockets(node, socket_type=SocketType.STATS):
                 Topology.del_node_socket_id(node, SocketType.STATS, node_key)
+        if unsure:
+            raise RuntimeError(f"VPP kill not confirmed!")
 
     @staticmethod
     def stop_vpp_service_on_all_duts(nodes):
