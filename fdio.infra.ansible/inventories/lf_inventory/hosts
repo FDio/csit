@@ -15,7 +15,7 @@ all:
         10.30.51.82: #s82-t212-tg1 - icelake
         10.30.51.84: #s84-t213-tg1 - icelake
         10.30.51.86: #s86-t214-tg1 - icelake
-        10.30.51.88: #s88-t215-tg1 - octeon
+        10.30.51.88: #s88-t215-tg1 - icelake-octeon
         10.30.51.89: #s89-t39t310-tg1 - cascadelake
         10.30.51.90: #s90-t31t32-tg1 - icelake
         10.30.51.61: #s61-t210-tg1 - epyc

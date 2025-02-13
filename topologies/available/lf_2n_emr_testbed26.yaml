@@ -2,15 +2,15 @@
 metadata:
   version: 0.1
   schema:
-    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/2_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.43"
+    model: Intel-Sapphirerapids
+    host: 10.30.51.43
     arch: x86_64
     port: 6001
     username: testuser
@@ -23,16 +23,16 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
         # s43-t26-tg1-c2/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2b:d8"
         pci_address: "0000:38:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -40,13 +40,14 @@ nodes:
         # s43-t26-tg1-c2/p1 - 100GE port2 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2b:dc"
         pci_address: "0000:3a:00.0"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: ice
         link: link2
         model: Intel-E810CQ
   DUT1:
     type: DUT
-    host: "10.30.51.42"
+    model: Intel-Emeraldrapids
+    host: 10.30.51.42
     arch: x86_64
     port: 6001
     username: testuser
@@ -60,16 +61,16 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
         # s42-t26-sut1-c2/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2c:30"
         pci_address: "0000:38:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -77,7 +78,7 @@ nodes:
         # s42-t26-sut1-c2/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2c:34"
         pci_address: "0000:3a:00.0"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: ice
         link: link2
         model: Intel-E810CQ

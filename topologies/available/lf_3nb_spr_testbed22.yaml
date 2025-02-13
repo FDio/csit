@@ -4,13 +4,13 @@ metadata:
   schema:
     - resources/topology_schemas/3_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.55"
+    model: Intel-Sapphirerapids
+    host: 10.30.51.55
     arch: x86_64
     port: 6001
     username: testuser
@@ -27,22 +27,22 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:76:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
       #device2:
       #  pci_address: "0000:7a:00.0"
-      #  driver: "4xxx"
-      #  model: "HW_4xxx"
-      #  module: "qat_4xxx"
+      #  driver: 4xxx
+      #  model: HW_4xxx
+      #  module: qat_4xxx
       #  numvfs: 8
     interfaces:
       port1:
         # s55-t22-tg1-c4/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e7:00"
         pci_address: "0000:2a:00.0"
-        ip4_address: "172.16.30.1"
+        ip4_address: 172.16.30.1
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -50,7 +50,7 @@ nodes:
         # s55-t22-tg1-c4/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e7:04"
         pci_address: "0000:2c:00.0"
-        ip4_address: "172.16.40.1"
+        ip4_address: 172.16.40.1
         driver: ice
         link: link3
         model: Intel-E810CQ
@@ -58,7 +58,7 @@ nodes:
         # s55-t22-tg1-c2/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "50:7c:6f:48:45:50"
         pci_address: "0000:3d:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: ice
         link: link4
         model: Intel-E810XXV
@@ -66,13 +66,14 @@ nodes:
         # s55-t22-tg1-c2/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "50:7c:6f:48:45:51"
         pci_address: "0000:3d:00.1"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: ice
         link: link6
         model: Intel-E810XXV
   DUT1:
     type: DUT
-    host: "10.30.51.54"
+    model: Intel-Sapphirerapids
+    host: 10.30.51.54
     arch: x86_64
     port: 6001
     username: testuser
@@ -90,22 +91,22 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:76:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
       #device2:
       #  pci_address: "0000:7a:00.0"
-      #  driver: "4xxx"
-      #  model: "HW_4xxx"
-      #  module: "qat_4xxx"
+      #  driver: 4xxx
+      #  model: HW_4xxx
+      #  module: qat_4xxx
       #  numvfs: 8
     interfaces:
       port1:
         # s54-t22-sut1-c4/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e5:c0"
         pci_address: "0000:2a:00.0"
-        ip4_address: "172.16.30.2"
+        ip4_address: 172.16.30.2
         driver: ice
         link: link2
         model: Intel-E810CQ
@@ -113,7 +114,7 @@ nodes:
         # s54-t22-sut1-c4/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e5:c4"
         pci_address: "0000:2c:00.0"
-        ip4_address: "172.16.40.2"
+        ip4_address: 172.16.40.2
         driver: ice
         link: link3
         model: Intel-E810CQ
@@ -121,7 +122,7 @@ nodes:
         # s54-t22-sut1-c2/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "50:7c:6f:48:45:4c"
         pci_address: "0000:3d:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: ice
         link: link4
         model: Intel-E810XXV
@@ -129,13 +130,14 @@ nodes:
         # s54-t22-sut1-c2/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "50:7c:6f:48:45:4d"
         pci_address: "0000:3d:00.1"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: ice
         link: link5
         model: Intel-E810XXV
   DUT2:
     type: DUT
-    host: "10.30.51.54"
+    model: Intel-Sapphirerapids
+    host: 10.30.51.54
     arch: x86_64
     port: 6002
     username: testuser
@@ -153,22 +155,22 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:f3:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
       #device2:
       #  pci_address: "0000:f7:00.0"
-      #  driver: "4xxx"
-      #  model: "HW_4xxx"
-      #  module: "qat_4xxx"
+      #  driver: 4xxx
+      #  model: HW_4xxx
+      #  module: qat_4xxx
       #  numvfs: 8
     interfaces:
       port1:
         # s54-t22-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e5:98"
         pci_address: "0000:ab:00.0"
-        ip4_address: "172.16.30.3"
+        ip4_address: 172.16.30.3
         driver: ice
         link: link2
         model: Intel-E810CQ
@@ -176,7 +178,7 @@ nodes:
         # s54-t22-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e5:9c"
         pci_address: "0000:ad:00.0"
-        ip4_address: "172.16.40.3"
+        ip4_address: 172.16.40.3
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -184,7 +186,7 @@ nodes:
         # s54-t22-sut1-c7/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "50:7c:6f:48:4a:80"
         pci_address: "0000:bd:00.0"
-        ip4_address: "172.16.10.3"
+        ip4_address: 172.16.10.3
         driver: ice
         link: link6
         model: Intel-E810XXV
@@ -192,7 +194,7 @@ nodes:
         # s54-t22-sut1-c7/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "50:7c:6f:48:4a:81"
         pci_address: "0000:bd:00.1"
-        ip4_address: "172.16.20.3"
+        ip4_address: 172.16.20.3
         driver: ice
         link: link5
         model: Intel-E810XXV
