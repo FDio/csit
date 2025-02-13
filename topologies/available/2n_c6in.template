@@ -1,0 +1,52 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    model: AWS
+    host: "{{ tg_public_ip }}"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # tg_instance/p1 - 200GE port1 on ENA NIC.
+        mac_address: "{{ tg_if1_mac }}"
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-200G
+      port2:
+        # tg_instance/p2 - 200GE port2 on ENA NIC.
+        mac_address: "{{ tg_if2_mac }}"
+        pci_address: "0000:00:07.0"
+        link: link2
+        model: Amazon-Nitro-200G
+  DUT1:
+    type: DUT
+    model: AWS
+    host: "{{ dut1_public_ip }}"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        # dut1_instance/p1 - 100GE port1 on ENA NIC.
+        mac_address: "{{ dut1_if1_mac }}"
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-200G
+      port2:
+        # dut1_instance/p2 - 100GE port2 on ENA NIC.
+        mac_address: "{{ dut1_if2_mac }}"
+        pci_address: "0000:00:07.0"
+        link: link2
+        model: Amazon-Nitro-200G

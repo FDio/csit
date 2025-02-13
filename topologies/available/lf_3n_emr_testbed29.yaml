@@ -4,13 +4,13 @@ metadata:
   schema:
     - resources/topology_schemas/3_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.43"
+    model: Intel-Emeraldrapids
+    host: 10.30.51.43
     arch: x86_64
     port: 6001
     username: testuser
@@ -23,16 +23,16 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
         # s41-t29-tg1-c4/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2b:f8"
         pci_address: "0000:27:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: ice
         link: link3
         model: Intel-E810CQ
@@ -40,13 +40,14 @@ nodes:
         # s41-t29-tg1-c4/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2a:70"
         pci_address: "0000:29:00.0"
-        ip4_address: "172.16.30.1"
+        ip4_address: 172.16.30.1
         driver: ice
         link: link1
         model: Intel-E810CQ
   DUT1:
     type: DUT
-    host: "10.30.51.42"
+    model: Intel-Emeraldrapids
+    host: 10.30.51.42
     arch: x86_64
     port: 6001
     username: testuser
@@ -60,9 +61,9 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
@@ -83,7 +84,8 @@ nodes:
         model: Intel-E810CQ
   DUT2:
     type: DUT
-    host: "10.30.51.42"
+    model: Intel-Emeraldrapids
+    host: 10.30.51.42
     arch: x86_64
     port: 6002
     username: testuser
@@ -97,16 +99,16 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:ed:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
         # s40-t29-sut2-c9/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2a:a0"
         pci_address: "0000:a8:00.0"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -114,7 +116,7 @@ nodes:
         # s40-t29-sut2-c9/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2a:a4"
         pci_address: "0000:aa:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: ice
         link: link2
         model: Intel-E810CQ

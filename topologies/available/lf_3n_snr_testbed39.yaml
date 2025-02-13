@@ -4,13 +4,13 @@ metadata:
   schema:
     - resources/topology_schemas/3_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.89"
+    model: Intel-Cascadelake
+    host: 10.30.51.89
     arch: x86_64
     port: 6001
     username: testuser
@@ -20,7 +20,7 @@ nodes:
         # s89-t39t310-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:08"
         pci_address: "0000:86:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: ice
         link: disabled1
         model: Intel-E810XXV
@@ -28,7 +28,7 @@ nodes:
         # s89-t39t310-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:09"
         pci_address: "0000:86:00.1"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: ice
         link: link2
         model: Intel-E810XXV
@@ -36,7 +36,7 @@ nodes:
         # s89-t39t310-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:0a"
         pci_address: "0000:86:00.2"
-        ip4_address: "172.16.50.1"
+        ip4_address: 172.16.50.1
         driver: ice
         link: disabled2
         model: Intel-E810XXV
@@ -44,13 +44,14 @@ nodes:
         # s89-t39t310-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:0b"
         pci_address: "0000:86:00.3"
-        ip4_address: "172.16.60.1"
+        ip4_address: 172.16.60.1
         driver: ice
         link: link5
-        model: Intel-E810XXV
+        model: Intel-E810XXV"
   DUT1:
     type: DUT
-    host: "10.30.51.93"
+    model: Intel-Snowridge
+    host: 10.30.51.93
     arch: x86_64
     port: 22
     username: testuser
@@ -58,9 +59,9 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:f4:00.0"
-        driver: "c4xxx"
-        model: "HW_C4xxx"
-        module: "qat_c4xxx"
+        driver: c4xxx
+        model: HW_C4xxx
+        module: qat_c4xxx
         numvfs: 8
     uio_driver: vfio-pci
     interfaces:
@@ -68,15 +69,15 @@ nodes:
         # s93-t39-sut1-c1/p1 - 25GE port1 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:00"
         pci_address: "0000:ec:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: ice
         link: link2
-        model: Intel-E822CQ
+        model: "Intel-E822CQ"
       port2:
         # s93-t39-sut1-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:01"
         pci_address: "0000:ec:00.1"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: ice
         link: disabled3
         model: Intel-E822CQ
@@ -84,7 +85,7 @@ nodes:
         # s93-t39-sut1-c1/p3 - 25GE port3 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:02"
         pci_address: "0000:ec:00.2"
-        ip4_address: "172.16.30.1"
+        ip4_address: 172.16.30.1
         driver: ice
         link: link3
         model: Intel-E822CQ
@@ -92,13 +93,14 @@ nodes:
         # s93-t39-sut1-c1/p4 - 25GE port4 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:03"
         pci_address: "0000:ec:00.3"
-        ip4_address: "172.16.40.1"
+        ip4_address: 172.16.40.1
         driver: ice
         link: link4
         model: Intel-E822CQ
   DUT2:
     type: DUT
-    host: "10.30.51.94"
+    model: Intel-Snowridge
+    host: 10.30.51.94
     arch: x86_64
     port: 22
     username: testuser
@@ -106,9 +108,9 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:f4:00.0"
-        driver: "c4xxx"
-        model: "HW_C4xxx"
-        module: "qat_c4xxx"
+        driver: c4xxx
+        model: HW_C4xxx
+        module: qat_c4xxx
         numvfs: 8
     uio_driver: vfio-pci
     interfaces:
@@ -116,7 +118,7 @@ nodes:
         # s94-t39-sut2-c1/p1 - 25GE port1 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:00"
         pci_address: "0000:ec:00.0"
-        ip4_address: "172.16.30.2"
+        ip4_address: 172.16.30.2
         driver: ice
         link: link5
         model: Intel-E822CQ
@@ -124,7 +126,7 @@ nodes:
         # s94-t39-sut2-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:01"
         pci_address: "0000:ec:00.1"
-        ip4_address: "172.16.40.2"
+        ip4_address: 172.16.40.2
         driver: ice
         link: disabled4
         model: Intel-E822CQ
@@ -132,7 +134,7 @@ nodes:
         # s94-t39-sut2-c1/p3 - 25GE port3 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:02"
         pci_address: "0000:ec:00.2"
-        ip4_address: "172.16.50.2"
+        ip4_address: 172.16.50.2
         driver: ice
         link: link3
         model: Intel-E822CQ
@@ -140,7 +142,7 @@ nodes:
         # s94-t39-sut2-c1/p4 - 25GE port4 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:03"
         pci_address: "0000:ec:00.3"
-        ip4_address: "172.16.60.2"
+        ip4_address: 172.16.60.2
         driver: ice
         link: link4
         model: Intel-E822CQ

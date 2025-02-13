@@ -1,16 +1,16 @@
 ---
 metadata:
   version: 0.1
-  schema: # list of schema files against which to validate
+  schema:
     - resources/topology_schemas/2_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 2-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.37"
+    model: Intel-Icelake
+    host: 10.30.51.37
     arch: x86_64
     port: 6001
     username: testuser
@@ -20,7 +20,7 @@ nodes:
         # s37-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         mac_address: "0c:42:a1:0b:92:1a"
         pci_address: "0000:17:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: mlx5_core
         link: link1
         model: Mellanox-CX556A
@@ -28,45 +28,14 @@ nodes:
         # s37-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
         mac_address: "0c:42:a1:0b:92:1b"
         pci_address: "0000:17:00.1"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: mlx5_core
         link: link2
         model: Mellanox-CX556A
-#      port3:
-#        # s37-t27-tg1-c4/p1 - 100GE-port1 ConnectX5-2p100GE.
-#        mac_address: "10:70:fd:15:5f:b4"
-#        pci_address: "0000:31:00.0"
-#        ip4_address: "172.16.30.1"
-#        driver: mlx5_core
-#        link: link3
-#        model: Mellanox-CX556A
-#      port4:
-#        # s37-t27-tg1-c4/p2 - 100GE-port2 ConnectX5-2p100GE.
-#        mac_address: "10:70:fd:15:5f:b5"
-#        pci_address: "0000:31:00.1"
-#        ip4_address: "172.16.40.1"
-#        driver: mlx5_core
-#        link: link4
-#        model: Mellanox-CX556A
-#      port5:
-#        # s37-t27-tg1-c2/p1 - 100GE-port1 ConnectX5-2p100GE.
-#        mac_address: "10:70:fd:18:44:ec"
-#        pci_address: "0000:4b:00.0"
-#        ip4_address: "172.16.50.1"
-#        driver: mlx5_core
-#        link: link5
-#        model: Mellanox-CX556A
-#      port6:
-#        # s37-t27-tg1-c2/p2 - 100GE-port2 ConnectX5-2p100GE.
-#        mac_address: "10:70:fd:18:44:ed"
-#        pci_address: "0000:4b:00.1"
-#        ip4_address: "172.16.60.1"
-#        driver: mlx5_core
-#        link: link6
-#        model: Mellanox-CX556A
   DUT1:
     type: DUT
-    host: "10.30.51.36"
+    model: Nvidia-Graceserver
+    host: 10.30.51.36
     arch: aarch64
     port: 22
     uio_driver: vfio-pci
@@ -77,7 +46,7 @@ nodes:
         # s36-t27-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
         mac_address: "ec:0d:9a:8c:c7:f6"
         pci_address: "0000:01:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: mlx5_core
         link: link1
         model: Mellanox-CX556A
@@ -85,23 +54,7 @@ nodes:
         # s36-t27-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
         mac_address: "ec:0d:9a:8c:c7:f7"
         pci_address: "0000:01:00.1"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: mlx5_core
         link: link2
         model: Mellanox-CX556A
-#      port3:
-#        # s36-t27-sut1-c2/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
-#        mac_address: "94:6d:ae:7e:f5:ba"
-#        pci_address: "0002:01:00.0"
-#        ip4_address: "172.16.30.2"
-#        driver: mlx5_core
-#        link: link3
-#        model: Mellanox-CX7VEAT
-#      port4:
-#        # s36-t27-sut1-c2/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
-#        mac_address: "94:6d:ae:7e:f5:bb"
-#        pci_address: "0002:01:00.1"
-#        ip4_address: "172.16.40.2"
-#        driver: mlx5_core
-#        link: link4
-#        model: Mellanox-CX7VEAT

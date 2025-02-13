@@ -4,13 +4,13 @@ metadata:
   schema:
     - resources/topology_schemas/3_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
 
 nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.80"
+    model: Intel-Icelake
+    host: 10.30.51.80
     arch: x86_64
     port: 6001
     username: testuser
@@ -20,7 +20,7 @@ nodes:
         # s80-t38-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:22:5c"
         pci_address: "0000:b1:00.0"
-        ip4_address: "172.16.10.1"
+        ip4_address: 172.16.10.1
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -28,7 +28,7 @@ nodes:
         # s80-t38-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:22:58"
         pci_address: "0000:b3:00.0"
-        ip4_address: "172.16.20.1"
+        ip4_address: 172.16.20.1
         driver: ice
         link: link2
         model: Intel-E810CQ
@@ -36,7 +36,7 @@ nodes:
         # s80-t38-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:44"
         pci_address: "0000:ca:00.0"
-        ip4_address: "172.16.30.1"
+        ip4_address: 172.16.30.1
         driver: ice
         link: link3
         model: Intel-E810XXV
@@ -44,7 +44,7 @@ nodes:
         # s80-t38-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:45"
         pci_address: "0000:ca:00.1"
-        ip4_address: "172.16.40.1"
+        ip4_address: 172.16.40.1
         driver: ice
         link: link4
         model: Intel-E810XXV
@@ -52,7 +52,7 @@ nodes:
         # s80-t38-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:46"
         pci_address: "0000:ca:00.2"
-        ip4_address: "172.16.50.1"
+        ip4_address: 172.16.50.1
         driver: ice
         link: link5
         model: Intel-E810XXV
@@ -60,7 +60,7 @@ nodes:
         # s80-t38-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:47"
         pci_address: "0000:ca:00.3"
-        ip4_address: "172.16.60.1"
+        ip4_address: 172.16.60.1
         driver: ice
         link: link6
         model: Intel-E810XXV
@@ -68,7 +68,7 @@ nodes:
         # s80-t38-tg1-c2/p1 - 25GE port1 Intel NIC x710 2p25GE.
         mac_address: "40:a6:b7:40:87:28"
         pci_address: "0000:4b:00.0"
-        ip4_address: "172.16.70.1"
+        ip4_address: 172.16.70.1
         driver: i40e
         link: link7
         model: Intel-XXV710
@@ -76,7 +76,7 @@ nodes:
         # s80-t38-tg1-c2/p2 - 25GE port2 Intel NIC x710 2p25GE.
         mac_address: "40:a6:b7:40:87:29"
         pci_address: "0000:4b:00.1"
-        ip4_address: "172.16.80.1"
+        ip4_address: 172.16.80.1
         driver: i40e
         link: link8
         model: Intel-XXV710
@@ -84,7 +84,7 @@ nodes:
         # s80-t38-tg1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:ae"
         pci_address: "0000:e3:00.0"
-        ip4_address: "172.16.90.1"
+        ip4_address: 172.16.90.1
         driver: mlx5_core
         link: link9
         model: Mellanox-CX6DX
@@ -92,13 +92,14 @@ nodes:
         # s80-t38-tg1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:af"
         pci_address: "0000:e3:00.1"
-        ip4_address: "172.16.100.1"
+        ip4_address: 172.16.100.1
         driver: mlx5_core
         link: link10
         model: Mellanox-CX6DX
   DUT1:
     type: DUT
-    host: "10.30.51.78"
+    model: Intel-Icelake
+    host: 10.30.51.78
     arch: x86_64
     port: 22
     username: testuser
@@ -109,7 +110,7 @@ nodes:
         # s78-t38-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a4:26:38"
         pci_address: "0000:b1:00.0"
-        ip4_address: "172.16.10.2"
+        ip4_address: 172.16.10.2
         driver: ice
         link: link1
         model: Intel-E810CQ
@@ -117,7 +118,7 @@ nodes:
         # s78-t38-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a4:26:39"
         pci_address: "0000:b1:00.1"
-        ip4_address: "172.16.20.2"
+        ip4_address: 172.16.20.2
         driver: ice
         link: link22
         model: Intel-E810CQ
@@ -125,7 +126,7 @@ nodes:
         # s78-t38-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:40"
         pci_address: "0000:ca:00.0"
-        ip4_address: "172.16.30.2"
+        ip4_address: 172.16.30.2
         driver: ice
         link: link3
         model: Intel-E810XXV
@@ -133,7 +134,7 @@ nodes:
         # s78-t38-sut1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:41"
         pci_address: "0000:ca:00.1"
-        ip4_address: "172.16.40.2"
+        ip4_address: 172.16.40.2
         driver: ice
         link: link44
         model: Intel-E810XXV
@@ -141,7 +142,7 @@ nodes:
         # s78-t38-sut1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:42"
         pci_address: "0000:ca:00.2"
-        ip4_address: "172.16.50.2"
+        ip4_address: 172.16.50.2
         driver: ice
         link: link5
         model: Intel-E810XXV
@@ -149,7 +150,7 @@ nodes:
         # s78-t38-sut1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:43"
         pci_address: "0000:ca:00.3"
-        ip4_address: "172.16.60.2"
+        ip4_address: 172.16.60.2
         driver: ice
         link: link66
         model: Intel-E810XXV
@@ -157,7 +158,7 @@ nodes:
         # s78-t38-sut1-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:70"
         pci_address: "0000:4b:00.0"
-        ip4_address: "172.16.70.2"
+        ip4_address: 172.16.70.2
         driver: i40e
         link: link7
         model: Intel-XXV710
@@ -165,7 +166,7 @@ nodes:
         # s78-t38-sut1-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:71"
         pci_address: "0000:4b:00.1"
-        ip4_address: "172.16.80.2"
+        ip4_address: 172.16.80.2
         driver: i40e
         link: link88
         model: Intel-XXV710
@@ -173,7 +174,7 @@ nodes:
         # s78-t38-sut1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:2e"
         pci_address: "0000:e3:00.0"
-        ip4_address: "172.16.90.2"
+        ip4_address: 172.16.90.2
         driver: mlx5_core
         link: link9
         model: Mellanox-CX6DX
@@ -181,13 +182,14 @@ nodes:
         # s78-t38-sut1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:2f"
         pci_address: "0000:e3:00.1"
-        ip4_address: "172.16.100.2"
+        ip4_address: 172.16.100.2
         driver: mlx5_core
         link: link1010
         model: Mellanox-CX6DX
   DUT2:
     type: DUT
-    host: "10.30.51.79"
+    model: Intel-Icelake
+    host: 10.30.51.79
     arch: x86_64
     port: 22
     username: testuser
@@ -198,7 +200,7 @@ nodes:
         # s79-t38-sut2-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a4:27:30"
         pci_address: "0000:b1:00.0"
-        ip4_address: "172.16.10.3"
+        ip4_address: 172.16.10.3
         driver: ice
         link: link2
         model: Intel-E810CQ
@@ -206,7 +208,7 @@ nodes:
         # s79-t38-sut2-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a4:27:31"
         pci_address: "0000:b1:00.1"
-        ip4_address: "172.16.20.3"
+        ip4_address: 172.16.20.3
         driver: ice
         link: link22
         model: Intel-E810CQ
@@ -214,7 +216,7 @@ nodes:
         # s79-t38-sut2-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:3c"
         pci_address: "0000:ca:00.0"
-        ip4_address: "172.16.30.3"
+        ip4_address: 172.16.30.3
         driver: ice
         link: link4
         model: Intel-E810XXV
@@ -222,7 +224,7 @@ nodes:
         # s79-t38-sut2-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:3d"
         pci_address: "0000:ca:00.1"
-        ip4_address: "172.16.40.3"
+        ip4_address: 172.16.40.3
         driver: ice
         link: link44
         model: Intel-E810XXV
@@ -230,7 +232,7 @@ nodes:
         # s79-t38-sut2-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:3e"
         pci_address: "0000:ca:00.2"
-        ip4_address: "172.16.50.3"
+        ip4_address: 172.16.50.3
         driver: ice
         link: link6
         model: Intel-E810XXV
@@ -238,7 +240,7 @@ nodes:
         # s79-t38-sut2-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:22:3f"
         pci_address: "0000:ca:00.3"
-        ip4_address: "172.16.60.3"
+        ip4_address: 172.16.60.3
         driver: ice
         link: link66
         model: Intel-E810XXV
@@ -246,7 +248,7 @@ nodes:
         # s79-t38-sut2-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:5c"
         pci_address: "0000:4b:00.0"
-        ip4_address: "172.16.70.3"
+        ip4_address: 172.16.70.3
         driver: i40e
         link: link8
         model: Intel-XXV710
@@ -254,7 +256,7 @@ nodes:
         # s79-t38-sut2-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:5d"
         pci_address: "0000:4b:00.1"
-        ip4_address: "172.16.80.3"
+        ip4_address: 172.16.80.3
         driver: i40e
         link: link88
         model: Intel-XXV710
@@ -262,7 +264,7 @@ nodes:
         # s79-t38-sut2-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:8a"
         pci_address: "0000:e3:00.0"
-        ip4_address: "172.16.90.3"
+        ip4_address: 172.16.90.3
         driver: mlx5_core
         link: link10
         model: Mellanox-CX6DX
@@ -270,7 +272,7 @@ nodes:
         # s79-t38-sut2-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:8b"
         pci_address: "0000:e3:00.1"
-        ip4_address: "172.16.100.3"
+        ip4_address: 172.16.100.3
         driver: mlx5_core
         link: link1010
         model: Mellanox-CX6DX
