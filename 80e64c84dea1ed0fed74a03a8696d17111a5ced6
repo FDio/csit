@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "687d7e3a_1a53b202",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-02-13T12:06:29Z",
+      "side": 1,
+      "message": "I locally verified only *scale2* and *scale6* generated suites are affected. I will wait for RC2 testing to be done before verifying those.",
+      "revId": "80e64c84dea1ed0fed74a03a8696d17111a5ced6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
