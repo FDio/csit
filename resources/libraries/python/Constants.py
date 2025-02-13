@@ -361,28 +361,7 @@ class Constants:
         "virtual": 14880952,
     }
 
-    # Suite file names use codes for NICs.
-    NIC_NAME_TO_CODE = {
-        "Intel-X710": "10ge2p1x710",
-        "Intel-XL710": "40ge2p1xl710",
-        "Intel-XXV710": "25ge2p1xxv710",
-        "Intel-E810XXV": "25ge2p1e810xxv",
-        "Intel-E822CQ": "25ge2p1e822cq",
-        "Intel-E823C": "25ge2p1e823c",
-        "Intel-E810CQ": "100ge2p1e810cq",
-        "Amazon-Nitro-50G": "50ge1p1ena",
-        "Amazon-Nitro-100G": "100ge1p1ena",
-        "Amazon-Nitro-200G": "200ge1p1ena",
-        "Mellanox-CX556A": "100ge2p1cx556a",
-        "Mellanox-CX6DX": "100ge2p1cx6dx",
-        "Mellanox-CX7VEAT": "200ge2p1cx7veat",
-        "Mellanox-CX7VEAT": "200ge6p3cx7veat",
-        "Cavium-A063-10G": "10ge2p1a063",
-        "Cavium-A063-40G": "40ge2p1a063",
-        "Cavium-A063-50G": "50ge2p1a063",
-        "Cavium-A063-100G": "100ge2p1a063",
-        "virtual": "1ge1p82540em",
-    }
+    # Suite file names use codes for NICs. CX7 supports also 6 ports.
     NIC_CODE_TO_NAME = {
         "10ge2p1x710": "Intel-X710",
         "40ge2p1xl710": "Intel-XL710",
@@ -398,10 +377,10 @@ class Constants:
         "100ge2p1cx6dx": "Mellanox-CX6DX",
         "200ge2p1cx7veat": "Mellanox-CX7VEAT",
         "200ge6p3cx7veat": "Mellanox-CX7VEAT",
-        "10ge2p1a063":"Cavium-A063-10G",
-        "40ge2p1a063":"Cavium-A063-40G",
-        "50ge2p1a063":"Cavium-A063-50G",
-        "100ge2p1a063":"Cavium-A063-100G",
+        "10ge2p1a063": "Cavium-A063-10G",
+        "40ge2p1a063": "Cavium-A063-40G",
+        "50ge2p1a063": "Cavium-A063-50G",
+        "100ge2p1a063": "Cavium-A063-100G",
         "1ge1p82540em": "virtual",
     }
 
@@ -509,6 +488,7 @@ class Constants:
         "1ge1p82540em": "nic_pfs}= | 2",
     }
 
+    # Number of cores scales with number of ports.
     NIC_CODE_TO_CORESCALE = {
         "10ge2p1x710": 1,
         "40ge2p1xl710": 1,
@@ -529,6 +509,53 @@ class Constants:
         "50ge2p1a063": 1,
         "100ge2p1a063": 1,
         "1ge1p82540em": 1,
+    }
+
+    # Only some suites can utilize multi ports.
+    NIC_CODE_TO_REQUIRED_TAG = {
+        "10ge2p1x710": "",
+        "40ge2p1xl710": "",
+        "25ge2p1xxv710": "",
+        "25ge2p1e810xxv": "",
+        "25ge2p1e822cq": "",
+        "25ge2p1e823c": "",
+        "100ge2p1e810cq": "",
+        "50ge1p1ena": "",
+        "100ge1p1ena": "",
+        "200ge1p1ena": "",
+        "100ge2p1cx556a": "",
+        "100ge2p1cx6dx": "",
+        "200ge2p1cx7veat": "",
+        "200ge6p3cx7veat": "PFS_2",
+        "10ge2p1a063": "",
+        "40ge2p1a063": "",
+        "50ge2p1a063": "",
+        "100ge2p1a063": "",
+        "1ge1p82540em": "",
+    }
+
+    # New robot tag for trigger expressions,
+    # only applied if required tag is present.
+    NIC_CODE_TO_REPLACED_TAG = {
+        "10ge2p1x710": "",
+        "40ge2p1xl710": "",
+        "25ge2p1xxv710": "",
+        "25ge2p1e810xxv": "",
+        "25ge2p1e822cq": "",
+        "25ge2p1e823c": "",
+        "100ge2p1e810cq": "",
+        "50ge1p1ena": "",
+        "100ge1p1ena": "",
+        "200ge1p1ena": "",
+        "100ge2p1cx556a": "",
+        "100ge2p1cx6dx": "",
+        "200ge2p1cx7veat": "",
+        "200ge6p3cx7veat": "PFS_6",
+        "10ge2p1a063": "",
+        "40ge2p1a063": "",
+        "50ge2p1a063": "",
+        "100ge2p1a063": "",
+        "1ge1p82540em": "",
     }
 
     # Not each driver is supported by each NIC.

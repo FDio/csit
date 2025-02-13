@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,7 +23,6 @@ import sys
 from glob import glob
 from io import open
 from os import getcwd
-
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.autogen.Testcase import Testcase
@@ -276,13 +275,23 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if required_tag := Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code]:
+                if required_tag not in tmp_prolog:
+                    continue
+                replaced_tag = Constants.NIC_CODE_TO_REPLACED_TAG[nic_code]
+                tmp2_prolog = replace_defensively(
+                    tmp_prolog, required_tag, replaced_tag, 1,
+                    "Multiport suite should contain PFS tag once.", in_filename
+                )
+            else:
+                tmp2_prolog = tmp_prolog[:]
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
                 tmp_filename, "10ge2p1x710", nic_code, 1,
                 "File name should contain NIC code once.", in_filename
             )
             tmp2_prolog = replace_defensively(
-                tmp_prolog, "Intel-X710", nic_name, 2,
+                tmp2_prolog, "Intel-X710", nic_name, 2,
                 "NIC name should appear twice (tag and variable).",
                 in_filename
             )
@@ -402,13 +411,23 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, _ = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.default(suite_id)
     for nic_code in Constants.NIC_CODE_TO_NAME:
+        if required_tag := Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code]:
+            if required_tag not in tmp_prolog:
+                continue
+            replaced_tag = Constants.NIC_CODE_TO_REPLACED_TAG[nic_code]
+            tmp_prolog = replace_defensively(
+                in_prolog, required_tag, replaced_tag, 1,
+                "Multiport suite should contain PFS tag once.", in_filename
+            )
+        else:
+            tmp_prolog = in_prolog[:]
         nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710", nic_code, 1,
             u"File name should contain NIC code once.", in_filename
         )
         tmp_prolog = replace_defensively(
-            in_prolog, u"Intel-X710", nic_name, 2,
+            tmp_prolog, u"Intel-X710", nic_name, 2,
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
@@ -483,13 +502,23 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.tcp(suite_id)
     for nic_code in Constants.NIC_CODE_TO_NAME:
+        if required_tag := Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code]:
+            if required_tag not in tmp_prolog:
+                continue
+            replaced_tag = Constants.NIC_CODE_TO_REPLACED_TAG[nic_code]
+            tmp_prolog = replace_defensively(
+                in_prolog, required_tag, replaced_tag, 1,
+                "Multiport suite should contain PFS tag once.", in_filename
+            )
+        else:
+            tmp_prolog = in_prolog[:]
         nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710", nic_code, 1,
             u"File name should contain NIC code once.", in_filename
         )
         tmp_prolog = replace_defensively(
-            in_prolog, u"Intel-X710", nic_name, 2,
+            tmp_prolog, u"Intel-X710", nic_name, 2,
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
@@ -551,13 +580,23 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.iperf3(suite_id)
     for nic_code in Constants.NIC_CODE_TO_NAME:
+        if required_tag := Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code]:
+            if required_tag not in tmp_prolog:
+                continue
+            replaced_tag = Constants.NIC_CODE_TO_REPLACED_TAG[nic_code]
+            tmp_prolog = replace_defensively(
+                in_prolog, required_tag, replaced_tag, 1,
+                "Multiport suite should contain PFS tag once.", in_filename
+            )
+        else:
+            tmp_prolog = in_prolog[:]
         nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
         out_filename = replace_defensively(
             in_filename, u"10ge2p1x710", nic_code, 1,
             u"File name should contain NIC code once.", in_filename
         )
         out_prolog = replace_defensively(
-            in_prolog, u"Intel-X710", nic_name, 2,
+            tmp_prolog, u"Intel-X710", nic_name, 2,
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
@@ -609,13 +648,23 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, suite_tag = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.trex(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if required_tag := Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code]:
+                if required_tag not in tmp_prolog:
+                    continue
+                replaced_tag = Constants.NIC_CODE_TO_REPLACED_TAG[nic_code]
+                tmp2_prolog = replace_defensively(
+                    tmp_prolog, required_tag, replaced_tag, 1,
+                    "Multiport suite should contain PFS tag once.", in_filename
+                )
+            else:
+                tmp2_prolog = tmp_prolog[:]
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             out_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710", nic_code, 1,
                 u"File name should contain NIC code once.", in_filename
             )
             out_prolog = replace_defensively(
-                tmp_prolog, u"Intel-X710", nic_name, 2,
+                tmp2_prolog, u"Intel-X710", nic_name, 2,
                 u"NIC name should appear twice (tag and variable).",
                 in_filename
             )
@@ -643,13 +692,23 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_code in Constants.NIC_CODE_TO_NAME:
+            if required_tag := Constants.NIC_CODE_TO_REQUIRED_TAG[nic_code]:
+                if required_tag not in tmp_prolog:
+                    continue
+                replaced_tag = Constants.NIC_CODE_TO_REPLACED_TAG[nic_code]
+                tmp_prolog = replace_defensively(
+                    in_prolog, required_tag, replaced_tag, 1,
+                    "Multiport suite should contain PFS tag once.", in_filename
+                )
+            else:
+                tmp_prolog = in_prolog[:]
             nic_name = Constants.NIC_CODE_TO_NAME[nic_code]
             tmp2_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710", nic_code, 1,
                 u"File name should contain NIC code once.", in_filename
             )
             tmp2_prolog = replace_defensively(
-                in_prolog, u"Intel-X710", nic_name, 2,
+                tmp_prolog, u"Intel-X710", nic_name, 2,
                 u"NIC name should appear twice (tag and variable).",
                 in_filename
             )

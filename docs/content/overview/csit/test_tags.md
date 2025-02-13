@@ -15,22 +15,33 @@ descriptions.
 **2_NODE_DOUBLE_LINK_TOPO**
 
     2 nodes connected in a circular topology with two links interconnecting
-    the devices.
+    the devices. Used to mark suites that need both links to work properly.
 
 **2_NODE_SINGLE_LINK_TOPO**
 
     2 nodes connected in a circular topology with at least one link
-    interconnecting devices.
+    interconnecting devices. Used to mark suites that do not need double links.
 
 **3_NODE_DOUBLE_LINK_TOPO**
 
     3 nodes connected in a circular topology with two links interconnecting
-    the devices.
+    the devices. Used to mark suites that need both links to work properly.
 
 **3_NODE_SINGLE_LINK_TOPO**
 
     3 nodes connected in a circular topology with at least one link
-    interconnecting devices.
+    interconnecting devices. Used to mark suites that do not need double links.
+
+## Port Scaling Tags
+
+**PFS_2**
+
+    Ordinary variant of the suite with two physical NIC ports per SUT.
+    Only present in multiport-capable suites.
+
+**PFS_6**
+
+    The 6-port variant of a multiport-capable suite.
 
 ## Objective Tags
 

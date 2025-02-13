@@ -112,7 +112,7 @@ Once the nodes are ready, you'll see device tests being executed in the docker c
     "virtual": ["vfio-pci"]
     ```
     Add the appropriate mapping into,
-     -  NIC_NAME_TO_CODE
+     -  NIC_CODE_TO_NAME
      -  NIC_CODE_TO_SHORT_NAME
      -  NIC_NAME_TO_DRIVER
      -  NIC_DRIVER_TO_PLUGINS
