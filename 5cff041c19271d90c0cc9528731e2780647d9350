@@ -50,6 +50,23 @@
       "message": "csit-vpp-report-iter-2n-c7gn-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-c6in-perftest vpp-ndrpdr-00\ncsit-vpp-report-iter-2n-aws-perftest vpp-ndrpdr-00",
       "revId": "5cff041c19271d90c0cc9528731e2780647d9350",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71177ae2_3d329e79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-02-14T11:11:04Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3nb-spr-perftest vpp-mrr-00",
+      "revId": "5cff041c19271d90c0cc9528731e2780647d9350",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
