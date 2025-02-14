@@ -34,7 +34,7 @@ nodes:
         model: Intel-E810CQ
   DUT1:
     type: DUT
-    model: Marvel-Octeon-CN10K
+    model: Marvel-OcteonCN10K
     host: 10.30.51.95
     arch: aarch64
     port: 22
@@ -68,7 +68,7 @@ nodes:
         model: Cavium-A063-100G
   DUT2:
     type: DUT
-    model: Marvel-Octeon-CN10K
+    model: Marvel-OcteonCN10K
     host: 10.30.51.96
     arch: aarch64
     port: 22

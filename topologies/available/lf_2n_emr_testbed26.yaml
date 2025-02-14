@@ -9,7 +9,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
-    model: Intel-Sapphirerapids
+    model: Intel-Emeraldrapids
     host: 10.30.51.43
     arch: x86_64
     port: 6001

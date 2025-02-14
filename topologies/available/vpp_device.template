@@ -8,6 +8,7 @@ metadata:
 nodes:
   TG:
     type: TG
+    model: Virtual
     host: ${CSIT_TG_HOST}
     arch: ${CSIT_TG_ARCH}
     port: ${CSIT_TG_PORT}
@@ -17,6 +18,7 @@ nodes:
 ${CSIT_TG_INTERFACES}
   DUT1:
     type: DUT
+    model: Virtual
     host: ${CSIT_DUT1_HOST}
     arch: ${CSIT_DUT1_ARCH}
     port: ${CSIT_DUT1_PORT}

@@ -9,7 +9,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
-    model: Amd-Epyc
+    model: Amd-EpycZen2
     host: 10.30.51.61
     arch: x86_64
     port: 6001
@@ -82,7 +82,7 @@ nodes:
         model: Intel-X710
   DUT1:
     type: DUT
-    model: Amd-Epyc
+    model: Amd-EpycZen2
     host: 10.30.51.60
     arch: x86_64
     port: 22
