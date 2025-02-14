@@ -995,7 +995,7 @@ class Topology:
             return "x86_64"
 
     @staticmethod
-    def get_node_model(node):
+    def get_node_model_bool(node, model=""):
         """Get node model (vendor/type).
 
         :param node: Node to get model (vendor/type) from.
@@ -1004,7 +1004,7 @@ class Topology:
         :rtype: str
         """
         try:
-            return node["model"]
+            return bool(model.lower() in node["model"].lower())
         except KeyError:
             return None
 
