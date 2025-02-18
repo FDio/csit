@@ -1,0 +1,49 @@
+MLRsearch items, all in progress by VP.
+Targets: (D)raft (G)abor (E)duard.
+
+0. DGE: Typos (arithmetric, thay) and style errors (respectively, CI, your, Grammarly).
+ + Done / ongoing / not priority.
+
+1. DG-: Correctness.
+ - Added my Gabor text as a {comment}, needs reformulation and placement in draft.
+
+2. DG-: Lencse-Shima draft on non-zero loss.
+ + Draft done.
+
+3. DG-: Goodput as motivation; Lencse-Kovacs-Shima document.
+ - MK proposes two more links. I found a third that does not match much.
+
+4. DG-: Heuristics/principles document.
+ - Gabor wants something in draft, MK has multiple comments.
+
+5. DG-: Per-trial setup, wait time, ARP.
+ + Done.
+
+6. DG-: TST009 section reference.
+ + Done.
+
+7. DGE: Input attribute definitions/explanations.
+ - Maybe done, needs review.
+
+8. DG-: Hard limit example also for Iload/Oload mismatch.
+ + Done.
+
+9. D-E: MTU impact.
+ + Done (MK comment merged).
+
+10. DG-: Aggregate rate comments.
+ - Address MK comments.
+
+11. D--: Dynamic quantity MK comment.
+ - In progress.
+
+12. D--: Verify MUSTs are not in discussion (unless affecting something else?).
+ - In progress.
+
+13. D--: Remove all {comments} (by fixing or giving up).
+ - In progress.
+
+Summary:
++ Done: 0, 2, 5, 6, 8, 9.
+- Hard or time consuming: 1, 3, 4, 12.
+- Not hard: 7, 10, 11, 13.
