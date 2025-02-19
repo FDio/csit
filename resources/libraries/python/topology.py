@@ -1050,6 +1050,34 @@ class Topology:
             return None
 
     @staticmethod
+    def get_num_rx_queues(node):
+        """Return num_rx_queues configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: num_rx_queues configuration string.
+        :rtype: str
+        """
+        try:
+            return node["num_rx_queues"]
+        except KeyError:
+            return None
+
+    @staticmethod
+    def get_num_tx_queues(node):
+        """Return num_tx_queues configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: num_tx_queues configuration string.
+        :rtype: str
+        """
+        try:
+            return node["num_tx_queues"]
+        except KeyError:
+            return None
+
+    @staticmethod
     def set_interface_numa_node(node, iface_key, numa_node_id):
         """Set interface numa_node location.
 
