@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -352,7 +352,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 )
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_DRIVER_TO_PLUGINS["vfio-pci"],
-                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                    Constants.NIC_NAME_TO_PLUGINS[nic_name][driver], 1,
                     "Driver plugin should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
@@ -441,7 +441,7 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
             )
             out_prolog = replace_defensively(
                 out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                Constants.NIC_NAME_TO_PLUGINS[nic_name][driver], 1,
                 u"Driver plugin should appear once.", in_filename
             )
             out_prolog = replace_defensively(
@@ -513,7 +513,7 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             )
             out_prolog = replace_defensively(
                 out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                Constants.NIC_NAME_TO_PLUGINS[nic_name][driver], 1,
                 u"Driver plugin should appear once.", in_filename
             )
             out_prolog = replace_defensively(
@@ -673,7 +673,7 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
                 )
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                    Constants.NIC_NAME_TO_PLUGINS[nic_name][driver], 1,
                     u"Driver plugin should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
