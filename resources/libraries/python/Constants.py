@@ -459,6 +459,84 @@ class Constants:
         "af_xdp": "af_xdp_plugin.so",
     }
 
+    # Each driver/nic needs different plugin to work.
+    NIC_NAME_TO_PLUGINS = {
+        "Intel-X710": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Intel-XL710": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Intel-XXV710": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Intel-E810XXV": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Intel-E822CQ": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Intel-E823C": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Intel-E810CQ": {
+            "vfio-pci": "dpdk_plugin.so",
+            "avf": "dev_iavf_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Amazon-Nitro-50G": {
+            "vfio-pci": "dpdk_plugin.so"
+        },
+        "Amazon-Nitro-100G": {
+            "vfio-pci": "dpdk_plugin.so"
+        },
+        "Amazon-Nitro-200G": {
+            "vfio-pci": "dpdk_plugin.so"
+        },
+        "Mellanox-CX556A": {
+            "rdma-core": "rdma_plugin.so",
+            "mlx5_core": "dpdk_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Mellanox-CX6DX": {
+            "rdma-core": "rdma_plugin.so",
+            "mlx5_core": "dpdk_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Mellanox-CX7VEAT": {
+            "rdma-core": "rdma_plugin.so",
+            "mlx5_core": "dpdk_plugin.so",
+            "af_xdp": "af_xdp_plugin.so"
+        },
+        "Cavium-A063-10G": {
+            "vfio-pci": "dev_octeon_plugin.so"
+        },
+        "Cavium-A063-40G": {
+            "vfio-pci": "dev_octeon_plugin.so"
+        },
+        "Cavium-A063-50G": {
+            "vfio-pci": "dev_octeon_plugin.so"
+        },
+        "Cavium-A063-100G": {
+            "vfio-pci": "dev_octeon_plugin.so"
+        },
+        "virtual": {
+            "vfio-pci": "dpdk_plugin.so"
+        },
+    }
+
     # Tags to differentiate tests for different NIC driver.
     NIC_DRIVER_TO_TAG = {
         "vfio-pci": "DRV_VFIO_PCI",
