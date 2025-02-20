@@ -1,3 +1,6 @@
+TODO: Make sure all the requirements on test report from latest draft
+are satisfied by detailed enough commentary in "Deviations from RFC 2544".
+
 ---
 title: "MLR Search"
 weight: 2
@@ -107,6 +110,220 @@ coming back to it than TRex sent this trial). CSIT code treats that
 as a packet loss (as if VPP duplicated the packets),
 but TRex does not check other packets for duplication
 (as many traffic profiles generate non-unique packets).
+
+<!-- TODO: Are all requirements addressed in "Deviations from RFC 2544"? -->
+
+## Details beyond specification
+
+### History of early versions in CSIT?
+
+#### MLRsearch as a class of algorithms
+
+(mutually incompatible)
+
+#### Example tests benefiting from different goals?
+
+### Design principles
+
+#### Independence of components
+
+#### Implementation freedom
+
+##### Optional and implementation-required inputs
+
+##### Reasonable default values
+
+##### Better outputs in future
+
+##### "allowed if makes worse" principle
+
+#### Follow intuition, avoid surprises
+
+#### Usage
+
+(anomaly detection in trending, comparison tables with low stdev for release)
+
+#### Max load and min load
+
+#### Size of loss
+
+(does not matter, only binary low-loss vs high-loss)
+
+#### Goals used
+
+#### Simulator
+
+(PLRsearch fitting functions, exotic goals)
+
+(Example of time savings between RFC2544 and CSIT goal at the same accuracy?)
+
+#### Long trials vs many trials
+
+#### Conservativeness
+
+#### Fail fast
+
+#### Timeout
+
+### Measurer questions
+
+#### Capabilities
+
+(Traffic profiles specific to TRex, TG TA and Yang)
+
+#### Self test
+
+#### Warm-up
+
+#### Time overhead
+
+#### Predicting offered count
+
+#### Duration stretching
+
+(start+sleep+stop)
+
+#### Burstiness
+
+#### Negative loss
+
+#### Aggregate limits
+
+(RX+TX, sum over ports, number of queues, CPU limits, baseline vs burst in cloud)
+
+#### Other Oload issues
+
+(duplex and other interferences; DUT-DUT links with encapsulation overhead)
+
+### Test report
+
+#### Definition
+
+#### Alternative units
+
+##### Unidirectional vs bidirectional
+
+##### Bandwidth
+
+### Heuristics
+
+#### FRMOL and FRFRMOL
+
+#### Intermediate phases
+
+#### Relative width
+
+#### Discrete loads
+
+#### Expansion coefficient
+
+#### Uneven splits
+
+#### Selector strategies
+
+#### Candidate ordering
+
+### DUT behaviors
+
+#### Periodic interrupts
+
+#### More details on distribution of big and small loss spikes
+
+(performance spectrum as a probabilistic distribution over trial forwarding rate)
+(trial results as small population)
+(median and other quantiles, "touching" quantiles)
+
+#### Exceed probability
+
+(load regions, common patterns seen in practice)
+
+#### Large buffers
+
+#### Performance decrease due to resource leaks
+
+#### Energy mode switching can cause loss inversion?
+
+### Correctness
+
+#### Balancing sum from short trials
+
+#### Optimistic and pessimistic estimates
+
+#### Load is eventually classified
+
+#### Gaming is possible but slow
+
+#### Brittle heuristics
+
+#### Goal ordering
+
+#### Discouraged goals
+
+##### Goal Width > Goal Loss Ratio
+
+##### Goal Duration Sum value lower than Goal Final Trial Duration
+
+##### Incomparable goals
+
+(worst case: slow race to bottom)
+
+#### When a load can become undecided again?
+
+### Related test procedures
+
+#### Latency
+
+#### Passive Telemetry
+
+#### Active Telemetry
+
+#### Comparison with FRMOL
+
+#### Comparison with PLRsearch
+
+### Beyond frames
+
+#### Transactions
+
+#### Fragmentation
+
+#### Throttled TCP
+
+#### Ramp-up
+
+#### Fixed scale
+
+#### Reset
+
+#### Bisecting for telemetry thresholds
+
+#### Bisecting for B2B burst size
+
+### Future improvements
+
+#### Return trials at relevant bounds
+
+#### Allow flipping the conservativeness?
+
+(return the larger load when Loss Inversion happens)
+
+#### Short high-loss trials to affect Conditional Throughput?
+
+#### Multiple runs between hard SUT resets
+
+#### Duration sum based on misclassification probability
+
+(needs a prior on exceed probability distribution; and error/time balance)
+
+#### Heavy loss should be worse than narrow loss
+
+#### Predict goodput based on loss and latency
+
+### Examples?
+
+(take a real run and discuss heuristic decisions?)
+
+### Summarize how MLRsearch addressed the Identified Problems?
 
 [^1]: [binary search](https://en.wikipedia.org/wiki/Binary_search)
 [^2]: [exponential search](https://en.wikipedia.org/wiki/Exponential_search)
