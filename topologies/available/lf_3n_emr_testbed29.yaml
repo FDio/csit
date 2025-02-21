@@ -20,13 +20,6 @@ nodes:
         pci_address: "0000:6a:01.0"
         driver: idxd
         model: Intel-DSA
-    cryptodev:
-      device1:
-        pci_address: "0000:70:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
-        numvfs: 8
     interfaces:
       port1:
         # s41-t29-tg1-c4/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
@@ -60,9 +53,10 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        qat_dev: qat_dev0
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
@@ -97,9 +91,10 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:ed:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        qat_dev: qat_dev1
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
     interfaces:
       port1:
