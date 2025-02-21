@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -51,28 +51,15 @@ class QATUtil:
         """
         DUTSetup.verify_kernel_module(node, device["module"], force_load=True)
 
-        current_driver = DUTSetup.get_pci_dev_driver(
-            node, device["pci_address"].replace(":", r"\:")
+        exec_cmd_no_error(
+            node, f"adf_ctl {device["qat_dev"]} reset",
+            sudo=True, message="Failed to reset crypto device!"
         )
-        if current_driver is not None:
-            DUTSetup.pci_driver_unbind(node, device["pci_address"])
-        # Bind to kernel driver.
-        DUTSetup.pci_driver_bind(node, device["pci_address"], device["driver"])
 
-        cmd = f"adf_ctl status | grep {device['pci_address']} | "
-        cmd += "awk '{print $1}'"
-        stdout, _ = exec_cmd_no_error(
-            node, cmd, sudo=True, message="Failed to check crypto device!"
+        exec_cmd_no_error(
+            node, f"adf_ctl {device["qat_dev"]} status",
+            sudo=True, retries=10, message="Failed to status crypto device!"
         )
-        if stdout.strip():
-            qat_dev = stdout.split("_")[-1]
-            conf_file = f"/etc/{device['driver']}_{qat_dev.strip()}.conf"
-            exec_cmd_no_error(
-                node, f"adf_ctl --config {conf_file} {stdout.strip()} restart",
-                sudo=True, message="Failed to restart crypto device!"
-            )
-        else:
-            raise ValueError("Crypto device error")
 
         # Initialize QAT VFs.
         if int(device["numvfs"]) > 0:

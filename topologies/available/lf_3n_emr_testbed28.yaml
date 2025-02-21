@@ -49,6 +49,7 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
+        qat_dev: qat_dev0
         driver: 4xxx
         model: HW_4xxx
         module: qat_4xxx
@@ -87,6 +88,7 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:ed:00.0"
+        qat_dev: qat_dev1
         driver: 4xxx
         model: HW_4xxx
         module: qat_4xxx
