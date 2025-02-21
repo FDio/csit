@@ -27,16 +27,26 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:76:00.0"
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
         driver: "4xxx"
         model: "HW_4xxx"
         module: "qat_4xxx"
+=======
+        qat_dev: qat_dev0
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
         numvfs: 8
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
       #device2:
       #  pci_address: "0000:7a:00.0"
       #  driver: "4xxx"
       #  model: "HW_4xxx"
       #  module: "qat_4xxx"
       #  numvfs: 8
+=======
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
     interfaces:
       port1:
         # s53-t21-tg1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
@@ -122,16 +132,26 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:76:00.0"
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
         driver: "4xxx"
         model: "HW_4xxx"
         module: "qat_4xxx"
+=======
+        qat_dev: qat_dev0
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
         numvfs: 8
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
       #device2:
       #  pci_address: "0000:7a:00.0"
       #  driver: "4xxx"
       #  model: "HW_4xxx"
       #  module: "qat_4xxx"
       #  numvfs: 8
+=======
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
     interfaces:
       port1:
         # s52-t21-sut1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
@@ -201,16 +221,26 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:f3:00.0"
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
         driver: "4xxx"
         model: "HW_4xxx"
         module: "qat_4xxx"
+=======
+        qat_dev: qat_dev1
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
         numvfs: 8
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
       #device2:
       #  pci_address: "0000:f7:00.0"
       #  driver: "4xxx"
       #  model: "HW_4xxx"
       #  module: "qat_4xxx"
       #  numvfs: 8
+=======
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
     interfaces:
       port1:
         # s52-t21-sut2-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.

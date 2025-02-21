@@ -48,9 +48,16 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:70:00.0"
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
         driver: "4xxx"
         model: "HW_4xxx"
         module: "qat_4xxx"
+=======
+        qat_dev: qat_dev0
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
         numvfs: 8
     interfaces:
       port1:
@@ -85,9 +92,16 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:ed:00.0"
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
         driver: "4xxx"
         model: "HW_4xxx"
         module: "qat_4xxx"
+=======
+        qat_dev: qat_dev1
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+>>>>>>> CHANGE (7e053e feat(core) QAT init fix)
         numvfs: 8
     interfaces:
       port1:
