@@ -122,7 +122,11 @@ nodes:
         # s57-t23-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:9e:e2:20"
         pci_address: "0000:bd:00.0"
+<<<<<<< HEAD   (3cce38 Update VPP_STABLE_VER files)
         ip4_address: "172.16.110.2"
+=======
+        ip4_address: 172.16.110.2
+>>>>>>> CHANGE (0f5011 fix(topo-file): remove redundant quote)
         driver: ice
         link: link10
         model: Intel-E810CQ
