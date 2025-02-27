@@ -47,7 +47,7 @@ nodes:
         driver: c4xxx
         model: HW_C4xxx
         module: qat_c4xxx
-        numvfs: 8∂
+        numvfs: 8
     uio_driver: vfio-pci
     interfaces:
       port1:
