@@ -39,7 +39,7 @@ PDR:
 ## Test Report Information
 
 The MLRsearch specification requires (or recommends) the test report to contain
-some information, here is the summary.
+specific information, here is the summary.
 
 CSIT uses TRex as the traffic generator, over SSH, bash and Python layers
 that add roughly 0.5 second delay between trials.
@@ -51,6 +51,11 @@ is sometimes enough for load classification (instead of 11).
 TRex uses multiple worker threads (typically 8) so the traffic
 can be bursty on small time scales, but even the small buffers on DUT side
 usually make this effect invisible.
+
+All traffic profiles generate ethernet frames that carry IPv4 or IPv6 packets,
+in minority of tests also containing VLAN tags (dot1q or dot1ad).
+For convenience, the rest of this description uses "packet" where MLRsearch
+specification expects "frame".
 
 TRex is usually precise in the number of packets sent,
 but in high-performance setups it may show "duration stretching"
@@ -66,289 +71,331 @@ and the results are presented as aggregate values, e.g. east-west plust west-eas
 Other specifics of traffic profiles are too numerous to be listed here,
 CSIT code is the authoritative documentation.
 
-Max load is computed from known values of per-direction NIC limits,
-usually large packets are limited by media bandwidth and small frames
-are limited by intrinsid packets-per-second (pps) limits.
+Max load is computed from known values of per-direction NIC limits.
+Usually, large packet traffic is limited by media bandwidth,
+and small frame traffic is limited by per-port packets-per-second (pps) limits.
 Min load is set to 9.001 kpps to ensure enough packets for latency histogram.
 
 If min load is classified as an upper bound for the NDR goal,
 the test fails immediatelly (not searching for PDR).
-Also, if the search takes too long, the test fails firhout a result.
+Also, if the search takes too long, the test fails fithout a result.
 If max load is classified as a lower bound, this situation is reported
-as zero-width irregular result, usually not distinguished from regular results.
+as zero-width irregular result, otherwise not distinguished
+from regular results in the frontend presentation.
 
 Relevant lower bound and relevant upper bound are recorded together with
 conditional throughput for both goals, but only the conditional throughput
-is presented in our WebUI frontend.
+values are is presented in our WebUI frontend.
 
-TRex uses lightweight way to count forwarded packets,
+TRex uses a lightweight way to count forwarded packets,
 so it does not identify duplicate and reordered packets.
 Some testbeds contain a link for TRex self-test, the results of such "trex" tests
 are measured as separate tests, but they are not influencing real SUT tests.
 
-As different test require different SUT setups, those are lightly documented
+As different tests require different SUT setups, those are lightly documented
 on suite descriptions, but CSIT code is the authoritative documentation.
-
-<!--
-TODO: Are all requirements addressed in "Deviations from RFC 2544"?
-
-Compliant in principle, but:
-+ trial wait times
-+ trial time overhead to effdur
-+ start+sleep+stop
-+ 10us buffer
-+ TRex is bursty in principle but not in practice
-+ test report shows aggregate values
-+ traffic profile details are in code only
-+ fails on timeout or irregular NDR
-- intermediate phases increase dursum
-+ min load 9kbps per direction for latency
-+ max load by nic known pps and bps limits
-+ hitting that max load is treated as regular result of zero width
-+ only conditional throughputs are processed
-- (at least PDR is "less discrete")
-+ relevant bounds are also stored
-+ duplicate and reordered packets are not detected
-+ self-test is done for repeatability reasons
-- (not for max load reasons)
-+ SUT config is in code
-+ (only partly in suite documentation)
-
-TODO: Update the above when the below progresses.
--->
 
 ## Heuristics
 
-MRR and receive rate at MRR load are used as initial guesses for the search.
+MLRsearch specification giver large freedom for implementations.
+The CSIT implementation applies many heuristic in order to save search time.
+Here is a short summary.
 
-All previously measured trials (except the very first one which acts
-as a warm-up) are taken into consideration.
-
-At the start of the search, a discrete set of possible loads is pre-computed
+Before the search starts, a discrete set of possible loads is pre-computed
 and used to avoid rounding errors.
 
+The very first trial is done at max load, but acts as a warm-up,
+its results are ignored. All other 1-second trial results
+are used for load classification.
+
+MRR (forwarding rate at max load) and the forwarding rate at MRR load
+are used as initial candidate loads at the start of regular search.
+
 The specified search goals are treated as "final targets",
-but receded by "intermediate targets" of smaller duration sum
-and larger goal width. This allows the algorithm to quickly converge
+but preceded by "intermediate targets" of smaller duration sum (4.58s and 1s)
+and larger goal width (double and quadruple, respectively).
+This allows the algorithm to quickly converge
 towards the "interesting region" where full duration sum is needed.
 
 Generally, smaller candidate loads are measured first.
-For more tricks (uneven splits and multiple selection strategies)
+For more tricks (e.g. uneven splits and multiple selection strategies)
 see the source of the Python implementation.
 
 # Additional details
 
 There will be future documents linked from here.
+
 For now, there is only an outline of future (ambitious) content.
+Items in parenthesis are hints on what content will be in the parent subsection.
 
-## History of early versions in CSIT?
 
-### MLRsearch as a class of algorithms
+* History of early versions in CSIT
 
-(mutually incompatible)
+  * MLRsearch as a class of algorithms
 
-### Example tests benefiting from different goals?
+    * (Older Python library versions were mutually incompatible,
+      both witch each other and with early versions of MLRsearch IETF document.)
 
-## Design principles
+  * Example tests benefiting from different goals?
 
-### Independence of components
+* Design principles
 
-### Implementation freedom
+  * Independence of components
 
-#### Optional and implementation-required inputs
+    * (Programming languages, asynchronous calls via Manager.)
 
-#### Reasonable default values
+  * Implementation freedom
 
-#### Better outputs in future
+    * Optional and implementation-required inputs
 
-#### "allowed if makes worse" principle
+    * Reasonable default values
 
-### Follow intuition, avoid surprises
+    * Better outputs in future
 
-### Usage
+    * "allowed if makes worse" principle
 
-(anomaly detection in trending, comparison tables with low stdev for release)
+      * (Some requirements ensure fairness when benchmarking is done
+        by business competition. They are not needed and just waste time
+        if benchmarking is done in "home lab". For example,
+        decreasing wait time can only hurt results by turning bigger latency
+        into frame loss.)
 
-### Max load and min load
+  * Follow intuition, avoid surprises
 
-### Size of loss
+  * Usage
 
-(does not matter, only binary low-loss vs high-loss)
+    * (anomaly detection in trending, comparison tables with low stdev for release)
 
-### Goals used
+  * Max load and min load
 
-### Simulator
+  * Size of loss
 
-(PLRsearch fitting functions, exotic goals)
+    * (does not matter, only binary low-loss vs high-loss)
 
-(Example of time savings between RFC2544 and CSIT goal at the same accuracy?)
+  * Goals used
 
-### Long trials vs many trials
+    * (Why 50% exceed ratio is so good.)
 
-### Conservativeness
+  * Simulator
 
-### Fail fast
+    * (PLRsearch fitting functions, exotic goals)
 
-### Timeout
+    * (Example of time savings between RFC2544 and CSIT goal at the same accuracy?)
 
-## Measurer questions
+  * Long trials vs many trials
 
-### Capabilities
+    * (Many trials offer better flexibility and avoid issues with handling
+      long-vs-short results fairly.)
 
-(Traffic profiles specific to TRex, TG TA and Yang)
+    * (Mention reconfiguration tests still use long trial with zero tolerance?)
 
-### Self test
+  * Conservativeness
 
-### Warm-up
+    * (Some performance bugs manifest as infrequent big loss spikes.)
 
-### Time overhead
+    * (Is conservativeness still as important when exceed ratio is 50%?)
 
-### Predicting offered count
+  * Fail fast
 
-### Duration stretching
+    * (If min load is an upper bound for one goal,
+       bail out to save time on broken tests.)
 
-(start+sleep+stop)
+  * Timeout
 
-### Burstiness
+    * (If SUT behavior suddenly becomes erratic, it could prolong the duration
+      of a "job run" that tests many different SUT settings and traffic profiles.
+      To control such duration spikes, CSIT test fails if search result
+      is not found reasonably fast.)
 
-### Negative loss
+* Measurer questions
 
-### Aggregate limits
+  * Capabilities
 
-(RX+TX, sum over ports, number of queues, CPU limits, baseline vs burst in cloud)
+    * (Traffic profiles specific to TRex, TG TA and Yang)
 
-### Other Oload issues
+  * Self test
 
-(duplex and other interferences; DUT-DUT links with encapsulation overhead)
+  * Warm-up
 
-## Test report
+  * Time overhead
 
-### Definition
+  * Predicting offered count
 
-### Alternative units
+  * Duration stretching
 
-#### Unidirectional vs bidirectional
+    * (start+sleep+stop)
 
-#### Bandwidth
+  * Burstiness
 
-## Heuristics
+  * Negative loss
 
-### FRMOL and FRFRMOL
+    * (Typically, misconfigured SUT can produce small number of unexpected
+      additional packets, for example with IPv6 autonegotiation not disabled.)
 
-### Intermediate phases
+    * (Implementations can decide to either allow or treat as artificial losses.)
 
-### Relative width
+    * (Rarely, excess of packets may signal wait times between trials is too low
+      and SUT buffers too high.)
 
-### Discrete loads
+  * Aggregate limits
 
-### Expansion coefficient
+    * (RX+TX, sum over ports, number of queues, CPU limits, baseline vs burst in cloud)
 
-### Uneven splits
+  * Other Oload issues
 
-### Selector strategies
+    * (duplex and other interferences; DUT-DUT links with encapsulation overhead)
 
-### Candidate ordering
+* Test report
 
-## DUT behaviors
+  * Definition
 
-### Periodic interrupts
+  * Alternative units
 
-### More details on distribution of big and small loss spikes
+    * Unidirectional vs bidirectional
 
-(performance spectrum as a probabilistic distribution over trial forwarding rate)
+    * Bandwidth
 
-(trial results as small population)
+* Heuristics
 
-(median and other quantiles, "touching" quantiles)
+  * FRMOL and FRFRMOL
 
-### Exceed probability
+  * Intermediate targets
 
-(load regions, common patterns seen in practice)
+  * Relative width
 
-### Large buffers
+  * Discrete loads
 
-### Performance decrease due to resource leaks
+  * Expansion coefficient
 
-### Energy mode switching can cause loss inversion?
+  * Uneven splits
 
-## Correctness
+  * Selector strategies
 
-### Balancing sum from short trials
+  * Candidate ordering
 
-### Optimistic and pessimistic estimates
+* DUT behaviors
 
-### Load is eventually classified
+  * Periodic interrupts
 
-### Gaming is possible but slow
+  * More details on distribution of big and small loss spikes
 
-### Brittle heuristics
+    * (performance spectrum as a probabilistic distribution over trial forwarding rate)
 
-### Goal ordering
+    * (trial results as small population)
 
-### Discouraged goals
+    * (median and other quantiles, "touching" quantiles)
 
-#### Goal Width > Goal Loss Ratio
+  * Exceed probability
 
-#### Goal Duration Sum value lower than Goal Final Trial Duration
+    * (load regions, common patterns seen in practice)
 
-#### Incomparable goals
+  * Large buffers
 
-(worst case: slow race to bottom)
+  * Performance decrease due to resource leaks
 
-### When a load can become undecided again?
+  * Energy mode switching can cause loss inversion?
 
-## Related test procedures
+* Correctness
 
-### Latency
+  * Balancing sum from short trials
 
-### Passive Telemetry
+  * Optimistic and pessimistic estimates
 
-### Active Telemetry
+  * Load is eventually classified
 
-### Comparison with FRMOL
+  * Gaming is possible but slow
 
-### Comparison with PLRsearch
+  * Brittle heuristics
 
-## Beyond frames
+  * Goal ordering
 
-### Transactions
+  * Discouraged goals
 
-### Fragmentation
+    * Goal Width > Goal Loss Ratio
 
-### Throttled TCP
+    * Goal Duration Sum < Goal Final Trial Duration
 
-### Ramp-up
+    * Incomparable goals
 
-### Fixed scale
+      * (worst case: slow race to bottom)
 
-### Reset
+  * When a load can become undecided again?
 
-### Bisecting for telemetry thresholds
+* Related test procedures
 
-### Bisecting for B2B burst size
+  * Latency
 
-## Future improvements
+  * Passive Telemetry
 
-### Return trials at relevant bounds
+  * Active Telemetry
 
-### Allow flipping the conservativeness?
+  * Comparison with FRMOL
 
-(return the larger load when Loss Inversion happens)
+  * Comparison with PLRsearch
 
-### Short high-loss trials to affect Conditional Throughput?
+* Beyond frames
 
-### Multiple runs between hard SUT resets
+  * Transactions
 
-### Duration sum based on misclassification probability
+  * Fragmentation
 
-(needs a prior on exceed probability distribution; and error/time balance)
+  * Throttled TCP
 
-### Heavy loss should be worse than narrow loss
+  * Fixed scale
 
-### Predict goodput based on loss and latency
+    * (NAT performance depends on session table size.)
 
-## Examples?
+    * (Trials should be long enough to hit all sessions?)
 
-(take a real run and discuss heuristic decisions?)
+  * Ramp-up
 
-## Summarize how MLRsearch addressed the Identified Problems?
+    * (NAT slow-fast path example: Before testing fast path,
+      we need a slow enough trial to ensure SUT started tracking all sessions.)
+
+    * (Session counting as verification ramp-up was successful.)
+
+    * (Issues with sessions timing out before real search starts or during search.)
+
+    * (Heuristics to avoid ramp-ups, e.g. when observing zero loss
+      on large enough trial.)
+
+  * Reset
+
+    * (NAT slow-fast path example: When testing slow path, session table
+      needs to be explicitly dropped.)
+
+  * Bisecting for telemetry thresholds
+
+  * Bisecting for B2B burst size
+
+* Future improvements
+
+  * Return trials at relevant bounds
+
+  * Allow flipping the conservativeness?
+
+    * (return the larger load when Loss Inversion happens)
+
+  * Short high-loss trials to affect Conditional Throughput?
+
+  * Multiple runs between hard SUT resets
+
+    * (Example: RSS key randomized at start but not between trials.)
+
+  * Duration sum based on misclassification probability
+
+    * (the idea is to decide early on one-sided results and late on balanced results)
+
+    * (needs a prior on exceed probability distribution; and error/time balance)
+
+  * Heavy loss should be worse than narrow loss
+
+    * (larger discussion on similarities with SLA)
+
+  * Predict goodput based on loss and latency?
+
+* Examples?
+
+  * (take a real run and discuss heuristic decisions?)
+
+* Summarize how MLRsearch addressed the Identified Problems
