@@ -21,19 +21,31 @@ In CSIT we use two search goals, traditionally called NDR (non-drop rate)
 and PDR (partial drop rate):
 
 NDR:
+
 * Goal Initial Trial Duration = 1 second
+
 * Goal Final Trial Duration = 1 second
+
 * Goal Duration Sum = 21 seconds
+
 * Goal Loss Ratio = 0.0%
+
 * Goal Exceed Ratio = 50%
+
 * Goal Width = 0.5%
 
 PDR:
+
 * Goal Initial Trial Duration = 1 second
+
 * Goal Final Trial Duration = 1 second
+
 * Goal Duration Sum = 21 seconds
+
 * Goal Loss Ratio = 0.5%
+
 * Goal Exceed Ratio = 50%
+
 * Goal Width = 0.5%
 
 ## Test Report Information
@@ -128,274 +140,284 @@ There will be future documents linked from here.
 For now, there is only an outline of future (ambitious) content.
 Items in parenthesis are hints on what content will be in the parent subsection.
 
+Outline:
 
 * History of early versions in CSIT
 
-  * MLRsearch as a class of algorithms
+    * MLRsearch as a class of algorithms
 
-    * (Older Python library versions were mutually incompatible,
-      both witch each other and with early versions of MLRsearch IETF document.)
+        * (Older Python library versions were mutually incompatible,
+          both witch each other and with early versions
+          of MLRsearch IETF document.)
 
-  * Example tests benefiting from different goals?
+    * Example tests benefiting from different goals?
 
 * Design principles
 
-  * Independence of components
+    * Independence of components
 
-    * (Programming languages, asynchronous calls via Manager.)
+        * (Programming languages, asynchronous calls via Manager.)
 
-  * Implementation freedom
+    * Implementation freedom
 
-    * Optional and implementation-required inputs
+        * Optional and implementation-required inputs
 
-    * Reasonable default values
+        * Reasonable default values
 
-    * Better outputs in future
+        * Better outputs in future
 
-    * "allowed if makes worse" principle
+        * "allowed if makes worse" principle
 
-      * (Some requirements ensure fairness when benchmarking is done
-        by business competition. They are not needed and just waste time
-        if benchmarking is done in "home lab". For example,
-        decreasing wait time can only hurt results by turning bigger latency
-        into frame loss.)
+            * (Some requirements ensure fairness when benchmarking is done
+              by business competition. They are not needed and just waste time
+              if benchmarking is done in "home lab". For example,
+              decreasing wait time can only hurt results by turning bigger latency
+              into frame loss.)
 
-  * Follow intuition, avoid surprises
+    * Follow intuition, avoid surprises
 
-  * Usage
+    * Usage
 
-    * (anomaly detection in trending, comparison tables with low stdev for release)
+        * (anomaly detection in trending,
+          comparison tables with low stdev for release)
 
-  * Max load and min load
+    * Max load and min load
 
-  * Size of loss
+    * Size of loss
 
-    * (does not matter, only binary low-loss vs high-loss)
+        * (does not matter, only binary low-loss vs high-loss)
 
-  * Goals used
+    * Goals used
 
-    * (Why 50% exceed ratio is so good.)
+        * (Why 50% exceed ratio is so good.)
 
-  * Simulator
+    * Simulator
 
-    * (PLRsearch fitting functions, exotic goals)
+        * (PLRsearch fitting functions, exotic goals)
 
-    * (Example of time savings between RFC2544 and CSIT goal at the same accuracy?)
+        * (Example of time savings between RFC2544 and CSIT goal
+          at the same accuracy?)
 
-  * Long trials vs many trials
+    * Long trials vs many trials
 
-    * (Many trials offer better flexibility and avoid issues with handling
-      long-vs-short results fairly.)
+        * (Many trials offer better flexibility and avoid issues with handling
+          long-vs-short results fairly.)
 
-    * (Mention reconfiguration tests still use long trial with zero tolerance?)
+        * (Mention reconfiguration tests still use long trial with zero tolerance?)
 
-  * Conservativeness
+    * Conservativeness
 
-    * (Some performance bugs manifest as infrequent big loss spikes.)
+        * (Some performance bugs manifest as infrequent big loss spikes.)
 
-    * (Is conservativeness still as important when exceed ratio is 50%?)
+        * (Is conservativeness still as important when exceed ratio is 50%?)
 
-  * Fail fast
+    * Fail fast
 
-    * (If min load is an upper bound for one goal,
-       bail out to save time on broken tests.)
+        * (If min load is an upper bound for one goal,
+          bail out to save time on broken tests.)
 
-  * Timeout
+    * Timeout
 
-    * (If SUT behavior suddenly becomes erratic, it could prolong the duration
-      of a "job run" that tests many different SUT settings and traffic profiles.
-      To control such duration spikes, CSIT test fails if search result
-      is not found reasonably fast.)
+        * (If SUT behavior suddenly becomes erratic, it could prolong the duration
+          of a "job run" that tests many different SUT settings and traffic profiles.
+          To control such duration spikes, CSIT test fails if search result
+          is not found reasonably fast.)
 
 * Measurer questions
 
-  * Capabilities
+    * Capabilities
 
-    * (Traffic profiles specific to TRex, TG TA and Yang)
+        * (Traffic profiles specific to TRex, TG TA and Yang)
 
-  * Self test
+    * Self test
 
-  * Warm-up
+    * Warm-up
 
-  * Time overhead
+    * Time overhead
 
-  * Predicting offered count
+    * Predicting offered count
 
-  * Duration stretching
+    * Duration stretching
 
-    * (start+sleep+stop)
+        * (start+sleep+stop)
 
-  * Burstiness
+    * Burstiness
 
-  * Negative loss
+    * Negative loss
 
-    * (Typically, misconfigured SUT can produce small number of unexpected
-      additional packets, for example with IPv6 autonegotiation not disabled.)
+        * (Typically, misconfigured SUT can produce small number of unexpected
+          additional packets, for example with IPv6 autonegotiation not disabled.)
 
-    * (Implementations can decide to either allow or treat as artificial losses.)
+        * (Implementations can decide to either allow or treat as artificial losses.)
 
-    * (Rarely, excess of packets may signal wait times between trials is too low
-      and SUT buffers too high.)
+        * (Rarely, excess of packets may signal wait times between trials
+          is too low and SUT buffers too high.)
 
-  * Aggregate limits
+    * Aggregate limits
 
-    * (RX+TX, sum over ports, number of queues, CPU limits, baseline vs burst in cloud)
+        * (RX+TX, sum over ports, number of queues, CPU limits,
+          baseline vs burst in cloud)
 
-  * Other Oload issues
+    * Other Oload issues
 
-    * (duplex and other interferences; DUT-DUT links with encapsulation overhead)
+        * (duplex and other interferences;
+          DUT-DUT links with encapsulation overhead)
 
 * Test report
 
-  * Definition
+    * Definition
 
-  * Alternative units
+    * Alternative units
 
-    * Unidirectional vs bidirectional
+        * Unidirectional vs bidirectional
 
-    * Bandwidth
+        * Bandwidth
 
 * Heuristics
 
-  * FRMOL and FRFRMOL
+    * FRMOL and FRFRMOL
 
-  * Intermediate targets
+    * Intermediate targets
 
-  * Relative width
+    * Relative width
 
-  * Discrete loads
+    * Discrete loads
 
-  * Expansion coefficient
+    * Expansion coefficient
 
-  * Uneven splits
+    * Uneven splits
 
-  * Selector strategies
+    * Selector strategies
 
-  * Candidate ordering
+    * Candidate ordering
 
 * DUT behaviors
 
-  * Periodic interrupts
+    * Periodic interrupts
 
-  * More details on distribution of big and small loss spikes
+    * More details on distribution of big and small loss spikes
 
-    * (performance spectrum as a probabilistic distribution over trial forwarding rate)
+        * (performance spectrum as a probabilistic distribution
+          over trial forwarding rate)
 
-    * (trial results as small population)
+        * (trial results as small population)
 
-    * (median and other quantiles, "touching" quantiles)
+        * (median and other quantiles, "touching" quantiles)
 
-  * Exceed probability
+    * Exceed probability
 
-    * (load regions, common patterns seen in practice)
+        * (load regions, common patterns seen in practice)
 
-  * Large buffers
+    * Large buffers
 
-  * Performance decrease due to resource leaks
+    * Performance decrease due to resource leaks
 
-  * Energy mode switching can cause loss inversion?
+    * Energy mode switching can cause loss inversion?
 
 * Correctness
 
-  * Balancing sum from short trials
+    * Balancing sum from short trials
 
-  * Optimistic and pessimistic estimates
+    * Optimistic and pessimistic estimates
 
-  * Load is eventually classified
+    * Load is eventually classified
 
-  * Gaming is possible but slow
+    * Gaming is possible but slow
 
-  * Brittle heuristics
+    * Brittle heuristics
 
-  * Goal ordering
+    * Goal ordering
 
-  * Discouraged goals
+    * Discouraged goals
 
-    * Goal Width > Goal Loss Ratio
+        * Goal Width > Goal Loss Ratio
 
-    * Goal Duration Sum < Goal Final Trial Duration
+        * Goal Duration Sum < Goal Final Trial Duration
 
-    * Incomparable goals
+        * Incomparable goals
 
-      * (worst case: slow race to bottom)
+            * (worst case: slow race to bottom)
 
-  * When a load can become undecided again?
+    * When a load can become undecided again?
 
 * Related test procedures
 
-  * Latency
+    * Latency
 
-  * Passive Telemetry
+    * Passive Telemetry
 
-  * Active Telemetry
+    * Active Telemetry
 
-  * Comparison with FRMOL
+    * Comparison with FRMOL
 
-  * Comparison with PLRsearch
+    * Comparison with PLRsearch
 
 * Beyond frames
 
-  * Transactions
+    * Transactions
 
-  * Fragmentation
+    * Fragmentation
 
-  * Throttled TCP
+    * Throttled TCP
 
-  * Fixed scale
+    * Fixed scale
 
-    * (NAT performance depends on session table size.)
+        * (NAT performance depends on session table size.)
 
-    * (Trials should be long enough to hit all sessions?)
+        * (Trials should be long enough to hit all sessions?)
 
-  * Ramp-up
+    * Ramp-up
 
-    * (NAT slow-fast path example: Before testing fast path,
+        * (NAT slow-fast path example: Before testing fast path,
       we need a slow enough trial to ensure SUT started tracking all sessions.)
 
-    * (Session counting as verification ramp-up was successful.)
+        * (Session counting as verification ramp-up was successful.)
 
-    * (Issues with sessions timing out before real search starts or during search.)
+        * (Issues with sessions timing out before real search starts
+          or during search. Check is needed for both start and end of trial.)
 
-    * (Heuristics to avoid ramp-ups, e.g. when observing zero loss
-      on large enough trial.)
+        * (Heuristics to avoid ramp-ups, e.g. when observing zero loss
+          on large enough trial.)
 
-  * Reset
+    * Reset
 
-    * (NAT slow-fast path example: When testing slow path, session table
-      needs to be explicitly dropped.)
+        * (NAT slow-fast path example: When testing slow path, session table
+          needs to be explicitly dropped.)
 
-  * Bisecting for telemetry thresholds
+    * Bisecting for telemetry thresholds
 
-  * Bisecting for B2B burst size
+    * Bisecting for B2B burst size
 
 * Future improvements
 
-  * Return trials at relevant bounds
+    * Return trials at relevant bounds
 
-  * Allow flipping the conservativeness?
+    * Allow flipping the conservativeness?
 
-    * (return the larger load when Loss Inversion happens)
+        * (return the larger load when Loss Inversion happens)
 
-  * Short high-loss trials to affect Conditional Throughput?
+    * Short high-loss trials to affect Conditional Throughput?
 
-  * Multiple runs between hard SUT resets
+    * Multiple runs between hard SUT resets
 
-    * (Example: RSS key randomized at start but not between trials.)
+        * (Example: RSS key randomized at start but not between trials.)
 
-  * Duration sum based on misclassification probability
+    * Duration sum based on misclassification probability
 
-    * (the idea is to decide early on one-sided results and late on balanced results)
+        * (the idea is to decide early on one-sided results
+          and late on balanced results)
 
-    * (needs a prior on exceed probability distribution; and error/time balance)
+        * (needs a prior on exceed probability distribution;
+          and a posterior condition reflecting the error/time balance)
 
-  * Heavy loss should be worse than narrow loss
+    * Heavy loss should be worse than narrow loss
 
-    * (larger discussion on similarities with SLA)
+        * (larger discussion on similarities with SLA)
 
-  * Predict goodput based on loss and latency?
+    * Predict goodput based on loss and latency?
 
 * Examples?
 
-  * (take a real run and discuss heuristic decisions?)
+    * (take a real run and discuss heuristic decisions?)
 
 * Summarize how MLRsearch addressed the Identified Problems
