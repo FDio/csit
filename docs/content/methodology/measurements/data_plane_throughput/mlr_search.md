@@ -128,7 +128,6 @@ There will be future documents linked from here.
 For now, there is only an outline of future (ambitious) content.
 Items in parenthesis are hints on what content will be in the parent subsection.
 
-
 * History of early versions in CSIT
 
   * MLRsearch as a class of algorithms
@@ -198,7 +197,7 @@ Items in parenthesis are hints on what content will be in the parent subsection.
   * Fail fast
 
     * (If min load is an upper bound for one goal,
-       bail out to save time on broken tests.)
+      bail out to save time on broken tests.)
 
   * Timeout
 
@@ -279,7 +278,8 @@ Items in parenthesis are hints on what content will be in the parent subsection.
 
   * More details on distribution of big and small loss spikes
 
-    * (performance spectrum as a probabilistic distribution over trial forwarding rate)
+    * (performance spectrum as a probabilistic distribution
+      over trial forwarding rate)
 
     * (trial results as small population)
 
