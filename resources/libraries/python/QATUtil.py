@@ -52,12 +52,12 @@ class QATUtil:
         DUTSetup.verify_kernel_module(node, device["module"], force_load=True)
 
         exec_cmd_no_error(
-            node, f"adf_ctl {device["qat_dev"]} restart",
+            node, f"adf_ctl {device['qat_dev']} restart",
             sudo=True, message="Failed to reset crypto device!"
         )
 
         exec_cmd_no_error(
-            node, f"adf_ctl {device["qat_dev"]} status",
+            node, f"adf_ctl {device['qat_dev']} status",
             sudo=True, retries=10, message="Failed to status crypto device!"
         )
 
