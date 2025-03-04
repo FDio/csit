@@ -47,7 +47,7 @@ nodes:
         ip4_address: 172.16.60.1
         driver: ice
         link: link5
-        model: Intel-E810XXV"
+        model: Intel-E810XXV
   DUT1:
     type: DUT
     model: Intel-Snowridge
@@ -73,7 +73,7 @@ nodes:
         ip4_address: 172.16.10.2
         driver: ice
         link: link2
-        model: "Intel-E822CQ"
+        model: Intel-E822CQ
       port2:
         # s93-t39-sut1-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:01"

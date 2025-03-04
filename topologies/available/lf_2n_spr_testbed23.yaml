@@ -155,9 +155,9 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0000:76:00.0"
-        driver: "4xxx"
-        model: "HW_4xxx"
-        module: "qat_4xxx"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
         numvfs: 8
       #device2:
       #  pci_address: "0000:7a:00.0"
