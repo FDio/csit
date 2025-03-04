@@ -1023,6 +1023,8 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("nitro-50g","50ge1p1ENA");'
     awk_nics_sub_cmd+='gsub("nitro-100g","100ge1p1ENA");'
     awk_nics_sub_cmd+='gsub("nitro-200g","200ge1p1ENA");'
+    awk_nics_sub_cmd+='gsub("cavium-50g","50ge2p1cavium50g");'
+    awk_nics_sub_cmd+='gsub("cavium-100g","100ge2p1cavium100g");'
     awk_nics_sub_cmd+='gsub("virtual","1ge1p82540em");'
     awk_nics_sub_cmd+='if ($9 =="drv_avf") drv="avf-";'
     awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'

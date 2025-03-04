@@ -78,9 +78,9 @@ nodes:
     cryptodev:
       device1:
         pci_address: "0002:20:00.0"
-        driver: "rvu_cptpf"
-        model: "HW_A0FD"
-        module: "rvu_cptpf"
+        driver: rvu_cptpf
+        model: HW_A0FD
+        module: rvu_cptpf
         numvfs: 1
     eventdev: "0002:0e:00.0"
     interfaces:
