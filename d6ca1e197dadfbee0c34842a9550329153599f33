@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92f47ad8_6db4600f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3155
+      },
+      "writtenOn": "2025-03-05T10:44:35Z",
+      "side": 1,
+      "message": "Hi Peter,\n\nCould you please update if this patch can be merged?\nLet me know if any change is require.",
+      "revId": "d6ca1e197dadfbee0c34842a9550329153599f33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}

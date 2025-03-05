@@ -16,6 +16,24 @@
       "message": "this patch is waiting for Octeon10 DPU to become operational in CSIT environment. ETA is TBC subject to completing the configuration.",
       "revId": "80b959d651bb2d2b8781fd048f2a5b4cc996faa4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2af84b6_39961493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3155
+      },
+      "writtenOn": "2025-03-05T10:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f564eb4d_c6e87ba3",
+      "revId": "80b959d651bb2d2b8781fd048f2a5b4cc996faa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
