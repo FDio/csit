@@ -135,6 +135,23 @@
       "message": "csit-vpp-report-cov-2n-emr-perftest ip4-02",
       "revId": "615621fc1c3d788ac4ad908a78557cc918a68364",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad1b9da_46fae710",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-03-05T07:18:04Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-hoststack-00",
+      "revId": "615621fc1c3d788ac4ad908a78557cc918a68364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
