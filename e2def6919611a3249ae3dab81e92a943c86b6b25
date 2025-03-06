@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2b23f6_5cde5e27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-03-06T13:22:39Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-icx-perftest vpp-soak-00",
+      "revId": "e2def6919611a3249ae3dab81e92a943c86b6b25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
