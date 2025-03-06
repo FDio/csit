@@ -381,6 +381,21 @@ class DUTSetup:
                 DUTSetup.pci_driver_unbind(node, pci_addr)
 
     @staticmethod
+    def bind_pci_devices_to_specific_driver(node, driver, *pci_addrs):
+        """Bind PCI devices to input driver on node. Unbind from previous.
+
+        :param node: DUT node.
+        :param driver: Driver to bind to.
+        :param pci_addrs: PCI device addresses.
+        :type node: dict
+        :type driver: str
+        :type pci_addrs: list
+        """
+        DUTSetup.unbind_pci_devices_from_other_driver(node, None, *pci_addrs)
+        for pci_addr in pci_addrs:
+            DUTSetup.pci_driver_bind(node, pci_addr, driver)
+
+    @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
         """Bind PCI device to driver on node.
 
