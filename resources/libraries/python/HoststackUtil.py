@@ -285,7 +285,7 @@ class HoststackUtil():
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = u"" if program_name == u"nginx" else \
                                              f"taskset --cpu-list {core_list}"
-        cmd = f"nohup {shell_cmd} \'{env_vars}{taskset_cmd} " \
+        cmd = f"nohup {taskset_cmd} {shell_cmd} \'{env_vars} " \
               f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
