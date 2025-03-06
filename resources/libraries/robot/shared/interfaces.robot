@@ -146,8 +146,8 @@
 | | Run Keyword If | ${nic_vfs}
 | | ... | ${dut}.Add OCTEON Dev | @{${dut}_prevf_pci}
 | | Run Keyword If | not ${nic_vfs}
-| | ... | Unbind PCI Devices From Other Driver | ${nodes['${dut}']} | vfio-pci |
-| | ... | ... | @{${dut}_pf_pci}
+| | ... | Bind PCI Devices To Specific Driver | ${nodes['${dut}']} | vfio-pci
+| | ... | @{${dut}_pf_pci}
 | | Run Keyword If | not ${nic_vfs}
 | | ... | ${dut}.Add OCTEON Dev | @{${dut}_pf_pci}
 
