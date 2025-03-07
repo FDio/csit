@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0525e704_b72c1b8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-03-07T08:59:44Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-icxd-perftest vpp-ndrpdr-00",
+      "revId": "c74b3c21c4c0b3f16d2f6978aa9a240e0c1b0e70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
