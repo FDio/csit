@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e7f52f_08ef6616",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-03-10T15:02:28Z",
+      "side": 1,
+      "message": "I will test when testbeds are free, I suspect patchset 1 will cause one unnecessarily doubled space.\nAlso, the commit message is confusing. The PD_PRELOAD variable is not called, just temporarily set, the same way as before. The difference is whether the parent shell (which spawns iperf3 as its background job) is pinned to the same CPU(s) as iperf.",
+      "revId": "48c144b65307bda4a6f690c6ca2253b9adecd949",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
