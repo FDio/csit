@@ -44,6 +44,7 @@ Following is the list of CSIT versions to date:
     matrix.
   - Mellanox 556A/CX6-DX/MCX713106AS-VEAT series firmware upgrade based on DPDK
     compatibility matrix.
+  - Ubuntu upgrade from 22.04.1 LTS to 24.04.1 LTS.
 - Ver. 16 associated with CSIT rls2410 branch (
   [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2410),
   [CSIT](https://git.fd.io/csit/tree/?h=rls2410)
