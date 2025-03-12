@@ -8,9 +8,12 @@ weight: 1
 1. TEST FRAMEWORK
    - **CSIT test environment** version has been updated to ver. 17, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+   - The testbeds 2n-alt and 3n-emr are out-of-service for 25.02 release.
+   - HW related parts that are out-of-service for 25.02 release:
+     - DSA.
    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-   - 
+   - DSA tests has been added.
 
 # Known Issues
 
