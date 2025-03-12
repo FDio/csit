@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e00b9c78_ba0057f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-03-12T15:56:48Z",
+      "side": 1,
+      "message": "terraform-cdash-deploy",
+      "revId": "3a2ef2678f52f8f88343361c4c049e3beb525a00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
