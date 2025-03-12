@@ -8,7 +8,7 @@ weight: 1
 # CSIT-2502 Release Report
 
 This section includes release notes for FD.io CSIT-2502. The CSIT report
-will be published on **Mar-12 2025**. The release plan is published on
+was published on **Mar-12 2025**. The release plan is published on
 [CSIT wiki](https://wiki.fd.io/view/CSIT/csit2502_plan) pages.
 
 The release notes of the previous CSIT release can be found
