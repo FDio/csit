@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-09
-date: 2025-02-24
+docname: draft-ietf-bmwg-mlrsearch-10
+date: 2025-03-16
 
 ipr: trust200902
 area: ops
@@ -31,9 +31,11 @@ author:
 
 normative:
   RFC1242:
+  RFC2119:
   RFC2285:
   RFC2544:
   RFC5180:
+  RFC8174:
   RFC8219:
 
 informative:
@@ -61,13 +63,13 @@ informative:
 
 --- abstract
 
-This document proposes extensions to [RFC2544] throughput search by
+This document proposes extensions to RFC 2544 throughput search by
 defining a new methodology called Multiple Loss Ratio search
 (MLRsearch). MLRsearch aims to minimize search duration,
 support multiple loss ratio searches,
 and enhance result repeatability and comparability.
 
-The primary reason for extending [RFC2544] is to address the challenges
+The primary reason for extending RFC 2544 is to address the challenges
 of evaluating and testing the data planes of software-based networking systems.
 
 To give users more freedom, MLRsearch provides additional configuration options
@@ -88,6 +90,18 @@ and supporting the search for multiple goals with varying loss ratios.
 [toc]
 
 {:/comment}
+
+# Requirements Language
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL"
+in this document are to be interpreted as described in BCP 14 [RFC2119]
+{::comment}
+    The two references have to come one after another to avoid boilerplate nit,
+    but the xml2rfc processing (web service) is buggy and strips rfc2119 brackets.
+    Luckily having this comment here avoids the bug and creates correct .xml file.
+{:/comment}
+[RFC8174] when, and only when, they appear in all capitals, as shown here.
 
 # Purpose and Scope
 
@@ -683,7 +697,7 @@ in the sense that all three definitions specify that this value
 applies to one (input or output) interface.
 
 Similarly to Trial Duration, some Measurers may limit the possible values
-of trial load. Contrary to trial duration, the test report is NOT REQUIRED
+of trial load. Contrary to trial duration, the test report is not REQUIRED
 to document such behavior, as in practice the load differences
 are negligible (and frequently undocumented).
 
@@ -897,7 +911,7 @@ implied by Trial Load and Trial Duration.
 
 While [RFC2285] (Section 3.5.2) requires the Offered Load value
 to be reported for forwarding rate measurements,
-it is NOT REQUIRED in MLRsearch Specification,
+it is not REQUIRED in MLRsearch Specification,
 as search results do not depend on it.
 
 ### Trial Result
@@ -1432,7 +1446,7 @@ and the Relevant Upper Bound MUST NOT be larger than the Goal Width,
 Implementations MAY add their own attributes.
 
 Test report MUST display Relevant Lower Bound.
-Displaying Relevant Upper Bound is NOT REQUIRED, but it is RECOMMENDED,
+Displaying Relevant Upper Bound is not REQUIRED, but it is RECOMMENDED,
 especially if the implementation does not use Goal Width.
 
 #### Irregular Goal Result
@@ -2648,28 +2662,33 @@ is classified as a Lower Bound according to the given Search Goal instance.
 If values of both variables are false, the Load is classified as an Upper Bound.
 Otherwise, the load is classified as Undecided.
 
+Some variable names are shortened in order to fit expressions in one line.
+Namely, variables holding sum quantities end in `_s` instead of `_sum`,
+and variables holding effective quantities start in `effect_`
+instead of `effective_`.
+
 The pseudocode expects the following variables to hold the following values:
 
-- `goal_duration_sum`: The Goal Duration Sum value of the given Search Goal.
+- `goal_duration_s`: The Goal Duration Sum value of the given Search Goal.
 
 - `goal_exceed_ratio`: The Goal Exceed Ratio value of the given Search Goal.
 
-- `full_length_low_loss_sum`: Sum of Trial Effective Durations across Trials
-  with Trial Duration at least equal to the Goal Final Trial Dduration
+- `full_length_low_loss_s`: Sum of Trial Effective Durations across Trials
+  with Trial Duration at least equal to the Goal Final Trial Duration
   and with Trial Loss Ratio not higher than the Goal Loss Ratio
   (across Full-Length Low-Loss Trials).
 
-- `full_length_high_loss_sum`: Sum of Trial Effective Durations across Trials
+- `full_length_high_loss_s`: Sum of Trial Effective Durations across Trials
   with Trial Duration at least equal to the Goal Final Trial Duration
   and with Trial Loss Ratio higher than the Goal Loss Ratio
   (across Full-Length High-Loss Trials).
 
-- `short_low_loss_sum`: Sum of Trial Effective Durations across Trials
+- `short_low_loss_s`: Sum of Trial Effective Durations across Trials
   with Trial Duration shorter than the Goal Final Trial Duration
   and with Trial Loss Ratio not higher than the Goal Loss Ratio
   (across Short Low-Loss Trials).
 
-- `short_high_loss_sum`: Sum of Trial Effective Durations across Trials
+- `short_high_loss_s`: Sum of Trial Effective Durations across Trials
   with Trial Duration shorter than the Goal Final Trial Duration
   and with Trial Loss Ratio higher than the Goal Loss Ratio
   (across Short High-Loss Trials).
@@ -2678,15 +2697,15 @@ The code works correctly also when there are no Trial Results at a given Load.
 
 ~~~ python
 exceed_coefficient = goal_exceed_ratio / (1.0 - goal_exceed_ratio)
-balancing_sum = short_low_loss_sum * exceed_coefficient
-positive_excess_sum = max(0.0, short_high_loss_sum - balancing_sum)
-effective_high_loss_sum = full_length_high_loss_sum + positive_excess_sum
-effective_full_length_sum = full_length_low_loss_sum + effective_high_loss_sum
-effective_whole_sum = max(effective_full_length_sum, goal_duration_sum)
-quantile_duration_sum = effective_whole_sum * goal_exceed_ratio
-pessimistic_high_loss_sum = effective_whole_sum - full_length_low_loss_sum
-pessimistic_is_lower = pessimistic_high_loss_sum <= quantile_duration_sum
-optimistic_is_lower = effective_high_loss_sum <= quantile_duration_sum
+balancing_s = short_low_loss_s * exceed_coefficient
+positive_excess_s = max(0.0, short_high_loss_s - balancing_s)
+effect_high_loss_s = full_length_high_loss_s + positive_excess_s
+effect_full_length_s = full_length_low_loss_s + effect_high_loss_s
+effect_whole_s = max(effect_full_length_s, goal_duration_s)
+quantile_duration_s = effect_whole_s * goal_exceed_ratio
+pessimistic_high_loss_s = effect_whole_s - full_length_low_loss_s
+pessimistic_is_lower = pessimistic_high_loss_s <= quantile_duration_s
+optimistic_is_lower = effect_high_loss_s <= quantile_duration_s
 ~~~
 
 # Appendix B: Conditional Throughput
@@ -2706,18 +2725,23 @@ which computes a value stored as variable `conditional_throughput`.
 
 The pseudocode happens to be valid Python code.
 
+Some variable names are shortened in order to fit expressions in one line.
+Namely, variables holding sum quantities end in `_s` instead of `_sum`,
+and variables holding effective quantities start in `effect_`
+instead of `effective_`.
+
 The pseudocode expects the following variables to hold the following values:
 
-- `goal_duration_sum`: The Goal Duration Sum value of the given Search Goal.
+- `goal_duration_s`: The Goal Duration Sum value of the given Search Goal.
 
 - `goal_exceed_ratio`: The Goal Exceed Ratio value of the given Search Goal.
 
-- `full_length_low_loss_sum`: Sum of Trial Effective Durations across Trials
-  with Trial Duration at least equal to the Goal Final Trial Dduration
+- `full_length_low_loss_s`: Sum of Trial Effective Durations across Trials
+  with Trial Duration at least equal to the Goal Final Trial Duration
   and with Trial Loss Ratio not higher than the Goal Loss Ratio
   (across Full-Length Low-Loss Trials).
 
-- `full_length_high_loss_sum`: Sum of Trial Effective Durations across Trials
+- `full_length_high_loss_s`: Sum of Trial Effective Durations across Trials
   with Trial Duration at least equal to the Goal Final Trial Duration
   and with Trial Loss Ratio higher than the Goal Loss Ratio
   (across Full-Length High-Loss Trials).
@@ -2729,20 +2753,20 @@ The pseudocode expects the following variables to hold the following values:
 
   - `trial.loss_ratio`: The Trial Loss Ratio as measured for this Trial.
 
-  - `trial.effective_duration`: The Trial Effective Duration of this Trial.
+  - `trial.effect_duration`: The Trial Effective Duration of this Trial.
 
 The code works correctly only when there if there is at least one
 Trial Tesult measured at the given Load.
 
 ~~~ python
-full_length_sum = full_length_low_loss_sum + full_length_high_loss_sum
-whole_sum = max(goal_duration_sum, full_length_sum)
-remaining = whole_sum * (1.0 - goal_exceed_ratio)
+full_length_s = full_length_low_loss_s + full_length_high_loss_s
+whole_s = max(goal_duration_s, full_length_s)
+remaining = whole_s * (1.0 - goal_exceed_ratio)
 quantile_loss_ratio = None
 for trial in full_length_trials:
     if quantile_loss_ratio is None or remaining > 0.0:
         quantile_loss_ratio = trial.loss_ratio
-        remaining -= trial.effective_duration
+        remaining -= trial.effect_duration
     else:
         break
 else:
