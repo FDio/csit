@@ -79,7 +79,7 @@ Used for FD.io performance tests.
 
 ### 2-Node-Grace Server Nvidia (2n-grc)
 
-Each 2-Node-Grace testbed includes one SUT (Server-Type-XX) and
+Each 2-Node-Grace testbed includes one SUT (Server-Type-J1) and
 one TG (Server-Type-F6) connected in a 2-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
@@ -454,9 +454,9 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe4.0 lanes)
-            - PCIe Slot2 4b:00.xx: ConnectX5-2p100GE Mellanox.
-            - PCIe Slot4 31:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot9 ff:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot2 17:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot4 31:00.xx: empty.
+            - PCIe Slot9 ff:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 ca:00.xx: empty.
             - PCIe Slot8 b1:00.xx: empty.
@@ -652,9 +652,7 @@ FD.io CSIT lab contains following server types:
         - Disks: NDA.
     - NICs configuration:
         - Numa0: (x16, x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 ?: ConnectX5-2p100GE Mellanox.
-            - PCIe Slot4 ?: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot9 ?: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot1 0000:01:00.0: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
 
 26. **Server-Type-A1**: Purpose - EmeraldRapids Xeon TG for FD.io performance testing.
     - Quantity: 4.
@@ -1257,10 +1255,8 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.36
     - Host IP: 10.30.51.36
     - portnames:
-        - s36-t27-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s36-t27-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s36-t27-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s36-t27-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s36-t27-sut1-c1/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s36-t27-sut1-c1/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s36-t27-sut1-c3/p1 - 10GE-port1 x550T-2p10GE.
         - s36-t27-sut1-c3/p2 - 10GE-port1 x550T-2p10GE.
 - TG [Server-Type-F6]:
@@ -1269,12 +1265,8 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.37
     - Host IP: 10.30.51.37
     - portnames:
-        - s37-t27-tg1-c2/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s37-t27-tg1-c2/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s37-t27-tg1-c4/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s37-t27-tg1-c4/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s37-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s37-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s37-t27-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s37-t27-tg1-c2/p2 - 200GE port2 ConnectX7-2p200GE.
 ```
 
 ## Testbed Wiring
@@ -1516,12 +1508,9 @@ FD.io CSIT lab contains following server types:
 
 ```
 - testbed27:
-    - ring1 100GE-ports ConnectX5-2p100GE:
+    - ring1 200GE-ports ConnectX7-2p200GE:
         - s37-t27-tg1-c9/p1 to s36-t27-sut1-c1/p1.
         - s36-t27-sut1-c1/p2 to s37-t27-tg1-c9/p2.
-    #- ring2 200GE-ports ConnectX7-2p200GE:
-    #    - s37-t27-tg1-c2/p1 to s36-t27-sut1-c1/p1.
-    #    - s36-t27-sut1-c1/p2 to s37-t27-tg1-c2/p2.
 ```
 
 ### 2-Node-EmeraldRapids (2n-emr)
