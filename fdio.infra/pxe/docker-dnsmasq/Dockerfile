@@ -10,8 +10,8 @@ RUN apt update \
  && mkdir -p /var/lib/tftpboot/casper/ubuntu-noble-amd64/ \
  && mkdir -p /var/lib/tftpboot/casper/ubuntu-noble-arm64/
 
-ENV ISO_NOBLE_AMD64=https://releases.ubuntu.com/releases/noble/ubuntu-24.04.1-live-server-amd64.iso
-ENV ISO_NOBLE_ARM64=https://cdimage.ubuntu.com/releases/noble/release/ubuntu-24.04.1-live-server-arm64.iso
+ENV ISO_NOBLE_AMD64=https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso
+ENV ISO_NOBLE_ARM64=https://cdimage.ubuntu.com/releases/24.04.2/release/ubuntu-24.04.2-live-server-arm64.iso
 ENV EFI_NOBLE_AMD64=http://archive.ubuntu.com/ubuntu/dists/jammy/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
 ENV EFI_NOBLE_ARM64=http://ports.ubuntu.com/ubuntu-ports/dists/jammy/main/uefi/grub2-arm64/current/grubnetaa64.efi.signed
 
@@ -24,12 +24,12 @@ RUN echo "Preparing Grub EFI Binary" \
  && dpkg-deb --fsys-tarfile grub-common*deb | tar x ./usr/share/grub/unicode.pf2 -O > /var/lib/tftpboot/grub/fonts/unicode.pf2
 
 RUN echo "Preparing Casper Kernel" \
- && wget $ISO_NOBLE_AMD64 -O /ubuntu-24.04.1-live-server-amd64.iso \
- && isoinfo -i /ubuntu-24.04.1-live-server-amd64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/initrd \
- && isoinfo -i /ubuntu-24.04.1-live-server-amd64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/vmlinuz \
- && wget $ISO_NOBLE_ARM64 -O /ubuntu-24.04.1-live-server-arm64.iso \
- && isoinfo -i /ubuntu-24.04.1-live-server-arm64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/initrd \
- && isoinfo -i /ubuntu-24.04.1-live-server-arm64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/vmlinuz
+ && wget $ISO_NOBLE_AMD64 -O /ubuntu-24.04.2-live-server-amd64.iso \
+ && isoinfo -i /ubuntu-24.04.2-live-server-amd64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/initrd \
+ && isoinfo -i /ubuntu-24.04.2-live-server-amd64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-amd64/vmlinuz \
+ && wget $ISO_NOBLE_ARM64 -O /ubuntu-24.04.2-live-server-arm64.iso \
+ && isoinfo -i /ubuntu-24.04.2-live-server-arm64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/initrd \
+ && isoinfo -i /ubuntu-24.04.2-live-server-arm64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-noble-arm64/vmlinuz
 
 FROM alpine
 

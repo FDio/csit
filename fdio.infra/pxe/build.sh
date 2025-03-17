@@ -39,7 +39,7 @@ docker run \
     --detach \
     --net host \
     --name pxe-dnsmasq \
-    --env "E_INT=$(ip -o -4 route show to default | awk '{print $5}')" \
-    --env "E_ADD=$(hostname -I | awk '{print $1}')" \
+    --env "E_INT=enp177s0np0" \
+    --env "E_ADD=10.30.51.100" \
     --cap-add NET_ADMIN \
     pxe-dnsmasq
