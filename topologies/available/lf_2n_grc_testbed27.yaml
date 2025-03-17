@@ -17,21 +17,21 @@ nodes:
     password: Csit1234
     interfaces:
       port1:
-        # s37-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
-        mac_address: "0c:42:a1:0b:92:1a"
+        # s37-t27-tg1-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "7c:8c:09:7a:0c:1c"
         pci_address: "0000:17:00.0"
         ip4_address: 172.16.10.1
         driver: mlx5_core
         link: link1
-        model: Mellanox-CX556A
+        model: Mellanox-CX7VEAT
       port2:
-        # s37-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
-        mac_address: "0c:42:a1:0b:92:1b"
+        # s37-t27-tg1-c9/p2 -200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "7c:8c:09:7a:0c:1d"
         pci_address: "0000:17:00.1"
         ip4_address: 172.16.20.1
         driver: mlx5_core
         link: link2
-        model: Mellanox-CX556A
+        model: Mellanox-CX7VEAT
   DUT1:
     type: DUT
     model: Nvidia-Graceserver
@@ -43,18 +43,18 @@ nodes:
     password: Csit1234
     interfaces:
       port1:
-        # s36-t27-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
-        mac_address: "ec:0d:9a:8c:c7:f6"
+        # s36-t27-sut1-c1/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "7c:8c:09:7a:1a:9c"
         pci_address: "0000:01:00.0"
         ip4_address: 172.16.10.2
         driver: mlx5_core
         link: link1
-        model: Mellanox-CX556A
+        model: Mellanox-CX7VEAT
       port2:
-        # s36-t27-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
-        mac_address: "ec:0d:9a:8c:c7:f7"
+        # s36-t27-sut1-c1/p2 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "7c:8c:09:7a:1a:9d"
         pci_address: "0000:01:00.1"
         ip4_address: 172.16.20.2
         driver: mlx5_core
         link: link2
-        model: Mellanox-CX556A
+        model: Mellanox-CX7VEAT
