@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47a52729_23810805",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-03-18T13:05:33Z",
+      "side": 1,
+      "message": "Before: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-csit-verify-perf-master-ubuntu2404-x86_64-2n-icx/15/console.log.gz\nAfter: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-csit-verify-perf-master-ubuntu2404-x86_64-2n-icx/17/console.log.gz\n\nThe TRex link down issue happened in the latter, but no 50Ge2P1A063 test was attempted.",
+      "revId": "a729115549d258798fed6f273dd9e2fc69d9d582",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
