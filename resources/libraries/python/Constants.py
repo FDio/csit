@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2024 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -441,7 +441,7 @@ class Constants:
     # Each driver needs different plugin to work.
     NIC_DRIVER_TO_PLUGINS = {
         "vfio-pci": "dpdk_plugin.so",
-        "avf": "dev_iavf_plugin.so",
+        "avf": "avf_plugin.so",
         "rdma-core": "rdma_plugin.so",
         "mlx5_core": "dpdk_plugin.so",
         "af_xdp": "af_xdp_plugin.so",
