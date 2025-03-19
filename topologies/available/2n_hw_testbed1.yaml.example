@@ -42,14 +42,14 @@ nodes:
         model: virtual
       port5:
         mac_address: "00:00:00:00:00:00"
-        pci_address: "0000:00:05.0"
+        pci_address: "0000:00:03.0"
         driver: e1000
         link: link5
         model: Cavium-A063-50G
       port6:
         mac_address: "00:00:00:00:00:00"
-        pci_address: "0000:00:06.0"
-        link: link6
+        pci_address: "0000:00:04.0"
+        link: link5
         driver: e1000
         model: Cavium-A063-50G
   DUT1:
@@ -86,15 +86,3 @@ nodes:
         driver: e1000
         link: link4
         model: virtual
-      port5:
-        mac_address: "00:00:00:00:00:00"
-        pci_address: "0000:00:05.0"
-        driver: e1000
-        link: link5
-        model: Cavium-A063-50G
-      port6:
-        mac_address: "00:00:00:00:00:00"
-        pci_address: "0000:00:06.0"
-        link: link6
-        driver: e1000
-        model: Cavium-A063-50G
