@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e62f65_60e2dca5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-03-21T07:06:13Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3nb-spr-perftest vpp-mrr-00",
+      "revId": "1efd68cf1c5b2d108e57b7b6844d02bb6ffc2d9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
