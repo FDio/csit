@@ -15,6 +15,7 @@ grub:
   nmi_watchdog: "0"
   nohz_full: "1-23,25-47,49-71,73-95,97-119,121-143,145-167,169-191"
   nosoftlockup: true
+  no5lvl: true
   numa_balancing: "disable"
   processor.max_cstate: "1"
   rcu_nocbs: "1-23,25-47,49-71,73-95,97-119,121-143,145-167,169-191"
