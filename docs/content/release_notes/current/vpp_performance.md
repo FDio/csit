@@ -6,19 +6,24 @@ weight: 1
 # CSIT 25.02 - VPP Performance
 
 1. TEST FRAMEWORK
-   - **CSIT test environment** version has been updated to ver. 17, see
-     [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
-   - The testbeds 2n-alt and 3n-emr are out-of-service for 25.02 release.
-   - HW related parts that are out-of-service for 25.02 release:
-     - DSA.
-   - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
+    - **CSIT test environment** version has been updated to ver. 17, see
+      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+        - Most notably, the tests are now running on Ubuntu 24.04.1.
+        - Also iperf3 version got updated, affecting hoststack and GSO performance.
+    - The testbeds 2n-alt and 3n-emr are out-of-service for 25.02 release.
+    - HW related parts that are out-of-service for 25.02 release:
+        - DSA.
+    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-   - DSA tests has been added.
+    - Migrated AVF tests to use plugins/dev_iavf instead of plugins/avf.
+    - Stopped running some tests where CSIT support got broken (various reasons).
 
 # Known Issues
 
 These are issues that cause test failures or otherwise limit usefulness of CSIT
 testing.
+
+The following tables are temporarily left empty until all results are analyzed.
 
 ## New
 
@@ -26,7 +31,7 @@ Any issue listed here may have been present also in a previous release,
 but was not detected/recognized/reported enough back then.
 Also, issues previously thought fixed but now reopened are listed here.
 
-**#** | **JiraID**                                       | **Issue Description**
+**#** | **Github issue number**                          | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
   1   |                                                  |
 
@@ -34,7 +39,7 @@ Also, issues previously thought fixed but now reopened are listed here.
 
 Issues reported in previous releases which still affect the current results.
 
-**#** | **JiraID**                                       | **Issue Description**
+**#** | **Github issue number**                          | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
   1   |                                                  |
 
@@ -42,7 +47,7 @@ Issues reported in previous releases which still affect the current results.
 
 Issues reported in previous releases which were fixed in this release:
 
-**#** | **JiraID**                                       | **Issue Description**
+**#** | **Github issue number**                          | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
   1   |                                                  |
 
@@ -60,6 +65,6 @@ of CSIT testing. So even if they are not fixed
 (e.g. when the regression is an expected consequence of added functionality),
 they will not be re-listed in the next release report.
 
-**#** | **JiraID**                                       | **Issue Description**
+**#** | **Github issue number**                          | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
   1   |                                                  |
