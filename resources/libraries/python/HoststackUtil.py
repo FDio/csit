@@ -14,6 +14,7 @@
 """Host Stack util library."""
 
 import json
+import re
 from time import sleep
 
 from robot.api import logger
@@ -46,6 +47,54 @@ class HoststackUtil():
             return ret
         arch = Topology.get_node_arch(node)
         return f"/usr/lib/{arch}-linux-gnu/libvcl_ldpreload.so"
+
+    @staticmethod
+    def get_vcl_test_command(vcl_test_attributes):
+        """Utilities for Host Stack tests.
+        :param vcl_test_attributes: vcl test program attributes.
+        :type vcl_test_attributes: dict
+        :returns: Command line components of the vcl_test_client/server command
+            'env_vars' - environment variables
+            'name' - program name
+            'args' - command arguments.
+        :rtype: dict
+        """
+        role = vcl_test_attributes[u'role']
+        vcl_test_cmd = {
+            u"env_vars": f"VCL_VPP_SAPI_SOCKET={vcl_test_attributes[u'app_api_socket']}",
+            u"name": f"vcl_test_{role}",
+            u"args": u""
+        }
+
+        if role == u"client":
+            if vcl_test_attributes[u"num_writes"]:
+                vcl_test_cmd[u"args"] += \
+                    f" -N {vcl_test_attributes[u'num_writes']}"
+            if vcl_test_attributes[u"tx_buff"]:
+                vcl_test_cmd[u"args"] += \
+                    f" -T {vcl_test_attributes[u'tx_buff']}"
+            if vcl_test_attributes[u"rx_buff"]:
+                vcl_test_cmd[u"args"] += \
+                    f" -R {vcl_test_attributes[u'rx_buff']}"
+            if vcl_test_attributes[u"uni_direct"]:
+                vcl_test_cmd[u"args"] += \
+                    u" -U"
+            elif vcl_test_attributes[u"bi_direct"]:
+                vcl_test_cmd[u"args"] += \
+                    u" -B"
+        if vcl_test_attributes[u"print_stats"]:
+            vcl_test_cmd[u"args"] += \
+                u" -S"
+
+        if vcl_test_attributes[u"protocol"]:
+            vcl_test_cmd[u"args"] += \
+                f" -p {vcl_test_attributes[u'protocol']}"
+
+        if role == u"server":
+            vcl_test_cmd[u"args"] += f" -w {vcl_test_attributes[u'cpu_cnt']} {vcl_test_attributes[u'port']}"
+        else:
+            vcl_test_cmd[u"args"] += f" {vcl_test_attributes[u'ip4_addr']} {vcl_test_attributes[u'port']}"
+        return vcl_test_cmd
 
     @staticmethod
     def get_vpp_echo_command(vpp_echo_attributes):
@@ -357,7 +406,7 @@ class HoststackUtil():
             exec_cmd(node, cmd, sudo=True)
         except:
             sleep(180)
-            if u"client" in program[u"args"]:
+            if u"client" in program[u"args"] or u"client" in program[u"name"]:
                 role = u"client"
             else:
                 role = u"server"
@@ -373,7 +422,7 @@ class HoststackUtil():
                              f"{program_stderr}")
             else:
                 logger.debug(f"Empty {program[u'name']} stderr log :(")
-            if u"client" in other_program[u"args"]:
+            if u"client" in other_program[u"args"] or u"client" in program[u"name"]:
                 role = u"client"
             else:
                 role = u"server"
@@ -481,6 +530,19 @@ class HoststackUtil():
                 duration=program_json["seconds"],
                 retransmits=retransmits
             )
+        elif program[u"name"] in [u"vcl_test_server", u"vcl_test_client"]:
+            test_results += f"{program[u"name"]} HostStack Test Program!\n" + \
+                            program_stdout
+            pattern = r"in\s+([\d\.]+)\s+seconds\s+\(\s*([\d\.]+)\s+Gbps"
+            match = re.search(pattern, program_stdout)
+            if match:
+                duration_result = float(match.group(1))
+                bandwidth_result = int(float(match.group(2)) * 1_000_000_000)
+                export_hoststack_results(
+                    bandwidth=bandwidth_result,
+                    duration=duration_result
+                )
+            return (False, program_stdout)
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
                             program_stdout
