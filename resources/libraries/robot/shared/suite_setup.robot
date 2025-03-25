@@ -276,6 +276,14 @@
 | | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
 | | ... | ${nginx_version}
 
+| Additional Suite Setup Action For vcltest
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement over
+| | ... | VCL Test.
+| |
+| | Export DUT Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
+| | Export TG Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
+
 | Additional Suite Setup Action For vppecho
 | | [Documentation]
 | | ... | Additional Setup for suites which uses performance measurement over
