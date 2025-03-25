@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -275,6 +275,14 @@
 | |
 | | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
 | | ... | ${nginx_version}
+
+| Additional Suite Setup Action For vcltest
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement over
+| | ... | VCL Test.
+| |
+| | Export DUT Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
+| | Export TG Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
 
 | Additional Suite Setup Action For vppecho
 | | [Documentation]
