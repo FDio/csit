@@ -45,6 +45,32 @@
 | ... | sess_lendpt_buckets=250000
 | ... | sess_lendpt_mem=512M
 | ... | strace=${False}
+| &{vcl_test_server_attr}=
+| ... | role=server
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${None}
+| ... | namespace=default
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
+| ... | port=22000
+| ... | use_app_socket_api=${True}
+| ... | print_stats=${False}
+| ... | protocol=tcp
+| &{vcl_test_client_attr}=
+| ... | role=client
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${None}
+| ... | namespace=default
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
+| ... | ip4_addr=${EMPTY}
+| ... | port=22000
+| ... | use_app_socket_api=${True}
+| ... | num_writes=5000000
+| ... | print_stats=${True}
+| ... | tx_buff=16384
+| ... | rx_buff=16384
+| ... | uni_direct=${True}
+| ... | bi_direct=${False}
+| ... | protocol=tcp
 | &{vpp_echo_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -204,6 +230,62 @@
 | | ... | sess_lendpt_buckets | ${sess_lendpt_buckets}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | sess_lendpt_mem | ${sess_lendpt_mem}
+
+| Set VCL Test Server Attributes
+| | [Documentation]
+| | ... | Set the HostStack vpp_echo test program attributes
+| | ... | in the vcl_test_server_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
+| | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${use_app_socket_api} - Use app socket API instead of VPP API
+| | ... | - ${protocol} - Protocol: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set VCL Test Server Attributes \| protocol=${protocol} \|
+| | ... | \| use_app_socket_api=${use_app_socket_api} \|
+| |
+| | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vcl_test_server_attr}[cfg_vpp_feature]
+| | ... | ${namespace}=${vcl_test_server_attr}[namespace]
+| | ... | ${use_app_socket_api}=${vcl_test_server_attr}[use_app_socket_api]
+| | ... | ${protocol}=${vcl_test_server_attr}[protocol]
+| |
+| | Set To Dictionary | ${vcl_test_server_attr} | cfg_vpp_feature
+| | ... | ${cfg_vpp_feature}
+| | Set To Dictionary | ${vcl_test_server_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vcl_test_server_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary | ${vcl_test_server_attr} | protocol | ${protocol}
+
+| Set VCL Test Client Attributes
+| | [Documentation]
+| | ... | Set the HostStack vpp_echo test program attributes
+| | ... | in the vcl_test_client_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
+| | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${use_app_socket_api} - Use app socket API instead of VPP API
+| | ... | - ${protocol} - Protocol: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set VCL Test Client Attributes \| protocol=${protocol} \|
+| | ... | \| use_app_socket_api=${use_app_socket_api} \|
+| |
+| | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vcl_test_client_attr}[cfg_vpp_feature]
+| | ... | ${namespace}=${vcl_test_client_attr}[namespace]
+| | ... | ${use_app_socket_api}=${vcl_test_client_attr}[use_app_socket_api]
+| | ... | ${protocol}=${vcl_test_client_attr}[protocol]
+| |
+| | Set To Dictionary | ${vcl_test_client_attr} | cfg_vpp_feature
+| | ... | ${cfg_vpp_feature}
+| | Set To Dictionary | ${vcl_test_client_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vcl_test_client_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary | ${vcl_test_client_attr} | protocol | ${protocol}
 
 | Set VPP Echo Server Attributes
 | | [Documentation]
@@ -481,6 +563,51 @@
 | | | ... | ${vpp_hoststack_attr}[sess_lendpt_mem]
 | | END
 | | Apply startup configuration on all VPP DUTs
+
+| Get Test Results From Hoststack VCL Test
+| | [Documentation]
+| | ... | Configure IP address on the port, set it up and start the specified
+| | ... | HostStack test programs on the DUTs. Gather test program
+| | ... | output and append JSON formatted test data in message.
+| | ... | Return boolean indicating there was a defered failure of either the
+| | ... | server and/or client test programs.
+| |
+| | Set To Dictionary | ${vcl_test_server_attr} | ip4_addr
+| | ... | ${dut2_if1_ip4_addr}
+| | Set To Dictionary | ${vcl_test_client_attr} | ip4_addr
+| | ... | ${dut2_if1_ip4_addr}
+| | Configure VPP Hoststack Attributes on all DUTs
+| | ${vcl_test_server}= | Get VCL Test Command | ${vcl_test_server_attr}
+| | ${skip_cnt}= | Evaluate
+| | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
+| | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
+| | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vcl_test_server_attr}[cpu_cnt]
+| | FOR | ${action} | IN | @{stat_pre_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | ${server_pid}= | Run hoststack test program on DUT
+| | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
+| | ... | ${vcl_test_server_attr}[namespace] | ${core_list}
+| | ... | ${vcl_test_server_attr}[cfg_vpp_feature] | ${vcl_test_server}
+| | ${vcl_test_client}= | Get VCL Test Command | ${vcl_test_client_attr}
+| | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vcl_test_client_attr}[cpu_cnt]
+| | ${client_pid}= | Run hoststack test program on DUT
+| | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
+| | ... | ${vcl_test_client_attr}[namespace] | ${core_list}
+| | ... | ${vcl_test_client_attr}[cfg_vpp_feature] | ${vcl_test_client}
+| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | ... | ${vcl_test_client} | ${dut2} | ${vcl_test_server}
+| | ${client_defer_fail} | ${client_output}=
+| | ... | Analyze hoststack test program output | ${dut1} | Client
+| | ... | ${vpp_nsim_attr} | ${vcl_test_client}
+| | Then Set test message | ${client_output}
+| | FOR | ${action} | IN | @{stat_post_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Return From Keyword | ${client_defer_fail}
 
 | Get Test Results From Hoststack VPP Echo Test
 | | [Documentation]
