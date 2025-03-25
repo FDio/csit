@@ -137,7 +137,7 @@ class DMAUtil:
                 f" --name={dma_name}_{i} " \
                 f" --max-batch-size={max_batch_size} " \
                 f" --max-transfer-size={max_transfer_size} " \
-                f" --driver=idxd"
+                f" --driver=user"
 
             exec_cmd_no_error(
                 node, cmd, sudo=True,
