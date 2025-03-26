@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -93,19 +93,21 @@ def parse(dirpath: str, fake_value: float = 1.0) -> Dict[str, List[float]]:
             result_object = data["result"]
             result_type = result_object["type"]
             if result_type == "mrr":
-                results[name] = result_object["receive_rate"]["rate"]["values"]
+                result_list = result_object["receive_rate"]["rate"]["values"]
             elif result_type == "ndrpdr":
-                results[name] = [result_object["pdr"]["lower"]["rate"]["value"]]
+                result_list = [result_object["pdr"]["lower"]["rate"]["value"]]
             elif result_type == "soak":
-                results[name] = [
+                result_list = [
                     result_object["critical_rate"]["lower"]["rate"]["value"]
                 ]
             elif result_type == "reconf":
-                results[name] = [result_object["loss"]["time"]["value"]]
+                result_list = [result_object["loss"]["time"]["value"]]
             elif result_type == "hoststack":
-                results[name] = [result_object["bandwidth"]["value"]]
+                result_list = [result_object["bandwidth"]["value"]]
             else:
                 raise RuntimeError(f"Unknown result type: {result_type}")
+            # Negative values from csit/issues/3983 need to be ignored.
+            results[name] = [float(val) for val in result_list if val >= 0]
     results = {test_id: results[test_id] for test_id in sorted(results)}
     with open(resultpath, "wt", encoding="utf8") as file_out:
         json.dump(results, file_out, indent=1, separators=(", ", ": "))
