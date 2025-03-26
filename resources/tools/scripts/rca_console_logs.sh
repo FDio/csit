@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,30 +20,26 @@ set +x
 # Second argument: Pattern to looks for (e.g. identifying release instead of RC2).
 
 # Example usage:
-# bash rca_console_logs.sh 'https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-2410-2n-spr' '24.10-release'
+# bash rca_console_logs.sh 'https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-2502-2n-spr' '2-release'
 
 # For each run, this script prints hints on whether skip or look deeper.
 # Also testbeds are printed, to see possible correlations with failures.
 
 jobname="${1}"
 build_pattern="${2}"
-skip_before="${3-1}"
-# TODO: Detect last run and go backward?
-for i in {1..999}; do
-    if (( ${i} < ${skip_before} )); then
-        # Silently skip.
+rm -f "index.html"
+curl -sf "${jobname}/index.html" > "index.html"
+for i in `grep -o '"[0-9]\+/index.html' index.html | cut -d '"' -f 2- | cut -d '/' -f 1 | sort -n`; do
+    if ! curl -sf "${jobname}/${i}/console.log.gz" | zcat > "console.log"; then
+        echo "${i}: failed to download. Aborted run?"
         continue
     fi
-    if ! curl -sf "${jobname}/${i}/console.log.gz" | zcat > "console.log"; then
-        echo "${i}: failed to download. No more runs?"
-        exit 0
-    fi
     if ! fgrep -q "${build_pattern}" "console.log"; then
-        echo "${i}: not matching the pattern, skip."
+        echo "${i}: not matching the pattern. Skip."
         continue
     fi
     if ! grep '.* tests, .* passed, .* failed' "console.log" > "tests.txt"; then
-        echo "${i}: no tests run? suspicious."
+        echo "${i}: no tests executed? Suspicious."
         continue
     fi
     final=$(tail -1 "tests.txt" | tee "final.txt")
@@ -51,8 +47,6 @@ for i in {1..999}; do
         echo -ne "${i}: skip ${final}\t\t"
     else
         echo
-#        fgrep '| FAIL' "console.log" | fgrep -v 'Tests'
-
         awk '
             /\| FAIL \|/ {
                 if ($0 !~ /Tests/) {
@@ -66,7 +60,6 @@ for i in {1..999}; do
                 }
             }
         ' "console.log"
-
         echo -ne "${i}: investigate ${final}\t\t"
     fi
     # TODO: Simplify this topology detection.
