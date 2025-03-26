@@ -89,7 +89,7 @@
 | ... | use_app_socket_api=${True}
 | &{iperf3_server_attr}=
 | ... | role=server
-| ... | cpu_cnt=${1}
+| ... | cpu_cnt=${2}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -99,7 +99,7 @@
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
-| ... | cpu_cnt=${1}
+| ... | cpu_cnt=${2}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
