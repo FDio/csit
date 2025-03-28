@@ -33,6 +33,29 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciANDeth-ip4tcp*-ldpreload-iperf3",
       "revId": "7737d50f2e6fde98ed9460197de92f5f0bff4994",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a480dc_bfc98705",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2025-03-28T16:48:42Z",
+      "side": 1,
+      "message": "I would recommend that the rx and tx queue size be explicitly set for all HostStack perf tests, instead of inheriting the default value (which is what \u00270\u0027 means here).\n\nI thought that had been done previously, but obviously not.\n\nLet\u0027s do that in a separate gerrit change, so please remove the copyright change above.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "7737d50f2e6fde98ed9460197de92f5f0bff4994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
