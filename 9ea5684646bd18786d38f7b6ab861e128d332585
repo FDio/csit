@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16accfc_2abfa06f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-03-28T10:01:11Z",
+      "side": 1,
+      "message": "To be abandoned.\n\nThe code is in the patch:\n41685: feat(new suite generator): initial commit | https://gerrit.fd.io/r/c/csit/+/41685\n\nThe test groups and their assignment to infra should be defined in a separate document and published as a part of documentation in C-Dash:\nhttps://csit.fd.io/cdocs/",
+      "revId": "9ea5684646bd18786d38f7b6ab861e128d332585",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
