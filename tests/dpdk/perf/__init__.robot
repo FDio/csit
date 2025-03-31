@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -42,9 +42,11 @@
 | | ... | - stat_pre_trial - Statistics actions before traffic trials.
 | | ... | - stat_post_trial - Statistics actions after traffic trials.
 | |
+| | ${warmup_actions}= | Create List | noop
 | | ${stat_runtime}= | Create List | noop
 | | ${stat_pre_trial}= | Create List | noop
 | | ${stat_post_trial}= | Create List | noop
+| | Set Global Variable | ${warmup_actions}
 | | Set Global Variable | ${stat_runtime}
 | | Set Global Variable | ${stat_pre_trial}
 | | Set Global Variable | ${stat_post_trial}

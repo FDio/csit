@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -48,12 +48,14 @@
 | | ... | - stat_post_trial - Statistics actions after traffic trials.
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
+| | ${warmup_actions}= | Create List | noop
 | | ${stat_runtime}= | Create List
 | | ... | vpp-runtime | perf-stat-runtime
 | | ${stat_pre_trial}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace
 | | ${stat_post_trial}= | Create List
 | | ... | vpp-show-stats | vpp-show-packettrace
+| | Set Global Variable | ${warmup_actions}
 | | Set Global Variable | ${stat_runtime}
 | | Set Global Variable | ${stat_pre_trial}
 | | Set Global Variable | ${stat_post_trial}

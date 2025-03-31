@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,7 +73,10 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | # TRex needs a warmup to avoid unsent packets at half-max rate.
+| | FOR | ${action} | IN | @{warmup_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | # TRex needs max load warmup to avoid unsent packets in first search trial.
 | | Send traffic on tg
 | | ... | duration=1.0
 | | ... | rate=${max_rate}
@@ -170,6 +173,9 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | FOR | ${action} | IN | @{warmup_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -257,6 +263,9 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | FOR | ${action} | IN | @{warmup_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -480,6 +489,9 @@
 | |
 | | Set Test Variable | ${telemetry_rate} | mrr
 | | Set Test Variable | ${telemetry_export} | ${True}
+| | FOR | ${action} | IN | @{warmup_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${results}= | Send iPerf3 traffic at specified rate
 | | ... | ${trial_duration} | ${None} | ${None}
 | | ... | ${trial_multiplicity} | ${traffic_directions}
@@ -559,6 +571,9 @@
 | | ... | vpp-runtime-iperf3
 | | ${stat_pre_trial}= | Create List
 | | ... | vpp-runtime-iperf3 | vpp-clear-stats | vpp-enable-packettrace
+| | FOR | ${action} | IN | @{warmup_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | FOR | ${action} | IN | @{stat_runtime}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -683,6 +698,9 @@
 | | ${use_latency} = | Get Use Latency
 | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
 | | ... | cps | pps
+| | FOR | ${action} | IN | @{warmup_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${results} = | Send traffic at specified rate
 | | ... | rate=${max_rate}
 | | ... | trial_duration=${trial_duration}
