@@ -273,7 +273,7 @@ function compose_robot_arguments () {
     # - TAGS - Array variable holding selected tag boolean expressions.
     # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
     # - TEST_CODE - The test selection string from environment or argument.
-    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
+    # - SELECTION_MODE - Selection criteria [none, tags].
     # Variables set:
     # - ROBOT_ARGS - String holding part of all arguments for robot.
     # - EXPANDED_TAGS - Array of strings robot arguments compiled from tags.
@@ -302,17 +302,11 @@ function compose_robot_arguments () {
         if [[ ${tag} == "!"* ]]; then
             EXPANDED_TAGS+=("--exclude" "${tag#$"!"}")
         else
-            if [[ ${SELECTION_MODE} == "--test" ]]; then
-                EXPANDED_TAGS+=("--test" "${tag}")
-            else
+            if [ -n "${SELECTION_MODE}" ]; then
                 EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
             fi
         fi
     done
-
-    if [[ ${SELECTION_MODE} == "--test" ]]; then
-        EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
-    fi
 }
 
 
@@ -851,10 +845,7 @@ function run_robot () {
     # Run ALL generated test suites:
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
     # Run only tests defined by tag(s) out of generated tests:
-    # all_options+=("--include" "tag1ANDtag2ANDtag3")
-
-    # TODO: REMOVE
-    # all_options+=("${EXPANDED_TAGS[@]}")
+    all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
@@ -935,10 +926,12 @@ function select_tags () {
     # - BASH_FUNCTION_DIR - Directory with input files to process.
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
-    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
+    # - SELECTION_MODE - Selection criteria [tags, undefined].
 
     set -exuo pipefail
 
+<<<<<<< PATCH SET (c29df6 feat(core): cleanup bootstrap for new suite gen)
+=======
     # NIC SELECTION
     case "${TEST_CODE}" in
         *"1n-aws"* | *"1n-c6in"*)
@@ -1048,152 +1041,44 @@ function select_tags () {
 
     # Tag file directory shorthand.
     tfd="${JOB_SPECS_DIR}"
+>>>>>>> BASE      (28e3bf feat(new suite generator): initial commit)
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
         *"device"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
-            SELECTION_MODE="--test"
             ;;
         *"hoststack-daily"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/hoststack_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
             ;;
         *"ndrpdr-weekly"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/ndrpdr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
             ;;
         *"mrr-weekly"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
             ;;
         *"soak-weekly"* )
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/soak_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
             ;;
         *"report-iterative"* )
             test_sets=(${TEST_TAG_STRING//:/ })
-            # Run only one test set per run
-            report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
+            SELECTION_MODE="testset"
             ;;
         *"report-coverage"* )
             test_sets=(${TEST_TAG_STRING//:/ })
-            # Run only one test set per run
-            report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
-                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
-            SELECTION_MODE="--test"
+            SELECTION_MODE="testset"
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDethip4-ip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDethip6-ip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDeth-l2bdbasemaclrn"
-                                "mrrAND${default_nic}AND1cAND64bANDeth-l2xcbase"
-                                "!drv_af_xdp" "!drv_avf")
+                test_tag_array=("mrrAND1cAND64bANDethip4-ip4base")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
-            SELECTION_MODE="--include"
+            SELECTION_MODE="tags"
             ;;
     esac
-
-    # Blacklisting certain tags per topology.
-    #
-    # Reasons for blacklisting:
-    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
-    case "${TEST_CODE}" in
-        *"1n-vbox")
-            test_tag_array+=("!avf")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!flow")
-            ;;
-        *"1n-alt")
-            test_tag_array+=("!flow")
-            ;;
-        *"2n-icx")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-spr")
-            ;;
-        *"2n-zn2")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-alt")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-grc")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-emr")
-            ;;
-        *"3n-emr")
-            ;;
-        *"3n-oct")
-            ;;
-        *"3n-icx")
-            test_tag_array+=("!ipsechw")
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"3n-snr")
-            ;;
-        *"3n-icxd")
-            ;;
-        *"3na-spr")
-            ;;
-        *"3nb-spr")
-            ;;
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-c7gn" | *"3n-c7gn")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"-x-2n"* | *"-x-3n"*)
-            ;;
-    esac
-
-    # We will add excluded NICs.
-    test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
 
     TAGS=()
     prefix=""
-    if [[ "${TEST_CODE}" != *"daily"* ]]; then
-        if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-            if [[ "${TEST_CODE}" != *"device"* ]]; then
-                # Automatic prefixing for VPP perf jobs to limit the NIC used.
-                if [[ "${TEST_TAG_STRING-}" != *"nic_"* ]]; then
-                    prefix="${default_nic}AND"
-                fi
-            fi
-        fi
-    fi
     set +x
     for tag in "${test_tag_array[@]}"; do
         if [[ "${tag}" == "!"* ]]; then
