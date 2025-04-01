@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cb94a31_df764f6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-01T12:17:19Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDethip4-ip4scale2m-rnd mrrANDnic_intel-e810cqANDdrv_avfAND1cANDethip4tcp-nat44ed-h65536-p63-s4128768-tput nic_intel-e810cqAND1cANDethip4-ip4base-2vhost-iperf3",
+      "revId": "def69e0e643672b200e322926bad0ba61d62817a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
