@@ -392,7 +392,9 @@ class DUTSetup:
         :type pci_addrs: list
         """
         for pci_addr in pci_addrs:
-            DUTSetup.pci_driver_unbind(node, pci_addr)
+            cur_driver = DUTSetup.get_pci_dev_driver(node, pci_addr)
+            if not cur_driver:
+                DUTSetup.pci_driver_unbind(node, pci_addr)
             DUTSetup.pci_driver_bind(node, pci_addr, driver)
 
     @staticmethod
