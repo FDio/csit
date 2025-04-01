@@ -269,6 +269,18 @@ class Constants:
     # Whether to use latency streams in main search trials.
     PERF_USE_LATENCY = get_pessimistic_bool_from_env("PERF_USE_LATENCY")
 
+    # Whether to apply low-load trial to avoid flooding other machines.
+    INFRA_WARMUP_DURATION = get_float_from_env("INFRA_WARMUP_DURATION", 0)
+
+    # Load just high enough to show all MAC addresses.
+    INFRA_WARMUP_RATE = get_float_from_env("INFRA_WARMUP_RATE", 300.0)
+
+    # Whether to warm-up the traffic generator with high load.
+    TG_WARMUP_DURATION = get_float_from_env("TG_WARMUP_DURATION", 1.0)
+
+    ## TG warmup load tweaking should not be needed, default max rate is best.
+    #TG_WARMUP_RATE = get_float_from_env("TG_WARMUP_RATE")
+
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
         "PERF_TRIAL_LATENCY_DURATION", 5.0

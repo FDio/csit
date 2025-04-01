@@ -65,23 +65,26 @@
 
 | Additional Statistics Action For infra-warmup
 | | [Documentation]
-| | ... | Additional Statistics Action for infra warmup.
+| | ... | Optional first warmup trial.
+| |
+| | ... | In environments that may leak traffic until switches learn,
+| | ... | the first-most trial has to be tone at low load.
+| | ... | This is skipped if duration is zero, useful for environments
+| | ... | that cannot leak test traffic.
 | |
 | | ... | See documentation of the called keyword for required test variables.
 | |
+| | ${infra_warmup_duration} = | Get Infra Warm Up Duration
+| | Return From Keyword If | not ${infra_warmup_duration}
+| | ${infra_warmup_rate} = | Get Infra Warm Up Rate
 | | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${ramp_up_duration} = | Get Ramp Up Duration
-| | ${ramp_up_rate} = | Get Ramp Up Rate
-| | ${runtime_duration} = | Get Runtime Duration
-| | ${runtime_rate} = | Get Runtime Rate
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
-| | ${use_latency} = | Get Use Latency
 | | Send traffic on tg
-| | ... | duration=${5}
-| | ... | rate=${253}
+| | ... | duration=${infra_warmup_duration}
+| | ... | rate=${infra_warmup_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
 | | ... | async_call=${False}
@@ -92,8 +95,8 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | duration_limit=${0.0}
-| | ... | ramp_up_duration=${ramp_up_duration}
-| | ... | ramp_up_rate=${ramp_up_rate}
+| | ... | ramp_up_duration=${0}
+| | ... | ramp_up_rate=${0}
 
 | Additional Statistics Action For noop
 | | [Documentation]
