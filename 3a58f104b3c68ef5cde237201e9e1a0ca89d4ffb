@@ -33,6 +33,23 @@
       "message": "csit-2n-icx-perftest nic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch",
       "revId": "3a58f104b3c68ef5cde237201e9e1a0ca89d4ffb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84c0ff0d_58c95cf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-04-01T18:00:26Z",
+      "side": 1,
+      "message": "i do not see a reason why TG and Infra has to be implemented in 2 different ways (one is single KW, and second is an action)",
+      "revId": "3a58f104b3c68ef5cde237201e9e1a0ca89d4ffb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
