@@ -211,13 +211,9 @@ class Constants:
 
     # TRex set number of RX/TX descriptors.
     # Set to 0 to use default values.
-    TREX_TX_DESCRIPTORS_COUNT = get_int_from_env(
-        "TREX_TX_DESCRIPTORS_COUNT", 0
-    )
+    TREX_TX_DESCRIPTORS_COUNT = get_int_from_env("TREX_TX_DESCRIPTORS_COUNT", 0)
 
-    TREX_RX_DESCRIPTORS_COUNT = get_int_from_env(
-        "TREX_RX_DESCRIPTORS_COUNT", 0
-    )
+    TREX_RX_DESCRIPTORS_COUNT = get_int_from_env("TREX_RX_DESCRIPTORS_COUNT", 0)
 
     # Trex force start regardless ports state.
     TREX_SEND_FORCE = get_pessimistic_bool_from_env("TREX_SEND_FORCE")
@@ -228,9 +224,7 @@ class Constants:
     )
 
     # TRex port driver default vfio-pci or set to igb_uio.
-    TREX_PORT_DRIVER = get_str_from_env(
-        "TREX_PORT_DRIVER", "vfio-pci"
-    )
+    TREX_PORT_DRIVER = get_str_from_env("TREX_PORT_DRIVER", "vfio-pci")
 
     # Graph node variant value
     GRAPH_NODE_VARIANT = get_str_from_env("GRAPH_NODE_VARIANT", "")
@@ -248,10 +242,11 @@ class Constants:
     PERF_STAT_EVENTS = get_str_from_env(
         "PERF_STAT_EVENTS",
         "cpu-clock,context-switches,cpu-migrations,page-faults,"
-        "cycles,instructions,branches,branch-misses,L1-icache-load-misses")
+        "cycles,instructions,branches,branch-misses,L1-icache-load-misses",
+    )
 
     # Equivalent to ~0 used in vpp code
-    BITWISE_NON_ZERO = 0xffffffff
+    BITWISE_NON_ZERO = 0xFFFFFFFF
 
     # Default path to VPP API socket.
     SOCKSVR_PATH = "/run/vpp/api.sock"
@@ -276,7 +271,8 @@ class Constants:
 
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
-        "PERF_TRIAL_LATENCY_DURATION", 5.0)
+        "PERF_TRIAL_LATENCY_DURATION", 5.0
+    )
 
     # For some testbeds TG takes longer than usual to start sending traffic.
     # This constant [s] allows longer wait, without affecting
@@ -284,9 +280,7 @@ class Constants:
     PERF_TRIAL_STL_DELAY = get_float_from_env("PERF_TRIAL_STL_DELAY", 0.0)
 
     # ASTF usually needs a different value for the delay.
-    PERF_TRIAL_ASTF_DELAY = get_float_from_env(
-        "PERF_TRIAL_ASTF_DELAY", 0.112
-    )
+    PERF_TRIAL_ASTF_DELAY = get_float_from_env("PERF_TRIAL_ASTF_DELAY", 0.112)
 
     # Number of data frames in TPUT transaction, used both by TCP and UDP.
     # The value should be 33 to keep historic continuity for UDP TPUT tests,
@@ -307,9 +301,7 @@ class Constants:
     DUT1_UUID = get_str_from_env("DUT1_UUID", "")
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        "FAIL_ON_CRC_MISMATCH"
-    )
+    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
 
     # Default IP4 prefix length (if not defined in topology file)
     DEFAULT_IP4_PREFIX_LENGTH = "24"
@@ -389,7 +381,7 @@ class Constants:
         "100ge2p1cx6dx": "Mellanox-CX6DX",
         "200ge2p1cx7veat": "Mellanox-CX7VEAT",
         "200ge6p3cx7veat": "Mellanox-CX7VEAT",
-        "100ge2p1a063":"Cavium-A063-100G",
+        "100ge2p1a063": "Cavium-A063-100G",
         "1ge1p82540em": "virtual",
     }
 
@@ -446,68 +438,58 @@ class Constants:
         "Intel-X710": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Intel-XL710": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Intel-XXV710": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Intel-E810XXV": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Intel-E822CQ": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Intel-E823C": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Intel-E810CQ": {
             "vfio-pci": "dpdk_plugin.so",
             "avf": "dev_iavf_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
-        "Amazon-Nitro-50G": {
-            "vfio-pci": "dpdk_plugin.so"
-        },
-        "Amazon-Nitro-100G": {
-            "vfio-pci": "dpdk_plugin.so"
-        },
-        "Amazon-Nitro-200G": {
-            "vfio-pci": "dpdk_plugin.so"
-        },
+        "Amazon-Nitro-50G": {"vfio-pci": "dpdk_plugin.so"},
+        "Amazon-Nitro-100G": {"vfio-pci": "dpdk_plugin.so"},
+        "Amazon-Nitro-200G": {"vfio-pci": "dpdk_plugin.so"},
         "Mellanox-CX556A": {
             "rdma-core": "rdma_plugin.so",
             "mlx5_core": "dpdk_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Mellanox-CX6DX": {
             "rdma-core": "rdma_plugin.so",
             "mlx5_core": "dpdk_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
         "Mellanox-CX7VEAT": {
             "rdma-core": "rdma_plugin.so",
             "mlx5_core": "dpdk_plugin.so",
-            "af_xdp": "af_xdp_plugin.so"
+            "af_xdp": "af_xdp_plugin.so",
         },
-        "Cavium-A063-100G": {
-            "vfio-pci": "dev_octeon_plugin.so"
-        },
-        "virtual": {
-            "vfio-pci": "dpdk_plugin.so"
-        },
+        "Cavium-A063-100G": {"vfio-pci": "dev_octeon_plugin.so"},
+        "virtual": {"vfio-pci": "dpdk_plugin.so"},
     }
 
     # Tags to differentiate tests for different NIC driver.
@@ -627,9 +609,7 @@ class Constants:
         "Intel-XL710": "HW_DH895xcc",
     }
 
-    DEVICE_TYPE_TO_KEYWORD = {
-        "scapy": None
-    }
+    DEVICE_TYPE_TO_KEYWORD = {"scapy": None}
 
     PERF_TYPE_TO_KEYWORD = {
         "mrr": "Traffic should pass with maximum rate",
@@ -638,24 +618,24 @@ class Constants:
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {
-        "mrr": u'''fication:** In MaxReceivedRate tests TG sends traffic at \\
-| ... | line rate and reports total received packets over trial period. \\''',
-        "ndrpdr": u'''rification:** TG finds and reports throughput NDR (Non \\
+        "mrr": """fication:** In MaxReceivedRate tests TG sends traffic at \\
+| ... | line rate and reports total received packets over trial period. \\""",
+        "ndrpdr": """rification:** TG finds and reports throughput NDR (Non \\
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \\
 | ... | (Partial Drop Rate) with non-zero packet loss tolerance (LT) \\
 | ... | expressed in percentage of packets transmitted. NDR and PDR are \\
 | ... | discovered for different Ethernet L2 frame sizes using MLRsearch \\
-| ... | library.''',
-        "soak": u'''rification:** TG sends traffic at dynamically computed \\
+| ... | library.""",
+        "soak": """rification:** TG sends traffic at dynamically computed \\
 | ... | rate as PLRsearch algorithm gathers data and improves its estimate \\
 | ... | of a rate at which a prescribed small fraction of packets \\
 | ... | would be lost. After set time, the serarch stops \\
-| ... | and the algorithm reports its current estimate. \\''',
+| ... | and the algorithm reports its current estimate. \\""",
     }
 
     PERF_TYPE_TO_TEMPLATE_DOC_VER = {
-        "mrr": u'''Measure MaxReceivedRate for ${frame_size}B frames \\
-| | ... | using burst trials throughput test. \\''',
+        "mrr": """Measure MaxReceivedRate for ${frame_size}B frames \\
+| | ... | using burst trials throughput test. \\""",
         "ndrpdr": "Measure NDR and PDR values using MLRsearch algorithm.",
         "soak": "Estimate critical rate using PLRsearch algorithm. \\",
     }
