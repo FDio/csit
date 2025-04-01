@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bcc232b_e79a2390",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-01T16:48:25Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_intel-e810cqANDdrv_avfAND1cAND64bANDeth_l2patch",
+      "revId": "3a58f104b3c68ef5cde237201e9e1a0ca89d4ffb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
