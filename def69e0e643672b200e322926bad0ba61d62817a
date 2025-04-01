@@ -33,6 +33,23 @@
       "message": "Only 1518B test failed (unrelated issue, I forgot to filter it out). Now ndrpdr.\n\ncsit-2n-icx-perftest ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDethip4-ip4scale2m-rnd ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cAND100bANDethip4tcp-nat44ed-h65536-p63-s4128768-tput",
       "revId": "def69e0e643672b200e322926bad0ba61d62817a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22257684_24ad9a92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-01T13:41:55Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest soakANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDethip4-ip4scale2m-rnd soakANDnic_intel-e810cqANDdrv_avfAND1cAND100bANDethip4tcp-nat44ed-h65536-p63-s4128768-tput",
+      "revId": "def69e0e643672b200e322926bad0ba61d62817a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
