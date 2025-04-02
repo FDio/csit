@@ -63,6 +63,7 @@
 | | ... | rate=${telemetry_rate} | export=${False}
 | | Stop traffic on tg
 
+| # TODO: Delete this keyword (unused in fd.io) when downstream stops using it.
 | Additional Statistics Action For infra-warmup
 | | [Documentation]
 | | ... | Additional Statistics Action for infra warmup.

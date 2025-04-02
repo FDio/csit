@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -40,6 +40,40 @@
 | | Return From Keyword If | ${use_latency} | ${False}
 | | ${disable_latency} = | Get Variable Value | \${disable_latency} | ${False}
 | | Return From Keyword | ${disable_latency}
+
+| Get Infra Warmup Duration
+| | [Documentation]
+| | ... | Return value of \${infra_warmup_duration} variable,
+| | ... | if not defined, return ${0.0}, which implies no infra warmup trial.
+| | ... | Note that scale traffic profiles may need higher values than base.
+| |
+| | ... | The return value controls the duration of optional infra warmup trial,
+| | ... | zero means the trial is skipped.
+| | ... | Return type: float.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${infra_warmup_duration} = \| Get Infra Warmup Duration \|
+| |
+| | ${duration} = | Get Variable Value | \${infra_warmup_duration} | ${0.0}
+| | Return From Keyword | ${duration}
+
+| Get Infra Warmup Rate
+| | [Documentation]
+| | ... | Return value of \${infra_warmup_rate} variable,
+| | ... | if not defined, return ${300.0}.
+| | ... | Note that scale traffic profiles may need higher values than base.
+| |
+| | ... | The return value controls the rate (TPS unidir) of infra warmup trial,
+| | ... | Return type: float.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${infra_warmup_rate} = \| Get Infra Warmup Rate \|
+| |
+| | ${rate} = | Get Variable Value | \${infra_warmup_rate} | ${0.0}
+| | Return From Keyword If | ${rate} | ${rate}
+| | Return From Keyword | ${300.0}
 
 | Get Max Rate
 | | [Documentation]
@@ -268,7 +302,7 @@
 | Get Runtime Duration
 | | [Documentation]
 | | ... | Return value of \${runtime_duration} variable,
-| | ... | if not defined return ${1.0}.
+| | ... | if not defined, return ${1.0}.
 | |
 | | ... | The return value controls the duration of runtime trial,
 | | ... | which also acts as a warmup. Usually one second is enough,
@@ -285,7 +319,7 @@
 | Get Runtime Rate
 | | [Documentation]
 | | ... | Return value of \${runtime_rate} variable,
-| | ... | if not defined return the max rate.
+| | ... | if not defined, return the max rate.
 | |
 | | ... | The return value controls the rate (TPS unidir) of runtime trial,
 | | ... | which also acts as a warmup. No plans to ever use a different rate,
@@ -298,6 +332,39 @@
 | |
 | | ${runtime_rate} = | Get Variable Value | \${runtime_rate} | ${0.0}
 | | Return From Keyword If | ${runtime_rate} | ${runtime_rate}
+| | Run Keyword And Return | Get Max Rate
+
+| Get Tg Warmup Duration
+| | [Documentation]
+| | ... | Return value of \${tg_warmup_duration} variable,
+| | ... | if not defined, return ${1.0}, which implies short tg warmup trial.
+| | ... | Note that even scale traffic profiles do not need longer trial.
+| |
+| | ... | The return value controls the duration of tg warmup trial,
+| | ... | zero means the trial is skipped.
+| | ... | Return type: float.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${tg_warmup_duration} = \| Get Tg Warmup Duration \|
+| |
+| | ${duration} = | Get Variable Value | \${tg_warmup_duration} | ${1.0}
+| | Return From Keyword | ${duration}
+
+| Get Tg Warmup Rate
+| | [Documentation]
+| | ... | Return value of \${tg_warmup_rate} variable,
+| | ... | if not defined, return the max rate.
+| |
+| | ... | The return value controls the rate (TPS unidir) of tg warmup trial,
+| | ... | Return type: float.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${tg_warmup_rate} = \| Get Tg Warmup Rate \|
+| |
+| | ${rate} = | Get Variable Value | \${tg_warmup_rate} | ${0.0}
+| | Return From Keyword If | ${rate} | ${rate}
 | | Run Keyword And Return | Get Max Rate
 
 | Get Traffic Directions
@@ -377,7 +444,7 @@
 | Get Use Latency
 | | [Documentation]
 | | ... | Return value of \${use_latency} variable,
-| | ... | if not defined return the value from Constants.
+| | ... | if not defined, return the value from Constants.
 | |
 | | ... | The return value controls whether latency streams are active
 | | ... | during the main search.
