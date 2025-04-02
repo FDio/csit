@@ -31,8 +31,8 @@
 | ${quic_crypto_engine}= | nocrypto
 | ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
-| ... | rxd=${256}
-| ... | txd=${256}
+| ... | rxd=${512}
+| ... | txd=${512}
 | ... | phy_cores=${1}
 | ... | app_api_socket=/run/vpp/app_ns_sockets/default
 | ... | tcp_cc_algo=cubic
@@ -88,7 +88,7 @@
 | ... | use_app_socket_api=${True}
 | &{iperf3_server_attr}=
 | ... | role=server
-| ... | cpu_cnt=${1}
+| ... | cpu_cnt=${2}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -98,7 +98,7 @@
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
-| ... | cpu_cnt=${1}
+| ... | cpu_cnt=${2}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
