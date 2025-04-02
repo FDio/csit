@@ -284,8 +284,8 @@ class HoststackUtil():
         program_path = program.get(u"path", u"")
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = u"" if program_name == u"nginx" else \
-                                             f"taskset --cpu-list {core_list}"
-        cmd = f"nohup {shell_cmd} \'{env_vars}{taskset_cmd} " \
+                                             f"taskset --cpu-list 35,36"
+        cmd = f"nohup {taskset_cmd} {shell_cmd} \'{env_vars} " \
               f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
@@ -345,6 +345,7 @@ class HoststackUtil():
 
         cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
         try:
+            # sleep(20)
             exec_cmd(node, cmd, sudo=True)
         except:
             sleep(180)
