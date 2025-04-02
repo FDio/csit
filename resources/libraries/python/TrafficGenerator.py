@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1590,7 +1590,7 @@ class OptimizedSearch:
         config.min_load = min_load
         config.max_load = max_load
         config.search_duration_max = search_duration_max
-        config.warmup_duration = 1.0
+        config.warmup_duration = 0.0
         algorithm = MultipleLossRatioSearch(config)
         results = algorithm.search(measurer=tg_instance, debug=logger.debug)
         return [results[goal] for goal in goals]

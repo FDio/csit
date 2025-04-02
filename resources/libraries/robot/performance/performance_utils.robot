@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,6 +31,9 @@
 | Documentation
 | ... | Performance suite keywords - utilities to find and verify NDR and PDR.
 | ... | See performance_vars.robot for values accessed via there.
+| ... | All top-level keywords call infra warmup,  all except MRR (and iperf)
+| ... | also call TG warmup. MRR has early runtime trial at max rate,
+| ... | so it does not need separate TG warmup.
 
 *** Variables ***
 | # Variable holding multiplicator of main heap size. By default it is set to 1
@@ -39,6 +42,76 @@
 | ${heap_size_mult}= | ${1}
 
 *** Keywords ***
+| Perform Infra Warmup
+| | [Documentation]
+| | ... | Optional trial at low load, needed to prevent flooding in some labs.
+| | ... | This is skipped if duration is zero, default for isolated labs.
+| |
+| | ... | See documentation of the called keyword for required test variables.
+| |
+| | ${duration} = | Get Infra Warm Up Duration
+| | Return From Keyword If | not ${duration}
+| | ${rate} = | Get Infra Warm Up Rate
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${transaction_type} = | Get Transaction Type
+| | Send traffic on tg
+| | ... | duration=${duration}
+| | ... | rate=${rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | async_call=${False}
+| | ... | ppta=${ppta}
+| | ... | use_latency=${False}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_type=${transaction_type}
+| | ... | duration_limit=${0.0}
+| | ... | ramp_up_duration=${0}
+| | ... | ramp_up_rate=${0}
+
+| Perform Tg Warmup
+| | [Documentation]
+| | ... | Warmup trial at high load, needed by tests where telemetry is late.
+| |
+| | ... | Some traffic generators need additional warmup at high load,
+| | ... | otherwise they suffer from too much unsent packets,
+| | ... | destabilizing the tests (soak) sensitive to first search trial result.
+| | ... | This is skipped if duration is zero, useful for traffic generators
+| | ... | that are known to never need such a warmup.
+| |
+| | ... | See documentation of the called keyword for required test variables.
+| |
+| | # TODO: Check if low-rate is enough to avoid unsent packets.
+| | # TODO: If it is, figure out how to skip tg warmup if infra warmup happened.
+| |
+| | ${duration} = | Get Tg Warm Up Duration
+| | Return From Keyword If | not ${duration}
+| | ${rate} = | Get Tg Warm Up Rate
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${transaction_type} = | Get Transaction Type
+| | Send traffic on tg
+| | ... | duration=${duration}
+| | ... | rate=${rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | async_call=${False}
+| | ... | ppta=${ppta}
+| | ... | use_latency=${False}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_type=${transaction_type}
+| | ... | duration_limit=${0.0}
+| | ... | ramp_up_duration=${0}
+| | ... | ramp_up_rate=${0}
+
 | Find critical load using PLRsearch
 | | [Documentation]
 | | ... | Find boundaries for troughput (of hardcoded target loss ratio)
@@ -73,22 +146,8 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | # TRex needs a warmup to avoid unsent packets at half-max rate.
-| | Send traffic on tg
-| | ... | duration=1.0
-| | ... | rate=${max_rate}
-| | ... | frame_size=${frame_size}
-| | ... | traffic_profile=${traffic_profile}
-| | ... | async_call=${False}
-| | ... | duration_limit=${1.0}
-| | ... | ppta=${ppta}
-| | ... | traffic_directions=${traffic_directions}
-| | ... | transaction_duration=${transaction_duration}
-| | ... | transaction_scale=${transaction_scale}
-| | ... | transaction_type=${transaction_type}
-| | ... | use_latency=False
-| | ... | ramp_up_duration=${0.0}
-| | ... | ramp_up_rate=${0.0}
+| | Perform Infra Warmup
+| | Perform Tg Warmup
 | | # Ready for main search.
 | | ${average} | ${stdev} = | Perform soak search
 | | ... | frame_size=${frame_size}
@@ -170,6 +229,8 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | Perform Infra Warmup
+| | Perform Tg Warmup
 | | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -257,6 +318,8 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | Perform Infra Warmup
+| | Perform Tg Warmup
 | | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -383,7 +446,7 @@
 
 | Send traffic at specified rate
 | | [Documentation]
-| | ... | Perform a warmup, show runtime counters during it.
+| | ... | Perform telemetry trials, read results during traffic.
 | | ... | Then send traffic at specified rate, possibly multiple trials.
 | | ... | Show various DUT stats, optionally also packet trace.
 | | ... | Return list of measured receive rates.
@@ -480,6 +543,7 @@
 | |
 | | Set Test Variable | ${telemetry_rate} | mrr
 | | Set Test Variable | ${telemetry_export} | ${True}
+| | Perform Infra Warmup
 | | ${results}= | Send iPerf3 traffic at specified rate
 | | ... | ${trial_duration} | ${None} | ${None}
 | | ... | ${trial_multiplicity} | ${traffic_directions}
@@ -490,7 +554,7 @@
 
 | Send iPerf3 traffic at specified rate
 | | [Documentation]
-| | ... | Perform a warmup, show runtime counters during it.
+| | ... | Perform telemetry trials, read results during traffic.
 | | ... | Then send traffic at specified rate, possibly multiple trials.
 | | ... | Show various DUT stats, optionally also packet trace.
 | | ... | Return list of measured receive rates.
@@ -683,6 +747,7 @@
 | | ${use_latency} = | Get Use Latency
 | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
 | | ... | cps | pps
+| | Perform Infra Warmup
 | | ${results} = | Send traffic at specified rate
 | | ... | rate=${max_rate}
 | | ... | trial_duration=${trial_duration}
