@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -85,10 +85,11 @@ function download_ubuntu_artifacts () {
                    die "Retrieval of available VPP packages failed."
                }
     if [ -z "${VPP_VERSION-}" ]; then
-        # If version is not specified, find out the most recent version
+        # If version is not specified, find out the most recent version.
+        # Temporarily, ignore "octeon" versions, as we do not test that yet.
         VPP_VERSION=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
                       -o Dir::Etc::SourceParts=${apt_fdio_repo_file} \
-                      --no-all-versions show vpp | grep Version: | \
+                      show vpp | grep Version: | fgrep -v octeon | head -1 | \
                       cut -d " " -f 2) || {
                           die "Retrieval of most recent VPP version failed."
                       }
