@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c3e003_95d9c840",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-03T12:03:42Z",
+      "side": 1,
+      "message": "Ready.\nTested on Sandbox, which needed [0] and [1], as Sandbox is not quite ready to test logic run only in periodic jobs.\nThe order of packages is reasonable, as confirmed by patchset #3 with its output visible in sandbox console log [2].\n\n[0] 42647: Experiment: Minimal 2n-grc daily | https://gerrit.fd.io/r/c/csit/+/42647\n[1] 42648: Experiment: Test daily in sandbox | https://gerrit.fd.io/r/c/ci-management/+/42648\n[2] https://jenkins.fd.io/sandbox/job/csit-vpp-perf-mrr-daily-master-2n-grc/7/console",
+      "revId": "7b8cedbc425a687140945d64bd9c76658bec3054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
