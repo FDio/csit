@@ -1384,6 +1384,9 @@ function set_environment_variables () {
         *"-x-2n"* | *"-x-3n"* )
             export TREX_CORE_COUNT=14
             export TREX_PORT_MTU=9000
+            # Be gentle on infra.
+            export INFRA_WARMUP_DURATION=5
+            export INFRA_WARMUP_RATE=253
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.12
             ;;
