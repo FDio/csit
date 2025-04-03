@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6f9c7a5_94f41802",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-03T11:42:19Z",
+      "side": 1,
+      "message": "Need earlier fix so VPP_VERSION does not contain octeon.",
+      "revId": "f34abc8e424bf934d07e8910bad302814e9f8b26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
