@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -101,7 +101,7 @@ function download_ubuntu_artifacts () {
             die "apt-cache show on ${package} failed."
         }
         ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" | \
-              head -1) || true
+              fgrep -v octeon | head -1) || true
         if [ -n "${ver-}" ]; then
             echo "Found '${VPP_VERSION-}' among '${package}' versions."
             ver=$(echo "$ver" | cut -d " " -f 2)
