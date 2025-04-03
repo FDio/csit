@@ -56,38 +56,6 @@ function checkout_csit_for_vpp () {
 
     set -exuo pipefail
 
-    case "${1}" in
-        "stable/"*)
-            branch_id="origin/${1/stable\//oper-rls}"
-            ;;
-        "rls"*)
-            branch_id="origin/oper-${1}"
-            ;;
-        *)  # This includes "master".
-            branch_id="origin/oper"
-    esac
-    # Get the latest verified version of the required branch.
-    pushd "${CSIT_DIR}" || die
-    csit_branches="$(git branch -r | grep -E "${branch_id}-[0-9]+")" || {
-        # We might be in time when VPP has cut their new branch,
-        # but CSIT not, yet. Use master oper branch in this case.
-        csit_branches="$(git branch -r | grep -E "origin/oper-[0-9]+")" || die
-    }
-    # The xargs is there just to remove leading (or trailing) spaces.
-    csit_branch="$(echo "${csit_branches}" | tail -n 1 | xargs)" || die
-    if [[ -z "${csit_branch}" ]]; then
-        die "No verified CSIT branch found - exiting."
-    fi
-    # Remove 'origin/' from the branch name.
-    csit_branch="${csit_branch#origin/}" || die
-    override_ref="${CSIT_REF-}"
-    if [[ -n "${override_ref}" ]]; then
-        git fetch --depth=1 https://gerrit.fd.io/r/csit "${override_ref}" || die
-        git checkout FETCH_HEAD || die
-    else
-        git checkout "${csit_branch}" || die
-    fi
     git status || die
     git log -1 || die
-    popd || die
 }
