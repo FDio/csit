@@ -290,7 +290,9 @@ class HoststackUtil():
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
-            return DUTSetup.get_pid(node, program_name)[0]
+            pid = DUTSetup.get_pid(node, program_name)[0]
+            exec_cmd(node, f"numastat -p {pid}", sude=True)
+            return pid
         except RuntimeError:
             stdout_log, stderr_log = \
                 HoststackUtil.get_hoststack_test_program_logs(node,
