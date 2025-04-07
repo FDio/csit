@@ -86,7 +86,7 @@ class ExportJson():
         return test_type
 
     def export_pending_data(self):
-        """Write the accumulated data to disk.
+        """Write the data to disk, raise error if invalid.
 
         Create missing directories.
         Reset both file path and data to avoid writing multiple times.
@@ -97,23 +97,27 @@ class ExportJson():
 
         If no file path is set, do not write anything,
         as that is the failsafe behavior when caller from unexpected place.
-        Aso do not write anything when EXPORT_JSON constant is false.
+        Also do not write anything when EXPORT_JSON constant is false.
 
-        Regardless of whether data was written, it is cleared.
+        :raises: ValidationError if data export does not conform to schema.
         """
+        error = None
         if not Constants.EXPORT_JSON or not self.file_path:
             self.data = None
             self.file_path = None
             return
         new_file_path = write_output(self.file_path, self.data)
-        # Data is going to be cleared (as a sign that export succeeded),
-        # so this is the last chance to detect if it was for a test case.
-        is_testcase = "result" in self.data
+        if "result" in self.data:
+            error = validate(new_file_path, self.validators["tc_info"])
+            if error:
+                # Mark as failed and re-export.
+                self.data["passed"] = False
+                self.data["message"] = str(error)
+                write_output(self.file_path, self.data)
         self.data = None
-        # Validation for output goes here when ready.
         self.file_path = None
-        if is_testcase:
-            validate(new_file_path, self.validators["tc_info"])
+        if error:
+            raise error
 
     def warn_on_bad_export(self):
         """If bad state is detected, log a warning and clean up state."""
