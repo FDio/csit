@@ -285,9 +285,9 @@ class HoststackUtil():
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = u"" if program_name == u"nginx" else \
                                              f"taskset --cpu-list {core_list}"
-        cmd = f"nohup {taskset_cmd} {shell_cmd} \'{env_vars} " \
-              f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
-              f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
+        cmd = f"nohup taskset --cpu-list 0 {shell_cmd} \'{env_vars}" \
+              f" {taskset_cmd} {program_path}{program_name} {args}" \
+              f" >/tmp/{program_name}_stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
             pid = DUTSetup.get_pid(node, program_name)[0]
