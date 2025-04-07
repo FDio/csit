@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -52,11 +52,12 @@ def validate(file_path, validator):
     :param validator: Validator instance to use for validation.
     :type file_path: str
     :type validator: jsonschema.validators.Validator
-    :raises ValidationError: If schema validation fails.
+    :returns: None if valid, error if invalid.
+    :rtype: Optional[ValidationError]
     """
     with open(file_path, "rt", encoding="utf-8") as file_in:
         instance = json.load(file_in)
     error = jsonschema.exceptions.best_match(validator.iter_errors(instance))
     if error is not None:
         print(json.dumps(instance, indent=4))
-        raise error
+    return error
