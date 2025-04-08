@@ -78,6 +78,7 @@ function download_ubuntu_artifacts () {
         die "${apt_fdio_repo_file} not found, \
             repository installation was not successful."
     fi
+    cat "${apt_fdio_repo_file}"
 
     pkgs=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
                -o Dir::Etc::SourceParts=${apt_fdio_repo_file} dumpavail \
