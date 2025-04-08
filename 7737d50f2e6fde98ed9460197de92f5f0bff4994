@@ -56,6 +56,30 @@
       },
       "revId": "7737d50f2e6fde98ed9460197de92f5f0bff4994",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "683e8935_c3ccd4c2",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3139
+      },
+      "writtenOn": "2025-04-08T14:59:50Z",
+      "side": 1,
+      "message": "As a start the following changes were added separate gerrit change (https://gerrit.fd.io/r/c/csit/+/42641). It affects only tcpbase-ldpreload-iperf at the first step.\nCopyright change has been remove because there is no need to do it in this one patch.",
+      "parentUuid": "35a480dc_bfc98705",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "7737d50f2e6fde98ed9460197de92f5f0bff4994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
