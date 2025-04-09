@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -100,7 +100,8 @@ def append_mrr_value(mrr_value, mrr_unit, bandwidth_value=None,
         bandwidth_unit="bps"):
     """Store mrr value to proper place so it is dumped into json.
 
-    The value is appended only when unit is not empty.
+    The value is appended only when unit is not empty
+    and the value is not negative, as otherwise results would fail valiadtion.
 
     :param mrr_value: Forwarding rate from MRR trial.
     :param mrr_unit: Unit of measurement for the rate.
@@ -110,7 +111,7 @@ def append_mrr_value(mrr_value, mrr_unit, bandwidth_value=None,
     :type bandwidth_value: Optional[float]
     :type bandwidth_unit: Optional[str]
     """
-    if not mrr_unit:
+    if not mrr_unit or mrr_value < 0:
         return
     data = get_export_data()
     data["result"]["type"] = "mrr"
