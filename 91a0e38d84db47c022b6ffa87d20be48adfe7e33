@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a22740e_96330bec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-10T10:24:44Z",
+      "side": 1,
+      "message": "Currently, ETL does not actually handle the \"unknown\" type, so merging this would cause errors. When ETL accepts \"unknown\", this can be merged. If we change the model to disallow \"unknown\", this can be abandoned.",
+      "revId": "91a0e38d84db47c022b6ffa87d20be48adfe7e33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
