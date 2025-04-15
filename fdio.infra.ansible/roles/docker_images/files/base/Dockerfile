@@ -142,7 +142,8 @@ RUN python3 -m venv venv \
         tomli==2.0.1 \
         tomlkit==0.13.0 \
         typing_extensions==4.12.2 \
-        urllib3==2.2.2
+        urllib3==2.2.2\
+        meson==0.64.1
 
 RUN useradd -rm -d /home/testuser -s /bin/bash -g 1000 -G sudo testuser \
  && echo 'testuser:Csit1234' | chpasswd

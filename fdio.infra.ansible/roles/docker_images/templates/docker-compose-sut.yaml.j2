@@ -14,7 +14,7 @@ services:
     network_mode: "host"
     privileged: true
     restart: "always"
-    shm_size: "4G"
+    shm_size: "8G"
     volumes:
       - type: "bind"
         source: "/dev/hugepages"
@@ -45,7 +45,7 @@ services:
     network_mode: "host"
     privileged: true
     restart: "always"
-    shm_size: "4G"
+    shm_size: "8G"
     volumes:
       - type: "bind"
         source: "/dev/hugepages"
