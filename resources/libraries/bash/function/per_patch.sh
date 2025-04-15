@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
-# Copyright (c) 2023 PANTHEON.tech s.r.o.
+# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2025 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,6 +32,7 @@ function build_vpp_ubuntu () {
     # - MAKE_PARALLEL_FLAGS - Make flags when building VPP.
     # - MAKE_PARALLEL_JOBS - Number of cores to use when building VPP.
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
+    # - VPP_PLATFORM - Platform optiomizaion string.
     # Directories updated:
     # - ${VPP_DIR} - Whole subtree, many files (re)created by the build process.
     # Functions called:
@@ -51,10 +52,42 @@ function build_vpp_ubuntu () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
-    make UNATTENDED=y pkg-verify || die "VPP build with make pkg-verify failed."
+    if [ -z "${VPP_PLATFORM-}" ]; then
+        make_params="UNATTENDED=y"
+    else
+        make_params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
+    fi
+    make ${make_params} pkg-verify || die "VPP build failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
+}
+
+
+function clone_vpp_repo () {
+
+    # Clones VPP repository into CSIT directory. In case VPP_VERSION is set,
+    # it checks out the specific commit id. Otherwise use the latest HEAD.
+    #
+    # Variables read:
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # - GIT_URL - FD.io gerrit URL.
+    # - VPP_VERSION - VPP stable version under test.
+
+    set -exuo pipefail
+
+    pushd "${CSIT_DIR}/" || die "Pushd failed."
+    git clone "${GIT_URL}/vpp" --depth=1 --no-single-branch --no-checkout || \
+        die "Failed to clone VPP repository."
+    pushd "${CSIT_DIR}/vpp" || die "Pushd failed."
+    if [[ -n "${VPP_VERSION-}" ]]; then
+        git fetch --depth=1 "${GIT_URL}/vpp" "${VPP_VERSION}" || \
+            die "Failed to fetch specific commit id."
+        git checkout FETCH_HEAD || die "Checkout FETCH_HEAD failed."
+    else
+        git checkout HEAD || die "Checkout HEAD failed."
+    fi
+    popd || die "Popd failed."
 }
 
 
@@ -195,6 +228,19 @@ function move_test_results () {
 }
 
 
+function remove_vpp_repo () {
+
+    # Removes directory with cloned VPP repository to save the space.
+    #
+    # Variables read:
+    # - VPP_DIR - Path to existing root of local VPP git repository.
+
+    set -exuo pipefail
+
+    popd || die "Popd failed."
+    rm -rf "${VPP_DIR}" || die "Directory deletion failed."
+}
+
 function select_build () {
 
     # Arguments:
@@ -280,4 +326,20 @@ function set_perpatch_vpp_dir () {
 
     # In perpatch, CSIT is cloned inside VPP clone.
     VPP_DIR="$(readlink -e "${CSIT_DIR}/..")" || die "Readlink failed."
+}
+
+
+function set_csit_vpp_dir () {
+
+    # Variables read:
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # Variables set:
+    # - VPP_DIR - Path to existing root of local VPP git repository.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
+
+    # In verify, VPP is cloned within CSIT dir.
+    VPP_DIR="$(readlink -e "${CSIT_DIR}/vpp")" || die "Readlink failed."
 }
