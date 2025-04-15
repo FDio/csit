@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -367,6 +367,9 @@ class ExportJson():
         result_type = result_node["type"]
         if result_type == "unknown":
             # Device or something else not supported.
+            # Also could be MRR with all trials negative, write as a failure.
+            self.data["passed"] = False
+            # TODO: Raise real Robot error after writing this JSON.
             return
 
         # Compute avg and stdev for mrr (rate and bandwidth).
