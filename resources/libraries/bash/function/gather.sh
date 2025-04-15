@@ -1,5 +1,5 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
-# Copyright (c) 2024 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2025 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,8 +31,8 @@ function gather_build () {
     # - ${DOWNLOAD_DIR} - Files needed by tests are gathered here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - gather_os - Parse os parameter for OS/distro name.
     # - gather_dpdk, gather_vpp - See their definitions.
+    # - build_vpp - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
 
@@ -40,6 +40,11 @@ function gather_build () {
 
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
     case "${TEST_CODE}" in
+        *"vpp"*"3n-oct")
+            DUT="vpp"
+            source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
+            build_vpp || die "The function should have died on error."
+            ;;
         *"vpp"*)
             DUT="vpp"
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
