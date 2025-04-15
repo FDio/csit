@@ -427,6 +427,7 @@ function get_test_code () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
+    # - VPP_PLATFORM - VPP build optimisation string.
 
     set -exuo pipefail
 
@@ -535,6 +536,7 @@ function get_test_code () {
         *"3n-oct")
             NODENESS="3n"
             FLAVOR="oct"
+            VPP_PLATFORM="octeon10"
             ;;
         *"-x-2n"*)
             TESTBED="${TEST_CODE#${TEST_CODE%2n*}}"
@@ -864,8 +866,10 @@ function select_arch_os () {
     # Set variables affected by local CPU architecture and operating system.
     #
     # Variables set:
-    # - VPP_VER_FILE - Name of file in CSIT dir containing vpp stable version.
     # - IMAGE_VER_FILE - Name of file in CSIT dir containing the image name.
+    # - VPP_COMMIT_FILE - Name of file in CSIT dir containing vpp commit
+    #   version.
+    # - VPP_VER_FILE - Name of file in CSIT dir containing vpp stable version.
     # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb."
 
     set -exuo pipefail
@@ -877,11 +881,13 @@ function select_arch_os () {
             case "${VERSION}" in
                 *"LTS (Jammy Jellyfish)"*)
                     IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_JAMMY"
+                    VPP_COMMIT_FILE="VPP_STABLE_COMMIT"
                     VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_JAMMY"
                     PKG_SUFFIX="deb"
                     ;;
                 *"LTS (Noble Numbat)"*)
                     IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_NOBLE"
+                    VPP_COMMIT_FILE="VPP_STABLE_COMMIT"
                     VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_NOBLE"
                     PKG_SUFFIX="deb"
                     ;;
