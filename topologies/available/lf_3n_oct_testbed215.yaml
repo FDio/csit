@@ -60,7 +60,7 @@ nodes:
         model: Cavium-A063-100G
       port2:
         # s95-t215-sut1-c2/p1 - 100GE port2 Cavium A063 2p100GE.
-        mac_address: "1a:cc:6a:50:05:2a"
+        mac_address: "1a:cc:6a:50:05:2b"
         pci_address: "0002:03:00.0"
         ip4_address: 172.16.30.1
         driver: rvu_nicpf
