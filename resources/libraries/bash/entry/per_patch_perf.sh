@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -43,6 +43,8 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
+get_test_code "${1-}" || die
+get_test_tag_string || die
 set_perpatch_vpp_dir || die
 git status || die
 git describe || die
@@ -54,8 +56,6 @@ git describe || die
 build_vpp_ubuntu "PARENT" || die
 set_aside_build_artifacts "parent" || die
 initialize_csit_dirs "parent" "current" || die
-get_test_code "${1-}" || die
-get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 select_arch_os || die
