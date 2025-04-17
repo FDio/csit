@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8d8ba0_5f4208fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-04-17T10:20:23Z",
+      "side": 1,
+      "message": "I realized that \"unknown\" is already possible e.g. when a MRR test fails in config phase (before first trial), so this should have no downsides.",
+      "revId": "5e75af1779dc9cf14eb1ea064402b6f6ba33f5fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
