@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -113,6 +113,11 @@ class ExportJson():
                 # Mark as failed and re-export.
                 self.data["passed"] = False
                 self.data["message"] = str(error)
+                # There might have been multiple violations.
+                # For ETL, the only part likely to cause an error is "result",
+                # so it is safer to replace it with a safe "unknown" case.
+                # CDash does not need the result for failed tests anyway.
+                self.data["result"] = dict(type="unknown")
                 write_output(self.file_path, self.data)
         self.data = None
         self.file_path = None
