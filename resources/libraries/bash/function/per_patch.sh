@@ -51,13 +51,12 @@ function build_vpp_ubuntu () {
         echo "Building VPP. Number of cores not set, " \
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
-
     if [ -z "${VPP_PLATFORM-}" ]; then
         make_params="UNATTENDED=y"
     else
         make_params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
-    make ${make_params} pkg-verify || die "VPP build failed."
+    make ${make_params} install-dep install-ext-deps install-opt-deps pkg-deb-debug VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON' || die
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
