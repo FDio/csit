@@ -1266,6 +1266,12 @@ class InterfaceUtil:
         PapiSocketExecutor.run_cli_cmd(
             node, u"set logging class iavf level debug"
         )
+        PapiSocketExecutor.run_cli_cmd(
+            node, u"set logging class feature level debug"
+        )
+        PapiSocketExecutor.run_cli_cmd(
+            node, u"set logging class bonding level debug"
+        )
 
         cmd = u"dev_attach"
         vf_pci_addr = Topology.get_interface_pci_addr(node, if_key)

@@ -304,10 +304,14 @@ class VPPUtil:
         :type fail_on_error: bool
         """
         cmds = [
-            u"trace add dpdk-input 50",
-            u"trace add vhost-user-input 50",
-            u"trace add memif-input 50",
-            u"trace add avf-input 50"
+            "trace add dpdk-input 50",
+            "trace add vhost-user-input 50",
+            "trace add memif-input 50",
+            # Keep avf for now, useful when switching to id while debugging.
+            "trace add avf-input 50",
+            # TODO: Enable dev_iavf properly.
+            "trace add iavf1/0-rx 50",
+            "trace add iavf0/0-rx 50",
         ]
 
         for cmd in cmds:
