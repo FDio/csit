@@ -216,7 +216,7 @@ class VPPUtil:
             VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)
         finally:
-            DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
+            VPPUtil.show_log(node)
 
     @staticmethod
     def verify_vpp_on_all_duts(nodes):
@@ -248,6 +248,7 @@ class VPPUtil:
         :raises RuntimeError: If PAPI connection fails.
         :raises AssertionError: If PAPI retcode is nonzero.
         """
+        PapiSocketExecutor.run_cli_cmd(node, "set log size 9999")
         cmd = u"show_version"
         with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
@@ -390,6 +391,12 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        exec_cmd(node, "cat /tmp/asan.log*", timeout=180, sudo=True)
+        exec_cmd(node, "rm /tmp/asan.log*", timeout=180, sudo=True)
+        exec_cmd(node, "tail -n 99 /var/log/vpp/vpp.log", timeout=180, sudo=True)
+        exec_cmd(node, "journalctl --no-pager --lines=999", timeout=180, sudo=True)
+        exec_cmd(node, "dmesg | tail -n 99", timeout=180, sudo=True)
+        PapiSocketExecutor.run_cli_cmd(node, u"show features verbose")
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
