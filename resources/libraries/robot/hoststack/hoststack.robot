@@ -44,7 +44,6 @@
 | ... | sess_v4_hopen_mem=64M
 | ... | sess_lendpt_buckets=250000
 | ... | sess_lendpt_mem=512M
-| ... | strace=${False}
 | &{vpp_echo_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -89,7 +88,7 @@
 | ... | use_app_socket_api=${True}
 | &{iperf3_server_attr}=
 | ... | role=server
-| ... | cpu_cnt=${2}
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -99,7 +98,7 @@
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
-| ... | cpu_cnt=${2}
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -108,8 +107,8 @@
 | ... | json=${True}
 | ... | ip_version=${4}
 | ... | ip_address=${EMPTY}
-| ... | parallel=${1}
-| ... | time=${20}
+| ... | parallel=${2}
+| ... | time=${300}
 | ... | udp=${False}
 | ... | bandwidth=10000000
 | ... | length=${0}
@@ -566,11 +565,8 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
-| | Run Keyword If | ${vpp_hoststack_attr}[strace]
-| | ... | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ... | ${iperf3_client} | ${dut2} | ${iperf3_server}
-| | ... | ELSE
-| | ... | Sleep For Hoststack Test Duration | ${iperf3_client_attr}[time]
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
