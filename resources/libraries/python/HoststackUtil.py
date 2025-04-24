@@ -284,7 +284,7 @@ class HoststackUtil():
         program_path = program.get(u"path", u"")
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = u"" if program_name == u"nginx" else \
-                                             f"taskset --cpu-list {core_list}"
+                                             f"taskset --cpu-list 35,36 chrt -r 99"
         cmd = f"nohup {taskset_cmd} {shell_cmd} \'{env_vars} " \
               f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
@@ -320,15 +320,6 @@ class HoststackUtil():
             errmsg = f"Kill {program_name} ({pid}) failed!"
 
         exec_cmd_no_error(node, cmd, message=errmsg, sudo=True)
-
-    @staticmethod
-    def sleep_for_hoststack_test_duration(sleep_time):
-        """Wait for the HostStack test program process to complete.
-
-        :param sleep_time: waiting stecific time.
-        """
-        logger.info(f"Sleeping for {sleep_time} seconds")
-        sleep(sleep_time + 1)
 
     @staticmethod
     def hoststack_test_program_finished(node, program_pid, program,
