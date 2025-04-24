@@ -322,15 +322,6 @@ class HoststackUtil():
         exec_cmd_no_error(node, cmd, message=errmsg, sudo=True)
 
     @staticmethod
-    def sleep_for_hoststack_test_duration(sleep_time):
-        """Wait for the HostStack test program process to complete.
-
-        :param sleep_time: waiting stecific time.
-        """
-        logger.info(f"Sleeping for {sleep_time} seconds")
-        sleep(sleep_time + 1)
-
-    @staticmethod
     def hoststack_test_program_finished(node, program_pid, program,
                                         other_node, other_program):
         """Wait for the specified HostStack test program process to complete.
