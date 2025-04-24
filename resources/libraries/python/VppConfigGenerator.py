@@ -871,7 +871,8 @@ class VppInitConfig:
             # We will pop the first core from the list to be a main core
             vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
             # If more cores in the list, the rest will be used as workers.
-            corelist_workers = ",".join(str(cpu) for cpu in cpuset_cpus)
+            # corelist_workers = ",".join(str(cpu) for cpu in cpuset_cpus)
+            corelist_workers = "30"
             vpp_config.add_cpu_corelist_workers(corelist_workers)
         vpp_config.add_buffers_per_numa(215040)
         vpp_config.add_plugin("disable", "default")

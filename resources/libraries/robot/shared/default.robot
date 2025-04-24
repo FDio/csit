@@ -198,7 +198,7 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | ${dut}.Add CPU Main Core | ${${dut}_cpu_main}
 | | | Run Keyword If | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Corelist Workers | ${${dut}_cpu_wt}
+| | | ... | ${dut}.Add CPU Corelist Workers | ${30}
 | | | Run Keyword | ${dut}.Add Buffers Per Numa | ${buffers_numa}
 | | END
 
