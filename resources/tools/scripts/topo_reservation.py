@@ -96,6 +96,8 @@ def main():
         print(f"Topology file does not contain '{RESERVATION_NODE}' node")
         return 1
 
+    print(f"Node selected for reservation: {node}")
+
     # For system reservation we use mkdir it is an atomic operation and we can
     # store additional data (time, client_ID, ..) within reservation directory.
     if args.cancel:
