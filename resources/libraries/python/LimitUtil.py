@@ -13,7 +13,7 @@
 
 """Linux limit library."""
 
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 __all__ = [u"LimitUtil"]
 
@@ -52,3 +52,4 @@ class LimitUtil:
         message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
+        exec_cmd(node, f"numastat -p {pid}", sudo=True)
