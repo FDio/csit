@@ -1339,14 +1339,20 @@ class TrafficGenerator(AbstractMeasurer):
         intended_duration = float(intended_duration)
         time_start = time.monotonic()
         time_stop = time_start + intended_duration
-        if self.resetter:
-            self.resetter()
-        result = self._send_traffic_on_tg_with_ramp_up(
-            duration=intended_duration,
-            rate=intended_load,
-            async_call=False,
-        )
-        logger.debug(f"trial measurement result: {result!r}")
+        for _ in range(3):
+            if self.resetter:
+                self.resetter()
+            result = self._send_traffic_on_tg_with_ramp_up(
+                duration=intended_duration,
+                rate=intended_load,
+                async_call=False,
+            )
+            if result.receive_count >= 0:
+                break
+            logger.debug(f"Retry on negative count: {result.receive_count}")
+        else:
+            raise RuntimeError(f"Too many negative counts in a row!")
+        logger.debug(f"Trial measurement result: {result!r}")
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
             while (sleeptime := time_stop - time.monotonic()) > 0.0:
