@@ -510,6 +510,8 @@
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | ${value} = | Set Variable | ${result.forwarding_count}
+| | | Run Keyword If | ${value} < 0 | Log | Negative count ignored! | WARN
+| | | Continue For Loop If | ${value} < 0
 | | | ${value} = | Evaluate | ${value} / ${result.offered_duration}
 | | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${value} / ${ppta}
 | | | Append Mrr Value | ${value} | ${export_mrr_unit} | ${bandwidth * 1e9}
