@@ -53,3 +53,5 @@ class LimitUtil:
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
         exec_cmd(node, f"numastat -p {pid}", sudo=True)
+        exec_cmd(node, "cat /sys/devices/system/node/node0/hugepages/free_hugepages", sudo=True)
+        exec_cmd(node, "cat /sys/devices/system/node/node1/hugepages/free_hugepages", sudo=True)
