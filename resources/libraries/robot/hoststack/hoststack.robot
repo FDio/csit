@@ -46,7 +46,7 @@
 | ... | sess_v4_hopen_mem=64M
 | ... | sess_lendpt_buckets=250000
 | ... | sess_lendpt_mem=512M
-| ... | strace=${False}
+| ... | strace=${True}
 | &{vpp_echo_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
