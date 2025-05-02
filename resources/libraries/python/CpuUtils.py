@@ -129,6 +129,9 @@ class CpuUtils:
         cpu_list = []
         for cpu in cpu_info:
             if cpu[3] == cpu_node:
+                # Disallowing cores suspected to be bad.
+                if cpu[1] in [3]:
+                    continue
                 cpu_list.append(cpu[0])
 
         if not smt_enabled or smt_enabled and smt_used:
