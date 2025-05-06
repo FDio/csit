@@ -44,7 +44,7 @@
 | ... | sess_v4_hopen_mem=64M
 | ... | sess_lendpt_buckets=250000
 | ... | sess_lendpt_mem=512M
-| ... | strace=${False}
+| ... | strace=${True}
 | &{vpp_echo_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -89,7 +89,7 @@
 | ... | use_app_socket_api=${True}
 | &{iperf3_server_attr}=
 | ... | role=server
-| ... | cpu_cnt=${2}
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -99,7 +99,7 @@
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
-| ... | cpu_cnt=${2}
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
