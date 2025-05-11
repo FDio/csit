@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4297d281_fe59079f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3205
+      },
+      "writtenOn": "2025-05-11T21:24:21Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_intel-xxv710ANDdrv_vfio_pciANDeth-ip4tcp-hfc-scenarios*",
+      "revId": "a415200902b5141334c616c0d2c04466bebe721b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
