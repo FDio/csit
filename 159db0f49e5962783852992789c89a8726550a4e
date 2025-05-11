@@ -33,6 +33,23 @@
       "message": "csit-3n-icx-perftest nic_intel-xxv710ANDdrv_vfio_pciANDeth-ip4tcp-hfc-scenarios",
       "revId": "159db0f49e5962783852992789c89a8726550a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f49ca59_bade34dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3205
+      },
+      "writtenOn": "2025-05-11T19:28:22Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_intel-xxv710ANDdrv_vfio_pciANDeth-ip4tcp-hfc-scenarios",
+      "revId": "159db0f49e5962783852992789c89a8726550a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
