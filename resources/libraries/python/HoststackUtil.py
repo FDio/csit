@@ -290,7 +290,9 @@ class HoststackUtil():
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
-            return DUTSetup.get_pid(node, program_name)[0]
+            pid = DUTSetup.get_pid(node, program_name)[0]
+            exec_cmd(node, f"numastat -p {pid}", sudo=True)
+            return pid
         except RuntimeError:
             stdout_log, stderr_log = \
                 HoststackUtil.get_hoststack_test_program_logs(node,
@@ -352,7 +354,7 @@ class HoststackUtil():
         if other_node[u"type"] != u"DUT":
             raise RuntimeError(u"Other node type is not a DUT!")
 
-        cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
+        cmd = f"sh -c 'nohup strace -qqe trace=none -p {program_pid} &'"
         try:
             exec_cmd(node, cmd, sudo=True)
         except:
