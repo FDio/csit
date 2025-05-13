@@ -48,7 +48,7 @@ as long as they caused some results to be missing (or performance wrong).
  13   | [csit/issues/4074](https://github.com/FDio/csit/issues/4074) | rls2502: CSIT does not wait long enough after killing VPP; fixed during rls2502 testing.
  14   | [csit/issues/4075](https://github.com/FDio/csit/issues/4075) | EMR: Sometimes cli.sock is not responding.
  15   | [csit/issues/4076](https://github.com/FDio/csit/issues/4076) | 3n-icx: vhost mounting /dev failed.
- 16   | [vpp/issues/3602](https://github.com/FDio/vpp/issues/3602)   | device framework: next node not updated when a feature is enabled.
+ 16   | [vpp/issues/3602](https://github.com/FDio/vpp/issues/3602)   | device framework: next node not updated when a feature is enabled; fixed now.
 
 This table is complete.
 
@@ -133,8 +133,15 @@ of CSIT testing. So even if they are not fixed
 (e.g. when the regression is an expected consequence of added functionality),
 they will not be re-listed in the next release report.
 
-**#** | **Github issue number**                          | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
-  1   |                                                  |
+**#** | **Github issue number**                                      | **Issue Description**
+------|--------------------------------------------------------------|-------------------------------------------------------
+  1   | [csit/issues/4077](https://github.com/FDio/csit/issues/4077) | c7gn: worse 2C performance after ubuntu2404 migration.
+  2   | [csit/issues/4078](https://github.com/FDio/csit/issues/4078) | CSIT environment: rls2502 regression in vhost tests.
+  3   | [csit/issues/4079](https://github.com/FDio/csit/issues/4079) | iavf e810xxv NDR pattern.
+  4   | [csit/issues/4080](https://github.com/FDio/csit/issues/4080) | iavf xxv710 regressions.
+  5   | [csit/issues/4081](https://github.com/FDio/csit/issues/4081) | hoststack iperf3 ubuntu2404 worse performance.
+  6   | [csit/issues/4082](https://github.com/FDio/csit/issues/4082) | 3n-icx: TB37 DUT2 core 3 is bad.
+  7   | [csit/issues/4083](https://github.com/FDio/csit/issues/4083) | ipsec policy regression due to compiler version.
+  8   | [csit/issues/4084](https://github.com/FDio/csit/issues/4084) | iavf: different RX placing affects few-flow tests.
 
-This table is temporarily left empty until all results are analyzed.
+This table is complete.
