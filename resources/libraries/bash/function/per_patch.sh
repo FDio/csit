@@ -76,18 +76,18 @@ function clone_vpp_repo () {
 
     set -exuo pipefail
 
-    pushd "${CSIT_DIR}/" || die "Pushd failed."
-    git clone "${GIT_URL}/vpp" --depth=1 --no-single-branch --no-checkout || \
-        die "Failed to clone VPP repository."
-    pushd "${CSIT_DIR}/vpp" || die "Pushd failed."
+    pushd "${CSIT_DIR}/" || die "Pushd failed!"
+    git clone "${GIT_URL}/vpp" --no-checkout || \
+        die "Failed to clone VPP repository!"
+    pushd "${CSIT_DIR}/vpp" || die "Pushd failed!"
     if [[ -n "${VPP_VERSION-}" ]]; then
         git fetch "${GIT_URL}/vpp" "${VPP_VERSION}" || \
-            die "Failed to fetch specific commit id."
-        git checkout FETCH_HEAD || die "Checkout FETCH_HEAD failed."
+            die "Failed to fetch specific commit id!"
+        git checkout FETCH_HEAD || die "Checkout FETCH_HEAD failed!"
     else
-        git checkout HEAD || die "Checkout HEAD failed."
+        git checkout HEAD || die "Checkout HEAD failed!"
     fi
-    popd || die "Popd failed."
+    popd || die "Popd failed!"
 }
 
 
