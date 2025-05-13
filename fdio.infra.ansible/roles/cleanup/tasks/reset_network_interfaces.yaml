@@ -1,0 +1,19 @@
+---
+# file: tasks/reset_network_interfaces.yaml
+
+- name: Reset Network Interfaces
+  block:
+  - name: Bind Network Interfaces
+    ansible.builtin.shell: "dpdk-devbind.py -b rvu_nicpf {{ item.pci_address }}"
+    loop:
+      "{{ static_interfaces }}"
+    tags:
+      - bind-network-interfaces
+
+  - name: Set MAC Address
+    ansible.builtin.shell: "macchanger -m {{ item.mac_address }} {{ item.name }}"
+    loop:
+      "{{ static_interfaces }}"
+    failed_when: false
+    tags:
+      - set-mac-address
