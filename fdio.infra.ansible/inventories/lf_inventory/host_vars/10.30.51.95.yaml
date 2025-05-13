@@ -10,3 +10,11 @@ grub:
 
 inventory_ipmi_hostname: "10.30.50.95"
 cpu_microarchitecture: "octeon"
+
+static_interfaces:
+  - name: "enP2p2s0"
+    pci_address: "0002:02:00.0"
+    mac_address: "1a:cc:6a:50:05:2a"
+  - name: "enP2p3s0"
+    pci_address: "0002:03:00.0"
+    mac_address: "1a:cc:6a:50:05:2b"

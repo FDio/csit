@@ -89,7 +89,7 @@
       tags:
         - kill-containers
 
-    - name: "Set SSH port to 6001 if docker_sut"
+    - name: Set SSH port to 6001 if docker_sut
       set_fact:
         ansible_port: 6001
       when: docker_sut is defined
@@ -104,7 +104,7 @@
       tags:
         - remove-package
 
-    - name: "Set SSH port to 6002 if docker_sut"
+    - name: Set SSH port to 6002 if docker_sut
       set_fact:
         ansible_port: 6002
       when: docker_sut is defined
@@ -119,7 +119,7 @@
       tags:
         - remove-package
 
-    - name: "Set SSH port to 22 if docker_sut"
+    - name: Set SSH port to 22 if docker_sut
       set_fact:
         ansible_port: 22
       when: docker_sut is defined
@@ -133,3 +133,9 @@
         package: "*vpp*"
       tags:
         - remove-package
+
+    - name: Reset Network Interfaces
+      import_tasks: reset_network_interfaces.yaml
+      when: cpu_microarchitecture == "octeon"
+      tags:
+        - reset-network-interfaces

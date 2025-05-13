@@ -90,7 +90,7 @@ nodes:
         pci_address: "0002:03:00.0"
         ip4_address: 172.16.20.2
         driver: rvu_nicpf
-        link: link2
+        link: link3
         model: Cavium-A063-100G
       port2:
         # s87-t215-sut1-c6/p1 - 100GE port2 Cavium A063 2p100GE.
@@ -98,5 +98,5 @@ nodes:
         pci_address: "0002:02:00.0"
         ip4_address: 172.16.30.2
         driver: rvu_nicpf
-        link: link3
+        link: link2
         model: Cavium-A063-100G
