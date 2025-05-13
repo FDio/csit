@@ -28,6 +28,8 @@
 | Documentation | *L2 keywords to set up VPP to test hoststack.*
 
 *** Variables ***
+| ${telemetry_rate}= | hoststack
+| ${telemetry_export}= | ${False}
 | ${quic_crypto_engine}= | nocrypto
 | ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
@@ -516,14 +518,19 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${vpp_echo_client_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_client_attr}[cfg_vpp_feature] | ${vpp_echo_client}
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ... | ${vpp_echo_client} | ${dut2} | ${vpp_echo_server}
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Sleep For Hoststack Test Duration | ${iperf3_client_attr}[time]
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_client}
 | | Then Set test message | ${client_output}
-| | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
-| | ... | ${vpp_echo_server} | ${dut1} | ${vpp_echo_client}
 | | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_server}
@@ -566,11 +573,15 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
-| | Run Keyword If | ${vpp_hoststack_attr}[strace]
-| | ... | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
-| | ... | ${iperf3_client} | ${dut2} | ${iperf3_server}
-| | ... | ELSE
-| | ... | Sleep For Hoststack Test Duration | ${iperf3_client_attr}[time]
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | ... | ${vpp_echo_client} | ${dut2} | ${vpp_echo_server}
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Sleep For Hoststack Test Duration | ${iperf3_client_attr}[time]
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
