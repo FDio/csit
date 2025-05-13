@@ -274,6 +274,7 @@ class Constants:
         "3n-alt": 3.000,
         "3n-icx": 2.600,
         "3n-icxd": 2.000,
+        "3n-oct": 2.500,
         "3n-snr": 2.200,
         "3n-tsh": 2.200,
         "3n-emr": 2.300,
