@@ -336,15 +336,15 @@ def comparison_table(
     s_unit = "|".join(unit)
     df_cmp = pd.DataFrame.from_dict({
         "Test Name": l_name,
-        f"{r_name} Mean [{s_unit}]": l_r_mean,
-        f"{r_name} Stdev [{s_unit}]": l_r_std,
-        f"{c_name} Mean [{s_unit}]": l_c_mean,
-        f"{c_name} Stdev [{s_unit}]": l_c_std,
-        "Relative Change Mean [%]": l_rc_mean,
-        "Relative Change Stdev [%]": l_rc_std
+        f"{r_name} [{s_unit}] Mean": l_r_mean,
+        f"{r_name} [{s_unit}] Stdev": l_r_std,
+        f"{c_name} [{s_unit}] Mean": l_c_mean,
+        f"{c_name} [{s_unit}] Stdev": l_c_std,
+        "Relative Change [%] Mean": l_rc_mean,
+        "Relative Change [%] Stdev": l_rc_std
     })
     df_cmp.sort_values(
-        by="Relative Change Mean [%]",
+        by="Relative Change [%] Mean",
         ascending=False,
         inplace=True
     )
