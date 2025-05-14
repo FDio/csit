@@ -651,9 +651,9 @@ class Layout:
                     "type": "text"
                 })
             else:
-                l_col = col.rsplit(" ", 2)
+                l_col = col.rsplit(" ", 1)
                 cols.append({
-                    "name": [l_col[0], " ".join(l_col[-2:])],
+                    "name": [l_col[0], " ".join(l_col[-1:])],
                     "id": col,
                     "deletable": False,
                     "selectable": False,
