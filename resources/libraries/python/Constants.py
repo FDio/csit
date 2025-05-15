@@ -479,7 +479,7 @@ class Constants:
         },
         "Intel-E810CQ": {
             "vfio-pci": "dpdk_plugin.so",
-            "avf": "dev_iavf_plugin.so",
+            "avf": "dev_iavf_plugin.so | dpdk_plugin.so",
             "af_xdp": "af_xdp_plugin.so",
         },
         "Amazon-Nitro-50G": {"vfio-pci": "dpdk_plugin.so"},
