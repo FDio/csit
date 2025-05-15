@@ -352,7 +352,7 @@ class HoststackUtil():
         if other_node[u"type"] != u"DUT":
             raise RuntimeError(u"Other node type is not a DUT!")
 
-        cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
+        cmd = f"sh -c 'strace -c -p {program_pid}'"
         try:
             exec_cmd(node, cmd, sudo=True)
         except:
