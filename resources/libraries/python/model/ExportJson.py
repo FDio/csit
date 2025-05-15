@@ -99,6 +99,10 @@ class ExportJson():
         as that is the failsafe behavior when caller from unexpected place.
         Also do not write anything when EXPORT_JSON constant is false.
 
+        If the data is found to be invalid, edit that data
+        to mimic a failed test with unknown result to protect ETL
+        and write such edited data to disk again.
+
         :raises: ValidationError if data export does not conform to schema.
         """
         error = None
@@ -113,6 +117,11 @@ class ExportJson():
                 # Mark as failed and re-export.
                 self.data["passed"] = False
                 self.data["message"] = str(error)
+                # There might have been multiple violations.
+                # For ETL, the only part likely to cause an error is "result",
+                # so it should be enough to replace it with the "unknown" type.
+                # CDash does not need the result for failed tests anyway.
+                self.data["result"] = dict(type="unknown")
                 write_output(self.file_path, self.data)
         self.data = None
         self.file_path = None
