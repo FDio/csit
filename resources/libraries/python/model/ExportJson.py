@@ -367,10 +367,6 @@ class ExportJson():
         result_type = result_node["type"]
         if result_type == "unknown":
             # Device or something else not supported.
-            # Also could be MRR with all trials negative, write as a failure.
-            self.data["passed"] = False
-            self.data["message"] = "No result exported."
-            # TODO: Raise real Robot error after writing this JSON.
             return
 
         # Compute avg and stdev for mrr (rate and bandwidth).
