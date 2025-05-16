@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch",
       "revId": "d35e63ffb451f033f248be14a6d4932462080576",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec003802_7119a6e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-16T16:59:14Z",
+      "side": 1,
+      "message": "Using [1] to introduce invalid result, the archived json [2] is sanitized.\n\n[1] 42976: DO_NOT_MERGE: Export negative MRR | https://gerrit.fd.io/r/c/csit/+/42976\n[2] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-icx/555/tests/vpp/perf/l2/2n1l-100ge2p1e810cq-avf-eth-l2patch-mrr/64b-1c-avf-eth-l2patch-mrr.info.json.gz",
+      "revId": "d35e63ffb451f033f248be14a6d4932462080576",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
