@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4542f2aa_efa7d2d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-16T15:10:46Z",
+      "side": 1,
+      "message": "Validation does not only protect ETL parsing but also CDash anomaly detection.\nData type \"unknown\" should be safe for ETL as it is already produced in trending [0] (and schema says it shall be supported).\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-3n-icxd/338/tests/vpp/perf/l2/25ge2p1e823c-eth-l2bdbasemaclrn-mrr/64b-1c-eth-l2bdbasemaclrn-mrr.info.json.gz",
+      "parentUuid": "9f162973_d7cdc1f1",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 71
+      },
+      "revId": "4c3b48ef9fc33a50312c2247e184b378bbf63475",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04b1d1ca_cb0a7f57",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-16T04:51:57Z",
       "side": 1,
       "message": "this is incorrect.\nWhat type of malformed results do you expect?",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 73
+      },
+      "revId": "4c3b48ef9fc33a50312c2247e184b378bbf63475",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "918693a8_9ea650fe",
+        "filename": "resources/libraries/python/model/ExportJson.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-16T15:10:46Z",
+      "side": 1,
+      "message": "Anything new. Current known issues are handled in Robot already.",
+      "parentUuid": "04b1d1ca_cb0a7f57",
       "range": {
         "startLine": 120,
         "startChar": 0,
