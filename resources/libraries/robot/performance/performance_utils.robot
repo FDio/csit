@@ -514,7 +514,7 @@
 | | | Continue For Loop If | ${value} < 0
 | | | ${value} = | Evaluate | ${value} / ${result.offered_duration}
 | | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${value} / ${ppta}
-| | | Append Mrr Value | ${value} | ${export_mrr_unit} | ${bandwidth * 1e9}
+| | | Append Mrr Value | ${-1} | ${export_mrr_unit} | ${bandwidth * 1e9}
 | | | Append To List | ${results} | ${value}
 | | END
 | | FOR | ${action} | IN | @{stat_post_trial}
