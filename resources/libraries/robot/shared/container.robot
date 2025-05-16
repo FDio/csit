@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -98,6 +98,8 @@
 | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
 | | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
 | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
+| | ... | ${root}/etc/accel-config/:/etc/accel-config/
+| | ... | ${root}/dev/dsa/:/dev/dsa/
 | | ${nf_cpus}= | Set Variable | ${None}
 | | ${nf_cpus}= | Run Keyword If | ${pinning}
 | | ... | Get Affinity NF | ${nodes} | ${dut}
