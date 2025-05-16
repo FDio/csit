@@ -847,6 +847,7 @@ class ContainerEngine:
         vpp_config = self.create_base_vpp_startup_config()
         vpp_config.add_plugin(u"enable", u"dma_intel_plugin.so")
         vpp_config.add_dma_dev(dma_devices)
+        vpp_config.add_logging_default_syslog_log_level()
 
         # Apply configuration
         self.execute(u"mkdir -p /etc/vpp/")
@@ -1199,7 +1200,7 @@ class Docker(ContainerEngine):
             if self.container.mnt else u""
 
         cmd = f"docker run --privileged --detach --interactive --tty --rm " \
-            f"--cgroup-parent docker.slice {cpuset_cpus} {cpuset_mems} " \
+            f"{cpuset_cpus} {cpuset_mems} " \
             f"{publish} {env} {volume} --name {self.container.name} " \
             f"{self.container.image} {command}"
 
