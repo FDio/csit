@@ -374,7 +374,6 @@ class Constants:
         "Mellanox-CX556A": "100ge2p1cx556a",
         "Mellanox-CX6DX": "100ge2p1cx6dx",
         "Mellanox-CX7VEAT": "200ge2p1cx7veat",
-        "Mellanox-CX7VEAT": "200ge6p3cx7veat",
         "Cavium-A063-100G": "100ge2p1a063",
         "virtual": "1ge1p82540em",
     }
@@ -392,7 +391,6 @@ class Constants:
         "100ge2p1cx556a": "Mellanox-CX556A",
         "100ge2p1cx6dx": "Mellanox-CX6DX",
         "200ge2p1cx7veat": "Mellanox-CX7VEAT",
-        "200ge6p3cx7veat": "Mellanox-CX7VEAT",
         "100ge2p1a063": "Cavium-A063-100G",
         "1ge1p82540em": "virtual",
     }
@@ -412,7 +410,6 @@ class Constants:
         "100ge2p1cx556a": "cx556a",
         "100ge2p1cx6dx": "cx6dx",
         "200ge2p1cx7veat": "cx7veat",
-        "200ge6p3cx7veat": "cx7veat",
         "100ge2p1a063": "a063",
         "1ge1p82540em": "82540em",
     }
@@ -546,7 +543,6 @@ class Constants:
         "100ge2p1cx556a": "nic_pfs}= | 2",
         "100ge2p1cx6dx": "nic_pfs}= | 2",
         "200ge2p1cx7veat": "nic_pfs}= | 2",
-        "200ge6p3cx7veat": "nic_pfs}= | 6",
         "100ge2p1a063": "nic_pfs}= | 2",
         "1ge1p82540em": "nic_pfs}= | 2",
     }
@@ -565,7 +561,6 @@ class Constants:
         "100ge2p1cx556a": 1,
         "100ge2p1cx6dx": 1,
         "200ge2p1cx7veat": 1,
-        "200ge6p3cx7veat": 3,
         "100ge2p1a063": 1,
         "1ge1p82540em": 1,
     }
