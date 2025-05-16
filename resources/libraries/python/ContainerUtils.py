@@ -1199,7 +1199,7 @@ class Docker(ContainerEngine):
             if self.container.mnt else u""
 
         cmd = f"docker run --privileged --detach --interactive --tty --rm " \
-            f"--cgroup-parent docker.slice {cpuset_cpus} {cpuset_mems} " \
+            f"{cpuset_cpus} {cpuset_mems} " \
             f"{publish} {env} {volume} --name {self.container.name} " \
             f"{self.container.image} {command}"
 
