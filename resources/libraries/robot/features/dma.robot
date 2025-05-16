@@ -23,6 +23,6 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | ${dma_wqs}= | Enable DMAs And WQs On DUT
-| | | ... | ${nodes['${dut}']} | ${cpu_count_int}
+| | | ... | ${nodes['${dut}']} | ${8}
 | | | Set Test Variable | ${${dut}_dma_wqs} | ${dma_wqs}
 | | END
