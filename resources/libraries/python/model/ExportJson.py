@@ -35,6 +35,7 @@ from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version, export_tg_type_and_version
 )
 from resources.libraries.python.model.MemDump import write_output
+from resources.libraries.python.model.sanitize import sanitize
 from resources.libraries.python.model.validate import (
     get_validators, validate
 )
@@ -86,10 +87,10 @@ class ExportJson():
         return test_type
 
     def export_pending_data(self):
-        """Write the data to disk, raise error if invalid.
+        """Write the data to disk. If invalid, sanitize and raise error.
 
         Create missing directories.
-        Reset both file path and data to avoid writing multiple times.
+        At the end, reset file path and data to avoid writing multiple times.
 
         Functions which finalize content for given file are calling this,
         so make sure each test and non-empty suite setup or teardown
@@ -99,6 +100,10 @@ class ExportJson():
         as that is the failsafe behavior when caller from unexpected place.
         Also do not write anything when EXPORT_JSON constant is false.
 
+        If the data is found to be invalid, edit that data
+        to mimic a failed test with unknown result to protect ETL
+        and write such edited data to disk again.
+
         :raises: ValidationError if data export does not conform to schema.
         """
         error = None
@@ -107,13 +112,8 @@ class ExportJson():
             self.file_path = None
             return
         new_file_path = write_output(self.file_path, self.data)
-        if "result" in self.data:
-            error = validate(new_file_path, self.validators["tc_info"])
-            if error:
-                # Mark as failed and re-export.
-                self.data["passed"] = False
-                self.data["message"] = str(error)
-                write_output(self.file_path, self.data)
+        error = validate(new_file_path, self.validators["tc_info"])
+        sanitize(new_file_path, self.data, error)
         self.data = None
         self.file_path = None
         if error:

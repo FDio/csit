@@ -14,7 +14,7 @@
 """Module for validating JSON instances against schemas.
 
 Short module currently, as we validate only testcase info outputs.
-Structure will probably change when we start validation mode file types.
+Structure will probably change when we start validation more file types.
 """
 
 import json
@@ -48,6 +48,10 @@ def get_validators():
 def validate(file_path, validator):
     """Load data from disk, use validator to validate it.
 
+    Current schema only covers test cases, they differ from suite jsons
+    by having "result" attribute. If the data does not have it,
+    return immediately as if valid.
+
     :param file_path: Local filesystem path including the file name to load.
     :param validator: Validator instance to use for validation.
     :type file_path: str
@@ -57,6 +61,8 @@ def validate(file_path, validator):
     """
     with open(file_path, "rt", encoding="utf-8") as file_in:
         instance = json.load(file_in)
+    if "result" not in instance:
+        return None
     error = jsonschema.exceptions.best_match(validator.iter_errors(instance))
     if error is not None:
         print(json.dumps(instance, indent=4))
