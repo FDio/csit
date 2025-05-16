@@ -148,10 +148,10 @@ nodes:
         pci_address: "0000:75:01.0"
         driver: idxd
         model: Intel-DSA
-      device2:
-        pci_address: "0000:f2:01.0"
-        driver: idxd
-        model: Intel-DSA
+     #device2:
+     #  pci_address: "0000:f2:01.0"
+     #  driver: idxd
+     #  model: Intel-DSA
     cryptodev:
       device1:
         pci_address: "0000:76:00.0"
