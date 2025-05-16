@@ -727,7 +727,7 @@ class VppConfigGenerator:
             path = ["dsa", f"dev {device}"]
             self.add_config_item(self._nodeconfig, "", path)
 
-    def add_octeon_dev(self, *devices):
+    def add_octeon_dev(self, *devices, num_default_rx_queues=1):
         """Add OCTEON PCI device configuration.
 
         :param devices: PCI device(s) (format xxxx:xx:xx.x)
@@ -744,6 +744,9 @@ class VppConfigGenerator:
                 if num_rx_queues and num_tx_queues:
                     self.add_octeon_dev_default_rxq(device, num_rx_queues)
                     self.add_octeon_dev_default_txq(device, num_tx_queues)
+                else:
+                    self.add_octeon_dev_default_rxq(device, \
+                            num_default_rx_queues)
 
     def add_octeon_dev_default_rxq(self, device, value):
         """Add OCTEON dev default rxq configuration.

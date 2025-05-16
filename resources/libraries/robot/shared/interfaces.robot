@@ -145,11 +145,13 @@
 | | [Arguments] | ${dut}
 | | Run Keyword If | ${nic_vfs}
 | | ... | ${dut}.Add OCTEON Dev | @{${dut}_prevf_pci}
+| | ... | num_default_rx_queues=${rxq_count_int}
 | | Run Keyword If | not ${nic_vfs}
 | | ... | Bind PCI Devices To Specific Driver | ${nodes['${dut}']} | vfio-pci
 | | ... | @{${dut}_pf_pci}
 | | Run Keyword If | not ${nic_vfs}
 | | ... | ${dut}.Add OCTEON Dev | @{${dut}_pf_pci}
+| | ... | num_default_rx_queues=${rxq_count_int}
 
 | Pre-initialize layer vfio-pci for dpdk_plugin.so
 | | [Documentation]
