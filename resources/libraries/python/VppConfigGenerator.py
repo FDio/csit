@@ -772,6 +772,8 @@ class VppConfigGenerator:
         :param value: Log level.
         :type value: str
         """
+        path = ["logging", "default-log-level"]
+        self.add_config_item(self._nodeconfig, value, path)
         path = ["logging", "default-syslog-log-level"]
         self.add_config_item(self._nodeconfig, value, path)
 
