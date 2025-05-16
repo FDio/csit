@@ -769,7 +769,7 @@ class VppConfigGenerator:
         :param value: Log level.
         :type value: str
         """
-        path = ["logging", "default-syslog-log-level"]
+        path = ["logging", "class intel_dsa", "syslog-level"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def write_config(self, filename=None):
