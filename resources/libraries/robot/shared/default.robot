@@ -145,7 +145,7 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | ${marvel}= | Get Node Model Bool | ${nodes['${dut}']} | Marvel-Octeon
+| | | ${marvell}= | Get Node Model Bool | ${nodes['${dut}']} | Marvell-Octeon
 | | | Run Keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
 | | | Run Keyword | ${dut}.Add Unix Log
 | | | Run Keyword | ${dut}.Add Unix CLI Listen
@@ -153,21 +153,21 @@
 | | | Run Keyword | ${dut}.Add API Segment Prefix | ${dut}
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run Keyword If | not ${marvel}
+| | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${3}}G
-| | | Run Keyword If | not ${marvel}
+| | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add Main Heap Page Size | ${page_size}
-| | | Run Keyword If | not ${marvel}
+| | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add Default Hugepage Size | ${page_size}
 | | | Run Keyword | ${dut}.Add Statseg Size | 3G
-| | | Run Keyword If | not ${marvel}
+| | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add Statseg Page Size | ${page_size}
 | | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
 | | | Run Keyword | ${dut}.Add Plugin | disable | default
 | | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
-| | | Run Keyword If | not ${marvel}
+| | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add IP6 Hash Buckets | 2000000
-| | | Run Keyword If | not ${marvel}
+| | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add IP6 Heap Size | 3G
 | | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
