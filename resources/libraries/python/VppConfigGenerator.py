@@ -833,7 +833,7 @@ class VppInitConfig:
                 vpp_config.add_statseg_per_node_counters("on")
                 vpp_config.add_plugin("disable", "default")
                 vpp_config.add_buffers_per_numa(107520)
-                if Topology.get_node_model_bool(node, "Marvel-Octeon"):
+                if Topology.get_node_model_bool(node, "Marvell-Octeon"):
                     vpp_config.add_plugin("enable", "dev_octeon_plugin.so")
                 else:
                     vpp_config.add_main_heap_size("2G")
