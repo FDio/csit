@@ -233,6 +233,35 @@ def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
         if kwargs is not None:
             file_out.write(testcase.generate(**kwargs))
 
+def generate_octeon_kwargs(nic_code, kwargs_list):
+    """Generate kwargs for Octeon NICs with additional phy_cores values.
+
+    :param nic_code: The NIC code to check.
+    :param kwargs_list: Default key-value pairs used to construct testcases.
+    :type nic_code: str
+    :type kwargs_list: list
+    :returns: New list with original and extended entries based on phy_cores.
+    :rtype: list
+    """
+    additional_cores = [8]  # Extend this list as needed
+    octeon_kwargs_list = []
+    # Get unique frame sizes in the order they appear
+    frame_sizes = []
+    for entry in kwargs_list:
+        fs = entry["frame_size"]
+        if fs not in frame_sizes:
+            frame_sizes.append(fs)
+
+    # For each frame size, collect entries and add missing cores
+    for fs in frame_sizes:
+        entries = [e for e in kwargs_list if e["frame_size"] == fs]
+        octeon_kwargs_list.extend(entries)
+        existing_cores = {e["phy_cores"] for e in entries}
+        for core in additional_cores:
+            if core not in existing_cores:
+                octeon_kwargs_list.append({"frame_size": fs, "phy_cores": core})
+
+    return octeon_kwargs_list
 
 def write_default_files(in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write all generated suites.
@@ -298,6 +327,10 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
             iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
                 tmp2_filename
             )
+            if nic_code == Constants.NIC_NAME_TO_CODE["Cavium-A063-100G"]:
+                octeon_kwargs_list = \
+                        generate_octeon_kwargs(nic_code, kwargs_list)
+
             if "DPDK" in in_prolog:
                 for driver in Constants.DPDK_NIC_NAME_TO_DRIVER[nic_name]:
                     out_filename = replace_defensively(
@@ -380,9 +413,16 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 testcase = Testcase.default(suite_id)
                 with open(out_filename, "wt") as file_out:
                     file_out.write(out_prolog)
-                    add_default_testcases(
-                        testcase, nic_code, suite_id, file_out, kwargs_list
-                    )
+                    if nic_code == \
+                            Constants.NIC_NAME_TO_CODE["Cavium-A063-100G"]:
+                        add_default_testcases(
+                            testcase, nic_code, suite_id, file_out,
+                            octeon_kwargs_list
+                        )
+                    else:
+                        add_default_testcases(
+                            testcase, nic_code, suite_id, file_out, kwargs_list
+                        )
 
 
 def write_reconf_files(in_filename, in_prolog, kwargs_list):
