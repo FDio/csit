@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4acf6804_4cc38394",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-19T11:37:02Z",
+      "side": 1,
+      "message": "csit-3na-spr-perftest nic_*ANDdrv_mlx*ANDeth-ip4??pbase-ldpreload-iperf3",
+      "revId": "565fc4bed46f671efde9746d85599a5068e3915f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
