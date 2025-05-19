@@ -311,11 +311,11 @@ class HoststackUtil:
         args = program["args"]
         program_path = program.get("path", "")
         # NGINX used `worker_cpu_affinity` in configuration file
-        taskset_cmd = (
-            "" if program_name == "nginx" else f"taskset --cpu-list {core_list}"
-        )
+        taskset_cmd = ""
+        if program_name != "nginx":
+            taskset_cmd = f"taskset --cpu-list {core_list} chrt -r 99 "
         cmd = (
-            f"nohup {taskset_cmd} {shell_cmd} '{env_vars} "
+            f"nohup {taskset_cmd}{shell_cmd} '{env_vars} "
             f"{program_path}{program_name} {args} >/tmp/{program_name}_"
             f"stdout.log 2>/tmp/{program_name}_stderr.log &'"
         )
@@ -388,7 +388,7 @@ class HoststackUtil:
         if other_node["type"] != "DUT":
             raise RuntimeError("Other node type is not a DUT!")
 
-        cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
+        cmd = f"sh -c 'strace -c -fp {program_pid}'"
         try:
             exec_cmd(node, cmd, sudo=True)
         except:
