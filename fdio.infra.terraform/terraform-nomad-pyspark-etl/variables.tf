@@ -54,46 +54,46 @@ variable "nomad_jobs" {
       job_name = "etl-stats"
       memory = 50000
     },
-    #{
-    #  job_name = "etl-iterative-hoststack"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-iterative-mrr"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-iterative-ndrpdr"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-iterative-reconf"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-iterative-soak"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-coverage-hoststack"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-coverage-mrr"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-coverage-ndrpdr"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-coverage-reconf"
-    #  memory = 50000
-    #},
-    #{
-    #  job_name = "etl-coverage-soak"
-    #  memory = 50000
-    #},
+    {
+      job_name = "etl-iterative-hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-mrr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-ndrpdr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-reconf"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-soak"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-mrr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-ndrpdr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-reconf"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-soak"
+      memory = 50000
+    },
     {
       job_name = "etl-trending-hoststack"
       memory = 50000
