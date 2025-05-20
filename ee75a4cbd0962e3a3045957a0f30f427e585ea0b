@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c598683_3849f4ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-20T13:00:28Z",
+      "side": 1,
+      "message": "csit-3n-emr-perftest nic_*ANDdrv_vfio_pciANDeth-ip4tcpbase-ldpreload-iperf3 mrrANDnic_*ANDdrv_avfAND1cAND64bANDeth-l2patch mrrANDnic_*ANDdrv_avfAND1cAND64bANDeth-l2cxbase",
+      "revId": "ee75a4cbd0962e3a3045957a0f30f427e585ea0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
