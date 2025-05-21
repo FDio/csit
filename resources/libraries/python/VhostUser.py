@@ -21,7 +21,7 @@ from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
 class VirtioFeaturesFlags(IntEnum):
@@ -164,6 +164,10 @@ class VhostUser:
         :type pf_key: str
         :type skip_cnt: int
         """
+        exec_cmd(node, "grep . /proc/*/comm", sudo=True)
+        exec_cmd(node, "ip netns exec tap0_namespace grep . /proc/*/comm", sudo=True)
+        exec_cmd(node, "ip netns exec tap0_namespace grep -h vhost /proc/*/comm", sudo=True)
+        exec_cmd(node, "ip netns exec tap0_namespace grep -h vhost /proc/*/comm | uniq | xargs pidof", sudo=True)
         pids, _ = exec_cmd_no_error(
             node, f"grep -h vhost /proc/*/comm | uniq | xargs pidof")
 
