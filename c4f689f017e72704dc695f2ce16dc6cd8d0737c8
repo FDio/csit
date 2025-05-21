@@ -16,6 +16,24 @@
       "message": "please rebase on top of the branch",
       "revId": "c4f689f017e72704dc695f2ce16dc6cd8d0737c8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c657d38_a9ec4f3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3155
+      },
+      "writtenOn": "2025-05-21T08:17:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a4cde87_5b9e4976",
+      "revId": "c4f689f017e72704dc695f2ce16dc6cd8d0737c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
