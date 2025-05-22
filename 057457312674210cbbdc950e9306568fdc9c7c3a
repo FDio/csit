@@ -16,6 +16,23 @@
       "message": "csit-2n-emr-perftest nic_*ANDdrv_avfAND4cAND64bANDeth-l2patch",
       "revId": "057457312674210cbbdc950e9306568fdc9c7c3a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da1f6944_bf9ca755",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-22T11:07:19Z",
+      "side": 1,
+      "message": "RC1 testing is in progress, most testbeds are busy. Verified on AWS: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-master-2n-c7gn/2/",
+      "revId": "057457312674210cbbdc950e9306568fdc9c7c3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
