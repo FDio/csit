@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbea53df_3f74dd67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-22T08:42:52Z",
+      "side": 1,
+      "message": "csit-2n-emr-perftest nic_*ANDdrv_avfAND4cAND64bANDeth-l2patch",
+      "revId": "057457312674210cbbdc950e9306568fdc9c7c3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
