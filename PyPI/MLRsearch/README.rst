@@ -83,7 +83,7 @@ This is the screen capture of interactive python interpreter
     ...             intended_duration=intended_duration,
     ...             intended_load=intended_load,
     ...             offered_count=sent,
-    ...             forwarding_count=received,
+    ...             forwarded_count=received,
     ...         )
     ...
     >>> def print_dot(_):
