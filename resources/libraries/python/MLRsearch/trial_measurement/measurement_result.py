@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -65,7 +65,7 @@ class MeasurementResult:
     so that asymmetric trafic profiles are supported."""
     loss_count: int = None
     """Number of packets transmitted but not received (transactions failed)."""
-    forwarding_count: int = None
+    forwarded_count: int = None
     """Number of packets successfully forwarded (transactions succeeded)."""
     # Optional primary quantities.
     offered_duration: float = None
@@ -94,18 +94,18 @@ class MeasurementResult:
         else:
             self.duration_with_overheads = float(self.duration_with_overheads)
         self.intended_load = float(self.intended_load)
-        if self.forwarding_count is None:
-            self.forwarding_count = int(self.offered_count) - int(
+        if self.forwarded_count is None:
+            self.forwarded_count = int(self.offered_count) - int(
                 self.loss_count
             )
         else:
-            self.forwarding_count = int(self.forwarding_count)
+            self.forwarded_count = int(self.forwarded_count)
         if self.offered_count is None:
-            self.offered_count = self.forwarding_count + int(self.loss_count)
+            self.offered_count = self.forwarded_count + int(self.loss_count)
         else:
             self.offered_count = int(self.offered_count)
         if self.loss_count is None:
-            self.loss_count = self.offered_count - self.forwarding_count
+            self.loss_count = self.offered_count - self.forwarded_count
         else:
             self.loss_count = int(self.loss_count)
         if self.intended_count is None:
