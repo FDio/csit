@@ -1347,9 +1347,9 @@ class TrafficGenerator(AbstractMeasurer):
                 rate=intended_load,
                 async_call=False,
             )
-            if result.receive_count >= 0:
+            if result.forwarded_count >= 0:
                 break
-            logger.debug(f"Retry on negative count: {result.receive_count}")
+            logger.debug(f"Retry on negative count: {result.forwarded_count}")
         else:
             raise RuntimeError(f"Too many negative counts in a row!")
         logger.debug(f"Trial measurement result: {result!r}")
