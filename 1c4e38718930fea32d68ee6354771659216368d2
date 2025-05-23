@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1960c63f_2e2a92ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-23T11:36:38Z",
+      "side": 1,
+      "message": "csit-2n-c7gn-perftest ndrpdrANDnic_*AND1cAND64bANDethip4-ip4base !drv_af_xdp",
+      "revId": "1c4e38718930fea32d68ee6354771659216368d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
