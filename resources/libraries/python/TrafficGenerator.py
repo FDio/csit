@@ -33,6 +33,7 @@ from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
+from .TelemetryUtil import run_telemetry_on_all_duts
 from .TRexConfigGenerator import TrexConfig
 from .DUTSetup import DUTSetup as DS
 
@@ -1336,10 +1337,12 @@ class TrafficGenerator(AbstractMeasurer):
             or if subtype is not specified.
         :raises NotImplementedError: If TG is not supported.
         """
+        nodes = BuiltIn().get_variable_value("${nodes}")
+        run_telemetry_on_all_duts(nodes, profile="vppctl_clear_stats.yaml", export=False)
         intended_duration = float(intended_duration)
         time_start = time.monotonic()
         time_stop = time_start + intended_duration
-        for _ in range(3):
+        for _ in range(1):
             if self.resetter:
                 self.resetter()
             result = self._send_traffic_on_tg_with_ramp_up(
@@ -1353,6 +1356,7 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             raise RuntimeError(f"Too many negative counts in a row!")
         logger.debug(f"Trial measurement result: {result!r}")
+        run_telemetry_on_all_duts(nodes, profile="vppctl_show_stats.yaml", export=False)
         # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
             while (sleeptime := time_stop - time.monotonic()) > 0.0:
