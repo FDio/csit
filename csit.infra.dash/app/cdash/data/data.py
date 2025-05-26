@@ -399,8 +399,16 @@ class Data:
                 schema=schema
             )
             if data_set["data_type"] in ("iterative", "coverage"):
-                data["release"] = data_set["release"]
-                data["release"] = data["release"].astype("category")
+                if not data.empty:
+                    data["release"] = data_set["release"]
+                    data["release"] = data["release"].astype("category")
+
+                    # Remove build info from octeon builds:
+                    new_col = [
+                        v.rsplit("~", 1)[0] + "-oct" if "octeon" in v else v
+                        for v in data["dut_version"].to_list()
+                    ]
+                    data["dut_version"] = new_col
 
             data_lists[data_set["data_type"]].append(data)
 
