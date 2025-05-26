@@ -41,7 +41,7 @@ function common_dirs () {
         die "Readlink failed."
     }
     mkdir -p "${CSIT_DIR}/dpdk" || die "Mkdir failed."
-    DPDK_DIR=$(readlink -e "${CSIT_DIR}/dpdk") || {
+    DPDK_DIR=$(readlink -e "/opt/dpdk") || {
         die "Readlink failed."
     }
 }

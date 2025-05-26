@@ -1,6 +1,45 @@
 # Import necessary base images
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE}
+FROM ${BASE_IMAGE:-ubuntu} AS dpdk_stage
+
+ARG DPDK_VERSION
+
+RUN apt-get -qq update \
+ && apt-get -qq install --no-install-recommends \
+      build-essential \
+      ca-certificates \
+      libnuma-dev \
+      python3-all \
+      python3-apt \
+      python3-dev \
+      python3-pip \
+      python3-pyelftools \
+      python3-setuptools \
+      python3-venv \
+      python3-virtualenv \
+      wget \
+      xz-utils \
+ && wget --quiet http://fast.dpdk.org/rel/dpdk-$DPDK_VERSION.tar.xz \
+ && mkdir --parents /dpdk \
+ && tar --extract --file=dpdk-$DPDK_VERSION.tar.xz --directory=/dpdk --strip-components 1
+
+# CSIT PIP pre-cache
+RUN python3 -m venv venv \
+ && venv/bin/pip3 install --upgrade --no-cache-dir pip \
+ && venv/bin/pip3 install --upgrade setuptools \
+ && venv/bin/pip3 install --upgrade wheel \
+ && venv/bin/pip3 install \
+      meson==0.64.1 \
+      ninja
+
+ENV PATH="$PATH:/venv/bin"
+
+# Install DPDK
+RUN cd /dpdk \
+ && meson setup -Dexamples=l3fwd -Dc_args=-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y -Dplatform=generic build \
+ && ninja -C build
+
+FROM ${BASE_IMAGE:-ubuntu} AS csit_prod
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -48,16 +87,12 @@ RUN apt-get -q update \
         libsctp-dev \
         libssl-dev \
         net-tools \
-        ninja-build \
         openssh-server \
         pciutils \
         python3-all \
         python3-apt \
-        python3-cffi \
-        python3-cffi-backend \
         python3-dev \
         python3-pip \
-        python3-pyelftools \
         python3-setuptools \
         python3-venv \
         python3-virtualenv \
@@ -94,56 +129,12 @@ RUN mkdir -p /tmp/dumps \
 
 # CSIT PIP pre-cache
 RUN python3 -m venv venv \
-    && venv/bin/pip3 install --upgrade --no-cache-dir pip \
-    && venv/bin/pip3 install --upgrade setuptools \
-    && venv/bin/pip3 install --upgrade wheel \
-    && venv/bin/pip3 install \
-        ecdsa==0.19.0 \
-        paramiko==3.4.1 \
-        pycryptodome==3.20.0 \
-        python-dateutil==2.9.0 \
-        PyYAML==6.0.1 \
-        requests==2.32.2 \
-        robotframework==7.0.1 \
-        scapy==2.4.5 \
-        scp==0.15.0 \
-        ansible==10.2.0 \
-        ansible-core==2.17.2 \
-        dill==0.3.8 \
-        numpy==2.0.1 \
-        scipy==1.14.0 \
-        ply==3.11 \
-        jsonschema==4.23.0 \
-        rfc3339-validator==0.1.4 \
-        rfc3987==1.3.8 \
-        pylint==3.2.6 \
-        astroid==3.2.4 \
-        attrs==24.2.0 \
-        bcrypt==4.2.0 \
-        certifi==2024.7.4 \
-        cffi==1.17.0 \
-        charset-normalizer==3.3.2 \
-        cryptography==43.0.0 \
-        idna==3.7 \
-        isort==5.13.2 \
-        Jinja2==3.1.4 \
-        jsonschema-specifications==2023.12.1 \
-        MarkupSafe==2.1.5 \
-        mccabe==0.7.0 \
-        packaging==24.1 \
-        platformdirs==4.2.2 \
-        ply==3.11 \
-        pycparser==2.22 \
-        PyNaCl==1.5.0 \
-        referencing==0.35.1 \
-        resolvelib==1.0.1 \
-        rpds-py==0.20.0 \
-        six==1.16.0 \
-        tomli==2.0.1 \
-        tomlkit==0.13.0 \
-        typing_extensions==4.12.2 \
-        urllib3==2.2.2\
-        meson==0.64.1
+ && venv/bin/pip3 install --upgrade --no-cache-dir pip \
+ && venv/bin/pip3 install --upgrade setuptools \
+ && venv/bin/pip3 install --upgrade wheel
+
+# Extract DPDK from previous image.
+COPY --from=dpdk_stage /dpdk /opt/dpdk
 
 RUN useradd -rm -d /home/testuser -s /bin/bash -g 1000 -G sudo testuser \
  && echo 'testuser:Csit1234' | chpasswd

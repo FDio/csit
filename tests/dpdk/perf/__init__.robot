@@ -22,7 +22,6 @@
 | Suite Setup | Run Keywords | Start Suite Setup Export
 | ... | AND | Setup performance global Variables
 | ... | AND | Setup Framework | ${nodes}
-| ... | AND | Install DPDK framework on all DUTs | ${nodes}
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True} | skip_vpp=${True}
