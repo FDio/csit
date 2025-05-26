@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22a09505_2796051b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-26T11:46:30Z",
+      "side": 1,
+      "message": "csit-2n-c7gn-perftest nic_*ANDeth-ip4tcphttp-ldpreload-nginx-1_21_5 !drv_af_xdp",
+      "revId": "30beec19856fc72652fb7982516afebbce6f60c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
