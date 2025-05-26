@@ -20,45 +20,11 @@ set -exuo pipefail
 
 function gather_dpdk () {
 
-    # Ensure latest DPDK archive is downloaded.
-    #
-    # Variables read:
-    # - TEST_CODE - The test selection string from environment or argument.
-    # Hardcoded:
-    # - dpdk archive name to download if TEST_CODE is not time based.
-    # Directories updated:
-    # - ./ - Assumed ${DOWNLOAD_DIR}, dpdk-*.tar.xz is downloaded if not there.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
+    # This function is required to bypass download dir check.
+    # Currently it creates empty file in download dir.
 
     set -exuo pipefail
 
-    dpdk_repo="https://fast.dpdk.org/rel"
-    # Use downloaded packages with specific version
-    if [[ "${TEST_CODE}" == *"daily"* ]] || \
-       [[ "${TEST_CODE}" == *"weekly"* ]] || \
-       [[ "${TEST_CODE}" == *"timed"* ]];
-    then
-        echo "Downloading latest DPDK packages from repo..."
-        # URL is not in quotes, calling command from variable keeps them.
-        wget_command=("wget" "--no-check-certificate" "--compression=auto")
-        wget_command+=("-nv" "-O" "-")
-        wget_command+=("${dpdk_repo}")
-        dpdk_stable_ver="$("${wget_command[@]}" | grep -v "2015"\
-            | grep -Eo 'dpdk-[^\"]+xz' | tail -1)" || {
-            die "Composite piped command failed."
-        }
-    else
-        echo "Downloading DPDK package of specific version from repo ..."
-        # Downloading DPDK version based on what VPP is using. Currently
-        # it is not easy way to detect from VPP version automatically.
-        dpdk_stable_ver="$(< "${CSIT_DIR}/DPDK_VPP_VER")".tar.xz || {
-            die "Failed to read DPDK VPP version!"
-        }
-    fi
-    if [[ ! -f "${dpdk_stable_ver}" ]]; then
-        wget -nv --no-check-certificate "${dpdk_repo}/${dpdk_stable_ver}" || {
-            die "Failed to get DPDK package from: ${dpdk_repo}"
-        }
-    fi
+    touch dpdk-download-skipped.txt
+
 }
