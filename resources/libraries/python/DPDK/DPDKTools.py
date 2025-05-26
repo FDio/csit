@@ -91,7 +91,7 @@ class DPDKTools:
         :rtype: str
         :raises RuntimeError: If command returns nonzero return code.
         """
-        command = f"cat {Constants.REMOTE_FW_DIR}/dpdk*/VERSION"
+        command = f"cat /opt/dpdk/VERSION"
         message = u"Get DPDK version failed!"
         stdout, _ = exec_cmd_no_error(node, command, message=message)
         logger.info(f"DPDK Version: {stdout}")
