@@ -296,6 +296,11 @@ class VppConfigGenerator:
             path = ["dpdk", cryptodev_config]
             self.add_config_item(self._nodeconfig, "", path)
 
+    def add_crypto_engine(self, engine):
+        """FIXME"""
+        self.add_config_item(self._nodeconfig, "", ["crypto_engines", "default", "disable"])
+        self.add_config_item(self._nodeconfig, "", ["crypto_engines", engine, "enable"])
+
     def add_dpdk_dev_default_devargs(self, value):
         """Add DPDK dev default devargs configuration.
 
