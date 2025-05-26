@@ -298,13 +298,13 @@
 | | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
 | | ${curr_driver}= | Get PCI dev driver | ${tg}
 | | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
-| | ${driver}= | Get Variable Value
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']} | ${driver}
+#| | Run keyword if | '${curr_driver}'!='${None}'
+#| | ... | PCI Driver Unbind | ${tg} |
+#| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
+#| | ${driver}= | Get Variable Value
+#| | ... | ${tg['interfaces']['${TG_pf1}[0]']['driver']}
+#| | PCI Driver Bind | ${tg}
+#| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']} | ${driver}
 | | ${intf_name}= | Get Linux interface name | ${tg}
 | | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
 | | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
@@ -316,16 +316,16 @@
 | | Set Linux interface up | ${nodes}[TG] | ${intf_name}
 | | ${curr_driver}= | Get PCI dev driver | ${tg}
 | | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
-| | ${driver}= | Get Variable Value
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']} | ${driver}
+#| | Run keyword if | '${curr_driver}'!='${None}'
+#| | ... | PCI Driver Unbind | ${tg} |
+#| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
+#| | ${driver}= | Get Variable Value
+#| | ... | ${tg['interfaces']['${TG_pf2}[0]']['driver']}
+#| | PCI Driver Bind | ${tg}
+#| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']} | ${driver}
 | | ${intf_name}= | Get Linux interface name | ${tg}
 | | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
-| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
+| | Set Linux interface down | ${nodes}[TG] | ${intf_name}
 | | Check AB | ${tg}
 | | ${type} = | Get AB Type | ${nodes}[TG]
 | | ${version} = | Get AB Version | ${nodes}[TG]
