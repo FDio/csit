@@ -101,6 +101,23 @@
       "message": "csit-vpp-report-iter-3n-icx-perftest vpp-soak-00",
       "revId": "efd6592a3eee658dc3714118e003350ef9ee657d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c18712_7ee2067d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-05-26T06:50:32Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-emr-perftest vpp-hoststack-00\ncsit-vpp-report-iter-3n-emr-perftest vpp-hoststack-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-hoststack-00\ncsit-vpp-report-iter-3nb-spr-perftest vpp-hoststack-00\ncsit-vpp-report-iter-3na-spr-perftest vpp-hoststack-00",
+      "revId": "efd6592a3eee658dc3714118e003350ef9ee657d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
