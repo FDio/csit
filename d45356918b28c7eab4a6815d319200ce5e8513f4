@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e60c90_fca8b51b",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-05-26T11:20:40Z",
+      "side": 1,
+      "message": "if test failed",
+      "range": {
+        "startLine": 139,
+        "startChar": 6,
+        "endLine": 139,
+        "endChar": 59
+      },
+      "revId": "d45356918b28c7eab4a6815d319200ce5e8513f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
