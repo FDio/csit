@@ -16,6 +16,23 @@
       "message": "csit-3n-emr-perftest mrrANDnic_*ANDdrv_vfio_pciAND1cAND1518bANDethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256gcm",
       "revId": "db76b3ebbe74d888e937c20ee2d5b82f7d958e22",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f22f1d2d_8342fc40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-27T11:10:37Z",
+      "side": 1,
+      "message": "csit-3nb-spr-perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND1518bAND*10000tnlsw-udp-ar*",
+      "revId": "db76b3ebbe74d888e937c20ee2d5b82f7d958e22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
