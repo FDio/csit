@@ -138,7 +138,10 @@ class Layout:
                     test = test.replace(f"{drv}-", "")
                     break
             else:
-                driver = "dpdk"
+                if tbed == "3n-oct":
+                    driver = "octeon"
+                else:
+                    driver = "dpdk"
             infra = "-".join((tbed, nic, driver))
             lst_test = test.split("-")
             framesize = lst_test[0]

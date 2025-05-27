@@ -117,7 +117,10 @@ class Layout:
                         drv = driver
                         break
                 else:
-                    drv = "dpdk"
+                    if tb == "3n-oct":
+                        drv = "octeon"
+                    else:
+                        drv = "dpdk"
                 test = l_id[-1]
 
                 if data_type in ("iterative", "coverage", ):

@@ -112,7 +112,10 @@ class Layout:
                     test = test.replace(f"{drv}-", "")
                     break
             else:
-                driver = "dpdk"
+                if tbed == "3n-oct":
+                    driver = "octeon"
+                else:
+                    driver = "dpdk"
             infra = "-".join((tbed, nic, driver))
 
             if tbs.get(rls, None) is None:
