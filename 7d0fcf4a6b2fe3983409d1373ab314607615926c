@@ -67,6 +67,23 @@
       "message": "csit-3n-snr-perftest ndrpdrANDnic_intel*ANDdrv_vfio_pciAND1cAND1518bAND*10000tnlsw-udp-ar*",
       "revId": "7d0fcf4a6b2fe3983409d1373ab314607615926c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "228e5b02_48924a18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-27T15:04:08Z",
+      "side": 1,
+      "message": "csit-3n-icxd-perftest ndrpdrANDnic_intel*ANDdrv_vfio_pciAND1cAND1518bAND*10000tnlsw-udp-ar*",
+      "revId": "7d0fcf4a6b2fe3983409d1373ab314607615926c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
