@@ -143,7 +143,7 @@ class TrafficStreamsScaleClass:
                     STLStream(
                         packet=pkt,
                         isg=10.0 * (i // (len(pkts) // 2)),
-                        mode=STLTXCont(pps=9000)
+                        mode=STLTXCont(pps=90)
                     )
                 )
                 lat_streams.append(
@@ -151,7 +151,7 @@ class TrafficStreamsScaleClass:
                         packet=pkt_lat,
                         isg=10.0 * (i // (len(pkts) // 2)),
                         flow_stats=STLFlowLatencyStats(pg_id=i),
-                        mode=STLTXCont(pps=9000)
+                        mode=STLTXCont(pps=90)
                     )
                 )
 
