@@ -13,6 +13,8 @@
 
 """VPP util library."""
 
+from time import sleep
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -101,6 +103,8 @@ class VPPUtil:
                 Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
             if Topology.get_node_sockets(node, socket_type=SocketType.STATS):
                 Topology.del_node_socket_id(node, SocketType.STATS, node_key)
+        # Linux sometimes needs more time to grab the freed devices.
+        sleep(1)
         if unsure:
             raise RuntimeError(f"VPP kill not confirmed!")
 
