@@ -131,7 +131,10 @@ def select_comp_data(
             (data["release"] == dutver[0])
         )])
 
-        drv = "" if itm["driver"] == "dpdk" else itm["driver"].replace("_", "-")
+        if itm["driver"] in C.DRVS_NOT_IN_NAME:
+            drv = str()
+        else:
+            itm["driver"].replace("_", "-")
         core = str() if itm["dut"] == "trex" else itm["core"].lower()
         ttype = "ndrpdr" if itm["ttype"] in ("NDR", "PDR", "Latency") \
             else itm["ttype"].lower()
@@ -145,7 +148,7 @@ def select_comp_data(
                 regex=True
             ))
         ]
-        if itm["driver"] == "dpdk":
+        if itm["driver"] in C.DRVS_NOT_IN_NAME:
             for drv in C.DRIVERS:
                 tmp_df.drop(
                     tmp_df[tmp_df.test_id.str.contains(f"-{drv}-")].index,

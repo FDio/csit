@@ -32,7 +32,7 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import label, gen_new_url, generate_options, navbar_report, \
-    show_tooltip, get_topo_arch
+    show_tooltip, get_topo_arch, get_drv_name
 from ..utils.url_processing import url_decode
 from .tables import coverage_tables, select_coverage_data
 
@@ -106,13 +106,7 @@ class Layout:
                 replace("2n-", "")
             test = lst_test_id[-1]
             nic = suite.split("-")[0]
-            for drv in C.DRIVERS:
-                if drv in test:
-                    driver = drv.replace("-", "_")
-                    test = test.replace(f"{drv}-", "")
-                    break
-            else:
-                driver = "dpdk"
+            driver, test = get_drv_name(test, tbed)
             infra = "-".join((tbed, nic, driver))
 
             if tbs.get(rls, None) is None:

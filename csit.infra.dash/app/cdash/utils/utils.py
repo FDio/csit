@@ -968,3 +968,39 @@ def get_topo_arch(lst_job: list) -> str:
     else:
         # Topology and architecture are the last two substrings.
         return "-".join(lst_job[-2:])
+
+
+def get_drv_name(in_str: str, tb: str, replace: bool = True) -> tuple:
+    """Identifies driver name from test or suite name and unifies its name.
+
+    The driver name is then removed from test / suite name and returned together
+    with the driver name.
+
+    If vfio_pci driver is used, the plugin name is returned:
+    - "octeon" for octeon testbeds,
+    - "dpdk" otherwise.
+
+    :param in_str: Test or suite name to be used to identify the driver name.
+    :param tb: Testbed name.
+    :param replace: (Optional, default True) If True, the "-" is replaced by "_"
+        in the driver name.
+    :type in_str: str
+    :type tb: str
+    :type replace: bool
+    """
+
+    for drv in C.DRIVERS:
+        if drv in in_str:
+            if replace:
+                driver = drv.replace("-", "_")
+            else:
+                driver = drv
+            in_str = in_str.replace(f"{drv}-", "")
+            break
+    else:
+        if tb == "3n-oct":
+            driver = "octeon"
+        else:
+            driver = "dpdk"
+
+    return driver, in_str
