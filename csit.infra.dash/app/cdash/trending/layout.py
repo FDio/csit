@@ -35,7 +35,7 @@ from ..utils.trigger import Trigger
 from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items, navbar_trending, get_topo_arch, \
-    show_trending_graph_data
+    show_trending_graph_data, get_drv_name
 from ..utils.url_processing import url_decode
 from .graphs import graph_trending, select_trending_data, graph_tm_trending
 
@@ -126,16 +126,17 @@ class Layout:
                 replace("2n-", "")
             test = lst_test[-1]
             nic = suite.split("-")[0]
-            for drv in C.DRIVERS:
-                if drv in test:
-                    if drv == "af-xdp":
-                        driver = "af_xdp"
-                    else:
-                        driver = drv
-                    test = test.replace(f"{drv}-", "")
-                    break
-            else:
-                driver = "dpdk"
+            driver, test = get_drv_name(test, tbed)
+            # for drv in C.DRIVERS:
+            #     if drv in test:
+            #         if drv == "af-xdp":
+            #             driver = "af_xdp"
+            #         else:
+            #             driver = drv
+            #         test = test.replace(f"{drv}-", "")
+            #         break
+            # else:
+            #     driver = "dpdk"
             infra = "-".join((tbed, nic, driver))
             lst_test = test.split("-")
             framesize = lst_test[0]

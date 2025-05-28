@@ -168,7 +168,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = get_int_from_env("TIME_PERIOD", MAX_TIME_PERIOD)  # [days]
+    TIME_PERIOD = 20  # get_int_from_env("TIME_PERIOD", MAX_TIME_PERIOD)  # [days]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -214,7 +214,8 @@ class Constants:
     PLACEHOLDER = html.Nobr("")
 
     # List of drivers used in CSIT.
-    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk", "mlx5")
+    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk", "mlx5", "octeon")
+    DRVS_NOT_IN_NAME = ("dpdk", "octeon")
 
     # Labels for input elements (dropdowns, ...).
     LABELS = {

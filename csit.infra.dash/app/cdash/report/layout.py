@@ -33,7 +33,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items, navbar_report, get_topo_arch, \
-    show_iterative_graph_data
+    show_iterative_graph_data, get_drv_name
 from ..utils.url_processing import url_decode
 from .graphs import graph_iterative, select_iterative_data
 
@@ -132,13 +132,14 @@ class Layout:
                 replace("2n-", "")
             test = lst_test_id[-1]
             nic = suite.split("-")[0]
-            for drv in C.DRIVERS:
-                if drv in test:
-                    driver = drv.replace("-", "_")
-                    test = test.replace(f"{drv}-", "")
-                    break
-            else:
-                driver = "dpdk"
+            driver, test = get_drv_name(test, tbed)
+            # for drv in C.DRIVERS:
+            #     if drv in test:
+            #         driver = drv.replace("-", "_")
+            #         test = test.replace(f"{drv}-", "")
+            #         break
+            # else:
+            #     driver = "dpdk"
             infra = "-".join((tbed, nic, driver))
             lst_test = test.split("-")
             framesize = lst_test[0]

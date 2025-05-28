@@ -34,7 +34,7 @@ from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
 from ..utils.utils import generate_options, gen_new_url, navbar_report, \
     filter_table_data, sort_table_data, show_iterative_graph_data, \
-    show_tooltip, get_topo_arch
+    show_tooltip, get_topo_arch, get_drv_name
 from .tables import comparison_table
 from ..report.graphs import graph_iterative
 
@@ -132,13 +132,14 @@ class Layout:
                 replace("2n-", "")
             test = lst_test_id[-1]
             nic = suite.split("-")[0]
-            for driver in C.DRIVERS:
-                if driver in test:
-                    drv = driver.replace("-", "_")
-                    test = test.replace(f"{driver}-", "")
-                    break
-            else:
-                drv = "dpdk"
+            drv, test = get_drv_name(test, tbed)
+            # for driver in C.DRIVERS:
+            #     if driver in test:
+            #         drv = driver.replace("-", "_")
+            #         test = test.replace(f"{driver}-", "")
+            #         break
+            # else:
+            #     drv = "dpdk"
             infra = "-".join((tbed, nic, drv))
             lst_test = test.split("-")
             fsize = lst_test[0]

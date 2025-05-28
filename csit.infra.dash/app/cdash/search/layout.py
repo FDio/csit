@@ -33,7 +33,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import gen_new_url, generate_options, navbar_trending, \
     filter_table_data, sort_table_data, show_trending_graph_data, \
-    show_iterative_graph_data, show_tooltip, get_topo_arch
+    show_iterative_graph_data, show_tooltip, get_topo_arch, get_drv_name
 from ..utils.url_processing import url_decode
 from .tables import search_table
 from ..coverage.tables import coverage_tables
@@ -112,12 +112,13 @@ class Layout:
                     replace("2n-", "")
                 tb = get_topo_arch(row["job"].split("-"))
                 nic = suite.split("-")[0]
-                for driver in C.DRIVERS:
-                    if driver in suite:
-                        drv = driver
-                        break
-                else:
-                    drv = "dpdk"
+                drv, _ = get_drv_name(suite, tb, replace=False)
+                # for driver in C.DRIVERS:
+                #     if driver in suite:
+                #         drv = driver
+                #         break
+                # else:
+                #     drv = "dpdk"
                 test = l_id[-1]
 
                 if data_type in ("iterative", "coverage", ):
