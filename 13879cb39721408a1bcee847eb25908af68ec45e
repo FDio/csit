@@ -33,6 +33,23 @@
       "message": "The topic is more complex, only this will not work. I am working on a patch which introduces \"octeon\" driver.",
       "revId": "13879cb39721408a1bcee847eb25908af68ec45e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc919e2_14ef7a17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-05-28T14:05:42Z",
+      "side": 1,
+      "message": "Done. See 43048: cdash: distinguish between dpdk and octeon | https://gerrit.fd.io/r/c/csit/+/43048",
+      "revId": "13879cb39721408a1bcee847eb25908af68ec45e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
