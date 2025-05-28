@@ -16,6 +16,23 @@
       "message": "csit-2n-grc-perftest mrrANDnic_*ANDdrv_mlx*AND64bANDethip4-ip4scale2m-rnd",
       "revId": "6af7a3b277896b60f79e26a2db466861c82c6117",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c5c24e_7adb6e37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-28T12:50:54Z",
+      "side": 1,
+      "message": "Oh, we still do not prevent 6-port tests from running in verify on 2-port testbeds.\nThe 3 passing tests confirm this is not breaking.\n\nrecheck",
+      "revId": "6af7a3b277896b60f79e26a2db466861c82c6117",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
