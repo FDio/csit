@@ -81,7 +81,8 @@ def search_table(data: pd.DataFrame, selection: list) -> pd.DataFrame:
         l_id = row["test_id"].split(".")
         suite = l_id[-2].replace("2n1l-", "").replace("1n1l-", "").\
             replace("2n-", "")
-        l_tb.append(get_topo_arch(row["job"].split("-")))
+        tb = get_topo_arch(row["job"].split("-"))
+        l_tb.append(tb)
         l_nic.append(suite.split("-")[0])
         if selection["datatype"] != "trending":
             l_dutver.append(row["dut_version"])
@@ -90,7 +91,10 @@ def search_table(data: pd.DataFrame, selection: list) -> pd.DataFrame:
                 l_drv.append(driver)
                 break
         else:
-            l_drv.append("dpdk")
+            if tb == "3n-oct":
+                l_drv.append("octeon")
+            else:
+                l_drv.append("dpdk")
         l_test.append(l_id[-1])
 
     if selection["datatype"] == "trending":
