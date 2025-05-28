@@ -55,7 +55,7 @@ def select_coverage_data(
     phy = selected["phy"].rsplit("-", maxsplit=2)
     if len(phy) == 3:
         topo_arch, nic, drv = phy
-        drv_str = "" if drv == "dpdk" else drv.replace("_", "-")
+        drv_str = "" if drv in C.DRVS_NOT_IN_NAME else drv.replace("_", "-")
     else:
         return l_data, None
 
@@ -72,7 +72,7 @@ def select_coverage_data(
             regex=True
         ))
     ]
-    if drv == "dpdk":
+    if drv in C.DRVS_NOT_IN_NAME:
         for driver in C.DRIVERS:
             df.drop(
                 df[df.test_id.str.contains(f"-{driver}-")].index,

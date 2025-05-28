@@ -42,7 +42,7 @@ def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     phy = itm["phy"].rsplit("-", maxsplit=2)
     if len(phy) == 3:
         topo_arch, nic, drv = phy
-        if drv == "dpdk":
+        if drv in C.DRVS_NOT_IN_NAME:
             drv = ""
         else:
             drv += "-"
