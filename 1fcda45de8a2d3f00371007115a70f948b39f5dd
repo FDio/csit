@@ -16,6 +16,23 @@
       "message": "csit-2n-c7gn-perftest mrrANDnic_*AND4cAND??bANDethip?-ip?base !drv_af_xdp",
       "revId": "1fcda45de8a2d3f00371007115a70f948b39f5dd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f951c9f_0c64de31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-05-29T14:44:45Z",
+      "side": 1,
+      "message": "csit-2n-c7gn-perftest mrrANDnic_*AND4cAND??bANDethip?-ip?base !drv_af_xdp",
+      "revId": "1fcda45de8a2d3f00371007115a70f948b39f5dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
