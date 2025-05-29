@@ -281,7 +281,7 @@
 | |
 | | ${rate_for_teardown} = | Get Variable Value | \${rate_for_teardown} | ${0.0}
 | | Return From Keyword If | ${rate_for_teardown} | ${rate_for_teardown}
-| | Run Keyword And Return | Get Min Rate Soft
+| | Run Keyword And Return | Get Max Rate
 
 | Get Resetter
 | | [Documentation]

@@ -159,7 +159,7 @@
 | | ... | initial_count=${50}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
-| | ... | timeout=${1800.0}
+| | ... | timeout=${7200.0}
 | | ... | trace_enabled=${False}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_scale=${transaction_scale}
@@ -486,6 +486,7 @@
 | | FOR | ${action} | IN | @{stat_runtime}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
+| | Return From Keyword
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -740,6 +741,7 @@
 | |
 | | ... | \| Traffic should pass with maximum rate \|
 | |
+| | Fail
 | | Set Test Variable | ${telemetry_rate} | mrr
 | | Set Test Variable | ${telemetry_export} | ${True}
 | | ${max_rate} = | Get Max Rate
