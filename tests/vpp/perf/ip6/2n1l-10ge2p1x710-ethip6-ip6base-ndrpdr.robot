@@ -63,6 +63,7 @@
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip6-ip6src253
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
