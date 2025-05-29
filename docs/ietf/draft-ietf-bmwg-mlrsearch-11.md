@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-10
-date: 2025-03-16
+docname: draft-ietf-bmwg-mlrsearch-11
+date: 2025-05-22
 
 ipr: trust200902
 area: ops
@@ -87,9 +87,9 @@ and supporting the search for multiple goals with varying loss ratios.
     If another engine is used, convert to this way:
     https://stackoverflow.com/a/20885980
 
-[toc]
-
 {:/comment}
+
+[toc]
 
 # Requirements Language
 
@@ -103,7 +103,7 @@ in this document are to be interpreted as described in BCP 14 [RFC2119]
 {:/comment}
 [RFC8174] when, and only when, they appear in all capitals, as shown here.
 
-# Purpose and Scope
+# Introduction
 
 The purpose of this document is to describe the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining
@@ -432,8 +432,8 @@ Relevant Lower Bound is the MLRsearch term that addresses this problem.
 
 # MLRsearch Specification
 
-MLRsearch specification describes all technical
-definitions needed for evaluating whether a particular test procedure
+This chapter provides all technical definitions
+needed for evaluating whether a particular test procedure
 complies with MLRsearch specification.
 
 Some terms used in the specification are capitalized.
@@ -451,6 +451,24 @@ are also present in the discussion paragraphs.
 
 Other text in this section discusses document structure
 and non-authoritative summaries.
+
+## Scope
+
+TODO: Multiple tests in RFC2544, this is about throughput only.
+
+TODO: Multiple traffic profiles (at least frame sizes) in RFC2544, this is about single SUT+profile.
+
+TODO: Repeating the same search is possible, this is about single search.
+
+TODO: Manual processes, automation, implementation as library,...
+
+TODO: Calls/invocations, interfaces.
+
+TODO: Regular end, irregular exit, user abort.
+
+TODO: Load classification equivalence (not here, just in later chapters).
+
+TODO: General discussion around test, search, trial and recurrence? For example throughput search can be a part of B2B tests.
 
 ## Overview
 
@@ -2641,6 +2659,8 @@ Many thanks to Alec Hothan of the OPNFV NFVbench project for a thorough
 review and numerous useful comments and suggestions in the earlier
 versions of this document.
 
+--- back
+
 # Appendix A: Load Classification
 
 This section specifies how to perform the Load Classification.
@@ -2777,12 +2797,6 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 
 # Index
 
-{::comment}
-
-    TODO-P2: There are long lines.
-
-{:/comment}
-
 - Bound: Lower Bound or Upper Bound.
 - Bounds: Lower Bound and Upper Bound.
 - Conditional Throughput: defined in [Conditional Throughput](#conditional-throughput), discussed in [Generalized Throughput](#generalized-throughput).
@@ -2837,24 +2851,3 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 - Trial Result: defined in [Trial Result](#trial-result).
 - Undecided: defined in [Undecided ](#undecided).
 - Upper Bound: defined in [Upper Bound](#upper-bound).
-
---- back
-
-{::comment}
-    [Final checklist.]
-
-    <mark>[VP] Final Checks. Only mark as done when there are no active todos above.</mark>
-
-    <mark>[VP] Rename chapter/sub-/section to better match their content.</mark>
-
-    <mark>MKP3 [VP] TODO: Recheck the definition dependencies go bottom-up.</mark>
-
-    <mark>[VP] TODO: Unify external reference style (brackets, spaces, section numbers and names).</mark>
-
-    <mark>MKP2 [VP] TODO: Capitalization of New Terms: useful when editing and reviewing,
-    but I still vote to remove capitalization before final submit,
-    because all other RFCs I see only capitalize due to being section title.</mark>
-
-    <mark>[VP] TODO: If time permits, keep improving formal style (e.g. using AI).</mark>
-
-{:/comment}
