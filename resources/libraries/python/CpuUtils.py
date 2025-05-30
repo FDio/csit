@@ -15,6 +15,7 @@
 
 from random import choice
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -159,11 +160,12 @@ class CpuUtils:
         :rtype: list
         :raises RuntimeError: If we require more cpus than available.
         """
+        logger.info(f"cpu_slice_of_list_per_node: {cpu_node=} {skip_cnt=} {cpu_cnt=} {smt_used=}")
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
 
         cpu_list_len = len(cpu_list)
         if cpu_cnt + skip_cnt > cpu_list_len:
-            raise RuntimeError(u"cpu_cnt + skip_cnt > length(cpu list).")
+            raise RuntimeError(f"{cpu_cnt=} + {skip_cnt=} > {cpu_list_len=}")
 
         if cpu_cnt == 0:
             cpu_cnt = cpu_list_len - skip_cnt
@@ -412,19 +414,20 @@ class CpuUtils:
         :returns: List of CPUs allocated to T-Rex including numa node.
         :rtype: int, int, int, list
         """
+        logger.info(f"get_affinity_trex: {if_key=} {tg_mtc=} {tg_dtc=} {tg_ltc=} {tg_dtc_offset=}")
         interface_list = [if_key]
         cpu_node = Topology.get_interfaces_numa_node(node, *interface_list)
 
         master_thread_id = CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node, skip_cnt=0, cpu_cnt=tg_mtc,
-            smt_used=False)
+            smt_used=True)
 
         threads = CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node, skip_cnt=tg_mtc + tg_ltc + tg_dtc_offset,
-            cpu_cnt=tg_dtc, smt_used=False)
+            cpu_cnt=tg_dtc, smt_used=True)
 
         latency_thread_id = CpuUtils.cpu_slice_of_list_per_node(
-            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_ltc, smt_used=False)
+            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_ltc, smt_used=True)
 
         return master_thread_id[0], latency_thread_id[0], cpu_node, threads
 
