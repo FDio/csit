@@ -134,7 +134,7 @@ def select_comp_data(
         if itm["driver"] in C.DRVS_NOT_IN_NAME:
             drv = str()
         else:
-            itm["driver"].replace("_", "-")
+            drv = itm["driver"].replace("_", "-")
         core = str() if itm["dut"] == "trex" else itm["core"].lower()
         ttype = "ndrpdr" if itm["ttype"] in ("NDR", "PDR", "Latency") \
             else itm["ttype"].lower()
