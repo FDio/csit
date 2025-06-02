@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -474,9 +474,7 @@ class CpuUtils:
         else:
             cpu_node = 0
 
-        smt_used = CpuUtils.is_smt_enabled(node[u"cpuinfo"])
-        if smt_used:
-            cpu_cnt = cpu_cnt // CpuUtils.NR_OF_THREADS
+        cpu_cnt = cpu_cnt // CpuUtils.NR_OF_THREADS
 
         return CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node=cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
