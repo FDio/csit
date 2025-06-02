@@ -1,18 +1,19 @@
 ---
-# file: roles/prometheus_exporter/meta/main.yaml
+# file: prometheus_exporter/meta/main.yaml
 
-dependencies: [docker]
+#dependencies: [docker]
 
 galaxy_info:
-  role_name: prometheus_exporter
-  author: fd.io
-  description: Prometheus Exporters.
-  company: none
+  role_name: "prometheus_exporter"
+  author: "fd.io"
+  description: "Prometheus Exporters."
+  company: "none"
   license: "license (Apache)"
   min_ansible_version: 2.9
   platforms:
-    - name: Ubuntu
+    - name: "Ubuntu"
       versions:
-        - jammy
+        - "jammy"
+        - "noble"
   galaxy_tags:
-    - prometheus
+    - "prometheus"

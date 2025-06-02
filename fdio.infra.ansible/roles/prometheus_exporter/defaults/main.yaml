@@ -1,7 +1,6 @@
 ---
-# file: roles/prometheus_exporter/defaults/main.yaml
+# file: prometheus_exporter/defaults/main.yaml
 
-# Inst - Exporters.
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
@@ -21,11 +20,5 @@ packages_by_arch:
 ne_image: "{{ ne_image_by_arch[ansible_machine] }}"
 
 ne_image_by_arch:
-  aarch64: "prom/node-exporter:v1.3.1"
-  x86_64: "prom/node-exporter:v1.3.1"
-
-be_image: "{{ be_image_by_arch[ansible_machine] }}"
-
-be_image_by_arch:
-  aarch64: "prom/blackbox-exporter:v0.21.1"
-  x86_64: "prom/blackbox-exporter:v0.21.1"
+  aarch64: "prom/node-exporter:v1.9.1"
+  x86_64: "prom/node-exporter:v1.9.1"
