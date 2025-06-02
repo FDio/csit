@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,6 +16,7 @@
 from enum import IntEnum
 
 from robot.api import logger
+from time import sleep
 
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -164,6 +165,7 @@ class VhostUser:
         :type pf_key: str
         :type skip_cnt: int
         """
+        sleep(600)
         pids, _ = exec_cmd_no_error(
             node, f"grep -h vhost /proc/*/comm | uniq | xargs pidof")
 
