@@ -152,6 +152,8 @@
 | | Run Keyword If | not ${nic_vfs}
 | | ... | ${dut}.Add OCTEON Dev | @{${dut}_pf_pci}
 | | ... | num_default_rx_queues=${rxq_count_int}
+| | Run Keyword If | '${crypto_type}' != '${None}'
+| | ... | ${dut}.Add OCTEON Cryptodev
 
 | Pre-initialize layer vfio-pci for dpdk_plugin.so
 | | [Documentation]
