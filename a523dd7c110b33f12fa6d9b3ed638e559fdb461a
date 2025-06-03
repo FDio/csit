@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eac82781_5b26813a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-06-03T07:22:49Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest mrrANDnic_intel-e810cqAND4cAND128kbANDethip4-ip4base-2tap-gso-iperf3",
+      "revId": "a523dd7c110b33f12fa6d9b3ed638e559fdb461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
