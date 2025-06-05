@@ -7,6 +7,7 @@ weight: 2
 
 # Previous Releases
 
+- [CSIT rls2502]({{< relref "csit_rls2502" >}})
 - [CSIT rls2410]({{< relref "csit_rls2410" >}})
 - [CSIT rls2406]({{< relref "csit_rls2406" >}})
 - [CSIT rls2402]({{< relref "csit_rls2402" >}})
