@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-2n-emr-perftest vpp-gso-mrr-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-gso-mrr-00\ncsit-vpp-report-iter-2n-zn2-perftest vpp-gso-mrr-00",
       "revId": "19c0c2fe51e35d43c43c6dfd49629dd22edaeced",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c861755_5edf998b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-06-13T07:11:16Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-2n-spr-perftest trex-mrr-00",
+      "revId": "19c0c2fe51e35d43c43c6dfd49629dd22edaeced",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
