@@ -31,3 +31,41 @@ If that complains, do it manually at https://author-tools.ietf.org/
 
 Finally:
 https://author-tools.ietf.org/idnits
+
+
+Now that I have forced the Canvas editor into source-editing style (as opposed to rendered style),
+I have real tasks for you, they involve multiple document files.
+I am working on an upcoming IETF document, currently still in the draft state.
+I have attached two files, one is a markdown source of the document as uploaded recently (draft version 10).
+The other attached file is a .doc feedback from AD editor (in e-mails signing as "Med").
+The attached markdown file already contains few comments, enclosed between tags `{::comment}` and `{:/comment}`.
+The .doc file contains in-place edits proposed by the AD editor, and also Word-specific review-comments from him and my reactions.
+I have copied the work-in-progress state of the markdown source into the Canvas editor.
+The issue is the whole markdown file is too long for your output tokens limit.
+That means everytime I type something into this main chat (Enter a prompt for Gemini) dialog
+and you decide to edit something in the Canvas, you spent 20 minutes writing mostly unedited text into Canvas,
+during which the Editor is in rendering mode (making your outputs not usable as markdown source yet)
+but you run out of tokens, GUI reports "Network error" and I cannot easily make the editor switch back to source-editing mode.
+At which point I have to create a new conversation and start over.
+So, I would appreciate you not touching the Canvas content, at all.
+Even if I tell you otherwise, you should ask for confirmation first.
+The other dialog (Ask Gemini), when only a small part of text is selected in Canvas, works only as a pointer.
+If you decide to edit the selected area you still attempt to write the whole file and fail.
+The current editing phase focuses on copying review-comments from the .doc file into markdown as kramdown-friendly comment blocks.
+I already see at least two mistakes, missing or misplaced comment from Med or reply from me (VP).
+What is the first mistake you see in the Canvas state compared to .doc review comments?
+(You can write the correction to the main chat, but be careful not to touch Canvas content.)
+
+
+
+(do not forget to enable canvas)
+
+I have an example markdown source below, including a Python code sub-block. Put that markdown source into Canvas, as a new code immersive with the markdown language type.
+
+### Example subsection
+
+``` python
+print("Output text example.")
+```
+
+Trailing text example.
