@@ -83,135 +83,6 @@
 1c AND 1518b AND mrr AND cx6dx AND drv_mlx5_core AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
 2c AND 1518b AND mrr AND cx6dx AND drv_mlx5_core AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
 4c AND 1518b AND mrr AND cx6dx AND drv_mlx5_core AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-### intel-xl710
-#### dpdk-vfio-pci
-##### ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-##### ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
-##### New ipsec suites with UDP encapsulation. One tescase per suite as they are experiemntal.
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac256sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128cbc-hmac96sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac256sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128ctr-hmac96sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes128nullgmac
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac256sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256cbc-hmac96sha
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-aes256nullgmac
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-udp-ar-ip4base-int-none-hmac96sha
-##### ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec4tnlsw-ip4base-policy-aes256gcm
-##### ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
-##### ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-1c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-1c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
-##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND 64b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND imix AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
-##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-1c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-2c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
-4c AND 1518b AND mrr AND xl710 AND dpdk-vfio-pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-reassembly
 ## ./ip4
 ### mellanox-cx6dx
 #### mlx5-core
@@ -223,17 +94,6 @@
 1c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND ethip4-ip4base-iacldstbase
 2c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND ethip4-ip4base-iacldstbase
 4c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND ethip4-ip4base-iacldstbase
-### intel-xl710
-#### dpdk-vfio-pci
-##### ethip4-ip4base
-1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
-2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
-4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
-#### avf
-##### ethip4-ip4base
-1c AND 64b AND mrr AND xl710 AND drv_avf AND ethip4-ip4base
-2c AND 64b AND mrr AND xl710 AND drv_avf AND ethip4-ip4base
-4c AND 64b AND mrr AND xl710 AND drv_avf AND ethip4-ip4base
 ## ./ip4_tunnels
 ### mellanox-cx6dx
 #### mlx5-core
@@ -308,17 +168,6 @@
 1c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2bdbasemaclrn-iacl50sf-10kflows
 2c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2bdbasemaclrn-iacl50sf-10kflows
 4c AND 64b AND mrr AND cx6dx AND drv_mlx5_core AND eth-l2bdbasemaclrn-iacl50sf-10kflows
-### intel-xl710
-#### dpdk-vfio-pci
-##### eth-l2bdbasemaclrn
-1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
-2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
-4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
-#### avf
-##### eth-l2bdbasemaclrn
-1c AND 64b AND mrr AND xl710 AND drv_avf AND eth-l2bdbasemaclrn
-2c AND 64b AND mrr AND xl710 AND drv_avf AND eth-l2bdbasemaclrn
-4c AND 64b AND mrr AND xl710 AND drv_avf AND eth-l2bdbasemaclrn
 ## ./srv6
 ### mellanox-cx6dx
 #### mlx5-core
