@@ -9,10 +9,6 @@ kernel_version_by_distro_by_arch:
     jammy:
       x86_64:
         - "5.15.0-46-generic"
-        - "5.15.0-1000-aws"
-        - "5.4.0-1009-aws"
-      aarch64:
-        - "5.15.0-46-generic"
     noble:
       x86_64:
         - "6.8.0-45-generic"
