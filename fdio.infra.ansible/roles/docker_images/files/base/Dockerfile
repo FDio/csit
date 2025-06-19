@@ -4,8 +4,24 @@ FROM ${BASE_IMAGE:-ubuntu} AS dpdk_stage
 
 ARG DPDK_VERSION
 
-RUN apt-get -qq update \
- && apt-get -qq install --no-install-recommends \
+# Setup the environment
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Configure locales
+RUN apt-get update -qq \
+ && apt-get install -y \
+        apt-utils \
+        locales \
+ && sed -i 's/# \(en_US\.UTF-8 .*\)/\1/' /etc/locale.gen \
+ && locale-gen en_US.UTF-8 \
+ && dpkg-reconfigure --frontend=noninteractive locales \
+ && update-locale LANG=en_US.UTF-8 \
+ && TZ=Etc/UTC && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+ && rm -r /var/lib/apt/lists/*
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US" LC_ALL="en_US.UTF-8"
+
+RUN apt-get -q update \
+ && apt-get install -y -qq \
       build-essential \
       ca-certificates \
       libnuma-dev \
