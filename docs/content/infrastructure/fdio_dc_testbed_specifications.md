@@ -886,8 +886,8 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.72
     - Host IP: 10.30.51.72
     - portnames:
-        - s62-t34-sut1-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s62-t34-sut1-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s62-t34-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s62-t34-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
         - s62-t34-sut1-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
         - s62-t34-sut1-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
 - SUT [Server-Type-E23]:
@@ -896,8 +896,8 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.73
     - Host IP: 10.30.51.73
     - portnames:
-        - s63-t34-sut2-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s63-t34-sut2-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s63-t34-sut2-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s63-t34-sut2-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
         - s63-t34-sut2-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
         - s63-t34-sut2-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
 - TG [Server-Type-E32]:
@@ -1362,10 +1362,6 @@ FD.io CSIT lab contains following server types:
 
 ```
 - testbed34:
-    - ring1 40GE-ports xl710-QDA2-2p40GE on SUTs:
-        - s64-t34-tg1-c4/p1 - s62-t34-sut1-c1/p2.
-        - s62-t34-sut1-c1/p1 - s63-t34-sut2-c1/p2.
-        - s63-t34-sut2-c1/p1 - s64-t34-tg1-c4/p2.
     - ring2 100GE-ports ConnectX6-2p100GE Mellanox on SUTs:
         - s64-t34-tg1-c8/p1 - s62-t34-sut2-c8/p1.
         - s62-t34-sut1-c8/p1 - s63-t34-sut2-c8/p2.
