@@ -16,22 +16,6 @@ nodes:
     username: testuser
     password: Csit1234
     interfaces:
-      port1:
-        # s74-t34-tg1-c4/p1 - 40GE port1 Intel XL710 2p40GE.
-        mac_address: "40:a6:b7:85:e7:80"
-        pci_address: "0000:31:00.0"
-        ip4_address: 172.16.10.2
-        driver: i40e
-        link: link1
-        model: Intel-XL710
-      port2:
-        # s74-t34-tg1-c4/p2 - 40GE port2 Intel XL710 2p40GE.
-        mac_address: "40:a6:b7:85:e7:81"
-        pci_address: "0000:31:00.1"
-        ip4_address: 172.16.20.2
-        driver: i40e
-        link: link2
-        model: Intel-XL710
       port3:
         # s74-t34-tg1-c8/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:1c:e4"
@@ -58,22 +42,6 @@ nodes:
     username: testuser
     password: Csit1234
     interfaces:
-      port1:
-        # s62-t34-sut1-c4/p1 - 40GE port1 Intel XL710 2p40GE.
-        mac_address: "40:a6:b7:85:e7:78"
-        pci_address: "0004:04:00.0"
-        ip4_address: 172.16.10.1
-        driver: i40e
-        link: link3
-        model: Intel-XL710
-      port2:
-        # s62-t34-sut1-c4/p2 - 40GE port2 Intel XL710 2p40GE.
-        mac_address: "40:a6:b7:85:e7:79"
-        pci_address: "0004:04:00.1"
-        ip4_address: 172.16.20.1
-        driver: i40e
-        link: link2
-        model: Intel-XL710
       port3:
         # s62-t34-sut1-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:b8"
@@ -100,22 +68,6 @@ nodes:
     uio_driver: vfio-pci
     password: Csit1234
     interfaces:
-      port1:
-        # s63-t34-sut2-c4/p1 - 40GE port1 Intel XL710 2p40GE.
-        mac_address: "3c:fd:fe:c3:e7:a0"
-        pci_address: "0004:04:00.0"
-        ip4_address: 172.16.10.3
-        driver: i40e
-        link: link1
-        model: Intel-XL710
-      port2:
-        # s63-t34-sut2-c4/p2 - 40GE port2 Intel XL710 2p40GE.
-        mac_address: "3c:fd:fe:c3:e7:a1"
-        pci_address: "0004:04:00.1"
-        ip4_address: 172.16.20.3
-        driver: i40e
-        link: link3
-        model: Intel-XL710
       port3:
         # s63-t34-sut2-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:c4"
