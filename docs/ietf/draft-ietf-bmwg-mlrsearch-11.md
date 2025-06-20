@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-10
-date: 2025-03-16
+docname: draft-ietf-bmwg-mlrsearch-11
+date: 2025-05-22
 
 ipr: trust200902
 area: ops
@@ -154,9 +154,9 @@ software- based networking systems based on Commercial Off-the-Shelf
     If another engine is used, convert to this way:
     https://stackoverflow.com/a/20885980
 
-[toc]
-
 {:/comment}
+
+[toc]
 
 # Introduction
 
@@ -168,6 +168,11 @@ functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
 
+## Preview
+
+The purpose of this document is to describe the Multiple Loss Ratio search
+(MLRsearch) methodology, optimized for determining
+data plane throughput in software-based networking devices and functions.
 {::comment}
 
     [MB6]: Should be defined.
@@ -398,6 +403,10 @@ This document does not change or obsolete any part of [RFC2544].
 
 {:/comment}
 
+{::comment}
+    TODO: Update the subsection above when the subsections below are complete enough
+{:/comment}
+
 # Requirements Language
 
 {::comment}
@@ -423,6 +432,117 @@ in this document are to be interpreted as described in BCP 14 [RFC2119]
 {:/comment}
 
 [RFC8174] when, and only when, they appear in all capitals, as shown here.
+
+## BMWG Documents
+
+{::comment}
+    BMWG charter in https://datatracker.ietf.org/group/bmwg/about/
+{:/comment}
+
+The Benchmarking Methodology Working Group (BMWG) produces recommendations (RFC)
+that describe various benchmarking methodologies (using controlled stimuli
+in a laboratory environment) as they apply to various kinds of network systems.
+
+Large number of benchmarks is based on terminology from RFC 1242
+and corresponding methodology from RFC 2544.
+Subsequent recommendations then usually add needed details when specific systems
+are tested in specific configurations and under specific traffic,
+relying on general desscriptions of benchmark as in RFC 2544.
+Using software engineering vocabulary, RFC 2544 forms a generic framework,
+and subsequent documents represent plugins that add suport for specific
+network systems, services or functions.
+Only rarely the generic description in RFC 2544 is overriden by a new specification,
+for example when RFC 9004 updated the back-to-back frame generic benchmark.
+
+{::comment}
+    TODO: Add examples for "plugin" docuemnts,
+    classify whether they specify "traffic", "configuration" or "measurement".
+{:/comment}
+
+## Test Requirements
+
+While BMWG documents are called "recommendations", they form norms that are
+popular (citation needed) among benchmarking labs (define), as following them
+gives bonus of better comparability of the results between labs.
+
+{::comment}
+    TODO: Are examples needed? A lab can be serving a network device vendor,
+    or testing equipment vendor, or it could be a third-party lab for quality benchmarks,
+    or it could be an academia lab focusing on any (big or small) part of benchmarking procedure.
+{:/comment}
+
+BCP 14 [RFC2119] [RFC8174] defines all-caps words to describe multiple "strength levels"
+of requirements. Those levels were first used (citation needed) when describing
+network behavior of various implementations of IETF documents,
+but BMWG already used such words in RFC 2544 to describe various conditions
+needed (or not) to correctly apply given label.
+For example, a benchmark can only be called unconditionally compliant to RFC 2544 Throughput
+if the result is based on 60-second trials (among other requirements).
+
+While RFC 1242 and RFC 2544 used various phrases to describe "reporting the results",
+later RFCs seem to converge on the phrase "test report", regardless of how many tests
+are included in a single report. While some of RFC 2544 requirements restrict what the
+lab can do when performing measurements, many of the requirements focus purely on
+the reporting part. Common words are used, so it is not clear if words
+"benchmark", "test", "procedure" or "measurement" are interchangeable,
+or whether there are specific definitions for them (for example as Trial is defined in RFC2544).
+
+{::comment}
+    Introduction for RFC1242 starts with:
+    Vendors often engage in "specsmanship" in an attempt to give their
+    products a better position in the marketplace.
+
+    Implicitly, if a vendor publishes results,
+    claiming they are unconditionally compliant with RFC 2544,
+    but somebody spots some requirement was not held,
+    that vendor would be accused of false advertisement.
+{:/comment}
+
+Strictly speaking, RFC 2544 does not tell the benchmarking labs wich benchmarks to measure,
+but unofficially, the list of menchmarks in RFC 2544 became the list of benchmarks to run.
+
+## MLRsearch position
+
+This document provides "core" information if the form of MLRsearch Specification,
+and "contextual" information mostly around motivations and explanations.
+
+The MLRsearch Specification describes a benchmark that is very similar
+to Throughput of RFC 2544, allowing for other BMWG documents
+to still function as "plugins".
+
+But, strictly speaking, MLRsearch Speficication is independent
+from RFC 2544 Throughput methodology.
+On one hand, MLRsearch Specification adds requirements not present in RFC 2544;
+on the other hand MLRsearch Specification allows deviations from RFC 2544 requirements
+(as long as the deviations are described in test report).
+Some deviations were alredy used by benchmarking labs (citation needed),
+some were included just for added flexibility.
+
+It should be possible for benchmarking labs that currently measure Throughput
+to make those results compatible also with MLRsearch Specification
+without really changing their methodology, just by adding
+the newly requred details to their test report, thus conforming to both documents.
+
+But as RFC 2544 did not officialy recommend benchmarking labs to start measuring Throughput,
+this document also does not officially recommend labs to comply with MLRsearch Specification.
+
+Unlike RFC 2544 Throughput, MLRsearch Specification allows for benchmarking
+varius sets of Search Goals losing the comparability benefits.
+For this purpose, the added flexibility of MLRsearch Specification is bad for comparability.
+
+{::comment}
+    Distinguish "internal" labs that want primarily repeatability
+    (flexibility as a tool to get repeatability based on past DUT behavior)
+    from "external" labs where flexibility hurts (and smells of specsmanship)?
+{:/comment}
+
+Therefore, MLRsearch Specification is neither an extension nor a replacement
+for RFC 2544 Throughput. Future BMWG documents are expected to clear this ambiguity
+by recommending specific benchmarks, posibly of the form
+of a specific set of Search Goals.
+
+More technical details on the relation between RFC 2544 and this document
+see [Scope ](#scope).
 
 # Overview of RFC 2544 Problems
 
@@ -1001,9 +1121,9 @@ Relevant Lower Bound is the MLRsearch term that addresses this problem.
 
 # MLRsearch Specification
 
-MLRsearch Specification provides the technical
-definitions needed for evaluating whether a particular test procedure
-complies with MLRsearch Specification.
+This chapter provides all technical definitions
+needed for evaluating whether a particular test procedure
+complies with MLRsearch specification.
 
 Some terms used in the specification are capitalized.
 It is just a stylistic choice for this document,
@@ -1040,6 +1160,24 @@ defined quantity are also included in the discussion.
     [MK]: Edited.
 
 {:/comment}
+
+## Scope
+
+TODO: Multiple tests in RFC2544, this is about throughput only.
+
+TODO: Multiple traffic profiles (at least frame sizes) in RFC2544, this is about single SUT+profile.
+
+TODO: Repeating the same search is possible, this is about single search.
+
+TODO: Manual processes, automation, implementation as library,...
+
+TODO: Calls/invocations, interfaces.
+
+TODO: Regular end, irregular exit, user abort.
+
+TODO: Load classification equivalence (not here, just in later chapters).
+
+TODO: General discussion around test, search, trial and recurrence? For example throughput search can be a part of B2B tests.
 
 ## Overview
 
@@ -1215,6 +1353,36 @@ quantities.  For example, if the current value of "duration"
 duration"(configuration quantities), all the quoted names denote
 separate but related quantities.  As the naming suggests, the final
 value of "duration" is expected to be equal to "final duration" value.
+
+## Terminology structure
+
+{::comment}
+
+    Delete if obvious enough, polish if kept.
+
+{:/comment}
+
+A subsection starts with a short sentence, ideally in a static pattern like
+`The term {subsection_title} denotes {short_description}.`
+where the short description can be copied also to Index items
+(if informative enough beyond the title itself).
+
+Next paragraph is the definition, not including all requirements yet,
+but listing names of all components/attributes/subterms;
+this is the "terminology" part of the section.
+
+Next are all the "child subtrees" subsubsections.
+
+Next is the `{subsection_title} Requirements` subsubsection
+that relies on child subsubsections and all preceding sections;
+this is the methodology part of the subsection.
+
+Final subsubsection is `{subsection_title} Discussion`
+that is strictly speaking not normative, but improves readability,
+adds information similar to RFC 2544 `Objective:` paragraphs,
+and highlights possible future extensions
+and examples of "plugin principle" of where other BMWG documents
+can add their own requirements for specific protocols/SUTs.
 
 ## Existing Terms
 
@@ -3877,6 +4045,8 @@ Many thanks to Alec Hothan of the OPNFV NFVbench project for a thorough
 review and numerous useful comments and suggestions in the earlier
 versions of this document.
 
+--- back
+
 # Appendix A: Load Classification
 
 {::comment}
@@ -4054,11 +4224,11 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 
 {::comment}
 
-    [MB112]: Move after references
-
-    [VP]: Ok.
-
-    [MK]: TODO
+    I just had a discussion with Maciek, and we agreed that "terminology section"
+    will be a list similar to the current Index chapter, but also containing
+    short descriptions (useful for readers that just need a quick reminder,
+    instead of reading whole definition and full discussion again).
+    The specific place for such a list can be decided later.
 
 {:/comment}
 
