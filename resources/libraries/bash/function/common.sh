@@ -1387,6 +1387,10 @@ function set_environment_variables () {
             # Maciek's workaround for Zen2 with lower amount of cores.
             export TREX_CORE_COUNT=14
             ;;
+        *"3n-oct")
+            # For some reasons, this TG frequently sees Unsent packets.
+            export PERF_TRIAL_STL_DELAY=0.12
+            ;;
         *"-x-2n"* | *"-x-3n"* )
             export TREX_CORE_COUNT=14
             export TREX_PORT_MTU=9000
