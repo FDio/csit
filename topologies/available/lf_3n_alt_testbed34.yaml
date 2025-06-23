@@ -38,38 +38,12 @@ nodes:
     host: 10.30.51.72
     arch: aarch64
     port: 22
-    uio_driver: vfio-pci
-    username: testuser
-    password: Csit1234
-    interfaces:
-      port3:
-        # s62-t34-sut1-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
-        mac_address: "b8:3f:d2:16:07:b8"
-        pci_address: "0007:01:00.0"
-        ip4_address: 172.16.30.1
-        driver: mlx5_core
-        link: link6
-        model: Mellanox-CX6DX
-      port4:
-        # s62-t34-sut1-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
-        mac_address: "b8:3f:d2:16:07:b9"
-        pci_address: "0007:01:00.1"
-        ip4_address: 172.16.40.1
-        driver: mlx5_core
-        link: link4
-        model: Mellanox-CX6DX
-  DUT2:
-    type: DUT
-    model: Ampere-Altra
-    host: 10.30.51.73
-    arch: aarch64
-    port: 22
     username: testuser
     uio_driver: vfio-pci
     password: Csit1234
     interfaces:
       port3:
-        # s63-t34-sut2-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        # s72-t34-sut1-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:c4"
         pci_address: "0007:01:00.0"
         ip4_address: 172.16.30.3
@@ -77,10 +51,36 @@ nodes:
         link: link5
         model: Mellanox-CX6DX
       port4:
-        # s63-t34-sut2-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        # s72-t34-sut1-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:16:07:c5"
         pci_address: "0007:01:00.1"
         ip4_address: 172.16.40.3
         driver: mlx5_core
         link: link6
+        model: Mellanox-CX6DX
+  DUT2:
+    type: DUT
+    model: Ampere-Altra
+    host: 10.30.51.73
+    arch: aarch64
+    port: 22
+    uio_driver: vfio-pci
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port3:
+        # s73-t34-sut2-c8/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:16:07:b8"
+        pci_address: "0007:01:00.0"
+        ip4_address: 172.16.30.1
+        driver: mlx5_core
+        link: link6
+        model: Mellanox-CX6DX
+      port4:
+        # s73-t34-sut2-c8/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
+        mac_address: "b8:3f:d2:16:07:b9"
+        pci_address: "0007:01:00.1"
+        ip4_address: 172.16.40.1
+        driver: mlx5_core
+        link: link4
         model: Mellanox-CX6DX
