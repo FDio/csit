@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc62a6cf_9fe5d4e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-06-23T13:30:44Z",
+      "side": 1,
+      "message": "csit-3n-alt-perftest drv_mlx5_coreANDmrrAND1cAND64bANDethip4-ip4base",
+      "revId": "1617724a9c30e9fa5d205cbe517b4f57d970d461",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
