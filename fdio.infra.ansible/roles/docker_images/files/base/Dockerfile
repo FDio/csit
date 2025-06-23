@@ -21,8 +21,8 @@ RUN apt-get update -qq \
  && rm -r /var/lib/apt/lists/*
 ENV LANG="en_US.UTF-8" LANGUAGE="en_US" LC_ALL="en_US.UTF-8"
 
-RUN apt-get -q update \
- && apt-get install -y -qq \
+RUN apt-get update -qq \
+ && apt-get install -y \
       build-essential \
       ca-certificates \
       libnuma-dev \
@@ -36,9 +36,9 @@ RUN apt-get -q update \
       python3-virtualenv \
       wget \
       xz-utils \
- && wget --quiet http://fast.dpdk.org/rel/dpdk-$DPDK_VERSION.tar.xz \
+ && wget --quiet http://fast.dpdk.org/rel/dpdk-${DPDK_VERSION}.tar.xz \
  && mkdir --parents /dpdk \
- && tar --extract --file=dpdk-$DPDK_VERSION.tar.xz --directory=/dpdk --strip-components 1
+ && tar --extract --file=dpdk-${DPDK_VERSION}.tar.xz --directory=/dpdk --strip-components 1
 
 # CSIT PIP pre-cache
 RUN python3 -m venv venv \

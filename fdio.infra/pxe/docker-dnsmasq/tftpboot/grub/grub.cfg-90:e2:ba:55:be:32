@@ -1,4 +1,4 @@
-menuentry "Install s72-t34-sut1" {
+menuentry "Install s73-t34-sut2" {
     linux    /casper/ubuntu-noble-arm64/vmlinuz ip=dhcp url=http://10.30.51.24:8081/ubuntu_noble_arm64/ubuntu-24.04.1-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.24:8081/ubuntu_noble_arm64/90:e2:ba:55:be:32/ ---
     initrd   /casper/ubuntu-noble-arm64/initrd
 }
