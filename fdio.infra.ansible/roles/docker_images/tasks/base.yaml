@@ -23,7 +23,7 @@
     - docker-base
 
 - name: "Build CSIT Base Docker Image"
-  ansible.builtin.shell: "docker build --build-arg BASE_IMAGE=ubuntu:24.04 -t base-ubuntu2404:local ."
+  ansible.builtin.shell: "docker build --build-arg BASE_IMAGE=ubuntu:24.04 --build-arg DPDK_VERSION=24.11.1 -t base-ubuntu2404:local ."
   args:
     chdir: "/opt/csit-docker-images/base"
   async: 3000
