@@ -5,6 +5,7 @@ services:
       dockerfile: "Dockerfile"
       args:
         BASE_IMAGE: "ubuntu:24.04"
+        DPDK_VERSION: "24.11.1"
     cap_add:
       - NET_RAW
     command: ["/usr/sbin/sshd","-D", "-p", "6001"]
@@ -36,6 +37,7 @@ services:
       dockerfile: "Dockerfile"
       args:
         BASE_IMAGE: "ubuntu:24.04"
+        DPDK_VERSION: "24.11.1"
     cap_add:
       - NET_RAW
     command: ["/usr/sbin/sshd","-D", "-p", "6002"]

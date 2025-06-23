@@ -14,20 +14,20 @@
   roles:
     - role: common
       tags: common
-    - role: kernel
-      tags: kernel
-    - role: mellanox
-      tags: mellanox
-    - role: intel
-      tags: intel
-    - role: docker
-      tags: docker
-    - role: vpp
-      tags: vpp
-    - role: dpdk
-      tags: dpdk
-    - role: kernel_vm
-      tags: kernel_vm
+#    - role: kernel
+#      tags: kernel
+#    - role: mellanox
+#      tags: mellanox
+#    - role: intel
+#      tags: intel
+#    - role: docker
+#      tags: docker
+#    - role: vpp
+#      tags: vpp
+#    - role: dpdk
+#      tags: dpdk
+#    - role: kernel_vm
+#      tags: kernel_vm
     - role: docker_images
       tags: docker_images
     - role: performance_tuning
