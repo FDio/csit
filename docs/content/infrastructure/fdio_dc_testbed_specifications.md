@@ -882,36 +882,36 @@ FD.io CSIT lab contains following server types:
 ```
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
-    - hostname: s62-t34-sut1.
+    - hostname: s72-t34-sut1.
     - IPMI IP: 10.30.50.72
     - Host IP: 10.30.51.72
     - portnames:
-        - s62-t34-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s62-t34-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s62-t34-sut1-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s62-t34-sut1-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
+        - s72-t34-sut1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s72-t34-sut1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s72-t34-sut1-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s72-t34-sut1-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
-    - hostname: s63-t34-sut2.
+    - hostname: s73-t34-sut2.
     - IPMI IP: 10.30.50.73
     - Host IP: 10.30.51.73
     - portnames:
-        - s63-t34-sut2-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s63-t34-sut2-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
-        - s63-t34-sut2-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
-        - s63-t34-sut2-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
+        - s73-t34-sut2-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s73-t34-sut2-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s73-t34-sut2-c8/p1 - 100GE-port1 ConnectX6-2p100GE.
+        - s73-t34-sut2-c8/p2 - 100GE-port2 ConnectX6-2p100GE.
 - TG [Server-Type-E32]:
     - testbedname: testbed34.
-    - hostname: s64-t34-tg1.
+    - hostname: s74-t34-tg1.
     - IPMI IP: 10.30.50.74
     - Host IP: 10.30.51.74
     - portnames:
-        - s64-t34-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s64-t34-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s64-t34-tg1-c4/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s64-t34-tg1-c4/p2 - 40GE-port2 xl710-QDA2-2p40GE.
-        - s64-t34-tg1-c8/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s64-t34-tg1-c8/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s74-t34-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s74-t34-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s74-t34-tg1-c4/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s74-t34-tg1-c4/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s74-t34-tg1-c8/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s74-t34-tg1-c8/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
 ### 3-Node-Icelake (3n-icx)
@@ -1363,9 +1363,9 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed34:
     - ring2 100GE-ports ConnectX6-2p100GE Mellanox on SUTs:
-        - s64-t34-tg1-c8/p1 - s62-t34-sut2-c8/p1.
-        - s62-t34-sut1-c8/p1 - s63-t34-sut2-c8/p2.
-        - s63-t34-sut1-c8/p2 - s64-t34-tg1-c8/p2.
+        - s74-t34-tg1-c8/p1 - s72-t34-sut2-c8/p1.
+        - s72-t34-sut1-c8/p1 - s73-t34-sut2-c8/p2.
+        - s73-t34-sut1-c8/p2 - s74-t34-tg1-c8/p2.
 ```
 
 ### 3-Node-Icelake (3n-icx)
