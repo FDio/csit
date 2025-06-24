@@ -173,7 +173,8 @@ class L3fwdTest:
                 )
 
             command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-                f"/entry/run_l3fwd.sh \"{l3fwd_args} -P -L -p 0x3\""
+                f"/entry/run_l3fwd.sh \"{l3fwd_args} -P -L -p 0x3"\
+                f" --rule_ipv4={Constants.REMOTE_FW_DIR}/rule_ipv4.cfg\""
             message = f"Failed to execute l3fwd test at node {node['host']}"
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
@@ -227,13 +228,16 @@ class L3fwdTest:
         # If DUT and TG not reordered -> flip
 
         # Detect which is the port 0.
+        direction = 0
         dut_flip = if_pci0 > if_pci1
         if dut_flip:
             if_key0, if_key1 = if_key1, if_key0
             if tg_flip:
-                L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
+                direction = 1
         elif not tg_flip:
-            L3fwdTest.patch_l3fwd(node, "patch_l3fwd_flip_routes")
+            direction = 1
+
+        L3fwdTest.create_routes(node, direction=direction)
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key0
@@ -249,21 +253,28 @@ class L3fwdTest:
         return adj_mac0, adj_mac1, if_pci0, if_pci1
 
     @staticmethod
-    def patch_l3fwd(node, patch):
+    def create_routes(node, direction=0):
         """
-        Patch l3fwd application and recompile.
+        Create route file for l3fwd application.
+
+        R<dst_ip><src_ip><ddst_port><src_port><protocol><output_port_number>
 
         :param node: DUT node.
-        :param patch: Patch to apply.
+        :param direction: Route appearence order.
         :type node: dict
-        :type patch: str
-        :raises RuntimeError: Patching of l3fwd failed.
+        :type direction: str
+        :raises RuntimeError: Create route file failed.
         """
-        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-            f"/entry/patch_l3fwd.sh " \
-            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-            f"/entry/{patch}"
-        message = f"Failed to patch l3fwd at node {node['host']}"
-        ret_code, stdout, _ = exec_cmd(node, command, timeout=1800)
-        if ret_code != 0 and "Skipping patch." not in stdout:
-            raise RuntimeError(message)
+        filename = f"{Constants.REMOTE_FW_DIR}/rule_ipv4.cfg"
+        if not direction:
+            rule_ipv4 = (
+                "R198.18.0.0/24 0\n"
+                "R198.18.1.0/24 1\n"
+            )
+        else:
+            rule_ipv4 = (
+                "R198.18.0.0/24 1\n"
+                "R198.18.1.0/24 0\n"
+            )
+        cmd = f"echo \"{rule_ipv4}\" | sudo tee {filename}"
+        exec_cmd_no_error(node, cmd, message="Writing config file failed!")
