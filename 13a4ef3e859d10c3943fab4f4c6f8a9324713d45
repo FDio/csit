@@ -16,6 +16,23 @@
       "message": "csit-3n-alt-perftest drv_mlx5_coreANDmrrAND1cAND64bANDethip4-ip4base",
       "revId": "13a4ef3e859d10c3943fab4f4c6f8a9324713d45",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bbf3c04_d74531ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-06-24T05:51:34Z",
+      "side": 1,
+      "message": "csit-3n-alt-perftest drv_mlx5_coreANDmrrAND1cAND64bANDethip4-ip4base",
+      "revId": "13a4ef3e859d10c3943fab4f4c6f8a9324713d45",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
