@@ -16,6 +16,23 @@
       "message": "csit-3n-oct-perftest ndrpdrANDnic_*ANDethip4-ip4base !9000b !imix !drv_af_xdp",
       "revId": "e7538efe0df6ad04fcf131884a50137349d41adb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "818293e1_ace24f8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-06-24T08:14:58Z",
+      "side": 1,
+      "message": "csit-3n-oct-perftest ndrpdrANDnic_*ANDethip4-ip4base !9000b !imix !drv_af_xdp !*xl710*",
+      "revId": "e7538efe0df6ad04fcf131884a50137349d41adb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
