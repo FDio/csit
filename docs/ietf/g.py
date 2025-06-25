@@ -15,7 +15,7 @@ from copy import deepcopy
 import logging
 import os
 import sys
-from time import sleep
+from time import monotonic, sleep
 
 from google import genai
 from google.genai import types
@@ -66,25 +66,27 @@ def main():
     #            print(m.name)
     #raise RuntimeError("Done.")
 
+    model_name = "gemini-2.5-flash-lite-preview-06-17"
+    model_name = "gemini-2.5-flash-preview-04-17-thinking"
+    model_name = "gemini-2.5-flash-preview-05-20"
     #model_name = "gemini-2.5-pro-preview-06-05"
     # "Gemini 2.5 Pro Preview doesn't have a free quota tier."
-    model_name = "gemini-2.5-flash-preview-05-20"
     print(f"{model_name=}")
     sleep(1)
 
     messages = load_messages()
-    #with open("draft-ietf-bmwg-mlrsearch-11.md", "r") as fin:
-    #    draft_content = fin.read()
-    #if messages[0]["role"] != "system":
-    #    raise RuntimeError("System prompt neeed.")
+    with open("draft-ietf-bmwg-mlrsearch-11.md", "r") as fin:
+        draft_content = fin.read()
+    if messages[0]["role"] != "system":
+        raise RuntimeError("System prompt neeed.")
     subst_messages = deepcopy(messages)
     subst_system = subst_messages[0]["text"]
-    #subst_system = subst_system.replace("${draft}", draft_content)
+    subst_system = subst_system.replace("${draft}", draft_content)
     subst_messages[0]["text"] = subst_system
 
     config = types.GenerateContentConfig(
         system_instruction=subst_messages[0]["text"],
-        max_output_tokens=100000,
+        max_output_tokens=10000,
         temperature=0.0,
     )
     history = [
@@ -94,14 +96,6 @@ def main():
         )
         for message in subst_messages[1:-1]
     ]
-    #print(f"DEBUG {history=}\n")
-    with open("/media/C_DRIVE/Users/vrpolak/Downloads/draft-ietf-bmwg-mlrsearch-10.md", "rb") as md_file:
-        history[0].parts.append(types.Part.from_bytes(data=md_file.read(), mime_type="text/markdown"))
-    #print(f"DEBUG {history=}\n")
-    with open("/media/C_DRIVE/Users/vrpolak/Downloads/draft-ietf-bmwg-mlrsearch-10.Med1.VP2.pdf", "rb") as pdf_file:
-        # Gemini WebUI app can read .doc files, API cannot but can read exported .pdf files.
-        history[0].parts.append(types.Part.from_bytes(data=pdf_file.read(), mime_type="application/pdf"))
-    #print(f"DEBUG {history=}\n")
     request = subst_messages[-1]["text"]
     chat = client.chats.create(
         model=model_name,
@@ -112,22 +106,20 @@ def main():
     #print(f"{chat._config=!r}")
 
     while True:
+        time_start = monotonic()
         stream_response = chat.send_message_stream(message=request)
 
         assistant_response = ""
         for chunk in stream_response:
             text = chunk.text
             if not text:
-                candidate = chunk.candidates[0]
-                if not hasattr(candidate, "finish_reason"):
+                if not chunk.finish_reason:
                     raise RuntimeError(f"{chunk!r}")
-                print(f"\n\n{candidate.finish_reason=}")
                 break
             assistant_response += text
             print(text, end="", flush=True)
-        else:
-            print("\n\nResponse iteration ended.")
-        print(f"\n\n{chunk!r}\n")
+        time_end = monotonic()
+        print(f"\n\n{chunk!r}\n\nTook {time_end - time_start}")
 
         messages.append({"role": "model", "text": assistant_response.strip()})
         save_messages(messages)
