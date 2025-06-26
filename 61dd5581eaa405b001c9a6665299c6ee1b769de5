@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff00eafc_b6007365",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-06-26T06:33:16Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-c7gn-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-c6in-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-aws-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-icx-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-icxd-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-spr-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-emr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-emr-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-grc-perftest vpp-mrr-00\ncsit-vpp-report-iter-2n-zn2-perftest vpp-mrr-00\ncsit-vpp-report-iter-3nb-spr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-snr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3na-spr-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-oct-perftest vpp-mrr-00\ncsit-vpp-report-iter-3n-alt-perftest vpp-mrr-00",
+      "revId": "61dd5581eaa405b001c9a6665299c6ee1b769de5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
