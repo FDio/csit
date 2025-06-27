@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-10
-date: 2025-03-16
+docname: draft-ietf-bmwg-mlrsearch-11
+date: 2025-05-22
 
 ipr: trust200902
 area: ops
@@ -109,6 +109,12 @@ defining a new methodology called Multiple Loss Ratio search
 
     [MK]: MLRsearch extends RFC2544. Does not change it, nor does it amend it.
 
+    [VP]: The idea was to extend in sense of adding one new benchmark.
+    But as we added more requirements and possible deviations around trials,
+    the new methodology is independent from (while possible to combine with) MLR2544.
+
+    [VP]: Informative context in MLRsearch Position. Normative summary in Scope.
+
 {:/comment}
 (MLRsearch). MLRsearch aims to minimize search duration,
 support multiple loss ratio searches, and improve result repeatability
@@ -154,9 +160,9 @@ software- based networking systems based on Commercial Off-the-Shelf
     If another engine is used, convert to this way:
     https://stackoverflow.com/a/20885980
 
-[toc]
-
 {:/comment}
+
+[toc]
 
 # Introduction
 
@@ -168,6 +174,11 @@ functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
 
+## Preview
+
+The purpose of this document is to describe the Multiple Loss Ratio search
+(MLRsearch) methodology, optimized for determining
+data plane throughput in software-based networking devices and functions.
 {::comment}
 
     [MB6]: Should be defined.
@@ -246,7 +257,7 @@ to software devices under test (DUTs) results in several problems
 
     [MB11]: Can we expand on this one?
 
-    [VP]: Some soft intro to incunsistent trials may be needed here.
+    [VP]: Some soft intro to inconsistent trials may be needed here.
 
     [MK]: Added text in brackets. See if it is sufficient.
     [MK]: Edited.
@@ -398,6 +409,10 @@ This document does not change or obsolete any part of [RFC2544].
 
 {:/comment}
 
+{::comment}
+    TODO: Update the subsection above when the subsections below are complete enough
+{:/comment}
+
 # Requirements Language
 
 {::comment}
@@ -423,6 +438,117 @@ in this document are to be interpreted as described in BCP 14 [RFC2119]
 {:/comment}
 
 [RFC8174] when, and only when, they appear in all capitals, as shown here.
+
+## BMWG Documents
+
+{::comment}
+    BMWG charter in https://datatracker.ietf.org/group/bmwg/about/
+{:/comment}
+
+The Benchmarking Methodology Working Group (BMWG) produces recommendations (RFC)
+that describe various benchmarking methodologies (using controlled stimuli
+in a laboratory environment) as they apply to various kinds of network systems.
+
+Large number of benchmarks is based on terminology from RFC 1242
+and corresponding methodology from RFC 2544.
+Subsequent recommendations then usually add needed details when specific systems
+are tested in specific configurations and under specific network traffic,
+relying on general desscriptions of benchmarks as in RFC 2544.
+Using software engineering vocabulary, RFC 2544 forms a generic framework,
+and subsequent documents represent plugins that add suport for specific
+network systems, services or functions.
+Only rarely the generic description in RFC 2544 is overriden by a new specification,
+for example when RFC 9004 updated the back-to-back frame generic benchmark.
+
+{::comment}
+    TODO: Add examples for "plugin" docuemnts,
+    classify whether they specify "traffic", "configuration" or "measurement".
+{:/comment}
+
+## Test Requirements
+
+While BMWG documents are called "recommendations", they form norms that are
+popular (citation needed) among benchmarking labs (define), as following them
+gives bonus of better comparability of the results between labs.
+
+{::comment}
+    TODO: Are examples needed? A lab can be serving a network device vendor,
+    or testing equipment vendor, or it could be a third-party lab for quality benchmarks,
+    or it could be an academia lab focusing on any (big or small) part of benchmarking procedure.
+{:/comment}
+
+BCP 14 [RFC2119] [RFC8174] defines all-caps words to describe multiple "strength levels"
+of requirements. Those levels were first used (citation needed) when describing
+network behavior of various implementations of IETF documents,
+but BMWG already used such words in RFC 2544 to describe various conditions
+needed (or not) to correctly apply given label.
+For example, a benchmark can only be called unconditionally compliant to RFC 2544 Throughput
+if the result is based on 60-second trials (among other requirements).
+
+While RFC 1242 and RFC 2544 used various phrases to describe "reporting the results",
+later RFCs seem to converge on the phrase "test report", regardless of how many tests
+are included in a single report. While some of RFC 2544 requirements restrict what the
+lab can do when performing measurements, many of the requirements focus purely on
+the reporting part. Common words are used, so it is not clear if words
+"benchmark", "test", "procedure" or "measurement" are interchangeable,
+or whether there are specific definitions for them (for example as Trial is defined in RFC2544).
+
+{::comment}
+    Introduction for RFC1242 starts with:
+    Vendors often engage in "specsmanship" in an attempt to give their
+    products a better position in the marketplace.
+
+    Implicitly, if a vendor publishes results,
+    claiming they are unconditionally compliant with RFC 2544,
+    but somebody spots some requirement was not held,
+    that vendor would be accused of false advertisement.
+{:/comment}
+
+Strictly speaking, RFC 2544 does not tell the benchmarking labs which benchmarks to measure,
+but unofficially, the list of menchmarks in RFC 2544 became the list of benchmarks to run.
+
+## MLRsearch position
+
+This document provides "core" information if the form of MLRsearch Specification,
+and "contextual" information mostly around motivations and explanations.
+
+The MLRsearch Specification describes a benchmark that is very similar
+to Throughput of RFC 2544, allowing for other BMWG documents
+to still function as "plugins".
+
+But, strictly speaking, MLRsearch Speficication is independent
+from RFC 2544 Throughput methodology.
+On one hand, MLRsearch Specification adds requirements not present in RFC 2544;
+on the other hand MLRsearch Specification allows deviations from RFC 2544 requirements
+(as long as the deviations are described in test report).
+Some deviations were alredy used by benchmarking labs (citation needed),
+some were included just for added flexibility.
+
+It should be possible for benchmarking labs that currently measure Throughput
+to make those results compatible also with MLRsearch Specification
+without really changing their procedure, just by adding
+the newly requred details to their test report, thus conforming to both documents.
+
+But as RFC 2544 did not officialy recommend benchmarking labs to start measuring Throughput,
+this document also does not officially recommend labs to comply with MLRsearch Specification.
+
+Unlike RFC 2544 Throughput, MLRsearch Specification allows for benchmarking
+varius sets of Search Goals losing the inter-lab comparability benefits.
+For this purpose, the added flexibility of MLRsearch Specification is bad for comparability.
+
+{::comment}
+    Distinguish "internal" labs that want primarily repeatability
+    (flexibility as a tool to get repeatability based on past DUT behavior)
+    from "external" labs where flexibility hurts (and smells of specsmanship)?
+{:/comment}
+
+Therefore, MLRsearch Specification is neither an extension nor a replacement
+for RFC 2544 Throughput. Future BMWG documents are expected to clear this ambiguity
+by recommending specific benchmarks, posibly of the form
+of a specific set of Search Goals.
+
+More technical details on the relation between RFC 2544 and this document
+see [Scope ](#scope).
 
 # Overview of RFC 2544 Problems
 
@@ -1001,8 +1127,8 @@ Relevant Lower Bound is the MLRsearch term that addresses this problem.
 
 # MLRsearch Specification
 
-MLRsearch Specification provides the technical
-definitions needed for evaluating whether a particular test procedure
+This chapter provides all technical definitions
+needed for evaluating whether a particular test procedure
 complies with MLRsearch Specification.
 
 Some terms used in the specification are capitalized.
@@ -1026,9 +1152,8 @@ Lowercase variants are equally valid.
 Each per term subsection contains a short *Definition* paragraph
 containing a minimal definition and all strict requirements, followed
 by *Discussion* paragraphs focusing on important consequences and
-recommendations.  Requirements about how other components can use the
+recommendations. Requirements about how other components can use the
 defined quantity are also included in the discussion.
-
 
 {::comment}
 
@@ -1041,22 +1166,237 @@ defined quantity are also included in the discussion.
 
 {:/comment}
 
-## Overview
+## Scope
 
-MLRsearch Specification describes a set of abstract system components,
+{::comment}
+
+    The current text uses mostly "new benchmark" instead of MLRsearch,
+    or Relevant Lower Bound, or Conditional Throughput,
+    or Controller Output, or ...
+
+{:/comment}
+
+MLRsearch Specification is a set of definitions (terminology)
+and requirements (methodology) aimed to standardize a new kind of benchmark,
+which shares similarities with RFC 2544 Throughput.
+
+{::comment}
+
+    Q: Remove parentheses, or define terminology/methodology or otherwise reformulate.
+    A: Somehow avoid such details and simplify sentences.
+
+{:/comment}
+
+
+{::comment}
+
+    Q: Informally specify what "benchmark" is?
+    A: No, the usage in previous documents is good enough.
+
+{:/comment}
+
+{::comment}
+
+    Q: If "new benchmark" is a noun-phrase, which verb should accompany it?
+    A: For now, "measure" is good enough.
+
+{:/comment}
+
+Contrary to Throughput, the new benchmark is underspecified.
+Specifically, Search Goal instances are required but not fixed.
+While RFC 2544 also has some freedoms (60s is minimum, not fixed),
+such freedoms are not extected to change the results much,
+but Search Goal instances to change the results significantly.
+
+{::comment}
+
+    TODO: Polish the "60s" sentence.
+
+{:/comment}
+
+Specific Search Goal instances may be defined in later BMWG documents,
+the example instances in this specification are not an official recommendation.
+
+{::comment}
+
+    Q: If all BMWG documents are technically informational recommendations,
+    we may need more specific language in this subsection.
+    A: Ignore, earlier introductory chapters should be enough for readers to understand.
+
+{:/comment}
+
+The new benchmark can be measured in addition to Throughput,
+instead of Throughput, or in a way that produces a Test Report
+result compatible with both methodologies at once.
+
+{::comment}
+
+    Q: RFC 2544 Throughput procedure is optimistic when taken literally
+    and in presence of incompatible trial results. MLRsearch is conservative instead.
+    A: Ignore this detail here. Discuss in Compatibility subsections.
+
+{:/comment}
+
+This document does not recommend a particular way of combining
+the new benchamrk with Throughput.
+
+As RFC 2544 specifies Throughput in a single section,
+that relies on information from other RFC 2544 sections,
+MLRsearch specification also relies mostly on the same context information.
+
+There are few differences though.
+Most importantly, MLRsearch Specification allows deviations
+from RFC 2544 Trial requirements and outputs.
+
+Notably, MLRsearch Specifications also explicitly formalizes some notions
+such as Traffic Profile, which gather methodology information
+present implicitly in RFC 2544 or explicitly in other documents.
+
+Thirdly, MLRsearch Specification requirements for presenting results
+in Test Report are somewhat different from Throughput reporting format.
+Applicability of similar requirements to other kinds of benchmark is out of scope.
+
+{::comment}
+
+    Q: How formal should be the distinction between "search" and "benchmark"?
+    A: Define Search as a part of benchmark, but do not discuss examples here.
+
+{:/comment}
+
+RFC 2544 Throughput is not only a standalone benchmark,
+it is also a phase of other composite benchmarks (Latency of RFC 2544 and B2B time in RFC 9004).
+For some Search Goals, Relevant Lower Bound can replace Throughput
+to create new hybrid benchmarks.
+
+{::comment}
+
+    Q: The "phase" usage only works when zero loss at NDR is repeatable.
+    Neither Throughput nor MLRsearch guarantee that.
+    A: Ignore here, mention is some other place with informative discussion.
+
+{:/comment}
+
+{::comment}
+
+    Q: Recommend hybrid benchmarks?
+    A: I guess no, but I am not sure about Scope consequences then.
+
+{:/comment}
+
+Other MBWG documents extend RFC 2544 benchmarks in details needed
+when testing specific DUTs, configurations, protocols, or traffic profiles.
+Generally, such extensions are related to Traffic Profile or Trial,
+so they should be equally applicable to MLRsearch Search
+(both standalone benchmark and component).
+
+{::comment}
+
+    Q: Do we really need to distinguish generic Search and MLRsearch Search?
+    A: I guess yes, but "MLRsearch Search" does not feel like a proper style.
+    MLRsearch phase? Controller call?
+
+{:/comment}
+
+{::comment}
+
+    TODO: Mention that extension examples are in
+    Traffic Profile and Trial discussion?
+
+{:/comment}
+
+{::comment}
+
+    TODO: I feel something scope-related is still missing. Min/Max Load perhaps?
+    Load in general? Focus on intended instead of offered load?
+
+{:/comment}
+
+### TODOs
+
+TODO: Multiple tests in RFC2544, this is about throughput only.
+{::comment}
+
+    Done, but some context is missing.
+    Similarly to Throuput chapter fitting into the rest of RFC 2544,
+    MLRsearch aim to also fit.
+    Same for other documents "plugging into" RFC 2544.
+
+{:/comment}
+
+TODO: Multiple traffic profiles (at least frame sizes) in RFC2544, this is about single SUT+profile.
+{::comment}
+
+    Refer to Test Suite subsection.
+
+{:/comment}
+
+TODO: Repeating the same search is possible, this is about single search.
+{::comment}
+
+    Again, Test Suite subsection, and Test Report for scheduled tests.
+
+{:/comment}
+
+TODO: Manual processes, automation, implementation as library,...
+{::comment}
+
+    Refer to Test Procedure subsection and maybe Test Report for automation inputs.
+
+{:/comment}
+
+TODO: Calls/invocations, interfaces.
+{::comment}
+
+    Update Overview and late top subsections?
+
+{:/comment}
+
+TODO: Regular end, irregular exit, user abort.
+{::comment}
+
+    Should not need new text, review related MD comments.
+    Maybe differentiate abort conditions, or at least make them explicitly vague?
+
+{:/comment}
+
+TODO: Load classification equivalence (not here, just in later chapters).
+{::comment}
+
+    Later motivations. MLRS already has bunch of new requirements.
+
+{:/comment}
+
+TODO: General discussion around test, search, trial and recurrence? For example throughput search can be a part of B2B tests.
+{::comment}
+
+    Expand in Test Procedure and Test Case for composite benchmarks?
+    Define "benchmark" even?
+
+{:/comment}
+
+## Architecture Overview
+
+While normative definitions and requirements only use already defined terms,
+co-located discussion paragraphs are more useful on repeated reading
+when they use terms defined later.
+But for the first reading, such discussion paragraphs would be
+unclead and confusing, so this informative section gives a brief
+top-down overview of what a complete MLRsearch Architecture will look like.
+
+MLRsearch Architecture describes a set of abstract system components,
 acting as functions with specified inputs and outputs.
 
-A test procedure is said to comply with MLRsearch Specification
+A Test Procedure is said to comply with MLRsearch Specification
 if it can be conceptually divided into analogous components,
 each satisfying requirements for the corresponding MLRsearch component.
-Any such compliant test procedure is called a MLRsearch Implementation.
+Any such compliant Test Procedure is called a MLRsearch Implementation.
 
 The Measurer component is tasked to perform Trials,
 the Controller component is tasked to select Trial Durations and Loads,
 the Manager component is tasked to pre-configure involved entities
-and to produce the test report.
-The test report explicitly states Search Goals (as Controller inputs)
-and corresponding Goal Results (Controller outputs).
+and to produce the Test Report.
+The Test Report explicitly states Search Goals (as Controller Input)
+and corresponding Goal Results (Controller Output).
 
 The Manager invokes
 {::comment}
@@ -1091,7 +1431,7 @@ Search. Any work the Manager performs either before invoking the
 Controller or after Controller returns, falls outside the scope of the
 Search.
 
-MLRsearch Specification prescribes regular search results and recommends
+MLRsearch Specification prescribes Regular Search Results and recommends
 their stopping conditions.
 {::comment}
 
@@ -1103,35 +1443,26 @@ their stopping conditions.
     [MK]: Stop execution of the search.
 
 {:/comment}
-Irregular search results are also allowed,
+Irregular Search Results are also allowed,
 they may have different requirements and stopping conditions.
 
-Search results are based on Load Classification.  When measured enough,
+Search Results are based on Load Classification. When measured enough,
 a chosen Load can either achieve or fail each Search Goal
 (separately), thus becoming a Lower Bound or an Upper Bound for that
 Search Goal.
-
-
-For repeatability and comparability purposes, it is important that
-all implementations of MLRsearch classify the Load equivalently,
-{::comment}
-
-    [MB52]: Do we have taxonomoy/means to make that equivalence easy to put in place?
-
-    [VP]: Add links to Goal Result or Load Classification.
-          But maybe this sentence is not needed in this subsection?
-
-    [MK]: It is covered in Sections 4.6.2 Load Classification and 6.1
-          Load Classification Logic and 6.4.3 Load Classification
-          Computations.
-
-{:/comment}
-based on all Trials measured at that Load.
 
 When the Relevant Lower Bound is close enough to Relevant Upper Bound
 according to Goal Width, the Regular Goal Result is found.
 Search stops when all Regular Goal Results are found,
 or when some Search Goals are proven to have only Irregular Goal Results.
+
+{::comment}
+
+    Verify the language above is correct, minimal and enough as an overview
+    when all definitions become stable.
+
+{:/comment}
+
 
 ### Behavior Correctness
 
@@ -1216,7 +1547,58 @@ duration"(configuration quantities), all the quoted names denote
 separate but related quantities.  As the naming suggests, the final
 value of "duration" is expected to be equal to "final duration" value.
 
-## Existing Terms
+## Terminology structure
+
+{::comment}
+
+    First proposal:
+
+    A subsection starts with a short sentence, ideally in a static pattern like
+    `The term {subsection_title} denotes {short_description}.`
+    where the short description can be copied also to Index items
+    (if informative enough beyond the title itself).
+
+    Next paragraph is the definition, not including all requirements yet,
+    but listing names of all components/attributes/subterms;
+    this is the "terminology" part of the section.
+
+    Next are all the "child subtrees" subsubsections.
+
+    Next is the `{subsection_title} Requirements` subsubsection
+    that relies on child subsubsections and all preceding sections;
+    this is the methodology part of the subsection.
+
+    Final subsubsection is `{subsection_title} Discussion`
+    that is strictly speaking not normative, but improves readability,
+    adds information similar to RFC 2544 `Objective:` paragraphs,
+    and highlights possible future extensions
+    and examples of "plugin principle" of where other BMWG documents
+    can add their own requirements for specific protocols/SUTs.
+
+{:/comment}
+
+{::comment}
+
+    Second proposal:
+
+    The normative part of the MLRsearch specification can be decomposed
+    into a directed acyclic graph, where each node is a "term"
+    with its definition and requirements. The links in the graph are
+    dependencies, "later" term can only be fully defined
+    when all its "earlier" terms are already defined.
+
+    Some terms define composite quantities, subsections could be used
+    to hold definitions of all the attributes.
+
+    For readability, informative "discussion" text could be added,
+    but frequently it is convenient to use a later term
+    when discussing an earlier term.
+
+    The currect structure of sections is a compromise between these motivations.
+
+{:/comment}
+
+## Existing Normative Terms
 
 {::comment}
 
@@ -1274,7 +1656,7 @@ An SUT consisting of a single network device is also allowed.
 {::comment}
 
     [MB58]: Do we need to include this?
-            I would only introduce deviation from bas specs.
+            I would only introduce deviation from base specs.
 
     [VP]: Ok on deviation, not sure on base definition.
 
@@ -1369,7 +1751,7 @@ Trials are the only stimuli the SUT is expected to experience during the Search.
           important part in this section, apart from quoting the original
           definition, is the discussion part, that sets the convention of how
           deviations from the original definition are captured in this
-          document..
+          document.
 
 {:/comment}
 
@@ -1383,6 +1765,13 @@ it is allowed
 
     [MK]: ok. changed from ALLOWED to allowed. is anything else needed?
     [MK]: Edited.
+
+    [VP]: I feel this is important. Not only as a notable deviation from RFC 2544,
+    but also as an example of normative language usage.
+    Where RFC 2544 says you MUST do A or you CANNOT do B,
+    MLRsearch may say there are specific conditions where you do not have to do A or can de B.
+    Med had few comments like "since there is exception, the requirement is not universal",
+    and I say "there are clear conditions, the requirement is universal if the conditions are satisfied".
 
 {:/comment}
 
@@ -1415,7 +1804,79 @@ any such time-sensitive per-trial configuration method,
 with bridge MAC learning being only one possibe example.
 Appendix C.2.4.1 of [RFC2544] lists another example: ARP with wait time of 5 seconds.
 
+## Existing Informative Terms
+
+The terms specified in the following subsections
+have appeared in previous BMWG documents,
+but not neccessarily named the same way,
+and generally without precise definitions.
+
+The normative terms in later sections are easier to define
+if the names and definitions of the existing terms are clarified.
+
+### Test Equipment
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### Test Procedure
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+{::comment}
+
+    TODO: Distinguish "manual" from "automated"?
+
+    TODO: Automated may need specific Implementation and Inputs more specific than normal Test Case.
+
+{:/comment}
+
+### Test Report
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### Test Case
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### Test Suite
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### A Search
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
 ## Trial Terms
+
+{::comment}
+
+    TODO: Separate short description from further discussion.
+
+{:/comment}
 
 This section defines new and redefine existing terms for quantities
 relevant as inputs or outputs of a Trial, as used by the Measurer component.
@@ -1436,6 +1897,8 @@ Trial Duration is the intended duration of the phase c) of a Trial.
 
     [MK]: No, it does not cover recurrences as specified in above two
           drafts, as it does involve scheduled events.
+
+    [VP]: TODO: Mention in Test Case, Test Suite or Test Report.
 
 {:/comment}
 
@@ -2128,6 +2591,9 @@ to support missing attributes by providing reasonable default values.
           distinguishing automated implementations from manual processes.
 
     [MK]: TODO
+
+    [VP]: TODO: Check if new Test_* subsections are good for this discussion.
+
 {:/comment}
 
 For example, implementations with Goal Initial Trial Durations
@@ -2565,7 +3031,7 @@ Discussion:
 MLRsearch Implementation MAY return additional data in the Controller Output,
 for example number of trials performed and the total Search Duration.
 
-## MLRsearch Architecture
+## Architecture Terms
 
 MLRsearch architecture consists of three main system components:
 the Manager, the Controller, and the Measurer.
@@ -3877,6 +4343,8 @@ Many thanks to Alec Hothan of the OPNFV NFVbench project for a thorough
 review and numerous useful comments and suggestions in the earlier
 versions of this document.
 
+--- back
+
 # Appendix A: Load Classification
 
 {::comment}
@@ -4054,11 +4522,11 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 
 {::comment}
 
-    [MB112]: Move after references
-
-    [VP]: Ok.
-
-    [MK]: TODO
+    I just had a discussion with Maciek, and we agreed that "terminology section"
+    will be a list similar to the current Index chapter, but also containing
+    short descriptions (useful for readers that just need a quick reminder,
+    instead of reading whole definition and full discussion again).
+    The specific place for such a list can be decided later.
 
 {:/comment}
 
