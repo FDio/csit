@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-10
-date: 2025-03-16
+docname: draft-ietf-bmwg-mlrsearch-11
+date: 2025-07-07
 
 ipr: trust200902
 area: ops
@@ -38,24 +38,27 @@ normative:
 
 informative:
   RFC5180:
-{::comment}
-
-    [MB116]: Please move to information, as this was provided only as an example.
-
-    [VP]: Ok.
-
-    [MK]: Moved.
-{:/comment}
+# Comment: This part before first --- is not markdown but YAML, so comments need different escape.
+#{::comment}
+#
+#    MB116: Please move to information, as this was provided only as an example.
+#
+#    VP: Ok.
+#
+#    MK: Moved.
+#
+#{:/comment}
   RFC6349:
   RFC8219:
-{::comment}
-
-    [MB117]: Idem as the other entry.
-
-    [VP]: Ok.
-
-    [MK]: Moved.
-{:/comment}
+#{::comment}
+#
+#    MB117: Idem as the other entry.
+#
+#    VP: Ok.
+#
+#    MK: Moved.
+#
+#{:/comment}
   TST009:
     target: https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/009/03.04.01_60/gs_NFV-TST009v030401p.pdf
     title: "TST 009"
@@ -70,21 +73,21 @@ informative:
   Lencze-Shima:
     target: https://datatracker.ietf.org/doc/html/draft-lencse-bmwg-rfc2544-bis-00
     title: "An Upgrade to Benchmarking Methodology for Network Interconnect Devices"
-{::comment}
-
-    [MB118]: This was expired since 2020. Please remove. Idem for all similar entries
-
-    [VP]: Hmm, ok.
-
-    [MK]: Disagree. It is still a useful reference. Marking as expired,
-          but keeping it here. Can we add following entry:
-
-          [Lencze-Shima] Lencse, G., "Benchmarking Methodology for IP
-          Forwarding Devices – RFC 2544bis", Work in Progress,
-          Internet-Draftdraft-lencse-bmwg-rfc2544-bis-009 March 2015.
-          (Expired.)
-
-{:/comment}
+#{::comment}
+#
+#    MB118: This was expired since 2020. Please remove. Idem for all similar entries
+#
+#    VP: Hmm, ok.
+#
+#    MK: Disagree. It is still a useful reference. Marking as expired,
+#          but keeping it here. Can we add following entry:
+#
+#          [Lencze-Shima] Lencse, G., "Benchmarking Methodology for IP
+#          Forwarding Devices - RFC 2544bis", Work in Progress,
+#          Internet-Draftdraft-lencse-bmwg-rfc2544-bis-009 March 2015.
+#          (Expired.)
+#
+#{:/comment}
   Lencze-Kovacs-Shima:
     target: http://dx.doi.org/10.11601/ijates.v9i2.288
     title: "Gaming with the Throughput and the Latency Benchmarking Measurement Procedures of RFC 2544"
@@ -94,29 +97,39 @@ informative:
 
 --- abstract
 
-This document specifies extensions to “Benchmarking Methodology for
-Network Interconnect Devices” (RFC 2544) throughput search by
+This document specifies extensions to "Benchmarking Methodology for
+Network Interconnect Devices" (RFC 2544) throughput search by
+
 {::comment}
 
-    [MB2]: The abstract should self-contained. Hence the need to expand the RFC title.
+    MB2: The abstract should self-contained. Hence the need to expand the RFC title.
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Ok. Edited.
+    MK: Ok. Edited.
 
 {:/comment}
+
 defining a new methodology called Multiple Loss Ratio search
+
 {::comment}
 
-    [MB1]: This may trigger automatically a comment whether we change (update or amend) any of RFC2544 text.
+    MB1: This may trigger automatically a comment whether we change (update or amend) any of RFC2544 text.
     Do we?
 
-    [VP]: Pending BMWG decision.
-    [VP]: For draft11: Officially independent.
+    VP: Pending BMWG decision.
+    VP: For draft11: Officially independent.
 
-    [MK]: MLRsearch extends RFC2544. Does not change it, nor does it amend it.
+    MK: MLRsearch extends RFC2544. Does not change it, nor does it amend it.
+
+    VP: The idea was to extend in sense of adding one new benchmark.
+    But as we added more requirements and possible deviations around trials,
+    the new methodology is independent from (while possible to combine with) MLR2544.
+
+    VP: Informative context in MLRsearch Position. Normative summary in Scope.
 
 {:/comment}
+
 (MLRsearch). MLRsearch aims to minimize search duration,
 support multiple loss ratio searches, and improve result repeatability
 and comparability.
@@ -126,15 +139,14 @@ evaluating and testing the various data plane solutions, especially in
 software- based networking systems based on Commercial Off-the-Shelf
 (COTS) CPU hardware vs purpose-built ASIC / NPU / FPGA hardware.
 
-
 {::comment}
 
-    [MB3]: What is meant here? What is specific to these systems?
+    MB3: What is meant here? What is specific to these systems?
     Do we need to have this mention at this stage?
 
-    [VP]: Do not distinguish in abstract
+    VP: Do not distinguish in abstract
 
-    [MK]: Updated text to focus on COTS hardware vs purpose-built
+    MK: Updated text to focus on COTS hardware vs purpose-built
           hardware. Let us know if this requires further text in abstract.
          (We should keep it concise.)
 
@@ -142,12 +154,12 @@ software- based networking systems based on Commercial Off-the-Shelf
 
 {::comment}
 
-    [MB4]: Too detailed for an abstract. Can be mentioned in an overview/introduction section
+    MB4: Too detailed for an abstract. Can be mentioned in an overview/introduction section
 
-    [VP]: Agreed, we no not need to list the options here.
+    VP: Agreed, we no not need to list the options here.
 
-    [MK]: OK.
-    [MK]: Removed.
+    MK: OK.
+    MK: Removed.
 
 {:/comment}
 
@@ -169,22 +181,35 @@ software- based networking systems based on Commercial Off-the-Shelf
 
 This document describes the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining data plane
-throughput in software-based networking functions running on commodity
+throughput in software-based networking functions running on commodity systems with
 x86/ARM CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
 functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
 
+## Preview
+
 {::comment}
 
-    [MB6]: Should be defined.
+    [MK]: Suggest to change title to Purpose, as it does not provide
+          brief overview of the document's structure and key content areas.
+
+{:/comment}
+
+The purpose of this document is to describe the Multiple Loss Ratio search
+(MLRsearch) methodology, optimized for determining
+data plane throughput in software-based networking devices and functions.
+
+{::comment}
+
+    MB6: Should be defined.
     Not sure what is specific as any networking device is a software-based device. Even hardware, it is not more than frozen software ;)
 
-    [VP]: We can mention “noisiness” here, not sure how detailed
+    VP: We can mention "noisiness" here, not sure how detailed
 
-    [MK]: Good point. Added text clarifying the difference. See if this
+    MK: Good point. Added text clarifying the difference. See if this
           is good enough, or does this need any more explanation.
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
@@ -193,55 +218,61 @@ Applying the vanilla throughput binary search, as specified in
 
 {::comment}
 
-    [MB7]: Can we have an explicit reference for the method?
+    MB7: Can we have an explicit reference for the method?
 
-    [VP]: Need to search but should be doable
+    VP: Need to search but should be doable
 
-    [MK]: RFC2544 mentions binary-search style procedure without fully
+    MK: RFC2544 mentions binary-search style procedure without fully
           specifying the algorithm. The only other standard that defines is
           ETSI GS NFV-TST 009 - adding it here.
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 to software devices under test (DUTs) results in several problems
+
 {::comment}
 
-    [MB8]: Expand
+    MB8: Expand
 
-    [VP]: Ok (point to DUT).
+    VP: Ok (point to DUT).
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
 - Binary search takes long as most trials are done far from the
+
 {::comment}
 
-    [MB9]: Can we have a public reference to share here?
+    MB9: Can we have a public reference to share here?
 
-    [VP]: Need to search but should be doable).
+    VP: Need to search but should be doable).
 
-    [MK]: Removed "too". Explanation and public references are provided
+    MK: Removed "too". Explanation and public references are provided
           in the Identified Problems section.
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
   eventually found throughput.
 - The required final trial duration and pauses between trials
   prolong the overall search duration.
 - Software DUTs show noisy trial results,
   leading to a big spread of possible discovered throughput values.
 - Throughput requires a loss of exactly zero frames, but the industry best practices
+
 {::comment}
 
-    [MB10]: What is meant there?
+    MB10: What is meant there?
 
-    [VP]: Expand (industry).
+    VP: Expand (industry).
 
-    [MK]: Improved clarity, by referring to loss tolerance. Added references.
-    [MK]: Edited.
+    MK: Improved clarity, by referring to loss tolerance. Added references.
+    MK: Edited.
 
 {:/comment}
+
   frequently allow for low but non-zero losses tolerance ([Y.1564], test-equipment manuals).
 - The definition of throughput is not clear when trial results are inconsistent.
   (e.g., When successive trials at the same - or even a higher - offered
@@ -251,120 +282,130 @@ to software devices under test (DUTs) results in several problems
 
 {::comment}
 
-    [MB11]: Can we expand on this one?
+    MB11: Can we expand on this one?
 
-    [VP]: Some soft intro to incunsistent trials may be needed here.
+    VP: Some soft intro to inconsistent trials may be needed here.
 
-    [MK]: Added text in brackets. See if it is sufficient.
-    [MK]: Edited.
+    MK: Added text in brackets. See if it is sufficient.
+    MK: Edited.
 
 {:/comment}
 
 To address these problems,
 the MLRsearch test methodology employs the following enhancements:
+
 {::comment}
 
-    [VP]: We should reformulate to make clear which improvements
+    VP: We should reformulate to make clear which improvements
           are not covered by the specification.
 
 {:/comment}
 
-- Allow multiple short trials instead of one big trial per load.
-  - Optionally, tolerate a percentage of trial results with higher loss.
-- Allow searching for multiple Search Goals, with differing loss ratios.
-  - Any trial result can affect each Search Goal in principle.
-- Insert multiple coarse targets for each Search Goal, earlier ones need
-  to spend less time on trials.
-  - Earlier targets also aim for lesser precision.
-  - Use Forwarding Rate (FR) at Maximum Offered Load (FRMOL), as defined
-    in Section 3.6.2 of [RFC2285], to initialize bounds.
+1. Allow multiple short trials instead of one big trial per load.
+   - Optionally, tolerate a percentage of trial results with higher loss.
+2. Allow searching for multiple Search Goals, with differing loss ratios.
+   - Any trial result can affect each Search Goal in principle.
+3. Insert multiple coarse targets for each Search Goal, earlier ones need
+   to spend less time on trials.
+   - Earlier targets also aim for lesser precision.
+   - Use Forwarding Rate (FR) at Maximum Offered Load (FRMOL), as defined
+     in Section 3.6.2 of [RFC2285], to initialize bounds.
 
 {::comment}
 
-    [MB12]: There is no such section in the document.
+    MB12: There is no such section in the document.
     Do you meant Section 3.6.2 of [RFC2285]?
     If so, please update accordingly.
     Idem for all similar occurrences in the document. Thanks.
 
-    [VP]: Clarify. Check for every external section referenced.
+    VP: Clarify. Check for every external section referenced.
 
-    [MK]: Yes Section 3.6.2 of [RFC2285] defining FRMOL.
-    [MK]: Edited.
+    MK: Yes Section 3.6.2 of [RFC2285] defining FRMOL.
+    MK: Edited.
 
 {:/comment}
 
-- Be careful when dealing with inconsistent trial results.
-  - Reported throughput is smaller than the smallest load with high loss.
-  - Smaller load candidates are measured first.
-- Apply several time-saving load selection heuristics that deliberately
-  prevent the bounds from narrowing unnecessarily.
+4. Be careful when dealing with inconsistent trial results.
+   - Reported throughput is smaller than the smallest load with high loss.
+   - Smaller load candidates are measured first.
+5. Apply several time-saving load selection heuristics that deliberately
+   prevent the bounds from narrowing unnecessarily.
 
 {::comment}
 
-    [MB13]: Maximizing means?
+    MB13: Maximizing means?
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
 The first four enhancements
+
 {::comment}
 
-    [MB14]: Which ones?
+    MB14: Which ones?
 
-    [VP]: Describe the lists better so "some" is not needed here.
+    VP: Describe the lists better so "some" is not needed here.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 are formalized as MLRsearch Specification within this document.
+
 {::comment}
 
-    [MB15]: Where? In this document?
+    MB15: Where? In this document?
 
-    [VP]: Yes.
+    VP: Yes.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 The remaining enhancements are treated as implementation details,
 thus achieving high comparability without limiting future improvements.
 
 MLRsearch configuration options
+
 {::comment}
 
-    [MB16]: Where are those defined? Please add a pointer to the appropriate section.
+    MB16: Where are those defined? Please add a pointer to the appropriate section.
 
-    [VP]: Add pointer.
+    VP: Add pointer.
 
-    [MK]: TODO.
+    MK: TODO.
 
 {:/comment}
+
 are flexible enough to
+
 {::comment}
 
-    [MB17]: "flexibe" is ambiguous. Simply, state what we do.
+    MB17: "flexibe" is ambiguous. Simply, state what we do.
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: TODO.
+    MK: TODO.
 
 {:/comment}
+
 support both conservative settings and aggressive settings.
 Conservative enough settings lead to results
 unconditionally compliant with [RFC2544],
 but without much improvement on search duration and repeatability.
 Conversely, aggressive settings lead to shorter search durations
 and better repeatability, but the results are not compliant with [RFC2544].
+
 {::comment}
 
-    [MB18]: Add pointers where this is further elaborated.
+    MB18: Add pointers where this is further elaborated.
 
-    [VP]: Point to specific subsection.
+    VP: Point to specific subsection.
 
-    [MK]: TODO.
+    MK: TODO.
 
 {:/comment}
 
@@ -372,12 +413,12 @@ This document does not change or obsolete any part of [RFC2544].
 
 {::comment}
 
-    [MB19]: List the set of terms/definitions used in this document.
+    MB19: List the set of terms/definitions used in this document.
     I guess we should at least leverage terms defined in 2544/1242.
 
-    [VP]: Move list of terms here?
+    VP: Move list of terms here?
 
-    [MK]: Relevant existing terms, including the ones from rfcs 1242,
+    MK: Relevant existing terms, including the ones from rfcs 1242,
           2285 and 2544, are captured in section 4.3 Existing Terms, followed
           by the new terms that form the MLRsearch Specification. We went
           through quite a few iterations of getting it right, including a
@@ -385,19 +426,19 @@ This document does not change or obsolete any part of [RFC2544].
           following BMWG comments and reviews ended up with the current
           document structure. Reworking it back is substantial work
 
-    [MK]: TODO Instead I propose we list one liners explaining the term in
+    MK: TODO Instead I propose we list one liners explaining the term in
           the context of the benchmarking domain.
 
 {:/comment}
 
 {::comment}
 
-    [MB20]: Also, please add a statement that the convention used in bmwg
+    MB20: Also, please add a statement that the convention used in bmwg
     are followed here as well (def, discussion, etc.)
 
-    [VP]: Ok
+    VP: Ok
 
-    [MK] The Requirements Language text is the standard one we use in
+    MK] The Requirements Language text is the standard one we use in
          BMWG. There are no any strict BMWG conventions that are followed in
          this document. Rather, the convention used for terms that are
          specific to this document, is described in the Section 4 of this
@@ -405,22 +446,27 @@ This document does not change or obsolete any part of [RFC2544].
 
 {:/comment}
 
+{::comment}
+    TODO: Update the subsection above when the subsections below are complete enough
+{:/comment}
+
 # Requirements Language
 
 {::comment}
 
-    [MB5]: Move after the intro
+    MB5: Move after the intro
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: OK.
-    [MK]: Moved.
+    MK: OK.
+    MK: Moved.
 
 {:/comment}
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL"
 in this document are to be interpreted as described in BCP 14 [RFC2119]
+
 {::comment}
 
     The two references have to come one after another to avoid boilerplate nit,
@@ -431,6 +477,195 @@ in this document are to be interpreted as described in BCP 14 [RFC2119]
 
 [RFC8174] when, and only when, they appear in all capitals, as shown here.
 
+## BMWG Documents
+
+{::comment}
+    BMWG charter in https://datatracker.ietf.org/group/bmwg/about/
+{:/comment}
+
+{::comment}
+
+    [MK]: This section attempts to interpret the BMWG charter. And in
+          addition to illustrate how the BMWG works and the way RFC
+          recommendations have been produced to date. Its purpose is unclear.
+          It seems to set a stage to some later text for MLRsearch
+          positioning vs RFC 2544. But it my view it focuses too much on the
+          way BMWG RFCs are using RFC 2544 as a normative reference. It is
+          unclear to me how it helps in positioning MLRsearch within BMWG and
+          vs RFC 2544. I find it completely superfluous
+          It can replaced by a single reference to BMWG charter in the
+          scope section.
+
+{:/comment}
+
+The Benchmarking Methodology Working Group (BMWG) produces recommendations (RFC)
+that describe various benchmarking methodologies (using controlled stimuli
+in a laboratory environment) as they apply to various kinds of network systems.
+
+Large number of benchmarks is based on terminology from RFC 1242
+and corresponding methodology from RFC 2544.
+Subsequent recommendations then usually add needed details when specific systems
+are tested in specific configurations and under specific network traffic,
+relying on general desscriptions of benchmarks as in RFC 2544.
+Using software engineering vocabulary, RFC 2544 forms a generic framework,
+and subsequent documents represent plugins that add suport for specific
+network systems, services or functions.
+Only rarely the generic description in RFC 2544 is overriden by a new specification,
+for example when RFC 9004 updated the back-to-back frame generic benchmark.
+
+{::comment}
+    TODO: Add examples for "plugin" docuemnts,
+    classify whether they specify "traffic", "configuration" or "measurement".
+{:/comment}
+
+## Test Requirements
+
+{::comment}
+
+    [MK]: I question the purpose of this section and its misleading title.
+          To me this section is superfluous.
+
+{:/comment}
+
+While BMWG documents are called "recommendations", they form norms that
+are popular (citation needed) among benchmarking labs and vendors, as
+following them gives bonus of better comparability of the results
+between labs, and drives adoption of common industry best practices.
+
+{::comment}
+    TODO: Are examples needed? A lab can be serving a network device vendor,
+    or testing equipment vendor, or it could be a third-party lab for quality benchmarks,
+    or it could be an academia lab focusing on any (big or small) part of benchmarking procedure.
+{:/comment}
+
+BCP 14 [RFC2119] [RFC8174] defines all-caps words to describe multiple "strength levels"
+of requirements. Those levels were first used (citation needed) when describing
+network behavior of various implementations of IETF documents,
+but BMWG already used such words in RFC 2544 to describe various conditions
+needed (or not) to correctly apply given label.
+
+{::comment}
+
+    [MK]: What is meant by "label"?
+
+{:/comment}
+
+For example, a benchmark can only be called unconditionally compliant to RFC 2544 Throughput
+if the result is based on 60-second trials (among other requirements).
+
+While RFC 1242 and RFC 2544 used various phrases to describe "reporting the results",
+later RFCs seem to converge on the phrase "test report", regardless of how many tests
+are included in a single report. While some of RFC 2544 requirements restrict what the
+lab can do when performing measurements, many of the requirements focus purely on
+the reporting part. Common words are used, so it is not clear if words
+"benchmark", "test", "procedure" or "measurement" are interchangeable,
+or whether there are specific definitions for them (for example as Trial is defined in RFC2544).
+
+{::comment}
+
+    [MK]: Spending 10 lines of text on making a point to define common
+          words used in BMWG "benchmark", "test", "procedure"
+          or "measurement" to mean specified quantities is, again,
+          superfluous.
+
+{:/comment}
+
+{::comment}
+    Introduction for RFC1242 starts with:
+    Vendors often engage in "specsmanship" in an attempt to give their
+    products a better position in the marketplace.
+
+    Implicitly, if a vendor publishes results,
+    claiming they are unconditionally compliant with RFC 2544,
+    but somebody spots some requirement was not held,
+    that vendor would be accused of false advertisement.
+{:/comment}
+
+Strictly speaking, RFC 2544 does not tell the benchmarking labs which benchmarks to measure,
+but unofficially, the list of menchmarks in RFC 2544 became the list of benchmarks to run.
+
+## MLRsearch position
+
+{::comment}
+
+    [MK]: I question the purpose of this section. To me this section is
+          superfluous. Some paragraphs belong to the Scope section under
+          specification.
+
+{:/comment}
+
+This document provides "core" information if the form of MLRsearch Specification,
+and "contextual" information mostly around motivations and explanations.
+
+The MLRsearch Specification describes a benchmark that is very similar
+to Throughput of RFC 2544, allowing for other BMWG documents
+to still function as "plugins".
+
+MLRsearch Specification is independent from RFC 2544 Throughput methodology.
+
+{::comment}
+
+    [MK]: Suggest to move above three paragraphs to the Scope section.
+
+{:/comment}
+
+On one hand, MLRsearch Specification adds requirements not present in RFC 2544;
+on the other hand MLRsearch Specification allows deviations from RFC 2544 requirements
+(as long as the deviations are described in test report).
+Some deviations were alredy used by benchmarking labs (citation needed),
+some were included just for added flexibility.
+
+{::comment}
+
+    [MK]: Superfluous. Remove.
+
+{:/comment}
+
+It should be possible for benchmarking labs that currently measure Throughput
+to make those results compatible also with MLRsearch Specification
+without really changing their procedure, just by adding
+the newly requred details to their test report, thus conforming to both documents.
+
+{::comment}
+
+    [MK]: Superfluous. Remove.
+
+{:/comment}
+
+But as RFC 2544 did not officialy recommend benchmarking labs to start measuring Throughput,
+this document also does not officially recommend labs to comply with MLRsearch Specification.
+
+Unlike RFC 2544 Throughput, MLRsearch Specification allows for benchmarking
+varius sets of Search Goals losing the inter-lab comparability benefits.
+For this purpose, the added flexibility of MLRsearch Specification is bad for comparability.
+
+{::comment}
+    Distinguish "internal" labs that want primarily repeatability
+    (flexibility as a tool to get repeatability based on past DUT behavior)
+    from "external" labs where flexibility hurts (and smells of specsmanship)?
+{:/comment}
+
+Therefore, MLRsearch Specification is neither an extension nor a replacement
+for RFC 2544 Throughput. Future BMWG documents are expected to clear this ambiguity
+by recommending specific benchmarks, posibly of the form
+of a specific set of Search Goals.
+
+{::comment}
+
+    [MK]: All three paragraphs are very hard to parse.
+
+{:/comment}
+
+More technical details on the relation between RFC 2544 and this document
+see [Scope ](#scope).
+
+{::comment}
+
+    [MK]: Right. Labeling this section superfluous, move some content to
+          Scope.
+
+{:/comment}
+
 # Overview of RFC 2544 Problems
 
 This section describes the problems affecting usability
@@ -440,72 +675,78 @@ mainly a binary search for [RFC2544] unconditionally compliant throughput.
 ## Long Search Duration
 
 The proliferation of software DUTs, with frequent software updates and a
+
 {::comment}
 
-    [MB21]: Is this really new?
+    MB21: Is this really new?
 
-    [VP]: Not sure, ask Maciek
+    VP: Not sure, ask Maciek
 
-    [MK]: Changed “emergence” to “proliferation”. And yes, the
+    MK: Changed "emergence" to "proliferation". And yes, the
           proliferation and their importance is new.
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 number of different frame processing modes and configurations,
 has increased both the number of performance tests
 required to verify the DUT update and the frequency of running those tests.
 This makes the overall test execution time even more important than before.
 
 The throughput definition per [RFC2544] restricts the potential
+
 {::comment}
 
-    [MB22]: Won’t age well
+    MB22: Won't age well
 
-    [VP]: I agree, should be reformulated, not sure how.
+    VP: I agree, should be reformulated, not sure how.
 
-    [MK]: Accepted proposed text change.
-    [MK]: Edited.
+    MK: Accepted proposed text change.
+    MK: Edited.
 
 {:/comment}
+
 for time-efficiency improvements.
 
 {::comment}
 
-    [MB23]: Concretely, be affirmative if we provide an elaborated def,
+    MB23: Concretely, be affirmative if we provide an elaborated def,
     otherwise this statement can be removed.
 
-    [VP]: Reformulate to affirm and point.
+    VP: Reformulate to affirm and point.
 
-    [MK]: Agree. This is problem statement, not solution description, so
+    MK: Agree. This is problem statement, not solution description, so
           removed this paragraph.
-    [MK]: Removed.
+    MK: Removed.
 
 {:/comment}
 
 The bisection method, when used in a manner unconditionally compliant
 with [RFC2544], is excessively slow  due to two main factors.
+
 {::comment}
 
-    [MB24]: Can we have a reference?
+    MB24: Can we have a reference?
 
-    [VP]: Find references.
+    VP: Find references.
 
-    [MK]: Added wording connecting to the following paragraphs with
+    MK: Added wording connecting to the following paragraphs with
           explanations.
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
 Firstly, a significant amount of time is spent on trials
 with loads that, in retrospect, are far from the final determined throughput.
+
 {::comment}
 
-    [MB25]: Define "users".
+    MB25: Define "users".
 
-    [VP]: Yes, we should be more careful around role names.
+    VP: Yes, we should be more careful around role names.
 
-    [MK]: Added text.
-    [MK]: Edited.
+    MK: Added text.
+    MK: Edited.
 
 {:/comment}
 
@@ -514,26 +755,28 @@ throughput search, so users of testing equipment implementing the
 procedure already have access to a limited trade-off
 between search duration and achieved precision.
 However, each of the full 60-second trials doubles the precision.
+
 {::comment}
 
-    [MB26]: Can we include a reminder of the 2544 search basics? (no need to be verbose, though)?
+    MB26: Can we include a reminder of the 2544 search basics? (no need to be verbose, though)?
 
-    [VP]: Maybe, not sure how feasible.
+    VP: Maybe, not sure how feasible.
 
-    [MK]: Added.
-    [MK]: Edited.
+    MK: Added.
+    MK: Edited.
 
 {:/comment}
+
 As such, not many trials can be removed without a substantial loss of precision.
 
 For reference, here is a brief [RFC2544] throughput binary
-(bisection) reminder, based on Sections 24 and 26 of [RFC2544]:
+(bisection) reminder, based on Sections 24 and 26 of [RFC2544:
 
-* Set Max ≈ line-rate and Min = a proven loss-free load.
+* Set Max = line-rate and Min = a proven loss-free load.
 * Run a single 60-s trial at the midpoint.
-* Zero-loss ⇒ midpoint becomes new Min; any loss ⇒ new Max.
-* Repeat until the Max–Min gap meets the desired precision, then report
-  the highest zero-loss rate for every mandatory frame size. 
+* Zero-loss -> midpoint becomes new Min; any loss-> new Max.
+* Repeat until the Max-Min gap meets the desired precision, then report
+  the highest zero-loss rate for every mandatory frame size.
 
 ## DUT in SUT
 
@@ -543,14 +786,15 @@ DUT as:
 
 - The network frame forwarding device to which stimulus is offered and
   response measured Section 3.1.1 of [RFC2285].
+
 {::comment}
 
-    [MB27]: Double check
+    MB27: Double check
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Checked. OK.
-    [MK]: Edited.
+    MK: Checked. OK.
+    MK: Edited.
 
 {:/comment}
 
@@ -573,29 +817,31 @@ that share the same CPUs, memory and I/O resources.
 
 {::comment}
 
-    [MB28]: This makes assumptions on the software architecture. We need to make sure this is generic enough.
+    MB28: This makes assumptions on the software architecture. We need to make sure this is generic enough.
     For example, what is a server? Etc.
     Does it applies to container, microservice, SF a la RFC7665, VNF a la ETSI, etc.?
 
-    [VP]: Ask Maciek.
+    VP: Ask Maciek.
 
-    [MK]: Rewritten it a bit to make it more generic. See if this helps.
-    [MK]: Edited.
+    MK: Rewritten it a bit to make it more generic. See if this helps.
+    MK: Edited.
 
 
 {:/comment}
 
 Given that a SUT is a shared multi-tenant environment,
+
 {::comment}
 
-    [MB29]: Such as?
+    MB29: Such as?
 
-    [VP]: We should reformulate. Other components may differ (give few examples) but interference is general.
+    VP: We should reformulate. Other components may differ (give few examples) but interference is general.
 
-    [MK]: Removed surplus text, as it is now explained in preceding paragraph.
-    [MK]: Edited.
+    MK: Removed surplus text, as it is now explained in preceding paragraph.
+    MK: Edited.
 
 {:/comment}
+
 the DUT might inadvertently
 experience interference from the operating system
 or other software operating on the same server.
@@ -606,14 +852,15 @@ specific CPU cores
 
 {::comment}
 
-    [MB30]: If many? Or do we assume there are always many?
+    MB30: If many? Or do we assume there are always many?
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Made it explicit for this paragraph.
-    [MK]: Edited.
+    MK: Made it explicit for this paragraph.
+    MK: Edited.
 
 {:/comment}
+
 and isolating those cores can prevent context switching.
 
 Despite taking all feasible precautions, some adverse effects may still impact
@@ -659,12 +906,12 @@ below the theoretical maximum.
 
 {::comment}
 
-    [MB31]: I don't parse this one. Please reword.
+    MB31: I don't parse this one. Please reword.
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Rephrased. Hope it reads better now.
-    [MK]: Edited.
+    MK: Rephrased. Hope it reads better now.
+    MK: Edited.
 
 {:/comment}
 
@@ -681,12 +928,12 @@ to distinguish SUT noise from DUT fluctuations
 
 {::comment}
 
-    [MB32]: As we need to reflect the view of the WG/IETF, not only authors
+    MB32: As we need to reflect the view of the WG/IETF, not only authors
 
-    [VP]: Ask Maciek.
+    VP: Ask Maciek.
 
-    [MK]: Proposed text looks good. OK.
-    [MK]: Edited.
+    MK: Proposed text looks good. OK.
+    MK: Edited.
 
 {:/comment}
 
@@ -695,36 +942,39 @@ only negligible demands on SUT shared resources, so that
 
 {::comment}
 
-    [MB33]: That is?
+    MB33: That is?
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Clarified.
-    [MK]: Edited.
+    MK: Clarified.
+    MK: Edited.
 
 {:/comment}
+
 the DUT remains the principal performance limiter,
 the DUT's ideal noiseless performance is defined
+
 {::comment}
 
-    [MB34]: Please avoid "we" constructs.
+    MB34: Please avoid "we" constructs.
 
-    [VP]: Ok. Search and replace all into passive voice.
+    VP: Ok. Search and replace all into passive voice.
 
-    [MK]: OK. TODO for the whole document.
+    MK: OK. TODO for the whole document.
 
 {:/comment}
+
 as the noiseless end of the SUT performance spectrum
+
 {::comment}
 
-    [MB35]: Can we cite an example?
+    MB35: Can we cite an example?
 
-    [VP]: Yes for latency
+    VP: Yes for latency
 
-    [MK]: Focus of mlrsearch is finding throughput. On 2nd thought,
+    MK: Focus of mlrsearch is finding throughput. On 2nd thought,
           removing reference to latency as it is not applicable.
-    [MK]: Edited.
-
+    MK: Edited.
 
 {:/comment}
 
@@ -744,11 +994,11 @@ across a range of SUT noise-tolerance levels.
 
 {::comment}
 
-    [MB36]: ?
+    MB36: ?
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
@@ -790,16 +1040,18 @@ as less dependent on the SUT noise.
 An alternative option is to simply run a search multiple times, and
 report some statistics (e.g., average and standard deviation, and/or
 percentiles like p95).
+
 {::comment}
 
-    [MB37]: What about at some other representative percentiles?
+    MB37: What about at some other representative percentiles?
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Added percentiles.
-    [MK]: Edited.
+    MK: Added percentiles.
+    MK: Edited.
 
 {:/comment}
+
 This can be used for a subset of tests deemed more important,
 but it makes the search duration problem even more pronounced.
 
@@ -822,28 +1074,32 @@ non-zero loss ratio as the goal for their load search.
 Motivations are many:
 
 - Networking protocols tolerate frame loss better,
+
 {::comment}
 
-    [MB38]: 1242 was also modern at the time they were published ;)
-            This can be easily stale. Let’s avoid that
+    MB38: 1242 was also modern at the time they were published ;)
+            This can be easily stale. Let's avoid that
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: OK.
+    MK: OK.
 
 {:/comment}
+
   compared to the time when [RFC1242] and [RFC2544] were specified.
 
 - Increased link speeds require trials sending way more frames within the same duration,
+
 {::comment}
 
-    [MB39]: Won’t age well.
+    MB39: Won't age well.
 
-    [VP]: Ok, but some things did change over time (in focus if not in existence). Ask Maciek.
+    VP: Ok, but some things did change over time (in focus if not in existence). Ask Maciek.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
   increasing the chance of a small SUT performance fluctuation
   being enough to cause frame loss.
 
@@ -855,40 +1111,43 @@ Motivations are many:
 
 {::comment}
 
-    [MB40]: Please split. Too long
+    MB40: Please split. Too long
 
-    [VP]: At this point we probably should add a subsection somewhere,
+    VP: At this point we probably should add a subsection somewhere,
           discussing how short-time performance may fluctuate within reasonable-duration trial
           (even as short as 1s).
 
-    [MK]: Split with some rewording.
-    [MK]: Edited.
+    MK: Split with some rewording.
+    MK: Edited.
 
 {:/comment}
 
 - If an approximation of the SUT noise impact on the Trial Loss Ratio is known,
+
 {::comment}
 
-    [MB41]: Help readers find where to look for an authoritative definition.
+    MB41: Help readers find where to look for an authoritative definition.
 
-    [VP]: The original paragraph maybe describes periodic processes eating CPU or even impact
+    VP: The original paragraph maybe describes periodic processes eating CPU or even impact
           of reconfiguration during traffic, but both may be too exotic for this specification.
           I recommend to delete this paragraph. Otherwise, add link.
 
-    [MK]: Added.
-    [MK]: Edited.
+    MK: Added.
+    MK: Edited.
 
 {:/comment}
+
   it can be set as the Goal Loss Ratio (see definitions of
   Trial and Goal terms in Sections 4.4 and 4.5 of this document).
+
 {::comment}
 
-    [MB42]: Help readers find where to look for an authoritative definition.
+    MB42: Help readers find where to look for an authoritative definition.
 
-    [VP]: Add link if not deleted?
+    VP: Add link if not deleted?
 
-    [MK]: Added.
-    [MK]: Edited.
+    MK: Added.
+    MK: Edited.
 
 {:/comment}
 
@@ -897,17 +1156,19 @@ Motivations are many:
 
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes a
+
 {::comment}
 
-    [MB43]: We cant claim that
+    MB43: We cant claim that
 
-    [VP]: Ok, but also current sentence has circular dependency between non-zero rates
+    VP: Ok, but also current sentence has circular dependency between non-zero rates
           and specific user-friendliness. Reformulate.
 
-    [MK]: done.
-    [MK]: Edited.
+    MK: done.
+    MK: Edited.
 
 {:/comment}
+
 search algorithm more user-friendly.
 [RFC2544] throughput is not user-friendly in this regard.
 
@@ -927,17 +1188,19 @@ But it is not that obvious how to search for multiple goals at once,
 hence the support for multiple Search Goals remains a problem.
 
 At the time of writing there does not seem to be a consensus in the industry
+
 {::comment}
 
-    [MB44]: Among?
+    MB44: Among?
     Also, indicate "at the time of writing".
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: done.
-    [MK]: Edited.
+    MK: done.
+    MK: Edited.
 
 {:/comment}
+
 on which ratio value is the best.
 For users, performance of higher protocol layers is important, for
 example, goodput of TCP connection (TCP throughput, [RFC6349]), but relationship
@@ -964,30 +1227,34 @@ The plain bisection never encounters inconsistent trials.
 But [RFC2544] hints about the possibility of inconsistent trial results,
 in two places in its text.
 The first place is Section 24 of [RFC2544],
+
 {::comment}
 
-    [MB45]: ??
+    MB45: ??
 
-    [VP]: Full reference is needed.
+    VP: Full reference is needed.
 
-    [MK]: done.
-    [MK]: Edited.
+    MK: done.
+    MK: Edited.
 
 {:/comment}
+
 where full trial durations are required,
 presumably because they can be inconsistent with the results
 from short trial durations.
 The second place is Section 26.3 of [RFC2544],
+
 {::comment}
 
-    [MB46]: ??
+    MB46: ??
 
-    [VP]: Also full reference.
+    VP: Also full reference.
 
-    [MK]: done.
-    [MK]: Edited.
+    MK: done.
+    MK: Edited.
 
 {:/comment}
+
 where two successive zero-loss trials
 are recommended, presumably because after one zero-loss trial
 there can be a subsequent inconsistent non-zero-loss trial.
@@ -1008,8 +1275,8 @@ Relevant Lower Bound is the MLRsearch term that addresses this problem.
 
 # MLRsearch Specification
 
-MLRsearch Specification provides the technical
-definitions needed for evaluating whether a particular test procedure
+This chapter provides all technical definitions
+needed for evaluating whether a particular test procedure
 complies with MLRsearch Specification.
 
 Some terms used in the specification are capitalized.
@@ -1017,14 +1284,15 @@ It is just a stylistic choice for this document,
 reminding the reader this term is introduced, defined or explained
 elsewhere in the document. See [Index ](#index) for list of such terms.
 Lowercase variants are equally valid.
+
 {::comment}
 
-    [MB47]: Please move this to the terminology section
+    MB47: Please move this to the terminology section
     where we can group all conventions used in the document.
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: There is no terminology section per se in this
+    MK: There is no terminology section per se in this
           document. See my note to your comments in the Requirements Language
           section.
 
@@ -1033,63 +1301,343 @@ Lowercase variants are equally valid.
 Each per term subsection contains a short *Definition* paragraph
 containing a minimal definition and all strict requirements, followed
 by *Discussion* paragraphs focusing on important consequences and
-recommendations.  Requirements about how other components can use the
+recommendations. Requirements about how other components can use the
 defined quantity are also included in the discussion.
+
+{::comment}
+
+    MB48: Not sure this brings much
+
+    VP: Ok, delete.
+
+    MK: done.
+    MK: Edited.
+
+{:/comment}
+
+## Scope
+
+{::comment}
+
+    The current text uses mostly "new benchmark" instead of MLRsearch,
+    or Relevant Lower Bound, or Conditional Throughput,
+    or Controller Output, or ...
+
+{:/comment}
+
+MLRsearch Specification is a set of definitions (terminology)
+and requirements (methodology) aimed to standardize a new kind of benchmark,
+which shares similarities with RFC 2544 Throughput.
+
+{::comment}
+
+    Q: Remove parentheses, or define terminology/methodology or otherwise reformulate.
+    A: Somehow avoid such details and simplify sentences.
+
+{:/comment}
+
+{::comment}
+
+    Q: Informally specify what "benchmark" is?
+    A: No, the usage in previous documents is good enough.
+
+{:/comment}
+
+{::comment}
+
+    Q: If "new benchmark" is a noun-phrase, which verb should accompany it?
+    A: For now, "measure" is good enough.
+
+{:/comment}
+
+Contrary to Throughput, the new benchmark is underspecified.
+Specifically, Search Goal instances are required but not fixed.
+
+{::comment}
+
+    [MK]: When you say it is underspecified, explain in what context and
+          why the choice was made to underspecify. Leaving it like this is
+          leaving a reading with impression that it is incomplete, and
+          requires more work to make it complete. And as an incomplete piece
+          of work, how can it become a standard recommendation to users?
+
+{:/comment}
+
+While RFC 2544 also has some freedoms (60s is minimum, not fixed),
+such freedoms are not extected to change the results much,
+but Search Goal instances to change the results significantly.
+
+{::comment}
+
+    [MK]: This sentence is incomprehensible.
+
+{:/comment}
 
 
 {::comment}
 
-    [MB48]: Not sure this brings much
-
-    [VP]: Ok, delete.
-
-    [MK]: done.
-    [MK]: Edited.
+    TODO: Polish the "60s" sentence.
 
 {:/comment}
 
-## Overview
+Specific Search Goal instances may be defined in later BMWG documents,
+the Seach Goal examples in this specification are not an official recommendation.
 
-MLRsearch Specification describes a set of abstract system components,
+{::comment}
+
+    Q: If all BMWG documents are technically informational recommendations,
+    we may need more specific language in this subsection.
+    A: Ignore, earlier introductory chapters should be enough for readers to understand.
+
+{:/comment}
+
+The new benchmark can be measured in addition to Throughput,
+instead of Throughput, or in a way that produces a Test Report
+result compatible with both methodologies at once.
+
+{::comment}
+
+    [MK]: What is meant by "both methodologies"?
+
+{:/comment}
+
+
+{::comment}
+
+    Q: RFC 2544 Throughput procedure is optimistic when taken literally
+    and in presence of incompatible trial results. MLRsearch is conservative instead.
+    A: Ignore this detail here. Discuss in Compatibility subsections.
+
+{:/comment}
+
+This document does not recommend a particular way of combining
+the new benchamrk with Throughput.
+
+As RFC 2544 specifies Throughput in a single section,
+that relies on information from other RFC 2544 sections,
+MLRsearch specification also relies mostly on the same context information.
+
+There are few differences though.
+Most importantly, MLRsearch Specification allows deviations
+from RFC 2544 Trial requirements and outputs.
+
+Notably, MLRsearch Specifications also explicitly formalizes some notions
+such as Traffic Profile, which gather methodology information
+present implicitly in RFC 2544 or explicitly in other documents.
+
+Thirdly, MLRsearch Specification requirements for presenting results
+in Test Report are somewhat different from Throughput reporting format.
+Applicability of similar requirements to other kinds of benchmark is out of scope.
+
+{::comment}
+
+    [MK]: These five paragraphs are very hard to parse. They definitely
+          do not describe scope of MLRsearch, but rather are a loose set of
+          remarks comparing MLRsearch with RFC 2544.
+
+{:/comment}
+
+{::comment}
+
+    Q: How formal should be the distinction between "search" and "benchmark"?
+    A: Define Search as a part of benchmark, but do not discuss examples here.
+
+{:/comment}
+
+RFC 2544 Throughput is not only a standalone benchmark,
+it is also a phase of other composite benchmarks (Latency of RFC 2544 and B2B time in RFC 9004).
+
+{::comment}
+
+    [MK]: Impossible to parse.
+
+{:/comment}
+
+For some Search Goals, Relevant Lower Bound can replace Throughput
+to create new hybrid benchmarks.
+
+{::comment}
+
+    [MK]: Again, it's comparison to RFC 2544, does not belong in Scope
+          section. What is the definition of "new hybrid benchmarks", 
+          and why are they required?
+
+{:/comment}
+
+{::comment}
+
+    Q: The "phase" usage only works when zero loss at NDR is repeatable.
+    Neither Throughput nor MLRsearch guarantee that.
+    A: Ignore here, mention is some other place with informative discussion.
+
+{:/comment}
+
+{::comment}
+
+    Q: Recommend hybrid benchmarks?
+    A: I guess no, but I am not sure about Scope consequences then.
+
+{:/comment}
+
+Other MBWG documents extend RFC 2544 benchmarks in details needed
+when testing specific DUTs, configurations, protocols, or traffic profiles.
+Generally, such extensions are related to Traffic Profile or Trial,
+so they should be equally applicable to MLRsearch Search
+(both standalone benchmark and component).
+
+{::comment}
+
+    [MK]: How does this relate to the scope of MLRsearch?
+          (and the sentence is hard to parse.)
+
+{:/comment}
+
+{::comment}
+
+    Q: Do we really need to distinguish generic Search and MLRsearch Search?
+    A: I guess yes, but "MLRsearch Search" does not feel like a proper style.
+    MLRsearch phase? Controller call?
+
+{:/comment}
+
+{::comment}
+
+    TODO: Mention that extension examples are in
+    Traffic Profile and Trial discussion?
+
+{:/comment}
+
+{::comment}
+
+    TODO: I feel something scope-related is still missing. Min/Max Load perhaps?
+    Load in general? Focus on intended instead of offered load?
+
+{:/comment}
+
+### TODOs
+
+TODO: Multiple tests in RFC2544, this is about throughput only.
+
+{::comment}
+
+    Done, but some context is missing.
+    Similarly to Throuput chapter fitting into the rest of RFC 2544,
+    MLRsearch aim to also fit.
+    Same for other documents "plugging into" RFC 2544.
+
+{:/comment}
+
+TODO: Multiple traffic profiles (at least frame sizes) in RFC2544, this is about single SUT+profile.
+
+{::comment}
+
+    Refer to Test Suite subsection.
+
+{:/comment}
+
+TODO: Repeating the same search is possible, this is about single search.
+
+{::comment}
+
+    Again, Test Suite subsection, and Test Report for scheduled tests.
+
+{:/comment}
+
+TODO: Manual processes, automation, implementation as library,...
+
+{::comment}
+
+    Refer to Test Procedure subsection and maybe Test Report for automation inputs.
+
+{:/comment}
+
+TODO: Calls/invocations, interfaces.
+
+{::comment}
+
+    Update Overview and late top subsections?
+
+{:/comment}
+
+TODO: Regular end, irregular exit, user abort.
+
+{::comment}
+
+    Should not need new text, review related MD comments.
+    Maybe differentiate abort conditions, or at least make them explicitly vague?
+
+{:/comment}
+
+TODO: Load classification equivalence (not here, just in later chapters).
+
+{::comment}
+
+    Later motivations. MLRS already has bunch of new requirements.
+
+{:/comment}
+
+TODO: General discussion around test, search, trial and recurrence? For example throughput search can be a part of B2B tests.
+
+{::comment}
+
+    Expand in Test Procedure and Test Case for composite benchmarks?
+    Define "benchmark" even?
+
+{:/comment}
+
+## Architecture Overview
+
+While normative definitions and requirements only use already defined terms,
+co-located discussion paragraphs are more useful on repeated reading
+when they use terms defined later.
+But for the first reading, such discussion paragraphs would be
+unclead and confusing, so this informative section gives a brief
+top-down overview of what a complete MLRsearch Architecture will look like.
+
+MLRsearch Architecture describes a set of abstract system components,
 acting as functions with specified inputs and outputs.
 
-A test procedure is said to comply with MLRsearch Specification
+A Test Procedure is said to comply with MLRsearch Specification
 if it can be conceptually divided into analogous components,
 each satisfying requirements for the corresponding MLRsearch component.
-Any such compliant test procedure is called a MLRsearch Implementation.
+Any such compliant Test Procedure is called a MLRsearch Implementation.
 
 The Measurer component is tasked to perform Trials,
 the Controller component is tasked to select Trial Durations and Loads,
 the Manager component is tasked to pre-configure involved entities
-and to produce the test report.
-The test report explicitly states Search Goals (as Controller inputs)
-and corresponding Goal Results (Controller outputs).
+and to produce the Test Report.
+The Test Report explicitly states Search Goals (as Controller Input)
+and corresponding Goal Results (Controller Output).
 
 The Manager invokes
+
 {::comment}
 
-    [MB49]: Invoke?
+    MB49: Invoke?
             Maybe better to clarify what is actually meant by "calls".
 
-    [VP]: Mention function calls in first sentence of this subsection.
+    VP: Mention function calls in first sentence of this subsection.
 
-    [MK]: done.
-    [MK]: Edited.
+    MK: done.
+    MK: Edited.
 
 {:/comment}
+
 a Controller once,
+
 {::comment}
 
-    [MB50]: Is there only one? Always?
+    MB50: Is there only one? Always?
             Include a provision to have many
 
-    [VP]: Add a sentence about one search.
+    VP: Add a sentence about one search.
           Complete test suite may perform multiple searches, using maybe different controllers
 
-    [MK]: Not sure what you mean. It already says “stopping conditions”,
+    MK: Not sure what you mean. It already says "stopping conditions",
           implying there are many.
 
 {:/comment}
+
 and the Controller then invokes the Measurer repeatedly
 until every stopping condition is satisfied.
 
@@ -1098,61 +1646,71 @@ Search. Any work the Manager performs either before invoking the
 Controller or after Controller returns, falls outside the scope of the
 Search.
 
-MLRsearch Specification prescribes regular search results and recommends
+MLRsearch Specification prescribes Regular Search Results and recommends
 their stopping conditions.
+
 {::comment}
 
-    [MB51]: Does this also cover "abort" (before completion) to handle some error conditions?
+    MB51: Does this also cover "abort" (before completion) to handle some error conditions?
             Or this is more a "stop execution"?
 
-    [VP]: Add sentences about regular exits, irregular errors and user aborts?
+    VP: Add sentences about regular exits, irregular errors and user aborts?
 
-    [MK]: Stop execution of the search.
+    MK: Stop execution of the search.
 
 {:/comment}
-Irregular search results are also allowed,
+
+Irregular Search Results are also allowed,
 they may have different requirements and stopping conditions.
 
-Search results are based on Load Classification.  When measured enough,
+Search Results are based on Load Classification. When measured enough,
 a chosen Load can either achieve or fail each Search Goal
 (separately), thus becoming a Lower Bound or an Upper Bound for that
 Search Goal.
-
-
-For repeatability and comparability purposes, it is important that
-all implementations of MLRsearch classify the Load equivalently,
-{::comment}
-
-    [MB52]: Do we have taxonomoy/means to make that equivalence easy to put in place?
-
-    [VP]: Add links to Goal Result or Load Classification.
-          But maybe this sentence is not needed in this subsection?
-
-    [MK]: It is covered in Sections 4.6.2 Load Classification and 6.1
-          Load Classification Logic and 6.4.3 Load Classification
-          Computations.
-
-{:/comment}
-based on all Trials measured at that Load.
 
 When the Relevant Lower Bound is close enough to Relevant Upper Bound
 according to Goal Width, the Regular Goal Result is found.
 Search stops when all Regular Goal Results are found,
 or when some Search Goals are proven to have only Irregular Goal Results.
 
+{::comment}
+
+    Verify the language above is correct, minimal and enough as an overview
+    when all definitions become stable.
+
+{:/comment}
+
+{::comment}
+
+    Note:
+    This comment was about load classifications being equivalent among implementations.
+    We deleted tat sentence, keeping this block just for tracking purposes.
+
+    MB52: Do we have taxonomoy/means to make that equivalence easy to put in place?
+
+    VP: Add links to Goal Result or Load Classification.
+          But maybe this sentence is not needed in this subsection?
+
+    MK: It is covered in Sections 4.6.2 Load Classification and 6.1
+          Load Classification Logic and 6.4.3 Load Classification
+          Computations.
+
+{:/comment}
+
 ### Behavior Correctness
 
 MLRsearch Specification by itself does not guarantee that
 the Search ends in finite time, as the freedom the Controller has
 for Load selection also allows for clearly deficient choices.
+
 {::comment}
 
-    [MB53]: I suggest we be factual and avoid use of «believe» and so on.
+    MB53: I suggest we be factual and avoid use of "believe" and so on.
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Ok.
-    [MK]: Removed.
+    MK: Ok.
+    MK: Removed.
 
 {:/comment}
 
@@ -1164,17 +1722,19 @@ for this specification, is [PyPI-MLRsearch].
 ## Quantities
 
 MLRsearch Specification
+
 {::comment}
 
-    [MB54]: "S" is used in the previous section,
+    MB54: "S" is used in the previous section,
             Please pick one form and be consistent through the document.
 
-    [VP]: S
+    VP: S
 
-    [MK]: MLRsearch Specification. Done all.
-    [MK]: Edited.
+    MK: MLRsearch Specification. Done all.
+    MK: Edited.
 
 {:/comment}
+
 uses a number of specific quantities,
 some of them can be expressed in several different units.
 
@@ -1185,16 +1745,18 @@ but may be expressed as percentages instead.
 
 For convenience, a group of quantities can be treated as a composite quantity.
 One constituent
+
 {::comment}
 
-    [MB55]: Please check
+    MB55: Please check
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Fixed punctuation and broken sentence.
-    [MK]: Edited.
+    MK: Fixed punctuation and broken sentence.
+    MK: Edited.
 
 {:/comment}
+
 of a composite quantity is called an attribute.
 A group of attribute values is called an instance of that composite quantity.
 
@@ -1223,16 +1785,67 @@ duration"(configuration quantities), all the quoted names denote
 separate but related quantities.  As the naming suggests, the final
 value of "duration" is expected to be equal to "final duration" value.
 
-## Existing Terms
+## Terminology structure
 
 {::comment}
 
-    [MB56]: I would delete.
+    First proposal:
 
-    [VP]: Not sure yet.
+    A subsection starts with a short sentence, ideally in a static pattern like
+    `The term {subsection_title} denotes {short_description}.`
+    where the short description can be copied also to Index items
+    (if informative enough beyond the title itself).
 
-    [MK]: Edited, instead of deleting.
-    [MK]: Edited.
+    Next paragraph is the definition, not including all requirements yet,
+    but listing names of all components/attributes/subterms;
+    this is the "terminology" part of the section.
+
+    Next are all the "child subtrees" subsubsections.
+
+    Next is the `{subsection_title} Requirements` subsubsection
+    that relies on child subsubsections and all preceding sections;
+    this is the methodology part of the subsection.
+
+    Final subsubsection is `{subsection_title} Discussion`
+    that is strictly speaking not normative, but improves readability,
+    adds information similar to RFC 2544 `Objective:` paragraphs,
+    and highlights possible future extensions
+    and examples of "plugin principle" of where other BMWG documents
+    can add their own requirements for specific protocols/SUTs.
+
+{:/comment}
+
+{::comment}
+
+    Second proposal:
+
+    The normative part of the MLRsearch specification can be decomposed
+    into a directed acyclic graph, where each node is a "term"
+    with its definition and requirements. The links in the graph are
+    dependencies, "later" term can only be fully defined
+    when all its "earlier" terms are already defined.
+
+    Some terms define composite quantities, subsections could be used
+    to hold definitions of all the attributes.
+
+    For readability, informative "discussion" text could be added,
+    but frequently it is convenient to use a later term
+    when discussing an earlier term.
+
+    The currect structure of sections is a compromise between these motivations.
+
+{:/comment}
+
+## Existing Normative Terms
+
+{::comment}
+
+    MB56: I would delete.
+
+    VP: Not sure yet.
+
+    MK: Edited, instead of deleting.
+    MK: Edited.
 
 {:/comment}
 
@@ -1253,13 +1866,14 @@ be consulted before attempting to make use of this document:
 
 Definitions of some central terms from above documents are copied and
 discussed in the following subsections.
+
 {::comment}
 
-    [MB57]: Please move this to a terminology section suggested above
+    MB57: Please move this to a terminology section suggested above
 
-    [VP]: Ok for paragraph text...
+    VP: Ok for paragraph text...
 
-    [MK]: See my note re your comment to the Requirements Language
+    MK: See my note re your comment to the Requirements Language
           section. We ended up keeping the Existing Terms section just before
           the MLRsearch specific terms for clarity and easier reading, based
           on feedback from BMWG.
@@ -1278,18 +1892,20 @@ as a single entity and response measured.
 Discussion:
 
 An SUT consisting of a single network device is also allowed.
+
 {::comment}
 
-    [MB58]: Do we need to include this?
-            I would only introduce deviation from bas specs.
+    MB58: Do we need to include this?
+            I would only introduce deviation from base specs.
 
-    [VP]: Ok on deviation, not sure on base definition.
+    VP: Ok on deviation, not sure on base definition.
 
-    [MK]: We do need to include this, as the SUT and DUT terms are used
+    MK: We do need to include this, as the SUT and DUT terms are used
           repeatedly and are fundamental to understanding this
           specification.
 
 {:/comment}
+
 In software-based networking SUT may comprise multitude of
 networking applications and the entire host hardware and software
 execution environment.
@@ -1301,18 +1917,20 @@ Defined in Section 3.1.1 of [RFC2285] as follows.
 Definition:
 
 The network forwarding device
+
 {::comment}
 
-    [MB59]: This reasons about "device", should we say that we extends this to "function"?
+    MB59: This reasons about "device", should we say that we extends this to "function"?
 
-    [VP]: Yes. Extend discussion. If device requires medium/cables,
+    VP: Yes. Extend discussion. If device requires medium/cables,
           function can be working with something software-like
           (packet vectors, shared memory regions).
 
-    [MK]: added text covering this.
-    [MK]: Edited.
+    MK: added text covering this.
+    MK: Edited.
 
 {:/comment}
+
 to which stimulus is offered and response measured.
 
 Discussion:
@@ -1321,13 +1939,14 @@ DUT, as a sub-component of SUT, is only indirectly mentioned in
 MLRsearch Specification, but is of key relevance for its motivation.
 The device can represent a software-based networking functions running
 on commodity x86/ARM CPUs (vs purpose-built ASIC / NPU / FPGA).
+
 {::comment}
 
-    [MB60]: Idem as SUT
+    MB60: Idem as SUT
 
-    [VP]: Yes.
+    VP: Yes.
 
-    [MK]: See my note re SUT.
+    MK: See my note re SUT.
 
 {:/comment}
 
@@ -1366,30 +1985,39 @@ The definition describes some traits, and it is not clear whether all of them
 are required, or some of them are only recommended.
 
 Trials are the only stimuli the SUT is expected to experience during the Search.
+
 {::comment}
 
-    [MB61]: Is there any aspect new to MLRS?
+    MB61: Is there any aspect new to MLRS?
 
-    [VP]: No, make clear.
+    VP: No, make clear.
 
-    [MK]: Yes, it is covered in detail in the following sections. The
+    MK: Yes, it is covered in detail in the following sections. The
           important part in this section, apart from quoting the original
           definition, is the discussion part, that sets the convention of how
           deviations from the original definition are captured in this
-          document..
+          document.
 
 {:/comment}
 
 For the purposes of the MLRsearch Specification,
 it is allowed
+
 {::comment}
 
-    [MB62]: Not a normative language
+    MB62: Not a normative language
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: ok. changed from ALLOWED to allowed. is anything else needed?
-    [MK]: Edited.
+    MK: ok. changed from ALLOWED to allowed. is anything else needed?
+    MK: Edited.
+
+    VP: I feel this is important. Not only as a notable deviation from RFC 2544,
+    but also as an example of normative language usage.
+    Where RFC 2544 says you MUST do A or you CANNOT do B,
+    MLRsearch may say there are specific conditions where you do not have to do A or can de B.
+    Med had few comments like "since there is exception, the requirement is not universal",
+    and I say "there are clear conditions, the requirement is universal if the conditions are satisfied".
 
 {:/comment}
 
@@ -1407,22 +2035,96 @@ The [RFC2544] document itself seems to be treating phase b)
 as any type of configuration that cannot be configured only once (by Manager,
 before Search starts), as some crucial SUT state could time-out during the Search.
 It is RECOMMENDED
+
 {::comment}
 
-    [MB63]: Not a normative term
+    MB63: Not a normative term
 
-    [VP]: Ok.
-    
-    [MK]: ok. MB and MK edits applied.
-    [MK]: Edited.
+    VP: Ok.
+
+    MK: ok. MB and MK edits applied.
+    MK: Edited.
 
 {:/comment}
+
 to interpret the "learning frames" to be
 any such time-sensitive per-trial configuration method,
 with bridge MAC learning being only one possibe example.
 Appendix C.2.4.1 of [RFC2544] lists another example: ARP with wait time of 5 seconds.
 
+## Existing Informative Terms
+
+The terms specified in the following subsections
+have appeared in previous BMWG documents,
+but not neccessarily named the same way,
+and generally without precise definitions.
+
+The normative terms in later sections are easier to define
+if the names and definitions of the existing terms are clarified.
+
+### Test Equipment
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### Test Procedure
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+{::comment}
+
+    TODO: Distinguish "manual" from "automated"?
+
+    TODO: Automated may need specific Implementation and Inputs more specific than normal Test Case.
+
+{:/comment}
+
+### Test Report
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### Test Case
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### Test Suite
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
+### A Search
+
+{::comment}
+
+    TODO: Define and give minimal references.
+
+{:/comment}
+
 ## Trial Terms
+
+{::comment}
+
+    TODO: Separate short description from further discussion.
+
+{:/comment}
 
 This section defines new and redefine existing terms for quantities
 relevant as inputs or outputs of a Trial, as used by the Measurer component.
@@ -1434,16 +2136,19 @@ Definition:
 
 Trial Duration is the intended duration of the phase c) of a Trial.
 The value MUST be positive.
+
 {::comment}
 
-    [MB64]: Does this cover also recurrences?
+    MB64: Does this cover also recurrences?
             See, e.g., draft-ietf-netmod-schedule-yang-05 - A Common YANG Data Model for Scheduling
             or draft-ietf-opsawg-scheduling-oam-tests-00?
 
-    [VP]: No, mention that probably already in trial definition.
+    VP: No, mention that probably already in trial definition.
 
-    [MK]: No, it does not cover recurrences as specified in above two
+    MK: No, it does not cover recurrences as specified in above two
           drafts, as it does involve scheduled events.
+
+    VP: TODO: Mention in Test Case, Test Suite or Test Report.
 
 {:/comment}
 
@@ -1456,14 +2161,15 @@ such inputs to the Controller so that the Controller only uses
 
 {::comment}
 
-    [MB65]: To?
+    MB65: To?
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited “proposes” => “uses”.
-    [MK]: Edited.
+    MK: Edited "proposes" => "uses".
+    MK: Edited.
 
 {:/comment}
+
 the accepted values.
 
 ### Trial Load
@@ -1476,42 +2182,46 @@ Discussion:
 
 For test report purposes, it is assumed that this is a constant load by default,
 as specified in Section 3.4 of [RFC1242]).
+
 {::comment}
 
-    [MB66]: Please fix all similar ones in the doc
+    MB66: Please fix all similar ones in the doc
 
-    [VP]: Ok.
-    
-    [MK]: ok. fixed only here for now.
-    [MK]: TODO fix everywhere.
-    [MK]: Edited.
+    VP: Ok.
+
+    MK: ok. fixed only here for now.
+    MK: TODO fix everywhere.
+    MK: Edited.
 
 {:/comment}
 
 Trial Load MAY be an average load performed with steady state traffic or
 with repeated bursts of frames
+
 {::comment}
 
-    [MB67]: Example of an example. :) Please reword.
+    MB67: Example of an example. :) Please reword.
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 e.g., as suggested in Section 21 of [RFC2544].
 In the case of a non-constant load, the test report
 MUST explicitly mention how exactly non-constant the traffic is.
+
 {::comment}
 
-    [MB68]: Can we also cover load percentiles?
+    MB68: Can we also cover load percentiles?
             The avg may not be representative to stress functions
             with anti-ddos guards, for example.
 
-    [VP]: Not here. The average woks with aggregate counters used in loss definition.
+    VP: Not here. The average woks with aggregate counters used in loss definition.
           Maybe discuss anti-ddos in Traffic Profile subsection.
 
-    [MK]: Definition of burst traffic profiles is out of scope.
+    MK: Definition of burst traffic profiles is out of scope.
 
 {:/comment}
 
@@ -1524,16 +2234,18 @@ applies to one (input or output) interface.
 
 Similarly to Trial Duration, some Measurers MAY limit the possible values
 of trial load. Contrary to trial duration,
+
 {::comment}
 
-    [MB69]: Inappropriate use of normative language
+    MB69: Inappropriate use of normative language
 
-    [VP]: Maybe disagree?
+    VP: Maybe disagree?
           Reformulate other parts to stress test report is subject to requirements.
-    
-    [MK]: Edited.
+
+    MK: Edited.
 
 {:/comment}
+
 documenting such behavior in the test report is OPTIONAL.
 This is because the load differences are negligible (and frequently
 undocumented) in practice.
@@ -1556,22 +2268,24 @@ links the per-interface and multi-interface load values.
 
 {::comment}
 
-    [MB70]: The causality effect may not be evident for the subset case, at least.
+    MB70: The causality effect may not be evident for the subset case, at least.
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 The per-interface value remains the primary one, consistent
 with prevailing practice in [RFC 1242], [RFC 2544], and [RFC 2285].
+
 {::comment}
 
-    [MB71]: Which ones?
+    MB71: Which ones?
 
-    [VP]: List the common examples.
+    VP: List the common examples.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
@@ -1620,14 +2334,16 @@ This is why the traffic profile is not part of the Trial Input.
 
 Therefore, implementations of the Manager and the Measurer
 must be aware of their common set of capabilities,
+
 {::comment}
 
-    [MB72]: Can we provide an example how to make that?
+    MB72: Can we provide an example how to make that?
 
-    [VP]: Nope. Say it is an integration effort.
+    VP: Nope. Say it is an integration effort.
 
-    [MK]: Edited.
+    MK: Edited.
 {:/comment}
+
 so that Traffic Profile
 instance uniquely defines the traffic during the Search making the Manager and the Measurer simple to integrate.
 None of those capabilities
@@ -1638,14 +2354,15 @@ out of scope of this document.
 
 {::comment}
 
-    [MB73]: This is too vague. Unless we reword top better reflect the requirement,
-            I don’t think we can use the normative language here
+    MB73: This is too vague. Unless we reword top better reflect the requirement,
+            I don't think we can use the normative language here
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 Examples of traffic properties include:
 - Data link frame size
   - Fixed sizes as listed in Section 3.5 of [RFC1242] and in Section
@@ -1659,22 +2376,23 @@ Examples of traffic properties include:
 
 {::comment}
 
-    [MB74]: Inappropriate use of normative language
+    MB74: Inappropriate use of normative language
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
-{:/comment
+{:/comment}
 
 {::comment}
 
-    [MB75]: Idem as above. MUST is not appropriate here.
+    MB75: Idem as above. MUST is not appropriate here.
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
-{:/comment
+    MK: Edited.
+
+{:/comment}
 
 Other traffic properties that need to be somehow specified in Traffic
 Profile, if they apply to the test scenario, include:
@@ -1698,9 +2416,10 @@ Discussion:
 For most Traffic Profiles, "expected to be forwarded" means
 "intended to get received by SUT from tester".
 Only if this is not the case, the test report SHOULD describe the Traffic Profile
+
 {::comment}
 
-    [MB76]: MUST is an absolute requirement (i.e., there is no exception):
+    MB76: MUST is an absolute requirement (i.e., there is no exception):
             1. MUST This word, or the terms "REQUIRED" or "SHALL",
             mean that the definition is an absolute requirement of
             the specification.
@@ -1710,10 +2429,12 @@ Only if this is not the case, the test report SHOULD describe the Traffic Profil
             implications must be understood and carefully weighed
             before choosing a different course.
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
+
 {:/comment}
+
 in a way that implies how Trial Forwarding Ratio should be calculated.
 
 Trial Forwarding Ratio MAY be expressed in other units
@@ -1722,13 +2443,14 @@ Trial Forwarding Ratio MAY be expressed in other units
 Note that, contrary to Load terms, frame counts used to compute
 Trial Forwarding Ratio are generally aggregates over all SUT output interfaces,
 as most test procedures verify all outgoing frames.
+
 {::comment}
 
-    [MB77]: Should we call for more granularity to be provided/characterized?
+    MB77: Should we call for more granularity to be provided/characterized?
 
-    [VP]: No, include sentence on why.
+    VP: No, include sentence on why.
 
-    [MK]: What is the granularity that is needed here? The test
+    MK: What is the granularity that is needed here? The test
           procedure is about testing SUT as a single system, not parts of
           it.
 
@@ -1742,27 +2464,29 @@ does not forward at all, the trial forwarding ratio would be 0.5 (50%).
 
 Definition:
 
-  The Trial Loss Ratio is equal to one minus the Trial Forwarding Ratio.
+    The Trial Loss Ratio is equal to one minus the Trial Forwarding Ratio.
 
 {::comment}
 
-    [MB78]: For all sections, please indent so that we separate the def/discussion vs. description
+    MB78: For all sections, please indent so that we separate the def/discussion vs. description
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Edited. Indented 2 spaces, will kramdown renderer take it?
+    MK: Edited. Indented 2 spaces, will kramdown renderer take it?
+
+    VP: Nope. I tried 4 spaces and it looks even worse.
+    Cursory search did not find unique solution, I would have to experiment to find one that works.
 
 {:/comment}
 
-
 Discussion:
 
-  100% minus the Trial Forwarding Ratio, when expressed as a percentage.
+    100% minus the Trial Forwarding Ratio, when expressed as a percentage.
 
-  This is almost identical to Frame Loss Rate of [RFC1242](Section 3.6).
-  The only minor differences are that Trial Loss Ratio does not need to
-  be expressed as a percentage, and Trial Loss Ratio is explicitly
-  based on aggregate frame counts.
+    This is almost identical to Frame Loss Rate of [RFC1242](Section 3.6).
+    The only minor differences are that Trial Loss Ratio does not need to
+    be expressed as a percentage, and Trial Loss Ratio is explicitly
+    based on aggregate frame counts.
 
 ### Trial Forwarding Rate
 
@@ -1782,28 +2506,32 @@ aggregated over all SUT output interfaces, while still being a multiple of Load.
 
 Consequently, for symmetric bidirectional Traffic Profiles (section 14
 of [RFC2544],
+
 {::comment}
 
-    [MB79]: Do we have an authoritative reference where this is defined?
+    MB79: Do we have an authoritative reference where this is defined?
             If not, please add an definition entry early in the terminology section.
 
-    [VP]: Add reference.
+    VP: Add reference.
 
-    [MK]: Edited. Added reference to RFC2544.
+    MK: Edited. Added reference to RFC2544.
+
 {:/comment}
+
 the Trial Forwarding Rate value is equal to the arithmetic average
 of [RFC2285] Forwarding Rate values across all SUT output interfaces.
 
 {::comment}
 
-    [MB80]: Why both?
+    MB80: Why both?
 
-    [VP]: Add explanations to Traffic Profile subsection.
+    VP: Add explanations to Traffic Profile subsection.
 
-    [MK]: Edited. But shouldn't it say "sum of" instead of "arithmetic
+    MK: Edited. But shouldn't it say "sum of" instead of "arithmetic
           average"? Unless specified, Trial Forwarding Rate is an aggregate
           rate, not per interface, as it is representating capability of
           DUT/SUT not a subset of it associated with particular interface :)
+
 {:/comment}
 
 Given that Trial Forwarding Rate is a quantity based on Load,
@@ -1816,16 +2544,18 @@ Definition:
 
 Trial Effective Duration is a time quantity related to the non-recurring trial,
 by default equal to the Trial Duration.
+
 {::comment}
 
-    [MB81]: For the periodic/recurrences, does it cover only one recurrence
+    MB81: For the periodic/recurrences, does it cover only one recurrence
             or from start to last independent of in-between execution periods?
 
-    [VP]: Make sure Trial implies no recurrence.
+    VP: Make sure Trial implies no recurrence.
 
-    [MK]: Edited. BUT - Why do we need to state that. There is nothing in the text of
+    MK: Edited. BUT - Why do we need to state that. There is nothing in the text of
           Section 23 of RFC2544 and in above sections implying recurrences.
           Why then do we need to explicity say "no recurrence"?
+
 {:/comment}
 
 Discussion:
@@ -1835,14 +2565,17 @@ If the Measurer does not return any Trial Effective Duration value,
 the Controller MUST use the Trial Duration value instead.
 
 Trial Effective Duration may be any positive time quantity
+
 {::comment}
 
-    [MB82]: It is obvious, but should we say "positive"?
+    MB82: It is obvious, but should we say "positive"?
 
-    [VP]: Yes.
+    VP: Yes.
 
-    [MK]: Edited.
+    MK: Edited.
+
 {:/comment}
+
 chosen by the Measurer
 to be used for time-based decisions in the Controller.
 
@@ -1851,14 +2584,17 @@ Trial Effective Duration values, if they are not always
 equal to the Trial Duration.
 
 This feature can be beneficial for users of testing equipment
+
 {::comment}
 
-    [MB83]: To be defined early in the terminology section
+    MB83: To be defined early in the terminology section
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Edited.
+    MK: Edited.
+
 {:/comment}
+
 who wish to manage the overall search duration,
 rather than solely the traffic portion of it.
 An approach is to measure the duration of the whole trial (including all wait times)
@@ -1878,21 +2614,24 @@ Trial Forwarding Rate.
 
 Discussion:
 
-When referring to more than one trial, plural term “Trial Outputs” is
+When referring to more than one trial, plural term "Trial Outputs" is
 used to collectively describe multiple Trial Output instances.
 
 Implementations may provide additional optional attributes.
 The Controller implementations SHOULD
+
 {::comment}
 
-    [MB84]: As we have an exception
+    MB84: As we have an exception
 
-    [VP]: Reformulate.
+    VP: Reformulate.
           Conditional MUST has an authoritative prescribed condition,
           SHOULD gives implementers freedom to choose their own conditions.
 
-    [MK]: Edited.
+    MK: Edited.
+
 {:/comment}
+
 ignore values of any optional attribute
 they are not familiar with,
 except when passing Trial Output instances to the Manager.
@@ -1916,23 +2655,25 @@ consisting of the Trial Input and the Trial Output.
 
 Discussion:
 
-When referring to more than one trial, plural term “Trial Results” is
+When referring to more than one trial, plural term "Trial Results" is
 used to collectively describe multiple Trial Result instances.
 
 While implementations SHOULD NOT include additional attributes
 with independent values,
+
 {::comment}
 
-    [MB85]: Can we include a short sentence to explain the risk if not followed?
+    MB85: Can we include a short sentence to explain the risk if not followed?
 
-    [VP]: Now I think even SHOULD NOT is too strong. Either way, reformulate.
+    VP: Now I think even SHOULD NOT is too strong. Either way, reformulate.
 
-    [MK]: For Vratko. Isn't this already covered in Trial Output? What
+    MK: For Vratko. Isn't this already covered in Trial Output? What
           other optional attributes are applicable here, give examples?
           Otherwise it's too abstract, open-ended, ambiguous and so on ... 
           Many other blue-sky and hand-wavy adjectives come to my mind :)
 
 {:/comment}
+
 they MAY include derived quantities.
 
 ## Goal Terms
@@ -1948,7 +2689,7 @@ are necessarily vague, as their fundamental meaning is to act as
 coefficients in formulas for Controller Output, which are not defined yet.
 
 The discussions in this section relate the attributes to concepts mentioned in Section
-[Identified Problems](#identified-problems), but even these discussion
+[Overview of RFC 2544 Problems](#overview-of-rfc-2544-problems), but even these discussion
 paragraphs are short, informal, and mostly referencing later sections,
 where the impact on search results is discussed after introducing
 the complete set of auxiliary terms.
@@ -1967,12 +2708,14 @@ classified as a lower bound.
 
 {::comment}
 
-    [MB86]: I don’t parse this.
+    MB86: I don't parse this.
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
-{:/comment
+    MK: Edited.
+
+{:/comment}
+
 The Controller may choose shorter durations,
 results of those may be enough for classification as an Upper Bound.
 
@@ -1987,15 +2730,17 @@ Definition:
 
 A threshold value for a particular sum of Trial Effective Duration values.
 The value MUST be positive.
+
 {::comment}
 
-    [MB87]: I like this, but we should be consistent
+    MB87: I like this, but we should be consistent
     and mention it when appropriate for all other metrics
 
-    [VP]: Ok. Check everywhere.
+    VP: Ok. Check everywhere.
 
-    [MK]: Checked all subsections under Goal Terms and Trial Terms.
+    MK: Checked all subsections under Goal Terms and Trial Terms.
           Applied as appropriate.
+
 {:/comment}
 
 Discussion:
@@ -2124,14 +2869,14 @@ Loss Ratio and Goal Exceed Ratio.
 
 {::comment}
 
-    [MB88]: Listing the attributes this way allows to easily classify mandatory/optional.
+    MB88: Listing the attributes this way allows to easily classify mandatory/optional.
             However, this not followed in previous. Please pick your favorite approach
             and use it in a consistent manner in the document.
 
-    [VP]: Use this longer way everywhere (also saying if no other attributes could be added).
+    VP: Use this longer way everywhere (also saying if no other attributes could be added).
           Tangent: Be more lenient on attributes internal to Controller?
 
-    [MK]: Edited this one. Applied to subsections in Trial Terms and
+    MK: Edited this one. Applied to subsections in Trial Terms and
           Goal Terms as appropriate. TODO check if more places need this.
 
 {:/comment}
@@ -2145,19 +2890,22 @@ Those additional attributes may be required by an implementation
 even if they are not required by MLRsearch Specification.
 However, it is RECOMMENDED for those implementations
 to support missing attributes by providing typical default values.
+
 {::comment}
 
-    [MB89]: I guess I understand what is meant here, but I think this should be reworded
+    MB89: I guess I understand what is meant here, but I think this should be reworded
             to avoid what can be seen as inconsistency: do not support vs. support a default.
 
-    [VP]: Yes, probably worth a separate subsection,
+    VP: Yes, probably worth a separate subsection,
           distinguishing automated implementations from manual processes.
 
-    [MK]: No separate subsection. We should state that that the listed
+    MK: No separate subsection. We should state that that the listed
           optional attributes should have documented default values. But i do
           not like the open-ended "Implementations MAY add their own
           attributes." Either examples are added or this sentence is
           removed.
+
+    VP: TODO: Check if new Test_* subsections are good for this discussion.
 
 {:/comment}
 
@@ -2488,22 +3236,24 @@ be satisfied to produce a Regular Goal Result.
 
 {::comment}
 
-    [MB90]: To do what? I’m afraid we need to explicit the meaning here.
+    MB90: To do what? I'm afraid we need to explicit the meaning here.
 
-    [VP]: Yes, reformulate.
+    VP: Yes, reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
+
 {:/comment}
 
 Discussion:
+
 {::comment}
 
-    [MB91]: Isn’t this redundant with listing the bounds as required in the previous definition?
+    MB91: Isn't this redundant with listing the bounds as required in the previous definition?
 
-    [VP]: Do we need separation between may-not-exist and must-exist quantities?
+    VP: Do we need separation between may-not-exist and must-exist quantities?
           Either way, reformulate.
 
-    [MK]: Deleted. Agree with Med - Sentence was redundant as already
+    MK: Deleted. Agree with Med - Sentence was redundant as already
           covered by text in definition "Relevant Upper Bound and Relevant
           Lower Bound are REQUIRED attributes."
 
@@ -2576,12 +3326,12 @@ entry for every Search Goal instance supplied in the Controller Input.
 
 {::comment}
 
-    [MB92]: To what?
+    MB92: To what?
 
-    [VP]: Subsections on quantities and interfaces should mention equivalent representations.
+    VP: Subsections on quantities and interfaces should mention equivalent representations.
           Then reformulate this.
 
-    [MK]: Edited. First two paragraphs in Discussion changed to make it
+    MK: Edited. First two paragraphs in Discussion changed to make it
           clearer.
 
 {:/comment}
@@ -2604,7 +3354,7 @@ Discussion:
 MLRsearch Implementation MAY return additional data in the Controller Output,
 e.g., number of trials performed and the total Search Duration.
 
-## MLRsearch Architecture
+## Architecture Terms
 
 MLRsearch architecture consists of three main system components: 
 the Manager, the Controller, and the Measurer, defined in the following
@@ -2612,12 +3362,12 @@ subsections.
 
 {::comment}
 
-    [MB93]: I guess these should be introduced before the attributes as these components
+    MB93: I guess these should be introduced before the attributes as these components
             are used in the description. Please reconsider the flow of the document.
 
-    [VP]: Reformulate this to clarify overview introduced, this finalizes the definition.
+    VP: Reformulate this to clarify overview introduced, this finalizes the definition.
 
-    [MK]: Edited. And I disagree. Three components of the architecture
+    MK: Edited. And I disagree. Three components of the architecture
           are listed, with definitions following. I do not envisage any
           problem from the reader perspective.
 
@@ -2629,18 +3379,20 @@ such as the SUT and the tester (as a sub-component of the Measurer).
 Communication protocols and interfaces between components are left
 unspecified. For example, when MLRsearch Specification mentions
 "Controller calls Measurer",
+
 {::comment}
 
-    [MB94]: Aha, this answers a comment I made earlier :)
-            Let’s save cycles for other readers and move all this
+    MB94: Aha, this answers a comment I made earlier :)
+            Let's save cycles for other readers and move all this
             section early in the document.
 
-    [VP]: Hmm, maybe a subsection of overview?
+    VP: Hmm, maybe a subsection of overview?
           Definitely something needs to be moved around.
 
-    [MK]: Edited. And addressed the original concern. See my note at MB93.
+    MK: Edited. And addressed the original concern. See my note at MB93.
 
 {:/comment}
+
 it is possible that the Controller notifies the Manager
 to call the Measurer indirectly instead. In doing so, the Measurer Implementations
 can be fully independent from the Controller implementations,
@@ -2701,11 +3453,11 @@ terminates.
 
 {::comment}
 
-    [MB95]: Till a stop?
+    MB95: Till a stop?
 
-    [VP]: Yes.
+    VP: Yes.
 
-    [MK]: Edited. It should be clear now.
+    MK: Edited. It should be clear now.
 
 {:/comment}
 
@@ -2763,7 +3515,7 @@ Non-jumbo frame sizes should also be tested on the jumbo-enabled setup.
 The Manager does not need to be able to tweak any Search Goal attributes,
 but it MUST report all applied attribute values even if not tweaked.
 
-A “user” — human or automated — invokes the Manager once to launch a
+A "user" - human or automated - invokes the Manager once to launch a
 single Search and receive its report. Every new invocation is treated
 as a fresh, independent Search; how the system behaves across multiple
 calls (for example, combining or comparing their results) is explicitly
@@ -2771,23 +3523,23 @@ out of scope for this document.
 
 {::comment}
 
-    [MB96]: This answers a comment I have earlier.
+    MB96: This answers a comment I have earlier.
             Please move all these details to be provided early.
 
-    [VP]: Yes (covered by earlier comments).
+    VP: Yes (covered by earlier comments).
 
-    [MK]: Yes - covered by earlier edits.
+    MK: Yes - covered by earlier edits.
 
 {:/comment}
 
 {::comment}
 
-    [MB97]: Should there be a mode where conditional calls are invoked?
+    MB97: Should there be a mode where conditional calls are invoked?
             Or more generally to instruct some dependency?
 
-    [VP]: Explain in earlier subsections, repeats are out of scope.
+    VP: Explain in earlier subsections, repeats are out of scope.
 
-    [MK]: Edited. It should be clear now that repeats are out of scope.
+    MK: Edited. It should be clear now that repeats are out of scope.
 
 {:/comment}
 
@@ -2830,16 +3582,17 @@ unconditionally compliant with Section 24 of [RFC2544].
 - Goal Duration Sum = 60 seconds
 - Goal Loss Ratio = 0%
 - Goal Exceed Ratio = 0%
+
 {::comment}
 
-    [MB98]: Not related but triggered by this,
+    MB98: Not related but triggered by this,
             can we have at the end of the document a table with all
             the default values/recommended for the various
             attributes defined in the document?
 
-    [VP]: Maybe? Revisit later to see if we have enough data to warrant table format.
+    VP: Maybe? Revisit later to see if we have enough data to warrant table format.
 
-    [MK]: TODO. This is not a bad idea. A section that in summary table
+    MK: TODO. This is not a bad idea. A section that in summary table
           lists common usage cases with recommended settings e.g. RFC2544,
           TST009, FD.io CSIT, examples of SUTs with certain behaviour e.g.
           suspected periodic SUT disruption. It will make it more concrete to
@@ -2892,15 +3645,16 @@ Goal Duration Sum is twice as long as Goal Final Trial Duration,
 so third full-length trial is never needed.
 
 # Methodology Rationale and Design Considerations
+
 {::comment}
 
-    [MB99]: Please consider that a more explicit title that reflects the content.
+    MB99: Please consider that a more explicit title that reflects the content.
 
-    [VP]: Yes, but not sure what would be a better title yet.
+    VP: Yes, but not sure what would be a better title yet.
 
-    [MK]: Edited. Also updated opening paragraph to motivate the reader.
+    MK: Edited. Also updated opening paragraph to motivate the reader.
+
 {:/comment}
-
 
 This section explains the Why behind MLRsearch. Building on the
 normative specification in Section
@@ -2960,15 +3714,17 @@ and its variance.
 ## Loss Ratios and Loss Inversion
 
 The biggest
+
 {::comment}
 
-    [MB100]: We don’t need to say it if it is obvious ;)
+    MB100: We don't need to say it if it is obvious ;)
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 difference between MLRsearch and [RFC2544] binary search
 is in the goals of the search.
 [RFC2544] has a single goal, based on classifying a single full-length trial
@@ -2988,15 +3744,17 @@ when the search is started with only one Search Goal instance.
 ### Multiple Goals and Loss Inversion
 
 MLRsearch Specification
+
 {::comment}
 
-    [MB101]: Specification?
+    MB101: Specification?
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
+
 supports multiple Search Goals, making the search procedure
 more complicated compared to binary search with single goal,
 but most of the complications do not affect the final results much.
@@ -3065,16 +3823,18 @@ to get invalidated later.
 The idea of performing multiple Trials at the same Trial Load comes from
 a model where some Trial Results (those with high Trial Loss Ratio) are affected
 by infrequent effects, causing unsatisfactory repeatability
+
 {::comment}
 
-    [MB102]: Or other similar terms, but not poor thing.
+    MB102: Or other similar terms, but not poor thing.
     Please consider the same change in other parts of the document.
 
-    [VP]: Ok, search&replace.
+    VP: Ok, search&replace.
 
-    [MK]: Edited. Searched and replaced all with unsatisfactory, unacceptable.
+    MK: Edited. Searched and replaced all with unsatisfactory, unacceptable.
 
 {:/comment}
+
 of [RFC2544] Throughput results. Refer to Section [DUT in SUT](#dut-in-sut)
 for a discussion about noiseful and noiseless ends
 of the SUT performance spectrum.
@@ -3118,11 +3878,11 @@ heuristics and controls are left to the discretion of the implementer.
 
 {::comment}
 
-    [MB103]: We may say that how this is exposed to a user/manager is implmentation specific.
+    MB103: We may say that how this is exposed to a user/manager is implmentation specific.
 
-    [VP]: Earlier subsection should explain when discussing implementations.
+    VP: Earlier subsection should explain when discussing implementations.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
@@ -3161,11 +3921,11 @@ performance limit.
 
 {::comment}
 
-    [MB104]: Not sure to parse this.
+    MB104: Not sure to parse this.
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
 
 {:/comment}
 
@@ -3177,21 +3937,23 @@ e.g., a specific frames-per-second limit on the NIC (a common occurrence).
 
 Those limitations should be known and provided as Max Load, Section
 [Max Load](#max-load).
+
 {::comment}
 
-    [MB105]: We may say that some implementation may expose their capabilities
+    MB105: We may say that some implementation may expose their capabilities
              using IPFIX/YANG, but such exposure is out of scope.
 
-    [VP]: Add capability exposition to earlier implementation subsections.
+    VP: Add capability exposition to earlier implementation subsections.
           Reformulate this sentence to be specific to hard limits.
 
-    [MK]: Edited. Capability exposition of SUT and DUT is out of scope
+    MK: Edited. Capability exposition of SUT and DUT is out of scope
           of this document. Do we need to state it in the opening somewhere?
           COTS NICs do not support network configuration protocols,
           they are configured using vendor specific registers and associated
           kernel or userspace drivers.
 
 {:/comment}
+
 But if Max Load is set larger than what the interface can receive or transmit,
 there will be a "hard limit" behavior observed in Trial Results.
 
@@ -3200,18 +3962,19 @@ Max Load is larger, and the Goal Loss Ratio is 0.5%.
 If DUT has no additional losses, 0.5% Trial Loss Ratio will be achieved
 at Relevant Lower Bound of 100.5025 Mfps.
 
-Reporting a throughput that exceeds the SUT’s verified hard limit is
+Reporting a throughput that exceeds the SUT's verified hard limit is
 counter-intuitive. Accordingly, the RFC 2544 throughput metric should
-be generalized — rather than relying solely on the Relevant Lower
-Bound — to reflect realistic, limit-aware performance.
+be generalized - rather than relying solely on the Relevant Lower
+Bound - to reflect realistic, limit-aware performance.
 
 {::comment}
 
-    [MK]: Edited. Above paragraph was not reading well. Following from
+    MK: Edited. Above paragraph was not reading well. Following from
           MB105 I have updated it further to motivate generalization of
           throughput.
 
 {:/comment}
+
 MLRsearch defines one such generalization,
 the [Conditional Throughput](#conditional-throughput).
 It is the Trial Forwarding Rate from one of the Full-Length Trials
@@ -3242,7 +4005,7 @@ than the Goal Loss Ratio of the higher-loss Search Goal.
 
 Although Conditional Throughput can fluctuate from one run to the next,
 it still offers a more discriminating basis for comparison than the
-Relevant Lower Bound — particularly when deterministic load selection
+Relevant Lower Bound - particularly when deterministic load selection
 yields the same Lower Bound value across multiple runs.
 
 # MLRsearch Logic and Example
@@ -3264,14 +4027,15 @@ and uses more intuitive names for the intermediate values.
 
 Note: For explanation clarity variables are taged as (I)nput,
 (T)emporary, (O)utput.
+
 {::comment}
 
-    [MB106]: Move this to the terminology/convention section
+    MB106: Move this to the terminology/convention section
 
-    [VP]: I do not think these flags fit into terminology.
+    VP: I do not think these flags fit into terminology.
           For this long list, maybe divide into sublists?
 
-    [MK]: I agree - this is does not belong to draft terminology
+    MK: I agree - this is does not belong to draft terminology
           section. And I agree, for readability we could split the long list
           into groups with meaningful headers. See my attempt to do so below.
 
@@ -3461,13 +4225,14 @@ for example if SUT needs to "warm up" to best performance within each trial.
 Not commonly seen in practice.
 
 ## Example Search
+
 {::comment}
 
-    [MB107]: We may move this section to an appendix
+    MB107: We may move this section to an appendix
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: TODO. Move to Appendix A, before the pseudocode Appendices.
+    MK: TODO. Move to Appendix A, before the pseudocode Appendices.
           Keeping it here for now to finish editing with clean change
           tracking in gerrit.
 
@@ -3494,7 +4259,7 @@ This designation affects only the Trial Duration chosen for new trials;
 it does not alter the rest of the decision logic.
 
 An MLRsearch implementation is free to evaluate several goals
-simultaneously — the “focus” mechanism is optional and appears here only
+simultaneously - the "focus" mechanism is optional and appears here only
 to show that a load can still be classified against goals that are not
 currently in focus.
 
@@ -3650,13 +4415,14 @@ Pessimistic high-loss sum | 60s         | 120s         | 61s          | 60s
 Optimistic exceed ratio   | 0%          | 0%           | 0%           | 0%
 Pessimistic exceed ratio  | 100%        | 100%         | 50.833%      | 100%
 Classification Result     | Undecided   | Undecided    | Undecided    | Undecided
+
 {::comment}
 
-    [MB108]: Please add a table legend. Idem for all tables
+    MB108: Please add a table legend. Idem for all tables
 
-    [VP]: Ok. Figure out how.
+    VP: Ok. Figure out how.
 
-    [MK]: TODO. Kramdown magic.
+    MK: TODO. Kramdown magic.
 
 {:/comment}
 
@@ -3943,17 +4709,17 @@ Further, benchmarking is performed on an "opaque" basis, relying
 solely on measurements observable external to the DUT/SUT.
 
 The DUT/SUT SHOULD NOT include features that serve only to boost
-benchmark scores — such as a dedicated “fast-track” test mode that is
+benchmark scores - such as a dedicated "fast-track" test mode that is
 never used in normal operation.
 
 {::comment}
 
-    [MB109]: Some more elaboration is needed
+    MB109: Some more elaboration is needed
 
-    [VP]: This needs BMWG discussion as this chapter is a “boilerplate”
+    VP: This needs BMWG discussion as this chapter is a "boilerplate"
           copied from earlier BMWG documents.
 
-    [MK]: Edited
+    MK: Edited
 {:/comment}
 
 Any implications for network security arising from the DUT/SUT SHOULD be
@@ -3961,18 +4727,18 @@ identical in the lab and in production networks.
 
 {::comment}
 
-    [MB110]: Why? We can accept some relax rule in controlled environnement,
+    MB110: Why? We can accept some relax rule in controlled environnement,
              but this not acceptable in deployement. I would adjust accordingly.
 
-    [VP]: Explain and discuss in BMWG.
+    VP: Explain and discuss in BMWG.
 
-    [MK]: Keeping as is. It is a BMWG standard text that applies here.
-          You can see it verbatim in RFC 6815 (§7), RFC 6414 (§4.1), RFC
-          9004 (§8), and several BMWG Internet-Drafts.  Its purpose is to
+    MK: Keeping as is. It is a BMWG standard text that applies here.
+          You can see it verbatim in RFC 6815 (section 7), RFC 6414 (section 4.1), RFC
+          9004 (section 8), and several BMWG Internet-Drafts.  Its purpose is to
           remind implementers and testers that the device under test must not
           be re-configured into an unrealistic or less-secure state merely to
-          obtain benchmark data — a principle that complements the adjacent
-          sentence about avoiding “special benchmarking modes.” Including
+          obtain benchmark data - a principle that complements the adjacent
+          sentence about avoiding "special benchmarking modes." Including
           the sentence therefore maintains consistency with BMWG precedent
           and reinforces a key security expectation.
 
@@ -3980,7 +4746,7 @@ identical in the lab and in production networks.
 
 {::comment}
 
-    [MB111]: I would some text to basically
+    MB111: I would some text to basically
              say that the benchmarking results should be adequately
              protected and guards top prevent leaks to unauthorized
              entities.
@@ -3993,9 +4759,9 @@ identical in the lab and in production networks.
              and does not manipulate real traffic. As such, Privacy is
              not a concern.
 
-    [VP]: To BMWG.
+    VP: To BMWG.
 
-    [MK]: Keeping as is. See my comments above at MB110.
+    MK: Keeping as is. See my comments above at MB110.
 
 {:/comment}
 
@@ -4015,15 +4781,18 @@ Many thanks to Alec Hothan of the OPNFV NFVbench project for a thorough
 review and numerous useful comments and suggestions in the earlier
 versions of this document.
 
+--- back
+
 # Appendix A: Load Classification
 
 {::comment}
 
-    [MB112]: Move after references
+    MB112: Move after references
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: TODO. Move after references.
+    MK: TODO. Move after references.
+
 {:/comment}
 
 This appendix specifies how to perform the Load Classification.
@@ -4040,13 +4809,15 @@ which computes two values, stored in variables named
 
 Although presented as pseudocode, the listing is syntactically valid
 Python and can be executed without modification.
+
 {::comment}
 
-    [MB113]: Where is that python code?
+    MB113: Where is that python code?
 
-    [VP]: Reformulate.
+    VP: Reformulate.
 
-    [MK]: Edited.
+    MK: Edited.
+
 {:/comment}
 
 If values of both variables are computed to be true, the Load in question
@@ -4108,13 +4879,15 @@ pessimistic_is_lower = pessimistic_high_loss_s <= quantile_duration_s
 
 optimistic_is_lower = effect_high_loss_s <= quantile_duration_s
 ~~~
+
 {::comment}
 
-    [MB114]: May display this a table for better readability
+    MB114: May display this a table for better readability
 
-    [VP]: Ok.
+    VP: Ok.
 
-    [MK]: TODO. Disagree. Can we have it in a proper code block instead?
+    MK: TODO. Disagree. Can we have it in a proper code block instead?
+
 {:/comment}
 
 # Appendix B: Conditional Throughput
@@ -4184,13 +4957,14 @@ else:
         quantile_loss_ratio = 1.0
 conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 ~~~
+
 {::comment}
 
-    [MB115]: Please use <CODE BEGINS> and <CODE ENDS> markers.
+    MB115: Please use <CODE BEGINS> and <CODE ENDS> markers.
 
-    [VP]: Also table? Ok.
+    VP: Also table? Ok.
 
-    [MK]: TODO. Not table, it's code. Can we have it in a proper code
+    MK: TODO. Not table, it's code. Can we have it in a proper code
           block instead?
 
 {:/comment}
@@ -4205,18 +4979,18 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 
 {::comment}
 
-    [MB112]: Move after references
-
-    [VP]: Ok.
-
-    [MK]: TODO
+    I just had a discussion with Maciek, and we agreed that "terminology section"
+    will be a list similar to the current Index chapter, but also containing
+    short descriptions (useful for readers that just need a quick reminder,
+    instead of reading whole definition and full discussion again).
+    The specific place for such a list can be decided later.
 
 {:/comment}
 
 - Bound: Lower Bound or Upper Bound.
 - Bounds: Lower Bound and Upper Bound.
 - Conditional Throughput: defined in [Conditional Throughput](#conditional-throughput), discussed in [Generalized Throughput](#generalized-throughput).
-- Controller: introduced in [Overview ](#overview), defined in [Controller ](#controller).
+- Controller: introduced in [Architecture Overview](#architecture-overview), defined in [Controller ](#controller).
 - Controller Input: defined in [Controller Input](#controller-input).
 - Controller Output: defined in [Controller Output](#controller-output).
 - Full-Length Trial: defined in [Full-Length Trial](#full-length-trial).
@@ -4232,16 +5006,16 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 - Intended Load: defined in [RFC2285] (Section 3.5.1).
 - Irregular Goal Result: defined in [Irregular Goal Result](#irregular-goal-result).
 - Load: introduced in [Trial Load](#trial-load).
-- Load Classification: Introduced in [Overview ](#overview), defined in [Load Classification](#load-classification), discussed in [Load Classification Logic](#load-classification-logic).
+- Load Classification: Introduced in [Architecture Overview](#architecture-overview), defined in [Load Classification](#load-classification), discussed in [Load Classification Logic](#load-classification-logic).
 - Loss Inversion: Situation introduced in [Inconsistent Trial Results](#inconsistent-trial-results), defined in [Loss Ratios and Loss Inversion](#loss-ratios-and-loss-inversion).
 - Low-Loss Trial: defined in [Low-Loss Trial](#low-loss-trial).
 - Lower Bound: defined in [Lower Bound](#lower-bound).
-- Manager: introduced in [Overview ](#overview), defined in [Manager ](#manager).
+- Manager: introduced in [Architecture Overview](#architecture-overview), defined in [Manager ](#manager).
 - Max Load: defined in [Max Load](#max-load).
-- Measurer: introduced in [Overview ](#overview), defined in [Measurer ](#measurer).
+- Measurer: introduced in [Architecture Overview](#architecture-overview), defined in [Measurer ](#measurer).
 - Min Load: defined in [Min Load](#min-load).
-- MLRsearch Specification: introduced in [Purpose and Scope](#purpose-and-scope)
-  and in [Overview ](#overview), defined in [Test Procedure Compliant with MLRsearch](#test-procedure-compliant-with-mlrsearch).
+- MLRsearch Specification: introduced in [Preview ](#preview)
+  and in [Architecture Overview](#architecture-overview), defined in [Test Procedure Compliant with MLRsearch](#test-procedure-compliant-with-mlrsearch).
 - MLRsearch Implementation: defined in [Test Procedure Compliant with MLRsearch](#test-procedure-compliant-with-mlrsearch).
 - Offered Load: defined in [RFC2285] (Section 3.5.2).
 - Regular Goal Result: defined in [Regular Goal Result](#regular-goal-result).
@@ -4249,8 +5023,8 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 - Relevant Bounds: Relevant Lower Bound and Relevant Upper Bound.
 - Relevant Lower Bound: defined in [Relevant Lower Bound](#relevant-lower-bound), discussed in [Conservativeness and Relevant Bounds](#conservativeness-and-relevant-bounds).
 - Relevant Upper Bound: defined in [Relevant Upper Bound](#relevant-upper-bound).
-- Search: defined in [Overview ](#overview).
-- Search Duration: introduced in [Purpose and Scope](#purpose-and-scope) and in [Long Search Duration](#long-search-duration), discussed in [Stopping Conditions and Precision](#stopping-conditions-and-precision).
+- Search: defined in [Architecture Overview](#architecture-overview).
+- Search Duration: introduced in [Preview ](#preview) and in [Long Search Duration](#long-search-duration), discussed in [Stopping Conditions and Precision](#stopping-conditions-and-precision).
 - Search Goal: defined in [Search Goal](#search-goal).
 - Search Result: defined in [Search Result](#search-result).
 - Short Trial: defined in [Short Trial](#short-trial).
@@ -4274,18 +5048,18 @@ conditional_throughput = intended_load * (1.0 - quantile_loss_ratio)
 
     [Final checklist.]
 
-    <mark>[VP] Final Checks. Only mark as done when there are no active todos above.</mark>
+    <mark>VP Final Checks. Only mark as done when there are no active todos above.</mark>
 
-    <mark>[VP] Rename chapter/sub-/section to better match their content.</mark>
+    <mark>VP Rename chapter/sub-/section to better match their content.</mark>
 
-    <mark>MKP3 [VP] TODO: Recheck the definition dependencies go bottom-up.</mark>
+    <mark>MKP3 VP TODO: Recheck the definition dependencies go bottom-up.</mark>
 
-    <mark>[VP] TODO: Unify external reference style (brackets, spaces, section numbers and names).</mark>
+    <mark>VP TODO: Unify external reference style (brackets, spaces, section numbers and names).</mark>
 
-    <mark>MKP2 [VP] TODO: Capitalization of New Terms: useful when editing and reviewing,
+    <mark>MKP2 VP TODO: Capitalization of New Terms: useful when editing and reviewing,
     but I still vote to remove capitalization before final submit,
     because all other RFCs I see only capitalize due to being section title.</mark>
 
-    <mark>[VP] TODO: If time permits, keep improving formal style (e.g., using AI).</mark>
+    <mark>VP TODO: If time permits, keep improving formal style (e.g., using AI).</mark>
 
 {:/comment}
