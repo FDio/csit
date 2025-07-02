@@ -25,7 +25,7 @@ $ sudo gem install kramdown-rfc
 $ kdrfc --version
 
 Main:
-$ kdrfc draft-ietf-bmwg-mlrsearch-10.md
+$ kdrfc draft-ietf-bmwg-mlrsearch-11.md
 
 If that complains, do it manually at https://author-tools.ietf.org/
 
@@ -33,39 +33,52 @@ Finally:
 https://author-tools.ietf.org/idnits
 
 
-Now that I have forced the Canvas editor into source-editing style (as opposed to rendered style),
-I have real tasks for you, they involve multiple document files.
-I am working on an upcoming IETF document, currently still in the draft state.
-I have attached two files, one is a markdown source of the document as uploaded recently (draft version 10).
-The other attached file is a .doc feedback from AD editor (in e-mails signing as "Med").
-The attached markdown file already contains few comments, enclosed between tags `{::comment}` and `{:/comment}`.
-The .doc file contains in-place edits proposed by the AD editor, and also Word-specific review-comments from him and my reactions.
-I have copied the work-in-progress state of the markdown source into the Canvas editor.
-The issue is the whole markdown file is too long for your output tokens limit.
-That means everytime I type something into this main chat (Enter a prompt for Gemini) dialog
-and you decide to edit something in the Canvas, you spent 20 minutes writing mostly unedited text into Canvas,
-during which the Editor is in rendering mode (making your outputs not usable as markdown source yet)
-but you run out of tokens, GUI reports "Network error" and I cannot easily make the editor switch back to source-editing mode.
-At which point I have to create a new conversation and start over.
-So, I would appreciate you not touching the Canvas content, at all.
-Even if I tell you otherwise, you should ask for confirmation first.
-The other dialog (Ask Gemini), when only a small part of text is selected in Canvas, works only as a pointer.
-If you decide to edit the selected area you still attempt to write the whole file and fail.
-The current editing phase focuses on copying review-comments from the .doc file into markdown as kramdown-friendly comment blocks.
-I already see at least two mistakes, missing or misplaced comment from Med or reply from me (VP).
-What is the first mistake you see in the Canvas state compared to .doc review comments?
-(You can write the correction to the main chat, but be careful not to touch Canvas content.)
+LLM prompts:
+
+I attached the "work in progress" version of a document I am working on.
+Currently I am focusing on defining the scope, and there are many open questions.
+I feel I have some circular dependencies between the formal Scope (section of MLRsearch Specification chapter)
+and informal introduction (sections BMWG Documents, Test Requirements and MLRsearch Position of Introduction chapter).
+I guess my ideal structure would us the Introduction to divide BMWG "norms" into few types:
+General RFC2544 guidelines (line testing configurations present in production by default,
+not testing specialized configurations optimized for performance on a benchmark),
+RFC2544 trial, other documents focusing on requirements (DUT config, traffic profile, wait times,
+report format) specific to some networking protocol, RFC 2544 benchmarks (e.g. Throughput or Frame Loss Rate),
+and RFC 2544 report format for benchmark results.
+The formal Scope would then state general guidelines stay the same, Trial gets more freedom (only when used for MLRsearch),
+other documents still apply, MLRsearch can work as addition, strengthening, or replacement for Throughput,
+but report format requirements are quite different.
+And I guess the Introduction should properly introduce the trade-off between configurability and comparability,
+and as MLRsearch is quite configurable, it is not recommended for comparability purposes
+unless specific Search Goals are agreed upon.
+I am not even sure where to start editing to improve the current content.
+Let me start with an easy question to you. Should we say MLRsearch introduces a benchmark,
+or should we say it introduces a class of benchmarks (differing by search goals and trial deviations)?
 
 
+I am thinking about some remains of historic language, mentioning "implementation",
+"user", focusing on "same lab repeatability" and discussing optional attributes, their default values,
+and recommending some search goals over other (avoid long trials, set goal width at loss ratio).
+Should the formal scope mention the document contains some recommendations that may be useful
+for this kind of repeatability concerns (even though they are not useful for inter-lab comparison purposes)?
+I hope that Introduction and Specification can be written mostly without reference to
+"implementation" and "user" (mention those only in some discussion paragraphs),
+keeping Controller's search strategy out of scope, but recommending to keep any strategy
+constant and deterministic for repeatability purposes?
 
-(do not forget to enable canvas)
 
-I have an example markdown source below, including a Python code sub-block. Put that markdown source into Canvas, as a new code immersive with the markdown language type.
+Hmm, it is true that some pairs of Search Goal instances may lead to "interference" during search.
+But I also feel it could be possible to state some reasonable assumptions on SUT behavior
+and Controller strategy to prove that RFC2544 and TST009 goals do not interfere with each other this way
+(TST009 is weaker, no combination of trial results can classify a load as an upper bound for TST009
+and a lower bound for RFC2544 at the same time, so no reason to add a trial focusing on one goal
+that could invalidate a lower bound for the other goal).
+Proving such claims is out of scope (similar to proving general correctness),
+but maybe we can prepare terminology, distinguishing single combined benchmark (multiple goals at once,
+useful for "same lab" repeatability) from several independent benchmarks (one goal per search,
+useful for inter-lab comparisons)?
 
-### Example subsection
+Back to the formal Scope section. We can maybe say that Specification defines the class of benchmarks
+in a way that supports single-goal benchmarks equally well as multiple-goal benchmarks,
+but the discussion of "goal interference" is outside of the scope (and we do not need to mention motivations there).
 
-``` python
-print("Output text example.")
-```
-
-Trailing text example.
