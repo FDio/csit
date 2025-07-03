@@ -203,6 +203,23 @@
       "message": "csit-vpp-report-cov-2n-icx-perftest hoststack-00",
       "revId": "6d56ddffce2b803d21671b7970f7ff8deaac5d28",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e75850_b040d66b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-07-03T09:02:59Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-grc-perftest memif-00",
+      "revId": "6d56ddffce2b803d21671b7970f7ff8deaac5d28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
