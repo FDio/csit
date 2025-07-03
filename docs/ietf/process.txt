@@ -25,47 +25,76 @@ $ sudo gem install kramdown-rfc
 $ kdrfc --version
 
 Main:
-$ kdrfc draft-ietf-bmwg-mlrsearch-10.md
+$ kdrfc draft-ietf-bmwg-mlrsearch-11.md
 
 If that complains, do it manually at https://author-tools.ietf.org/
 
 Finally:
 https://author-tools.ietf.org/idnits
 
+Outstanding important TODOs:
 
-Now that I have forced the Canvas editor into source-editing style (as opposed to rendered style),
-I have real tasks for you, they involve multiple document files.
-I am working on an upcoming IETF document, currently still in the draft state.
-I have attached two files, one is a markdown source of the document as uploaded recently (draft version 10).
-The other attached file is a .doc feedback from AD editor (in e-mails signing as "Med").
-The attached markdown file already contains few comments, enclosed between tags `{::comment}` and `{:/comment}`.
-The .doc file contains in-place edits proposed by the AD editor, and also Word-specific review-comments from him and my reactions.
-I have copied the work-in-progress state of the markdown source into the Canvas editor.
-The issue is the whole markdown file is too long for your output tokens limit.
-That means everytime I type something into this main chat (Enter a prompt for Gemini) dialog
-and you decide to edit something in the Canvas, you spent 20 minutes writing mostly unedited text into Canvas,
-during which the Editor is in rendering mode (making your outputs not usable as markdown source yet)
-but you run out of tokens, GUI reports "Network error" and I cannot easily make the editor switch back to source-editing mode.
-At which point I have to create a new conversation and start over.
-So, I would appreciate you not touching the Canvas content, at all.
-Even if I tell you otherwise, you should ask for confirmation first.
-The other dialog (Ask Gemini), when only a small part of text is selected in Canvas, works only as a pointer.
-If you decide to edit the selected area you still attempt to write the whole file and fail.
-The current editing phase focuses on copying review-comments from the .doc file into markdown as kramdown-friendly comment blocks.
-I already see at least two mistakes, missing or misplaced comment from Med or reply from me (VP).
-What is the first mistake you see in the Canvas state compared to .doc review comments?
-(You can write the correction to the main chat, but be careful not to touch Canvas content.)
+ 1. 354:    TODO: Either say the list talks about CSIT implementation,
+    About out-of-scope optimizations in introduction.
 
+ 2. 395:    MK: TODO.
+    MB wants a pointer to MLRsearch configuration options.
 
+ 3. 407:    MK: TODO.
+    "flexible" is too ambiguous for MB.
 
-(do not forget to enable canvas)
+ 4. 424:    MK: TODO.
+    MB wants pointers to aggressive settings being good for repeatability.
+    Worth adding CSIT NDR+PDR as an example goal set?
 
-I have an example markdown source below, including a Python code sub-block. Put that markdown source into Canvas, as a new code immersive with the markdown language type.
+ 5. 445:    MK: TODO Instead I propose we list one liners explaining the term in
+    About list of terms, in progress for MK.
 
-### Example subsection
+ 6. 466:    TODO: Update the subsection above when the subsections below are complete enough
+    Review and polish Purpose section, ready to start, probably for MK?
 
-``` python
-print("Output text example.")
-```
+ 7. 800:    MK: OK. TODO for the whole document.
+    > MB34: Please avoid "we" constructs.
 
-Trailing text example.
+ 8. 1153:    VP: TODO: Mentional conditional requirements if not clear from usage.
+    In progress for VP.
+
+ 9. 1257:TODO: Multiple tests in RFC2544, this is about throughput only.
+10. 1268:TODO: Multiple traffic profiles (at least frame sizes) in RFC2544, this is about single SUT+profile.
+11. 1276:TODO: Repeating the same search is possible, this is about single search.
+12. 1284:TODO: Manual processes, automation, implementation as library,...
+13. 1292:TODO: Calls/invocations, interfaces.
+14. 1300:TODO: Regular end, irregular exit, user abort.
+15. 1309:TODO: Load classification equivalence (not here, just in later chapters).
+16. 1317:TODO: General discussion around test, search, trial and recurrence? For example throughput search can be a part of B2B tests.
+
+17. 1789:    VP: TODO: Contruct appropriate "conditional requirement" sentence.
+    In progress VP.
+
+18. 1833:    TODO: Separate short description from further discussion.
+
+19. 1860:    VP: TODO: Mention in Test Case, Test Suite or Test Report.
+    > MB64: Does this cover also recurrences?
+    Explicitly say Trial is not repeated.
+
+20. 1906:    MK: TODO fix everywhere.
+    MB66, about unifying external references into "Section 3.4 of [RFC1242]" pattern.
+
+21. 1977:    VP: TODO: Use normative MAY somewhere.
+22. 2769:    VP: TODO: Use MUST NOT to make Controller behavior constrained, conditionally?
+23. 2802:    VP: TODO: Use MAY.
+24. 2818:    VP: TODO: Use MUST NOT?
+25. 2847:    VP: TODO: Use MAY.
+26. 3029:    VP: TODO: Use MAY.
+27. 3064:    VP: TODO: Use MAY.
+28. 3111:    VP: TODO: Use MAY.
+
+29. 2687:          Goal Terms as appropriate. TODO check if more places need this.
+    MB88: separate lists of required and optional attributes.
+
+30. 2717:    VP: TODO: Check if new Test_* subsections are good for this discussion.
+    MB89: default values for optional attributes.
+    May need "user vs implementation" discussion. Can be avoided?
+
+31. 3528:    MK: TODO. This is not a bad idea. A section that in summary table
+    MB98: goal instances in table format.
