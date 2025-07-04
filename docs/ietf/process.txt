@@ -25,47 +25,68 @@ $ sudo gem install kramdown-rfc
 $ kdrfc --version
 
 Main:
-$ kdrfc draft-ietf-bmwg-mlrsearch-10.md
+$ kdrfc draft-ietf-bmwg-mlrsearch-11.md
 
 If that complains, do it manually at https://author-tools.ietf.org/
 
 Finally:
 https://author-tools.ietf.org/idnits
 
+TODOs:
+* #    VP: TODO201: Delete or update or replace the active item.
+ Finalize the external reference.
 
-Now that I have forced the Canvas editor into source-editing style (as opposed to rendered style),
-I have real tasks for you, they involve multiple document files.
-I am working on an upcoming IETF document, currently still in the draft state.
-I have attached two files, one is a markdown source of the document as uploaded recently (draft version 10).
-The other attached file is a .doc feedback from AD editor (in e-mails signing as "Med").
-The attached markdown file already contains few comments, enclosed between tags `{::comment}` and `{:/comment}`.
-The .doc file contains in-place edits proposed by the AD editor, and also Word-specific review-comments from him and my reactions.
-I have copied the work-in-progress state of the markdown source into the Canvas editor.
-The issue is the whole markdown file is too long for your output tokens limit.
-That means everytime I type something into this main chat (Enter a prompt for Gemini) dialog
-and you decide to edit something in the Canvas, you spent 20 minutes writing mostly unedited text into Canvas,
-during which the Editor is in rendering mode (making your outputs not usable as markdown source yet)
-but you run out of tokens, GUI reports "Network error" and I cannot easily make the editor switch back to source-editing mode.
-At which point I have to create a new conversation and start over.
-So, I would appreciate you not touching the Canvas content, at all.
-Even if I tell you otherwise, you should ask for confirmation first.
-The other dialog (Ask Gemini), when only a small part of text is selected in Canvas, works only as a pointer.
-If you decide to edit the selected area you still attempt to write the whole file and fail.
-The current editing phase focuses on copying review-comments from the .doc file into markdown as kramdown-friendly comment blocks.
-I already see at least two mistakes, missing or misplaced comment from Med or reply from me (VP).
-What is the first mistake you see in the Canvas state compared to .doc review comments?
-(You can write the correction to the main chat, but be careful not to touch Canvas content.)
+*     TODO202: Either say the list talks about CSIT implementation,
+ Just mark out-of-scope optimizations.
 
+*     MK: TODO203. We do not have any section in this document covering
+ Aggressive setting. Point to some discussion on noiseless end of performance spectrum.
 
+*     TODO204: Update the subsection above when the subsections below are complete enough.
+ Maybe done already, just check.
 
-(do not forget to enable canvas)
+*     VP: TODO205: Mention conditional requirements if not clear from usage.
+ Probably not needed in draft, but mention in e-mail.
 
-I have an example markdown source below, including a Python code sub-block. Put that markdown source into Canvas, as a new code immersive with the markdown language type.
+*     VP: TODO206: Should we explicitly mention that
+ Table of contents instead of terminology list, probably no need to state explicitly.
 
-### Example subsection
+*     VP: TODO207: Re-check usage of Implementation.
+ Hopefully done.
 
-``` python
-print("Output text example.")
-```
+*     VP: TODO208: Downgrade the last sentence from draft to e-mail?
+ Currently I prefer "yes".
 
-Trailing text example.
+*     TODO209: Separate short descriptions from further discussions. Everywhere.
+ Low priority, I prefer to skip in draft11 cycle.
+
+*     VP: TODO210: Mention the YANG draft as a possible avenue?
+ I prefer "yes".
+
+*           Goal Terms as appropriate. TODO211 check if more places need this.
+ Low priority this late.
+
+*     VP: TODO212: Re-check.
+ The two relevant bounds are special in that they may not exist.
+ But I think the surronding text explains that, so I hope this is done.
+
+*     MK: TODO213. This is not a bad idea. A section that in summary table
+ Low priority. Doable but hindered by lack of table captions in current kramdown.
+
+*     TODO214: There are long lines.
+ Low priority.
+
+*     <mark>VP TODO215 Final Checks. Only mark as done when there are no active todos above.</mark>
+ Low priority.
+
+*     <mark>MKP3 VP TODO216: Recheck the definition dependencies go bottom-up.</mark>
+ Useful but maybe too late for thorough check.
+
+*     <mark>VP TODO217: Unify external reference style (brackets, spaces, section numbers and names).</mark>
+ I think we are done, but we may want to check in .txt render.
+
+*     <mark>MKP2 VP TODO218: Capitalization of New Terms: useful when editing and reviewing,
+ Mostly fixed but I bet some mistakes are still present. Low priority.
+
+*     <mark>VP TODO219: If time permits, keep improving formal style (e.g., using AI).</mark>
+ No time for that, unless there are confusing sentences.
