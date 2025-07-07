@@ -883,6 +883,23 @@
       "message": "csit-vpp-report-cov-3nb-spr-perftest hoststack-00",
       "revId": "61dd5581eaa405b001c9a6665299c6ee1b769de5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e5391f_dba8aada",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-07-07T14:47:36Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-emr-perftest crypto-02",
+      "revId": "61dd5581eaa405b001c9a6665299c6ee1b769de5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
