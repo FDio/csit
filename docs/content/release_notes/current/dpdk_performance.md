@@ -8,7 +8,7 @@ weight: 2
 **DPDK has NOT been tested in CSIT 25.06 release**
 
 1. TEST FRAMEWORK
-   - **CSIT test environment** is ver. 17, see
+   - **CSIT test environment** is ver. 18, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 2. DPDK PERFORMANCE TESTS
    - No updates
