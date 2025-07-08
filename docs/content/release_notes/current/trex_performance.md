@@ -6,7 +6,7 @@ weight: 3
 # CSIT 25.06 - TRex Performance
 
 1. TEST FRAMEWORK
-   - **CSIT test environment** version is ver. 17, see
+   - **CSIT test environment** version is ver. 18, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 2. TREX TESTS
    - No updates

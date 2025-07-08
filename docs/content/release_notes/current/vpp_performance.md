@@ -6,11 +6,9 @@ weight: 1
 # CSIT 25.06 - VPP Performance
 
 1. TEST FRAMEWORK
-    - **CSIT test environment** version is ver. 17, see
+    - **CSIT test environment** version is ver. 18, see
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
-    - The testbed 3n-alt is out-of-service for 25.06 release.
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
-2. VPP PERFORMANCE TESTS
 
 # Known Issues
 
