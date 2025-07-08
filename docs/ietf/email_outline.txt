@@ -1,0 +1,69 @@
+
+Larger BMWG:
+- 8. Security Considerations:
+  - This is a boilerplate text copied from earlier BMWG RFCs.
+  - Text can be modernized, but needs larger consensus
+    (so future RFCs may start copying without thinking again).
+- Scope of MLRsearch in relation to RFC2544. Throughput is a single benchmark,
+  MLRsearch is a class of independent benchmarks.
+  No specific set of Search Goals is specified (yet).
+  For more details, look at new MLRsearch document sections:
+  - 1.2. Positioning within BMWG Methodologies
+  - 4.1. Scope
+- RFC 2544 Troughput is based on per-interface "rate" also for bidirectional tests:
+  - Section 14 second sentence:
+    "To test the bidirectional performance of a DUT, the test series SHOULD be run
+    with the same data rate being offered from each direction."
+  - Section 14 third sentence:
+    "The sum of the data rates should not exceed the theoretical limit for the media."
+  - Conclusions:
+    - "rate" or "data rate" is always a per-interface value.
+    - "sum of data rates" is preferred over "aggregate data rate".
+  - Section 26.1 second paragraph:
+    "The throughput is the fastest rate at which the count of test frames
+    transmitted by the DUT is equal to the number of test frames sent to
+    it by the test equipment."
+  - Conclusions:
+    - Throughput must always be per-interface, never aggregate (despite industry practices).
+    - Transmit counts for both directions are used to determine every frame got forwarded.
+
+Med and other reviewers focusing on MLRsearch:
+- Open questions:
+  - Per-interface loads:
+    - MLRsearch Load values are also per-interface,
+      but most industry benchmarks focus on "total performace" implying aggregate loads.
+    - MLRsearch solution: Allow derived aggregate values in Test Report.
+    - An wxample with 2 input interfaces and 1 output interface has been added.
+    - Should we apply different example(s), in earlier subsections?
+  - Requirements:
+    - BMWG documents are informational recommendations, but they use normative language for requirements.
+      - Added an explanation paragraph to 3. Requirements Language
+    - Traditionally, MUST is used without conditions, SHALL is used when implementer sees worthy conditions.
+    - In MLRsearch, there are frequently conditional requirements.
+      - For example, Conditional Throughput SHOULD be reported as per-interface (to keep similarity with RFC2544 Throughput).
+        - But aggregate value MAY be used in Test Report instead.
+      - But if aggregate value is used, the Test Report MUST clearly mark it is not a per-interface value (for bidirectional tests).
+    - Is the example above a valid usage of RFC2119 / RFC8174 language, or should a different language be used?
+- Comments on addressed comments:
+  - Lencze-Shima reference kept, with added "- expired".
+    We think in this case such "published by author" documents
+    are informative enough, even though they are not "published by an institution"
+    (implied higher standard of peer review process).
+- Missing improvements:
+  - Early chapter mention how different goals affect time and stability,
+    but no good examples of that are present in later chapters.
+  - Strong requirements are still present outside main Specification sections.
+  - Software-centric language with "calls" and "implementations" is still used but maybe avoidable.
+    - Especially when discussing default values for optional attrbutes.
+  - Normative requirements mixed with informative content in Discussion paragraphs.
+  - No short summaries.
+  - No separate lists for required and optional attributes.
+  - No alphabetic Index of terms anymore.
+  - Stop conditions not specified in detailed enough way (user interrupt, time out, Min Load proven an Upper Bound, ...).
+  - Style is uneven.
+  - At least one sentence still mentions "user".
+  - Tables without captions, limited by https://github.com/gettalong/kramdown/issues/593
+  - Some dense lists still not in tables.
+- Typos:
+  - "Section Section 4.10"
+  - Wrong empty line between "frequent software updates and a" and "number of different".
