@@ -9,6 +9,8 @@ weight: 1
     - **CSIT test environment** version is ver. 18, see
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
+2. VPP PERFORMANCE TESTS
+    - **Added iterative and coverage performance tests** for 3n-oct testbed.
 
 # Known Issues
 
