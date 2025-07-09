@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43845870_cdde0c4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-07-09T14:45:46Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-emr-perftest memif-00",
+      "revId": "ee3c20801c46cdc96c78908564256124875b04ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
