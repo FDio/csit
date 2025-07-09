@@ -1,0 +1,36 @@
+
+
+Most edits are minor improvements for clarity and general readability,
+including addressing the comments from  AD review by Mohamed Boucadair.
+
+The most important aspect that requires discussion within BMWG
+is "positioning".
+
+We added two new sections to this regard:
+- 1.2. Positioning within BMWG Methodologies
+- 4.1. Scope
+
+We would like to cover the positioning described in both in our
+presentation during the next BMWG meeting at IETF 123.
+
+For Med:
+
+> Pdf: https://github.com/boucadair/IETF-Drafts-Reviews/blob/master/2025/draft-ietf-bmwg-mlrsearch-10-rev%20Med.pdf
+
+That exported document helpfully numbered your side comments.
+We picked up those into comment blocks in our markdown source file.
+
+If you have specific questions on our edits, you may want to look into
+the final version-11 source, github mirror URL is:
+
+https://raw.githubusercontent.com/FDio/csit/b802d684064a1058aa35a1115690b998a296d7f1/docs/ietf/draft-ietf-bmwg-mlrsearch-11.md
+
+For example, if you search for "MB108" (without quotes)
+you will find the reason why our tables still do not have proper captions.
+
+One more thing: We did not address your comments to the Security
+Considerations section, as we used BMWG standard text applicable to
+air-gapped lab benchmarking environments. If this needs to be
+revisited, we will welcome advice from the BMWG.
+
+Vratko (and Maciek).
