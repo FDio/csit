@@ -1,0 +1,32 @@
+As usual, we ran out of time perfecting the draft.
+But as they say, perfect is the enemy of good,
+and deadlines are there so the good can win.
+
+Most edits are minor improvements to clarity and general readability.
+Some ideas might be of interest to wider BMWG community (not just to MLRsearch document),
+but they are still too specific (language usage around security considerations
+and around requirements language) to be discussed in this thread.
+
+The only important aspect worth discussing here is "positioning".
+We added two new sections:
+- 1.2. Positioning within BMWG Methodologies
+- 4.1. Scope
+
+It is hard for me to summarize the final text without oversimplifying or going too deep.
+In our presentation we want to focus on the positioning in greater detail,
+and we may outline the ideas on security considerations and requirements language if time permits.
+
+For Med:
+
+> Pdf: https://github.com/boucadair/IETF-Drafts-Reviews/blob/master/2025/draft-ietf-bmwg-mlrsearch-10-rev%20Med.pdf
+
+That exported document helpfully numbered your side comments.
+We picked up those into comment blocks in our markdown source file.
+If you have specific questions on our edits, you may want to look into
+the final version-11 source, github mirror URL is:
+https://raw.githubusercontent.com/FDio/csit/b802d684064a1058aa35a1115690b998a296d7f1/docs/ietf/draft-ietf-bmwg-mlrsearch-11.md
+
+For example, if you search for "MB108" (without quotes)
+you will find the reason why our tables still do not have proper captions.
+
+Vratko (and Maciek).
