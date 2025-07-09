@@ -628,6 +628,23 @@
       "message": "csit-vpp-report-cov-3n-icx-perftest crypto-03",
       "revId": "7d5690533971436a7f5f77b9a6f5c056152a50ed",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "323cc9a3_a9410303",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-07-09T06:07:37Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest vhost-11",
+      "revId": "7d5690533971436a7f5f77b9a6f5c056152a50ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
