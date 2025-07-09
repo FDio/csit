@@ -40,6 +40,13 @@ Following is the list of CSIT versions to date:
   [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2506),
   [CSIT](https://git.fd.io/csit/tree/?h=rls2506)
   ).
+  - Added Marvell® OCTEON 10 DPU Platform - Industry’s first processor family
+    based on 5nm ARM Neoverse N2 platform. Powered by Ubuntu 24.04.2 LTS.
+  - Removed Intel NIC 700 series from Ampere Altra testbed.
+    (Test coverage reduced).
+  - Added Mellanox ConnectX-7 (MCX713106AS-VEAT) to NVidia Grace Server testbed.
+  - Removed Mellanox ConnectX-5 temporary NIC from NVidia Grace Server testbed.
+  -
 - Ver. 17 associated with CSIT rls2502 branch (
   [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2502),
   [CSIT](https://git.fd.io/csit/tree/?h=rls2502)
