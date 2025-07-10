@@ -1,0 +1,58 @@
+
+#Reply to: [bmwg] I-D Action: draft-ietf-bmwg-mlrsearch-11.txt
+#  https://mailarchive.ietf.org/arch/msg/bmwg/jfpsUT1sAQi1OsDZEV9UHPamxu0/
+
+Reply to: [bmwg] Re: AD Review of draft-ietf-bmwg-mlrsearch
+  https://mailarchive.ietf.org/arch/msg/bmwg/Z-CP0kqxvIntKC6CYQe1SkbzFBI/
+To: BOUCADAIR Mohamed INNOV/NET <mohamed.boucadair@orange.com>; Carsten Rossenhoevel <cross@eantc.de>; Sarah B <sarah.banks@gmail.com>; Giuseppe Fioccola <giuseppe.fioccola@huawei.com>
+Cc: draft-ietf-bmwg-mlrsearch@ietf.org; bmwg@ietf.org
+
+---
+
+Hi Med, Carsten, Sarah, Giuseppe.
+
+The original e-mail thread had split into multiple barnches,
+I guess this end is the best for larger discussions around MLRsearch,
+and its new version 11: https://author-tools.ietf.org/iddiff?url2=draft-ietf-bmwg-mlrsearch-11
+
+Most edits are minor improvements for clarity and general readability,
+including addressing the comments from AD review by Mohamed Boucadair.
+
+The most important aspect that requires discussion within BMWG
+is "positioning".
+
+We added two new sections to this regard:
+- 1.2. Positioning within BMWG Methodologies
+- 4.1. Scope
+
+We would like to cover the positioning described in both in our
+presentation during the next BMWG meeting at IETF 123.
+
+For chairs:
+
+There is some overlap between MLRsearch review comments,
+and larger discussion happening in "Revisiting BMWG RFCs" bmwg e-mail thread.
+Will there be a separate session segment for the latter?
+(I guess that depends mainly on Gabor and Med.)
+
+If yes, we can keep the MLRsearch segment short and narrow (positioning only),
+and contribute some discussion to the "revisiting" segment,
+focusing mainly in "boilerplate" sections:
+Requirements Language, and Security Considerations.
+
+For Med:
+
+> Pdf: https://github.com/boucadair/IETF-Drafts-Reviews/blob/master/2025/draft-ietf-bmwg-mlrsearch-10-rev%20Med.pdf
+
+That exported document helpfully numbered your side comments.
+We picked up those into comment blocks in our markdown source file.
+
+If you have specific questions on our edits, you may want to look into
+the final version-11 source, github mirror URL is:
+
+https://raw.githubusercontent.com/FDio/csit/b802d684064a1058aa35a1115690b998a296d7f1/docs/ietf/draft-ietf-bmwg-mlrsearch-11.md
+
+For example, if you search for "MB108" (without quotes)
+you will find the reason why our tables still do not have proper captions.
+
+Vratko (and Maciek).
