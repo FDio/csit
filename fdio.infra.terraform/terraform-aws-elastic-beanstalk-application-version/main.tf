@@ -21,7 +21,7 @@ resource "aws_elastic_beanstalk_application_version" "application_version" {
   application = var.application_name
   description = var.application_description
   bucket      = var.application_bucket
-  key         = var.application_name_version
+  key         = local.key
   name        = var.application_name_version
   tags        = local.tags
 }
