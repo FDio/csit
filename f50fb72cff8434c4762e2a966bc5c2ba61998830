@@ -84,6 +84,23 @@
       "message": "csit-3na-spr-perftest nic_*ANDdrv_mlx5_coreANDhoststack !*quic*",
       "revId": "f50fb72cff8434c4762e2a966bc5c2ba61998830",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c39ba7b9_f147477e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-07-14T12:45:49Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDhoststack !*quic* !drv_af_xdp !drv_avf",
+      "revId": "f50fb72cff8434c4762e2a966bc5c2ba61998830",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
