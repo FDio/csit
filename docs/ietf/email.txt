@@ -1,0 +1,121 @@
+
+Reply to: [bmwg] Revisiting BMWG RFCs
+  https://mailarchive.ietf.org/arch/msg/bmwg/-qKXH_2aBEVM6eYqAMbAwUfDAeo/
+To: Gábor LENCSE <lencse@hit.bme.hu>; Giuseppe Fioccola <giuseppe.fioccola@huawei.com>; BOUCADAIR Mohamed INNOV/NET <mohamed.boucadair@orange.com>
+Cc: bmwg@ietf.org; Maciek Konstantynowicz <mkonstan@cisco.com>
+
+---
+
+Hello.
+
+As mentioned elsewhere, several comments from MLRsearch AD review
+apply to "boilerplate" sections, thus also to future documents.
+Therefore I believe that possible improvements can be discussed in this thread.
+
+For larger context see a PDF file (it has numbered side comments)
+https://github.com/boucadair/IETF-Drafts-Reviews/blob/master/2025/draft-ietf-bmwg-mlrsearch-10-rev%20Med.pdf
+
+First boilerplate section to discuss is Security Considerations.
+
+Besides replacing "black-box" with "opaque", there are three comments.
+
+In relation to the sentence:
+"Special capabilities SHOULD NOT exist in the DUT/SUT specifically for
+benchmarking purposes.",
+comment MB109 says:
+> Some more elaboration is needed
+
+My opinion is that such capabilities may be "present" but disabled.
+They SHOULD NOT be enabled. If they are enabled, test report MUST
+clearly mention this non-default configuration.
+
+In relation to the "SHOULD be identical in" part of sentence:
+"Any implications for network security arising
+from the DUT/SUT SHOULD be identical in the lab and in production
+networks.",
+comment MB110 says:
+> Why?
+>
+> We can accept some relax rule in controlled
+> environnement, but this not acceptable in deployement.
+> I would adjust accordingly.
+
+I guess original the sentence is aimed at DUTs with "configurable security".
+In production, the security settings should be high,
+so those are the settings that should be benchmarked.
+Again, benchmarks with "security off" DUT settings may be of interest,
+but such benchmarks MUST be clearly distinguished from the default ones.
+
+The third comment MB111 does not have a corresponding sentence.
+> I would some text to basically say
+> that the benchmarking results should be adequately
+> protected and guards top prevent leaks to unauthorized
+> entities.
+> Otherwise, the benchmark results can be used by
+> attacker to better adjust their attacks and perform attacks
+> that would lead to DDoS a node of the DUT in a live
+> network, infer the limitation of a DUT that can be used for
+> overflow attacks, etc.
+>
+> Also, we can say that the benchmark is agnostic to trafic
+> and does not manipulate real traffic. As such, Privacy is
+> not a concern.
+
+I vaguely recall some documents already specify
+all traffic should be synthetic (so no privacy issues),
+but the idea to track benchmark results as secret/obscure is new to me.
+I am not sure about that, but we could mention
+the set of "authorized entities" for benchmark results
+is out of scope of BMWG documents.
+
+
+Second bolerplate section is Requirements Language.
+This time the comments are not aimed to the section 1 itself,
+but to the usage of the all-caps verbs in other sections.
+
+The main example is in relation to "MUST" part of sentence:
+"Only if this is not the case,
+the test report MUST describe the Traffic Profile in a way that
+implies how Trial Forwarding Ratio should be calculated.",
+comment MB76 wants "SHOULD" instead, saying:
+> MUST is an absolute requirement
+> (i.e., there is no exception):
+>
+> 1. MUST This word, or the terms "REQUIRED" or "SHALL",
+> mean that the definition is an absolute requirement of the
+> specification.
+>
+> SHOULD This word, or the adjective "RECOMMENDED",
+> mean that there may exist valid reasons in particular
+> circumstances to ignore a particular item, but the full
+> implications must be understood and carefully weighed
+> before choosing a different course.
+
+This is a class of usage I personally call "conditional requirements".
+SHALL is used when the reader can pick their own reasons
+to not do the recommended things.
+My sentence is conditional on such free decisions of readers
+(here in a preceding sentence giving context to "this is not the case"),
+but gives additional strong requirements to the reader based on their previous decision.
+I guess the original RFC2119 / RFC8174 wording is not directly covering
+my "conditional requirements" usage, so it could be updated.
+Have you noticed I already used conditional requirements
+when discussing MB109 (and MB110) earlier?
+
+
+For MLRsearch (draft version 11), we did not touch Security Considerations.
+We added some text to Requirement Language section,
+but we have not singled out conditional requirements.
+We softened the most egregious usage of conditional MUST.
+
+Here is the added text, it may spark additional discussions:
+"This document is categorized as an Informational RFC. While it does
+not mandate the adoption of the MLRsearch methodology, it uses the
+normative language of BCP 14 to provide an unambiguous specification.
+This ensures that if a test procedure or test report claims
+compliance with the MLRsearch Specification, it MUST adhere to all
+the absolute requirements defined herein. The use of normative
+language is intended to promote repeatable and comparable results
+among those who choose to implement this methodology."
+
+Vratko.
