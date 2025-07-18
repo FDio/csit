@@ -144,6 +144,42 @@ class VPPUtil:
                 command = "apt-get purge -y '*vpp*' || true"
                 exec_cmd_no_error(node, command, timeout=120, sudo=True)
 
+                VPPUtil.stop_vpp_service(node)
+
+                command = "basename /sys/bus/pci/devices/0000:17:00.0/net/*"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "ip link set dev `basename /sys/bus/pci/devices/0000:17:00.0/net/*` down"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo 0000:17:00.0 | tee /sys/bus/pci/devices/0000:17:00.0/driver/unbind"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo ice | tee /sys/bus/pci/devices/0000:17:00.0/driver_override"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo 0000:17:00.0 | tee /sys/bus/pci/drivers/ice/bind"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo  | tee /sys/bus/pci/devices/0000:17:00.0/driver_override"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "ip link set dev `basename /sys/bus/pci/devices/0000:17:00.0/net/*` down"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "basename $(readlink -f /sys/bus/pci/devices/0000:17:00.0/driver)"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+
+                command = "basename /sys/bus/pci/devices/0000:17:00.1/net/*"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "ip link set dev `basename /sys/bus/pci/devices/0000:17:00.1/net/*` down"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo 0000:17:00.1 | tee /sys/bus/pci/devices/0000:17:00.1/driver/unbind"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo ice | tee /sys/bus/pci/devices/0000:17:00.1/driver_override"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo 0000:17:00.1 | tee /sys/bus/pci/drivers/ice/bind"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "echo  | tee /sys/bus/pci/devices/0000:17:00.1/driver_override"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "ip link set dev `basename /sys/bus/pci/devices/0000:17:00.1/net/*` down"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+                command = "basename $(readlink -f /sys/bus/pci/devices/0000:17:00.1/driver)"
+                exec_cmd(node, f"sh -c \"{command}\"", timeout=120, sudo=True)
+
                 command = f"dpkg -i --force-all {vpp_pkg_dir}*.deb"
                 exec_cmd_no_error(
                     node, command, timeout=120, sudo=True, message=message
