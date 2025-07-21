@@ -311,7 +311,8 @@ class VPPUtil:
             u"trace add dpdk-input 50",
             u"trace add vhost-user-input 50",
             u"trace add memif-input 50",
-            u"trace add avf-input 50"
+            u"trace add iavf0/0-rx 50",
+            u"trace add iavf1/0-rx 50",
         ]
 
         for cmd in cmds:
