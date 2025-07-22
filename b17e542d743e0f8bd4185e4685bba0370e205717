@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d4cf02b_873cc4ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-07-22T08:58:30Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciANDeth-ip4tcp*-ldpreload-iperf3",
+      "revId": "b17e542d743e0f8bd4185e4685bba0370e205717",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
