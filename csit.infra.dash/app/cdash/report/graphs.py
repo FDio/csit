@@ -190,8 +190,8 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
             ),
             hoverinfo=u"y+name",
             boxpoints="all",
-            jitter=0.3,
-            marker=dict(color=get_color(idx)),
+            marker=dict(color=get_color(idx), size=5),
+            jitter=0.65,
             customdata=customdata
         )
         tput_traces.append(go.Box(**tput_kwargs))
