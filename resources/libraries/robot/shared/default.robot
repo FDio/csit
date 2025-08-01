@@ -23,6 +23,7 @@
 | Library | resources.libraries.python.Adl
 | Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.Constants
 | Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.FlowUtil
