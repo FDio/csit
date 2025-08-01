@@ -33,6 +33,23 @@
       "message": "csit-dpdk-2n-zn2-perftest mrrANDnic_intel-xxv710 !1518b !imix",
       "revId": "ca1530c062b8656c9691e0ef943d822cb5a571a5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d1ae0cd_9cfd4138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-01T12:22:25Z",
+      "side": 1,
+      "message": "AVF+jumbo+vhost is known to fail, [4] so verifying vhost with dpdk plugin instead.\n\ncsit-2n-zn2-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cANDeth-l2xcbase-eth-2vhostvr1024-1vm !1518b !imix\n\n[4] https://github.com/FDio/csit/issues/4033",
+      "revId": "ca1530c062b8656c9691e0ef943d822cb5a571a5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
