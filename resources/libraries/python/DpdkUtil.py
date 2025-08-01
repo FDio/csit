@@ -13,6 +13,7 @@
 
 """Dpdk Utilities Library."""
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 
@@ -221,7 +222,7 @@ class DpdkUtil:
         )
         # Set the max packet length.
         options.add_with_value_if_from_dict(
-            "max-pkt-len", "9200", "pmd_max_pkt_len", kwargs, False
+            "max-pkt-len", Constants.MTU_JUMBO, "pmd_max_pkt_len", kwargs, False
         )
         return options
 
