@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf860f84_70482087",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-01T12:51:35Z",
+      "side": 1,
+      "message": "Re-triggering only the tests that suffered from typos.\n\ncsit-2n-zn2-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cANDeth-l2xcbase-eth-2vhostvr1024-1vm !1518b !imix",
+      "revId": "1030bddbd7fa5ef0b30aa179f2ec3467d66d7645",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
