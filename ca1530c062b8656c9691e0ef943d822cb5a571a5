@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e821a4d_b63a39e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-01T12:02:19Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest mrrANDnic_intel-xxv710ANDdrv_avfAND1cANDeth-l2patch !1518b !imix",
+      "revId": "ca1530c062b8656c9691e0ef943d822cb5a571a5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
