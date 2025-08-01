@@ -371,7 +371,6 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = "9200" if kwargs["jumbo"] else "1518"
         eal_coremap = ",".join([str(x) for x in range(self._opt.get("smp"))])
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_coremap=eal_coremap,
@@ -381,10 +380,10 @@ class QemuUtils:
             eal_in_memory=True,
             pmd_num_mbufs=32768,
             pmd_fwd_mode=u"io",
-            pmd_nb_ports=u"2",
+            pmd_nb_ports=u2,
             pmd_portmask=u"0x3",
-            pmd_max_pkt_len=pmd_max_pkt_len,
-            pmd_mbuf_size=u"16384",
+            pmd_max_pkt_len=Consatnts.get_mtu(kwargs["jumbo"]),
+            pmd_mbuf_size=16384,
             pmd_rxq=kwargs[u"queues"],
             pmd_txq=kwargs[u"queues"],
             pmd_tx_offloads='0x0',
@@ -399,7 +398,6 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo"] else u"1518"
         eal_coremap = ",".join([str(x) for x in range(self._opt.get("smp"))])
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_coremap=eal_coremap,
@@ -409,10 +407,10 @@ class QemuUtils:
             eal_in_memory=True,
             pmd_num_mbufs=32768,
             pmd_fwd_mode=u"mac",
-            pmd_nb_ports=u"2",
+            pmd_nb_ports=u2,
             pmd_portmask=u"0x3",
-            pmd_max_pkt_len=pmd_max_pkt_len,
-            pmd_mbuf_size=u"16384",
+            pmd_max_pkt_len=Consatnts.get_mtu(kwargs[u"jumbo"]),
+            pmd_mbuf_size=16384,
             pmd_eth_peer_0=f"0,{kwargs[u'vif1_mac']}",
             pmd_eth_peer_1=f"1,{kwargs[u'vif2_mac']}",
             pmd_rxq=kwargs[u"queues"],

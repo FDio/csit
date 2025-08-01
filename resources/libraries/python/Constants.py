@@ -652,3 +652,22 @@ class Constants:
         "ndrpdr": "Measure NDR and PDR values using MLRsearch algorithm.",
         "soak": "Estimate critical rate using PLRsearch algorithm. \\",
     }
+
+    # MTU values to use. Must allow tested packets including encap overhead.
+    # Max overhead is 96, xxv710 refuses above 9194, 9145 is in the middle.
+    MTU_JUMBO = get_str_from_env("MTU_JUMBO", 9145)
+    # VPP can handle just below 2048 without chaining, 1800 should be enough.
+    MTU_NORMAL = get_str_from_env("MTU_NORMAL", 1800)
+
+    @classmethod
+    def get_mtu(cls, is_jumbo: bool) -> int:
+        """Return MTU value depending on whether jumbo frames are enabled.
+
+        :param is_jumbo: Whether the current tests uses jumbo frames.
+        :type is_jumbo: bool
+        :returns: One of the two constant values defined above.
+        :rtype: int
+        """
+        if is_jumbo:
+            return cls.MTU_JUMBO
+        return cls.MTU_NORMAL
