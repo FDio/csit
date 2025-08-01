@@ -260,12 +260,12 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def set_interface_mtu(node, pf_pcis, mtu=9200):
+    def set_interface_mtu(node, pf_pcis, mtu=Constants.MTU_JUMBO):
         """Set Ethernet MTU for specified interfaces.
 
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
-        :param mtu: MTU to set. Default: 9200.
+        :param mtu: MTU to set. Default: MTU_JUMBO.
         :type nodes: dict
         :type pf_pcis: list
         :type mtu: int

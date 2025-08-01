@@ -142,7 +142,6 @@ class TestpmdTest:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
-            pmd_max_pkt_len = "9200" if jumbo else "1518"
             testpmd_args = DpdkUtil.get_testpmd_args(
                 eal_coremap=f"0@1,{lcores_list}",
                 eal_driver=False,
@@ -151,10 +150,10 @@ class TestpmdTest:
                 eal_in_memory=True,
                 pmd_num_mbufs=32768,
                 pmd_fwd_mode="io",
-                pmd_nb_ports="2",
+                pmd_nb_ports=2,
                 pmd_portmask="0x3",
-                pmd_max_pkt_len=pmd_max_pkt_len,
-                pmd_mbuf_size="16384",
+                pmd_max_pkt_len=Constants.get_mtu(jumbo),
+                pmd_mbuf_size=16384,
                 pmd_rxd=rxq_size,
                 pmd_txd=txq_size,
                 pmd_rxq=queue_nums,
