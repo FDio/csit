@@ -1,0 +1,63 @@
+csit/issues/3879 | [CSIT-1795] Ocassionally not all DET44 sessions have been established: 4128767 != 4128768.
+ 4128767 != 4128768
+csit/issues/3966 | [CSIT-1884] 2n-icx, 2n-spr: All NAT44DET IMIX large scale BIDIR tests fail to create enough sessions.
+ A != B (A>>B)
+csit/issues/3968 | [CSIT-1886] 3n: Wireguard tests with 100 and more tunnels are failing PDR criteria.
+ wireguard
+csit/issues/3983 | [CSIT-1901] 2n-icx 3n-icx: Trex may report negative ipackets on high-performance AVF trial.
+ hidden now
+csit/issues/3986 | [CSIT-1904] 3n-alt: DPDK testpmd startup check fails on DUT2.
+ alt?
+csit/issues/3988 | [CSIT-1906] Zero traffic with cx6/cx7 rdma. Testing migrated to mlx5-core only, on CX7 and CX6 Mellanox NICs.
+ rdma no traffic
+vpp/issues/3538  | [VPP-2077] IP fragmentation: running_fragment_id is not thread safe.
+ reassembly
+csit/issues/4011 | [CSIT-1929] Lossy trials in nat udp mlx5 tests.
+ fail low udp mlx5
+csit/issues/4017 | [CSIT-1935] Zero traffic reported in udpquic tests due to session close errors.
+ fixed (but another breakage)
+csit/issues/4018 | [CSIT-1936] TRex occasionally sees link down in E8xx (dpdk) tests.
+ DOWN
+csit/issues/4020 | [CSIT-1938] 3n-alt: High scale ipsec policy tests may crash VPP.
+ alt?
+csit/issues/4023 | [CSIT-1941] TRex may wrongly detect link bandwidth.
+ rate error
+csit/issues/4024 | [CSIT-1942] 3nb-spr hoststack: interface not up after first test.
+ 3nb
+vpp/issues/3552  | [VPP-2091] Memif crashes VPP in container with jumbo frames.
+ 9000 memif
+csit/issues/4029 | [CSIT-1947] Rare VPP crash in nat avf tests.
+ nat avf crash
+csit/issues/4033 | [CSIT-1951] Combination of AVF and vhost drops all 9000B packets.
+ 9000 AVF vhost
+vpp/issues/3579  | [VPP-2118] 3n spr: Unusable performance of ipsec tests with SHA_256_128.
+ sha256
+csit/issues/4043 | [CSIT-1962] 3n-icx, 3na-spr: Udpquicscale tests sometimes fail with various symptoms.
+ udpquicscale
+csit/issues/4044 | [CSIT-1963] 3n-icxd: Various symptoms pointing to hardware (cable/nic/driver) issues.
+ icxd
+csit/issues/4045 | [CSIT-1964] 3nb-spr, 3n-snr: Wireguardhw tests are likely to crash.
+ wireguardhw
+csit/issues/4050 | [CSIT-1969] nsim scale: Transport endpoint is not connected.
+ nsim (not tested)
+csit/issues/4058 | [CSIT-1977] E810: Unsent packets at moderate load can fail soak.
+ e810 soak
+csit/issues/4059 | [CSIT-1978] 3na-spr, 3nb-spr: Vhost tests cannot access testpmd.
+ 3n vhost
+csit/issues/4063 | 2n-emr: NGINX tests fail due to missing libpcre.
+ emr nginx fixed?
+csit/issues/4064 | 2n-emr: DSA tests fail on accel-config: command not found.
+ emr dsa fixed?
+csit/issues/4065 | 2n-spr: Failed to enable DMA work queue on DUT; fixed after rls2502.
+ spr dsa fixed?
+csit/issues/4066 | 2n-icx: iavf bus error in one run.
+ iavf bus error
+csit/issues/4070 | 2n-grc: VPP in VM sometimes too slow to start with 4C; not observed after swap to CX7 after rls2502.
+ fixed?
+vpp/issues/3597  | dev_iavf: Unable to use more queues than offered initially.
+ zn2 avf
+csit/issues/4073 | Tests combining iavf+jumbo gradually run out of buffers for rx.
+ iavf 9000?
+csit/issues/4076 | 3n-icx: vhost mounting /dev failed.
+ 3n vhost (before testpmd)
+
