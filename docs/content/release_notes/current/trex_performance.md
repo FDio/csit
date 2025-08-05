@@ -29,7 +29,8 @@ List of known issues in CSIT 25.06 for TRex performance tests:
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+  1   | [csit/issues/3987](https://github.com/FDio/csit/issues/3987) | [CSIT-1905] 2n-spr 200Ge2P1Cx7Veat: TG-TG tests see port line rate as 100 Gbps.
+  2   | [csit/issues/4018](https://github.com/FDio/csit/issues/4018) | [CSIT-1936] TRex occasionally sees link down in E8xx (dpdk) tests.
 
 
 ## Fixed
