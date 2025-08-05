@@ -43,7 +43,7 @@ IGNORE_SUFFIX=[
 ]
 LAST_MODIFIED_END=utc.localize(
     datetime.strptime(
-        f"{datetime.now().year}-{datetime.now().month}-{datetime.now().day}",
+        f"{datetime.now().year}-7-17}",
         "%Y-%m-%d"
     )
 )
@@ -147,8 +147,8 @@ out_sdf = process_json_to_dataframe("hoststack", filtered_paths)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
-    .withColumn("month", lit(datetime.now().month)) \
-    .withColumn("day", lit(datetime.now().day)) \
+    .withColumn("month", lit("7") \
+    .withColumn("day", lit("17") \
     .repartition(1)
 
 try:
