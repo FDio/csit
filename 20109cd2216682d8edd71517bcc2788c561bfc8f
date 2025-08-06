@@ -33,6 +33,29 @@
       "message": "Not mergeable with tox failing, Voting -1 as manual verify could remove Verified-1.",
       "revId": "20109cd2216682d8edd71517bcc2788c561bfc8f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29d18bc1_7b1c468b",
+        "filename": "resources/libraries/python/suite_generator/constants.py",
+        "patchSetId": 38
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-06T08:42:01Z",
+      "side": 1,
+      "message": "\"dev_iavf_plugin.so\"\n\nAlso, the code in master applies \"dev_octeon_plugin.so\" if NIC is \"Cavium-A063-100G\" and driver is \"vfio-pci\".",
+      "range": {
+        "startLine": 140,
+        "startChar": 11,
+        "endLine": 140,
+        "endChar": 26
+      },
+      "revId": "20109cd2216682d8edd71517bcc2788c561bfc8f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
