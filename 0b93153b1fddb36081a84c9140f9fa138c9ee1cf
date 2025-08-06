@@ -33,6 +33,23 @@
       "message": "Comparison base\n\ncsit-2n-grc-perftest nic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch",
       "revId": "0b93153b1fddb36081a84c9140f9fa138c9ee1cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e2434d1_de45c381",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-06T12:39:19Z",
+      "side": 1,
+      "message": "csit-2n-grc-perftest nic_*ANDdrv_mlx5_coreAND1cAND64bANDeth-l2patch",
+      "revId": "0b93153b1fddb36081a84c9140f9fa138c9ee1cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
