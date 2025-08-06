@@ -850,11 +850,7 @@ function run_robot () {
 
     # Run ALL generated test suites:
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
-    # Run only tests defined by tag(s) out of generated tests:
-    # all_options+=("--include" "tag1ANDtag2ANDtag3")
-
-    # TODO: REMOVE
-    # all_options+=("${EXPANDED_TAGS[@]}")
+    all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
