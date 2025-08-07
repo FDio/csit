@@ -16,6 +16,52 @@
       "message": "csit-2n-spr-perftest",
       "revId": "971a7337c0002e6f61b2b8d1f3b6c0c0c81895dc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7497869d_143e7de8",
+        "filename": "resources/libraries/python/suite_generator/constants.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-07T10:53:23Z",
+      "side": 1,
+      "message": "fication",
+      "range": {
+        "startLine": 183,
+        "startChar": 18,
+        "endLine": 183,
+        "endChar": 28
+      },
+      "revId": "971a7337c0002e6f61b2b8d1f3b6c0c0c81895dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f10efdd_d80590af",
+        "filename": "resources/libraries/python/suite_generator/generator_functions.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-07T10:53:23Z",
+      "side": 1,
+      "message": "B\n(also for other tests types)",
+      "range": {
+        "startLine": 304,
+        "startChar": 61,
+        "endLine": 304,
+        "endChar": 62
+      },
+      "revId": "971a7337c0002e6f61b2b8d1f3b6c0c0c81895dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
