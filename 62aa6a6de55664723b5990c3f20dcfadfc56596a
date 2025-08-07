@@ -16,6 +16,23 @@
       "message": "csit-2n-spr-perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch",
       "revId": "62aa6a6de55664723b5990c3f20dcfadfc56596a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1885a27_3263be7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 42
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-08-07T08:24:45Z",
+      "side": 1,
+      "message": "csit-2n-spr-perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch mrrANDnic_intel-e810cqANDdrv_avfAND2cAND64bANDeth-l2patch",
+      "revId": "62aa6a6de55664723b5990c3f20dcfadfc56596a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
