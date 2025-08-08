@@ -169,7 +169,6 @@ class TrafficGenerator(AbstractMeasurer):
         self.resetter = None
         self.transaction_scale = None
         self.transaction_duration = None
-        self.sleep_till_duration = None
         self.transaction_type = None
         self.duration_limit = None
         self.ramp_up_start = None
@@ -1337,8 +1336,6 @@ class TrafficGenerator(AbstractMeasurer):
         :raises NotImplementedError: If TG is not supported.
         """
         intended_duration = float(intended_duration)
-        time_start = time.monotonic()
-        time_stop = time_start + intended_duration
         for _ in range(3):
             if self.resetter:
                 self.resetter()
@@ -1353,10 +1350,6 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             raise RuntimeError(f"Too many negative counts in a row!")
         logger.debug(f"Trial measurement result: {result!r}")
-        # In PLRsearch, computation needs the specified time to complete.
-        if self.sleep_till_duration:
-            while (sleeptime := time_stop - time.monotonic()) > 0.0:
-                time.sleep(sleeptime)
         return result
 
     def set_rate_provider_defaults(
@@ -1371,7 +1364,6 @@ class TrafficGenerator(AbstractMeasurer):
             transaction_type=u"packet",
             duration_limit=0.0,
             negative_loss=True,
-            sleep_till_duration=False,
             use_latency=False,
             ramp_up_rate=None,
             ramp_up_duration=None,
@@ -1399,8 +1391,6 @@ class TrafficGenerator(AbstractMeasurer):
         :param duration_limit: Zero or maximum limit for computed (or given)
             duration.
         :param negative_loss: If false, negative loss is reported as zero loss.
-        :param sleep_till_duration: If true and measurement returned faster,
-            sleep until it matches duration. Needed for PLRsearch.
         :param use_latency: Whether to measure latency during the trial.
             Default: False.
         :param ramp_up_rate: Rate to use in ramp-up trials [pps].
@@ -1416,7 +1406,6 @@ class TrafficGenerator(AbstractMeasurer):
         :type transaction_type: str
         :type duration_limit: float
         :type negative_loss: bool
-        :type sleep_till_duration: bool
         :type use_latency: bool
         :type ramp_up_rate: float
         :type ramp_up_duration: float
@@ -1432,7 +1421,6 @@ class TrafficGenerator(AbstractMeasurer):
         self.transaction_type = str(transaction_type)
         self.duration_limit = float(duration_limit)
         self.negative_loss = bool(negative_loss)
-        self.sleep_till_duration = bool(sleep_till_duration)
         self.use_latency = bool(use_latency)
         self.ramp_up_rate = float(ramp_up_rate)
         self.ramp_up_duration = float(ramp_up_duration)
@@ -1558,7 +1546,6 @@ class OptimizedSearch:
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
-            sleep_till_duration=False,
             ppta=ppta,
             resetter=resetter,
             traffic_directions=traffic_directions,
@@ -1692,7 +1679,6 @@ class OptimizedSearch:
             frame_size=frame_size,
             traffic_profile=traffic_profile,
             negative_loss=False,
-            sleep_till_duration=True,
             ppta=ppta,
             resetter=resetter,
             traffic_directions=traffic_directions,
