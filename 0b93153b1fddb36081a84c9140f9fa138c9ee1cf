@@ -67,6 +67,23 @@
       "message": "csit-2n-grc-perftest nic_*ANDdrv_mlx5_coreAND1cAND64bANDeth-l2xcbase",
       "revId": "0b93153b1fddb36081a84c9140f9fa138c9ee1cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "275eadf7_83d1d781",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-08T11:20:20Z",
+      "side": 1,
+      "message": "Comparison base:\ncsit-2n-emr-perftest soakANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch",
+      "revId": "0b93153b1fddb36081a84c9140f9fa138c9ee1cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
