@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86986310_1b39f281",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-08-12T08:23:56Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-snr-perftest #3n-snr-vpp-iterative",
+      "revId": "2c74113a620b1a7e8c9ebc88c43921e8976d2357",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
