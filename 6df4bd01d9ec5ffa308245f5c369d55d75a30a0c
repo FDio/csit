@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a0390b3_8071feb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 68
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-13T11:36:18Z",
+      "side": 1,
+      "message": "Do not disable the tox check.",
+      "revId": "6df4bd01d9ec5ffa308245f5c369d55d75a30a0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
