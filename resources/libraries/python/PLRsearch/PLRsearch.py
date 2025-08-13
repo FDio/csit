@@ -199,24 +199,30 @@ class PLRsearch:
                 max_rate,
                 focus_trackers,
             )
-            measurement, average, stdev, avg1, avg2, focus_trackers = results
+            measurements, average, stdev, avg1, avg2, focus_trackers = results
+            max_loss_count = 0
+            matching_intended_count = 1
             # Workaround for unsent packets and other anomalies.
-            measurement.plr_loss_count = min(
-                measurement.intended_count,
-                int(measurement.intended_count * measurement.loss_ratio + 0.9),
-            )
-            logging.debug(
-                f"loss ratio {measurement.plr_loss_count}"
-                f" / {measurement.intended_count}"
-            )
+            for measurement in measurements:
+                measurement.plr_loss_count = min(
+                    measurement.intended_count,
+                    int(measurement.intended_count * measurement.loss_ratio + 0.9),
+                )
+                logging.debug(
+                    f"loss ratio {measurement.plr_loss_count}"
+                    f" / {measurement.intended_count}"
+                )
+                if measurement.plr_loss_count > max_loss_count:
+                    max_loss_count = measurement.plr_loss_count
+                    matching_intended_count = measurement.intended_count
             zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
             # exponential impact. Make it configurable, or is 4:3 good enough?
-            if measurement.plr_loss_count >= (
-                measurement.intended_count * self.packet_loss_ratio_target
+            if max_loss_count >= (
+                matching_intended_count * self.packet_loss_ratio_target
             ):
                 for _ in range(4 * zeros):
-                    lossy_loads.append(measurement.intended_load)
+                    lossy_loads.append(transmit_rate)
                 lossy_loads.sort()
                 zeros = 0
                 logging.debug("High enough loss, lossy loads added.")
@@ -226,7 +232,7 @@ class PLRsearch:
                 )
             if stop_time <= time.time():
                 return average, stdev
-            trial_result_list.append(measurement)
+            trial_result_list.extend(measurements)
             if (trial_number - self.trial_number_offset) <= 1:
                 next_load = max_rate
             elif (trial_number - self.trial_number_offset) <= 3:
@@ -509,7 +515,7 @@ class PLRsearch:
 
     def measure_and_compute(
         self,
-        trial_duration,
+        duration,
         transmit_rate,
         trial_result_list,
         min_rate,
@@ -520,7 +526,7 @@ class PLRsearch:
         """Perform both measurement and computation at once.
 
         High level steps: Prepare and launch computation worker processes,
-        perform the measurement, stop computation and combine results.
+        perform the measurements, stop computation and combine results.
 
         Integrator needs a specific function to process (-1, 1) parameters.
         As our fitting functions use dimensional parameters,
@@ -540,6 +546,9 @@ class PLRsearch:
         Focus trackers are updated in-place. If a focus tracker in None,
         new instance is created.
 
+        This version hardcodes 1 second for trial duration,
+        probably measuring multiple trials until comute time is up.
+
         TODO: Define class for result object, so that fields are documented.
         TODO: Re-use processes, instead creating on each computation?
         TODO: As only one result is needed fresh, figure out a way
@@ -547,7 +556,7 @@ class PLRsearch:
         duration per trial. Special handling at first and last measurement
         will be needed (to properly initialize and to properly combine results).
 
-        :param trial_duration: Length of the measurement in seconds.
+        :param duration: Length of the computation in seconds.
         :param transmit_rate: Offered load in packets per second.
         :param trial_result_list: Results of previous measurements.
         :param min_rate: Practical minimum of possible ofered load.
@@ -555,19 +564,19 @@ class PLRsearch:
         :param focus_trackers: Pair of trackers initialized
             to speed up the numeric computation.
         :param max_samples: Limit for integrator samples, for debugging.
-        :type trial_duration: float
+        :type duration: float
         :type transmit_rate: float
         :type trial_result_list: list of MLRsearch.MeasurementResult
         :type min_rate: float
         :type max_rate: float
         :type focus_trackers: 2-tuple of None or stat_trackers.VectorStatTracker
         :type max_samples: None or int
-        :returns: Measurement and computation results.
+        :returns: Measurements and computation results.
         :rtype: _ComputeResult
         """
         logging.debug(
-            f"measure_and_compute started with self {self!r}, trial_duration "
-            f"{trial_duration!r}, transmit_rate {transmit_rate!r}, "
+            f"measure_and_compute started with self {self!r}, duration "
+            f"{duration!r}, transmit_rate {transmit_rate!r}, "
             f"trial_result_list {trial_result_list!r}, max_rate {max_rate!r}, "
             f"focus_trackers {focus_trackers!r}, max_samples {max_samples!r}"
         )
@@ -670,7 +679,10 @@ class PLRsearch:
         stretch_pipe = start_computing(self.lfit_stretch, stretch_focus_tracker)
 
         # Measurement phase.
-        measurement = self.measurer.measure(trial_duration, transmit_rate)
+        measurements = []
+        time_stop = time.monotonic() + duration
+        while time.monotonic() < time_stop:
+            measurements.append(self.measurer.measure(1.0, transmit_rate))
 
         # Processing phase.
         def stop_computing(name, pipe):
@@ -726,10 +738,10 @@ class PLRsearch:
 
         stretch_result = stop_computing("stretch", stretch_pipe)
         erf_result = stop_computing("erf", erf_pipe)
-        result = PLRsearch._get_result(measurement, stretch_result, erf_result)
+        result = PLRsearch._get_result(measurements, stretch_result, erf_result)
         logging.info(
             f"measure_and_compute finished with trial result "
-            f"{result.measurement!r} avg {result.avg!r} stdev {result.stdev!r} "
+            f"{result.measurements!r} avg {result.avg!r} stdev {result.stdev!r} "
             f"stretch {result.stretch_exp_avg!r} erf {result.erf_exp_avg!r} "
             f"new trackers {result.trackers!r} old trackers {old_trackers!r} "
             f"stretch samples {stretch_result.samples!r} erf samples "
@@ -738,16 +750,16 @@ class PLRsearch:
         return result
 
     @staticmethod
-    def _get_result(measurement, stretch_result, erf_result):
+    def _get_result(measurements, stretch_result, erf_result):
         """Process and collate results from measure_and_compute.
 
         Turn logarithm based values to exponential ones,
         combine averages and stdevs of two fitting functions into a whole.
 
-        :param measurement: The trial measurement obtained during computation.
+        :param measurements: The trial measurements obtained during computation.
         :param stretch_result: Computation output for stretch fitting function.
         :param erf_result: Computation output for erf fitting function.
-        :type measurement: MeasurementResult
+        :type measurements: List[MeasurementResult]
         :type stretch_result: _PartialResult
         :type erf_result: _PartialResult
         :returns: Combined results.
@@ -767,7 +779,7 @@ class PLRsearch:
         trackers = (stretch_result.focus_tracker, erf_result.focus_tracker)
         sea = math.exp(stretch_avg)
         eea = math.exp(erf_avg)
-        return _ComputeResult(measurement, avg, stdev, sea, eea, trackers)
+        return _ComputeResult(measurements, avg, stdev, sea, eea, trackers)
 
 
 # Named tuples, for multiple local variables to be passed as return value.
@@ -786,17 +798,17 @@ _PartialResult = namedtuple(
 
 _ComputeResult = namedtuple(
     "_ComputeResult",
-    "measurement avg stdev stretch_exp_avg erf_exp_avg trackers",
+    "measurements avg stdev stretch_exp_avg erf_exp_avg trackers",
 )
-"""Measurement, 4 computation result values, pair of trackers.
+"""Measurements, 4 computation result values, pair of trackers.
 
-:param measurement: The trial measurement result obtained during computation.
+:param measurements: The trial measurement results obtained during computation.
 :param avg: Overall average of critical rate estimate.
 :param stdev: Overall standard deviation of critical rate estimate.
 :param stretch_exp_avg: Stretch fitting function estimate average exponentiated.
 :param erf_exp_avg: Erf fitting function estimate average, exponentiated.
 :param trackers: Pair of focus trackers to start next iteration with.
-:type measurement: MeasurementResult
+:type measurements: List[MeasurementResult]
 :type avg: float
 :type stdev: float
 :type stretch_exp_avg: float
