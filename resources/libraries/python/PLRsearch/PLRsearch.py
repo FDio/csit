@@ -200,26 +200,23 @@ class PLRsearch:
                 focus_trackers,
             )
             measurements, average, stdev, avg1, avg2, focus_trackers = results
-            max_loss_count = 0
-            matching_intended_count = 1
             # Workaround for unsent packets and other anomalies.
             for measurement in measurements:
                 measurement.plr_loss_count = min(
                     measurement.intended_count,
                     int(measurement.intended_count * measurement.loss_ratio + 0.9),
                 )
+                measurement.plr_loss_ratio = measurement.plr_loss_count / measurement.intended_count
                 logging.debug(
                     f"loss ratio {measurement.plr_loss_count}"
-                    f" / {measurement.intended_count}"
+                    f" / {measurement.intended_count} = {measurement.plr_loss_ratio}"
                 )
-                if measurement.plr_loss_count > max_loss_count:
-                    max_loss_count = measurement.plr_loss_count
-                    matching_intended_count = measurement.intended_count
+            measurement = sorted(measurements, key=lambda m: m.plr_loss_ratio)[int(len(measurements)/2)]
             zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
             # exponential impact. Make it configurable, or is 4:3 good enough?
-            if max_loss_count >= (
-                matching_intended_count * self.packet_loss_ratio_target
+            if measurement.plr_loss_count >= (
+                measurement.intended_count * self.packet_loss_ratio_target
             ):
                 for _ in range(4 * zeros):
                     lossy_loads.append(transmit_rate)
@@ -232,7 +229,7 @@ class PLRsearch:
                 )
             if stop_time <= time.time():
                 return average, stdev
-            trial_result_list.extend(measurements)
+            trial_result_list.append(measurement)
             if (trial_number - self.trial_number_offset) <= 1:
                 next_load = max_rate
             elif (trial_number - self.trial_number_offset) <= 3:
@@ -681,8 +678,10 @@ class PLRsearch:
         # Measurement phase.
         measurements = []
         time_stop = time.monotonic() + duration
-        while time.monotonic() < time_stop:
+        odd = len(measurements) % 2
+        while time.monotonic() < time_stop or not odd:
             measurements.append(self.measurer.measure(1.0, transmit_rate))
+            odd = len(measurements) % 2
 
         # Processing phase.
         def stop_computing(name, pipe):
