@@ -192,7 +192,7 @@ class PLRsearch:
             trial_number += 1
             logging.info(f"Trial {trial_number!r}")
             results = self.measure_and_compute(
-                self.trial_duration_per_trial * trial_number,
+                5.0,
                 transmit_rate,
                 trial_result_list,
                 min_rate,
@@ -211,7 +211,7 @@ class PLRsearch:
                     f"loss ratio {measurement.plr_loss_count}"
                     f" / {measurement.intended_count} = {measurement.plr_loss_ratio}"
                 )
-            measurement = sorted(measurements, key=lambda m: m.plr_loss_ratio)[int(len(measurements)/2)]
+            measurement = sorted(measurements, key=lambda m: m.plr_loss_ratio)[0]
             zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
             # exponential impact. Make it configurable, or is 4:3 good enough?
@@ -678,10 +678,8 @@ class PLRsearch:
         # Measurement phase.
         measurements = []
         time_stop = time.monotonic() + duration
-        odd = len(measurements) % 2
-        while time.monotonic() < time_stop or not odd:
+        while time.monotonic() < time_stop:
             measurements.append(self.measurer.measure(1.0, transmit_rate))
-            odd = len(measurements) % 2
 
         # Processing phase.
         def stop_computing(name, pipe):
