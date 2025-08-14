@@ -1,0 +1,40 @@
+---
+# file: tasks/Debian.yaml
+
+- name: install dependencies
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+    state: present
+    cache_valid_time: 3600
+    install_recommends: false
+  tags:
+    - kubernetes-inst-dependencies
+
+- name: add kubernetes repository
+  ansible.builtin.deb822_repository:
+    name: kubernetes
+    types: deb
+    uris: "{{ kubernetes_apt_repository }}"
+    suites: /
+    signed_by: "{{ kubernetes_apt_repository }}/Release.key"
+  register: kubernetes_repository
+  tags:
+    - kubernetes-inst-repository
+
+- name: update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: kubernetes_repository.changed
+  tags:
+    - kubernetes-inst-repository
+
+- name: add kubernetes apt preferences file to pin a version
+  ansible.builtin.template:
+    src: apt-preferences-kubernetes.j2
+    dest: /etc/apt/preferences.d/kubernetes
+    mode: 0644
+  tags:
+    - kubernetes-inst-repository

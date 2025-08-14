@@ -1,0 +1,9 @@
+---
+# file: handlers/main.yaml
+
+- name: restart kubelet
+  ansible.builtin.service:
+    name: kubelet
+    state: restarted
+  tags:
+    - kubernetes-restart-service

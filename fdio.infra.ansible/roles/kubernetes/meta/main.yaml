@@ -1,0 +1,21 @@
+---
+# file: meta/main.yaml
+
+dependencies: []
+
+galaxy_info:
+  role_name: kubernetes
+  author: pmikus
+  description: Kubernetes for Linux.
+  company: none
+  license: license (BSD, MIT)
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - noble
+    - name: Debian
+      versions:
+        - bullseye
+  galaxy_tags:
+    - kubernetes
