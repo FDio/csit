@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd72652_6a9d8fc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 71
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-08-14T11:48:04Z",
+      "side": 1,
+      "message": "Create a follow-up change on how TOX should be designed.\nFrom current point of view TOX is testing every job/test combination that is executed.\nIf the test is not included in job spec, such test should be removed as obsolete/not-runnable (opposite logic -include-to-job-spec- is also accepted).",
+      "revId": "4178d00c98dda49b64520f800ff5f87a02136b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
