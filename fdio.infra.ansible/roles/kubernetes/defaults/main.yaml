@@ -1,0 +1,62 @@
+---
+kubernetes_packages:
+  - name: "kubelet"
+    state: "present"
+  - name: "kubectl"
+    state: "present"
+  - name: "kubeadm"
+    state: "present"
+  - name: "kubernetes-cni"
+    state: "present"
+
+kubernetes_services:
+  - name: "kubelet"
+    state: "started"
+    enabled: true
+
+kubernetes_version: "1.33"
+
+kubernetes_apt_release_channel: "stable"
+kubernetes_apt_repository: "https://pkgs.k8s.io/core:/{{ kubernetes_apt_release_channel }}:/v{{ kubernetes_version }}/deb/"
+
+kubernetes_role: "control_plane"
+
+kubernetes_pod_network:
+  # Calico CNI.
+  cni: "calico"
+  cidr: "192.168.0.0/16"
+
+kubernetes_kubeadm_init_extra_opts: "--pod-network-cidr={{ kubernetes_pod_network.cidr }}"
+kubernetes_join_command_extra_opts: ""
+kubernetes_allow_pods_on_control_plane: true
+
+kubernetes_calico_resources:
+  - https://raw.githubusercontent.com/projectcalico/calico/v3.30.2/manifests/tigera-operator.yaml
+  - https://raw.githubusercontent.com/projectcalico/calico/v3.30.2/manifests/operator-crds.yaml
+
+kubernetes_version_kubeadm: "stable-{{ kubernetes_version }}"
+kubernetes_ignore_preflight_errors: all
+
+kubernetes_kubeadm_kubelet_config_file_path: /etc/kubernetes/kubeadm-kubelet-config.yaml
+
+kubernetes_config_kubeadm_apiversion: v1beta4
+kubenetes_config_kubelet_apiversion: v1beta1
+kubernetes_config_kubeproxy_apiversion: v1alpha1
+
+kubernetes_config_kubelet_configuration:
+  cgroupDriver: "systemd"
+
+kubernetes_config_init_configuration:
+  localAPIEndpoint:
+    advertiseAddress: "{{ kubernetes_apiserver_advertise_address | default(ansible_default_ipv4.address, true) }}"
+# if you use the next lines, remove the command line argument below
+# nodeRegistration:
+#    ignorePreflightErrors:
+#      - all
+
+kubernetes_config_cluster_configuration:
+  networking:
+    podSubnet: "{{ kubernetes_pod_network.cidr }}"
+  kubernetesVersion: "{{ kubernetes_version_kubeadm }}"
+
+kubernetes_config_kube_proxy_configuration: {}

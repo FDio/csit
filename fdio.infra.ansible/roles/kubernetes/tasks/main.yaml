@@ -1,0 +1,52 @@
+---
+# file: tasks/main.yaml
+
+- name: install prerequisites based on operating system
+  ansible.builtin.include_tasks:
+    file: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_os_family }}.yaml"
+        - default.yaml
+  tags:
+    - kubernetes-inst-prerequisites
+
+- name: install kubernetes packages
+  ansible.builtin.package:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+  notify: restart kubelet
+  with_items: "{{ kubernetes_packages }}"
+  tags:
+    - kubernetes-inst-packages
+
+- name: ensure services are started and enabled at boot
+  ansible.builtin.service:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    enabled: "{{ item.enabled | default(true) }}"
+  with_items: "{{ kubernetes_services }}"
+  tags:
+    - kubernetes-service-enable
+
+- name: check if kubernetes has already been initialized
+  ansible.builtin.stat:
+    path: /etc/kubernetes/admin.conf
+  register: kubernetes_init_stat
+  tags:
+    - kubernetes-initialized
+
+- name: initialize control plane
+  ansible.builtin.include_tasks:
+    file: control-plane.yaml
+  when: kubernetes_role == "control_plane"
+  tags:
+    - kubernetes-inst-control-plane
+
+- name: get the kubeadm join command from the Kubernetes control plane
+  ansible.builtin.command: kubeadm token create --print-join-command
+  changed_when: false
+  when: kubernetes_role == "control_plane"
+  register: kubernetes_join_command_result
+  tags:
+    - kubernetes-cluster

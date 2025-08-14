@@ -22,6 +22,8 @@
       tags: intel
     - role: docker
       tags: docker
+    - role: kubernetes
+      tags: kubernetes
     - role: vpp
       tags: vpp
     - role: dpdk
