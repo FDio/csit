@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d221b35e_37e4cd64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 72
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-08-14T11:52:55Z",
+      "side": 1,
+      "message": "Basic question is effectively not TOX design but rather what to do with tests that are not executed.",
+      "revId": "2ec9880e10fa81abd976b43418fbefa275235be3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
