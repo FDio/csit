@@ -5,6 +5,8 @@ weight: 5
 
 # Suite Generation
 
+**This chapter will be completly re-written.**
+
 CSIT uses robot suite files to define tests. However, not all suite files
 available for Jenkins jobs (or manually started bootstrap scripts) are present
 in CSIT git repository. They are generated only when needed.
