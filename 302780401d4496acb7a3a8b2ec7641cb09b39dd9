@@ -50,6 +50,23 @@
       "message": "csit-2n-icx-perftest mrrANDnic_*cx7*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch",
       "revId": "302780401d4496acb7a3a8b2ec7641cb09b39dd9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "926b3ffb_e0c9fd97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-15T12:25:33Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest mrrANDnic_*cx5*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch",
+      "revId": "302780401d4496acb7a3a8b2ec7641cb09b39dd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
