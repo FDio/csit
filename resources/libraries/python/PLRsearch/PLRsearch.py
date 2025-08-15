@@ -192,7 +192,7 @@ class PLRsearch:
             trial_number += 1
             logging.info(f"Trial {trial_number!r}")
             results = self.measure_and_compute(
-                self.trial_duration_per_trial * trial_number,
+                15.0,
                 transmit_rate,
                 trial_result_list,
                 min_rate,
