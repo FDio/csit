@@ -479,6 +479,7 @@
 | | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[0]
 | | ... | num_rx_queues=${rxq_count_int}
 | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ... | mode=ibv
 | | Set List Value | ${${dut}_vf${pf}} | 0 | ${_rdma}
 
 | Initialize layer mlx5_core on node
