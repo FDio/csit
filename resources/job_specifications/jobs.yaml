@@ -259,7 +259,7 @@ jobs:
       - 2n-icx: 2n-icx-vpp-soak
       - 2n-spr: 2n-spr-vpp-soak
       - 3n-icx: 3n-icx-vpp-soak
-      - 3nd-icx: 3n-icxd-vpp-soak
+      - 3n-icxd: 3n-icxd-vpp-soak
 
   csit-vpp-perf-verify-{stream}-{node-arch}:
     stream:
