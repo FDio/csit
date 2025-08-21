@@ -58,7 +58,7 @@ function build_vpp_ubuntu () {
     fi
     make ${make_params} install-dep install-ext-deps || die
     make ${make_params} install-opt-deps || echo "Old build, ignoring opt-deps error"
-    make ${make_params} pkg-deb-debug VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON' || die
+    make ${make_params} pkg-deb-debug VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON -DVPP_ENABLE_SANITIZE_ADDR=ON' || die
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
