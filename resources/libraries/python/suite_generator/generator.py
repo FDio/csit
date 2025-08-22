@@ -104,7 +104,7 @@ def _generate_suite(src: str, dst: str, test_tag: str, infra: tuple,
     :returns: Return code: 0 - OK, 1 - Not OK
     :rtype: int
     """
-    logging.debug(
+    logging.info(
         f"Template file:\n{src}\n"
         f"Destination file:\n{dst}\n"
         f"Test name:\n{test_tag}\n"
@@ -128,6 +128,9 @@ def _generate_suite(src: str, dst: str, test_tag: str, infra: tuple,
     except NotImplementedError as err:
         logging.error(err)
         raise
+    logging.info(
+        f"suite_type:\n{suite_type}\n"
+    )
 
     # Replace items in template
     try:
