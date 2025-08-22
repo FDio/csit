@@ -664,7 +664,7 @@ def suite_generator(args) -> int:
         logging.critical(
             f"The directory '{test_dir}' cannot be created.\n{err}"
           )
-        return 1
+        raise
 
     try:
         makedirs(output_dir, exist_ok=False)
@@ -679,7 +679,7 @@ def suite_generator(args) -> int:
         logging.critical(
             f"The directory '{output_dir}' cannot be created.\n{err}"
           )
-        return 1
+        raise
 
     # Generate the job specification as a JSON structure:
     spec = process_specification()
@@ -694,7 +694,7 @@ def suite_generator(args) -> int:
         job_type = _get_job_type(job)
     except ValueError as err:
         logging.critical(err)
-        return 1
+        raise
 
     generate_all = True if job_type == "tox" else False
     tb_generate_all = True if "generate-all" in trigger_params else False
@@ -738,7 +738,7 @@ def suite_generator(args) -> int:
                 fw.write(dumps(spec, sort_keys=True, indent=2))
         except IOError as err:
             logging.critical(f"Cannot write the JSON file.\n {err}")
-            return 1
+            raise
 
     # Generate suites:
     if generate_all or tb_generate_all:  # All or all for the given testbed
