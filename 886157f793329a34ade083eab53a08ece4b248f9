@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18264628_8cb926b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-08-22T12:18:38Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest nic_intel*ANDdrv_vfio_pciANDeth-ip4udpquicscale10cl10s-vppecho #3n-snr-vpp-hoststack",
+      "revId": "886157f793329a34ade083eab53a08ece4b248f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
