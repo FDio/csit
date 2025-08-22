@@ -127,7 +127,7 @@ def _generate_suite(src: str, dst: str, test_tag: str, infra: tuple,
         suite_type = _get_suite_type(src)
     except NotImplementedError as err:
         logging.error(err)
-        return 1
+        raise
 
     # Replace items in template
     try:
@@ -135,7 +135,7 @@ def _generate_suite(src: str, dst: str, test_tag: str, infra: tuple,
             C.GEN_SUITE_PARAMS[suite_type](new_suite, infra, params[0][1], dst)
     except (ValueError, KeyError) as err:
         logging.error(repr(err))
-        return 1
+        raise
 
     # Add tests
     try:
@@ -143,7 +143,7 @@ def _generate_suite(src: str, dst: str, test_tag: str, infra: tuple,
             new_suite += C.GEN_TEST[suite_type](test_tag, infra, param)
     except (TypeError, KeyError, ValueError) as err:
         logging.error(repr(err))
-        return 1
+        raise
 
     # Write the generated suite
     try:
@@ -151,7 +151,7 @@ def _generate_suite(src: str, dst: str, test_tag: str, infra: tuple,
             fw.write(new_suite)
     except IOError as err:
         logging.error(f"Cannot write the file '{dst}'\n{err}")
-        return 1
+        raise
 
     return 0
 

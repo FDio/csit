@@ -68,13 +68,13 @@ def process_specification() -> dict:
                 f"Not possible to open the file {path_to_spec}\n"
                 f"{err}"
             )
-            return dict()
+            raise
         except YAMLError as err:
             logging.error(
                 f"An error occurred while parsing the specification file "
                 f"{path_to_spec}\n{err}"
             )
-            return dict()
+            raise
 
         raw_spec.update(spec_part)
 
@@ -136,7 +136,7 @@ def process_specification() -> dict:
                                     f"{job_name}: The parameter '{param}' must "
                                     f"be defined."
                                 )
-                                return dict()
+                                raise
                             if val is not None:
                                 d_params[param] = val
                                 continue
@@ -147,7 +147,7 @@ def process_specification() -> dict:
                         f"{job_name}: One or more parameters is not defined: "
                         f"{err}."
                     )
-                    return dict()
+                    raise
                 spec[new_job_name] = deepcopy(job_tmpl)
                 for top_param in top_params:
                     # Delete top parameters, they are not needed anymore:
@@ -191,17 +191,17 @@ def generate_job_spec(spec: dict, job: str, test_set: str,
         job_spec = spec["jobs"][job]
     except KeyError as err:
         logging.error(f"Job {job} not in specification.\n{err}")
-        return dict()
+        raise
     try:
         test_sets = spec["test-sets"]
     except KeyError as err:
         logging.error(f"No test sets defined.\n{err}")
-        return dict()
+        raise
     try:
         test_groups = spec["test-groups"]
     except KeyError as err:
         logging.error(f"No test groups defined.\n{err}")
-        return dict()
+        raise
 
     # If the test set is provided from cmd line, replace that in the
     # specification, or add it if there is no test set specified.
@@ -233,7 +233,7 @@ def generate_job_spec(spec: dict, job: str, test_set: str,
         job_spec["tests"]["tests"] = deepcopy(new_tests)
     except KeyError as err:
         logging.error(f"{job}: One or more parameters is not defined: {err}.")
-        return dict()
+        raise
 
     # Add all parameters to test groups:
     for group in job_spec["tests"]["tests"]:
