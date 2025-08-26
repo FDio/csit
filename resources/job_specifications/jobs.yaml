@@ -147,6 +147,7 @@ jobs:
       - 2n-icx: 2n-icx-vpp-hoststack
       - 2n-spr: 2n-spr-vpp-hoststack
       - 3n-emr: 3n-emr-vpp-hoststack
+      - 3n-snr: 3n-snr-vpp-hoststack
       - 3n-icx: 3n-icx-vpp-hoststack
       - 3na-spr: 3na-spr-vpp-hoststack
       - 3nb-spr: 3nb-spr-vpp-hoststack

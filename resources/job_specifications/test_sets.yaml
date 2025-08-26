@@ -227,6 +227,17 @@ test-sets:
       - hoststack-vppecho-md:
           framesize: [1280, ]
 
+  3n-snr-vpp-hoststack:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    core: [1, ]
+    tests:
+      - hoststack-iperf-md:
+          framesize: [1460, ]
+      - hoststack-vppecho-md:
+          framesize: [1280, ]
+
   3na-spr-vpp-hoststack:
     infra:
       200ge2p1cx7veat:
@@ -2457,6 +2468,21 @@ test-sets:
       - imix
     tests:
       - l2-scale-md
+
+  3n-snr-vpp-cov-memif-00:
+    infra:
+      25ge2p1e822cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-l2bd-sw-sm
+      - container-memif-sw-sm
+      - container-memif-hw-sm
 
 
   3na-spr-vpp-cov-crypto-01:
