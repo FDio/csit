@@ -170,8 +170,10 @@ function main_bisect_loop () {
         select_build "build-root" || die
         check_download_dir || die
         reserve_and_cleanup_testbed || die
-        run_robot || die
-        move_test_results "csit_middle/${iteration}" || die
+        for ((iter=0; iter<20; iter++)); do
+            run_robot || die
+            move_test_results "csit_middle/${iteration}/{iter}" || die
+        done
         untrap_and_unreserve_testbed || die
         rm -vf "csit_mid" || die
         ln -s -T "csit_middle/${iteration}" "csit_mid" || die
