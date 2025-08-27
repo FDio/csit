@@ -161,20 +161,22 @@ function main_bisect_loop () {
     # The symlinks csit_early and csit_late are updated to tightest bounds.
     # The git.log file is examined and if the bisect is finished, loop ends.
 
-    iteration=0
+    bisect_iter=0
     while true
     do
-        let iteration+=1
+        let bisect_iter+=1
         git clean -dffx "build"/ "build-root"/ || die
         build_vpp_ubuntu "MIDDLE" || die
         select_build "build-root" || die
         check_download_dir || die
         reserve_and_cleanup_testbed || die
-        run_robot || die
-        move_test_results "csit_middle/${iteration}" || die
+        for ((robot_iter=0; robot_iter<20; robot_iter++)); do
+            run_robot || die
+            move_test_results "csit_middle/${bisect_iter}/${robot_iter}" || die
+        done
         untrap_and_unreserve_testbed || die
         rm -vf "csit_mid" || die
-        ln -s -T "csit_middle/${iteration}" "csit_mid" || die
+        ln -s -T "csit_middle/${bisect_iter}" "csit_mid" || die
         set +e
         python3 "${TOOLS_DIR}/integrated/compare_bisect.py"
         bisect_rc="${?}"
@@ -182,11 +184,11 @@ function main_bisect_loop () {
         if [[ "${bisect_rc}" == "3" ]]; then
             adjective="new"
             rm -v "csit_late" || die
-            ln -s -T "csit_middle/${iteration}" "csit_late" || die
+            ln -s -T "csit_middle/${bisect_iter}" "csit_late" || die
         elif [[ "${bisect_rc}" == "0" ]]; then
             adjective="old"
             rm -v "csit_early" || die
-            ln -s -T "csit_middle/${iteration}" "csit_early" || die
+            ln -s -T "csit_middle/${bisect_iter}" "csit_early" || die
         else
             die "Unexpected return code: ${bisect_rc}"
         fi
@@ -220,7 +222,7 @@ function move_test_results () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    TARGET="$(readlink -f "$1")"
+    TARGET="$(readlink -m "$1")"
     mkdir -p "${TARGET}" || die "Directory creation failed."
     file_list=("output.xml" "log.html" "report.html" "tests")
     for filename in "${file_list[@]}"; do
