@@ -74,6 +74,10 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/0"
+        vpp_sw_index: 1
+        mtu: 9000
+        numa_node: 0
       port2:
         # s93-t39-sut1-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:01"
@@ -82,6 +86,10 @@ nodes:
         driver: ice
         link: disabled3
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/1"
+        vpp_sw_index: 2
+        mtu: 9000
+        numa_node: 0
       port3:
         # s93-t39-sut1-c1/p3 - 25GE port3 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:02"
@@ -90,6 +98,10 @@ nodes:
         driver: ice
         link: link3
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/2"
+        vpp_sw_index: 3
+        mtu: 9000
+        numa_node: 0
       port4:
         # s93-t39-sut1-c1/p4 - 25GE port4 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:01:01:03"
@@ -98,6 +110,10 @@ nodes:
         driver: ice
         link: link4
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/3"
+        vpp_sw_index: 4
+        mtu: 9000
+        numa_node: 0
   DUT2:
     type: DUT
     model: Intel-Snowridge
@@ -124,6 +140,10 @@ nodes:
         driver: ice
         link: link5
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/0"
+        vpp_sw_index: 1
+        mtu: 9000
+        numa_node: 0
       port2:
         # s94-t39-sut2-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:01"
@@ -132,6 +152,10 @@ nodes:
         driver: ice
         link: disabled4
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/1"
+        vpp_sw_index: 2
+        mtu: 9000
+        numa_node: 0
       port3:
         # s94-t39-sut2-c1/p3 - 25GE port3 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:02"
@@ -140,6 +164,10 @@ nodes:
         driver: ice
         link: link3
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/2"
+        vpp_sw_index: 3
+        mtu: 9000
+        numa_node: 0
       port4:
         # s94-t39-sut2-c1/p4 - 25GE port4 Intel E822-CQDA4 4p25GE.
         mac_address: "00:00:00:02:01:03"
@@ -148,3 +176,7 @@ nodes:
         driver: ice
         link: link4
         model: Intel-E822CQ
+        name: "TwentyFiveGigabitEthernetec/0/3"
+        vpp_sw_index: 4
+        mtu: 9000
+        numa_node: 0

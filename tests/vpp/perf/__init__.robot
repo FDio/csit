@@ -24,11 +24,11 @@
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
-| ... | AND | Init Vpp Startup Configuration on All Duts | ${nodes}
-| ... | AND | Show Vpp Version on All Duts | ${nodes}
+#| ... | AND | Init Vpp Startup Configuration on All Duts | ${nodes}
+#| ... | AND | Show Vpp Version on All Duts | ${nodes}
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
-| ... | AND | Update All Interface Data on All Nodes | ${nodes}
-| ... | skip_tg=${True}
+#| ... | AND | Update All Interface Data on All Nodes | ${nodes}
+#| ... | skip_tg=${True}
 | ... | AND | Stop Vpp Service on All Duts | ${nodes}
 | ... | AND | Finalize Suite Setup Export
 |
