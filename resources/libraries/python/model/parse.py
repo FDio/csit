@@ -84,9 +84,12 @@ def parse(dirpath: str, fake_value: float = 1.0) -> Dict[str, List[float]]:
                 data = json.load(file_in)
             if "test_id" not in data:
                 continue
-            name = data["test_id"]
-            if name in results:
-                raise RuntimeError(f"Duplicate: {name}")
+            name_orig = data["test_id"]
+            name = name_orig[:]
+            iter = 0
+            while name in results:
+                name = f"{name_orig}_{iter}"
+                iter += 1
             if not data["passed"]:
                 results[name] = [fake_value] * 4
                 continue
