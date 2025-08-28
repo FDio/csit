@@ -132,6 +132,19 @@ test-sets:
     tests:
       - l2-scale-md
 
+  3n-snr-vpp-cov-memif-00:
+    infra:
+      25ge2p1e822cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-sw-sm
+
 
   3n-snr-vpp-iterative:
     infra:
@@ -148,6 +161,8 @@ test-sets:
       - ipsec-sw-reassembly-sm:
           framesize: [1518, ]
       - ipsec-hw-sm
+      - ipsec-sw-policy-md:
+          framesize: [1518, imix]
       - ip4-aws-md:
           framesize: [64, ]
       - vxlan-sm:
@@ -160,3 +175,14 @@ test-sets:
           framesize: [78, ]
       - l2-lg:
           framesize: [64, ]
+
+  3n-snr-vpp-hoststack:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    core: [1, ]
+    tests:
+      - hoststack-iperf-md:
+          framesize: [1460, ]
+      - hoststack-vppecho-md:
+          framesize: [1280, ]
