@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad52edff_103a2e69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-09-01T19:00:16Z",
+      "side": 1,
+      "message": "few editing nits from Sec-Dir review.",
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25ff2262_fdb91a51",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-09-01T19:00:16Z",
+      "side": 1,
+      "message": "s/wander away/move away/ ?",
+      "range": {
+        "startLine": 373,
+        "startChar": 45,
+        "endLine": 373,
+        "endChar": 56
+      },
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7bf3ad9_c6c86c02",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-09-01T19:00:16Z",
+      "side": 1,
+      "message": "s/way more/many more/ ?",
+      "range": {
+        "startLine": 418,
+        "startChar": 47,
+        "endLine": 418,
+        "endChar": 55
+      },
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80106fb5_462a4bcb",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-09-01T19:00:16Z",
+      "side": 1,
+      "message": "to delete.",
+      "range": {
+        "startLine": 1045,
+        "startChar": 0,
+        "endLine": 1045,
+        "endChar": 30
+      },
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
