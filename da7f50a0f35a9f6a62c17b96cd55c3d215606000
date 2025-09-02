@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e59c5e9b_37237924",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-09-02T08:19:12Z",
+      "side": 1,
+      "message": "spread away?",
+      "parentUuid": "25ff2262_fdb91a51",
+      "range": {
+        "startLine": 373,
+        "startChar": 45,
+        "endLine": 373,
+        "endChar": 56
+      },
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7bf3ad9_c6c86c02",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
         "patchSetId": 2
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fbf83c7_9feb7e2e",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-09-02T08:19:12Z",
+      "side": 1,
+      "message": "orders of magnitude more?\n\nEarlier versions were alluding to the fact that \"the situation\" has changed between RFC2544 publication date and today. This paragraph does not make much sense without that comparison.\nNot sure how to fix properly.",
+      "parentUuid": "e7bf3ad9_c6c86c02",
+      "range": {
+        "startLine": 418,
+        "startChar": 47,
+        "endLine": 418,
+        "endChar": 55
+      },
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80106fb5_462a4bcb",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
         "patchSetId": 2
@@ -77,6 +125,30 @@
       "writtenOn": "2025-09-01T19:00:16Z",
       "side": 1,
       "message": "to delete.",
+      "range": {
+        "startLine": 1045,
+        "startChar": 0,
+        "endLine": 1045,
+        "endChar": 30
+      },
+      "revId": "da7f50a0f35a9f6a62c17b96cd55c3d215606000",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4542dc_4c4735f4",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-12.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-09-02T08:19:12Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "80106fb5_462a4bcb",
       "range": {
         "startLine": 1045,
         "startChar": 0,
