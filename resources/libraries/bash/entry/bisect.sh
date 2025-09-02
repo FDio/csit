@@ -167,8 +167,10 @@ archive_tests || die
 select_build "build_earliest" || die
 check_download_dir || die
 reserve_and_cleanup_testbed || die
-run_robot || die
-move_test_results "csit_earliest" || die
+for ((robot_iter=0; robot_iter<20; robot_iter++)); do
+    run_robot || die
+    move_test_results "csit_earliest/${robot_iter}" || die
+done
 ln -s -T "csit_earliest" "csit_early" || die
 
 # Explicit cleanup, in case the previous test left the testbed in a bad shape.
@@ -176,8 +178,10 @@ ansible_playbook "cleanup"
 
 select_build "build_latest" || die
 check_download_dir || die
-run_robot || die
-move_test_results "csit_latest" || die
+for ((robot_iter=0; robot_iter<20; robot_iter++)); do
+    run_robot || die
+    move_test_results "csit_latest/${robot_iter}" || die
+done
 ln -s -T "csit_latest" "csit_late" || die
 untrap_and_unreserve_testbed || die
 
