@@ -553,7 +553,7 @@ generate-all
 ;;;;;;;;;;;;
 
 If the string "generate-all" is in the trigger, all tests defined in all test
-sets are generated.
+sets for the given testbed are generated.
 
 This can be used with verify or bisect jobs if you do not know which test set
 includes required test(s). Be careful and use proper tags to specify the
@@ -563,8 +563,8 @@ Examples:
 
 1. csit-2n-emr-perftest <tags> #generate-all
 
-  - generates all tests specified in all test sets, runs only those selected by
-    tags.
+  - generates all tests specified in all test sets for 2n-emr testbed, runs only
+    those selected by tags.
 
 """
 
@@ -696,17 +696,14 @@ def suite_generator(args) -> int:
         logging.critical(err)
         return 1
 
-    if job_type == "tox":
-        generate_all = True
+    generate_all = True if job_type == "tox" else False
+    tb_generate_all = True if "generate-all" in trigger_params else False
 
     # Parse the "test tag" and get:
     # - test type
     # - test set
     # If this information is not present, the values from cmd line or job
     # specification will be used.
-
-    generate_all = True if "generate-all" in trigger_params or \
-        job_type == "tox" else False
     if job_type in ("iterative", "coverage", "verify", "bisect"):
         search_test_type, search_test_set = True, True
         for tr_part in trigger_params.replace("#", "").split(" "):
@@ -744,9 +741,13 @@ def suite_generator(args) -> int:
             return 1
 
     # Generate suites:
-    if generate_all:
+    if generate_all or tb_generate_all:  # All or all for the given testbed
+        tbed = "-".join(job.split("-")[-2:])
         ret_val = 0
         for job in spec["jobs"]:
+            if tb_generate_all:  # Generate only for given testbed.
+                if tbed not in job:
+                    continue
             job_type = _get_job_type(job)
             if job_type == "periodical":
                 logging.info(job)
@@ -763,16 +764,16 @@ def suite_generator(args) -> int:
                         ret_val += generate_suites(test_dir, job_spec, job)
             elif job_type == "coverage" and "vpp" in job:
                 logging.info(job)
-                tbed = "-".join(job.split("-")[-2:]) + "-"
+                stbed = "-".join(job.split("-")[-2:]) + "-"
                 for tset in spec["test-sets"]:
-                    if "-cov-" in tset and tbed in tset:
+                    if "-cov-" in tset and stbed in tset:
                         for ttype in ("mrr", "ndrpdr"):
                           job_spec = generate_job_spec(spec, job, tset, ttype)
                           if not job_spec:
                               return 1
                           ret_val += generate_suites(test_dir, job_spec, job)
         return ret_val
-    else:
+    else:  # Only specified tests
         job_spec = generate_job_spec(spec, job, test_set, test_type)
         if not job_spec:
             return 1

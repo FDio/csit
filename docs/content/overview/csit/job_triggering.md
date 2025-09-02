@@ -130,7 +130,7 @@ are generated. Tox job does not run any tests.
 ##### generate-all
 
 If the string "generate-all" is in the trigger, all tests defined in all test
-sets are generated.
+sets for the given testbed are generated.
 
 This can be used with verify or bisect jobs if you do not know which test set
 includes required test(s). Be careful and use proper tags to specify the
@@ -139,12 +139,12 @@ test(s).
 Examples:
 
 1. csit-2n-emr-perftest `tags` #generate-all
-   - Generates all tests specified in all test sets, runs only those selected by
-     tags.
+   - Generates all tests specified in all test sets for 2n-emr testbed, runs
+     only those selected by tags.
 
-2. bisecttest-2n-emr `commit` `tags` #generate-all
-   - Generates all tests specified in all test sets, runs only those selected by
-     tags.
+1. bisecttest-2n-emr `commit` `tags` #generate-all
+   - Generates all tests specified in all test sets for 2n-emr testbed, runs
+     only those selected by tags.
 
 ## Periodical jobs
 
