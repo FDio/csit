@@ -433,7 +433,7 @@
       },
       "applicabilityExpressionResult": {},
       "submittabilityExpressionResult": {
-        "value": {"expression":{"expressionString":"label:Verified=MAX AND -label:Verified=MIN"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":["label:Verified=MAX"],"failingAtoms":["label:Verified=MIN"]}
+        "value": {"expression":{"expressionString":"label:Verified=MAX AND -label:Verified=MIN"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":["label:Verified=MIN"],"failingAtoms":["label:Verified=MAX"]}
       },
       "overrideExpressionResult": {},
       "patchSetCommitId": "17e75081e7aa8aabbd2bc28300c7afd4d1e1fe86",
