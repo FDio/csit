@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-11
-date: 2025-07-07
+docname: draft-ietf-bmwg-mlrsearch-12
+date: 2025-09-02
 
 submissionType: IETF
 ipr: trust200902
