@@ -480,7 +480,7 @@ def generate_test_hoststack_bps(test_tag: str, infra: tuple,
     test = Template(C.TMPL_TEST["hoststack_bps"])
     (cores, frame), _ = params
     mapping = {
-        "suite_id": test_tag,
+        "suite_id": f"{test_tag}-bps",
         "driver": "" if infra[1] in C.DRIVERS_NOT_IN_NAME else \
             f"{C.NIC_DRIVER_TO_SUITE_PREFIX[infra[1]]}-",
         "frame_str": "IMIX" if frame == "imix" else f"{frame}B",
