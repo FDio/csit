@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68d532f5_59770dcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-09-03T12:37:20Z",
+      "side": 1,
+      "message": "fixed in 43657: NSG: split job spec by testbeds | https://gerrit.fd.io/r/c/csit/+/43657",
+      "revId": "26f5856b2d5d3ca15e7a0c8e8b01b8228b8576ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
