@@ -1,0 +1,221 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  2n-zn2-dpdk-iterative:
+    infra:
+      25ge2p1xxv710:
+        - vfio-pci
+    tests:
+      - dpdk-sm
+
+
+  2n-zn2-vpp-cov-ip4-00:
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-lg:
+          infra:
+            25ge2p1xxv710:
+              - avf
+              - vfio-pci
+      - ip4-3-md:
+          infra:
+            100ge2p1cx556a:
+              - rdma-core
+              - mlx5_core
+
+  2n-zn2-vpp-cov-ip4-01:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  2n-zn2-vpp-cov-ip4-02:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
+  2n-zn2-vpp-cov-ip4-03:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - nat44det-sm
+
+  2n-zn2-vpp-cov-ip4tun-00:
+    infra:
+      25ge2p1xxv710:
+        - avf
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - geneve-lg
+
+  2n-zn2-vpp-cov-ip6-00:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-md
+      - ip6-base-sm:
+          infra:
+            100ge2p1cx556a:
+              - rdma-core
+              - mlx5_core
+
+  2n-zn2-vpp-cov-ip6-01:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-scale-lg
+      - ip6-2m-sm:
+          infra:
+            100ge2p1cx556a:
+              - rdma-core
+              - mlx5_core
+
+  2n-zn2-vpp-cov-l2-00:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+      - l2-base-sm:
+          infra:
+            100ge2p1cx556a:
+              - rdma-core
+              - mlx5_core
+
+  2n-zn2-vpp-cov-lb-00:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - lb-md
+
+  2n-zn2-vpp-cov-memif-00:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-l2bd-sw-sm
+      - container-memif-sw-sm
+
+  2n-zn2-vpp-cov-vhost-00:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vhost-lg
+
+
+  2n-zn2-vpp-iterative:
+    infra:
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
+      100ge2p1cx556a:
+        - rdma-core
+    tests:
+      - container-memif-l2bd-sw-sm
+      - container-memif-sw-sm
+      - ip4-aws-md
+      - ip4-acl-md:
+          infra:
+            25ge2p1xxv710:
+              - avf
+            100ge2p1cx556a:
+              - rdma-core
+      - nat44det-sm:
+          infra:
+            25ge2p1xxv710:
+              - avf
+      - geneve-lg:
+          infra:
+            25ge2p1xxv710:
+              - avf
+      - ip6-aws-md:
+          framesize: [78, ]
+      - l2-lg
+      - vhost-md
+
+
+  2n-zn2-gso:
+    framesize: [128000, ]
+    core: [1, 2, 4]
+    tests:
+      - gso-tap-sm:
+          infra:
+            25ge2p1e810xxv:
+              - tap
+      - gso-vhost-sm:
+          infra:
+            25ge2p1e810xxv:
+              - vhost

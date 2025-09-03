@@ -1,0 +1,167 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  3n-alt-dpdk-iterative:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    tests:
+      - dpdk-sm
+
+
+  3n-alt-vpp-cov-ip4-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-lg
+
+  3n-alt-vpp-cov-ip4-01:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  3n-alt-vpp-cov-ip4-02:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-2-md
+
+  3n-alt-vpp-cov-ip4tun-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vxlan-sm
+
+  3n-alt-vpp-cov-ip6-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-md
+      - ip6-scale-md
+
+  3n-alt-vpp-cov-l2-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+      - l2-scale-md
+
+  3n-alt-vpp-cov-l2-01:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-acl-2-md
+      - l2-macip-sm
+
+  3n-alt-vpp-cov-memif-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+     - container-memif-sw-sm
+
+  3n-alt-vpp-cov-srv6-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - srv6-lg
+
+  3n-alt-vpp-cov-vhost-00:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vhost-2-md
+      - vhost-vxlan-2-sm
+
+
+  3n-alt-vpp-iterative:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    tests:
+      - ipsec-sw-async-md:
+          framesize: [1518, imix]
+          core: [2, 3, 4]
+      - ipsec-sw-md:
+          framesize: [1518, imix]
+      - ipsec-sw-reassembly-sm:
+          framesize: [1518, ]
+      - ipsec-sw-policy-md:
+          framesize: [1518, imix]
+      - ip4-base-sm
+      - ip4-pol-sm
+      - vxlan-sm
+      - gtpu-sw-sm
+      - wireguard-sw-md:
+          framesize: [1518, imix]
+      - gtpu-sw-reassembly-sm:
+          framesize: [1518, ]
+      - ip6-base-sm:
+          framesize: [78, ]
+      - l2-base-md
+      - srv6-lg:
+          framesize: [78, ]
+      - vhost-2-md

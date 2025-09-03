@@ -1,0 +1,162 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  3n-snr-dpdk-iterative:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    tests:
+      - dpdk-sm
+
+
+  3n-snr-vpp-cov-crypto-00:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes128cbc-hmac512sha-md
+      - ipsec-sw-aes128gcm-md
+      - ipsec-sw-aes256gcm-md
+      - ipsec-sw-policy-aes256gcm-sm
+
+  3n-snr-vpp-cov-crypto-01:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-async-aes128cbc-hmac512sha-md
+      - ipsec-sw-async-aes128gcm-md
+      - ipsec-sw-async-aes256gcm-md
+
+  3n-snr-vpp-cov-ip4-00:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-lg
+
+  3n-snr-vpp-cov-ip4-01:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  3n-snr-vpp-cov-ip4tun-00:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vxlan-sm
+
+  3n-snr-vpp-cov-ip4tun-01:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    tests:
+      - wireguard-sw-lg
+      - wireguard-hw-lg
+
+  3n-snr-vpp-cov-ip6-00:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-md
+
+  3n-snr-vpp-cov-ip6-01:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-scale-md
+
+  3n-snr-vpp-cov-l2-00:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+
+  3n-snr-vpp-cov-l2-01:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-scale-md
+
+
+  3n-snr-vpp-iterative:
+    infra:
+      25ge2p1e822cq:
+        - vfio-pci
+    framesize: [1518, imix]
+    tests:
+      - ipsec-sw-md
+      - ipsec-sw-udp:
+          framesize: [1518, ]
+          core: [1, ]
+      - ipsec-sw-async-2-sm:
+          core: [2, 3, 4]
+      - ipsec-sw-reassembly-sm:
+          framesize: [1518, ]
+      - ipsec-hw-sm
+      - ip4-aws-md:
+          framesize: [64, ]
+      - vxlan-sm:
+          framesize: [64, ]
+      - wireguard-sw-lg
+      - wireguard-hw-lg
+      - gtpu-sw-reassembly-sm:
+          framesize: [1518, ]
+      - ip6-aws-md:
+          framesize: [78, ]
+      - l2-lg:
+          framesize: [64, ]

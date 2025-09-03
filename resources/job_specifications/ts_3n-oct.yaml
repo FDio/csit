@@ -1,0 +1,38 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  3n-oct-vpp-cov-ip4-00:
+    infra:
+      100ge2p1a063:
+        - oct-vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-aws-md
+
+  3n-oct-vpp-cov-l2-00:
+    infra:
+      100ge2p1a063:
+        - oct-vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-md
+
+
+  3n-oct-vpp-iterative:
+    infra:
+      100ge2p1a063:
+        - oct-vfio-pci
+    tests:
+      - ip4-aws-md
+      - l2-md

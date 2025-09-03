@@ -18,8 +18,9 @@
 import logging
 
 from copy import deepcopy
+from glob import glob
 from itertools import product
-from os import path
+from os import path, sep
 from yaml import load, FullLoader, YAMLError
 
 import constants as C
@@ -50,33 +51,34 @@ def _get_job_params(in_str: str) -> list:
 
 
 def process_specification() -> dict:
-    """Process the specification provided as a YAML file.
+    """Process the specification provided as a YAML files.
 
-    :param path_to_spec: Path to YAML file with specification.
+    :param path_to_spec: Path to YAML files with specification.
     :returns: Full specification with all parameters replaced by their values.
     :rtype: dict
     """
 
+    logging.info(f"Processing the specification in {C.DIR_JOB_SPEC}:")
     raw_spec = dict()
-    for spec_file in ("jobs.yaml", "test_sets.yaml", "test_groups.yaml"):
-        path_to_spec = path.join(C.DIR_JOB_SPEC, spec_file)
+    for file_name in glob(f"{C.DIR_JOB_SPEC}{sep}*.yaml"):
+        logging.info(file_name)
         try:
-            with open(path_to_spec, "r") as file_read:
+            with open(file_name, "r") as file_read:
                 spec_part = load(file_read, Loader=FullLoader)
         except IOError as err:
-            logging.error(
-                f"Not possible to open the file {path_to_spec}\n"
-                f"{err}"
-            )
+            logging.error(f"Not possible to open the file {file_name}\n{err}")
             return dict()
         except YAMLError as err:
             logging.error(
                 f"An error occurred while parsing the specification file "
-                f"{path_to_spec}\n{err}"
+                f"{file_name}\n{err}"
             )
             return dict()
 
-        raw_spec.update(spec_part)
+        for key, val in spec_part.items():
+            if key not in raw_spec:
+                raw_spec[key] = dict()
+            raw_spec[key].update(val)
 
     jobs = raw_spec.get("jobs", dict())
 
