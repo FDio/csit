@@ -1,0 +1,701 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  3n-icx-dpdk-iterative:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+      25ge2p1e810xxv:
+        - vfio-pci
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - dpdk-sm
+
+
+  3n-icx-vpp-cov-crypto-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    core: [1, ]
+    tests:
+      - ipsec-sw-aes128cbc-hmac512sha-lg
+      - ipsec-sw-policy-aes256gcm-sm
+
+  3n-icx-vpp-cov-crypto-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes128gcm-lg
+
+  3n-icx-vpp-cov-crypto-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes256gcm-lg
+
+  3n-icx-vpp-cov-crypto-03:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-async-aes128cbc-hmac512sha-md
+      - ipsec-sw-async-aes128gcm-md
+      - ipsec-sw-async-aes256gcm-md
+
+  3n-icx-vpp-cov-crypto-04:
+    infra:
+      25ge2p1e810xxv:
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    tests:
+      - ipsec-sw-fixtnlip-md
+
+  3n-icx-vpp-cov-crypto-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize: [64, 1518, imix]
+    core: [1, ]
+    tests:
+      - ipsec-sw-aes128cbc-hmac512sha-lg
+      - ipsec-sw-policy-aes256gcm-sm
+
+  3n-icx-vpp-cov-crypto-11:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes128gcm-lg
+
+  3n-icx-vpp-cov-crypto-12:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes256gcm-lg
+
+  3n-icx-vpp-cov-crypto-13:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-async-aes128cbc-hmac512sha-md
+      - ipsec-sw-async-aes128gcm-md
+      - ipsec-sw-async-aes256gcm-md
+
+  3n-icx-vpp-cov-ip4-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-2-md
+
+  3n-icx-vpp-cov-ip4-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  3n-icx-vpp-cov-ip4-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
+  3n-icx-vpp-cov-ip4-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-2-md
+
+  3n-icx-vpp-cov-ip4-11:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  3n-icx-vpp-cov-ip4-12:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
+  3n-icx-vpp-cov-ip4tun-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vxlan-sm
+
+  3n-icx-vpp-cov-ip4tun-01:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    tests:
+      - wireguard-sw-lg
+
+  3n-icx-vpp-cov-ip4tun-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - lisp-sm
+
+  3n-icx-vpp-cov-ip4tun-03:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+      25ge2p1e810xxv:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - gtpu-sw-sm
+      - gtpu-hw-sm
+
+  3n-icx-vpp-cov-ip4tun-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vxlan-sm
+
+  3n-icx-vpp-cov-ip4tun-11:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize: [64, 1518, imix]
+    tests:
+      - wireguard-sw-lg
+
+  3n-icx-vpp-cov-ip4tun-12:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - lisp-sm
+
+  3n-icx-vpp-cov-ip6-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-md
+
+  3n-icx-vpp-cov-ip6-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-scale-md
+
+  3n-icx-vpp-cov-ip6-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-md
+
+  3n-icx-vpp-cov-ip6-11:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-scale-md
+
+  3n-icx-vpp-cov-ip6tun-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-lisp-sm
+
+  3n-icx-vpp-cov-ip6tun-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-lisp-sm
+
+  3n-icx-vpp-cov-l2-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+
+  3n-icx-vpp-cov-l2-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-scale-md
+
+  3n-icx-vpp-cov-l2-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-acl-xl
+
+  3n-icx-vpp-cov-l2-03:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-macip-md
+
+  3n-icx-vpp-cov-l2-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+
+  3n-icx-vpp-cov-l2-11:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-scale-md
+
+  3n-icx-vpp-cov-l2-12:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-acl-xl
+
+  3n-icx-vpp-cov-l2-13:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-macip-md
+
+  3n-icx-vpp-cov-memif-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-sw-sm
+
+  3n-icx-vpp-cov-memif-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-sw-sm
+
+  3n-icx-vpp-cov-srv6-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - srv6-lg
+
+  3n-icx-vpp-cov-srv6-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - srv6-lg
+
+  3n-icx-vpp-cov-vhost-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vhost-2-md
+      - vhost-vxlan-2-sm
+
+  3n-icx-vpp-cov-vhost-10:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vhost-2-md
+      - vhost-vxlan-2-sm
+
+
+  3n-icx-vpp-iterative:
+    tests:
+      - ipsec-sw-md:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, imix]
+      - ipsec-sw-lg:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+          framesize: [1518, imix]
+      - ipsec-sw-lg:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [1518, imix]
+          core: [1, ]
+      - ipsec-sw-async-md:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - avf
+          framesize: [1518, imix]
+          core: [2, 3, 4]
+      - ipsec-sw-policy-md:
+          infra:
+            25ge2p1e810xxv:
+              - vfio-pci
+          framesize: [1518, imix]
+      - ipsec-sw-udp:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+          core: [1, ]
+      - ipsec-sw-async-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, imix]
+      - ipsec-sw-reassembly-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+      - ip4-base-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - gtpu-sw-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            25ge2p1e810xxv:
+              - vfio-pci
+            100ge2p1e810cq:
+              - vfio-pci
+      - gtpu-hw-sm:
+          infra:
+            25ge2p1e810xxv:
+              - vfio-pci
+            100ge2p1e810cq:
+              - vfio-pci
+      - gtpu-sw-reassembly-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+      - wireguard-sw-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            25ge2p1e810xxv:
+              - vfio-pci
+      - wireguard-sw-lg:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, imix]
+      - vxlan-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+              - avf
+      - ip6-base-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+          framesize: [78, ]
+      - l2-base-md:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - l2-1lbvpplacp-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - avf
+      - srv6-lg:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - avf
+          framesize: [78, ]
+
+
+  3n-icx-vpp-hoststack:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+      100ge2p1cx6dx:
+        - mlx5_core
+    core: [1, ]
+    tests:
+      - hoststack-iperf-md:
+          framesize: [1460, ]
+      - hoststack-vppecho-md:
+          framesize: [1280, ]
+
+
+  3n-icx-vpp-soak:
+    core: [1, ]
+    infra:
+      100ge2p1e810cq:
+        - avf
+    tests:
+      # - soak-memif-sm:
+      #     framesize: [64, 1518]
+      - soak-crypto-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+      - soak-ip4-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - vfio-pci
+      - soak-ip4-md
+      - soak-ip6-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [78, ]
+      - soak-ip6-md:
+          framesize: [78, ]
+      - soak-l2-sm:
+          infra:
+            100ge2p1cx6dx:
+              - mlx5_core
+            100ge2p1e810cq:
+              - vfio-pci
+      - soak-l2-md
+      - soak-srv6-sm:
+          framesize: [78, ]
+      - soak-vhost-sm

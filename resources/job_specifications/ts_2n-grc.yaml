@@ -1,0 +1,198 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  2n-grc-dpdk-iterative:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    tests:
+      - dpdk-sm
+
+
+  2n-grc-vpp-cov-ip4-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-lg
+
+  2n-grc-vpp-cov-ip4-01:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  2n-grc-vpp-cov-ip4-02:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
+  2n-grc-vpp-cov-ip4-03:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize: [64, imix]
+    tests:
+      - nat44det-sm
+      - nat44-udir-sm
+      - nat44ed-cps-sm:
+          framesize: [64, ]
+      - nat44ed-tput-sm:
+          framesize: [100, ]
+      - nat44-ip4base-cps-sm:
+          framesize: [64, ]
+      - nat44-ip4base-tput-sm:
+          framesize: [100, ]
+
+  2n-grc-vpp-cov-ip4tun-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - geneve-lg
+
+  2n-grc-vpp-cov-ip6-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-md
+
+  2n-grc-vpp-cov-ip6-01:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-scale-lg
+
+  2n-grc-vpp-cov-l2-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+
+  2n-grc-vpp-cov-l2-01:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-scale-md
+
+  2n-grc-vpp-cov-lb-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - lb-md
+
+  2n-grc-vpp-cov-memif-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-l2bd-sw-sm
+      - container-memif-sw-sm
+      - container-memif-hw-sm
+
+  2n-grc-vpp-cov-vhost-00:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vhost-lg
+
+
+  2n-grc-vpp-iterative:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    tests:
+      - container-memif-l2bd-sw-sm
+      - container-memif-sw-sm
+      - ip4-md
+      - ip4-acl-md
+      - nat44det-sm
+      - nat44-udir-sm
+      - nat44ed-cps-sm
+      - nat44ed-tput-sm:
+          framesize: [100, ]
+      - nat44-ip4base-cps-sm
+      - nat44-ip4base-tput-sm:
+          framesize: [100, ]
+      - geneve-md
+      - ip6-md:
+          framesize: [78, ]
+      - l2-lg
+      - vhost-md
+
+
+  2n-grc-vpp-hoststack:
+    framesize: [0, 2048]
+    core: [1, 2]
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    tests:
+      - hoststack-nginx-sm
