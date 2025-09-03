@@ -95,7 +95,7 @@ test-sets:
 
   3nb-spr-dpdk-iterative:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     tests:
       - dpdk-sm
