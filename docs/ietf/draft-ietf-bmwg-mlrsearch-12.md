@@ -80,7 +80,7 @@ and comparability.
 
 MLRsearch is motivated by the pressing need to address the challenges of
 evaluating and testing the various data plane solutions, especially in
-software- based networking systems based on Commercial Off-the-Shelf
+software-based networking systems based on Commercial Off-the-Shelf
 (COTS) CPU hardware vs purpose-built ASIC / NPU / FPGA hardware.
 
 --- middle
@@ -149,7 +149,7 @@ early MLRsearch implementations employed the following enhancements:
 5. Apply several time-saving load selection heuristics that deliberately
    prevent the bounds from narrowing unnecessarily.
 
-Enhacements 1, 2 and partly 4 are formalized as MLRsearch Specification
+Enhancements 1, 2 and partly 4 are formalized as MLRsearch Specification
 within this document, other implementation details are out the scope.
 
 The remaining enhancements are treated as implementation details,
@@ -214,9 +214,8 @@ mainly a binary search for [RFC2544] unconditionally compliant throughput.
 
 ## Long Search Duration
 
-The proliferation of software DUTs, with frequent software updates and a
-
-number of different frame processing modes and configurations,
+The proliferation of software DUTs, with frequent software updates
+and a number of different frame processing modes and configurations,
 has increased both the number of performance tests
 required to verify the DUT update and the frequency of running those tests.
 This makes the overall test execution time even more important than before.
@@ -274,7 +273,7 @@ that share the same CPUs, memory and I/O resources.
 Given that a SUT is a shared multi-tenant environment,
 the DUT might inadvertently
 experience interference from the operating system
-or other software operating on the same server.
+or from other software operating on the same server.
 
 Some of this interference can be mitigated.
 For instance, in multi-core CPU systems, pinning DUT program threads to
@@ -371,7 +370,7 @@ no tolerance of a single frame loss) affect the throughput result as follows:
 The SUT behavior close to the noiseful end of its performance spectrum
 consists of rare occasions of significantly low performance,
 but the long trial duration makes those occasions not so rare on the trial level.
-Therefore, the binary search results tend to wander away from the noiseless end
+Therefore, the binary search results tend to spread away from the noiseless end
 of SUT performance spectrum, more frequently and more widely than shorter
 trials would, thus causing unacceptable throughput repeatability.
 
@@ -416,7 +415,7 @@ Motivations are many:
 - Networking protocols tolerate frame loss better,
   compared to the time when [RFC1242] and [RFC2544] were specified.
 
-- Increased link speeds require trials sending way more frames within the same duration,
+- Increased link speeds require trials sending more frames within the same duration,
   increasing the chance of a small SUT performance fluctuation
   being enough to cause frame loss.
 
@@ -526,7 +525,7 @@ complies with MLRsearch Specification.
 Some terms used in the specification are capitalized.
 It is just a stylistic choice for this document,
 reminding the reader this term is introduced, defined or explained
-elsewhere in the document. Lowercase variants are equally valid.
+elsewhere in the document. Lower case variants are equally valid.
 
 This document does not separate terminology from methodology. Terms are
 fully specified and discussed in their own subsections, under sections
@@ -633,7 +632,7 @@ by calling Controller once for each benchmark.
 
 The Manager calls a Controller once,
 and the Controller then invokes the Measurer repeatedly
-until Controler decides it has enough information to return outputs.
+until Controller decides it has enough information to return outputs.
 
 The part during which the Controller invokes the Measurer is termed the
 Search. Any work the Manager performs either before invoking the
@@ -963,7 +962,7 @@ this document uses a shorthand **Load**.
 interfaces, treating it as the same quantity expressed using different
 units. Each reported Trial Load value MUST state unambiguously whether
 it refers to (i) a single interface, (ii) a specified subset of
-interfaces (e.g., such as all logical interfaces mapped to one physical
+interfaces (such as all logical interfaces mapped to one physical
 port), or (iii) the total across every interface. For any aggregate
 load value, the report MUST also give the fixed conversion factor that
 links the per-interface and multi-interface load values.
@@ -1031,7 +1030,7 @@ This is why the traffic profile is not part of the Trial Input.
 &nbsp;
 : Specification of traffic properties included in the Traffic Profile is
 the responsibility of the Manager, but the specific configuration mechanisms
-are outside of the scope of this docunment.
+are outside of the scope of this document.
 
 &nbsp;
 : Informally, implementations of the Manager and the Measurer
@@ -1042,8 +1041,7 @@ Typically, Manager and Measurer implementations are tightly integrated.
 &nbsp;
 : Integration efforts between independent Manager and Measurer implementations
 are outside of the scope of this document.
-An example standardization effort is [Vassilev],
-a draft at the time of writing.
+An example standardization effort is [Vassilev].
 
 &nbsp;
 : Examples of traffic properties include:
@@ -1903,7 +1901,7 @@ Each instance is either a Regular Goal Result or an Irregular Goal Result.
 Discussion:
 
 &nbsp;
-: The Manager MUST be able to distinguish whether the instance is regular or not.
+: The Manager MUST be able of distinguishing whether the instance is regular or not.
 
 ### Search Result
 
@@ -2047,7 +2045,7 @@ as long as Goal Result instances are regular.
 Definition:
 
 &nbsp;
-: The Manager is a functional element that is reponsible for
+: The Manager is a functional element that is responsible for
 provisioning other components, calling a Controller component once,
 and for creating the test report following the reporting format as
 defined in Section 26 of [RFC2544].
@@ -2239,9 +2237,7 @@ and its variance.
 
 ## Loss Ratios and Loss Inversion
 
-The biggest
-
-difference between MLRsearch and [RFC2544] binary search
+The biggest difference between MLRsearch and [RFC2544] binary search
 is in the goals of the search.
 [RFC2544] has a single goal, based on classifying a single full-length trial
 as either zero-loss or non-zero-loss.
@@ -2259,9 +2255,7 @@ when the search is started with only one Search Goal instance.
 
 ### Multiple Goals and Loss Inversion
 
-MLRsearch Specification
-
-supports multiple Search Goals, making the search procedure
+MLRsearch Specification supports multiple Search Goals, making the search procedure
 more complicated compared to binary search with single goal,
 but most of the complications do not affect the final results much.
 Except for one phenomenon: Loss Inversion.
@@ -2477,7 +2471,7 @@ and uses more intuitive names for the intermediate values.
 
 ## Load Classification Logic
 
-Note: For explanation clarity variables are taged as (I)nput,
+Note: For clarity of explanation, variables are tagged as (I)nput,
 (T)emporary, (O)utput.
 
 - Collect Trial Results:
@@ -2697,13 +2691,20 @@ guidelines. Thank You Al for the close collaboration over the years, Your Mentor
 Your continuous unwavering encouragement full of empathy and energizing
 positive attitude. Al, You are dearly missed.
 
-Thanks to Gabor Lencse, Giuseppe Fioccola and BMWG contributors for good
-discussions and thorough reviews, guiding and helping us to improve the
-clarity and formality of this document.
+Thanks to Gabor Lencse, Giuseppe Fioccola, Carsten Rossenhövel and BMWG
+contributors for good discussions and thorough reviews, guiding and
+helping us to improve the clarity and formality of this document.
 
 Many thanks to Alec Hothan of the OPNFV NFVbench project for a thorough
 review and numerous useful comments and suggestions in the earlier
 versions of this document.
+
+We are equally indebted to Mohamed Boucadair for a very thorough and
+detailed AD review and providing many good comments and suggestions,
+helping us make this document complete.
+
+Our appreciation is also extended to Shawn Emery, Yoshifumi Nishida,
+David Dong, Nabeel Cocker and Lars Eggert for their reviews and valueable comments.
 
 --- back
 
@@ -3217,7 +3218,7 @@ One has Trial Loss Ratio of 0%, the other of 0.1%.
   - New remaining sum is 60s - 60s = 0s.
 - For second result (duration 60s, loss 0.1%):
  - Remaining sum is not larger than zero, exiting the loop.
-- Current forwarding ratio was most recently set to 0%.
+- Current loss ratio was most recently set to 0%.
 
 - Current forwarding ratio is one minus the current loss ratio, so 100%.
 - Conditional Throughput is the current forwarding ratio multiplied by the Load value.
@@ -3251,7 +3252,7 @@ The result does not depend on the order of 0% loss trials.
 - After 61 trials, duration of 60x1s + 1x60s has been subtracted from 120s, leaving 0s.
 - For 62-th result (duration 60s, loss 0.1%):
   - Remaining sum is not larger than zero, exiting the loop.
-- Current forwarding ratio was most recently set to 0%.
+- Current loss ratio was most recently set to 0%.
 
 - Current forwarding ratio is one minus the current loss ratio, so 100%.
 - Conditional Throughput is the current forwarding ratio multiplied by the Load value.
@@ -3282,7 +3283,7 @@ One has Trial Loss Ratio of 0%, the other of 0.1%.
   - Decrease the remaining sum by this trial's Trial Effective Duration.
   - New remaining sum is 36s - 60s = -24s.
 - No more trials (and remaining sum is not larger than zero), exiting loop.
-- Current forwarding ratio was most recently set to 0.1%.
+- Current loss ratio was most recently set to 0.1%.
 
 - Current forwarding ratio is one minus the current loss ratio, so 99.9%.
 - Conditional Throughput is the current forwarding ratio multiplied by the Load value.
