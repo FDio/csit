@@ -22,7 +22,7 @@ Abstract
 
    MLRsearch is motivated by the pressing need to address the challenges
    of evaluating and testing the various data plane solutions,
-   especially in software- based networking systems based on Commercial
+   especially in software-based networking systems based on Commercial
    Off-the-Shelf (COTS) CPU hardware vs purpose-built ASIC / NPU / FPGA
    hardware.
 
@@ -146,7 +146,7 @@ Internet-Draft                  MLRsearch                 September 2025
        5.3.1.  Single Goal and Hard Bounds . . . . . . . . . . . . .  47
        5.3.2.  Multiple Goals and Loss Inversion . . . . . . . . . .  47
        5.3.3.  Conservativeness and Relevant Bounds  . . . . . . . .  48
-       5.3.4.  Consequences  . . . . . . . . . . . . . . . . . . . .  49
+       5.3.4.  Consequences  . . . . . . . . . . . . . . . . . . . .  48
      5.4.  Exceed Ratio and Multiple Trials  . . . . . . . . . . . .  49
      5.5.  Short Trials and Duration Selection . . . . . . . . . . .  50
      5.6.  Generalized Throughput  . . . . . . . . . . . . . . . . .  50
@@ -174,7 +174,7 @@ Internet-Draft                  MLRsearch                 September 2025
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  58
      10.1.  Normative References . . . . . . . . . . . . . . . . . .  58
      10.2.  Informative References . . . . . . . . . . . . . . . . .  58
-   Appendix A.  Load Classification Code . . . . . . . . . . . . . .  59
+   Appendix A.  Load Classification Code . . . . . . . . . . . . . .  60
    Appendix B.  Conditional Throughput Code  . . . . . . . . . . . .  61
    Appendix C.  Example Search . . . . . . . . . . . . . . . . . . .  63
      C.1.  Example Goals . . . . . . . . . . . . . . . . . . . . . .  64
@@ -270,7 +270,7 @@ Internet-Draft                  MLRsearch                 September 2025
    5.  Apply several time-saving load selection heuristics that
        deliberately prevent the bounds from narrowing unnecessarily.
 
-   Enhacements 1, 2 and partly 4 are formalized as MLRsearch
+   Enhancements 1, 2 and partly 4 are formalized as MLRsearch
    Specification within this document, other implementation details are
    out the scope.
 
@@ -357,12 +357,10 @@ Internet-Draft                  MLRsearch                 September 2025
 2.1.  Long Search Duration
 
    The proliferation of software DUTs, with frequent software updates
-   and a
-
-   number of different frame processing modes and configurations, has
-   increased both the number of performance tests required to verify the
-   DUT update and the frequency of running those tests.  This makes the
-   overall test execution time even more important than before.
+   and a number of different frame processing modes and configurations,
+   has increased both the number of performance tests required to verify
+   the DUT update and the frequency of running those tests.  This makes
+   the overall test execution time even more important than before.
 
    The throughput definition per [RFC2544] restricts the potential for
    time-efficiency improvements.  The bisection method, when used in a
@@ -386,6 +384,8 @@ Internet-Draft                  MLRsearch                 September 2025
 
    *  Set Max = line-rate and Min = a proven loss-free load.
 
+   *  Run a single 60-s trial at the midpoint.
+
 
 
 
@@ -393,8 +393,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                  [Page 7]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-   *  Run a single 60-s trial at the midpoint.
 
    *  Zero-loss -> midpoint becomes new Min; any loss-> new Max.
 
@@ -430,7 +428,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
    Given that a SUT is a shared multi-tenant environment, the DUT might
    inadvertently experience interference from the operating system or
-   other software operating on the same server.
+   from other software operating on the same server.
 
    Some of this interference can be mitigated.  For instance, in multi-
    core CPU systems, pinning DUT program threads to specific CPU cores
@@ -441,6 +439,8 @@ Internet-Draft                  MLRsearch                 September 2025
    effects are collectively referred to as SUT noise, even if the
    effects are not as unpredictable as what other engineering
    disciplines call noise.
+
+
 
 
 
@@ -545,7 +545,7 @@ Internet-Draft                  MLRsearch                 September 2025
    The SUT behavior close to the noiseful end of its performance
    spectrum consists of rare occasions of significantly low performance,
    but the long trial duration makes those occasions not so rare on the
-   trial level.  Therefore, the binary search results tend to wander
+   trial level.  Therefore, the binary search results tend to spread
    away from the noiseless end of SUT performance spectrum, more
    frequently and more widely than shorter trials would, thus causing
    unacceptable throughput repeatability.
@@ -596,8 +596,8 @@ Internet-Draft                  MLRsearch                 September 2025
    *  Networking protocols tolerate frame loss better, compared to the
       time when [RFC1242] and [RFC2544] were specified.
 
-   *  Increased link speeds require trials sending way more frames
-      within the same duration, increasing the chance of a small SUT
+   *  Increased link speeds require trials sending more frames within
+      the same duration, increasing the chance of a small SUT
       performance fluctuation being enough to cause frame loss.
 
    *  Because noise-related drops usually arrive in small bursts, their
@@ -732,8 +732,8 @@ Internet-Draft                  MLRsearch                 September 2025
 
    Some terms used in the specification are capitalized.  It is just a
    stylistic choice for this document, reminding the reader this term is
-   introduced, defined or explained elsewhere in the document.
-   Lowercase variants are equally valid.
+   introduced, defined or explained elsewhere in the document.  Lower
+   case variants are equally valid.
 
    This document does not separate terminology from methodology.  Terms
    are fully specified and discussed in their own subsections, under
@@ -863,7 +863,7 @@ Internet-Draft                  MLRsearch                 September 2025
    once for each benchmark.
 
    The Manager calls a Controller once, and the Controller then invokes
-   the Measurer repeatedly until Controler decides it has enough
+   the Measurer repeatedly until Controller decides it has enough
    information to return outputs.
 
    The part during which the Controller invokes the Measurer is termed
@@ -1234,11 +1234,11 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 22]
 Internet-Draft                  MLRsearch                 September 2025
 
 
-      specified subset of interfaces (e.g., such as all logical
-      interfaces mapped to one physical port), or (iii) the total across
-      every interface.  For any aggregate load value, the report MUST
-      also give the fixed conversion factor that links the per-interface
-      and multi-interface load values.
+      specified subset of interfaces (such as all logical interfaces
+      mapped to one physical port), or (iii) the total across every
+      interface.  For any aggregate load value, the report MUST also
+      give the fixed conversion factor that links the per-interface and
+      multi-interface load values.
 
       The per-interface value remains the primary unit, consistent with
       prevailing practice in [RFC1242], [RFC2544], and [RFC2285].
@@ -1303,7 +1303,7 @@ Internet-Draft                  MLRsearch                 September 2025
       Specification of traffic properties included in the Traffic
       Profile is the responsibility of the Manager, but the specific
       configuration mechanisms are outside of the scope of this
-      docunment.
+      document.
 
       Informally, implementations of the Manager and the Measurer must
       be aware of their common set of capabilities, so that Traffic
@@ -1313,8 +1313,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
       Integration efforts between independent Manager and Measurer
       implementations are outside of the scope of this document.  An
-      example standardization effort is [Vassilev], a draft at the time
-      of writing.
+      example standardization effort is [Vassilev].
 
       Examples of traffic properties include: - Data link frame size -
       Fixed sizes as listed in Section 3.5 of [RFC1242] and in Section 9
@@ -1335,6 +1334,7 @@ Internet-Draft                  MLRsearch                 September 2025
       *  modifiers from Section 11 of [RFC2544].
 
       *  IP version mixing from Section 5.3 of [RFC8219].
+
 
 
 
@@ -2222,7 +2222,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
    Discussion:
 
-      The Manager MUST be able to distinguish whether the instance is
+      The Manager MUST be able of distinguishing whether the instance is
       regular or not.
 
 4.8.5.  Search Result
@@ -2379,7 +2379,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
    Definition:
 
-      The Manager is a functional element that is reponsible for
+      The Manager is a functional element that is responsible for
       provisioning other components, calling a Controller component
       once, and for creating the test report following the reporting
       format as defined in Section 26 of [RFC2544].
@@ -2604,10 +2604,8 @@ Internet-Draft                  MLRsearch                 September 2025
 
 5.3.  Loss Ratios and Loss Inversion
 
-   The biggest
-
-   difference between MLRsearch and [RFC2544] binary search is in the
-   goals of the search.  [RFC2544] has a single goal, based on
+   The biggest difference between MLRsearch and [RFC2544] binary search
+   is in the goals of the search.  [RFC2544] has a single goal, based on
    classifying a single full-length trial as either zero-loss or non-
    zero-loss.  MLRsearch supports searching for multiple Search Goals at
    once, usually differing in their Goal Loss Ratio values.
@@ -2623,8 +2621,10 @@ Internet-Draft                  MLRsearch                 September 2025
 
 5.3.2.  Multiple Goals and Loss Inversion
 
-   MLRsearch Specification
-
+   MLRsearch Specification supports multiple Search Goals, making the
+   search procedure more complicated compared to binary search with
+   single goal, but most of the complications do not affect the final
+   results much.  Except for one phenomenon: Loss Inversion.
 
 
 
@@ -2633,11 +2633,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 47]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-   supports multiple Search Goals, making the search procedure more
-   complicated compared to binary search with single goal, but most of
-   the complications do not affect the final results much.  Except for
-   one phenomenon: Loss Inversion.
 
    Depending on Search Goal attributes, Load Classification results may
    be resistant to small amounts of Section Inconsistent Trial Results
@@ -2681,6 +2676,11 @@ Internet-Draft                  MLRsearch                 September 2025
    search.  When they meet the stopping conditions, the Relevant Bounds
    are used in the output.
 
+5.3.4.  Consequences
+
+   The consequence of the way the Relevant Bounds are defined is that
+   every Trial Result can have an impact on any current Relevant Bound
+   larger than that Trial Load, namely by becoming a new Upper Bound.
 
 
 
@@ -2689,12 +2689,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 48]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-5.3.4.  Consequences
-
-   The consequence of the way the Relevant Bounds are defined is that
-   every Trial Result can have an impact on any current Relevant Bound
-   larger than that Trial Load, namely by becoming a new Upper Bound.
 
    This also applies when that Load is measured before another Load gets
    enough measurements to become a current Relevant Bound.
@@ -2737,6 +2731,12 @@ Internet-Draft                  MLRsearch                 September 2025
    also needs something that controls the number of trials needed.
    Therefore, each goal also has an attribute called Goal Duration Sum.
 
+   The meaning of a Goal Duration Sum (Section 4.6.2) is that when a
+   Load has (Full-Length) Trials whose Trial Effective Durations when
+   summed up give a value at least as big as the Goal Duration Sum
+   value, the Load is guaranteed to be classified either as an Upper
+   Bound or a Lower Bound for that Search Goal instance.
+
 
 
 
@@ -2745,12 +2745,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 49]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-   The meaning of a Goal Duration Sum (Section 4.6.2) is that when a
-   Load has (Full-Length) Trials whose Trial Effective Durations when
-   summed up give a value at least as big as the Goal Duration Sum
-   value, the Load is guaranteed to be classified either as an Upper
-   Bound or a Lower Bound for that Search Goal instance.
 
 5.5.  Short Trials and Duration Selection
 
@@ -2794,6 +2788,12 @@ Internet-Draft                  MLRsearch                 September 2025
    how to generalize it for Loads with multiple Trials and a non-zero
    Goal Loss Ratio.
 
+   The clearest illustration - and the chief reason for adopting a
+   generalized throughput definition - is the presence of a hard
+   performance limit.
+
+
+
 
 
 
@@ -2801,10 +2801,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 50]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-   The clearest illustration - and the chief reason for adopting a
-   generalized throughput definition - is the presence of a hard
-   performance limit.
 
 5.6.1.  Hard Performance Limit
 
@@ -2851,6 +2847,10 @@ Internet-Draft                  MLRsearch                 September 2025
    Conditional Throughput values may have up to the Goal Loss Ratio
    relative difference.
 
+   Setting the Goal Width below the Goal Loss Ratio may cause the
+   Conditional Throughput for a larger Goal Loss Ratio to become smaller
+   than a Conditional Throughput for a goal with a lower Goal Loss
+
 
 
 Konstantynowicz & Polak   Expires 6 March 2026                 [Page 51]
@@ -2858,9 +2858,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 51]
 Internet-Draft                  MLRsearch                 September 2025
 
 
-   Setting the Goal Width below the Goal Loss Ratio may cause the
-   Conditional Throughput for a larger Goal Loss Ratio to become smaller
-   than a Conditional Throughput for a goal with a lower Goal Loss
    Ratio, which is counter-intuitive, considering they come from the
    same Search.  Therefore, it is RECOMMENDED to set the Goal Width to a
    value no lower than the Goal Loss Ratio of the higher-loss Search
@@ -2887,7 +2884,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 6.1.  Load Classification Logic
 
-   Note: For explanation clarity variables are taged as (I)nput,
+   Note: For clarity of explanation, variables are tagged as (I)nput,
    (T)emporary, (O)utput.
 
    *  Collect Trial Results:
@@ -2905,7 +2902,10 @@ Internet-Draft                  MLRsearch                 September 2025
       -  Short high-loss sum is the sum (T) of Trial Effective Duration
          values of all short high-loss trials (I).
 
+      -  Short low-loss sum is the sum (T) of Trial Effective Duration
+         values of all short low-loss trials (I).
 
+   *  Derive goal-based ratios:
 
 
 
@@ -2913,11 +2913,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 52]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-      -  Short low-loss sum is the sum (T) of Trial Effective Duration
-         values of all short low-loss trials (I).
-
-   *  Derive goal-based ratios:
 
       -  Subceed ratio (T) is One minus the Goal Exceed Ratio (I).
 
@@ -2961,6 +2956,11 @@ Internet-Draft                  MLRsearch                 September 2025
 
    *  Classify the Load:
 
+      -  The load is classified as an Upper Bound (O) if the optimistic
+         exceed ratio is larger than the Goal Exceed Ratio.
+
+      -  The load is classified as a Lower Bound (O) if the pessimistic
+         exceed ratio is not larger than the Goal Exceed Ratio.
 
 
 
@@ -2969,12 +2969,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 53]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-      -  The load is classified as an Upper Bound (O) if the optimistic
-         exceed ratio is larger than the Goal Exceed Ratio.
-
-      -  The load is classified as a Lower Bound (O) if the pessimistic
-         exceed ratio is not larger than the Goal Exceed Ratio.
 
       -  The load is classified as undecided (O) otherwise.
 
@@ -3019,18 +3013,18 @@ Internet-Draft                  MLRsearch                 September 2025
 
    *  Compute Conditional Throughput
 
+      -  Current forwarding ratio (T) is One minus the current loss
+         ratio.
+
+      -  Conditional Throughput (T) is the current forwarding ratio
+         multiplied by the Load value.
+
 
 
 Konstantynowicz & Polak   Expires 6 March 2026                 [Page 54]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-      -  Current forwarding ratio (T) is One minus the current loss
-         ratio.
-
-      -  Conditional Throughput (T) is the current forwarding ratio
-         multiplied by the Load value.
 
 6.2.1.  Conditional Throughput and Load Classification
 
@@ -3074,6 +3068,12 @@ Internet-Draft                  MLRsearch                 September 2025
    events, even the rare ones, and thus the expert can do probabilistic
    predictions about future Trial Outputs.
 
+   When several outcomes are possible, the expert can assess probability
+   of each outcome.
+
+
+
+
 
 
 
@@ -3081,9 +3081,6 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 55]
 
 Internet-Draft                  MLRsearch                 September 2025
 
-
-   When several outcomes are possible, the expert can assess probability
-   of each outcome.
 
 6.3.2.  Exceed Probability
 
@@ -3127,6 +3124,9 @@ Internet-Draft                  MLRsearch                 September 2025
    length trials.  This is possible only if loss spikes are small (so
    other parts can compensate) and if Goal Loss Ratio is more than zero
    (otherwise, other parts cannot compensate at all).
+
+
+
 
 
 
@@ -3180,9 +3180,9 @@ Internet-Draft                  MLRsearch                 September 2025
    encouragement full of empathy and energizing positive attitude.  Al,
    You are dearly missed.
 
-   Thanks to Gabor Lencse, Giuseppe Fioccola and BMWG contributors for
-   good discussions and thorough reviews, guiding and helping us to
-   improve the clarity and formality of this document.
+   Thanks to Gabor Lencse, Giuseppe Fioccola, Carsten Rossenhoevel and
+   BMWG contributors for good discussions and thorough reviews, guiding
+   and helping us to improve the clarity and formality of this document.
 
 
 
@@ -3197,6 +3197,13 @@ Internet-Draft                  MLRsearch                 September 2025
    Many thanks to Alec Hothan of the OPNFV NFVbench project for a
    thorough review and numerous useful comments and suggestions in the
    earlier versions of this document.
+
+   We are equally indebted to Mohamed Boucadair for a very thorough and
+   detailed AD review and providing many good comments and suggestions,
+   helping us make this document complete.
+
+   Our appreciation is also extended to Shawn Emery, Yoshifumi Nishida,
+   David Dong, Nabeel Cocker for their reviews and valueable comments.
 
 10.  References
 
@@ -3236,19 +3243,18 @@ Internet-Draft                  MLRsearch                 September 2025
               Measurement Procedures of RFC 2544", n.d.,
               <http://dx.doi.org/10.11601/ijates.v9i2.288>.
 
-   [Lencze-Shima]
-              "An Upgrade to Benchmarking Methodology for Network
-              Interconnect Devices - expired", n.d.,
-              <https://datatracker.ietf.org/doc/html/draft-lencse-bmwg-
-              rfc2544-bis-00>.
-
-
 
 
 Konstantynowicz & Polak   Expires 6 March 2026                 [Page 58]
 
 Internet-Draft                  MLRsearch                 September 2025
 
+
+   [Lencze-Shima]
+              "An Upgrade to Benchmarking Methodology for Network
+              Interconnect Devices - expired", n.d.,
+              <https://datatracker.ietf.org/doc/html/draft-lencse-bmwg-
+              rfc2544-bis-00>.
 
    [Ott-Mathis-Semke-Mahdavi]
               "The Macroscopic Behavior of the TCP Congestion Avoidance
@@ -3292,12 +3298,6 @@ Internet-Draft                  MLRsearch                 September 2025
               dologin_pub.asp?lang=e&id=T-REC-Y.1564-201602-I!!PDF-
               E&type=items>.
 
-Appendix A.  Load Classification Code
-
-   This appendix specifies how to perform the Load Classification.
-
-   Any Trial Load value can be classified, according to a given Search
-   Goal (Section 4.6.7) instance.
 
 
 
@@ -3305,6 +3305,13 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 59]
 
 Internet-Draft                  MLRsearch                 September 2025
 
+
+Appendix A.  Load Classification Code
+
+   This appendix specifies how to perform the Load Classification.
+
+   Any Trial Load value can be classified, according to a given Search
+   Goal (Section 4.6.7) instance.
 
    The algorithm uses (some subsets of) the set of all available Trial
    Results from Trials measured at a given Load at the end of the
@@ -3347,13 +3354,6 @@ Internet-Draft                  MLRsearch                 September 2025
       Duration and with Trial Loss Ratio higher than the Goal Loss Ratio
       (across Full-Length High-Loss Trials).
 
-   *  short_low_loss_s: Sum of Trial Effective Durations across Trials
-      with Trial Duration shorter than the Goal Final Trial Duration and
-      with Trial Loss Ratio not higher than the Goal Loss Ratio (across
-      Short Low-Loss Trials).
-
-
-
 
 
 
@@ -3361,6 +3361,11 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 60]
 
 Internet-Draft                  MLRsearch                 September 2025
 
+
+   *  short_low_loss_s: Sum of Trial Effective Durations across Trials
+      with Trial Duration shorter than the Goal Final Trial Duration and
+      with Trial Loss Ratio not higher than the Goal Loss Ratio (across
+      Short Low-Loss Trials).
 
    *  short_high_loss_s: Sum of Trial Effective Durations across Trials
       with Trial Duration shorter than the Goal Final Trial Duration and
@@ -3404,11 +3409,6 @@ Appendix B.  Conditional Throughput Code
    Although presented as pseudocode, the listing is syntactically valid
    Python and can be executed without modification.
 
-   Some variable names are shortened in order to fit expressions in one
-   line.  Namely, variables holding sum quantities end in _s instead of
-   _sum, and variables holding effective quantities start in effect_
-   instead of effective_.
-
 
 
 
@@ -3417,6 +3417,11 @@ Konstantynowicz & Polak   Expires 6 March 2026                 [Page 61]
 
 Internet-Draft                  MLRsearch                 September 2025
 
+
+   Some variable names are shortened in order to fit expressions in one
+   line.  Namely, variables holding sum quantities end in _s instead of
+   _sum, and variables holding effective quantities start in effect_
+   instead of effective_.
 
    The pseudocode expects the following variables to hold the following
    values:
@@ -3451,11 +3456,6 @@ Internet-Draft                  MLRsearch                 September 2025
 
    The code works correctly only when there is at least one Trial Result
    measured at a given Load.
-
-
-
-
-
 
 
 
@@ -4170,7 +4170,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
    *  Remaining sum is not larger than zero, exiting the loop.
 
-   *  Current forwarding ratio was most recently set to 0%.
+   *  Current loss ratio was most recently set to 0%.
 
    *  Current forwarding ratio is one minus the current loss ratio, so
       100%.
@@ -4231,7 +4231,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
       -  Remaining sum is not larger than zero, exiting the loop.
 
-   *  Current forwarding ratio was most recently set to 0%.
+   *  Current loss ratio was most recently set to 0%.
 
    *  Current forwarding ratio is one minus the current loss ratio, so
       100%.
@@ -4295,7 +4295,7 @@ Internet-Draft                  MLRsearch                 September 2025
    *  No more trials (and remaining sum is not larger than zero),
       exiting loop.
 
-   *  Current forwarding ratio was most recently set to 0.1%.
+   *  Current loss ratio was most recently set to 0.1%.
 
    *  Current forwarding ratio is one minus the current loss ratio, so
       99.9%.
