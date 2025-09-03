@@ -36,6 +36,7 @@ nodes:
         driver: ice
         link: link1
         model: Intel-E810CQ
+        numa_node: 0
       port2:
         # s41-t25-tg1-c2/p1 - 100GE port2 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2a:74"
@@ -44,6 +45,7 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E810CQ
+        numa_node: 0
   DUT1:
     type: DUT
     model: Intel-Emeraldrapids
@@ -74,6 +76,10 @@ nodes:
         driver: ice
         link: link1
         model: Intel-E810CQ
+        name: "HundredGigabitEthernet38/0/0"
+        vpp_sw_index: 1
+        mtu: 9000
+        numa_node: 0
       port2:
         # s40-t25-sut1-c2/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
         mac_address: "40:a6:b7:ca:2a:6c"
@@ -82,3 +88,7 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E810CQ
+        name: "HundredGigabitEthernet3a/0/0"
+        vpp_sw_index: 2
+        mtu: 9000
+        numa_node: 0
