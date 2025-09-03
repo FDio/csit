@@ -17,13 +17,14 @@ test-groups:
   trex-nat44-cps-md:
     - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
     - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
-    - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
-    - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
+    - ethip4udp-ip4base-h1024-p63-s64512-cps-tg
+    - ethip4udp-ip4base-h262144-p63-s16515072-cps-tg
   trex-nat44-tput-md:
+    # Separated from cps as min framesize is different.
     - ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
     - ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg
-    - ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
-    - ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg
+    - ethip4udp-ip4base-h1024-p63-s64512-tput-tg
+    - ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
   trex-ip6-sm:
     - ethip6-ip6base-tg
     - ethip6-ip6scale20k-tg
