@@ -549,6 +549,8 @@ class VppConfigGenerator:
         :type plugins: list
         """
         for plugin in plugins:
+            if "perfmon" in plugin:
+                continue
             path = ["plugins", f"plugin {plugin}", state]
             self.add_config_item(self._nodeconfig, " ", path)
 
