@@ -5,7 +5,7 @@
 Benchmarking Working Group                            M. Konstantynowicz
 Internet-Draft                                                  V. Polak
 Intended status: Informational                             Cisco Systems
-Expires: 6 March 2026                                   2 September 2025
+Expires: 8 March 2026                                   4 September 2025
 
 
                        Multiple Loss Ratio Search
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2026.
+   This Internet-Draft will expire on 8 March 2026.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 1]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 1]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 2]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 2]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -165,7 +165,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 3]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 3]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -221,7 +221,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 4]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 4]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -277,7 +277,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 5]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 5]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -333,7 +333,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 6]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 6]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -389,7 +389,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 7]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 7]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -445,7 +445,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 8]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 8]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -501,7 +501,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                  [Page 9]
+Konstantynowicz & Polak   Expires 8 March 2026                  [Page 9]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -557,7 +557,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 10]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 10]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -613,7 +613,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 11]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 11]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -669,7 +669,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 12]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 12]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -725,7 +725,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 13]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 13]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -781,7 +781,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 14]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 14]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -837,7 +837,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 15]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 15]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -893,7 +893,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 16]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 16]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -949,7 +949,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 17]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 17]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 18]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 18]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 19]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 19]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 20]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 20]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 21]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 21]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 22]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 22]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 23]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 23]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 24]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 24]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 25]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 25]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 26]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 26]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 27]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 27]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 28]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 28]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 29]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 29]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 30]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 30]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 31]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 31]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 32]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 32]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1845,7 +1845,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 33]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 33]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1901,7 +1901,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 34]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 34]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -1957,7 +1957,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 35]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 35]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2013,7 +2013,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 36]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 36]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2069,7 +2069,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 37]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 37]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2125,7 +2125,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 38]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 38]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2181,7 +2181,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 39]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 39]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2237,7 +2237,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 40]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 40]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2293,7 +2293,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 41]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 41]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2349,7 +2349,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 42]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 42]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2405,7 +2405,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 43]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 43]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2461,7 +2461,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 44]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 44]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2517,7 +2517,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 45]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 45]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2573,7 +2573,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 46]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 46]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2629,7 +2629,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 47]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 47]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2685,7 +2685,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 48]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 48]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2741,7 +2741,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 49]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 49]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2797,7 +2797,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 50]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 50]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2853,7 +2853,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 51]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 51]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2909,7 +2909,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 52]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 52]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -2965,7 +2965,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 53]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 53]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3021,7 +3021,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 54]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 54]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3077,7 +3077,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 55]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 55]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3133,7 +3133,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 56]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 56]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3189,7 +3189,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 57]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 57]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3245,7 +3245,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 58]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 58]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3301,7 +3301,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 59]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 59]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3357,7 +3357,7 @@ Appendix A.  Load Classification Code
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 60]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 60]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3413,7 +3413,7 @@ Appendix B.  Conditional Throughput Code
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 61]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 61]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3469,7 +3469,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 62]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 62]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3525,7 +3525,7 @@ Appendix C.  Example Search
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 63]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 63]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3581,7 +3581,7 @@ C.1.  Example Goals
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 64]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 64]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3637,7 +3637,7 @@ C.2.  Example Trial Results
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 65]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 65]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3693,7 +3693,7 @@ C.3.1.  Point 1
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 66]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 66]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3749,7 +3749,7 @@ C.3.2.  Point 2
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 67]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 67]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3805,7 +3805,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 68]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 68]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3861,7 +3861,7 @@ C.3.3.  Point 3
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 69]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 69]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3917,7 +3917,7 @@ C.3.4.  Point 4
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 70]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 70]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -3973,7 +3973,7 @@ C.3.5.  Point 5
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 71]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 71]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4029,7 +4029,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 72]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 72]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4085,7 +4085,7 @@ C.3.6.  Point 6
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 73]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 73]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4141,7 +4141,7 @@ C.4.1.  Goal 2
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 74]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 74]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4197,7 +4197,7 @@ C.4.2.  Goal 3
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 75]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 75]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4253,7 +4253,7 @@ C.4.3.  Goal 4
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 76]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 76]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4309,7 +4309,7 @@ Internet-Draft                  MLRsearch                 September 2025
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 77]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 77]
 
 Internet-Draft                  MLRsearch                 September 2025
 
@@ -4365,4 +4365,4 @@ Authors' Addresses
 
 
 
-Konstantynowicz & Polak   Expires 6 March 2026                 [Page 78]
+Konstantynowicz & Polak   Expires 8 March 2026                 [Page 78]
