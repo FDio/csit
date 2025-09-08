@@ -64,7 +64,7 @@ generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
 # Support for interleaved measurements is kept for future.
-iterations=1 # 8
+iterations=180 # 8
 for ((iter=0; iter<iterations; iter++)); do
     if ((iter)); then
         # Function reserve_and_cleanup_testbed has already cleaned it once,
