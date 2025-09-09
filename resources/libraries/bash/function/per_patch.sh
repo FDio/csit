@@ -60,7 +60,7 @@ function build_vpp_ubuntu () {
     if [ -n "${VPP_PLATFORM-}" ]; then
         params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
-    targets="install-deps install-opt-deps install-ext-deps pkg-verify"
+    targets="install-deps install-opt-deps install-ext-deps pkg-deb-debug VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON -DVPP_ENABLE_SANITIZE_ADDR=ON'"
     make ${params} ${targets} || die "VPP build failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
