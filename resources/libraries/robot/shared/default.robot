@@ -159,6 +159,7 @@
 | | | ... | WITH NAME | ${dut}
 | | | ${marvell}= | Get Node Model Bool | ${nodes['${dut}']} | Marvell-Octeon
 | | | Run Keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
+| | | Run Keyword | ${dut}.Add Unix Nodaemon
 | | | Run Keyword | ${dut}.Add Unix Log
 | | | Run Keyword | ${dut}.Add Unix CLI Listen
 | | | Run Keyword | ${dut}.Add Unix CLI No Pager
