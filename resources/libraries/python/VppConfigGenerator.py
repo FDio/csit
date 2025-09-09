@@ -409,6 +409,7 @@ class VppConfigGenerator:
         :param value: Corelist-workers option.
         :type value: str
         """
+        return
         path = ["cpu", "corelist-workers"]
         self.add_config_item(self._nodeconfig, value, path)
 
