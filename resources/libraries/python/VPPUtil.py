@@ -47,7 +47,7 @@ class VPPUtil:
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
 
         VPPUtil.stop_vpp_service(node)
-        command = "ASAN_OPTIONS='log_path=/tmp/asan.log' /usr/bin/vpp -c /etc/vpp/startup.conf"
+        command = "bash -c \"export ASAN_OPTIONS='log_path=/tmp/asan.log'; sudo -E -S gdb -ex=run -ex='thread apply all bt' --args /usr/bin/vpp -c /etc/vpp/startup.conf\""
         message = f"Node {node[u'host']} failed to start VPP!"
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
