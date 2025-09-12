@@ -35,12 +35,15 @@ as long as they caused some results to be missing (or performance wrong).
   4   | [csit/issues/4090](https://github.com/FDio/csit/issues/4090) | crypto engine error in 1tnl wireguardhw test.
   5   | [csit/issues/4091](https://github.com/FDio/csit/issues/4091) | udpquicbase fails due to: Echo connect failed.
   6   | [csit/issues/4092](https://github.com/FDio/csit/issues/4092) | udp ldpreload fails on no test data retrieved.
-  7   | [csit/issues/4093](https://github.com/FDio/csit/issues/4093) | out of memory in hoststack.
+  7   | [csit/issues/4093](https://github.com/FDio/csit/issues/4093) | out of memory in hoststack; fixed after rls2506.
   8   | [csit/issues/4094](https://github.com/FDio/csit/issues/4094) | 3n-oct: unsent packets even at min load.
   9   | [csit/issues/4095](https://github.com/FDio/csit/issues/4095) | jumbo+iavf buffer alloc error: loadbalancer.
  10   | [csit/issues/4096](https://github.com/FDio/csit/issues/4096) | rare crash in nginx tests.
  11   | [csit/issues/4097](https://github.com/FDio/csit/issues/4097) | 2n-zn2 iavf: two-band structure in 1c mrr tests.
  12   | [csit/issues/4098](https://github.com/FDio/csit/issues/4098) | 2n-zn2 xxv710 iavf: all 9000b tests fail on retval: -168.
+ 13   | [vpp/issues/3624](https://github.com/FDio/vpp/issues/3624)   | perfmon: asan reports global-buffer-overflow on Intel Xeons.
+ 14   | [vpp/issues/3627](https://github.com/FDio/vpp/issues/3627)   | ASAN: VPP silently quits after 41560.
+ 15   | [vpp/issues/3628](https://github.com/FDio/vpp/issues/3628)   | ip: route APIs are not thread safe.
 
 ## Previous
 
@@ -48,7 +51,7 @@ Issues reported in previous releases which still affect the current results
 (or would be affecting if other issues were not hiding the symptoms):
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------
+------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------
   1   | [csit/issues/3879](https://github.com/FDio/csit/issues/3879) | [CSIT-1795] Ocassionally not all DET44 sessions have been established: 4128767 != 4128768.
   2   | [csit/issues/3885](https://github.com/FDio/csit/issues/3885) | [CSIT-1802] all testbeds: AF-XDP - NDR tests failing from time to time on small loss.
   3   | [csit/issues/3966](https://github.com/FDio/csit/issues/3966) | [CSIT-1884] 2n-icx, 2n-spr: All NAT44DET IMIX large scale BIDIR tests fail to create enough sessions.
@@ -77,11 +80,10 @@ Issues reported in previous releases which still affect the current results
  26   | [csit/issues/4044](https://github.com/FDio/csit/issues/4044) | [CSIT-1963] 3n-icxd: Various symptoms pointing to hardware (cable/nic/driver) issues.
  27   | [csit/issues/4045](https://github.com/FDio/csit/issues/4045) | [CSIT-1964] 3nb-spr, 3n-snr: Wireguardhw tests are likely to crash.
  28   | [csit/issues/4051](https://github.com/FDio/csit/issues/4051) | [CSIT-1970] JSON export validation does not prevent EPL from consuming invalid data.
- 29   | [csit/issues/4058](https://github.com/FDio/csit/issues/4058) | [CSIT-1977] E810: Unsent packets at moderate load can fail soak.
- 30   | [csit/issues/4066](https://github.com/FDio/csit/issues/4066) | 2n-icx: iavf bus error in one run.
- 31   | [vpp/issues/3597](https://github.com/FDio/vpp/issues/3597)   | dev_iavf: Unable to use more queues than offered initially.
- 32   | [csit/issues/4073](https://github.com/FDio/csit/issues/4073) | Tests combining iavf+jumbo gradually run out of buffers for rx.
- 33   | [csit/issues/4076](https://github.com/FDio/csit/issues/4076) | 3n-icx: vhost mounting /dev failed.
+ 29   | [csit/issues/4066](https://github.com/FDio/csit/issues/4066) | 2n-icx: iavf bus error in one run.
+ 30   | [vpp/issues/3597](https://github.com/FDio/vpp/issues/3597)   | dev_iavf: Unable to use more queues than offered initially.
+ 31   | [csit/issues/4073](https://github.com/FDio/csit/issues/4073) | Tests combining iavf+jumbo gradually run out of buffers for rx.
+ 32   | [csit/issues/4076](https://github.com/FDio/csit/issues/4076) | 3n-icx: vhost mounting /dev failed.
 
 ## Fixed
 
@@ -89,25 +91,26 @@ Issues reported in previous releases which were fixed
 (or stopped being tested forever) in this release:
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
+------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------
   1   | [csit/issues/3974](https://github.com/FDio/csit/issues/3974) | [CSIT-1892] 3n-alt: two-band structure of ipsec and vxlan.
   2   | [csit/issues/3983](https://github.com/FDio/csit/issues/3983) | [CSIT-1901] 2n-icx 3n-icx: Trex may report negative ipackets on high-performance AVF trial.
   3   | [csit/issues/4017](https://github.com/FDio/csit/issues/4017) | [CSIT-1935] Zero traffic reported in udpquic tests due to session close errors.
   4   | [csit/issues/4049](https://github.com/FDio/csit/issues/4049) | [CSIT-1968] 3n-icx: two testbeds behave differently in some ipsec tests with AVF.
   5   | [csit/issues/4050](https://github.com/FDio/csit/issues/4050) | [CSIT-1969] nsim scale: Transport endpoint is not connected.
-  6   | [csit/issues/4059](https://github.com/FDio/csit/issues/4059) | [CSIT-1978] 3na-spr, 3nb-spr: Vhost tests cannot access testpmd.
-  7   | [csit/issues/4063](https://github.com/FDio/csit/issues/4063) | 2n-emr: NGINX tests fail due to missing libpcre.
-  8   | [csit/issues/4064](https://github.com/FDio/csit/issues/4064) | 2n-emr: DSA tests fail on accel-config: command not found.
-  9   | [csit/issues/4065](https://github.com/FDio/csit/issues/4065) | 2n-spr: Failed to enable DMA work queue on DUT.
- 10   | [csit/issues/4068](https://github.com/FDio/csit/issues/4068) | DSA: enabled 0 wq(s) out of 1.
- 11   | [csit/issues/4069](https://github.com/FDio/csit/issues/4069) | tap: Command execution failed.
- 12   | [csit/issues/4070](https://github.com/FDio/csit/issues/4070) | 2n-grc: VPP in VM sometimes too slow to start with 4C.
- 13   | [vpp/issues/3598](https://github.com/FDio/vpp/issues/3598)   | dev_iavf: Setting promisc fails due to uninitialized byte.
- 14   | [csit/issues/4071](https://github.com/FDio/csit/issues/4071) | bonding+iavf: l3 mac mismatch.
- 15   | [csit/issues/4072](https://github.com/FDio/csit/issues/4072) | QAT1: 1tnl tests are crashing.
- 16   | [csit/issues/4074](https://github.com/FDio/csit/issues/4074) | rls2502: CSIT does not wait long enough after killing VPP; fixed during rls2502 testing.
- 17   | [csit/issues/4075](https://github.com/FDio/csit/issues/4075) | EMR: Sometimes cli.sock is not responding.
- 18   | [vpp/issues/3602](https://github.com/FDio/vpp/issues/3602)   | device framework: next node not updated when a feature is enabled; fixed now.
+  6   | [csit/issues/4058](https://github.com/FDio/csit/issues/4058) | [CSIT-1977] E810: Unsent packets at moderate load can fail soak.
+  7   | [csit/issues/4059](https://github.com/FDio/csit/issues/4059) | [CSIT-1978] 3na-spr, 3nb-spr: Vhost tests cannot access testpmd.
+  8   | [csit/issues/4063](https://github.com/FDio/csit/issues/4063) | 2n-emr: NGINX tests fail due to missing libpcre.
+  9   | [csit/issues/4064](https://github.com/FDio/csit/issues/4064) | 2n-emr: DSA tests fail on accel-config: command not found.
+ 10   | [csit/issues/4065](https://github.com/FDio/csit/issues/4065) | 2n-spr: Failed to enable DMA work queue on DUT.
+ 11   | [csit/issues/4068](https://github.com/FDio/csit/issues/4068) | DSA: enabled 0 wq(s) out of 1.
+ 12   | [csit/issues/4069](https://github.com/FDio/csit/issues/4069) | tap: Command execution failed.
+ 13   | [csit/issues/4070](https://github.com/FDio/csit/issues/4070) | 2n-grc: VPP in VM sometimes too slow to start with 4C.
+ 14   | [vpp/issues/3598](https://github.com/FDio/vpp/issues/3598)   | dev_iavf: Setting promisc fails due to uninitialized byte.
+ 15   | [csit/issues/4071](https://github.com/FDio/csit/issues/4071) | bonding+iavf: l3 mac mismatch.
+ 16   | [csit/issues/4072](https://github.com/FDio/csit/issues/4072) | QAT1: 1tnl tests are crashing.
+ 17   | [csit/issues/4074](https://github.com/FDio/csit/issues/4074) | rls2502: CSIT does not wait long enough after killing VPP; fixed during rls2502 testing.
+ 18   | [csit/issues/4075](https://github.com/FDio/csit/issues/4075) | EMR: Sometimes cli.sock is not responding.
+ 19   | [vpp/issues/3602](https://github.com/FDio/vpp/issues/3602)   | device framework: next node not updated when a feature is enabled; fixed now.
 
 # Root Cause Analysis for Regressions
 
@@ -127,3 +130,4 @@ they will not be re-listed in the next release report.
   2   | [csit/issues/4099](https://github.com/FDio/csit/issues/4099) | february-march VPP-in-VM regressions.
   3   | [csit/issues/4100](https://github.com/FDio/csit/issues/4100) | 2n-spr: small regression in memif.
   4   | [csit/issues/4101](https://github.com/FDio/csit/issues/4101) | 3nb-spr iavf: correlated anomalies in ipsecswasync tests.
+  5   | [csit/issues/4104](https://github.com/FDio/csit/issues/4104) | 3n-icx: regression in ip4tcpscale1cl10s-ldpreload-iperf3.
