@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-12
-date: 2025-09-04
+docname: draft-ietf-bmwg-mlrsearch-13
+date: 2025-09-16
 
 submissionType: IETF
 ipr: trust200902
@@ -107,6 +107,14 @@ functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
 
+This document tightly couples terminology and methodology aspects.
+Instead of a separate terminology section, Table of Contents
+subsections of [MLRsearch Specification](#mlrsearch-specification)
+act as list of newly defined terms.
+If a phrase appears with first letters capitalized, it likely refers
+to a specific term defined in eponymous subsection
+of [MLRsearch Specification](#mlrsearch-specification).
+
 ## Purpose
 
 The purpose of this document is to describe the Multiple Loss Ratio search
@@ -114,7 +122,7 @@ The purpose of this document is to describe the Multiple Loss Ratio search
 data plane throughput in software-based networking devices and functions.
 
 Applying the vanilla throughput binary search,
-as specified for example in [TST009] and [RFC2544]
+as specified for example in Section 12.3.2 of [TST009]
 to software devices under test (DUTs) results in several problems:
 
 - Binary search takes long as most trials are done far from the
@@ -136,16 +144,16 @@ early MLRsearch implementations employed the following enhancements:
 
 1. Allow multiple short trials instead of one big trial per load.
    - Optionally, tolerate a percentage of trial results with higher loss.
-2. Allow searching for multiple Search Goals, with differing loss ratios.
+2. Allow searching for multiple [Search Goal](#search-goal)s, with differing loss ratios.
    - Any trial result can affect each Search Goal in principle.
 3. Insert multiple coarse targets for each Search Goal, earlier ones need
    to spend less time on trials.
    - Earlier targets also aim for lesser precision.
    - Use Forwarding Rate (FR) at Maximum Offered Load (FRMOL), as defined
      in Section 3.6.2 of [RFC2285], to initialize bounds.
-4. Be careful when dealing with inconsistent trial results.
-   - Reported throughput is smaller than the smallest load with high loss.
-   - Smaller load candidates are measured first.
+4. Process of inconsistent trial results carefully.
+   - Reported throughput should be smaller than the smallest load with high loss.
+   - Measure smaller load candidates first.
 5. Apply several time-saving load selection heuristics that deliberately
    prevent the bounds from narrowing unnecessarily.
 
@@ -155,10 +163,9 @@ within this document, other implementation details are out the scope.
 The remaining enhancements are treated as implementation details,
 thus achieving high comparability without limiting future improvements.
 
-MLRsearch configuration
-supports both conservative settings and aggressive settings.
-Conservative enough settings lead to results
-unconditionally compliant with [RFC2544],
+MLRsearch configuration supports both conservative settings
+and aggressive settings. Results unconditionally compliant with [RFC2544]
+are possible with conservative enough settings,
 but without much improvement on search duration and repeatability - see
 [MLRsearch Compliant with RFC 2544](#mlrsearch-compliant-with-rfc-2544).
 Conversely, aggressive settings lead to shorter search durations
@@ -247,6 +254,11 @@ For reference, here is a brief [RFC2544] throughput binary
 
 ## DUT in SUT
 
+Section 19 of [RFC2544] specifies a test setup with an external tester
+stimulating the networking system, treating it either as a single
+Device Under Test (DUT), or as a system of devices, a System Under
+Test (SUT).
+
 [RFC2285] defines:
 
 DUT as:
@@ -258,11 +270,6 @@ SUT as:
 
 - The collective set of network devices as a single entity to which
   stimulus is offered and response measured Section 3.1.2 of [RFC2285].
-
-Section 19 of [RFC2544] specifies a test setup with an external tester
-stimulating the networking system, treating it either as a single
-Device Under Test (DUT), or as a system of devices, a System Under
-Test (SUT).
 
 For software-based data-plane forwarding running on commodity x86/ARM
 CPUs, the SUT comprises not only the forwarding application itself, the
@@ -429,8 +436,8 @@ Motivations are many:
   it can be set as the Goal Loss Ratio (see definitions of
   Trial and Goal terms in [Trial Terms](#trial-terms) and [Goal Terms](#goal-terms)).
 
-- For more information, see an earlier draft [Lencze-Shima] (Section 5)
-  and references there.
+For more information, see Section 5 of an earlier draft [Lencze-Shima]
+and references there.
 
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes a
@@ -453,7 +460,7 @@ But it is not that obvious how to search for multiple goals at once,
 hence the support for multiple Search Goals remains a problem.
 
 At the time of writing there does not seem to be a consensus in the industry
-on which ratio value is the best.
+on which loss ratio value is the best.
 For users, performance of higher protocol layers is important, for
 example, goodput of TCP connection (TCP throughput, [RFC6349]), but relationship
 between goodput and loss ratio is not simple. Refer to
@@ -2261,7 +2268,7 @@ but most of the complications do not affect the final results much.
 Except for one phenomenon: Loss Inversion.
 
 Depending on Search Goal attributes, Load Classification results may be resistant
-to small amounts of Section [Inconsistent Trial Results](#inconsistent-trial-results).
+to small amounts of [Inconsistent Trial Results](#inconsistent-trial-results).
 However, for larger amounts, a Load that is classified
 as an Upper Bound for one Search Goal
 may still be a Lower Bound for another Search Goal.
