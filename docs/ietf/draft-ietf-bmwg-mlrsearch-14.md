@@ -3,7 +3,7 @@
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
 docname: draft-ietf-bmwg-mlrsearch-13
-date: 2025-09-16
+date: 2025-09-17
 
 submissionType: IETF
 ipr: trust200902
@@ -125,7 +125,7 @@ Applying the vanilla throughput binary search,
 as specified for example in Section 12.3.2 of [TST009]
 to software devices under test (DUTs) results in several problems:
 
-- Binary search takes long as most trials are done far from the
+- Binary search takes a long time as most trials are done far from the
   eventually found throughput.
 - The required final trial duration and pauses between trials
   prolong the overall search duration.
@@ -144,14 +144,14 @@ early MLRsearch implementations employed the following enhancements:
 
 1. Allow multiple short trials instead of one big trial per load.
    - Optionally, tolerate a percentage of trial results with higher loss.
-2. Allow searching for multiple [Search Goal](#search-goal)s, with differing loss ratios.
+2. Allow searching for multiple [Search Goals](#search-goal), with differing loss ratios.
    - Any trial result can affect each Search Goal in principle.
 3. Insert multiple coarse targets for each Search Goal, earlier ones need
    to spend less time on trials.
    - Earlier targets also aim for lesser precision.
    - Use Forwarding Rate (FR) at Maximum Offered Load (FRMOL), as defined
      in Section 3.6.2 of [RFC2285], to initialize bounds.
-4. Process of inconsistent trial results carefully.
+4. Clarify handling of inconsistent trial results.
    - Reported throughput should be smaller than the smallest load with high loss.
    - Measure smaller load candidates first.
 5. Apply several time-saving load selection heuristics that deliberately
@@ -244,10 +244,10 @@ However, each of the full 60-second trials doubles the precision.
 As such, not many trials can be removed without a substantial loss of precision.
 
 For reference, here is a brief [RFC2544] throughput binary
-(bisection) reminder, based on Sections 24 and 26 of [RFC2544:
+(bisection) reminder, based on Sections 24 and 26 of [RFC2544]:
 
 * Set Max = line-rate and Min = a proven loss-free load.
-* Run a single 60-s trial at the midpoint.
+* Run a single 60-second trial at the midpoint.
 * Zero-loss -> midpoint becomes new Min; any loss-> new Max.
 * Repeat until the Max-Min gap meets the desired precision, then report
   the highest zero-loss rate for every mandatory frame size.
@@ -371,7 +371,7 @@ Repeatability is important also when the test procedure is kept the same,
 but SUT is varied in small ways. For example, during development
 of software-based DUTs, repeatability is needed to detect small regressions.
 
-[RFC2544] throughput requirements (60 seconds trial and
+[RFC2544] throughput requirements (60-second trial and
 no tolerance of a single frame loss) affect the throughput result as follows:
 
 The SUT behavior close to the noiseful end of its performance spectrum
@@ -441,8 +441,8 @@ and references there.
 
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes a
-search algorithm more user-friendly.
-[RFC2544] throughput is not user-friendly in this regard.
+search algorithm applicable for a wider range of use cases
+than the approach defined in [RFC2544].
 
 Furthermore, allowing users to specify multiple loss ratio values,
 and enabling a single search to find all relevant bounds,
@@ -1052,14 +1052,23 @@ An example standardization effort is [Vassilev].
 
 &nbsp;
 : Examples of traffic properties include:
-- Data link frame size
-  - Fixed sizes as listed in Section 3.5 of [RFC1242] and in Section
+
+&nbsp;
+: Data link frame size:
+
+: - Fixed sizes as listed in Section 3.5 of [RFC1242] and in Section
     9 of [RFC2544]
-  - IMIX mixed sizes as defined in [RFC6985]
-- Frame formats and protocol addresses
-  - Section 8, 12 and Appendix C of [RFC2544]
-- Symmetric bidirectional traffic
-  - Section 14 of [RFC2544].
+- IMIX mixed sizes as defined in [RFC6985]
+
+&nbsp;
+: Frame formats and protocol addresses:
+
+: - Sections 8, 12 and Appendix C of [RFC2544]
+
+&nbsp;
+: Symmetric bidirectional traffic:
+
+: - Section 14 of [RFC2544].
 
 &nbsp;
 : Other traffic properties that need to be somehow specified
@@ -1640,7 +1649,7 @@ Definition:
 
 &nbsp;
 : A Load value is called an Upper Bound if and only if it is classified
-as such by [Appendix A](#load-classification-code)
+as such by [load classification code](#load-classification-code)
 algorithm for the given Search Goal at the current moment of the Search.
 
 Discussion:
@@ -1672,7 +1681,7 @@ Definition:
 
 &nbsp;
 : A Load value is called a Lower Bound if and only if it is classified
-as such by [Appendix A](#load-classification-code)
+as such by [load classification code](#load-classification-code)
 algorithm for the given Search Goal at the current moment of the search.
 
 Discussion:
@@ -1795,7 +1804,7 @@ Definition:
 &nbsp;
 : Conditional Throughput is a value computed at the Relevant Lower Bound
 according to algorithm defined in
-[Appendix B](#conditional-throughput-code).
+[conditional throughput code](#conditional-throughput-code).
 
 Discussion:
 
@@ -2169,14 +2178,14 @@ thus more repeatable and comparable.
 Only the variant with "z = infinity" is achievable with MLRsearch.
 
 For example, for "max(r) = 2" variant, the following Search Goal instance
-should be used to get compatible Search Result:
+should be used to get a compatible Search Result:
 
 - Goal Final Trial Duration = 60 seconds
 - Goal Duration Sum = 120 seconds
 - Goal Loss Ratio = 0%
 - Goal Exceed Ratio = 50%
 
-If the first 60 seconds trial has zero loss, it is enough for MLRsearch to stop
+If the first 60-second trial has zero loss, it is enough for MLRsearch to stop
 measuring at that load, as even a second high-loss trial
 would still fit within the exceed ratio.
 
@@ -2188,8 +2197,7 @@ so third full-length trial is never needed.
 # Methodology Rationale and Design Considerations
 
 This section explains the Why behind MLRsearch. Building on the
-normative specification in Section
-[MLRsearch Specification](#mlrsearch-specification),
+normative specification in [MLRsearch Specification](#mlrsearch-specification),
 it contrasts MLRsearch with the classic
 [RFC2544] single-ratio binary-search procedure and walks through the
 key design choices: binary-search mechanics, stopping-rule precision,
@@ -2432,7 +2440,7 @@ the [Conditional Throughput](#conditional-throughput).
 It is the Trial Forwarding Rate from one of the Full-Length Trials
 performed at the Relevant Lower Bound.
 The algorithm to determine which trial exactly is in
-[Appendix B](#conditional-throughput-code).
+[conditional throughput code](#conditional-throughput-code).
 
 In the hard limit example, 100.5025 Mfps Load will still have
 only 100.0 Mfps forwarding rate, nicely confirming the known limitation.
@@ -2466,8 +2474,8 @@ yields the same Lower Bound value across multiple runs.
 This section uses informal language to describe two aspects of MLRsearch logic:
 Load Classification and Conditional Throughput,
 reflecting formal pseudocode representation provided in
-[Appendix A](#load-classification-code)
-and [Appendix B](#conditional-throughput-code).
+[load classification code](#load-classification-code)
+and [conditional throughput code](#conditional-throughput-code).
 This is followed by example search.
 
 The logic is equivalent but not identical to the pseudocode
@@ -2711,7 +2719,8 @@ detailed AD review and providing many good comments and suggestions,
 helping us make this document complete.
 
 Our appreciation is also extended to Shawn Emery, Yoshifumi Nishida,
-David Dong, Nabeel Cocker and Lars Eggert for their reviews and valueable comments.
+David Dong, Nabeel Cocker, Lars Eggert, Jen Linkova, Mike Bishop and Éric Vyncke
+for their reviews and valueable comments.
 
 --- back
 
@@ -3199,8 +3208,8 @@ as the three goals will want an Upper Bound (unless this Load is Max Load).
 At the end of this hypothetical search, the "RFC2544" goal labels the
 load as an Upper Bound, making it ineligible for Conditional-Throughput
 calculations. By contrast, the other three goals treat the same load as
-a Lower Bound; if it is also accepted as their Relevant Lower Bound, we
-can compute Conditional-Throughput values for each of them.
+a Lower Bound; if it is also accepted as their Relevant Lower Bound,
+Conditional Throughput values can be computed for each of them.
 
 (The load under discussion is 1 000 000 frames per second.)
 
