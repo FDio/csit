@@ -1,0 +1,15 @@
+
+Hi Gorry, thanks for the review!
+
+In the meantime, we got reviews from other people,
+our edits are visible here: [1] (rendered diff) and [2] (source).
+
+> Thank you to Yoshi for his TSV-ART review, and please note the comments included there.
+
+Yes, we (Maciek) replied (cc archived here [0]).
+
+Vratko.
+
+[0] https://mailarchive.ietf.org/arch/msg/bmwg/44zLkqtU_eBdrYibGAekAJJH31o/
+[1] https://author-tools.ietf.org/iddiff?url1=draft-ietf-bmwg-mlrsearch-13&url2=draft-ietf-bmwg-mlrsearch-14&difftype=--html
+[2] https://gerrit.fd.io/r/c/csit/+/43711

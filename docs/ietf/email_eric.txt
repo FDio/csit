@@ -1,0 +1,133 @@
+Hi Eric, thanks for the review!
+
+In the meantime, we got reviews from other people,
+our edits are visible here: [1] (rendered diff) and [2] (source).
+
+> ### Abstract
+>
+> s/This document specifies extensions/This document describes extensions/ as it
+> is an 'informational' I-D. The introduction got it right.
+
+!!!
+
+> ### Section 1
+>
+> Why is there such a limitation in `with x86/ARM CPUs` ? Would the I-D not be
+> applicable to other generic CPU ?
+
+I guess the intent of the offending sentence is to say that those CPUs
+are commonly used, but their performance is less predictable.
+The I-D is applicable to all SUTs, but the purpose-built ones
+tend to be predictable enough for existing RFC2544 throughput to be stable.
+Not sure how to improve that sentence, deferring to Maciek.
+
+> ### Section 1.1
+>
+> For non-specialist, some explanations about "binary search" in `Applying the
+> vanilla throughput binary search` would be welcome; in my eyes, binary search
+> is related to find an item based on key. The last paragraph of section 2.1 has
+> at least some easy & short explanations, suggest to move this paragraph in the
+> introduction.
+
+I agree, but I would need more time to do that properly.
+
+> Is `MLRsearch Specification` valid in an informational I-D ?
+
+I am not sure.
+Most of section 1.2 is decribing how BMWG documents
+are informational "de iure" but normative "de facto".
+MLRsearch Specification is normative in this "de facto" way,
+(most of) the rest of the document remains informative also de facto.
+No idea what we should state "de iure".
+
+> ### Section 1.2
+>
+> s/can be adapted to produce results compliant/can be adapted to produce results
+> *compatible*/ as the IETF does not define compliance.
+
+Another disconnect between IETF and BMWG?
+For example, Section 5 of RFC 2544 contains this sentence:
+"An implementation is not compliant if it fails to satisfy one or more
+of the MUST requirements for the protocols it implements."
+
+> ### Section 2.1
+>
+> Should there be a reference for `each of the full 60-second trials doubles the
+> precision` ?
+
+No? It should be a consequence of how "vanilla bisect" works.
+One trial is enough to halve the interval between current lower and upper bound.
+The offending sentence can be revisited once description of bisect is improved
+as per the comment above.
+
+> ### Section 2.2
+>
+> Should the section title avoid using acronyms defined in the section itself ?
+
+Probably a good idea.
+Not enough time for me to invent a better title.
+
+> ### Section 3
+>
+> Unsure whether compliance can be defined in an informational I-D, so, suggest
+> removing `This ensures that if a test procedure or test report claims
+> compliance with the MLRsearch Specification, it MUST adhere to all the absolute
+> requirements defined herein. `
+
+We have subsection 4.10.1. Test Procedure Compliant with MLRsearch,
+so compliance is what we want to define.
+See my previous reply on how I have no idea whether that can be done "de iure" in this case.
+
+> ### Section 4.1
+>
+> s/This document specifies/This document describes/ as this is an informational
+> I-D (I won't repeat this comment).
+
+I guess some sections describe, some specify.
+Previous points need to be decided before we can start cleaning up the language.
+
+> ### Section 4.1.3
+>
+> s/normative scope of this document/scope of this document/ informational I-D.
+
+Again, we need to decide what can be "normative" in this document.
+
+> ### Section 4.2
+>
+> A nice graphic would help the reader :-)
+
+Direct case (calls only):
+Manager ---(one)--> Controller ---(many)--> Measurer.
+
+Indiect case (requests and responses):
+                                 +---------+                          +------------+
++----------+                     | Manager | ---(Controller Input)--> | Controller |
+| Measurer | <--(Trial Input)--- |         |   <--(Trial Input)---    |            |
+|          | ---(Trial Output)-> |         |   ---(Trial Output)->    |            |
+|          | <--(Trial Input)--- |         |   <--(Trial Input)---    |            |
+|          | ---(Trial Output)-> |         |   ---(Trial Output)->    |            |
+|          | ...                 |         |   ...                    |            |
++----------+                     |         | <--(Controller Output)-- |            |
+                                 +---------+                          +------------+
+
+Not sure the direct case adds much,
+and I am not looking forward to (prettifying and) implementing
+the indirect case in kramdown.
+
+> ### Section 4.10
+>
+> It is highly unusual for an I-D to define compliance...
+
+RFC 2544 did that.
+
+> ### Section C.4
+>
+> Please avoid "we" in I-D as in `we can compute Conditional-Throughput values`
+> as it is ambiguous.
+
+Replaced by: "Conditional Throughput values can be computed".
+
+Vratko.
+
+[1] https://author-tools.ietf.org/iddiff?url1=draft-ietf-bmwg-mlrsearch-13&url2=draft-ietf-bmwg-mlrsearch-14&difftype=--html
+[2] https://gerrit.fd.io/r/c/csit/+/43711
