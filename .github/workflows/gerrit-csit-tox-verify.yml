@@ -69,7 +69,6 @@ jobs:
         builder_type: [prod]
 
     steps:
-      # yamllint disable-line rule:line-length
       - name: Gerrit Checkout
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
