@@ -89,3 +89,8 @@ jobs:
         run: |
           set -exuo pipefail
           source ./resources/libraries/bash/entry/tox.sh
+
+      - name: Run Dummy
+        run: |
+          set -exuo pipefail
+          hello world!
