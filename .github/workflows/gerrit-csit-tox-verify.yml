@@ -1,3 +1,4 @@
+---
 name: CSIT Tox
 
 # yamllint disable-line rule:truthy
@@ -69,6 +70,21 @@ jobs:
         builder_type: [prod]
 
     steps:
+      - name: Clear votes
+        uses: lfit/gerrit-review-action@v0.4
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
+          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: clear
+          comment-only: true
+
+      - name: Allow replication
+        run: sleep 10s
+
       - name: Gerrit Checkout
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
@@ -82,10 +98,9 @@ jobs:
 
       - name: Setup Environment
         run: |
-          .ci/scripts/vpp/setup_executor_env.sh
+          .github/scripts/setup_executor_env.sh
 
       - name: Run tox
-        shell: bash
         run: |
           set -exuo pipefail
           source ./resources/libraries/bash/entry/tox.sh
