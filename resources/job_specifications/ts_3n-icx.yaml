@@ -56,10 +56,8 @@ test-sets:
       100ge2p1e810cq:
         - avf
         - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - imix
+    framesize: [1518, imix]
+    core: [2, 3, 4]
     tests:
       - ipsec-sw-async-aes128cbc-hmac512sha-md
       - ipsec-sw-async-aes128gcm-md
@@ -109,10 +107,8 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - imix
+    framesize: [1518, imix]
+    core: [2, 3, 4]
     tests:
       - ipsec-sw-async-aes128cbc-hmac512sha-md
       - ipsec-sw-async-aes128gcm-md
@@ -569,6 +565,7 @@ test-sets:
             100ge2p1e810cq:
               - vfio-pci
           framesize: [1518, imix]
+          core: [2, 3, 4]
       - ipsec-sw-reassembly-sm:
           infra:
             100ge2p1e810cq:
