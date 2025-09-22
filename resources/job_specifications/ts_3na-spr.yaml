@@ -38,10 +38,8 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - imix
+    framesize: [1518, imix]
+    core: [2, 3, 4]
     tests:
       - ipsec-sw-async-aes128cbc-hmac512sha-md
       - ipsec-sw-async-aes128gcm-md
