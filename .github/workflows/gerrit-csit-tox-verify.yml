@@ -41,11 +41,6 @@ on:
         description: "Gerrit refspec of change"
         required: true
         type: string
-      TARGET_REPO:
-        # yamllint disable-line rule:line-length
-        description: "The target GitHub repository needing the required workflow"
-        required: true
-        type: string
 
 concurrency:
   # yamllint disable-line rule:line-length
@@ -77,12 +72,11 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
         with:
-          gerrit-refspec: ${{ inputs.GERRIT_REFSPEC }}
-          gerrit-project: ${{ inputs.GERRIT_PROJECT }}
+          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
           gerrit-url: ${{ vars.GERRIT_URL }}
-          delay: "0s"
-          repository: ${{ inputs.TARGET_REPO }}
-          ref: refs/heads/${{ inputs.GERRIT_BRANCH }}
+          delay: "30s"
+          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
       - name: Setup Environment
         run: |
