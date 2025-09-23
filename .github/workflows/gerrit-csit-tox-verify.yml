@@ -53,8 +53,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tox:
-    name: csit-verify-tox-${{ matrix.os }}-${{ matrix.executor_arch }}
+  csit-verify-tox:
+    name: ${{ github.job }}-${{ matrix.os }}-${{ matrix.executor_arch }}
     runs-on:
       - self-hosted
       - nomad
