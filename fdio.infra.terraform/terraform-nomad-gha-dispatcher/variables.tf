@@ -28,13 +28,6 @@ variable "memory" {
   type        = number
   default     = 8000
 }
-
-variable "namespace" {
-  description = "The namespace in which to execute the job."
-  type        = set(string)
-  default     = ["prod","sandbox"]
-}
-
 variable "node_pool" {
   description = "Specifies the node pool to place the job in."
   type        = string
@@ -51,4 +44,21 @@ variable "type" {
   description = "Specifies the Nomad scheduler to use."
   type        = string
   default     = "service"
+}
+
+variable "dispatchers" {
+  type = list(object({
+    namespace  = string
+    repository = string
+  }))
+  default = [
+    {
+      namespace  = "sandbox"
+      repository = "fdio-csit"
+    },
+    {
+      namespace  = "prod"
+      repository = "fdio-csit"
+    },
+  ]
 }

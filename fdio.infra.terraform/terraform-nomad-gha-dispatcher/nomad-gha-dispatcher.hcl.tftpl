@@ -36,6 +36,17 @@ job "${job_name}" {
 {{- end }}
 EOT
       }
+      template {
+        destination = "$${NOMAD_SECRETS_DIR}/.job"
+        env         = true
+        data        = <<EOT
+{{- with nomadVar "nomad/jobs/${job_name}" -}}
+{{- range $k, $v := . }}
+{{ $k }}={{ $v }}
+{{- end }}
+{{- end }}
+EOT
+      }
       resources {
         cpu    = ${cpu}
         memory = ${memory}
