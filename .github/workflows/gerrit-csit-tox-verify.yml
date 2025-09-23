@@ -98,7 +98,7 @@ jobs:
 
       - name: Setup Environment
         run: |
-          .github/scripts/setup_executor_env.sh
+          .ci/setup_executor_env.sh
 
       - name: Run tox
         run: |
