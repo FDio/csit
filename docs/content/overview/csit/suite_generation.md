@@ -11,16 +11,19 @@ and chosen by command-line parameters.
 ## Input
 
 The mandatory input information is:
-1. Job name (string). The test suites are generated for this job. Only one job
+1. **Job name** (string). The test suites are generated for this job. Only one job
    can be specified.
-2. Directory to store generated tests.
+2. **Directory** to store generated tests.
 
 The optional or mandatory input information, depending on the job type, is:
-3. Trigger parameters (string). Mandatory for on-demand jobs (iterative,
+
+3. **Trigger parameters** (string). Mandatory for on-demand jobs (iterative,
    coverage, bisect, ...). This string includes information directly from the
    gerrit trigger. To distinguish between information for the Robot (e.g. tags),
    the information for the suite generator starts with the hash tag #. E.g.:
+
    csit-vpp-report-iter-2n-aws-perftest #2n-aws-vpp-iterative #ndrpdr
+
    If we include all neccessary information to this string, we do not need to
    use "Test set" and "Test type" parameters described below.
 4. Test set (string). Mandatory for on-demand jobs (iterative, coverage, bisect,
@@ -36,14 +39,14 @@ The optional or mandatory input information, depending on the job type, is:
 
 The optional input information is (if it is not provided, the values specified
 in constants.py are used):
+
 6. Output directory (string). Directory to store generated files. If not given,
    the default directory is used.
-7. Output file name (string). The name of output file:
-   - transformed and expanded yaml file to json.
-   If not given, the default name is used.
+7. Output file name (string). The name of output file for transformed and
+   expanded yaml file to json. If not given, the default name is used.
 8. Create JSON file (boolean). If set, the processed specification will be
    writen to the output directory as a JSON file. The default value is "False".
-9. Logging level (string). One of "NOTSET", "DEBUG", "INFO", "WARNING", "ERROR",
+9.  Logging level (string). One of "NOTSET", "DEBUG", "INFO", "WARNING", "ERROR",
    "CRITICAL". The default value is "INFO".
 
 ## Output
@@ -54,39 +57,39 @@ The output is:
 2. Optionaly the JSON file with expaned specification.
 
 The return code is:
-0 - if everything is OK,
-1 - if anything went wrong.
+- 0 - if everything is OK,
+- 1 - if anything went wrong.
 
 ## Job specification
 
-The jobs are specified in the specification YAML files. There are three files
-specifying:
+The jobs are specified in the specification YAML files. There are at least three
+files specifying:
 1. test groups (test_groups.yaml)
-2. test sets (test_sets.yaml)
+2. test sets (ts_topo-arch.yaml)
 3. jobs (jobs.yaml)
+
 The default location is the directory `resources/job_specifications/`.
 
 ### Test groups
 
-The test group is a named list of tests defined by their test tag. It is the
+The test group is a named list of tests defined by their test tags. It is the
 elementary part of the job specification.
 
 Size of a test group:
 
-+-------------+--------------+---------+
 | Name        | Abbreviation | Size    |
-+=============+==============+=========+
+|-------------|--------------|---------|
 | small       |           sm |  1 -  2 |
 | medium      |           md |  3 -  4 |
 | large       |           lg |  5 -  8 |
 | extra large |           xl |  9 - 16 |
 | 2x large    |          xxl | 17 - 32 |
-+-------------+--------------+---------+
 
-It is not recommended to use 2xl test groups.
+It is not recommended to use 2xl or larger test groups.
 
 Example:
 
+```
   trex-ip4-sm:
     - ethip4-ip4base-tg
     - ethip4-ip4scale20k-tg
@@ -95,6 +98,7 @@ Example:
     - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
     - ethip4tcp-ip4base-h1024-p63-s64512-cps-tg
     - ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
+```
 
 ### Test sets
 
@@ -104,7 +108,7 @@ A test set consists of:
 
 The test parameters are:
 - number of cores (list),
-- framesize (list),
+- framesize (list or dictionary),
 - infrastructure - NIC and driver (dictionary).
 
 The test parameters can be defined for the whole test set and/or for each test
@@ -114,6 +118,7 @@ Examples:
 
 1. Definition of parameters
 
+```
   2n-aws-vpp-iterative:
     core: [1, 2]
     framesize: [64, 1518]
@@ -125,6 +130,7 @@ Examples:
       - ip6-sm:
           framesize: [78, 1518]
       - l2-md
+```
 
 In this example, parameters defined outside `tests` (core, framesize, infra)
 are valid for all test groups listed in `tests`, but parameters defined directly
@@ -133,15 +139,18 @@ overwrite parameters defined for the whole test set.
 
 2. Parameters defined outside of test sets
 
+```
   2n-spr-dpdk-iterative:
     tests:
       - dpdk-small
+```
 
 In this example, no parameters are defined, so parameters defined in the section
 `jobs` are used.
 
 3. Driver not defined
 
+```
   2n-spr-trex-iterative:
     infra:
       100ge2p1e810cq:
@@ -156,12 +165,14 @@ In this example, no parameters are defined, so parameters defined in the section
       - trex-ip6-sm:
           framesize: [78, ]
       - trex-l2-sm
+```
 
 In this example, no drivers ("-") are defined as these tests do not need them to
 specify.
 
 4. Cores not defined
 
+```
   csit-trex-perf-report-coverage-{stream}-{node-arch}:
     stream:
       - "2506"
@@ -171,12 +182,14 @@ specify.
     node-arch:
       - 2n-icx: 2n-icx-trex-coverage
       - 2n-spr: 2n-spr-trex-coverage
+```
 
 In this example, no cores ("-") are defined as these tests do not need them to
 specify.
 
 5. Extended "framesize" parameter
 
+```
   2n-emr-vpp-cov-ip6-00:
     infra:
       100ge2p1e810cq:
@@ -189,15 +202,16 @@ specify.
       - imix
     tests:
       - ip6-acl-md
+```
 
 If we need to run limited or extended number of cores for particular framesize,
 we can specify them as a list for chosen framesize. In this example:
 
 framesize:
-  - 78             Cores defined in the job will be applied.
-  - 1518: [1, 2]   Only [1, 2] cores will be aplied.
-  - 9000: [1, ]    Only [1, ] core will be aplied.
-  - imix           Cores defined in the job will be applied.
+  - `78`             Cores defined in the job will be applied.
+  - `1518: [1, 2]`   Only [1, 2] cores will be aplied.
+  - `9000: [1, ]`    Only [1, ] core will be aplied.
+  - `imix`           Cores defined in the job will be applied.
 
 For more examples, see the specification yaml files. 
 
@@ -211,27 +225,29 @@ A job consists of:
   - ... any other.
 - global test parameters, see above.
 
-A special parameter is the `node-arch` whitch assignes a test set to the
+A special parameter is the `node-arch` which assignes a test set to the
 testbed. It is a list of testbeds defined for the job. The items can be strings
 or dictionaries:
 
+```
 node-arch:
   - 2n-icx,
   - 2n-spr: 2n-spr-vpp-iterative
-
+```
 
 - The testbed `2n-icx` is defined for this job but without a test set. The test
   set MUST be specified as a command-line parameter. This approach is typical
-  for iterative, coverage, verify, etc jobs which can run more then one test
-  set.
+  for on-demand jobs (iterative, coverage, verify, etc) which can run more then
+  one test set.
 - The testbed `2n-spr` is defined for this job with a test set. This test set
-  CAN be changed by a command-line parameter. This approach is used with daily
-  and weekly jobs as they run always the same test set.
+  CAN be changed by a command-line parameter. This approach is used with
+  periodical (daily and weekly) jobs as they run always the same test set.
 
 Examples:
 
 1. daily, weekly
 
+```
   csit-vpp-perf-mrr-daily-master-{node-arch}:
     test-type: mrr
     framesize:
@@ -247,6 +263,7 @@ Examples:
       - 3n-snr: 3n-snr-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
       - 3nb-spr: 3nb-spr-vpp-iterative
+```
 
 In this example, we defined 9 jobs, one for each item in the `node-arch` list.
 
@@ -257,6 +274,7 @@ must be defined, no matter on which level (job, test set).
 
 2. iterative
 
+```
   csit-vpp-perf-report-iterative-{stream}-{node-arch}:
     stream:
       - "2502"
@@ -277,6 +295,7 @@ must be defined, no matter on which level (job, test set).
       - 3n-snr
       - 3na-spr
       - 3nb-spr: 3nb-spr-vpp-iterative
+```
 
 In this example, we defined 24 jobs as each `node-arch` has two `stream`s.
 Four items in `node-arch` list have assigned their test sets (they can be
@@ -322,8 +341,10 @@ Example:
 
 1. Periodical jobs
 
+```
 ./suite_generator.py --gen-tests-dir generated --job csit-trex-perf-ndrpdr-weekly-master-2n-spr
 ./suite_generator.py --gen-tests-dir generated --job csit-vpp-perf-mrr-daily-master-2n-icx
+```
 
 Generates tests for the job "csit-trex-perf-ndrpdr-weekly-master-2n-spr" and
 stores them in "generated" directory.
@@ -334,14 +355,14 @@ As these jobs are periodical jobs, no more parameters are needed.
 Main characteristics:
 - started by a gerrit trigger, examples of currently used triggers:
   - jobs for the report:
-    - csit-vpp-report-iter-2n-aws-perftest vpp-mrr-00
-    - csit-dpdk-report-iter-2n-icx-perftest dpdk-ndrpdr-00
-    - csit-vpp-report-cov-2n-aws-perftest vpp-00
-    - csit-vpp-report-cov-2n-icx-perftest ip4-05
+    - csit-vpp-report-iter-2n-aws-perftest `test-set`
+    - csit-dpdk-report-iter-2n-icx-perftest `test-set`
+    - csit-vpp-report-cov-2n-aws-perftest `test-set`
+    - csit-vpp-report-cov-2n-icx-perftest `test-set`
   - verify jobs:
-    - csit-2n-zn2-perftest <tags>
+    - csit-2n-zn2-perftest `tags`
   - bisect jobs:
-    - bisecttest-2n-spr d35f7f098 <tags>
+    - bisecttest-2n-spr d35f7f098 `tags`
 - job name, e.g.:
   - report:
     - csit-dpdk-perf-report-coverage-2410-2n-icx
@@ -367,8 +388,8 @@ Robot Framework parameters (relevant to Suite generator):
 
 Examples:
 
-1.
-
+```
 ./suite_generator.py --gen-tests-dir generated --job csit-vpp-perf-report-iterative-2506-2n-icx
 ./suite_generator.py --gen-tests-dir generated --job csit-vpp-perf-report-iterative-2506-2n-icx --test-type ndrpdr
 ./suite_generator.py --gen-tests-dir generated --job csit-vpp-perf-report-coverage-2506-2n-spr --test-set 2n-spr-vpp-cov-ip4-00
+```
