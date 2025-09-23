@@ -54,7 +54,7 @@ concurrency:
 
 jobs:
   tox:
-    name: Checkstyle on ${{ matrix.os }} ${{ matrix.executor_arch }}
+    name: csit-verify-tox-${{ matrix.os }}-${{ matrix.executor_arch }}
     runs-on:
       - self-hosted
       - nomad
@@ -67,24 +67,12 @@ jobs:
       matrix:
         os: [ubuntu2404]
         executor_arch: [x86_64]
-        builder_type: [prod]
+        builder_type: [sandbox]
+
+    env:
+      JOB_NAME: "${{ github.job }}-${{ matrix.os }}-${{ matrix.executor_arch }}"
 
     steps:
-      - name: Clear votes
-        uses: lfit/gerrit-review-action@v0.4
-        with:
-          host: ${{ vars.GERRIT_SERVER }}
-          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
-          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
-          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
-          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
-          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
-          vote-type: clear
-          comment-only: true
-
-      - name: Allow replication
-        run: sleep 10s
-
       - name: Gerrit Checkout
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
@@ -98,6 +86,7 @@ jobs:
 
       - name: Setup Environment
         run: |
+          ls -al .ci
           .ci/setup_executor_env.sh
 
       - name: Run tox
