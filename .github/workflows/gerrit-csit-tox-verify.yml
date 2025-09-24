@@ -54,7 +54,7 @@ concurrency:
 
 jobs:
   csit-verify-tox:
-    name: ${{ github.job }}-${{ matrix.os }}-${{ matrix.executor_arch }}
+    name: csit-verify-tox-${{ matrix.os }}-${{ matrix.executor_arch }}
     runs-on:
       - self-hosted
       - nomad
