@@ -41,7 +41,6 @@ GITHUB_WORKFLOW="${GITHUB_WORKFLOW:-Unknown}"
 GITHUB_RUN_ID="${GITHUB_RUN_ID:-Unknown}"
 
 # Toggle envs (can be overridden from workflow)
-: "${PERF_PROBE:=1}"            # 1 to collect perf snapshots
 : "${VERBOSE_PACKAGES:=1}"      # 1 to list installed OS packages
 : "${VERBOSE_PY:=1}"            # 1 to list python packages
 : "${CCACHE_MAXSIZE:=20G}"      # Max ccache size
@@ -58,33 +57,6 @@ print_runner_attrs() {
   echo "GitHub Workflow: ${GITHUB_WORKFLOW}"
   echo "GitHub Run ID: ${GITHUB_RUN_ID}"
   echo "Runner Hostname: $(hostname)"
-}
-
-collect_perf_snapshots() {
-  [ "${PERF_PROBE}" = "1" ] || { echo "PERF_PROBE disabled"; return 0; }
-  log_line
-  echo "Collecting lightweight performance snapshots"
-  perf_trials=2
-  perf_interval=1
-  # Determine SYSSTAT path (retain legacy logic)
-  if [ "${OS_ID}" = "ubuntu" ] || [ "${OS_ID}" = "debian" ]; then
-    SYSSTAT_PATH="/var/log/sysstat"
-  elif [ "${OS_ID}" = "centos" ]; then
-    if [ "${OS_VERSION_ID}" = "7" ]; then
-      SYSSTAT_PATH="/var/log/sa/sa02"
-    else
-      SYSSTAT_PATH="/var/log/sa"
-    fi
-  else
-    SYSSTAT_PATH="/var/log"
-  fi
-  echo "Virtual memory stat"; vmstat ${perf_interval} ${perf_trials} 2>/dev/null || echo "vmstat not available"
-  echo "CPU time breakdowns per CPU"; mpstat -P ALL ${perf_interval} ${perf_trials} 2>/dev/null || echo "mpstat not available"
-  echo "Per-process summary"; pidstat ${perf_interval} ${perf_trials} 2>/dev/null || echo "pidstat not available"
-  echo "Block device stats"; iostat -xz ${perf_interval} ${perf_trials} 2>/dev/null || echo "iostat not available"
-  echo "Memory utilization"; free -m 2>/dev/null || echo "free not available"
-  echo "Network interface throughput"; sar -n DEV -o "${SYSSTAT_PATH}" ${perf_interval} ${perf_trials} 2>/dev/null || echo "sar not available"
-  echo "TCP metrics"; sar -n TCP,ETCP -o "${SYSSTAT_PATH}" ${perf_interval} ${perf_trials} 2>/dev/null || echo "sar not available"
 }
 
 show_os_packages() {
@@ -169,7 +141,6 @@ show_github_env() {
 
 # Execution sequence
 print_runner_attrs
-collect_perf_snapshots
 show_os_packages
 show_python_packages
 show_downloads_cache
