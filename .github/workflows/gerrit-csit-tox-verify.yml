@@ -62,7 +62,7 @@ jobs:
       matrix:
         os: [ubuntu2404]
         executor_arch: [x86_64]
-        builder_type: [sandbox]
+        builder_type: [prod]
 
     env:
       JOB_NAME: "${{ github.job }}-${{ matrix.os }}-${{ matrix.executor_arch }}"
