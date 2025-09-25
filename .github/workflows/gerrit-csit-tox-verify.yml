@@ -41,6 +41,11 @@ on:
         description: "Gerrit refspec of change"
         required: true
         type: string
+      TARGET_REPO:
+        # yamllint disable-line rule:line-length
+        description: "The target GitHub repository needing the required workflow"
+        required: true
+        type: string
 
 concurrency:
   # yamllint disable-line rule:line-length
@@ -79,11 +84,16 @@ jobs:
           ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
       - name: Setup Environment
-        run: |
-          ls -al .ci
-          .ci/setup_executor_env.sh
+        uses: fdio/csit/.github/actions/setup_executor_env@master
 
       - name: Run tox
         run: |
-          set -exuo pipefail
           source ./resources/libraries/bash/entry/tox.sh
+
+      - name: Archive Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.job }}-${{ matrix.os }}-${{ matrix.executor_arch }}-logs
+          path: archives/
+          if-no-files-found: "ignore"
