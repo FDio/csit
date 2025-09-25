@@ -3,6 +3,17 @@ name: "🛠️ Setup Executor Environment"
 description: |
   This GitHub Action prepares FD.io executor environment.
 
+outputs:
+  OS_ID:
+    description: "Operating system ID"
+    value: ${{ steps.attributes.outputs.OS_ID }}
+  OS_VERSION_ID:
+    description: "Operating system Version ID"
+    value: ${{ steps.attributes.outputs.OS_VERSION_ID }}
+  OS_ARCH:
+    description: "Operating system architecture"
+    value: ${{ steps.attributes.outputs.OS_ARCH }}
+
 runs:
   using: "composite"
   steps:
@@ -19,6 +30,14 @@ runs:
         echo "GitHub Workflow: ${GITHUB_WORKFLOW:-Unknown}"
         echo "GitHub Run ID: ${GITHUB_RUN_ID:-Unknown}"
         echo "Runner Hostname: $(hostname)"
+
+        # Set GitHub Outputs
+        echo "OS_ID=$ID" >> "$GITHUB_ENV"
+        echo "OS_ID=$ID" >> "$GITHUB_OUTPUT"
+        echo "OS_VERSION_ID=$VERSION_ID" >> "$GITHUB_ENV"
+        echo "OS_VERSION_ID=$VERSION_ID" >> "$GITHUB_OUTPUT"
+        echo "OS_ARCH=$OS_ARCH" >> "$GITHUB_ENV"
+        echo "OS_ARCH=$OS_ARCH" >> "$GITHUB_OUTPUT"
 
     - name: "GitHub Actions Environment"
       id: environment
@@ -40,11 +59,9 @@ runs:
       id: os_packages
       shell: bash
       run: |
-        . /etc/os-release
-
-        if [ "${ID}" = "ubuntu" ] || [ "${ID}" = "debian" ]; then
+        if [ "${OS_ID}" = "ubuntu" ] || [ "${OS_ID}" = "debian" ]; then
           dpkg-query -W -f='${binary:Package}\t${Version}\n' | column -t || true
-        elif [ "${ID}" = "centos" ]; then
+        elif [ "${OS_ID}" = "centos" ]; then
           yum list installed || true
         else
           echo "Unsupported OS for package listing"
@@ -54,8 +71,6 @@ runs:
       id: ccache_packages
       shell: bash
       run: |
-        . /etc/os-release
-        OS_ARCH=$(uname -m)
         downloads_cache="/root/Downloads"
 
         # Toggle envs (can be overridden from workflow)
@@ -68,7 +83,7 @@ runs:
           # Ensure CCACHE_DIR is set and exists
           if [ -z "${CCACHE_DIR:-}" ]; then
             # Derive a default if not provided (caller may pass one via env)
-            CCACHE_DIR="/scratch/ccache/${ID}-${VERSION_ID}-${OS_ARCH}"
+            CCACHE_DIR="/scratch/ccache/${OS_ID}-${OS_VERSION_ID}-${OS_ARCH}"
             export CCACHE_DIR
           fi
           if [ ! -d "${CCACHE_DIR}" ]; then
