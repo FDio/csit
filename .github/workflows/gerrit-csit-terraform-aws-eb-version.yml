@@ -1,5 +1,5 @@
 ---
-name: csit-verify-tox
+name: csit-terraform-aws-eb-version
 
 # yamllint disable-line rule:truthy
 on:
@@ -44,12 +44,11 @@ on:
 
 concurrency:
   # yamllint disable-line rule:line-length
-  group: csit-verify-tox-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH }}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}
+  group: verify-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH }}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}
   cancel-in-progress: true
 
 jobs:
-  csit-verify-tox:
-    name: "csit-verify-tox"
+  verify:
     runs-on:
       - self-hosted
       - nomad
@@ -64,18 +63,19 @@ jobs:
         executor_arch: [x86_64]
 
     env:
-      JOB_NAME: "${{ github.job }}"
+      JOB_NAME: "csit-terraform-aws-eb-version-verify"
+      BUILD_ID: "${{ github.run_number }}"
 
     steps:
       - name: Gerrit Checkout
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
         with:
-          gerrit-refspec: ${{ inputs.GERRIT_REFSPEC }}
-          gerrit-project: ${{ inputs.GERRIT_PROJECT }}
+          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
           gerrit-url: ${{ vars.GERRIT_URL }}
           delay: "30s"
-          ref: refs/heads/${{ inputs.GERRIT_BRANCH }}
+          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
       - name: "Retrieve GIT commit message"
         # yamllint disable-line rule:line-length
@@ -84,9 +84,52 @@ jobs:
       - name: Setup Environment
         uses: pmikus/csit/.github/actions/setup_executor_env@master
 
-      - name: Run Tox
+      - name: Run Terraform Bootstrap
         run: |
-          source ./resources/libraries/bash/entry/tox.sh
+          csit_entry_dir="./resources/libraries/bash/entry"
+          source ${csit_entry_dir}/bootstrap_aws_eb_version_verify.sh
+
+  deploy:
+    needs: verify
+    runs-on:
+      - self-hosted
+      - nomad
+      - fdio:arch=${{ matrix.executor_arch }}
+      - fdio:class=builder
+      - fdio:namespace=sandbox
+      - fdio:os=${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu2404]
+        executor_arch: [x86_64]
+
+    env:
+      JOB_NAME: "csit-terraform-aws-eb-version-deploy"
+      BUILD_ID: "${{ github.run_number }}"
+
+    steps:
+      - name: Gerrit Checkout
+        # yamllint disable-line rule:line-length
+        uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
+        with:
+          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
+          gerrit-url: ${{ vars.GERRIT_URL }}
+          delay: "30s"
+          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
+
+      - name: "Retrieve GIT commit message"
+        # yamllint disable-line rule:line-length
+        uses: lfit/releng-reusable-workflows/.github/actions/git-commit-message-action@main
+
+      - name: Setup Environment
+        uses: pmikus/csit/.github/actions/setup_executor_env@master
+
+      - name: Run Terraform Bootstrap
+        run: |
+          csit_entry_dir="./resources/libraries/bash/entry"
+          source ${csit_entry_dir}/bootstrap_aws_eb_version_deploy.sh
 
       - name: Archive Logs
         if: always()
