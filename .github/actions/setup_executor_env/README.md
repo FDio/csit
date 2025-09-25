@@ -6,17 +6,24 @@ Action to setup FD.io Nomad executor environment inside a GitHub action/workflow
 
 ## Usage Example
 
+Sets the OS details used for Git operations inside other actions/workflows.
+
 ```yaml
 - name: "Setup Environment"
   uses: fdio/csit/.github/actions/setup_executor_env@master
 ```
 
-<!-- markdownlint-enable MD013 -->
-
 ## Outputs
 
-The action has no outputs, but does provide summary step information when
-invoked.
+<!-- markdownlint-disable MD013 -->
+
+| Variable Name   | Description                     |
+| --------------- | ------------------------------- |
+| OS_ID           | Operating system ID.            |
+| OS_VERSION_ID   | Operating system Version ID.    |
+| OS_ARCH         | Operating system architecture.  |
+
+<!-- markdownlint-enable MD013 -->
 
 ## Requirements/Dependencies
 
