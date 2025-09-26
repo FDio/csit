@@ -16,7 +16,7 @@ jobs:
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
       - fdio:class=builder
-      - fdio:namespace=sandbox
+      - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
 
     strategy:
@@ -80,7 +80,7 @@ jobs:
         uses: lfit/releng-reusable-workflows/.github/actions/git-commit-message-action@main
 
       - name: Setup Environment
-        uses: pmikus/csit/.github/actions/setup_executor_env@master
+        uses: fdio/csit/.github/actions/setup_executor_env@master
 
       - name: Run Performance Bootstrap
         run: |
