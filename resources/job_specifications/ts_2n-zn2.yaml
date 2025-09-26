@@ -213,9 +213,9 @@ test-sets:
     tests:
       - gso-tap-sm:
           infra:
-            25ge2p1e810xxv:
+            25ge2p1xxv710:
               - tap
       - gso-vhost-sm:
           infra:
-            25ge2p1e810xxv:
+            25ge2p1xxv710:
               - vhost
