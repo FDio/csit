@@ -71,11 +71,11 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
         with:
-          gerrit-refspec: ${{ inputs.GERRIT_REFSPEC }}
-          gerrit-project: ${{ inputs.GERRIT_PROJECT }}
+          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
           gerrit-url: ${{ vars.GERRIT_URL }}
           delay: "30s"
-          ref: refs/heads/${{ inputs.GERRIT_BRANCH }}
+          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
       - name: "Retrieve GIT commit message"
         # yamllint disable-line rule:line-length
@@ -95,3 +95,6 @@ jobs:
           name: ${{ env.JOB_NAME }}-${{ github.run_number }}
           path: archives/
           if-no-files-found: "ignore"
+
+      - name: AWS S3 Publish Logs
+        uses: pmikus/csit/.github/actions/aws_s3_publish_logs@master
