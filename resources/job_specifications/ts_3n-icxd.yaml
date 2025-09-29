@@ -166,8 +166,8 @@ test-sets:
       25ge2p1e823c:
         - avf
     tests:
-      # - soak-memif-sm:
-      #     framesize: [64, 1518]
+      - soak-memif-sm:
+          framesize: [64, 1518]
       - soak-crypto-md:
           infra:
             25ge2p1e823c:
@@ -175,15 +175,11 @@ test-sets:
           framesize: [1518, ]
       - soak-ip4-sm:
           infra:
-            100ge2p1cx6dx:
-              - mlx5_core
             25ge2p1e823c:
               - vfio-pci
       - soak-ip4-md
       - soak-ip6-sm:
           infra:
-            100ge2p1cx6dx:
-              - mlx5_core
             25ge2p1e823c:
               - vfio-pci
           framesize: [78, ]
@@ -191,8 +187,6 @@ test-sets:
           framesize: [78, ]
       - soak-l2-sm:
           infra:
-            100ge2p1cx6dx:
-              - mlx5_core
             100ge2p1e810cq:
               - vfio-pci
       - soak-l2-md
