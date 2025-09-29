@@ -663,8 +663,6 @@ test-sets:
       100ge2p1e810cq:
         - avf
     tests:
-      # - soak-memif-sm:
-      #     framesize: [64, 1518]
       - soak-crypto-sm:
           infra:
             100ge2p1e810cq:
