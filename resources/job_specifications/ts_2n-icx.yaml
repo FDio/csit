@@ -36,7 +36,8 @@ test-sets:
         - "-"
     tests:
       - trex-ip4-sm
-      - trex-nat44-cps-md
+      - trex-nat44-cps-md:
+          framesize: [64, ]
       - trex-nat44-tput-md:
           framesize: [100, ]
       - trex-ip6-sm:
