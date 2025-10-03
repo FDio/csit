@@ -81,12 +81,12 @@ runs:
         sudo ./aws/install --update
         rm -rf ./aws
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v5.0.0
-      with:
-        aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ inputs.AWS_REGION }}
+    #- name: Configure AWS Credentials
+    #  uses: aws-actions/configure-aws-credentials@v5.0.0
+    #  with:
+    #    aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+    #    aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+    #    aws-region: ${{ inputs.AWS_REGION }}
 
     - name: Upload archives directory content to S3
       shell: bash
