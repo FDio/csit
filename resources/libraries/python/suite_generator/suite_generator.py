@@ -642,7 +642,7 @@ def suite_generator(args) -> int:
     )
 
     tr_prms = f"{trigger_params if trigger_params else 'Not specified'}\n"
-    logging.info(
+    logging.debug(
         "\nCommand line parameters:\n"
         f"Job:             {job}\n"
         f"Test output dir: {test_dir}\n"
@@ -717,7 +717,7 @@ def suite_generator(args) -> int:
                       test_type = ttype
                       search_test_type = False
 
-    logging.info(
+    logging.debug(
         "\nInput parameters (after processing):\n"
         f"Job:             {job}\n"
         f"Job type:        {job_type}\n"
@@ -742,6 +742,8 @@ def suite_generator(args) -> int:
 
     # Generate suites:
     if generate_all or tb_generate_all:  # All or all for the given testbed
+        if generate_all:
+            logging.getLogger().setLevel(logging.ERROR)
         tbed = "-".join(job.split("-")[-2:])
         ret_val = 0
         for job in spec["jobs"]:
