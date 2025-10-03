@@ -4,6 +4,18 @@ description: |
   This GitHub Action uploads logs to AWS S3.
 
 inputs:
+  AWS_ACCESS_KEY_ID:
+    description: "Unique, public identifier for an AWS IAM user."
+    required: true
+    type: string
+  AWS_SECRET_ACCESS_KEY:
+    description: "Long-term security credential for AWS account or an IAM user."
+    required: true
+    type: string
+  AWS_REGION:
+    description: "Long-term security credential for AWS account or an IAM user."
+    required: true
+    type: string
   S3_BUCKET:
     description: "Name of the Amazon S3 bucket."
     required: true
@@ -67,6 +79,13 @@ runs:
         unzip -o -q "$AWS_PACKAGE"
         sudo ./aws/install --update
         rm -rf ./aws
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v5.0.0
+      with:
+        aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ inputs.AWS_REGION }}
 
     - name: Upload archives directory content to S3
       shell: bash

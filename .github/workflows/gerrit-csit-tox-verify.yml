@@ -96,15 +96,11 @@ jobs:
           path: archives/
           if-no-files-found: "ignore"
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5.0.0
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION }}
-
       - name: AWS S3 Publish Logs
         if: always()
         uses: fdio/csit/.github/actions/aws_s3_publish_logs@master
         with:
-          S3_BUCKET: ${{ vars.S3_BUCKET }}
+          #S3_BUCKET: ${{ vars.S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
