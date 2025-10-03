@@ -111,11 +111,8 @@ runs:
 
           S3_ARN="${{ inputs.S3_BUCKET }}/${{ inputs.S3_PATH }}/${rel_path}.gz"
 
-          echo "Uploading ${rel_path}.gz -> ${S3_ARN} (Content-Type: $content_type, gzip)"
-          #aws s3 cp "${tmp_file}" "${S3_ARN}" \
-          #  --content-type "$content_type" \
-          #  --content-encoding "gzip"
+          echo "Uploading ${rel_path}.gz -> ${S3_ARN} (Content-Type: ${content_type}, gzip)"
+          aws s3 cp "${tmp_file}" "${S3_ARN}" --content-type "${content_type}" --content-encoding "gzip"
 
           rm -f "${tmp_file}"
         done
-

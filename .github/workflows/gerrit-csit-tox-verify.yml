@@ -77,7 +77,7 @@ jobs:
           delay: "30s"
           ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
-      - name: "Retrieve GIT commit message"
+      - name: Retrieve GIT commit message
         # yamllint disable-line rule:line-length
         uses: lfit/releng-reusable-workflows/.github/actions/git-commit-message-action@main
 
@@ -97,4 +97,5 @@ jobs:
           if-no-files-found: "ignore"
 
       - name: AWS S3 Publish Logs
-        uses: pmikus/csit/.github/actions/aws_s3_publish_logs@master
+        if: always()
+        uses: fdio/csit/.github/actions/aws_s3_publish_logs@master
