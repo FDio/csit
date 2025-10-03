@@ -15,6 +15,7 @@ inputs:
   AWS_REGION:
     description: "Long-term security credential for AWS account or an IAM user."
     required: true
+    default: "us-east-1"
     type: string
   S3_BUCKET:
     description: "Name of the Amazon S3 bucket."
