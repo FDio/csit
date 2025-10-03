@@ -99,3 +99,5 @@ jobs:
       - name: AWS S3 Publish Logs
         if: always()
         uses: fdio/csit/.github/actions/aws_s3_publish_logs@master
+        with:
+          S3_BUCKET: ${{ vars.S3_BUCKET }}
