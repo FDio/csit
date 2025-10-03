@@ -1,0 +1,12 @@
+---
+# file: tasks/main.yaml
+
+- name: install calico
+  community.kubernetes.k8s:
+    state: present
+    template: "{{ item }}"
+  loop:
+    - "operator-crds.yaml.j2"
+    - "tigera-operator.yaml.j2"
+  tags:
+    - kubernetes-calico-install

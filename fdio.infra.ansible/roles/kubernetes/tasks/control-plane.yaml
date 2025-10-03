@@ -1,12 +1,12 @@
 ---
 # file: tasks/control-plane.yaml
 
-- name: deploy the config-file for kubeadm and kubelet
-  template:
-    src: kubeadm-kubelet-config.j2
-    dest: "{{ kubernetes_kubeadm_kubelet_config_file_path }}"
-  tags:
-    - kubernetes-inst-control-plane
+#- name: deploy the config-file for kubeadm and kubelet
+#  template:
+#    src: kubeadm-kubelet-config.j2
+#    dest: "{{ kubernetes_kubeadm_kubelet_config_file_path }}"
+#  tags:
+#    - kubernetes-inst-control-plane
 
 - name: disable swap
   ansible.posix.mount:
@@ -20,6 +20,13 @@
 - name: disable swap
   ansible.builtin.shell: |
     swapoff -a
+  tags:
+    - kubernetes-inst-control-plane
+
+- name: restart containerd
+  ansible.builtin.service:
+    name: "containerd"
+    state: "restarted"
   tags:
     - kubernetes-inst-control-plane
 
@@ -72,17 +79,10 @@
     - kubernetes-inst-control-plane
 
 - name: allow pods on control plane (if configured)
-  command: "kubectl taint nodes --all node-role.kubernetes.io/control-plane-"
+  ansible.builtin.command: "kubectl taint nodes --all node-role.kubernetes.io/control-plane-"
+  become: false
   when:
     - kubernetes_allow_pods_on_control_plane | bool
     - not kubernetes_init_stat.stat.exists
   tags:
     - kubernetes-inst-control-plane
-
-#- name: install callico
-#  command: "kubectl create -f {{ item }}"
-#  failed_when: false
-#  loop:
-#    "{{ kubernetes_calico_resources }}"
-#  tags:
-#    - kubernetes-inst-control-plane

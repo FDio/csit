@@ -849,6 +849,7 @@ function run_robot () {
     set +e
     robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     ROBOT_EXIT_STATUS="$?"
+    rm "${ARCHIVE_DIR}/output.xml" || true
     set -e
 
     popd || die "Change directory operation failed."
