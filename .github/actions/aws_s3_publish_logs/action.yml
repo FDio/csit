@@ -4,19 +4,18 @@ description: |
   This GitHub Action uploads logs to AWS S3.
 
 inputs:
-  #AWS_ACCESS_KEY_ID:
-  #  description: "Unique, public identifier for an AWS IAM user."
-  #  required: true
-  #  type: string
-  #AWS_SECRET_ACCESS_KEY:
-  #  description: "Long-term security credential for AWS account or an IAM user."
-  #  required: true
-  #  type: string
-  #AWS_REGION:
-  #  description: "Long-term security credential for AWS account or an IAM user."
-  #  required: true
-  #  default: "us-east-1"
-  #  type: string
+  AWS_ACCESS_KEY_ID:
+    description: "Unique, public identifier for an AWS IAM user."
+    required: true
+    type: string
+  AWS_SECRET_ACCESS_KEY:
+    description: "Long-term security credential for AWS account or an IAM user."
+    required: true
+    type: string
+  AWS_REGION:
+    description: "Long-term security credential for AWS account or an IAM user."
+    required: true
+    type: string
   S3_BUCKET:
     description: "Name of the Amazon S3 bucket."
     required: true

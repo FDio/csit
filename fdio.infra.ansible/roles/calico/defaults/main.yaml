@@ -9,3 +9,6 @@ kubernetes_calico_version: "3.30.3"
 kubernetes_calico_resources:
   - https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/tigera-operator.yaml
   - https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/operator-crds.yaml
+
+
+calico_vpp_state: "present"

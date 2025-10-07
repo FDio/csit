@@ -24,6 +24,8 @@
       tags: docker
     - role: kubernetes
       tags: kubernetes
+    - role: calico
+      tags: calico
     - role: vpp
       tags: vpp
     - role: dpdk
