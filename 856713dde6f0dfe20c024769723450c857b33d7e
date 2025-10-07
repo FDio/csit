@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db2a3860_7df71a89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-10-07T10:49:15Z",
+      "side": 1,
+      "message": "csit-2n-emr-perftest nic_*AND*ip4tcphttp-dma-ldpreload-nginx* #2n-emr-vpp-hoststack",
+      "revId": "856713dde6f0dfe20c024769723450c857b33d7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
