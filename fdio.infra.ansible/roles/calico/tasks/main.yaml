@@ -1,12 +1,30 @@
 ---
 # file: tasks/main.yaml
 
-- name: install calico
-  community.kubernetes.k8s:
-    state: present
-    template: "{{ item }}"
+- name: download calico manifest to the cluster
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/{{ item }}"
+    dest: /tmp/{{ item }}
+    mode: '0664'
   loop:
-    - "operator-crds.yaml.j2"
-    - "tigera-operator.yaml.j2"
+    - "operator-crds.yaml"
+    - "tigera-operator.yaml"
+  tags:
+    - kubernetes-calico-install
+
+- name: apply calico manifest to the cluster
+  kubernetes.core.k8s:
+    state: present
+    src: "/tmp/{{ item }}"
+  loop:
+    - "operator-crds.yaml"
+    - "tigera-operator.yaml"
+  tags:
+    - kubernetes-calico-install
+
+- name: apply calico vpp manifest to the cluster
+  kubernetes.core.k8s:
+    state: "{{ calico_vpp_state }}"
+    template: "calico-vpp.yaml.j2"
   tags:
     - kubernetes-calico-install
