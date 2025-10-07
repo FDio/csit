@@ -138,15 +138,16 @@ apiVersion: v1
 data:
   CALICOVPP_CONFIG_TEMPLATE: |-
     unix {
-      nodaemon
-      full-coredump
-      cli-listen /var/run/vpp/cli.sock
-      pidfile /run/vpp/vpp.pid
-      exec /etc/vpp/startup.exec
+        nodaemon
+        full-coredump
+        cli-listen /var/run/vpp/cli.sock
+        pidfile /run/vpp/vpp.pid
+        exec /etc/vpp/startup.exec
     }
     api-trace { on }
     cpu {
-        workers 0
+        main-core 1
+        corelist-workers 2,3,4,5,98,99,100,101
     }
     socksvr {
         socket-name /var/run/vpp/vpp-api.sock
@@ -159,7 +160,7 @@ data:
         plugin dispatch_trace_plugin.so { enable }
     }
     buffers {
-      buffers-per-numa 131072
+        buffers-per-numa 131072
     }
   CALICOVPP_INITIAL_CONFIG: |-
     {
@@ -172,7 +173,7 @@ data:
         "rx": 10, "tx": 10, "rxqsz": 1024, "txqsz": 1024
       },
       "defaultPodIfSpec": {
-        "rx": 1, "tx":1, "isl3": true, "rxMode": "adaptive"
+        "rx": 1, "tx":1, "isl3": true
       },
       "vppHostTapSpec": {
         "rx": 1, "tx":1, "rxqsz": 1024, "txqsz": 1024, "isl3": false
@@ -180,7 +181,15 @@ data:
       "uplinkInterfaces": [
         {
           "interfaceName": "enp56s0np0",
-          "vppDriver": "dpdk"
+          "vppDriver": "dpdk",
+          "rx": 8,
+          "rxMode": "polling"
+        },
+        {
+          "interfaceName": "enp58s0np0",
+          "vppDriver": "dpdk",
+          "rx": 8,
+          "rxMode": "polling"
         }
       ]
     }
@@ -224,10 +233,10 @@ spec:
         name: vpp
         resources:
           limits:
-            hugepages-2Mi: 512Mi
+            hugepages-2Mi: 4096Mi
           requests:
             cpu: 500m
-            memory: 512Mi
+            memory: 4096Mi
         securityContext:
           privileged: true
         volumeMounts:
