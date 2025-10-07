@@ -1,0 +1,17 @@
+<<<<<<< HEAD   (0d4d97 nsg: change logging levels)
+=======
+---
+kubernetes_pod_network:
+  # Calico CNI.
+  cni: "calico"
+  cidr: "192.168.0.0/16"
+
+kubernetes_calico_version: "3.30.3"
+
+kubernetes_calico_resources:
+  - https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/tigera-operator.yaml
+  - https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/operator-crds.yaml
+
+
+calico_vpp_state: "present"
+>>>>>>> CHANGE (5d964d feat(ansible): K8S tune)

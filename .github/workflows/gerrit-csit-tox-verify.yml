@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (0d4d97 nsg: change logging levels)
 ---
 name: csit-verify-tox
 
@@ -95,3 +96,5 @@ jobs:
           name: ${{ env.JOB_NAME }}-${{ github.run_number }}
           path: archives/
           if-no-files-found: "ignore"
+=======
+>>>>>>> CHANGE (5d964d feat(ansible): K8S tune)
