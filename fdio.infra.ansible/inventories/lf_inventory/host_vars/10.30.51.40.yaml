@@ -34,6 +34,7 @@ intel_800_matrix: "dpdk24.07"
 intel_dsa_matrix: true
 intel_qat_matrix: true
 
+calico_sut: true
 docker_sut: true
 docker_volumes:
   - source: "/dev/null"
