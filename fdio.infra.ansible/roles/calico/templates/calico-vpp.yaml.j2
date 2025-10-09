@@ -154,7 +154,7 @@ data:
     }
     plugins {
         plugin default { enable }
-        plugin dpdk_plugin.so { enable }
+        plugin dpdk_plugin.so { disable }
         plugin calico_plugin.so { enable }
         plugin ping_plugin.so { disable }
         plugin dispatch_trace_plugin.so { enable }
@@ -181,13 +181,13 @@ data:
       "uplinkInterfaces": [
         {
           "interfaceName": "enp56s0np0",
-          "vppDriver": "dpdk",
+          "vppDriver": "avf",
           "rx": 8,
           "rxMode": "polling"
         },
         {
           "interfaceName": "enp58s0np0",
-          "vppDriver": "dpdk",
+          "vppDriver": "avf",
           "rx": 8,
           "rxMode": "polling"
         }

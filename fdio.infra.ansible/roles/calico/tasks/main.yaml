@@ -9,6 +9,8 @@
   loop:
     - "operator-crds.yaml"
     - "tigera-operator.yaml"
+  when: >
+    calico_sut is defined
   tags:
     - kubernetes-calico-install
 
@@ -19,6 +21,8 @@
   loop:
     - "operator-crds.yaml"
     - "tigera-operator.yaml"
+  when: >
+    calico_sut is defined
   tags:
     - kubernetes-calico-install
 
@@ -26,5 +30,42 @@
   kubernetes.core.k8s:
     state: "{{ calico_vpp_state }}"
     template: "calico-vpp.yaml.j2"
+  when: >
+    calico_sut is defined
   tags:
     - kubernetes-calico-install
+
+- name: get a list of all pods from any namespace
+  kubernetes.core.k8s_info:
+    kind: Pod
+    field_selectors:
+      - status.phase=Running
+    label_selectors:
+      - k8s-app=calico-vpp-node
+  register: pod_list
+  tags:
+    - kubernetes-info
+
+- name: register vpp pod name
+  ansible.builtin.set_fact:
+    calico_pod_name: "{{ item[0]['metadata']['name'] }}"
+  loop:
+    - "{{ pod_list['resources'] }}"
+  tags:
+    - kubernetes-info
+
+- name: execute command on calico-vpp-pod
+  kubernetes.core.k8s_exec:
+    namespace: calico-vpp-dataplane
+    pod: "{{ calico_pod_name }}"
+    container: vpp
+    command: vppctl sh version
+  register: command_status
+  when: >
+    calico_pod_name is defined
+  tags:
+    - kubernetes-info
+
+- name: Check last command status
+  debug:
+    msg: "{{ command_status.stdout }}"
