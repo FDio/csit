@@ -90,8 +90,9 @@ programs:
             - thread_id
             - thread_lcore
     code: |
+      sleep 10
       vppctl -s {socket} clear runtime
-      sleep {duration}
+      sleep 60
       vppctl -s {socket} show runtime
   - name: bundle_vppctl
     metrics:
@@ -147,7 +148,7 @@ programs:
     code: |
       vppctl -s {socket} perfmon reset
       vppctl -s {socket} perfmon start bundle inst-and-clock
-      sleep {duration}
+      sleep 60
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
   - name: bundle_vppctl
@@ -204,6 +205,6 @@ programs:
     code: |
       vppctl -s {socket} perfmon reset
       vppctl -s {socket} perfmon start bundle cache-hierarchy
-      sleep {duration}
+      sleep 60
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
