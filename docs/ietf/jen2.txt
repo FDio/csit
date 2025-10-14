@@ -1,0 +1,46 @@
+Hi Jen, thanks again.
+
+In the meantime, we got reviews from other people,
+our edits are visible here: [1] (rendered diff) and [2] (source).
+
+> it looks like a minor typo, could be fixed later
+> with other RFC editors comments
+
+Done.
+The second typo got replaced by a better sentence.
+
+>>> "Regardless of the validity of all similar motivations, support for non-zero
+>>> loss goals makes a search algorithm more user-friendly. [RFC2544] throughput is
+>>> not user-friendly in this regard."
+>>>
+>>> IMHO this needs clarification, as it's a bit unclear what "user-friendly" means
+>>> in this context, especially - as the first sentence seems to imply - it's
+>>> unrelated to all the motivations listed above?
+>>
+>> I agree the text is not good, but I was unable to really improve.
+>>
+>> The story is that the motivations explain why some "users"
+>> (people deciding which benchmarks are measured,
+>> a term we removed from earlier revisions, instead of trying to define properly)
+>> may want to use non-zero loss ratio as part of their search goals,
+>> but most search algorithm implementations based on RFC2544
+>> do not offer such configuration options.
+>> A search algorithm is "user-friendly" for such users if it offers the configuration option,
+>> and this usefulness depends just on user's decision,
+>> not on (regardless of) which motivation explains that decision.
+>
+> That explanation is very helpful. So maybe you could say smth like
+>
+> "Support for non-zero loss targets increases the configurability and
+> flexibility of a search algorithm, making it suitable for a wider
+> range of use cases than the approach defined in [RFC2544]."?
+
+Med considered "flexible" to be a too vague word in his review.
+
+I combined the start from our text with the end of your text:
+"Regardless of the validity of all similar motivations,
+support for non-zero loss goals makes a
+search algorithm applicable for a wider range of use cases
+than the approach defined in [RFC2544]."
+
+Vratko.

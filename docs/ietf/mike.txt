@@ -1,0 +1,90 @@
+Hi Mike, thanks for the review!
+
+In the meantime, we got reviews from other people,
+our edits are visible here: [1] (rendered diff) and [2] (source).
+
+> Can you reword on "Process of inconsistent trial results carefully."?
+> Perhaps something like "Define handling of inconsistent trial results"?
+
+I went with "Clarify handling of inconsistent trial results".
+
+> There are references to existing approaches as "vanilla" or "plain." These are
+> presumably referring to RFC2544's behavior?
+
+Not exactly. The description in RFC2544 is quite vague,
+it does not neccessitate bisecting, and it allows short trials.
+
+Most equipment vendors keep their implementations closed-source,
+and the few open-source implementations we found are not
+wide-spread enough to become a reference.
+Also they have quirks, like returning the average of last two bounds,
+which I do not think are strictly compatible with RFC2544.
+
+Section 2.13.2 of TST009 (step B-01) is the only reference specific enough,
+but it includes rounding.
+
+Some of these explanations could be turned into a text update for the document,
+but I doubt such technicalities would be helpful for uninitiated reader.
+Perhaps we can just move the "reminder" list from the end of section 2.1.
+to a more prominent location?
+
+> ... conventions on capitalization
+
+As replied to other reviewers, the usage of capitalization is currently
+not consistent enough, we just did not have enough time to improve it.
+
+> I think a lot of the content in Section 5 would have been helpful in the
+> Introduction as context for the reader. If you don't want to relocate it,
+> forward references from the Introduction might help people know where to jump
+> for more background.
+
+I prefer adding references, which we did not have enough time to do properly.
+
+> The Markdown tooling does support
+> making the terms link to the section which defines them
+
+We are already using those...
+
+> 5.6.1, "Appendix B (Appendix B)" => "Appendix B"
+
+...and this is an example consequence.
+The (Appendix B) part is added automatically, so I edited the text before parenthesis.
+
+> 1.1, "takes long" => "takes a long time"
+
+Done.
+
+> 1.1, "Search Goal (Section 4.6.7)s," => "Search Goals (Section 4.6.7)"
+
+Done.
+
+> 2.1, "[RFC2544" => "[RFC2544]" (and link, presumably)
+
+Closed the bracket.
+
+> 2.3 and 4.10.3, "60 seconds trial" => "60-second trial"
+
+Replaced (in multiple places).
+
+> 4.5.4, bulleted list is collapsed into a paragraph and "Section 8, 12,
+> and..." => "Sections 8, 12, and..."
+
+Oh, making kramdown understand two-layer lists inside indented Discussion section is hard.
+I did something, by sacrificing higher list layer,
+but it still leaks an additional "empty" line containing one space. :(
+
+> 4.10.3, "get compatible Search Result"
+>  => "get compatible Search Results" or "get a compatible Search Result"
+
+Inserted the missing "a".
+Grammar around definite and indefinite particles is another area
+we did not find time to fix properly.
+
+> 5, "Section MLRsearch Specification (Section 4)" => "Section 4"
+
+Another victim of our markdown linking.
+I removed the first "Section", but two "specification" words
+(only one capitalized) this close together still look wrong.
+Not wrong enough to hardcode section number, yet.
+
+Vratko.

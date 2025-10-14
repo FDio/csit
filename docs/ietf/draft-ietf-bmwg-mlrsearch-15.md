@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-14
-date: 2025-09-17
+docname: draft-ietf-bmwg-mlrsearch-15
+date: 2025-10-14
 
 submissionType: IETF
 ipr: trust200902
@@ -71,8 +71,8 @@ informative:
 
 --- abstract
 
-This document specifies extensions to "Benchmarking Methodology for
-Network Interconnect Devices" (RFC 2544) throughput search by
+This document describes an alternative to "Benchmarking Methodology for
+Network Interconnect Devices" (RFC 2544) throughput by
 defining a new methodology called Multiple Loss Ratio search
 (MLRsearch). MLRsearch aims to minimize search duration,
 support multiple loss ratio searches, and improve result repeatability
@@ -102,7 +102,7 @@ software-based networking systems based on Commercial Off-the-Shelf
 This document describes the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining data plane
 throughput in software-based networking functions running on commodity systems with
-x86/ARM CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
+generic CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
 functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
@@ -114,6 +114,12 @@ act as list of newly defined terms.
 If a phrase appears with first letters capitalized, it likely refers
 to a specific term defined in eponymous subsection
 of [MLRsearch Specification](#mlrsearch-specification).
+
+For first time readers, the information in
+[MLRsearch Specification](#mlrsearch-specification) might feel
+dense and lacking motivation. Subsequent sections are there to provide explanations,
+making [MLRsearch Specification](#mlrsearch-specification)
+more approachable on repeated reads.
 
 ## Purpose
 
@@ -238,8 +244,8 @@ with loads that, in retrospect, are far from the final determined throughput.
 Secondly, [RFC2544] does not specify any stopping condition for
 throughput search, so users of testing equipment implementing the
 procedure already have access to a limited trade-off
-between search duration and achieved precision.
-However, each of the full 60-second trials doubles the precision.
+between search duration and achieved precision,
+as each one of the full 60-second trials halves the interval of possible results.
 
 As such, not many trials can be removed without a substantial loss of precision.
 
@@ -437,7 +443,8 @@ Motivations are many:
   Trial and Goal terms in [Trial Terms](#trial-terms) and [Goal Terms](#goal-terms)).
 
 For more information, see Section 5 of an earlier draft [Lencze-Shima]
-and references there.
+(and references there) for few extreme cases, confirming that
+each protocol and application can have different realistic loss ratio value.
 
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes a
@@ -646,10 +653,10 @@ Search. Any work the Manager performs either before invoking the
 Controller or after Controller returns, falls outside the scope of the
 Search.
 
-MLRsearch Specification prescribes Regular Search Results and recommends
-corresponding search completion conditions.
+MLRsearch Specification prescribes [Regular Search Results](#regular-search-result)
+and recommends corresponding search completion conditions.
 
-Irregular Search Results are also allowed,
+[Irregular Search Results](#irregular-search-result) are also allowed,
 they have different requirements and their corresponding stopping conditions are out of scope.
 
 Search Results are based on Load Classification. When measured enough,

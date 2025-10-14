@@ -1,0 +1,43 @@
+Hi Roman, thanks for the review!
+
+Not sure how your e-mail got marked as read in my e-mail client
+without me realizing, thanks Med for the reminder.
+
+> ** Abstract
+>    This document specifies extensions to "Benchmarking Methodology for
+>    Network Interconnect Devices" (RFC 2544) throughput search by
+>    defining a new methodology called Multiple Loss Ratio search
+>    (MLRsearch).
+>
+> I could not find any reference in RFC2544 to “throughput search”.
+
+Yeah, it is only implied.
+While RFC 2544 section 24.(Trial duration) mentions
+"binary search" (in quotes) and "search procedure" (without quotes),
+the section 26.1(Throughput) only mentions nouns "procedure" and "result"
+and verb the "determine" (all without quotes).
+
+I think that for experienced practitioners it is clear
+that "search" in section 24 refers to throughput,
+as Back-to-back frames from section 26.4 is the only other procedure
+that searches for something, but that uses short bursts, not long trials.
+But I agree, we should not presume mlrsearch reader
+knows that when reading the abstract.
+
+Looking at the text of the abstract,
+I am not sure I would use the word "extensions" anymore,
+so I do not have a specific edit yet.
+Maybe Maciek will have.
+
+> ** Section 8
+>    Any implications for network security arising from the DUT/SUT SHOULD
+>    be identical in the lab and in production networks.
+>
+> Could the intent of this sentence be clarified?
+
+Yes, but probably not in the mlrsearch document.
+It comes from a "boilerplate" sections re-used across many BMWG documents,
+updating them should come with larger consensus.
+I started the discussion [1] on the mailing list.
+
+Vratko.

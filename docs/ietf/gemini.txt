@@ -1,0 +1,124 @@
+Based on the review feedback and your replies, here is a summary of points that still require edits in the new version of the document. The points are categorized by priority.
+
+### High-Priority Content and Clarity Edits
+
+* **Abstract Wording**: The abstract needs to be reworded.
+  * Avoid the term "throughput search," as reviewers noted it is not explicitly defined in RFC 2544.
+
+    + 1. Ok, find new phrase.
+      DONE:
+      - throughput search
+      + throughput
+
+  * Reconsider the use of the word "extensions".
+
+    + 2. Ok, find new phrase.
+      DONE:
+      - specifes extension
+      + describes and alternative
+
+  * Change "specifies" to "describes" to better suit an Informational RFC.
+
+    + 3. Maybe? I do not agree with the modivation, but "describes" is ok for abstract.
+      DONE:
+      - specifes extension
+      + describes and alternative
+
+* **Binary Search Explanation**: The explanation of binary search needs to be more accessible to readers.
+  * Move the "reminder" text about the [RFC2544] binary search from the end of Section 2.1 to a more prominent location, such as the Introduction.
+
+    + 4. Ok, pick the location.
+      TODO.
+
+  * When this text is moved, clarify the claim that "each of the full 60-second trials doubles the precision".
+
+    + 5. Ok, pick new phrase.
+      DONE:
+      -between search duration and achieved precision.
+      -However, each of the full 60-second trials doubles the precision.
+      +between search duration and achieved precision,
+      +as each one of the full 60-second trials halves the interval of possible results.
+
+* **Security Considerations Section**: This boilerplate section requires several clarifications based on reviewer feedback.
+  * Clarify the sentence "Any implications for network security... SHOULD be identical in the lab and in production networks."
+    The intended meaning is that DUTs should be benchmarked using their production security configurations.
+
+    - No edits in boilerplate.
+
+  * Elaborate on the statement that DUT/SUTs "SHOULD NOT include features that serve only to boost benchmark scores."
+    The clarification should note that such capabilities may be present but MUST be disabled by default, and their use must be explicitly reported.
+
+    - No edits in boilerplate.
+
+  * Consider adding text about the need to protect benchmarking results, as they could be used by attackers to plan attacks.
+    It could also be clarified that defining access control for results is out of the document's scope.
+
+    - No edits in boilerplate.
+
+* **Clarify Scope of Applicability**: The phrasing limiting the scope to systems with "x86/ARM CPUs" should be revised.
+  The text should clarify that the methodology is applicable to any generic CPU but is especially motivated by the performance variability common in such systems.
+
+  + 6. Ok, pick better phrase.
+    DONE: Replaced "x86/ARM CPUs" -> "generic CPUs"
+
+* **Reduce Section Overlap**: Review Section 1.2 ("Positioning within BMWG Methodologies") and Section 4.1 ("Scope") to reduce redundant content and improve clarity.
+
+  + 7. Maybe ok, not clear how to improve.
+    TODO.
+
+### Medium-Priority Edits
+
+* **Add Forward References**:
+  * In the Introduction, add forward references to the Rationale section (Section 6) to give readers better context early on.
+
+    + 8. Ok.
+      DONE added new paragraph:
+      For first time readers, the information in
+      [MLRsearch Specification](#mlrsearch-specification) might feel
+      dense and lacking motivation. Subsequent sections are there to provide explanations,
+      making [MLRsearch Specification](#mlrsearch-specification)
+      more approachable on repeated reads.
+
+  * In Section 4.2 ("Architecture Overview"), add forward references
+    for the terms "Regular Search Results" and "Irregular Search Results" to their definitions in Section 4.8.4.
+
+    + 9. Maybe? Not sure yet. Perhaps irregular only?
+      DONE: For ir/regular result only.
+
+* **Rename Section Title**: The title of Section 2.2, "DUT in SUT," should be rephrased to avoid using acronyms that are defined within the section itself.
+
+  + 10. DONE before -15:
+    Fixed by moving the paragraph starting with "Section 19 of [RFC2544]" before the RFC2285 definitions.
+
+* **Elaborate on Non-Zero Loss**: In Section 2.4 ("Throughput with Non-Zero Loss"), consider adding a sentence noting that
+  the impact of a given loss ratio varies depending on the upper-layer protocol and application.
+
+  + 11. Ok, but not clear on sentence.
+    DONE. Updated paragraph:
+    For more information, see Section 5 of an earlier draft [Lencze-Shima]
+    (and references there) for few extreme cases, confirming that
+    each protocol and application can have different realistic loss ratio value.
+
+* **Review "Conditional MUST" Usage**: Re-evaluate the use of "conditional requirements" (e.g., the use of MUST in Section 4.5.5)
+  to ensure the language is unambiguous and justified, as this usage is not explicitly covered by RFC2119 / RFC8174.
+
+  - No, current text looks good enough.
+
+### Low-Priority Stylistic and Formatting Edits
+
+* **Add Architecture Diagram**: Consider adding a simple diagram to Section 4.2 to visually represent the relationship between the Manager, Controller, and Measurer components.
+
+  - Maybe? I prefer no.
+
+* **General Grammar and Wording Review**:
+  * Perform a consistency check on the capitalization of defined terms throughout the document.
+
+    - Maybe but hard to do reliably. For now, no.
+
+  * Conduct a general grammar review, with a focus on the correct use of definite and indefinite articles ("a," "the").
+
+    - Not yet.
+
+  * Check for awkward phrasing that may have been caused by the automatic linking tool, such as "Section X (Section X)".
+
+    + 12. DONE before -15. Yes for Appendices, no otherwise.

@@ -1,0 +1,152 @@
+Hi Jen,
+
+Thank you for your review!
+
+It was quite detailed, unfortunately we did not have enough time
+to address all the comments properly (considering Maciek is on PTO).
+
+Still, I decided an incomplete response is better than no response,
+so I quickly uploaded version 13 of our draft, edits are visible here:
+https://author-tools.ietf.org/iddiff?url1=draft-ietf-bmwg-mlrsearch-12&url2=draft-ietf-bmwg-mlrsearch-13&difftype=--html
+
+> 1. Introduction says:
+>
+> "Applying the vanilla throughput binary search,as specified for example in
+> [TST009] and [RFC2544]"
+>
+> RFC2544 mention 'search' exactly twice in Section 24 but doesn't really says
+> much. IMHO it might be benefitial to refer to Section 12.3.2 of TST009 and/or
+> section 5.1 of this document.
+
+Ok, second paragraph of section 1.1 edited,
+"Section 12.3.2 of [TST009]" instead of "[TST009] and [RFC2544]".
+
+> 2. Introduction (and other sections) uses the term "Search Goal" extensively,
+> like it's a well-known term, but then Section 4.6.7 explains that it is
+> actually a new term, introduced by this document. IMHO, adding a reference to
+> Section 4.6.7 when that term used for the very first would be very useful.
+
+This is one of weak points of the current text.
+We sometimes add forward references to sections of the documents,
+but sometimes we rely on capitalization only.
+Adding references to first occurrence could be a good compromise.
+Specifically for Search Goal, I added a reference,
+but somehow put the plural "s" in a wrong place.
+Not sure whether uploading next draft version just to fix that is worth it.
+
+> Also, I feel like Section 1.2 kind of overlaps with 4.1
+
+That is intentional.
+4.1 is normative core (belongs to specification),
+1.2 is broader context (belongs to introduction).
+Maybe the last paragraph of 1.2 could be shortened,
+especially since it mentions Search Goal (but so does previous paragraph).
+
+I agree both subsections can be improved to reduce unnecessary overlap,
+but I was not able to arrive at better text for now.
+
+> 2. Add a Terminology section right after the introduction
+
+We tried to do that in earlier revisions, but it did not work well.
+We have some text at the start of section 4,
+but apparently it is still not strong enough for readers
+to realize our terminology setup.
+
+For the last version, I added a paragraph to section 1 (Introduction),
+but I am not sure it is enough.
+
+> Introduction:
+> "Be careful when dealing with inconsistent trial results"
+
+Replaced with:
+"Process of inconsistent trial results carefully."
+Once again, I missed the "of" now should not be there.
+
+> "Reported throughput is smaller than the smallest load with high loss."
+
+Replaced with:
+"Reported throughput should be smaller than the smallest load with high loss."
+
+> "MLRsearch configuration supports both conservative settings and aggressive
+> settings. Conservative enough settings lead to results unconditionally
+> compliant with [RFC2544],"
+
+Replaced with:
+"MLRsearch configuration supports both conservative settings and
+aggressive settings. Results unconditionally compliant with
+[RFC2544] are possible with conservative enough settings,"
+
+> Section 2.2
+> Would be nice to expland SUT acronym upon its first use in the text, not later.
+
+Fixed by moving the paragraph starting with "Section 19 of [RFC2544]"
+before the RFC2285 definitions.
+
+> Section 2.4
+> The last bullet point in the "Motivations are many:" list shouldn't actually be
+> a  bullet point, as it's not "one of many".
+
+Yes, changed from a list item into an ordinary paragraph.
+
+> "Regardless of the validity of all similar motivations, support for non-zero
+> loss goals makes a search algorithm more user-friendly. [RFC2544] throughput is
+> not user-friendly in this regard."
+>
+> IMHO this needs clarification, as it's a bit unclear what "user-friendly" means
+> in this context, especially - as the first sentence seems to imply - it's
+> unrelated to all the motivations listed above?
+
+I agree the text is not good, but I was unable to really improve.
+
+The story is that the motivations explain why some "users"
+(people deciding which benchmarks are measured,
+a term we removed from earlier revisions, instead of trying to define properly)
+may want to use non-zero loss ratio as part of their search goals,
+but most search algorithm implementations based on RFC2544
+do not offer such configuration options.
+A search algorithm is "user-friendly" for such users if it offers the configuration option,
+and this usefulness depends just on user's decision,
+not on (regardless of) which motivation explains that decision.
+
+> "At the time of writing there does not seem to be a consensus in the industry
+> on which ratio value is the best."
+>
+> I assume "ratio" means "loss ratio", worth making it explicit.
+
+Yes, "loss" inserted.
+
+> Also, IMHO, it
+> should be noted that the user experience would vary - even for a given loss
+> ration - depending on the specific upper-layer protocol and the application.
+
+I agree, but once again I was not able to find a good edit.
+Especially since some reviewers (hi Med) like to ask for references
+for any overarching conclusion (which protocol? which app?) like that.
+
+The [Lencze-Shima] reference goes deeper into some of intricacies,
+but it also does not attempt to give suggestions for specific protocols and apps.
+
+> Section 4.2
+> Another case of terms used before the definition. When you introduce the terms
+> "regular" and "irregular" seach results, it owuld be benefitial to refer to
+> section 4.8.4, where they are defined.
+
+Section 4.2 is already full of capitalized phrases,
+each could warrant a section reference.
+Maybe adding a reminder about our usage of capitalized phrases could help,
+But I was not sure so I did not make any edits there.
+
+> "Depending on Search Goal attributes, Load Classification results may be
+> resistant to small amounts of Section Inconsistent Trial Results (Section
+> 2.5)."
+
+Yes, deleted the first Section occurrence.
+
+> There are a number of places where a new paragraph starts in the middle of the sentence,
+
+All of those should have been fixed in draft version 12.
+
+Many thanks again for your review – appreciate!
+
+Regards,
+Vratko and Maciek (authors).
