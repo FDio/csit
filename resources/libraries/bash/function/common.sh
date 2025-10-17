@@ -513,10 +513,12 @@ function get_test_code () {
         *"3n-alt")
             NODENESS="3n"
             FLAVOR="alt"
+            VPP_PLATFORM="neoversev2"
             ;;
         *"2n-grc")
             NODENESS="2n"
             FLAVOR="grc"
+            VPP_PLATFORM="neoversev2"
             ;;
         *"2n-emr")
             NODENESS="2n"
