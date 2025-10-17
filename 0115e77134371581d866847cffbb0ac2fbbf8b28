@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709b7b27_c89b6ae0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2025-10-17T10:21:37Z",
+      "side": 1,
+      "message": "Hi Peter, thanks for the CSIT patch.\nTwo minor comments regarding the name of microarchitectures for arm testbeds.\nOther than that, this patch looks good to me\nThanks,\nJay",
+      "revId": "0115e77134371581d866847cffbb0ac2fbbf8b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345536cc_b94dd3ff",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2025-10-17T10:21:37Z",
+      "side": 1,
+      "message": "Ampere Altra is a neoverse-n1 platform. So we should use neoverse-n1 here",
+      "range": {
+        "startLine": 516,
+        "startChar": 26,
+        "endLine": 516,
+        "endChar": 36
+      },
+      "revId": "0115e77134371581d866847cffbb0ac2fbbf8b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22cb8c9d_77e9d54b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2025-10-17T10:21:37Z",
+      "side": 1,
+      "message": "In my VPP patch, neoverse-v2 is used instead of neoversev2",
+      "range": {
+        "startLine": 521,
+        "startChar": 26,
+        "endLine": 521,
+        "endChar": 36
+      },
+      "revId": "0115e77134371581d866847cffbb0ac2fbbf8b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
