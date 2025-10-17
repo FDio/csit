@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_*ANDhoststack #generate-all",
       "revId": "fa2af9dbf7fb90dfaac445ce7e3d6abfb96e1005",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ba3a197_3e75cf37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-10-17T11:51:17Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDhoststack #hoststack",
+      "revId": "fa2af9dbf7fb90dfaac445ce7e3d6abfb96e1005",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
