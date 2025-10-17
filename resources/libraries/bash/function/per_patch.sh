@@ -53,11 +53,14 @@ function build_vpp_ubuntu () {
     fi
 
     if [ -z "${VPP_PLATFORM-}" ]; then
-        make_params="UNATTENDED=y"
+        params="UNATTENDED=y"
+        make ${params} pkg-verify || die "VPP build failed."
     else
-        make_params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
+        pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
+        # Old VPP source does not recognize new ARM platforms.
+        opars="UNATTENDED=y"
+        make ${pars} pkg-verify || make ${opars} pkg-verify || die "Build fail."
     fi
-    make ${make_params} pkg-verify || die "VPP build failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
