@@ -147,7 +147,7 @@ data:
     api-trace { on }
     cpu {
         main-core 1
-        corelist-workers 2,3,4,5,98,99,100,101
+        corelist-workers {{ calico_corelist_workers }}
     }
     socksvr {
         socket-name /var/run/vpp/vpp-api.sock
@@ -178,20 +178,7 @@ data:
       "vppHostTapSpec": {
         "rx": 1, "tx":1, "rxqsz": 1024, "txqsz": 1024, "isl3": false
       },
-      "uplinkInterfaces": [
-        {
-          "interfaceName": "enp56s0np0",
-          "vppDriver": "avf",
-          "rx": 8,
-          "rxMode": "polling"
-        },
-        {
-          "interfaceName": "enp58s0np0",
-          "vppDriver": "avf",
-          "rx": 8,
-          "rxMode": "polling"
-        }
-      ]
+      "uplinkInterfaces": {{ calico_uplink_interfaces | to_nice_json(indent=2) }}
     }
   SERVICE_PREFIX: 10.96.0.0/12
 kind: ConfigMap

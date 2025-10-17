@@ -54,11 +54,19 @@ variable "dispatchers" {
   default = [
     {
       namespace  = "sandbox"
-      repository = "fdio-csit"
+      repository = "pmikus-csit"
+    },
+    {
+      namespace  = "sandbox"
+      repository = "pmikus-vpp"
     },
     {
       namespace  = "prod"
       repository = "fdio-csit"
     },
+    {
+      namespace  = "prod"
+      repository = "fdio-vpp"
+    }
   ]
 }

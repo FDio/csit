@@ -1,7 +1,7 @@
 locals {
   datacenters = join(",", var.datacenters)
   flat_dispatchers = {
-    for dispatcher in var.dispatchers : dispatcher.namespace => dispatcher
+    for dispatcher in var.dispatchers : dispatcher.repository => dispatcher
   }
 }
 

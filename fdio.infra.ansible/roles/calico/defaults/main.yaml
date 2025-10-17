@@ -7,7 +7,18 @@ kubernetes_pod_network:
 kubernetes_calico_version: "3.30.3"
 
 kubernetes_calico_resources:
-  - https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/tigera-operator.yaml
-  - https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/operator-crds.yaml
+  tigera-operator.yaml: https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/tigera-operator.yaml
+  operator-crds.yaml: https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/operator-crds.yaml
 
 calico_vpp_state: "present"
+
+calico_corelist_workers: "2,3,4,5,98,99,100,101"
+calico_uplink_interfaces:
+  - interfaceName: "enp56s0np0"
+    vppDriver: "avf"
+    rx: 8
+    rxMode: "polling"
+  - interfaceName: "enp58s0np0"
+    vppDriver: "avf"
+    rx: 8
+    rxMode: "polling"

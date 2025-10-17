@@ -3,35 +3,44 @@
 
 - name: download calico manifest to the cluster
   ansible.builtin.get_url:
-    url: "https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/{{ item }}"
-    dest: /tmp/{{ item }}
-    mode: '0664'
-  loop:
-    - "operator-crds.yaml"
-    - "tigera-operator.yaml"
-  when: >
-    calico_sut is defined
+    url: "{{ item.value }}"
+    dest: "/tmp/{{ item.key }}"
+    mode: "0664"
+  loop: "{{ kubernetes_calico_resources | dict2items }}"
+  when:
+    - calico_sut is defined
   tags:
     - kubernetes-calico-install
 
 - name: apply calico manifest to the cluster
   kubernetes.core.k8s:
     state: present
-    src: "/tmp/{{ item }}"
+    src: "/tmp/{{ item.key }}"
+  loop: "{{ kubernetes_calico_resources | dict2items }}"
+  when:
+    - calico_sut is defined
+  tags:
+    - kubernetes-calico-install
+
+- name: upload calico vpp manifest to the cluster
+  ansible.builtin.template:
+    dest: "/tmp/{{ item }}"
+    src: "{{ item }}.j2"
   loop:
-    - "operator-crds.yaml"
-    - "tigera-operator.yaml"
-  when: >
-    calico_sut is defined
+    - "calico-vpp.yaml"
+  when:
+    - calico_sut is defined
   tags:
     - kubernetes-calico-install
 
 - name: apply calico vpp manifest to the cluster
   kubernetes.core.k8s:
     state: "{{ calico_vpp_state }}"
-    template: "calico-vpp.yaml.j2"
-  when: >
-    calico_sut is defined
+    src: "/tmp/{{ item }}"
+  loop:
+    - "calico-vpp.yaml"
+  when:
+    - calico_sut is defined
   tags:
     - kubernetes-calico-install
 
@@ -43,6 +52,7 @@
     label_selectors:
       - k8s-app=calico-vpp-node
   register: pod_list
+  when: calico_sut is defined
   tags:
     - kubernetes-info
 
@@ -51,6 +61,9 @@
     calico_pod_name: "{{ item[0]['metadata']['name'] }}"
   loop:
     - "{{ pod_list['resources'] }}"
+  when:
+    - calico_sut is defined
+    - pod_list['resources'] | length > 0
   tags:
     - kubernetes-info
 
@@ -61,11 +74,19 @@
     container: vpp
     command: vppctl sh version
   register: command_status
-  when: >
-    calico_pod_name is defined
+  when:
+    - calico_pod_name is defined
+    - calico_sut is defined
+    - calico_vpp_state == "present"
   tags:
     - kubernetes-info
 
-- name: Check last command status
-  debug:
+- name: check last command status
+  ansible.builtin.debug:
     msg: "{{ command_status.stdout }}"
+  when:
+    - calico_pod_name is defined
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - kubernetes-info
