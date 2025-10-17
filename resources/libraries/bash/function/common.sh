@@ -513,10 +513,12 @@ function get_test_code () {
         *"3n-alt")
             NODENESS="3n"
             FLAVOR="alt"
+            VPP_PLATFORM="neoverse-n1"
             ;;
         *"2n-grc")
             NODENESS="2n"
             FLAVOR="grc"
+            VPP_PLATFORM="neoverse-v2"
             ;;
         *"2n-emr")
             NODENESS="2n"

@@ -40,7 +40,7 @@ function gather_build () {
 
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
     case "${TEST_CODE}" in
-        *"vpp"*"3n-oct")
+        *"vpp"*"3n-oct" | *"vpp"*"2n-grc" | *"vpp"*"3n-alt")
             DUT="vpp"
             source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
             build_vpp || die "The function should have died on error."
