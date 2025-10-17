@@ -41,6 +41,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1710fa59_6668a995",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-10-17T11:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "345536cc_b94dd3ff",
+      "range": {
+        "startLine": 516,
+        "startChar": 26,
+        "endLine": 516,
+        "endChar": 36
+      },
+      "revId": "0115e77134371581d866847cffbb0ac2fbbf8b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22cb8c9d_77e9d54b",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-10-17T10:21:37Z",
       "side": 1,
       "message": "In my VPP patch, neoverse-v2 is used instead of neoversev2",
+      "range": {
+        "startLine": 521,
+        "startChar": 26,
+        "endLine": 521,
+        "endChar": 36
+      },
+      "revId": "0115e77134371581d866847cffbb0ac2fbbf8b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb6b17b_adbf946f",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-10-17T11:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22cb8c9d_77e9d54b",
       "range": {
         "startLine": 521,
         "startChar": 26,
