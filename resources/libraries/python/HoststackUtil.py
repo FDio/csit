@@ -121,7 +121,7 @@ class HoststackUtil:
         iperf3_cmd["name"] = "iperf3"
         iperf3_cmd["args"] = (
             f"--{iperf3_attributes['role']}{ip_address} "
-            f"--interval 0{json_results} "
+            f"--interval 1{json_results} "
             f"--version{iperf3_attributes['ip_version']}"
         )
 
