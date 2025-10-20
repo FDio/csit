@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-14
-date: 2025-09-17
+docname: draft-ietf-bmwg-mlrsearch-15
+date: 2025-10-20
 
 submissionType: IETF
 ipr: trust200902
@@ -71,8 +71,8 @@ informative:
 
 --- abstract
 
-This document specifies extensions to "Benchmarking Methodology for
-Network Interconnect Devices" (RFC 2544) throughput search by
+This document describes an alternative to "Benchmarking Methodology for
+Network Interconnect Devices" (RFC 2544) throughput by
 defining a new methodology called Multiple Loss Ratio search
 (MLRsearch). MLRsearch aims to minimize search duration,
 support multiple loss ratio searches, and improve result repeatability
@@ -102,7 +102,7 @@ software-based networking systems based on Commercial Off-the-Shelf
 This document describes the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining data plane
 throughput in software-based networking functions running on commodity systems with
-x86/ARM CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
+generic CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
 functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
@@ -115,17 +115,22 @@ If a phrase appears with first letters capitalized, it likely refers
 to a specific term defined in eponymous subsection
 of [MLRsearch Specification](#mlrsearch-specification).
 
+For first time readers, the information in
+[MLRsearch Specification](#mlrsearch-specification) might feel
+dense and lacking motivation. Subsequent sections are there to provide explanations,
+making [MLRsearch Specification](#mlrsearch-specification)
+more approachable on repeated reads.
+
 ## Purpose
 
 The purpose of this document is to describe the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining
 data plane throughput in software-based networking devices and functions.
 
-Applying the vanilla throughput binary search,
-as specified for example in Section 12.3.2 of [TST009]
+Applying the [Plain Bisect](#plain-bisect)
 to software devices under test (DUTs) results in several problems:
 
-- Binary search takes a long time as most trials are done far from the
+- Plain bisect takes a long time as most trials are done far from the
   eventually found throughput.
 - The required final trial duration and pauses between trials
   prolong the overall search duration.
@@ -217,7 +222,30 @@ merely by augmenting the content of the final test report.
 
 This section describes the problems affecting usability
 of various performance testing methodologies,
-mainly a binary search for [RFC2544] unconditionally compliant throughput.
+mainly the [Plain Bisect](#plain-bisect) for [RFC2544] unconditionally compliant throughput.
+
+## Plain Bisect
+
+While [RFC2544] offers some flexibility when searching for throughput,
+a particular algorithm is frequently used as a starting point,
+as it is the simplest one among those that offer reasonable effectivity.
+
+This algorithm is based on binary search,
+but does not have a specific name when searching for throughput.
+In this document we call that algorithm the "plain bisect".
+Here is its description based on Sections 24 and 26 of [RFC2544]
+and in Section 12.3.2 of [TST009]:
+
+* Set Max = line-rate and Min = a proven loss-free load.
+* Compute a midpoint, the arithmetic mean of current Min and Max values.
+* Run a single 60-second trial at the midpoint.
+* Zero-loss -> midpoint becomes new Min; any loss-> new Max.
+* Repeat until the Max-Min gap meets the desired precision.
+
+Small modifications related to initial Min and Max values are allowed.
+
+For larger modifications, such as using a different way to compute the midpoint,
+a more generic name should be used, such as "binary search".
 
 ## Long Search Duration
 
@@ -229,7 +257,7 @@ This makes the overall test execution time even more important than before.
 
 The throughput definition per [RFC2544] restricts the potential
 for time-efficiency improvements.
-The bisection method, when used in a manner unconditionally compliant
+The [Plain Bisect](#plain-bisect), when used in a manner unconditionally compliant
 with [RFC2544], is excessively slow due to two main factors.
 
 Firstly, a significant amount of time is spent on trials
@@ -238,19 +266,10 @@ with loads that, in retrospect, are far from the final determined throughput.
 Secondly, [RFC2544] does not specify any stopping condition for
 throughput search, so users of testing equipment implementing the
 procedure already have access to a limited trade-off
-between search duration and achieved precision.
-However, each of the full 60-second trials doubles the precision.
+between search duration and achieved precision,
+as each one of the full 60-second trials halves the interval of possible results.
 
 As such, not many trials can be removed without a substantial loss of precision.
-
-For reference, here is a brief [RFC2544] throughput binary
-(bisection) reminder, based on Sections 24 and 26 of [RFC2544]:
-
-* Set Max = line-rate and Min = a proven loss-free load.
-* Run a single 60-second trial at the midpoint.
-* Zero-loss -> midpoint becomes new Min; any loss-> new Max.
-* Repeat until the Max-Min gap meets the desired precision, then report
-  the highest zero-loss rate for every mandatory frame size.
 
 ## DUT in SUT
 
@@ -377,7 +396,7 @@ no tolerance of a single frame loss) affect the throughput result as follows:
 The SUT behavior close to the noiseful end of its performance spectrum
 consists of rare occasions of significantly low performance,
 but the long trial duration makes those occasions not so rare on the trial level.
-Therefore, the binary search results tend to spread away from the noiseless end
+Therefore, the [Plain Bisect](#plain-bisect) results tend to spread away from the noiseless end
 of SUT performance spectrum, more frequently and more widely than shorter
 trials would, thus causing unacceptable throughput repeatability.
 
@@ -437,7 +456,8 @@ Motivations are many:
   Trial and Goal terms in [Trial Terms](#trial-terms) and [Goal Terms](#goal-terms)).
 
 For more information, see Section 5 of an earlier draft [Lencze-Shima]
-and references there.
+(and references there) for few extreme cases, confirming that
+each protocol and application can have different realistic loss ratio value.
 
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes a
@@ -454,7 +474,7 @@ For example, the repeated wide gap between zero and non-zero loss loads
 indicates the noise has a large impact on the observed performance,
 which is not evident from a single goal load search procedure result.
 
-It is easy to modify the vanilla bisection to find a lower bound
+It is easy to modify the [Plain Bisect](#plain-bisect) to find a lower bound
 for the load that satisfies a non-zero Goal Loss Ratio.
 But it is not that obvious how to search for multiple goals at once,
 hence the support for multiple Search Goals remains a problem.
@@ -482,7 +502,7 @@ Examples include, but are not limited to:
 - A trial at a larger load (same or different trial duration) results
   in a lower Trial Loss Ratio.
 
-The plain bisection never encounters inconsistent trials.
+The [Plain Bisect](#plain-bisect) never encounters inconsistent trials.
 But [RFC2544] hints about the possibility of inconsistent trial results,
 in two places in its text.
 The first place is Section 24 of [RFC2544],
@@ -646,11 +666,11 @@ Search. Any work the Manager performs either before invoking the
 Controller or after Controller returns, falls outside the scope of the
 Search.
 
-MLRsearch Specification prescribes Regular Search Results and recommends
-corresponding search completion conditions.
-
-Irregular Search Results are also allowed,
+MLRsearch Specification prescribes [Regular Goal Results](#regular-goal-result)
+and recommends corresponding search completion conditions.
+[Irregular Goal Results](#irregular-goal-result) are also allowed,
 they have different requirements and their corresponding stopping conditions are out of scope.
+The Search Result is the combination of regular and irregular results for each goal.
 
 Search Results are based on Load Classification. When measured enough,
 a chosen Load can either achieve or fail each Search Goal
@@ -2199,7 +2219,7 @@ so third full-length trial is never needed.
 This section explains the Why behind MLRsearch. Building on the
 normative specification in [MLRsearch Specification](#mlrsearch-specification),
 it contrasts MLRsearch with the classic
-[RFC2544] single-ratio binary-search procedure and walks through the
+[RFC2544] single-ratio [Plain Bisect](#plain-bisect) and walks through the
 key design choices: binary-search mechanics, stopping-rule precision,
 loss-inversion for multiple goals, exceed-ratio handling, short-trial
 strategies, and the generalised throughput concept. Together, these
@@ -2209,6 +2229,7 @@ multiple loss ratios, and improves repeatability.
 ## Binary Search
 
 A typical binary search implementation for [RFC2544]
+such as [Plain Bisect](#plain-bisect)
 tracks only the two tightest bounds.
 To start, the search needs both Max Load and Min Load values.
 Then, one trial is used to confirm Max Load is an Upper Bound,
@@ -2252,7 +2273,7 @@ and its variance.
 
 ## Loss Ratios and Loss Inversion
 
-The biggest difference between MLRsearch and [RFC2544] binary search
+The biggest difference between MLRsearch and [RFC2544] [Plain Bisect](#plain-bisect)
 is in the goals of the search.
 [RFC2544] has a single goal, based on classifying a single full-length trial
 as either zero-loss or non-zero-loss.
@@ -2261,7 +2282,7 @@ usually differing in their Goal Loss Ratio values.
 
 ### Single Goal and Hard Bounds
 
-Each bound in [RFC2544] simple binary search is "hard",
+Each bound in [RFC2544] plain bisect is "hard",
 in the sense that all further Trial Load values
 are smaller than any current upper bound and larger than any current lower bound.
 
