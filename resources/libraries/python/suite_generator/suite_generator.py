@@ -642,7 +642,7 @@ def suite_generator(args) -> int:
     )
 
     tr_prms = f"{trigger_params if trigger_params else 'Not specified'}\n"
-    logging.debug(
+    logging.info(
         "\nCommand line parameters:\n"
         f"Job:             {job}\n"
         f"Test output dir: {test_dir}\n"
@@ -717,7 +717,7 @@ def suite_generator(args) -> int:
                       test_type = ttype
                       search_test_type = False
 
-    logging.debug(
+    logging.info(
         "\nInput parameters (after processing):\n"
         f"Job:             {job}\n"
         f"Job type:        {job_type}\n"
@@ -746,34 +746,42 @@ def suite_generator(args) -> int:
             logging.getLogger().setLevel(logging.ERROR)
         tbed = "-".join(job.split("-")[-2:])
         ret_val = 0
-        for job in spec["jobs"]:
+        for sjob in spec["jobs"]:
             if tb_generate_all:  # Generate only for given testbed.
-                if tbed not in job:
+                if tbed != "-".join(sjob.split("-")[-2:]):
                     continue
-            job_type = _get_job_type(job)
+                if test_type == "hoststack":
+                    if "hoststack" not in sjob:
+                        continue
+                if test_type == "soak":
+                    if "soak" not in sjob:
+                        continue
+            job_type = _get_job_type(sjob)
             if job_type == "periodical":
-                logging.info(job)
-                if spec["jobs"][job]["test-type"] in ("hoststack", "soak"):
-                    job_spec = generate_job_spec(spec, job, test_set, test_type)
+                logging.info(sjob)
+                if spec["jobs"][sjob]["test-type"] in ("hoststack", "soak"):
+                    job_spec = \
+                        generate_job_spec(spec, sjob, test_set, test_type)
                     if not job_spec:
                         return 1
-                    ret_val += generate_suites(test_dir, job_spec, job)
+                    ret_val += generate_suites(test_dir, job_spec, sjob)
                 else:
                     for ttype in ("mrr", "ndrpdr"):
-                        job_spec = generate_job_spec(spec, job, test_set, ttype)
+                        job_spec = \
+                            generate_job_spec(spec, sjob, test_set, ttype)
                         if not job_spec:
                             return 1
-                        ret_val += generate_suites(test_dir, job_spec, job)
-            elif job_type == "coverage" and "vpp" in job:
-                logging.info(job)
-                stbed = "-".join(job.split("-")[-2:]) + "-"
+                        ret_val += generate_suites(test_dir, job_spec, sjob)
+            elif job_type == "coverage" and "vpp" in sjob:
+                logging.info(sjob)
+                stbed = "-".join(sjob.split("-")[-2:]) + "-"
                 for tset in spec["test-sets"]:
                     if "-cov-" in tset and stbed in tset:
                         for ttype in ("mrr", "ndrpdr"):
-                          job_spec = generate_job_spec(spec, job, tset, ttype)
+                          job_spec = generate_job_spec(spec, sjob, tset, ttype)
                           if not job_spec:
                               return 1
-                          ret_val += generate_suites(test_dir, job_spec, job)
+                          ret_val += generate_suites(test_dir, job_spec, sjob)
         return ret_val
     else:  # Only specified tests
         job_spec = generate_job_spec(spec, job, test_set, test_type)
