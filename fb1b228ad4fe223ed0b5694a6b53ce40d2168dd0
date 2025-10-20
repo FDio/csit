@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d231d269_9987f5a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-10-20T06:46:03Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDhoststack #generate-all",
+      "revId": "fb1b228ad4fe223ed0b5694a6b53ce40d2168dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
