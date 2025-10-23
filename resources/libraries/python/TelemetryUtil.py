@@ -92,7 +92,7 @@ class TelemetryUtil:
         :type rate: str
         :type export: bool
         """
-        for node in nodes.values():
+        for node in reversed(nodes.values()):
             if node["type"] == NodeType.DUT:
                 try:
                     for sid, spath in node["sockets"]["CLI"].items():
