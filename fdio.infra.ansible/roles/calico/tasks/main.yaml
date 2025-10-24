@@ -1,6 +1,18 @@
 ---
 # file: tasks/main.yaml
 
+- name: pre-setup network interface
+  ansible.builtin.shell: |
+    ip l set dev {{ item.interfaceName }} up
+    ip a add {{ item.ip_addr }} dev {{ item.interfaceName }}
+  loop: "{{ calico_uplink_interfaces }}"
+  ignore_errors: True
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - kubernetes-reset
+
 - name: download calico manifest to the cluster
   ansible.builtin.get_url:
     url: "{{ item.value }}"
@@ -10,7 +22,7 @@
   when:
     - calico_sut is defined
   tags:
-    - kubernetes-calico-install
+    - kubernetes-calico
 
 - name: apply calico manifest to the cluster
   kubernetes.core.k8s:
@@ -20,7 +32,7 @@
   when:
     - calico_sut is defined
   tags:
-    - kubernetes-calico-install
+    - kubernetes-calico
 
 - name: upload calico vpp manifest to the cluster
   ansible.builtin.template:
@@ -31,7 +43,7 @@
   when:
     - calico_sut is defined
   tags:
-    - kubernetes-calico-install
+    - kubernetes-calico
 
 - name: apply calico vpp manifest to the cluster
   kubernetes.core.k8s:
@@ -42,7 +54,7 @@
   when:
     - calico_sut is defined
   tags:
-    - kubernetes-calico-install
+    - kubernetes-calico
 
 - name: get a list of all pods from any namespace
   kubernetes.core.k8s_info:
@@ -90,3 +102,14 @@
     - calico_vpp_state == "present"
   tags:
     - kubernetes-info
+
+- name: reset network interface
+  ansible.builtin.shell: |
+    python3 /opt/dpdk/usertools/dpdk-devbind.py -b none {{ item.pci }} --force
+    python3 /opt/dpdk/usertools/dpdk-devbind.py -b ice {{ item.pci }}
+  loop: "{{ calico_uplink_interfaces }}"
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "absent"
+  tags:
+    - kubernetes-reset

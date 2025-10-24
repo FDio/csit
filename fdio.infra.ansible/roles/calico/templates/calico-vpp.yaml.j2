@@ -178,7 +178,16 @@ data:
       "vppHostTapSpec": {
         "rx": 1, "tx":1, "rxqsz": 1024, "txqsz": 1024, "isl3": false
       },
-      "uplinkInterfaces": {{ calico_uplink_interfaces | to_nice_json(indent=2) }}
+      "uplinkInterfaces": [
+{% for interface in calico_uplink_interfaces %}
+        {
+          "interfaceName": "{{ interface.interfaceName }}",
+          "vppDriver": "{{ interface.vppDriver }}",
+          "rx": {{ interface.rx }},
+          "rxMode": "{{ interface.rxMode }}"
+        }{{ "," if not loop.last }}
+{% endfor %}
+      ]
     }
   SERVICE_PREFIX: 10.96.0.0/12
 kind: ConfigMap
