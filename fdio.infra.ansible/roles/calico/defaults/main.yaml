@@ -11,18 +11,3 @@ kubernetes_calico_resources:
   operator-crds.yaml: https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/operator-crds.yaml
 
 calico_vpp_state: "present"
-
-calico_corelist_workers: "2,3,4,5,98,99,100,101"
-calico_uplink_interfaces:
-  - interfaceName: "enp56s0np0"
-    vppDriver: "avf"
-    rx: 8
-    rxMode: "polling"
-    pci: "0000:38:00.0"
-    ip_addr: "192.168.1.2/24"
-  - interfaceName: "enp58s0np0"
-    vppDriver: "avf"
-    rx: 8
-    rxMode: "polling"
-    pci: "0000:3a:00.0"
-    ip_addr: "192.168.2.2/24"

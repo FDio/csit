@@ -1,0 +1,26 @@
+---
+# file: tasks/execute.yaml
+
+- name: execute command on calico-vpp-pod
+  kubernetes.core.k8s_exec:
+    namespace: calico-vpp-dataplane
+    pod: "{{ calico_pod_name }}"
+    container: vpp
+    command: vppctl sh version
+  register: command_status
+  when:
+    - calico_pod_name is defined
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - calico-execute
+
+- name: check last command status
+  ansible.builtin.debug:
+    msg: "{{ command_status.stdout }}"
+  when:
+    - calico_pod_name is defined
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - calico-execute

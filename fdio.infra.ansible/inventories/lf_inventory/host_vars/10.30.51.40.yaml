@@ -65,3 +65,19 @@ docker_volumes:
     target: "/etc/4xxx_dev0.conf"
   - source: "/etc/4xxx_dev1.conf"
     target: "/etc/4xxx_dev1.conf"
+
+# Calico
+calico_corelist_workers: "2,3,4,5,98,99,100,101"
+calico_uplink_interfaces:
+  - interfaceName: "enp56s0np0"
+    vppDriver: "avf"
+    rx: 8
+    rxMode: "polling"
+    pci: "0000:38:00.0"
+    ip_addr: "192.168.1.2/24"
+  - interfaceName: "enp58s0np0"
+    vppDriver: "avf"
+    rx: 8
+    rxMode: "polling"
+    pci: "0000:3a:00.0"
+    ip_addr: "192.168.2.2/24"

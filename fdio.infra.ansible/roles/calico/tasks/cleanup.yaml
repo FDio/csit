@@ -1,0 +1,13 @@
+---
+# file: tasks/cleanup.yaml
+
+- name: reset network interface
+  ansible.builtin.shell: |
+    python3 /opt/dpdk/usertools/dpdk-devbind.py -b none {{ item.pci }} --force
+    python3 /opt/dpdk/usertools/dpdk-devbind.py -b ice {{ item.pci }}
+  loop: "{{ calico_uplink_interfaces }}"
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "absent"
+  tags:
+    - calico-cleanup

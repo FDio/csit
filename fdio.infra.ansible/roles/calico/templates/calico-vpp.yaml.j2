@@ -162,6 +162,10 @@ data:
     buffers {
         buffers-per-numa 131072
     }
+  CALICOVPP_FEATURE_GATES: |-
+    {
+      "memifEnabled": true
+    }
   CALICOVPP_INITIAL_CONFIG: |-
     {
       "vppStartupSleepSeconds": 1,

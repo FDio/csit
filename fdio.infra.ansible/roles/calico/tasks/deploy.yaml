@@ -1,0 +1,68 @@
+---
+# file: tasks/deploy.yaml
+
+- name: download calico manifest to the cluster
+  ansible.builtin.get_url:
+    url: "{{ item.value }}"
+    dest: "/tmp/{{ item.key }}"
+    mode: "0664"
+  loop: "{{ kubernetes_calico_resources | dict2items }}"
+  when:
+    - calico_sut is defined
+  tags:
+    - calico-deploy
+
+- name: apply calico manifest to the cluster
+  kubernetes.core.k8s:
+    state: present
+    src: "/tmp/{{ item.key }}"
+  loop: "{{ kubernetes_calico_resources | dict2items }}"
+  when:
+    - calico_sut is defined
+  tags:
+    - calico-deploy
+
+- name: upload calico vpp manifest to the cluster
+  ansible.builtin.template:
+    dest: "/tmp/{{ item }}"
+    src: "{{ item }}.j2"
+  loop:
+    - "calico-vpp.yaml"
+  when:
+    - calico_sut is defined
+  tags:
+    - calico-deploy
+
+- name: apply calico vpp manifest to the cluster
+  kubernetes.core.k8s:
+    state: "{{ calico_vpp_state }}"
+    src: "/tmp/{{ item }}"
+  loop:
+    - "calico-vpp.yaml"
+  when:
+    - calico_sut is defined
+  tags:
+    - calico-deploy
+
+- name: get a list of all pods from any namespace
+  kubernetes.core.k8s_info:
+    kind: Pod
+    field_selectors:
+      - status.phase=Running
+    label_selectors:
+      - k8s-app=calico-vpp-node
+  register: pod_list
+  when: calico_sut is defined
+  tags:
+    - calico-info
+
+- name: register vpp pod name
+  ansible.builtin.set_fact:
+    calico_pod_name: "{{ item[0]['metadata']['name'] }}"
+  loop:
+    - "{{ pod_list['resources'] }}"
+  when:
+    - calico_sut is defined
+    - pod_list['resources'] | length > 0
+  tags:
+    - calico-info
