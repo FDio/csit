@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f9fe610_98c1e326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-10-28T12:08:32Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest nic_*ANDdrv_mlx5_coreANDeth-ip4tcpbase-ldpreload-iperf3 #generate-all",
+      "revId": "d30b4246c3061ed3a183cb1f3d255c2600f821a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
