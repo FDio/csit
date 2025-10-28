@@ -65,11 +65,20 @@ test-sets:
 
   3n-icx-vpp-cov-crypto-04:
     infra:
-      25ge2p1e810xxv:
+      100ge2p1e810cq:
         - vfio-pci
-    framesize: [64, 1518, imix]
+    framesize: [1518, ]
     tests:
-      - ipsec-sw-fixtnlip-md
+      - ipsec-sw-reassembly-sm
+
+  3n-icx-vpp-cov-crypto-05:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - ipsec-sw-udp:
+          framesize: [1518, ]
+          core: [1, ]
 
   3n-icx-vpp-cov-crypto-10:
     infra:
@@ -125,33 +134,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-2-md
-
-  3n-icx-vpp-cov-ip4-01:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-pol-md
-
-  3n-icx-vpp-cov-ip4-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-acl-lg
+      - ip4-lg
 
   3n-icx-vpp-cov-ip4-10:
     infra:
@@ -163,31 +146,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-2-md
-
-  3n-icx-vpp-cov-ip4-11:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-pol-md
-
-  3n-icx-vpp-cov-ip4-12:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-acl-lg
+      - ip4-lg
 
   3n-icx-vpp-cov-ip4tun-00:
     infra:
@@ -213,19 +172,6 @@ test-sets:
   3n-icx-vpp-cov-ip4tun-02:
     infra:
       100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - lisp-sm
-
-  3n-icx-vpp-cov-ip4tun-03:
-    infra:
-      100ge2p1e810cq:
         - vfio-pci
       25ge2p1e810xxv:
         - vfio-pci
@@ -237,6 +183,8 @@ test-sets:
     tests:
       - gtpu-sw-sm
       - gtpu-hw-sm
+      - gtpu-sw-reassembly-sm:
+          framesize: [1518, ]
 
   3n-icx-vpp-cov-ip4tun-10:
     infra:
@@ -258,18 +206,6 @@ test-sets:
     tests:
       - wireguard-sw-lg
 
-  3n-icx-vpp-cov-ip4tun-12:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - lisp-sm
-
   3n-icx-vpp-cov-ip6-00:
     infra:
       100ge2p1e810cq:
@@ -281,20 +217,8 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  3n-icx-vpp-cov-ip6-01:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-scale-md
+      - ip6-base-sm
+      - ip6-scale-lg
 
   3n-icx-vpp-cov-ip6-10:
     infra:
@@ -306,44 +230,8 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  3n-icx-vpp-cov-ip6-11:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-scale-md
-
-  3n-icx-vpp-cov-ip6tun-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-lisp-sm
-
-  3n-icx-vpp-cov-ip6tun-10:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-lisp-sm
+      - ip6-base-sm
+      - ip6-scale-lg
 
   3n-icx-vpp-cov-l2-00:
     infra:
@@ -357,6 +245,7 @@ test-sets:
       - imix
     tests:
       - l2-base-md
+      - l2-scale-md
 
   3n-icx-vpp-cov-l2-01:
     infra:
@@ -369,33 +258,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - l2-scale-md
-
-  3n-icx-vpp-cov-l2-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-acl-xl
-
-  3n-icx-vpp-cov-l2-03:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-macip-md
+      - l2-1lbvpplacp-sm
 
   3n-icx-vpp-cov-l2-10:
     infra:
@@ -408,6 +271,7 @@ test-sets:
       - imix
     tests:
       - l2-base-md
+      - l2-scale-md
 
   3n-icx-vpp-cov-l2-11:
     infra:
@@ -419,56 +283,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - l2-scale-md
-
-  3n-icx-vpp-cov-l2-12:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-acl-xl
-
-  3n-icx-vpp-cov-l2-13:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-macip-md
-
-  3n-icx-vpp-cov-memif-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - container-memif-sw-sm
-
-  3n-icx-vpp-cov-memif-10:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - container-memif-sw-sm
+      - l2-1lbvpplacp-sm
 
   3n-icx-vpp-cov-srv6-00:
     infra:
@@ -494,33 +309,6 @@ test-sets:
       - imix
     tests:
       - srv6-lg
-
-  3n-icx-vpp-cov-vhost-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - vhost-2-md
-      - vhost-vxlan-2-sm
-
-  3n-icx-vpp-cov-vhost-10:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - vhost-2-md
-      - vhost-vxlan-2-sm
 
 
   3n-icx-vpp-iterative:

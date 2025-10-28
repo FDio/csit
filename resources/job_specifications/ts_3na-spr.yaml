@@ -45,14 +45,6 @@ test-sets:
       - ipsec-sw-async-aes128gcm-md
       - ipsec-sw-async-aes256gcm-md
 
-  3na-spr-vpp-cov-crypto-04:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize: [64, 1518, imix]
-    tests:
-      - ipsec-sw-fixtnlip-md
-
   3na-spr-vpp-cov-ip4-00:
     infra:
       200ge2p1cx7veat:
@@ -63,37 +55,13 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-2-md
+      - ip4-lg
       - ip4-60k-sm:
           infra:
             200ge6p3cx7veat:
               - mlx5_core
           framesize: [64, 1518, imix]
           core: [3, 6, 12]
-
-  3na-spr-vpp-cov-ip4-01:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-pol-md
-
-  3na-spr-vpp-cov-ip4-02:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-acl-lg
 
   3na-spr-vpp-cov-ip4tun-00:
     infra:
@@ -125,18 +93,6 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - lisp-sm
-
-  3na-spr-vpp-cov-ip4tun-03:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - gtpu-sw-sm
 
   3na-spr-vpp-cov-ip6-00:
@@ -149,31 +105,8 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  3na-spr-vpp-cov-ip6-01:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-scale-md
-
-  3na-spr-vpp-cov-ip6tun-00:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-lisp-sm
+      - ip6-base-sm
+      - ip6-scale-lg
 
   3na-spr-vpp-cov-l2-00:
     infra:
@@ -186,54 +119,7 @@ test-sets:
       - imix
     tests:
       - l2-base-md
-
-  3na-spr-vpp-cov-l2-01:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - l2-scale-md
-
-  3na-spr-vpp-cov-l2-02:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-acl-xl
-
-  3na-spr-vpp-cov-l2-03:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-macip-md
-
-  3na-spr-vpp-cov-memif-00:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - container-memif-sw-sm
 
   3na-spr-vpp-cov-srv6-00:
     infra:
@@ -246,19 +132,6 @@ test-sets:
       - imix
     tests:
       - srv6-lg
-
-  3na-spr-vpp-cov-vhost-00:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - vhost-2-md
-      - vhost-vxlan-2-sm
 
 
   3na-spr-vpp-iterative:
@@ -273,7 +146,7 @@ test-sets:
           core: [1, ]
       - ipsec-sw-async-md:
           core: [2, 3, 4]
-      - ip4-2-md:
+      - ip4-md:
           framesize: [64, ]
       - ip4-60k-sm:
           infra:
