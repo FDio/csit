@@ -21,7 +21,6 @@ test-sets:
     core: [1, ]
     tests:
       - ipsec-sw-aes128cbc-hmac512sha-lg
-      - ipsec-sw-policy-aes256gcm-sm
 
   3nb-spr-vpp-cov-crypto-01:
     infra:
@@ -34,20 +33,9 @@ test-sets:
       - imix
     tests:
       - ipsec-sw-aes128gcm-lg
-
-  3nb-spr-vpp-cov-crypto-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - imix
-    tests:
       - ipsec-sw-aes256gcm-lg
 
-  3nb-spr-vpp-cov-crypto-03:
+  3nb-spr-vpp-cov-crypto-02:
     infra:
       100ge2p1e810cq:
         - avf
@@ -59,15 +47,7 @@ test-sets:
       - ipsec-sw-async-aes128gcm-md
       - ipsec-sw-async-aes256gcm-md
 
-  3nb-spr-vpp-cov-crypto-04:
-    infra:
-      25ge2p1e810xxv:
-        - vfio-pci
-    framesize: [64, 1518, imix]
-    tests:
-      - ipsec-sw-fixtnlip-md
-
-  3nb-spr-vpp-cov-crypto-05:
+  3nb-spr-vpp-cov-crypto-03:
     infra:
       100ge2p1e810cq:
         - vfio-pci
@@ -78,6 +58,23 @@ test-sets:
     tests:
       - ipsec-hw-async-aes256gcm-md
       - ipsec-hw-async-policy-aes256gcm-md
+
+  3nb-spr-vpp-cov-crypto-04:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    framesize: [1518, ]
+    tests:
+      - ipsec-sw-reassembly-sm
+
+  3nb-spr-vpp-cov-crypto-05:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - ipsec-sw-udp:
+          framesize: [1518, ]
+          core: [1, ]
 
   3nb-spr-vpp-cov-ip4-00:
     infra:
@@ -90,33 +87,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-2-md
-
-  3nb-spr-vpp-cov-ip4-01:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-pol-md
-
-  3nb-spr-vpp-cov-ip4-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-acl-lg
+      - ip4-lg
 
   3nb-spr-vpp-cov-ip4tun-00:
     infra:
@@ -142,19 +113,6 @@ test-sets:
     framesize: [64, 1518, imix]
     tests:
       - wireguard-sw-lg
-
-  3nb-spr-vpp-cov-ip4tun-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - lisp-sm
 
   3nb-spr-vpp-cov-ip4tun-03:
     infra:
@@ -190,22 +148,10 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
+      - ip6-base-sm
+      - ip6-scale-lg
 
   3nb-spr-vpp-cov-ip6-01:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-scale-md
-
-  3nb-spr-vpp-cov-ip6-02:
     infra:
       25ge2p1e810xxv:
         - avf
@@ -217,19 +163,6 @@ test-sets:
       - imix
     tests:
       - ip6-base-sm
-
-  3nb-spr-vpp-cov-ip6tun-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-lisp-sm
 
   3nb-spr-vpp-cov-l2-00:
     infra:
@@ -246,58 +179,7 @@ test-sets:
       - imix
     tests:
       - l2-base-md
-
-  3nb-spr-vpp-cov-l2-01:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - l2-scale-md
-
-  3nb-spr-vpp-cov-l2-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-acl-xl
-
-  3nb-spr-vpp-cov-l2-03:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-macip-md
-
-  3nb-spr-vpp-cov-memif-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - container-memif-sw-sm
 
   3nb-spr-vpp-cov-srv6-00:
     infra:
@@ -324,34 +206,6 @@ test-sets:
       - imix
     tests:
       - srv6-lg
-
-  3nb-spr-vpp-cov-vhost-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - vhost-2-md
-      - vhost-vxlan-2-sm
-
-  3nb-spr-vpp-cov-vhost-10:
-    infra:
-      25ge2p1e810xxv:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - vhost-2-md
-      - vhost-vxlan-2-sm
 
 
   3nb-spr-vpp-iterative:
@@ -437,18 +291,6 @@ test-sets:
       - ip6-base-sm:
           framesize: [78, ]
       - l2-base-md:
-          infra:
-            100ge2p1e810cq:
-              - avf
-            25ge2p1e810xxv:
-              - avf
-          framesize: [64, ]
-      - l2-sm:
-          infra:
-            100ge2p1e810cq:
-              - vfio-pci
-            25ge2p1e810xxv:
-              - vfio-pci
           framesize: [64, ]
       - srv6-lg:
           infra:

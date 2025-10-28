@@ -69,22 +69,9 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-pol-md
-
-  2n-icx-vpp-cov-ip4-02:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - ip4-acl-lg
 
-  2n-icx-vpp-cov-ip4-03:
+  2n-icx-vpp-cov-ip4-02:
     infra:
       100ge2p1e810cq:
         - avf
@@ -123,18 +110,6 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-pol-md
-
-  2n-icx-vpp-cov-ip4-12:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - ip4-acl-lg
 
   2n-icx-vpp-cov-ip4tun-00:
@@ -160,19 +135,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  2n-icx-vpp-cov-ip6-01:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
+      - ip6-base-sm
       - ip6-scale-lg
 
   2n-icx-vpp-cov-ip6-10:
@@ -185,18 +148,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  2n-icx-vpp-cov-ip6-11:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
+      - ip6-base-sm
       - ip6-scale-lg
 
   2n-icx-vpp-cov-l2-00:
@@ -248,31 +200,6 @@ test-sets:
       - imix
     tests:
       - l2-scale-md
-
-  2n-icx-vpp-cov-lb-00:
-    infra:
-      100ge2p1e810cq:
-        - avf
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - lb-md
-
-  2n-icx-vpp-cov-lb-10:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - lb-md
 
   2n-icx-vpp-cov-memif-00:
     infra:

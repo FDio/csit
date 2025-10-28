@@ -34,21 +34,9 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-pol-md
-
-  2n-grc-vpp-cov-ip4-02:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - ip4-acl-lg
 
-  2n-grc-vpp-cov-ip4-03:
+  2n-grc-vpp-cov-ip4-02:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
@@ -87,18 +75,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  2n-grc-vpp-cov-ip6-01:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
+      - ip6-base-sm
       - ip6-scale-lg
 
   2n-grc-vpp-cov-l2-00:
@@ -125,18 +102,6 @@ test-sets:
     tests:
       - l2-scale-md
 
-  2n-grc-vpp-cov-lb-00:
-    infra:
-      200ge2p1cx7veat:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - lb-md
-
   2n-grc-vpp-cov-memif-00:
     infra:
       200ge2p1cx7veat:
@@ -149,7 +114,6 @@ test-sets:
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
-      - container-memif-hw-sm
 
   2n-grc-vpp-cov-vhost-00:
     infra:

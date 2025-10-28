@@ -12,6 +12,41 @@ test-sets:
       - dpdk-sm
 
 
+  3n-alt-vpp-cov-crypto-01:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize: [1518, imix]
+    core: [2, 3, 4]
+    tests:
+      - ipsec-sw-async-aes128cbc-hmac512sha-md
+      - ipsec-sw-async-aes128gcm-md
+      - ipsec-sw-async-aes256gcm-md
+
+  3n-alt-vpp-cov-crypto-02:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize: [1518, imix]
+    tests:
+      - ipsec-sw-lg
+
+  3n-alt-vpp-cov-crypto-03:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize: [1518, ]
+    tests:
+      - ipsec-sw-reassembly-sm
+
+  3n-alt-vpp-cov-crypto-04:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    framesize: [1518, imix]
+    tests:
+      - ipsec-sw-policy-md
+
   3n-alt-vpp-cov-ip4-00:
     infra:
       100ge2p1cx6dx:
@@ -36,18 +71,6 @@ test-sets:
     tests:
       - ip4-pol-md
 
-  3n-alt-vpp-cov-ip4-02:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-acl-2-md
-
   3n-alt-vpp-cov-ip4tun-00:
     infra:
       100ge2p1cx6dx:
@@ -60,6 +83,22 @@ test-sets:
     tests:
       - vxlan-sm
 
+  3n-alt-vpp-cov-ip4tun-01:
+    infra:
+      100ge2p1cx6dx:
+        - mlx5_core
+    tests:
+      - gtpu-sw-sm:
+          framesize:
+            - 64
+            - 1518: [1, 2]
+            - 9000: [1, ]
+            - imix
+      - wireguard-sw-md:
+          framesize: [1518, imix]
+      - gtpu-sw-reassembly-sm:
+          framesize: [1518, ]
+
   3n-alt-vpp-cov-ip6-00:
     infra:
       100ge2p1cx6dx:
@@ -70,8 +109,8 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-      - ip6-scale-md
+      - ip6-base-sm
+      - ip6-scale-lg
 
   3n-alt-vpp-cov-l2-00:
     infra:
@@ -85,31 +124,6 @@ test-sets:
     tests:
       - l2-base-md
       - l2-scale-md
-
-  3n-alt-vpp-cov-l2-01:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - l2-acl-2-md
-      - l2-macip-sm
-
-  3n-alt-vpp-cov-memif-00:
-    infra:
-      100ge2p1cx6dx:
-        - mlx5_core
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-     - container-memif-sw-sm
 
   3n-alt-vpp-cov-srv6-00:
     infra:
@@ -133,8 +147,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - vhost-2-md
-      - vhost-vxlan-2-sm
+      - vhost-lg
 
 
   3n-alt-vpp-iterative:
@@ -164,4 +177,4 @@ test-sets:
       - l2-base-md
       - srv6-lg:
           framesize: [78, ]
-      - vhost-2-md
+      - vhost-lg
