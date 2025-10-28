@@ -14,7 +14,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip4-aws-md
+      - ip4-lg
 
   3n-oct-vpp-cov-l2-00:
     infra:
@@ -26,7 +26,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - l2-md
+      - l2-lg
 
 
   3n-oct-vpp-iterative:
@@ -35,4 +35,4 @@ test-sets:
         - oct-vfio-pci
     tests:
       - ip4-aws-md
-      - l2-md
+      - l2-lg
