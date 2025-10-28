@@ -742,8 +742,8 @@ def suite_generator(args) -> int:
 
     # Generate suites:
     if generate_all or tb_generate_all:  # All or all for the given testbed
-        if generate_all:
-            logging.getLogger().setLevel(logging.ERROR)
+        # if generate_all:
+        #     logging.getLogger().setLevel(logging.ERROR)
         tbed = "-".join(job.split("-")[-2:])
         ret_val = 0
         for sjob in spec["jobs"]:

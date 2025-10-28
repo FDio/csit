@@ -37,6 +37,34 @@ test-sets:
       - ipsec-sw-async-aes128gcm-md
       - ipsec-sw-async-aes256gcm-md
 
+  3n-icxd-vpp-cov-crypto-02:
+    infra:
+      25ge2p1e823c:
+        - vfio-pci
+    tests:
+      - ipsec-sw-udp:
+          framesize: [1518, ]
+          core: [1, ]
+
+  3n-icxd-vpp-cov-crypto-03:
+    infra:
+      25ge2p1e823c:
+        - vfio-pci
+    framesize: [1518, ]
+    tests:
+      - ipsec-sw-reassembly-sm
+
+  3n-icxd-vpp-cov-crypto-04:
+    infra:
+      25ge2p1e823c:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-hw-async-aes256gcm-md
+
   3n-icxd-vpp-cov-ip4-00:
     infra:
       25ge2p1e823c:
@@ -48,18 +76,6 @@ test-sets:
       - imix
     tests:
       - ip4-lg
-
-  3n-icxd-vpp-cov-ip4-01:
-    infra:
-      25ge2p1e823c:
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip4-pol-md
 
   3n-icxd-vpp-cov-ip4tun-00:
     infra:
@@ -77,10 +93,18 @@ test-sets:
     infra:
       25ge2p1e823c:
         - vfio-pci
-    framesize: [64, 1518, imix]
+    framesize: [1518, imix]
     tests:
       - wireguard-sw-lg
       - wireguard-hw-lg
+
+  3n-icxd-vpp-cov-ip4tun-02:
+    infra:
+      25ge2p1e823c:
+        - vfio-pci
+    framesize: [1518, ]
+    tests:
+      - gtpu-sw-reassembly-sm
 
   3n-icxd-vpp-cov-ip6-00:
     infra:
@@ -92,19 +116,8 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - ip6-acl-md
-
-  3n-icxd-vpp-cov-ip6-01:
-    infra:
-      25ge2p1e823c:
-        - vfio-pci
-    framesize:
-      - 78
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
-      - ip6-scale-md
+      - ip6-base-sm
+      - ip6-scale-lg
 
   3n-icxd-vpp-cov-l2-00:
     infra:
@@ -117,17 +130,6 @@ test-sets:
       - imix
     tests:
       - l2-base-md
-
-  3n-icxd-vpp-cov-l2-01:
-    infra:
-      25ge2p1e823c:
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - 9000: [1, ]
-      - imix
-    tests:
       - l2-scale-md
 
 
