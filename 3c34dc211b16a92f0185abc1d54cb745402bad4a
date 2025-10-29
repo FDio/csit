@@ -204,6 +204,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c5add62_01bdfb48",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-10-29T11:00:42Z",
+      "side": 1,
+      "message": "the content of this section LGTM.\n\nbut ... i\u0027m not sure about introducing the new term \"plain bisect\" which sounds and looks very Python\u0027ish. let\u0027s discuss if this section should be called \"Plain Bisect\", a new term introduced in this draft, or we stick to already used term \"binary search\".",
+      "parentUuid": "4d94c688_d804ebbc",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 15
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf27e0ae_ce80408c",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-10-29T11:00:42Z",
+      "side": 1,
+      "message": "loss -\u003e new",
+      "range": {
+        "startLine": 242,
+        "startChar": 45,
+        "endLine": 242,
+        "endChar": 55
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad665340_0dff90b6",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
         "patchSetId": 2
