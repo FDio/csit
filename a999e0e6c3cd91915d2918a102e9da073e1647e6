@@ -16,6 +16,23 @@
       "message": "This only works correctly for VPP builds with 43896. To support older builds (for STABLE_VPP an bisect), Peter please squash this [0] here, or merge it just after this. With that, 2n-grc ip4base MRR performance increases [1] by 20% on 43896.\n\n[0] 43906: fix(perpatch): Support old VPP for ARM platforms | https://gerrit.fd.io/r/c/csit/+/43906\n[1] https://logs.fd.io/vex-yul-rot-jenkins-1/vpp-csit-verify-perf-master-ubuntu2404-aarch64-2n-grc/17/console.log.gz",
       "revId": "a999e0e6c3cd91915d2918a102e9da073e1647e6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5437e1_276fed70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2025-10-29T13:37:27Z",
+      "side": 1,
+      "message": "Hi Peter/Vrakto,\n\nA kind reminder that my [VPP patch](https://gerrit.fd.io/r/c/vpp/+/43896) has been merged. Could we proceed with merging the CSIT patch as well, so we can begin evaluating its impact on CSIT daily performance job on trending page across Arm testbeds?\n\nThanks,\nJay Wang",
+      "revId": "a999e0e6c3cd91915d2918a102e9da073e1647e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
