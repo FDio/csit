@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a05ee6_7706f1a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-10-30T07:48:19Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest #2n-icx-vpp-iterative",
+      "revId": "32b78635734e34bf021f7472645d33b78a266361",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
