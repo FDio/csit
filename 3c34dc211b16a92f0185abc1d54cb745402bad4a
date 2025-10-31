@@ -444,6 +444,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87d6ac53_84b422f9",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-10-31T13:05:28Z",
+      "side": 1,
+      "message": "Oh, I forgot about TST009 already defining a variant of Binary Search in their section 12.3.2. We can refer to that but clarify conditions we do not requite (TST009 relies on Offered Load Step Size parameter for rounding, and their L variable tracks nearest round load larger than largest zero loss load found so far). In our section, Min will be exactly the largest zero loss load, and midpoint is not rounded. I still have to think about properly describing relations between RFC 2544 (does not have to be binary search), this section and TST009.",
+      "parentUuid": "bbafa8cb_2484591a",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 15
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf27e0ae_ce80408c",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
         "patchSetId": 2
@@ -715,6 +739,30 @@
       "side": 1,
       "message": "Are the examples provided in [Lencze-Shima] synthetic, and not applicable in the real world? If no, then this change does not make sense.\nThinking about this more, why do we use \"extreme cases\" term, what is so radical about them? We either add more colour to it, or just remove the adjective and say \"for few use cases\".\n(and sorry i didn\u0027t have time to re-reach [Lencze-Shima)",
       "parentUuid": "c1e07b90_7fbcdb7a",
+      "range": {
+        "startLine": 459,
+        "startChar": 23,
+        "endLine": 459,
+        "endChar": 44
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2748663a_ede06bf4",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-10-31T13:05:28Z",
+      "side": 1,
+      "message": "Their cases are inspired by real protocols, but their loss patterns are simplified so simulated results are more stable. The argument is real goodput could be anywhere between their cases (so extreme in mathematical sense, not in political sense).",
+      "parentUuid": "bbda07b4_6d80ecc8",
       "range": {
         "startLine": 459,
         "startChar": 23,
