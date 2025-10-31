@@ -1,0 +1,38 @@
+---
+# file: tasks/post-action.yml
+
+#- name: executel command on calico-vpp-pod
+#  kubernetes.core.k8s_exec:
+#    namespace: calico-vpp-dataplane
+#    pod: "{{ calico_pod_name }}"
+#    container: vpp
+#    command: vppctl sh version
+#  register: command_status
+
+- name: wait for deploy
+  ansible.builtin.wait_for:
+    timeout: 5
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - calico-pre-action
+
+- name: calicovppctl show version
+  ansible.builtin.shell: |
+    calicovppctl vppctl {{ hostname }} show version
+  register: command_status
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - calico-pre-action
+
+- name: check last command status
+  ansible.builtin.debug:
+    msg: "{{ command_status.stdout }}"
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - calico-pre-action

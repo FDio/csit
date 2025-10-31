@@ -31,6 +31,16 @@ rules:
   - watch
   - list
   - get
+  - create
+  - update
+- apiGroups:
+  - k8s.cni.cncf.io
+  resources:
+  - network-attachment-definitions
+  verbs:
+  - watch
+  - get
+  - list
 - apiGroups:
   - ""
   resources:
@@ -66,6 +76,14 @@ rules:
   - pods/status
   verbs:
   - patch
+- apiGroups:
+  - projectcalico.org
+  resources:
+  - networks
+  verbs:
+  - list
+  - get
+  - watch
 - apiGroups:
   - crd.projectcalico.org
   resources:
@@ -120,6 +138,14 @@ rules:
   - blockaffinities
   verbs:
   - watch
+- apiGroups:
+  - discovery.k8s.io
+  resources:
+  - endpointslices
+  verbs:
+  - watch
+  - list
+  - get
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -138,11 +164,11 @@ apiVersion: v1
 data:
   CALICOVPP_CONFIG_TEMPLATE: |-
     unix {
-        nodaemon
-        full-coredump
-        cli-listen /var/run/vpp/cli.sock
-        pidfile /run/vpp/vpp.pid
-        exec /etc/vpp/startup.exec
+      nodaemon
+      full-coredump
+      cli-listen /var/run/vpp/cli.sock
+      pidfile /run/vpp/vpp.pid
+      exec /etc/vpp/startup.exec
     }
     api-trace { on }
     cpu {
@@ -160,7 +186,7 @@ data:
         plugin dispatch_trace_plugin.so { enable }
     }
     buffers {
-        buffers-per-numa 131072
+      buffers-per-numa 131072
     }
   CALICOVPP_FEATURE_GATES: |-
     {
@@ -202,6 +228,32 @@ metadata:
   namespace: calico-vpp-dataplane
 ---
 apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: calico-vpp-node
+  name: multinet-monitor-deployment
+  namespace: calico-vpp-dataplane
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: calico-vpp-node
+  template:
+    metadata:
+      labels:
+        k8s-app: calico-vpp-node
+    spec:
+      containers:
+      - image: docker.io/calicovpp/multinet-monitor:latest
+        imagePullPolicy: IfNotPresent
+        name: multinet-monitor
+        resources:
+          requests:
+            cpu: 250m
+      serviceAccountName: calico-vpp-node-sa
+---
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
@@ -227,10 +279,46 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         envFrom:
         - configMapRef:
             name: calico-vpp-config
-        image: docker.io/calicovpp/vpp:v3.29.0
+        image: docker.io/calicovpp/agent:latest
+        imagePullPolicy: IfNotPresent
+        name: agent
+        resources:
+          requests:
+            cpu: 250m
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run/calico
+          name: var-run-calico
+          readOnly: false
+        - mountPath: /var/lib/calico/felix-plugins
+          name: felix-plugins
+          readOnly: false
+        - mountPath: /var/run/vpp
+          name: vpp-rundir
+        - mountPath: /run/netns/
+          mountPropagation: Bidirectional
+          name: netns
+      - env:
+        - name: DATASTORE_TYPE
+          value: kubernetes
+        - name: WAIT_FOR_DATASTORE
+          value: "true"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        envFrom:
+        - configMapRef:
+            name: calico-vpp-config
+        image: docker.io/calicovpp/vpp:latest
         imagePullPolicy: IfNotPresent
         name: vpp
         resources:
@@ -259,44 +347,16 @@ spec:
           name: netns
         - mountPath: /host
           name: host-root
-      - env:
-        - name: DATASTORE_TYPE
-          value: kubernetes
-        - name: WAIT_FOR_DATASTORE
-          value: "true"
-        - name: NODENAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        envFrom:
-        - configMapRef:
-            name: calico-vpp-config
-        image: docker.io/calicovpp/agent:v3.29.0
-        imagePullPolicy: IfNotPresent
-        name: agent
-        resources:
-          requests:
-            cpu: 250m
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: /var/run/calico
-          name: var-run-calico
-          readOnly: false
-        - mountPath: /var/lib/calico/felix-plugins
-          name: felix-plugins
-          readOnly: false
-        - mountPath: /var/run/vpp
-          name: vpp-rundir
-        - mountPath: /run/netns/
-          mountPropagation: Bidirectional
-          name: netns
       hostNetwork: true
       hostPID: true
+      initContainers:
+      - command:
+        - /entrypoint
+        image: docker.io/calicovpp/install-whereabouts:latest
+        name: install-whereabouts
+        volumeMounts:
+        - mountPath: /host/opt/cni/bin
+          name: cni-bin-dir
       nodeSelector:
         kubernetes.io/os: linux
       priorityClassName: system-node-critical
@@ -310,6 +370,9 @@ spec:
       - effect: NoExecute
         operator: Exists
       volumes:
+      - hostPath:
+          path: /opt/cni/bin
+        name: cni-bin-dir
       - hostPath:
           path: /lib/firmware
         name: lib-firmware

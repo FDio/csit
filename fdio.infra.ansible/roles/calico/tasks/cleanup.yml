@@ -1,5 +1,5 @@
 ---
-# file: tasks/cleanup.yaml
+# file: tasks/cleanup.yml
 
 - name: reset network interface
   ansible.builtin.shell: |

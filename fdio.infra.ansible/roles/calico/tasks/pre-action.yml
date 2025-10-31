@@ -1,14 +1,23 @@
 ---
-# file: tasks/pre-set.yaml
+# file: tasks/pre-action.yml
 
 - name: pre-setup network interface
   ansible.builtin.shell: |
     ip l set dev {{ item.interfaceName }} up
     ip a add {{ item.ip_addr }} dev {{ item.interfaceName }}
   loop: "{{ calico_uplink_interfaces }}"
-  ignore_errors: True
   when:
     - calico_sut is defined
     - calico_vpp_state == "present"
   tags:
-    - calico-reset
+    - calico-pre-action
+
+- name: pre-setup routing
+  ansible.builtin.shell: |
+    ip r add {{ item.ip_route }}
+  loop: "{{ calico_uplink_interfaces }}"
+  when:
+    - calico_sut is defined
+    - calico_vpp_state == "present"
+  tags:
+    - calico-pre-action
