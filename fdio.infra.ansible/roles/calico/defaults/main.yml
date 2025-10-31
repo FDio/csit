@@ -5,9 +5,12 @@ kubernetes_pod_network:
   cidr: "192.168.0.0/16"
 
 kubernetes_calico_version: "3.30.3"
+calicovppctl_version: "3.30.0"
 
 kubernetes_calico_resources:
   tigera-operator.yaml: https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/tigera-operator.yaml
   operator-crds.yaml: https://raw.githubusercontent.com/projectcalico/calico/v{{ kubernetes_calico_version }}/manifests/operator-crds.yaml
 
-calico_vpp_state: "present"
+calicovppctl_resource: https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v{{ calicovppctl_version }}/test/scripts/vppdev.sh
+
+calico_vpp_state: present

@@ -1,0 +1,18 @@
+---
+# file: tasks/main.yml
+
+- import_tasks: pre-action.yml
+  tags:
+    - calico-pre-action
+
+- import_tasks: deploy.yml
+  tags:
+    - calico-deploy
+
+- import_tasks: post-action.yml
+  tags:
+    - calico-post-action
+
+- import_tasks: cleanup.yml
+  tags:
+    - calico-cleanup

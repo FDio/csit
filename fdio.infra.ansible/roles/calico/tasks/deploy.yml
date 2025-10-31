@@ -1,5 +1,5 @@
 ---
-# file: tasks/deploy.yaml
+# file: tasks/deploy.yml
 
 - name: download calico manifest to the cluster
   ansible.builtin.get_url:
@@ -27,7 +27,7 @@
     dest: "/tmp/{{ item }}"
     src: "{{ item }}.j2"
   loop:
-    - "calico-vpp.yaml"
+    - "calico-vpp-multinet.yaml"
   when:
     - calico_sut is defined
   tags:
@@ -66,3 +66,13 @@
     - pod_list['resources'] | length > 0
   tags:
     - calico-info
+
+- name: download calicovppctl
+  ansible.builtin.get_url:
+    url: "{{ calicovppctl_resource }}"
+    dest: /usr/bin/calicovppctl
+    mode: 0740
+  when:
+    - calico_sut is defined
+  tags:
+    - calico-deploy
