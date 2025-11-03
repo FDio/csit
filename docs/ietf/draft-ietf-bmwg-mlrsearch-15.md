@@ -2,8 +2,8 @@
 
 title: Multiple Loss Ratio Search
 abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-14
-date: 2025-09-17
+docname: draft-ietf-bmwg-mlrsearch-15
+date: 2025-11-04
 
 submissionType: IETF
 ipr: trust200902
@@ -71,8 +71,8 @@ informative:
 
 --- abstract
 
-This document specifies extensions to "Benchmarking Methodology for
-Network Interconnect Devices" (RFC 2544) throughput search by
+This document describes an alternative to "Benchmarking Methodology for
+Network Interconnect Devices" (RFC 2544) throughput by
 defining a new methodology called Multiple Loss Ratio search
 (MLRsearch). MLRsearch aims to minimize search duration,
 support multiple loss ratio searches, and improve result repeatability
@@ -102,7 +102,7 @@ software-based networking systems based on Commercial Off-the-Shelf
 This document describes the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining data plane
 throughput in software-based networking functions running on commodity systems with
-x86/ARM CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
+generic CPUs (vs purpose-built ASIC / NPU / FPGA). Such network
 functions can be deployed on dedicated physical appliance (e.g., a
 standalone hardware device) or as virtual appliance (e.g., Virtual
 Network Function running on shared servers in the compute cloud).
@@ -115,14 +115,19 @@ If a phrase appears with first letters capitalized, it likely refers
 to a specific term defined in eponymous subsection
 of [MLRsearch Specification](#mlrsearch-specification).
 
+For first time readers, the information in
+[MLRsearch Specification](#mlrsearch-specification) might feel
+dense and lacking motivation. Subsequent sections are there to provide explanations,
+making [MLRsearch Specification](#mlrsearch-specification)
+more approachable on repeated reads.
+
 ## Purpose
 
 The purpose of this document is to describe the Multiple Loss Ratio search
 (MLRsearch) methodology, optimized for determining
 data plane throughput in software-based networking devices and functions.
 
-Applying the vanilla throughput binary search,
-as specified for example in Section 12.3.2 of [TST009]
+Applying the [Binary Search](#binary-search)
 to software devices under test (DUTs) results in several problems:
 
 - Binary search takes a long time as most trials are done far from the
@@ -217,7 +222,39 @@ merely by augmenting the content of the final test report.
 
 This section describes the problems affecting usability
 of various performance testing methodologies,
-mainly a binary search for [RFC2544] unconditionally compliant throughput.
+mainly the [Binary Search](#binary-search) for [RFC2544] unconditionally compliant throughput.
+
+## Binary Search
+
+While [RFC2544] offers some flexibility when searching for throughput,
+a particular algorithm is frequently used as a starting point,
+as it is the simplest one among those that offer reasonable effectivity.
+
+This algorithm is based on binary search over sorted arrays,
+but does not have a specific name when searching for throughput.
+In this document we call that algorithm the "Binary Search",
+as that is the title of Section 12.3.2 of [TST009] describing a variant of it.
+
+Here is a simplified description of the algorithm:
+
+* Set lower-bound <- line-rate and upper-bound <- a proven loss-free load.
+* Compute a midpoint, the arithmetic mean of current bound values.
+* Run a single 60-second trial at the midpoint.
+* Zero-loss -> midpoint becomes new lower-bound; any loss-> new upper-bound.
+* Repeat until the gap between bounds meets the desired precision.
+
+The [TST009] description had two more requirements
+(stopping condition and rounding, both based on Offered Load Step Size Parameter)
+but those are not required in this document.
+
+Small modifications related to initial bound values are also allowed.
+
+For larger modifications, such as using a different way to compute the midpoint,
+a more generic name should be used, such as "binary-like search".
+
+This document will introduce specific terms that function in roles alanogous
+to upper-bound and lower-bound in binary search,
+but they will differ in exact requirements for a Load to become a new bound.
 
 ## Long Search Duration
 
@@ -227,9 +264,9 @@ has increased both the number of performance tests
 required to verify the DUT update and the frequency of running those tests.
 This makes the overall test execution time even more important than before.
 
-The throughput definition per [RFC2544] restricts the potential
+The definition of throughput test methodology  per [RFC2544] restricts the potential
 for time-efficiency improvements.
-The bisection method, when used in a manner unconditionally compliant
+The [Binary Search](#binary-search), when used in a manner unconditionally compliant
 with [RFC2544], is excessively slow due to two main factors.
 
 Firstly, a significant amount of time is spent on trials
@@ -238,19 +275,10 @@ with loads that, in retrospect, are far from the final determined throughput.
 Secondly, [RFC2544] does not specify any stopping condition for
 throughput search, so users of testing equipment implementing the
 procedure already have access to a limited trade-off
-between search duration and achieved precision.
-However, each of the full 60-second trials doubles the precision.
+between search duration and achieved precision,
+as each one of the full 60-second trials halves the interval of possible results.
 
 As such, not many trials can be removed without a substantial loss of precision.
-
-For reference, here is a brief [RFC2544] throughput binary
-(bisection) reminder, based on Sections 24 and 26 of [RFC2544]:
-
-* Set Max = line-rate and Min = a proven loss-free load.
-* Run a single 60-second trial at the midpoint.
-* Zero-loss -> midpoint becomes new Min; any loss-> new Max.
-* Repeat until the Max-Min gap meets the desired precision, then report
-  the highest zero-loss rate for every mandatory frame size.
 
 ## DUT in SUT
 
@@ -377,13 +405,13 @@ no tolerance of a single frame loss) affect the throughput result as follows:
 The SUT behavior close to the noiseful end of its performance spectrum
 consists of rare occasions of significantly low performance,
 but the long trial duration makes those occasions not so rare on the trial level.
-Therefore, the binary search results tend to spread away from the noiseless end
+Therefore, the [Binary Search](#binary-search) results tend to spread away from the noiseless end
 of SUT performance spectrum, more frequently and more widely than shorter
 trials would, thus causing unacceptable throughput repeatability.
 
 The repeatability problem can be better addressed by defining a search procedure
 that identifies a consistent level of performance,
-even if it does not meet the strict definition of throughput in [RFC2544].
+even if it does not meet the strict definition of throughput test methodology in [RFC2544].
 
 According to the SUT performance spectrum model, better repeatability
 will be at the noiseless end of the spectrum.
@@ -437,7 +465,8 @@ Motivations are many:
   Trial and Goal terms in [Trial Terms](#trial-terms) and [Goal Terms](#goal-terms)).
 
 For more information, see Section 5 of an earlier draft [Lencze-Shima]
-and references there.
+(and references there) for few synthetic examples, confirming that
+each protocol and application can have different realistic loss ratio value.
 
 Regardless of the validity of all similar motivations,
 support for non-zero loss goals makes a
@@ -454,7 +483,7 @@ For example, the repeated wide gap between zero and non-zero loss loads
 indicates the noise has a large impact on the observed performance,
 which is not evident from a single goal load search procedure result.
 
-It is easy to modify the vanilla bisection to find a lower bound
+It is easy to modify the [Binary Search](#binary-search) to find a lower bound
 for the load that satisfies a non-zero Goal Loss Ratio.
 But it is not that obvious how to search for multiple goals at once,
 hence the support for multiple Search Goals remains a problem.
@@ -482,7 +511,7 @@ Examples include, but are not limited to:
 - A trial at a larger load (same or different trial duration) results
   in a lower Trial Loss Ratio.
 
-The plain bisection never encounters inconsistent trials.
+The [Binary Search](#binary-search) never encounters inconsistent trials.
 But [RFC2544] hints about the possibility of inconsistent trial results,
 in two places in its text.
 The first place is Section 24 of [RFC2544],
@@ -496,7 +525,8 @@ there can be a subsequent inconsistent non-zero-loss trial.
 
 A robust throughput search algorithm needs to decide how to continue
 the search in the presence of such inconsistencies.
-Definitions of throughput in [RFC1242] and [RFC2544] are not specific enough
+Definitions of throughput and its test methodology
+in [RFC1242] and [RFC2544] are not specific enough
 to imply a unique way of handling such inconsistencies.
 
 Ideally, there will be a definition of a new quantity which both generalizes
@@ -646,11 +676,11 @@ Search. Any work the Manager performs either before invoking the
 Controller or after Controller returns, falls outside the scope of the
 Search.
 
-MLRsearch Specification prescribes Regular Search Results and recommends
-corresponding search completion conditions.
-
-Irregular Search Results are also allowed,
+MLRsearch Specification prescribes [Regular Goal Results](#regular-goal-result)
+and recommends corresponding search completion conditions.
+[Irregular Goal Results](#irregular-goal-result) are also allowed,
 they have different requirements and their corresponding stopping conditions are out of scope.
+The Search Result is the combination of regular and irregular results for each goal.
 
 Search Results are based on Load Classification. When measured enough,
 a chosen Load can either achieve or fail each Search Goal
@@ -1275,7 +1305,7 @@ Contrary to other sections, definitions in subsections of this section
 are necessarily vague, as their fundamental meaning is to act as
 coefficients in formulas for Controller Output, which are not defined yet.
 
-The discussions in this section relate the attributes to concepts mentioned in Section
+The discussions in this section relate the attributes to concepts mentioned in
 [Overview of RFC 2544 Problems](#overview-of-rfc-2544-problems), but even these discussion
 paragraphs are short, informal, and mostly referencing later sections,
 where the impact on search results is discussed after introducing
@@ -1324,7 +1354,7 @@ at a specific Trial Load and Goal Final Trial Duration during the search.
 multiple trials may be needed to be performed at the same load.
 
 &nbsp;
-: Refer to Section [MLRsearch Compliant with TST009](#mlrsearch-compliant-with-tst009)
+: Refer to [MLRsearch Compliant with TST009](#mlrsearch-compliant-with-tst009)
 for an example where the possibility of multiple trials
 at the same load is intended.
 
@@ -1386,7 +1416,7 @@ as in practice that value leads to
 the smallest variation in overall Search Duration.
 
 &nbsp;
-: Refer to Section [Exceed Ratio and Multiple Trials](#exceed-ratio-and-multiple-trials)
+: Refer to [Exceed Ratio and Multiple Trials](#exceed-ratio-and-multiple-trials)
 for more details.
 
 ### Goal Width
@@ -1420,8 +1450,8 @@ but implementations may choose a different way to specify width.
 setting it to a value not lower than the Goal Loss Ratio.
 
 &nbsp;
-: Refer to Section 
-[Generalized Throughput](#generalized-throughput) for more elaboration on the reasoning.
+: Refer to [Generalized Throughput](#generalized-throughput)
+for more elaboration on the reasoning.
 
 ### Goal Initial Trial Duration
 
@@ -1482,7 +1512,7 @@ to support missing attributes by providing typical default values.
 may also require users to specify "how quickly" should Trial Durations increase.
 
 &nbsp;
-: Refer to Section [Compliance](#compliance) for important Search Goal settings.
+: Refer to [Compliance](#compliance) for important Search Goal settings.
 
 ### Controller Input
 
@@ -1540,8 +1570,8 @@ to all Search Goal instances.
 
 &nbsp;
 : While Max Load is a frequently used configuration parameter, already governed
-(as maximum frame rate) by [RFC2544] (Section 20)
-and (as maximum offered load) by [RFC2285] (Section 3.5.3),
+(as maximum frame rate) by Section 20 of [RFC2544]
+and (as maximum offered load) by Section 3.5.3 of [RFC2285],
 some implementations may detect or discover it
 (instead of requiring a user-supplied value).
 
@@ -1831,7 +1861,7 @@ within the Goal Duration Sum.
 and comparability of different MLRsearch implementations.
 
 &nbsp;
-: Refer to Section [Generalized Throughput](#generalized-throughput) for more details.
+: Refer to [Generalized Throughput](#generalized-throughput) for more details.
 
 &nbsp;
 : Given that Conditional Throughput is a quantity based on Load,
@@ -1872,7 +1902,7 @@ the distance between the Relevant Lower Bound
 and the Relevant Upper Bound MUST NOT be larger than the Goal Width.
 
 &nbsp;
-: For stopping conditions refer to Sections [Goal Width](#goal-width) and
+: For stopping conditions refer to [Goal Width](#goal-width) and
 [Stopping Conditions and Precision](#stopping-conditions-and-precision).
 
 #### Irregular Goal Result
@@ -1961,7 +1991,7 @@ e.g., number of trials performed and the total Search Duration.
 
 ## Architecture Terms
 
-MLRsearch architecture consists of three main system components: 
+MLRsearch architecture consists of three main system components:
 the Manager, the Controller, and the Measurer.
 The components were introduced in [Architecture Overview](#architecture-overview),
 and the following subsections finalize their definitions
@@ -2025,7 +2055,7 @@ in a way that would be disentangled from other Measurer freedoms.
 &nbsp;
 : For a sample situation where the Offered Load cannot keep up
 with the Intended Load, and the consequences on MLRsearch result,
-refer to Section [Hard Performance Limit](#hard-performance-limit).
+refer to [Hard Performance Limit](#hard-performance-limit).
 
 ### Controller
 
@@ -2133,8 +2163,7 @@ compliant [RFC2544] throughput testing
 can be understood as a MLRsearch architecture,
 if there is enough data to reconstruct the Relevant Upper Bound.
 
-Refer to section 
-[MLRsearch Compliant with RFC 2544](#mlrsearch-compliant-with-rfc-2544)
+Refer to [MLRsearch Compliant with RFC 2544](#mlrsearch-compliant-with-rfc-2544)
 for an equivalent Search Goal.
 
 Any test procedure that can be understood as one call to the Manager of
@@ -2199,16 +2228,17 @@ so third full-length trial is never needed.
 This section explains the Why behind MLRsearch. Building on the
 normative specification in [MLRsearch Specification](#mlrsearch-specification),
 it contrasts MLRsearch with the classic
-[RFC2544] single-ratio binary-search procedure and walks through the
-key design choices: binary-search mechanics, stopping-rule precision,
+[RFC2544] single-ratio [Binary Search](#binary-search) and walks through the
+key design choices: binary-like search mechanics, stopping-rule precision,
 loss-inversion for multiple goals, exceed-ratio handling, short-trial
 strategies, and the generalised throughput concept. Together, these
 considerations show how the methodology reduces test time, supports
-multiple loss ratios, and improves repeatability. 
+multiple loss ratios, and improves repeatability.
 
-## Binary Search
+## Binary Search Commonalities
 
-A typical binary search implementation for [RFC2544]
+A typical search implementation for [RFC2544]
+such as [Binary Search](#binary-search)
 tracks only the two tightest bounds.
 To start, the search needs both Max Load and Min Load values.
 Then, one trial is used to confirm Max Load is an Upper Bound,
@@ -2252,7 +2282,7 @@ and its variance.
 
 ## Loss Ratios and Loss Inversion
 
-The biggest difference between MLRsearch and [RFC2544] binary search
+The biggest difference between MLRsearch and [Binary Search](#binary-search)
 is in the goals of the search.
 [RFC2544] has a single goal, based on classifying a single full-length trial
 as either zero-loss or non-zero-loss.
@@ -2261,7 +2291,7 @@ usually differing in their Goal Loss Ratio values.
 
 ### Single Goal and Hard Bounds
 
-Each bound in [RFC2544] simple binary search is "hard",
+Each bound in [RFC2544] Binary Search is "hard",
 in the sense that all further Trial Load values
 are smaller than any current upper bound and larger than any current lower bound.
 
@@ -2271,7 +2301,7 @@ when the search is started with only one Search Goal instance.
 ### Multiple Goals and Loss Inversion
 
 MLRsearch Specification supports multiple Search Goals, making the search procedure
-more complicated compared to binary search with single goal,
+more complicated compared to [Binary Search](#binary-search) with single goal,
 but most of the complications do not affect the final results much.
 Except for one phenomenon: Loss Inversion.
 
@@ -2312,7 +2342,7 @@ that are Lower Bounds while also being smaller than the Relevant Upper Bound.
 
 With these definitions, the Relevant Lower Bound is always smaller
 than the Relevant Upper Bound (if both exist), and the two relevant bounds
-are used analogously as the two tightest bounds in the binary search.
+are used analogously as the two tightest bounds in the [Binary Search](#binary-search).
 When they meet the stopping conditions, the Relevant Bounds are used in the output.
 
 ### Consequences
@@ -2339,7 +2369,7 @@ The idea of performing multiple Trials at the same Trial Load comes from
 a model where some Trial Results (those with high Trial Loss Ratio) are affected
 by infrequent effects, causing unsatisfactory repeatability
 
-of [RFC2544] Throughput results. Refer to Section [DUT in SUT](#dut-in-sut)
+of [RFC2544] Throughput results. Refer to [DUT in SUT](#dut-in-sut)
 for a discussion about noiseful and noiseless ends
 of the SUT performance spectrum.
 Stable results are closer to the noiseless end of the SUT performance spectrum,
@@ -2386,7 +2416,7 @@ is only assured when the Load Classification logic
 handles any possible set of Trial Results in the same way.
 
 The presence of Short Trial Results complicates
-the Load Classification logic, see more details in Section
+the Load Classification logic, see more details in
 [Load Classification Logic](#load-classification-logic).
 
 While the Load Classification algorithm is designed to avoid any unneeded Trials,
@@ -2405,7 +2435,7 @@ any load search algorithm needs to deal with Intended Load values internally.
 But in the presence of Search Goals with a non-zero
 [Goal Loss Ratio](#goal-loss-ratio), the Load usually does not match
 the user's intuition of what a throughput is.
-The forwarding rate as defined in Section Section 3.6.1 of [RFC2285] is better,
+The forwarding rate as defined in Section 3.6.1 of [RFC2285] is better,
 but it is not obvious how to generalize it
 for Loads with multiple Trials and a non-zero Goal Loss Ratio.
 
@@ -2419,8 +2449,7 @@ Even if bandwidth of a medium allows higher traffic forwarding performance,
 the SUT interfaces may have their additional own limitations,
 e.g., a specific frames-per-second limit on the NIC (a common occurrence).
 
-Those limitations should be known and provided as Max Load, Section
-[Max Load](#max-load).
+Those limitations should be known and provided as [Max Load](#max-load).
 
 But if Max Load is set larger than what the interface can receive or transmit,
 there will be a "hard limit" behavior observed in Trial Results.
@@ -2596,7 +2625,7 @@ are not identical.
 
 ## SUT Behaviors
 
-In Section [DUT in SUT](#dut-in-sut), the notion of noise has been introduced.
+In [DUT in SUT](#dut-in-sut), the notion of noise has been introduced.
 This section uses new terms
 to describe possible SUT behaviors more precisely.
 
@@ -2797,7 +2826,7 @@ optimistic_is_lower = effect_high_loss_s <= quantile_duration_s
 # Conditional Throughput Code
 
 This section specifies an example of how to compute Conditional Throughput,
-as referred to in Section [Conditional Throughput](#conditional-throughput).
+as referred to in [Conditional Throughput](#conditional-throughput).
 
 Any Load value can be used as the basis for the following computation,
 but only the Relevant Lower Bound (at the end of the Search)
