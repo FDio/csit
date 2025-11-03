@@ -17,7 +17,7 @@ jobs:
       - nomad
       - fdio:arch=x86_64
       - fdio:class=builder
-      - fdio:namespace=sandbox
+      - fdio:namespace=prod
       - fdio:os=ubuntu2404
 
     env:
@@ -47,7 +47,7 @@ jobs:
       - nomad
       - fdio:arch=x86_64
       - fdio:class=builder
-      - fdio:namespace=sandbox
+      - fdio:namespace=prod
       - fdio:os=ubuntu2404
 
     env:
