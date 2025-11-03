@@ -35,9 +35,9 @@ jobs:
         uses: pmikus/.github/.github/actions/setup-executor-env@8930b575136625c5c8a47752192f9cd90202bea3
 
       - name: Run Performance Bootstrap
-        uses: pmikus/csit/.github/actions/csit-bootstrap@e29d99cde5a57e52dac8a07658960f4a95570861
+        uses: fdio/csit/.github/actions/csit-bootstrap@3835964003f751ea545d7926f46fade5e9e5da13
         with:
-          bootstrap_script: bootstrap_aws_eb_version_deploy.sh
+          bootstrap_script: bootstrap_aws_eb_version_verify.sh
           with_oper: false
 
   deploy:
@@ -65,7 +65,7 @@ jobs:
         uses: pmikus/.github/.github/actions/setup-executor-env@8930b575136625c5c8a47752192f9cd90202bea3
 
       - name: Run Performance Bootstrap
-        uses: pmikus/csit/.github/actions/csit-bootstrap@e29d99cde5a57e52dac8a07658960f4a95570861
+        uses: fdio/csit/.github/actions/csit-bootstrap@3835964003f751ea545d7926f46fade5e9e5da13
         with:
           bootstrap_script: bootstrap_aws_eb_version_deploy.sh
           with_oper: false
