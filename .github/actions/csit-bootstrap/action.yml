@@ -1,0 +1,32 @@
+---
+name: "🛠️ CSIT Bootstrap"
+description: |
+  This GitHub Action runs FD.io CSIT bootstrap.
+
+inputs:
+  bootstrap_script:
+    description: "CSIT bootstrap shell script to source."
+    required: true
+    type: string
+  with_oper:
+    description: "Use operational branch to checkout the code."
+    required: false
+    type: boolean
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run Bootstrap
+      id: bootstrap
+      shell: bash
+      env:
+        BRANCH_ID: oper
+        GERRIT_BRANCH: master
+      run: |
+        csit_entry_dir="./resources/libraries/bash/entry"
+        if [[ "${{ inputs.with_oper }}" == "true" ]]; then
+            source ${csit_entry_dir}/with_oper_for_vpp.sh "${{ inputs.bootstrap_script }}"
+        else
+            source ${csit_entry_dir}/${{ inputs.bootstrap_script }}
+        fi
