@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d95a2a_443c7ead",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-11-03T10:14:38Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-c7gn-perftest #2n-c7gn-vpp-iterative",
+      "revId": "6c002c2970c8552e07f4ac61fcfbe946ae3d7927",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
