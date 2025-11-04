@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3729498_156056ac",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:43:07Z",
+      "side": 1,
+      "message": "Useful here if we decide to mention Relevant Upper Bound is tightest (but not every Upper Bound is). Otherwise we can move this to the Methodology Rationale and Design Considerations chapter.",
+      "range": {
+        "startLine": 258,
+        "startChar": 63,
+        "endLine": 258,
+        "endChar": 80
+      },
+      "revId": "4a170eac5371933a680459f13174190da596a713",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55f309d_0873c8d3",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 2244,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:43:07Z",
+      "side": 1,
+      "message": "This chapter has 25 more mentions of \"tightest\".",
+      "range": {
+        "startLine": 2244,
+        "startChar": 20,
+        "endLine": 2244,
+        "endChar": 35
+      },
+      "revId": "4a170eac5371933a680459f13174190da596a713",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
