@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9a4698_5bde8d13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T14:10:16Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "4a170eac5371933a680459f13174190da596a713",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3729498_156056ac",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-11-04T12:43:07Z",
       "side": 1,
       "message": "Useful here if we decide to mention Relevant Upper Bound is tightest (but not every Upper Bound is). Otherwise we can move this to the Methodology Rationale and Design Considerations chapter.",
+      "range": {
+        "startLine": 258,
+        "startChar": 63,
+        "endLine": 258,
+        "endChar": 80
+      },
+      "revId": "4a170eac5371933a680459f13174190da596a713",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50726ae0_06188ea8",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T14:10:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a3729498_156056ac",
       "range": {
         "startLine": 258,
         "startChar": 63,
