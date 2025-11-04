@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e2261ee_788717e8",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Added a sentence describing how RFC2544 (barely) mentions binary search.",
+      "parentUuid": "72670d16_54a750ce",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 78
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca1656e5_8185473e",
@@ -70,6 +94,54 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fad04fbf_fce6eeb4",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "501a5993_591bf833",
+      "range": {
+        "startLine": 240,
+        "startChar": 47,
+        "endLine": 240,
+        "endChar": 49
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e36db73b_6e1f2e3f",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca1656e5_8185473e",
+      "range": {
+        "startLine": 240,
+        "startChar": 18,
+        "endLine": 240,
+        "endChar": 20
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10447883_5758472b",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-11-04T11:05:39Z",
       "side": 1,
       "message": "Suggestion: get rid of the \"-\u003e\" \"operators\", and use English words instead e.g.\n\nIf zero-loss then midpoint becomes new lower-bound; if any loss then mid-point becomes new upper-bound.",
+      "range": {
+        "startLine": 243,
+        "startChar": 2,
+        "endLine": 243,
+        "endChar": 76
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dae827e_007a9bbd",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10447883_5758472b",
       "range": {
         "startLine": 243,
         "startChar": 2,
@@ -116,6 +212,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "478220c7_a57e4d53",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Deleted, as uneven splits (a heuristics) is no longer mention in the text, and all examples of RFC2544 throughput search now only refer to this Binary Search (only indirectly hinting other search algorithms may behave differently).",
+      "parentUuid": "b1b4889c_499f7c47",
+      "range": {
+        "startLine": 253,
+        "startChar": 44,
+        "endLine": 253,
+        "endChar": 64
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d49f97c9_4f7eb09c",
@@ -139,6 +259,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f635c11c_8fc3d0ec",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d49f97c9_4f7eb09c",
+      "range": {
+        "startLine": 255,
+        "startChar": 67,
+        "endLine": 255,
+        "endChar": 76
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "124a3955_dbc06aef",
@@ -152,6 +296,30 @@
       "writtenOn": "2025-11-04T11:05:39Z",
       "side": 1,
       "message": "this paragraph is not clear to me. why has this be added at this stage, and what value or clarity does it bring? \n\nwhat comment from IETF LC does it address?",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 75
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "153a4fc2_f56b7b91",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T12:40:04Z",
+      "side": 1,
+      "message": "Removed, but added another paragraph about \"tightest bounds\".",
+      "parentUuid": "124a3955_dbc06aef",
       "range": {
         "startLine": 255,
         "startChar": 0,
