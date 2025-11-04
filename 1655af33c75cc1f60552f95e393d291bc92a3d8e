@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72670d16_54a750ce",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "i would like to have references to [RFC2544] back please. can\u0027t see a reason for removing them, especially that: this draft keeps using RFC2544 as a reference in many places and readers are very very familiar with RFC2544 (more than with TST009), and RFC2544 is IETF document, and TST009 is not. And using TST009 as an indirect reference to practices used in RFC2544 does not strike me as a very clear way to convey to BMWG and IETF reader what this section is about.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 78
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca1656e5_8185473e",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 240,
+        "startChar": 18,
+        "endLine": 240,
+        "endChar": 20
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501a5993_591bf833",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 240,
+        "startChar": 47,
+        "endLine": 240,
+        "endChar": 49
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10447883_5758472b",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "Suggestion: get rid of the \"-\u003e\" \"operators\", and use English words instead e.g.\n\nIf zero-loss then midpoint becomes new lower-bound; if any loss then mid-point becomes new upper-bound.",
+      "range": {
+        "startLine": 243,
+        "startChar": 2,
+        "endLine": 243,
+        "endChar": 76
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b4889c_499f7c47",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "i don\u0027t like introducing yet another term open to interpretation \"binary-like search\". pls explain why it is needed.",
+      "range": {
+        "startLine": 253,
+        "startChar": 44,
+        "endLine": 253,
+        "endChar": 64
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d49f97c9_4f7eb09c",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 255,
+        "startChar": 67,
+        "endLine": 255,
+        "endChar": 76
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "124a3955_dbc06aef",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-04T11:05:39Z",
+      "side": 1,
+      "message": "this paragraph is not clear to me. why has this be added at this stage, and what value or clarity does it bring? \n\nwhat comment from IETF LC does it address?",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 75
+      },
+      "revId": "1655af33c75cc1f60552f95e393d291bc92a3d8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
