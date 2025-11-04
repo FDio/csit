@@ -466,6 +466,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae8cecce_62d78bc4",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T10:41:52Z",
+      "side": 1,
+      "message": "Section renamed to Binary Search and ready in #3.",
+      "parentUuid": "87d6ac53_84b422f9",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 15
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf27e0ae_ce80408c",
@@ -763,6 +787,30 @@
       "side": 1,
       "message": "Their cases are inspired by real protocols, but their loss patterns are simplified so simulated results are more stable. The argument is real goodput could be anywhere between their cases (so extreme in mathematical sense, not in political sense).",
       "parentUuid": "bbda07b4_6d80ecc8",
+      "range": {
+        "startLine": 459,
+        "startChar": 23,
+        "endLine": 459,
+        "endChar": 44
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72c11bd9_94d1d553",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T10:41:52Z",
+      "side": 1,
+      "message": "Applied \"synthetic examples\" in #3.",
+      "parentUuid": "2748663a_ede06bf4",
       "range": {
         "startLine": 459,
         "startChar": 23,
@@ -1139,6 +1187,30 @@
       "side": 1,
       "message": "This occurrence can be reference too. But see other edits when I downgraded to \"binary search\" or just \"search\". While the downgraded sentences are more general, we can upgrade to keep the number of terms low (and leave generalizations to readers).",
       "parentUuid": "b5b69bf4_4d912947",
+      "range": {
+        "startLine": 2285,
+        "startChar": 0,
+        "endLine": 2285,
+        "endChar": 47
+      },
+      "revId": "3c34dc211b16a92f0185abc1d54cb745402bad4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0424dfa_78e96f31",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-15.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2285,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-04T10:41:52Z",
+      "side": 1,
+      "message": "Done in #3.",
+      "parentUuid": "764829de_f8d35f3a",
       "range": {
         "startLine": 2285,
         "startChar": 0,
