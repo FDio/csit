@@ -55,6 +55,19 @@ test-sets:
       - nat44-ip4base-tput-sm:
           framesize: [100, ]
 
+  2n-emr-vpp-cov-ip4-03:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
   2n-emr-vpp-cov-ip4tun-00:
     infra:
       100ge2p1e810cq:
@@ -80,6 +93,19 @@ test-sets:
     tests:
       - ip6-base-sm
       - ip6-scale-lg
+
+  2n-emr-vpp-cov-ip6-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-sm
 
   2n-emr-vpp-cov-l2-00:
     infra:
@@ -152,6 +178,10 @@ test-sets:
           infra:
             100ge2p1e810cq:
               - avf
+      - ip4-pol-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
       - nat44det-sm:
           infra:
             100ge2p1e810cq:
@@ -183,6 +213,11 @@ test-sets:
             100ge2p1e810cq:
               - avf
       - ip6-md:
+          framesize: [78, ]
+      - ip6-acl-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
           framesize: [78, ]
       - l2-lg
       - vhost-md

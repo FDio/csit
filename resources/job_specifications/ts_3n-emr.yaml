@@ -99,6 +99,32 @@ test-sets:
     tests:
       - ip4-lg
 
+  3n-emr-vpp-cov-ip4-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  3n-emr-vpp-cov-ip4-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
   3n-emr-vpp-cov-ip4tun-00:
     infra:
       100ge2p1e810cq:
@@ -156,6 +182,19 @@ test-sets:
     tests:
       - ip6-base-sm
       - ip6-scale-lg
+
+  3n-emr-vpp-cov-ip6-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-sm
 
   3n-emr-vpp-cov-l2-00:
     infra:
@@ -216,6 +255,14 @@ test-sets:
             100ge2p1e810cq:
               - avf
               - vfio-pci
+      - ip4-pol-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - ip4-acl-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
       - vxlan-sm:
           infra:
             100ge2p1e810cq:
@@ -234,6 +281,11 @@ test-sets:
             100ge2p1e810cq:
               - avf
               - vfio-pci
+          framesize: [78, ]
+      - ip6-acl-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
           framesize: [78, ]
       - l2-base-md:
           infra:
