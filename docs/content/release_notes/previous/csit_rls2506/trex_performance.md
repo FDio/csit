@@ -3,7 +3,7 @@ title: "TRex Performance"
 weight: 3
 ---
 
-# CSIT 25.10 - TRex Performance
+# CSIT 25.06 - TRex Performance
 
 1. TEST FRAMEWORK
    - **CSIT test environment** version is ver. 18, see
@@ -17,7 +17,7 @@ weight: 3
 
 ## New
 
-List of new issues in CSIT 25.10 for TRex performance tests:
+List of new issues in CSIT 25.06 for TRex performance tests:
 
 **#** | **Github issue number**                          | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------
@@ -25,16 +25,17 @@ List of new issues in CSIT 25.10 for TRex performance tests:
 
 ## Previous
 
-List of known issues in CSIT 25.10 for TRex performance tests:
+List of known issues in CSIT 25.06 for TRex performance tests:
 
-**#** | **Github issue number**                          | **Issue Description**
-------|--------------------------------------------------|--------------------------------------------------------------
-  1   |                                                  |
+**#** | **Github issue number**                                      | **Issue Description**
+------|--------------------------------------------------------------|--------------------------------------------------
+  1   | [csit/issues/3987](https://github.com/FDio/csit/issues/3987) | [CSIT-1905] 2n-spr 200Ge2P1Cx7Veat: TG-TG tests see port line rate as 100 Gbps.
+  2   | [csit/issues/4018](https://github.com/FDio/csit/issues/4018) | [CSIT-1936] TRex occasionally sees link down in E8xx (dpdk) tests.
 
 
 ## Fixed
 
-List of fixed issues in CSIT 25.10 for TRex performance tests:
+List of fixed issues in CSIT 25.06 for TRex performance tests:
 
 **#** | **Github issue number**                          | **Issue Description**
 ------|--------------------------------------------------|--------------------------------------------------------------

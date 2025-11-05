@@ -2,7 +2,7 @@
 bookCollapseSection: true
 bookFlatSection: false
 title: "CSIT rls2310"
-weight: 5
+weight: 6
 ---
 
 # CSIT-2310 Release Report
