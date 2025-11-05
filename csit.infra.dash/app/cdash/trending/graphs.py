@@ -68,9 +68,24 @@ def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     df = df[df.test_id.str.contains(
         f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$",
         regex=True
-    )].sort_values(by="start_time", ignore_index=True)
+    )]
 
-    return df
+    if "host" in itm:
+        ret_df = pd.DataFrame(columns=df.columns)
+        for _, row in df.iterrows():
+            for host in itm["host"]:
+                if host in row["hosts"]:
+                    new_df = pd.DataFrame([row], columns=df.columns)
+                    if ret_df.empty:
+                        ret_df = new_df
+                    else:
+                        ret_df = pd.concat([ret_df, new_df], ignore_index=True,
+                                           copy=False)
+    else:
+        ret_df = df
+    
+    ret_df.sort_values(by="start_time", ignore_index=True, inplace=True)
+    return ret_df
 
 
 def graph_trending(
@@ -86,7 +101,7 @@ def graph_trending(
     :param data: Data frame with test results.
     :param sel: Selected tests.
     :param layout: Layout of plot.ly graph.
-    :param normalize: If True, the data is normalized to CPU frquency
+    :param normalize: If True, the data is normalized to CPU frequency
         Constants.NORM_FREQUENCY.
     :param trials: If True, MRR trials are displayed in the trending graph.
     :type data: pandas.DataFrame
