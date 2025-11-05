@@ -312,6 +312,9 @@ test-groups:
     - ethip6-ip6scale200k-rnd
     - ethip6-ip6scale2m
     - ethip6-ip6scale2m-rnd
+  ip6-acl-sm:
+    - ethip6-ip6base-adlalwlistbase
+    - ethip6-ip6base-iacldstbase
 ## L2
   l2-base-md:
     - eth-l2patch

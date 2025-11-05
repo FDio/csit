@@ -53,6 +53,18 @@ test-sets:
       - nat44-ip4base-tput-sm:
           framesize: [100, ]
 
+  2n-grc-vpp-cov-ip4-03:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
   2n-grc-vpp-cov-ip4tun-00:
     infra:
       200ge2p1cx7veat:
@@ -77,6 +89,18 @@ test-sets:
     tests:
       - ip6-base-sm
       - ip6-scale-lg
+
+  2n-grc-vpp-cov-ip6-01:
+    infra:
+      200ge2p1cx7veat:
+        - mlx5_core
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-sm
 
   2n-grc-vpp-cov-l2-00:
     infra:
@@ -137,6 +161,7 @@ test-sets:
       - container-memif-sw-sm
       - ip4-md
       - ip4-acl-md
+      - ip4-pol-md
       - nat44det-sm
       - nat44-udir-sm
       - nat44ed-cps-sm
@@ -147,6 +172,8 @@ test-sets:
           framesize: [100, ]
       - geneve-md
       - ip6-md:
+          framesize: [78, ]
+      - ip6-acl-sm:
           framesize: [78, ]
       - l2-lg
       - vhost-md
