@@ -53,6 +53,7 @@ committers:
       company: 'cisco'
       email: 'vrpolak@cisco.com'
       id: 'vrpolak'
+      gh_id: 'vrpolakatcisco'
       timezone: 'Europe/Bratislava'
 tsc:
     approval: 'https://wiki.fd.io/view/TSC/Meeting_Minutes'
