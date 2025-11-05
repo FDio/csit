@@ -1,30 +1,30 @@
 ---
 bookCollapseSection: true
 bookFlatSection: false
-title: "CSIT rls2510"
+title: "CSIT rls2506"
 weight: 1
 ---
 
-# CSIT-2510 Release Report
+# CSIT-2506 Release Report
 
-This section includes release notes for FD.io CSIT-2510. The CSIT report
-will be published on **Nov-12 2025**. The release plan is published on
-[CSIT wiki](https://wiki.fd.io/view/CSIT/csit2510_plan) pages.
+This section includes release notes for FD.io CSIT-2506. The CSIT report
+has been published on **Jul-09 2025**. The release plan is published on
+[CSIT wiki](https://wiki.fd.io/view/CSIT/csit2506_plan) pages.
 
-## CSIT-2510 Release Notes
+## CSIT-2506 Release Notes
 
 - [VPP Performance]({{< relref "vpp_performance" >}})
 - [DPDK Performance]({{< relref "dpdk_performance" >}})
 - [TRex Performance]({{< relref "trex_performance" >}})
 
-## CSIT-2510 Release Data
+## CSIT-2506 Release Data
 
-To access CSIT-2510 Release data please use following web resources:
+To access CSIT-2506 Release data please use following web resources:
 
 - [CSIT Per Release Performance](https://csit.fd.io/report/)
-  - `CSIT Release` > `rls2510`
+  - `CSIT Release` > `rls2506`
   - `DUT` > `vpp`
-  - `DUT Version` > `25.10-release`
+  - `DUT Version` > `25.06-release`
   - `Infra` > `testbed-nic-driver of choice`
   - `Area` > `IPv4 Routing` `IPv4 Tunnels` `IPv6 Routing` `Hoststack` ...
   - `Test` > `test of choice`
@@ -32,31 +32,31 @@ To access CSIT-2510 Release data please use following web resources:
   - `Number of Cores` > `1C` `2C` `4C`
   - `Test Type` > `MRR` `NDR` `PDR`
 - [CSIT Per Release Comparisons](https://csit.fd.io/comparisons/) for VPP
-  v25.10 vs v25.06
+  v25.06 vs v25.02
   - `REFERENCE VALUE`
     - `DUT` > `vpp`
-    - `CSIT and DUT version` > `rls2506-25.06-release`
+    - `CSIT and DUT version` > `rls2502-25.02-release`
     - `Infra` > `testbed-nic-driver of choice`
     - `Frame Size` > `64B` `78B`
     - `Number of Cores` > `1C` `2C` `4C`
     - `Measurement` > `Latency` `MRR` `NDR` `PDR`
   - `COMPARED VALUE`
     - `Parameter` > `Release and Version`
-    - `Value` > `rls2510-25.10-release`
+    - `Value` > `rls2506-25.06-release`
 - [CSIT Per Release Coverage Data](https://csit.fd.io/coverage/)
-  - `CSIT Release` > `rls2510`
+  - `CSIT Release` > `rls2506`
 - [CSIT Search Tests](https://csit.fd.io/search/)
   - `Data Type` > `iterative`
   - `DUT` > `vpp`
-  - `Release` > `rls2510`
+  - `Release` > `rls2506`
   - `Type a Regular Expression` > `2n-zn2 -1c ethip4-ip4base-[mrr|ndrpdr]`
     ".*" can be replaced by " " (white space).
   - `Choose a cell in the table` > A corresponding graph(s) is displayed.
   - `Click a datapoint in the graph` > Detailed information is displayed.
 
-## CSIT-2510 Selected Performance Tests
+## CSIT-2506 Selected Performance Tests
 
-CSIT-2510 VPP v25.10 Performance Tests:
+CSIT-2506 VPP v25.06 Performance Tests:
 
 - ip4
   - [2n-icx 100ge e810cq avf ip4scale20k-rnd](https://csit.fd.io/report/#eNrtVstuwjAQ_Jr0grayF5v0wqGQ_6hcZylRQ3BtNyr9-hqEtImgEpWgXHzwSzPWjnc0kkPcenoJ1M4LvSjKRYFlU6epmD5P0uLbgFrMoHcOUD-mnaeWTCDADhr7BVKIN0In6UkK-wGmX0HjFMzUK0gLFNf7UxrBmpZQvIPvauhqvy-By2OJk3qM1p-R0aRihPTkGRzJY5pb7wac30Qz33gyfCEpZyhSGIg5_zZmr7zZUGi-ia-krjBuU-MZknZcJ-7cAD02rKwOjH9yyWWX_uaSu51LmLN0uUt4ryxhztK1XLphllTO0uUuqXtlSeUsXcslzpKuHrqt3xz-err6AWX4rr4)
@@ -100,17 +100,17 @@ CSIT-2510 VPP v25.10 Performance Tests:
 - reassembly
   - [3n-icx 100ge e810cq dpdk reassembly](https://csit.fd.io/report/#eNrtVstuwyAQ_Br3Um1liIlz6SGp_yOy8TZB9WMLJK379SVupLVV9VLJiQ--AGKGZZbRSDjfWtw7rJ4jtYvSXSRTU4YhWm0fw2QrJ1W8hjMRSPUUVhYrzB3CqgGjP0HE8QElCdyIWL9DSeUbaNuRb0EosSlAaEB_NJQYcqgDPfZN5T4g7BSXOqbxkGO4ZX3QdaieO4d1UXXQlPaiQ75cdfwSxWh58owGqSPkjJbBUQ9Mo2PHnL874wN5EMonfhpm1KMbCPpX-1zs1eY1OvOFXLF_WWboYOEA1GMhvqMBen3VNOsZc_KbFr8n8Jum9lsu-b6t3_K--ZZLvufk9-T5TpZ839bv5L75TpZ8z8lvzrfKHprW1v0_XWXf2KNU7Q)
 
-## CSIT-2510 Selected Performance Comparisons
+## CSIT-2506 Selected Performance Comparisons
 
-Comparisons v25.10 vs v25.06
+Comparisons v25.06 vs v25.02
 
--
+- [2n-icx 100ge e810cq avf 1c 64B PDR](https://csit.fd.io/comparisons/#eNqNkNEOgiAUhp_GbpxNKbSbLjIfoLVegNGxsSnQAV319IFaaFdtDPjP-Q7n8BtogFu47qOijEiBUAOC5ODu0eYQj1EDdtIX7FzqGA9BXymUXKDX7oO6o9fai5F3mR4wJLExhKYkIXTtdnSvMQMBF7JGFmgiE8EfSZamNyA6g12W8nvC-jpUcIXfsamfJTt6SaspX2NrxGuJ5NtywVj71EviVJ0nohjWp1erGf7hkqNYC3b-8WDEiPSs6eDXl3zwJZ_7MvRfSYXt3o9Gq5XqbCMAzaTfZIZ57w)
 
-## CSIT-2510 Selected Performance Coverage Data
+## CSIT-2506 Selected Performance Coverage Data
 
-CSIT-2510 VPP v25.10 coverage data
+CSIT-2506 VPP v25.06 coverage data
 
--
+- [2n-emr 100ge e810cq avf ip4](https://csit.fd.io/coverage/#eNpVjkEOwiAQRU-DG4MZqBQ3Xai9hyE42iZIESimt7cTF9TNJP_9N5NJ6NDmcfId0xcmdXRpnaw5739BKmgJyCuB-5xrW0L4awrGWkp1gJbH9bpJWLUwLBvHc3xFLgCeKIPAkwD75qY8qm8imrowhiMF3e_SMH1uzmT0dumYos-3iCzVfwGABDxx)
 
 ## Further Information
 
