@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,7 @@ operations with it.
 
 
 import binascii
+import io
 import zlib
 import pandas as pd
 
@@ -58,7 +59,7 @@ class TelemetryData:
         lst_items = list()
         for itm in self._tests:
             sel_data = select_trending_data(in_data, itm)
-            if sel_data is not None:
+            if sel_data is not None and not sel_data.empty:
                 sel_data["test_name"] = itm["id"]
                 lst_items.append(sel_data)
         df = pd.concat(lst_items, ignore_index=True, copy=False)
@@ -126,9 +127,12 @@ class TelemetryData:
         self._data = df
         self._unique_metrics = sorted(metrics)
 
-    def from_json(self, in_data: dict) -> None:
+    def from_json(self, in_data) -> None:
         """Read the input data from json.
         """
+
+        if type(in_data) == str:
+            in_data = io.StringIO(in_data)
 
         df = pd.read_json(in_data)
         lst_telemetry = list()

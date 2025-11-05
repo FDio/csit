@@ -25,6 +25,9 @@ help-framesize:
   Frame size - size of an Ethernet Layer-2 frame on the wire, including any VLAN
   tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet preamble and
   inter-frame gap. Measured in Bytes.
+help-host:
+  List of testbeds used to run the tests. The testbeds are identified by the TG
+  IP address.
 help-infra:
   Infrastructure is defined by the toplology (number of nodes), processor
   architecture, NIC and driver.
