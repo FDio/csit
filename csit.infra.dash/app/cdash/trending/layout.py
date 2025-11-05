@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -64,6 +64,10 @@ CP_PARAMS = {
     "cl-tsttype-val": list(),
     "cl-tsttype-all-val": list(),
     "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+    "cl-host-opt": list(),
+    "cl-host-val": list(),
+    "cl-host-all-val": list(),
+    "cl-host-all-opt": C.CL_ALL_DISABLED,
     "btn-add-dis": True,
     "cl-normalize-val": list(),
     "cl-show-trials": list()
@@ -112,8 +116,8 @@ class Layout:
 
         # Get structure of tests:
         tbs = dict()
-        cols = ["job", "test_id", "test_type", "tg_type"]
-        for _, row in self._data[cols].drop_duplicates().iterrows():
+        cols = ["job", "test_id", "test_type", "tg_type", "hosts"]
+        for _, row in self._data[cols].iterrows():
             lst_job = row["job"].split("-")
             dut = lst_job[1]
             tbed = get_topo_arch(lst_job)
@@ -143,9 +147,12 @@ class Layout:
                 tbs[dut][area][test][infra] = {
                     "core": list(),
                     "frame-size": list(),
-                    "test-type": list()
+                    "test-type": list(),
+                    "host": list()
                 }
             tst_params = tbs[dut][area][test][infra]
+            if row["hosts"][0] not in tst_params["host"]:
+                tst_params["host"].append(row["hosts"][0])
             if core.upper() not in tst_params["core"]:
                 tst_params["core"].append(core.upper())
             if framesize.upper() not in tst_params["frame-size"]:
@@ -359,6 +366,35 @@ class Layout:
                             placeholder="Select a Physical Test Bed Topology..."
                         )
                     ],
+                    size="sm"
+                ),
+                class_name="g-0 p-1"
+            ),
+            dbc.Row(
+                dbc.InputGroup(
+                    [
+                        dbc.InputGroupText(show_tooltip(
+                            self._tooltips,
+                            "help-host",
+                            "Testbeds"
+                        )),
+                        dbc.Col(
+                            dbc.Checklist(
+                                id={"type": "ctrl-cl", "index": "host-all"},
+                                options=C.CL_ALL_DISABLED,
+                                inline=True,
+                                class_name="ms-2"
+                            ),
+                            width=2
+                        ),
+                        dbc.Col(
+                            dbc.Checklist(
+                                id={"type": "ctrl-cl", "index": "host"},
+                                inline=True
+                            )
+                        )
+                    ],
+                    style={"align-items": "center"},
                     size="sm"
                 ),
                 class_name="g-0 p-1"
@@ -1001,6 +1037,10 @@ class Layout:
             Output({"type": "ctrl-cl", "index": "tsttype"}, "value"),
             Output({"type": "ctrl-cl", "index": "tsttype-all"}, "value"),
             Output({"type": "ctrl-cl", "index": "tsttype-all"}, "options"),
+            Output({"type": "ctrl-cl", "index": "host"}, "options"),
+            Output({"type": "ctrl-cl", "index": "host"}, "value"),
+            Output({"type": "ctrl-cl", "index": "host-all"}, "value"),
+            Output({"type": "ctrl-cl", "index": "host-all"}, "options"),
             Output({"type": "ctrl-btn", "index": "add-test"}, "disabled"),
             Output("normalize", "value"),
             Output("show-trials", "value"),
@@ -1126,6 +1166,13 @@ class Layout:
                     last_test = store_sel[-1]
                     test = self._spec_tbs[last_test["dut"]]\
                         [last_test["area"]][last_test["test"]][last_test["phy"]]
+
+                    # Host selection: Backward compatibility
+                    if "host" not in last_test:
+                        host_val = sorted(test["host"])
+                    else:
+                        host_val = last_test["host"]
+
                     ctrl_panel.set({
                         "dd-dut-val": last_test["dut"],
                         "dd-area-val": last_test["area"],
@@ -1158,6 +1205,10 @@ class Layout:
                         "cl-tsttype-val": [last_test["testtype"].upper(), ],
                         "cl-tsttype-all-val": list(),
                         "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
+                        "cl-host-opt": generate_options(test["host"]),
+                        "cl-host-val": host_val,
+                        "cl-host-all-val": list(),
+                        "cl-host-all-opt": C.CL_ALL_ENABLED,
                         "cl-normalize-val": normalize,
                         "cl-show-trials": show_trials,
                         "btn-add-dis": False
@@ -1213,6 +1264,10 @@ class Layout:
                         "cl-tsttype-val": list(),
                         "cl-tsttype-all-val": list(),
                         "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "cl-host-opt": list(),
+                        "cl-host-val": list(),
+                        "cl-host-all-val": list(),
+                        "cl-host-all-opt": C.CL_ALL_DISABLED,
                         "btn-add-dis": True
                     })
                 if trigger.idx == "area":
@@ -1244,6 +1299,10 @@ class Layout:
                         "cl-tsttype-val": list(),
                         "cl-tsttype-all-val": list(),
                         "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "cl-host-opt": list(),
+                        "cl-host-val": list(),
+                        "cl-host-all-val": list(),
+                        "cl-host-all-opt": C.CL_ALL_DISABLED,
                         "btn-add-dis": True
                     })
                 if trigger.idx == "test":
@@ -1273,6 +1332,10 @@ class Layout:
                         "cl-tsttype-val": list(),
                         "cl-tsttype-all-val": list(),
                         "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "cl-host-opt": list(),
+                        "cl-host-val": list(),
+                        "cl-host-all-val": list(),
+                        "cl-host-all-opt": C.CL_ALL_DISABLED,
                         "btn-add-dis": True
                     })
                 if trigger.idx == "phy":
@@ -1297,6 +1360,11 @@ class Layout:
                             "cl-tsttype-val": list(),
                             "cl-tsttype-all-val": list(),
                             "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
+                            "cl-host-opt": \
+                                generate_options(phy["host"]),
+                            "cl-host-val": sorted(phy["host"]),
+                            "cl-host-all-val": ["all", ],
+                            "cl-host-all-opt": C.CL_ALL_ENABLED,
                             "btn-add-dis": True
                         })
             elif trigger.type == "ctrl-cl":
@@ -1317,7 +1385,8 @@ class Layout:
                 })
                 if all((ctrl_panel.get("cl-core-val"),
                         ctrl_panel.get("cl-frmsize-val"),
-                        ctrl_panel.get("cl-tsttype-val"), )):
+                        ctrl_panel.get("cl-tsttype-val"),
+                        ctrl_panel.get("cl-host-val"),  )):
                     ctrl_panel.set({"btn-add-dis": False})
                 else:
                     ctrl_panel.set({"btn-add-dis": True})
@@ -1333,6 +1402,7 @@ class Layout:
                     phy = ctrl_panel.get("dd-phy-val")
                     area = ctrl_panel.get("dd-area-val")
                     test = ctrl_panel.get("dd-test-val")
+                    host = ctrl_panel.get("cl-host-val")
                     # Add selected test(s) to the list of tests in store:
                     if store_sel is None:
                         store_sel = list()
@@ -1350,17 +1420,22 @@ class Layout:
                                     test,
                                     ttype.lower()
                                 ))
-                                if tid not in [i["id"] for i in store_sel]:
-                                    store_sel.append({
-                                        "id": tid,
-                                        "dut": dut,
-                                        "phy": phy,
-                                        "area": area,
-                                        "test": test,
-                                        "framesize": framesize.lower(),
-                                        "core": core.lower(),
-                                        "testtype": ttype.lower()
-                                    })
+                                tids = [i["id"] for i in store_sel]
+                                new_sel = {
+                                    "id": tid,
+                                    "dut": dut,
+                                    "phy": phy,
+                                    "area": area,
+                                    "test": test,
+                                    "framesize": framesize.lower(),
+                                    "core": core.lower(),
+                                    "testtype": ttype.lower(),
+                                    "host": host
+                                }
+                                if tid not in tids:
+                                    store_sel.append(new_sel)
+                                else:
+                                    store_sel[tids.index(tid)] = new_sel
                     store_sel = sorted(store_sel, key=lambda d: d["id"])
                     if C.CLEAR_ALL_INPUTS:
                         ctrl_panel.set(ctrl_panel.defaults)

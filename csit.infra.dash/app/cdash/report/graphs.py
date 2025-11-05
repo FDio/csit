@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -72,6 +72,21 @@ def select_iterative_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
         (df.test_id.str.contains(regex_test, regex=True))
     ]
 
+    if "host" in itm:
+        ret_df = None
+        for _, row in df.iterrows():
+            for host in itm["host"]:
+                if host in row["hosts"]:
+                    if ret_df is None:
+                        ret_df = pd.DataFrame([row], columns=df.columns)
+                    else:
+                        ret_df = pd.concat(
+                            [ret_df, pd.DataFrame([row], columns=df.columns)],
+                            ignore_index=True,
+                            copy=False
+                        )
+        return ret_df
+
     return df
 
 
@@ -136,7 +151,7 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
     for idx, itm in enumerate(sel):
 
         itm_data = select_iterative_data(data, itm)
-        if itm_data.empty:
+        if itm_data is None or itm_data.empty:
             continue
 
         phy = itm["phy"].rsplit("-", maxsplit=2)
@@ -206,8 +221,8 @@ def graph_iterative(data: pd.DataFrame, sel: list, layout: dict,
             )
             if not all(pd.isna(y_band)):
                 y_band_units.update(
-                    itm_data[C.UNIT[f"{ttype}-bandwidth"]].unique().\
-                        dropna().tolist()
+                    itm_data[C.UNIT[f"{ttype}-bandwidth"]].dropna().unique().\
+                        tolist()
                 )
                 band_kwargs = dict(
                     y=y_band,
