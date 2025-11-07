@@ -237,6 +237,23 @@
       "message": "csit-vpp-report-iter-2n-spr-perftest #2n-spr-vpp-soak",
       "revId": "9ee850dddebe82637c6db67127a3c35fdfedf03d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "139ac76a_bbc728bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-11-07T13:31:18Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-emr-perftest #2n-emr-vpp-cov-ip6-00",
+      "revId": "9ee850dddebe82637c6db67127a3c35fdfedf03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
