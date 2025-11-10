@@ -237,6 +237,23 @@
       "message": "csit-vpp-report-cov-3n-alt-perftest #3n-alt-vpp-cov-crypto-04",
       "revId": "092d7712e02c4221c81eeebd897acdef809f73e6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33e44cae_2e490bd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-11-10T05:42:36Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-spr-perftest #2n-spr-vpp-cov-ip4-02",
+      "revId": "092d7712e02c4221c81eeebd897acdef809f73e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
