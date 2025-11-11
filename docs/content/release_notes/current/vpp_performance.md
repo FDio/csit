@@ -8,12 +8,14 @@ weight: 1
 1. TEST FRAMEWORK
     - **CSIT test environment** version is ver. 18, see
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
-    - **New Suite Generator** has been implemented.
+    - **New Suite Generator** has been implemented. For more information see
+      - [Suite Generation]({{< ref "../../overview/csit/suite_generation" >}})
+      - [Job Triggering]({{< ref "../../overview/csit/job_triggering" >}})
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-    - **Modifications in the coverage jobs:** The job specifications for coverage
-      tests were changed to run the same tests as in iterative but with more
-      combinations of
+    - **Modifications in the coverage jobs:** The job specifications for
+      coverage tests were changed to run the same tests as in iterative but with
+      more combinations of
       - frame sizes
       - cpus/cores
       - scales

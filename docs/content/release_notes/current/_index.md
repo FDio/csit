@@ -104,13 +104,13 @@ CSIT-2510 VPP v25.10 Performance Tests:
 
 Comparisons v25.10 vs v25.06
 
--
+- [2n-icx 100ge e810cq avf 1c 64B PDR](https://csit.fd.io/comparisons/#eNqNkEEOwiAQRU9TN6YGUFo3LtQewBgvQOjUkLQUB9qopxfaKtaVCRn4zBtm-BZqkA7KXZIfEpYjVICgJfhzst4vx1sLbtIX7HzquBwuQ6Vq9Qwtuzfqt96YIEbeZ3rAmMTaMk6ylPGVj-hfExYirnSFItJMp0reU0rIFZihsKVE3lLRV7FCtvgZm4dZ6DFIXkz5ChurnnMk2xxmjHMPMydOxXki8mG9ezVG4B8ueUo04L4_Ho0YkV7UHfz4QknwxccvX4b-C91iswuj8WLRdq5WgHbSL2zmee0)
 
 ## CSIT-2510 Selected Performance Coverage Data
 
 CSIT-2510 VPP v25.10 coverage data
 
--
+- [2n-emr 100ge e810cq avf ip4](https://csit.fd.io/coverage/#eNpVjsEOwiAMhp8GLwZDUYKXHdS9h2mwuiXIKiBmb--IB-alyf_9X5sm8uTyOIVO2LPQNvq0TLE_bX9BG1AV6EsFt3dubWH-awrFVmqzAyXjch0TNY2HeeUESc8oQakHaQY6gnIvieXefIyEbWHkQw2236Rh-lw9Zgpu7oSpn69RtUz_BXnpPGc)
 
 ## Further Information
 
