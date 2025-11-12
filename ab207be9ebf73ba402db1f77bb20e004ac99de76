@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fbf5a51_5c5da469",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-12T12:34:00Z",
+      "side": 1,
+      "message": "Still not finished testing on release results, but good enough as first version.",
+      "revId": "ab207be9ebf73ba402db1f77bb20e004ac99de76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
