@@ -1,0 +1,13 @@
+I have a small new project called tober, recently vibe-coded, sources attached. I am trying to incorporate it to a larger project, but the reviewer pointed our the new files do not follow the larger project guidelines. I have attached "halve.py" as an (out of context) example of better style. Some features of the intended style:
+1. Use type hints for argument and return types.
+2. Each function needs a docstring, even if only used internally.
+3. The docstring is also used for automated HTML generation, so :type: and :rtype: are there even if they only mirror the information already present in type hints.
+4. :param: and :returns: fields are required, even if main docstring body already explains everything.
+5. Avoid comments in code if possible. Specifically:
+5.1. If a comment is useful for callers, move the information into docstring.
+5.2. TODO comments are fine in code to mark where new code would go.
+5.3. Non-trivial implementation decisions not visible to callers can remain as code comments.
+5.4. Comments that only structure code into smaller blocks should be replaced by sub-functions with full docstrings.
+5.5. Other comments are not important enough, delete them.
+
+We also have other guidelines guarded by static analysis tools, but we can talk about that later. For now, give me new files for tober and rounder scripts that conform to the rules above.
