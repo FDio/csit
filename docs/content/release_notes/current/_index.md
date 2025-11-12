@@ -8,7 +8,7 @@ weight: 1
 # CSIT-2510 Release Report
 
 This section includes release notes for FD.io CSIT-2510. The CSIT report
-will be published on **Nov-12 2025**. The release plan is published on
+has been published on **Nov-12 2025**. The release plan is published on
 [CSIT wiki](https://wiki.fd.io/view/CSIT/csit2510_plan) pages.
 
 ## CSIT-2510 Release Notes
