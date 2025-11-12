@@ -8,6 +8,7 @@ weight: 1
 1. TEST FRAMEWORK
     - **CSIT test environment** version is ver. 18, see
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+      - We no longer support Intel-XL710 in 3n-alt.
     - **New Suite Generator** has been implemented. For more information see
       - [Suite Generation]({{< ref "../../overview/csit/suite_generation" >}})
       - [Job Triggering]({{< ref "../../overview/csit/job_triggering" >}})
@@ -24,6 +25,8 @@ weight: 1
 
 These are issues that cause test failures or otherwise limit usefulness of CSIT
 testing.
+
+Tables stay empty until the list of issues there is finalized.
 
 ## New
 
