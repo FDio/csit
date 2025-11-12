@@ -51,6 +51,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  notify-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify workflow start
+        uses: lfit/gerrit-review-action@v0.4
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
+          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: clear
+          comment-only: true
+
   csit-verify-tox:
     name: csit-verify-tox
     runs-on:
@@ -77,31 +92,45 @@ jobs:
           gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
           gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
           gerrit-url: ${{ vars.GERRIT_URL }}
-          delay: "30s"
+          delay: "10s"
           ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
       - name: Setup Environment
+        # yamllint disable-line rule:line-length
         uses: pmikus/.github/.github/actions/setup-executor-env@8930b575136625c5c8a47752192f9cd90202bea3
 
-      - name: Run Performance Bootstrap
+      - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-bootstrap@3835964003f751ea545d7926f46fade5e9e5da13
         with:
           bootstrap_script: tox.sh
           with_oper: false
 
       - name: Archive Logs
-        if: always()
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.JOB_NAME }}-${{ github.run_number }}
           path: archives/
           if-no-files-found: ignore
 
-      - name: AWS S3 Publish Logs
-        if: always()
-        uses: pmikus/.github/.github/actions/aws-s3-publish-logs@8930b575136625c5c8a47752192f9cd90202bea3
+  vote:
+    if: ${{ always() }}
+    # yamllint enable rule:line-length
+    needs:
+      - notify-start
+      - csit-verify-tox
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/workflow-conclusion-action@v3
+      - name: Set vote
+        uses: lfit/gerrit-review-action@v0.4
         with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: ${{ vars.AWS_REGION }}
-          s3_bucket: ${{ vars.S3_BUCKET }}
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
+          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
+          comment-only: true

@@ -5,11 +5,6 @@ name: csit-terraform-aws-eb-version
 on:
   workflow_dispatch:
 
-concurrency:
-  # yamllint disable-line rule:line-length
-  group: verify-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH }}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}
-  cancel-in-progress: true
-
 jobs:
   verify:
     runs-on:
@@ -32,9 +27,11 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Environment
-        uses: pmikus/.github/.github/actions/setup-executor-env@598f418edcd412bd131d061a88972d899803b341
+        # yamllint disable-line rule:line-length
+        uses: pmikus/.github/.github/actions/setup-executor-env@8930b575136625c5c8a47752192f9cd90202bea3
 
       - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-bootstrap@3835964003f751ea545d7926f46fade5e9e5da13
         with:
           bootstrap_script: bootstrap_aws_eb_version_verify.sh
@@ -62,9 +59,11 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Environment
-        uses: pmikus/.github/.github/actions/setup-executor-env@598f418edcd412bd131d061a88972d899803b341
+        # yamllint disable-line rule:line-length
+        uses: pmikus/.github/.github/actions/setup-executor-env@8930b575136625c5c8a47752192f9cd90202bea3
 
       - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-bootstrap@3835964003f751ea545d7926f46fade5e9e5da13
         with:
           bootstrap_script: bootstrap_aws_eb_version_deploy.sh
