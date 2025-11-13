@@ -4,8 +4,8 @@ name: csit-vpp-perf-mrr-daily
 # yamllint disable-line rule:truthy
 on:
   # Runs periodically
-  #schedule:
-  #  - cron:  "30 22 * * 0-4"
+  schedule:
+    - cron:  "30 22 * * 0-4"
   workflow_dispatch:
 
 jobs:

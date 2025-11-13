@@ -4,8 +4,8 @@ name: csit-trex-perf-ndrpdr-weekly
 # yamllint disable-line rule:truthy
 on:
   # Runs periodically
-  #schedule:
-  #  - cron:  "0 0 * * 6"
+  schedule:
+    - cron:  "0 0 * * 6"
   workflow_dispatch:
 
 jobs:
