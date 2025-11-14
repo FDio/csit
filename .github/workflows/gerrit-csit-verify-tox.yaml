@@ -45,11 +45,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  # yamllint disable-line rule:line-length
-  group: ${{ github.workflow }}-${{ inputs.GERRIT_CHANGE_NUMBER }}
-  cancel-in-progress: true
-
 jobs:
   notify-start:
     runs-on: ubuntu-latest
@@ -101,7 +96,7 @@ jobs:
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@a59843581f4840bdced43ac495a5f07ec4c23bad
+        uses: fdio/csit/.github/actions/csit-bootstrap@545d8493b5cc86e6bef799219c558f5a0709709c
         with:
           bootstrap_script: tox.sh
           with_oper: false
