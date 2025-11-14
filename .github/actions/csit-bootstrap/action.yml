@@ -23,6 +23,7 @@ runs:
       env:
         BRANCH_ID: oper
         GERRIT_BRANCH: master
+        GIT_URL: "https://github.com/FDio"
       run: |
         csit_entry_dir="./resources/libraries/bash/entry"
         if [[ "${{ inputs.with_oper }}" == "true" ]]; then
