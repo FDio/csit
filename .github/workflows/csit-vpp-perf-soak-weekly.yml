@@ -35,6 +35,7 @@ jobs:
           - node: 3n-icxd
             os: ubuntu2404
             executor_arch: x86_64
+      fail-fast: false
 
     env:
       JOB_NAME: ${{ github.job }}-master-${{ matrix.node }}

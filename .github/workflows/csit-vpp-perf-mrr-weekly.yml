@@ -32,6 +32,7 @@ jobs:
           - node: 2n-c7gn
             os: ubuntu2404
             executor_arch: aarch64
+      fail-fast: false
 
     env:
       JOB_NAME: ${{ github.job }}-master-${{ matrix.node }}
