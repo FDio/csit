@@ -50,7 +50,7 @@ jobs:
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@545d8493b5cc86e6bef799219c558f5a0709709c
+        uses: fdio/csit/.github/actions/csit-bootstrap@70284bc14f3f8a310b24c26e52cb31fbf4f2e50b
         with:
           bootstrap_script: bootstrap_verify_perf.sh
           with_oper: true
