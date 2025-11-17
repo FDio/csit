@@ -66,6 +66,7 @@ jobs:
 
     env:
       JOB_NAME: ${{ github.job }}-master-${{ matrix.node }}
+      BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
 
     steps:
       - name: Checkout CSIT repository with the change
@@ -76,11 +77,11 @@ jobs:
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
-        uses: pmikus/.github/.github/actions/setup-executor-env@8930b575136625c5c8a47752192f9cd90202bea3
+        uses: pmikus/.github/.github/actions/setup-executor-env@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@70284bc14f3f8a310b24c26e52cb31fbf4f2e50b
+        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
         with:
           bootstrap_script: bootstrap_verify_perf.sh
           with_oper: true
@@ -89,16 +90,18 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.JOB_NAME }}-${{ github.run_number }}
+          name: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
           path: archives/
           if-no-files-found: ignore
 
       - name: AWS S3 Publish Logs
         if: ${{ always() }}
         # yamllint disable-line rule:line-length
-        uses: pmikus/.github/.github/actions/aws-s3-publish-logs@8930b575136625c5c8a47752192f9cd90202bea3
+        uses: pmikus/.github/.github/actions/aws-s3-publish-logs@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ vars.AWS_REGION }}
           s3_bucket: ${{ vars.S3_BUCKET }}
+          # yamllint disable-line rule:line-length
+          s3_path: ${{ github.job }}-master-${{ matrix.node }}/${{ github.run_id }}
