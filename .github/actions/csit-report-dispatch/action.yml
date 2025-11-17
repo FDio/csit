@@ -1,0 +1,85 @@
+---
+name: "🛠️ CSIT Report Dispatch Matrix"
+description: |
+  Generates a GitHub Actions matrix for environments based on the selected node
+  configuration and DUT type.
+
+inputs:
+  node:
+    description: "CSIT bootstrap node identifier (e.g., 2n-icx, 3n-snr, etc.)."
+    required: true
+    type: string
+  dut:
+    description: "Target DUT type (e.g., vpp, dpdk, trex)."
+    required: false
+    type: boolean
+    default: "vpp"
+outputs:
+  matrix:
+    description: "JSON matrix object for GitHub Actions workflow."
+    value: ${{ steps.set-matrix.outputs.matrix }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Matrix
+      id: set-matrix
+      shell: bash
+      run: |
+        node="${{ inputs.node }}"
+        dut="${{ inputs.dut }}"
+
+        dpdk="false"
+        trex="false"
+        executor_arch=""
+        os="ubuntu2404"
+
+        case "$node" in
+          2n-emr|2n-zn2|3n-emr|3n-icx|3n-icxd|3n-snr|3na-spr|3nb-spr)
+            dpdk="true"
+            executor_arch="x86_64"
+            ;;
+          2n-icx|2n-spr)
+            dpdk="true"
+            trex="true"
+            executor_arch="x86_64"
+            ;;
+          2n-grc|3n-alt)
+            dpdk="true"
+            executor_arch="aarch64"
+            ;;
+          3n-oct)
+            executor_arch="aarch64"
+            ;;
+          2n-aws|2n-c6in)
+            executor_arch="x86_64"
+            ;;
+          2n-c7gn)
+            executor_arch="aarch64"
+            ;;
+          *)
+            echo "::error::Unsupported node type: $node"
+            exit 1
+            ;;
+        esac
+
+        # Validate DUT compatibility
+        if [[ "$dut" == "trex" && "$trex" == "false" ]]; then
+          echo "::error::Unsupported Trex/Node combination ($node)."
+          exit 1
+        fi
+
+        if [[ "$dut" == "dpdk" && "$dpdk" == "false" ]]; then
+          echo "::error::Unsupported DPDK/Node combination ($node)."
+          exit 1
+        fi
+
+        matrix_json=$(jq -nc \
+          --arg node "$node" \
+          --arg executor_arch "$executor_arch" \
+          --arg os "$os" \
+          --arg dut "$dut" \
+          '{include: [{node: $node, executor_arch: $executor_arch, os: $os, dut: $dut}]}'
+        )
+
+        echo "matrix=$matrix_json" >> "$GITHUB_OUTPUT"

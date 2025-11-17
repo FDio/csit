@@ -1,0 +1,136 @@
+---
+name: csit-report-dispatch
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      job_type:
+        description: "The type of job: iterative or coverage."
+        required: true
+        type: choice
+        options:
+          - iterative
+          - coverage
+        default: iterative
+      dut:
+        description: "CSIT test/ subdirectory containing suites to execute."
+        required: true
+        type: choice
+        options:
+          - dpdk
+          - trex
+          - vpp
+        default: vpp
+      node:
+        description: Performance testbed node.
+        required: true
+        type: choice
+        options:
+          - 2n-aws
+          - 2n-c6in
+          - 2n-c7g
+          - 2n-emr
+          - 2n-grc
+          - 2n-icx
+          - 2n-spr
+          - 2n-zn2
+          - 3n-alt
+          - 3n-emr
+          - 3n-icx
+          - 3n-icxd
+          - 3n-oct
+          - 3n-snr
+          - 3na-spr
+          - 3nb-spr
+        default: 2n-emr
+      branch:
+        description: Branch or patch.
+        required: true
+        type: choice
+        options:
+          - rls2510
+        default: rls2510
+      suite_gen_params:
+        description: Parameters for the suite generator.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on:
+      - ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - name: Prepare node selection matrix
+        id: set-matrix
+        uses: fdio/csit/.github/actions/csit-report-dispatch@9a3c5ff604ee585ae842b5b5e037a1dba2d00260
+        with:
+          node: ${{ github.event.inputs.node }}
+          dut: ${{ github.event.inputs.dut }}
+
+  csit-perf-report:
+    needs: dispatch
+    # yamllint disable-line rule:line-length
+    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' || github.event.inputs.branch == 'master' && 'master' }}-${{ matrix.node }}
+    runs-on:
+      - self-hosted
+      - nomad
+      - fdio:arch=${{ matrix.executor_arch }}
+      - fdio:class=builder
+      - fdio:namespace=sandbox
+      - fdio:os=${{ matrix.os }}
+    timeout-minutes: 3600
+
+    strategy:
+      matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
+
+    env:
+      # yamllint disable-line rule:line-length
+      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' || github.event.inputs.branch == 'master' && 'master' }}-${{ matrix.node }}
+      GERRIT_BRANCH: ${{ github.event.inputs.branch }}
+      BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
+
+    steps:
+      - name: Checkout CSIT repository with the change
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          fetch-depth: 0
+
+      - name: Setup Environment
+        # yamllint disable-line rule:line-length
+        uses: pmikus/.github/.github/actions/setup-executor-env@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
+
+      - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
+        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
+        with:
+          bootstrap_script: bootstrap_verify_perf.sh
+          with_oper: false
+
+      - name: Archive Logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
+          path: archives/
+          if-no-files-found: ignore
+
+      - name: AWS S3 Publish Logs
+        if: ${{ always() }}
+        # yamllint disable-line rule:line-length
+        uses: pmikus/.github/.github/actions/aws-s3-publish-logs@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ vars.AWS_REGION }}
+          s3_bucket: ${{ vars.S3_BUCKET }}
+          # yamllint disable-line rule:line-length
+          s3_path: ${{ github.job }}-master-${{ matrix.node }}/${{ github.run_id }}
