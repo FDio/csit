@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: Prepare node selection matrix
         id: set-matrix
-        uses: fdio/csit/.github/actions/csit-report-dispatch@9a3c5ff604ee585ae842b5b5e037a1dba2d00260
+        uses: fdio/csit/.github/actions/csit-report-dispatch@89e40adc504ab4f2b4ae15a91e26b2f2c754cbf8
         with:
           node: ${{ github.event.inputs.node }}
           dut: ${{ github.event.inputs.dut }}
