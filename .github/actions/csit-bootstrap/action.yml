@@ -22,7 +22,6 @@ runs:
       shell: bash
       env:
         BRANCH_ID: oper
-        BUILD_TAG: ${{ github.job }}-${{ github.run_id }}
         GERRIT_BRANCH: master
         GIT_URL: "https://github.com/FDio"
       run: |
