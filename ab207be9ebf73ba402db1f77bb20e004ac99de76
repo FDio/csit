@@ -33,6 +33,29 @@
       "message": "AI generated, AI reviewed:\n\nSummary of Most Important Fixes\nFor rounder.py\n\t•\tImprove timestamp parsing (multiple formats, tz handling).\n\t•\tFix rounding algorithm.\n\t•\tUse safer parent/attribute manipulation.\n\t•\tWrite XML via ElementTree, not manual declaration.\nFor tober.py\n\t•\tFix JSON conversion (avoid broken .replace()).\n\t•\tReduce recursion (avoid stack limits).\n\t•\tReplace fragile regex parsing of JS.\n\t•\tImprove FOR/ITERATION parsing logic.\n\t•\tFix tag parsing semantics.\n\t•\tImprove performance on large logs.",
       "revId": "ab207be9ebf73ba402db1f77bb20e004ac99de76",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d86e5f5d_a18c7ba0",
+        "filename": "resources/tools/scripts/tober/tober.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-11-17T08:44:06Z",
+      "side": 1,
+      "message": "this cannot be used for AI generated content due to TOS",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "ab207be9ebf73ba402db1f77bb20e004ac99de76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
