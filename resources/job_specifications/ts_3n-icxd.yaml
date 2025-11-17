@@ -187,7 +187,7 @@ test-sets:
           framesize: [78, ]
       - soak-l2-sm:
           infra:
-            100ge2p1e810cq:
+            25ge2p1e823c:
               - vfio-pci
       - soak-l2-md
       - soak-vhost-sm
