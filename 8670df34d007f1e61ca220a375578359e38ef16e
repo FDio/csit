@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-2n-icx mrrANDnic_i*ANDdrv_avfAND1cAND64bANDeth-l2patch",
       "revId": "8670df34d007f1e61ca220a375578359e38ef16e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e178e2f_e7ec0cd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-11-18T09:48:47Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx mrrANDnic_i*ANDdrv_avfAND1cAND64bANDeth-l2patch",
+      "revId": "8670df34d007f1e61ca220a375578359e38ef16e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
