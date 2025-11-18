@@ -105,13 +105,12 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.JOB_NAME }}-${{ github.run_number }}
+          name: ${{ github.job }}-${{ github.run_number }}
           path: archives/
           if-no-files-found: ignore
 
   vote:
     if: ${{ always() }}
-    # yamllint enable rule:line-length
     needs:
       - notify-start
       - csit-verify-tox

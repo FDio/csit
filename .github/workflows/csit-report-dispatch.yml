@@ -78,13 +78,13 @@ jobs:
   csit-perf-report:
     needs: dispatch
     # yamllint disable-line rule:line-length
-    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' || github.event.inputs.branch == 'master' && 'master' }}-${{ matrix.node }}
+    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' }}-${{ matrix.node }}
     runs-on:
       - self-hosted
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
       - fdio:class=builder
-      - fdio:namespace=sandbox
+      - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
     timeout-minutes: 3600
 
@@ -93,9 +93,10 @@ jobs:
 
     env:
       # yamllint disable-line rule:line-length
-      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' || github.event.inputs.branch == 'master' && 'master' }}-${{ matrix.node }}
-      GERRIT_BRANCH: ${{ github.event.inputs.branch }}
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
+      # yamllint disable-line rule:line-length
+      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' }}-${{ matrix.node }}
+      GERRIT_BRANCH: ${{ github.event.inputs.branch }}
 
     steps:
       - name: Checkout CSIT repository with the change
@@ -119,6 +120,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
+          # yamllint disable-line rule:line-length
           name: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
           path: archives/
           if-no-files-found: ignore

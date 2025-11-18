@@ -130,13 +130,13 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
+          # yamllint disable-line rule:line-length
           name: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}-${{ github.run_id }}
           path: archives/
           if-no-files-found: ignore
 
   vote:
     if: ${{ always() }}
-    # yamllint enable rule:line-length
     needs:
       - notify-start
       - csit-verify-handler
