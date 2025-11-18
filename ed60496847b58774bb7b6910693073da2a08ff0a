@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3352a8e9_4ae9c38b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-11-18T08:00:33Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-spr blah",
+      "revId": "ed60496847b58774bb7b6910693073da2a08ff0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
