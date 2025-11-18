@@ -50,9 +50,23 @@ permissions:
   contents: read
 
 jobs:
+  notify-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify workflow start
+        uses: lfit/gerrit-review-action@v0.4
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
+          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: clear
+          comment-only: true
+
   dispatch:
-    runs-on:
-      - ubuntu-latest
+    runs-on: ubuntu-latest
 
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -74,7 +88,7 @@ jobs:
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
       - fdio:class=builder
-      - fdio:namespace=sandbox
+      - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
     timeout-minutes: 3600
 
@@ -85,6 +99,8 @@ jobs:
       # yamllint disable-line rule:line-length
       JOB_NAME: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.GERRIT_BRANCH }}
+      GERRIT_EVENT_TYPE: comment-added
+      GERRIT_CHANGE_COMMIT_MESSAGE: ${{ needs.dispatch.outputs.params }}
 
     steps:
       - name: Gerrit Checkout
@@ -101,18 +117,12 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: pmikus/.github/.github/actions/setup-executor-env@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
 
-      - name: Debug
-        shell: bash
-        run: |
-          echo "${{ needs.dispatch.outputs.matrix }}
-          echo "${{ needs.dispatch.outputs.params }}
-
-      #- name: Run CSIT Bootstrap
-      #  # yamllint disable-line rule:line-length
-      #  uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
-      #  with:
-      #    bootstrap_script: bootstrap_verify_perf.sh
-      #    with_oper: false
+      - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
+        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
+        with:
+          bootstrap_script: bootstrap_verify_perf.sh
+          with_oper: false
 
       - name: Archive Logs
         if: ${{ always() }}
@@ -121,3 +131,24 @@ jobs:
           name: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}-${{ github.run_id }}
           path: archives/
           if-no-files-found: ignore
+
+  vote:
+    if: ${{ always() }}
+    # yamllint enable rule:line-length
+    needs:
+      - notify-start
+      - csit-verify-handler
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/workflow-conclusion-action@v3
+      - name: Set vote
+        uses: lfit/gerrit-review-action@v0.4
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
+          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
+          comment-only: true
