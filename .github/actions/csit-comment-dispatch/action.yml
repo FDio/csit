@@ -1,0 +1,77 @@
+---
+name: "🛠️ CSIT Comment Dispatch"
+description: |
+  Generates a GitHub Actions matrix for environments based on the input from
+  gerrit comment.
+
+inputs:
+  gerrit_comment:
+    description: "Full command line from Gerrit comment."
+    required: true
+    type: string
+outputs:
+  matrix:
+    description: "JSON matrix object for GitHub Actions workflow."
+    value: ${{ steps.parse-params.outputs.matrix }}
+  params:
+    description: "Parameters for workflow."
+    value: ${{ steps.parse-params.outputs.params }}
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Parse parameters
+      id: parse-params
+      shell: bash
+      run: |
+        COMMENT="${{ inputs.gerrit_comment }}"
+
+        if [ -z "$COMMENT" ]; then
+          echo "::error::GERRIT_COMMENT is empty."
+          exit 1
+        fi
+
+        # Pattern: gha-run <command> [params...]
+        read -r gha_cmd command params <<<"${COMMENT}"
+
+        if [[ "$gha_cmd" != "gha-run" ]]; then
+          echo "::error::Invalid command prefix. Expected 'gha-run'. Got '$gha_cmd'."
+          exit 1
+        fi
+
+        # Split <command> (expected format: <project>-<dut>-<node>)
+        set +e
+        IFS=- read -r -d '' project dut node < <(printf %s $command)
+        set -e
+
+        if [[ -z "${project:-}" || -z "${dut:-}" || -z "${node:-}" ]]; then
+          echo "::error::Malformed command: '$command'. Expected format '<project>-<dut>-<node>'."
+          exit 1
+        fi
+
+        case "$node" in
+          2n-emr|2n-zn2|3n-emr|3n-icx|3n-icxd|3n-snr|3na-spr|3nb-spr|2n-icx|2n-spr|2n-aws|2n-c6in)
+            os="ubuntu2404"
+            executor_arch="x86_64"
+            ;;
+          2n-grc|3n-alt|3n-oct|2n-c7gn)
+            os="ubuntu2404"
+            executor_arch="aarch64"
+            ;;
+          *)
+            echo "::error::Unsupported node type: $node"
+            exit 1
+            ;;
+        esac
+
+        matrix_json=$(jq -nc \
+          --arg node "$node" \
+          --arg executor_arch "$executor_arch" \
+          --arg os "$os" \
+          --arg dut "$dut" \
+          '{include: [{node: $node, executor_arch: $executor_arch, os: $os, dut: $dut}]}'
+        )
+
+        echo "matrix=$matrix_json" >> "$GITHUB_OUTPUT"
+        echo "params=$params" >> "$GITHUB_OUTPUT"

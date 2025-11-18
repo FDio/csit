@@ -1,0 +1,123 @@
+---
+name: comment-handler
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      GERRIT_BRANCH:
+        description: "Branch that change is against"
+        required: true
+        type: string
+      GERRIT_CHANGE_ID:
+        description: "The ID for the change"
+        required: true
+        type: string
+      GERRIT_CHANGE_NUMBER:
+        description: "The Gerrit number"
+        required: true
+        type: string
+      GERRIT_CHANGE_URL:
+        description: "URL to the change"
+        required: true
+        type: string
+      GERRIT_EVENT_TYPE:
+        description: "Type of Gerrit event"
+        required: true
+        type: string
+      GERRIT_PATCHSET_NUMBER:
+        description: "The patch number for the change"
+        required: true
+        type: string
+      GERRIT_PATCHSET_REVISION:
+        description: "The revision sha"
+        required: true
+        type: string
+      GERRIT_PROJECT:
+        description: "Project in Gerrit"
+        required: true
+        type: string
+      GERRIT_REFSPEC:
+        description: "Gerrit refspec of change"
+        required: true
+        type: string
+      GERRIT_COMMENT:
+        description: "Full command line from Gerrit comment"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on:
+      - ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      params: ${{ steps.set-matrix.outputs.params }}
+
+    steps:
+      - name: Prepare workflow selection matrix
+        id: set-matrix
+        uses: pmikus/csit/.github/actions/csit-comment-dispatch@master
+        with:
+          gerrit_comment: ${{ github.event.inputs.GERRIT_COMMENT }}
+
+  csit-verify-handler:
+    needs: dispatch
+    # yamllint disable-line rule:line-length
+    name: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}
+    runs-on:
+      - self-hosted
+      - nomad
+      - fdio:arch=${{ matrix.executor_arch }}
+      - fdio:class=builder
+      - fdio:namespace=sandbox
+      - fdio:os=${{ matrix.os }}
+    timeout-minutes: 3600
+
+    strategy:
+      matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
+
+    env:
+      # yamllint disable-line rule:line-length
+      JOB_NAME: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}
+      GERRIT_BRANCH: ${{ github.event.inputs.GERRIT_BRANCH }}
+
+    steps:
+      - name: Gerrit Checkout
+        # yamllint disable-line rule:line-length
+        uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
+        with:
+          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
+          gerrit-url: ${{ vars.GERRIT_URL }}
+          delay: "10s"
+          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
+
+      - name: Setup Environment
+        # yamllint disable-line rule:line-length
+        uses: pmikus/.github/.github/actions/setup-executor-env@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
+
+      - name: Debug
+        shell: bash
+        run: |
+          echo "${{ needs.dispatch.outputs.matrix }}
+          echo "${{ needs.dispatch.outputs.params }}
+
+      #- name: Run CSIT Bootstrap
+      #  # yamllint disable-line rule:line-length
+      #  uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
+      #  with:
+      #    bootstrap_script: bootstrap_verify_perf.sh
+      #    with_oper: false
+
+      - name: Archive Logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}-${{ github.run_id }}
+          path: archives/
+          if-no-files-found: ignore
