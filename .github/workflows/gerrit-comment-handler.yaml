@@ -128,7 +128,7 @@ jobs:
 
       - name: Archive Logs
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           # yamllint disable-line rule:line-length
           name: csit-${{ matrix.dut }}-perf-verify-${{ matrix.node }}-${{ github.run_id }}
