@@ -915,15 +915,15 @@ def get_url_job(job: str) -> str:
     :returns: The URL to CI/CD job.
     """
 
-    if C.CICD_TYPE == "jenkins":
-        return f"{C.URL_CICD}{job}"
-    elif C.CICD_TYPE == "github":
-        l_j = job.split("-")
-        try:
+    l_j = job.split("-")
+    try:
+        if C.CICD_TYPE == "csit":
+            return f"{C.URL_CICD}{'-'.join(l_j[:5])}.yml"
+        elif C.CICD_TYPE == "external":
             return f"{C.URL_CICD}{l_j[0]}-{l_j[1]}-{l_j[2]}-{l_j[4]}.yml"
-        except KeyError:
+        else:
             return str()
-    else:
+    except KeyError:
         return str()
 
 
@@ -937,9 +937,9 @@ def get_url_logs(job_build: str) -> str:
     :returns: The URL to CI/CD build.
     """
 
-    if C.CICD_TYPE == "jenkins":
+    if C.CICD_TYPE == "csit":
         return f"{C.URL_LOGS}{job_build}"
-    elif C.CICD_TYPE == "github":
+    elif C.CICD_TYPE == "external":
         try:
             return f"{C.URL_LOGS}{job_build.split('/')[1]}"
         except KeyError:

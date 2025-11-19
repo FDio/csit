@@ -122,10 +122,15 @@ class Constants:
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
     # CICD type.
-    CICD_TYPE = get_str_from_env("CICD_TYPE", "jenkins")
+    # Options:
+    # 1. csit - for CICD used by CSIT in LFN environment
+    # 2. external - otherwise
+    CICD_TYPE = get_str_from_env("CICD_TYPE", "csit")
 
     # URL to CICD.
-    URL_CICD = get_str_from_env("URL_CICD", "https://jenkins.fd.io/job/")
+    URL_CICD = get_str_from_env(
+        "URL_CICD", "https://github.com/FDio/csit/actions/workflows/"
+    )
 
     # URL to logs.
     URL_LOGS = get_str_from_env(

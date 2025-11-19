@@ -23,8 +23,8 @@ services:
       CSIT_START_DOC: "True"
       CSIT_TITLE: "FD.io CSIT"
       CSIT_BRAND: "CSIT-Dash"
-      CSIT_CICD_TYPE: "jenkins"
-      CSIT_URL_CICD: "https://jenkins.fd.io/job/"
+      CSIT_CICD_TYPE: "csit"
+      CSIT_URL_CICD: "https://github.com/FDio/csit/actions/workflows/"
       CSIT_URL_LOGS: "https://logs.fd.io/vex-yul-rot-jenkins-1/"
       CSIT_URL_DOC: "https://csit.fd.io/cdocs/"
       CSIT_TIME_PERIOD: 250
