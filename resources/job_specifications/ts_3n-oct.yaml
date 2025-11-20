@@ -34,5 +34,6 @@ test-sets:
       100ge2p1a063:
         - oct-vfio-pci
     tests:
-      - ip4-aws-md
+      - ip4-base-sm
+      - ip4-scale-sm
       - l2-lg

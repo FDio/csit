@@ -153,7 +153,8 @@ test-sets:
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
-      - ip4-aws-md
+      - ip4-base-sm
+      - ip4-scale-sm
       - ip4-acl-md:
           infra:
             25ge2p1xxv710:
@@ -168,7 +169,9 @@ test-sets:
           infra:
             25ge2p1xxv710:
               - avf
-      - ip6-aws-md:
+      - ip6-base-sm:
+          framesize: [78, ]
+      - ip6-scale-sm:
           framesize: [78, ]
       - l2-lg
       - vhost-md

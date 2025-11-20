@@ -189,8 +189,7 @@ test-groups:
 ## IPv4
   ip4-base-sm:
     - ethip4-ip4base
-  ip4-aws-md:
-    - ethip4-ip4base
+  ip4-scale-sm:
     - ethip4-ip4scale20k
     - ethip4-ip4scale20k-rnd
   ip4-md:
@@ -297,8 +296,7 @@ test-groups:
 ## IPv6
   ip6-base-sm:
     - ethip6-ip6base
-  ip6-aws-md:
-    - ethip6-ip6base
+  ip6-scale-sm:
     - ethip6-ip6scale20k
     - ethip6-ip6scale20k-rnd
   ip6-md:

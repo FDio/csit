@@ -142,7 +142,9 @@ test-sets:
       - ipsec-sw-reassembly-sm:
           framesize: [1518, ]
       - ipsec-hw-sm
-      - ip4-aws-md:
+      - ip4-base-sm:
+          framesize: [64, ]
+      - ip4-scale-sm:
           framesize: [64, ]
       - vxlan-sm:
           framesize: [64, ]
@@ -150,7 +152,9 @@ test-sets:
       - wireguard-hw-lg
       - gtpu-sw-reassembly-sm:
           framesize: [1518, ]
-      - ip6-aws-md:
+      - ip6-base-sm:
+          framesize: [78, ]
+      - ip6-scale-sm:
           framesize: [78, ]
       - l2-lg:
           framesize: [64, ]
