@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83db3524_68c27c22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-20T12:17:09Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND9000bAND*gtpu?w-ip4base #generate-all",
+      "revId": "8d24b1e9c96c225ef6fe760efc8892618cd03fc6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
