@@ -11,6 +11,9 @@ test-sets:
     framesize: [64, 1518]
     core: [1, 2]
     tests:
-      - ip4-aws-md
-      - ip6-aws-md:
+      - ip4-base-sm
+      - ip4-scale-sm
+      - ip6-base-sm:
+          framesize: [78, 1518]
+      - ip6-scale-sm:
           framesize: [78, 1518]
