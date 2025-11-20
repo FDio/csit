@@ -149,6 +149,12 @@ test-sets:
             - 1518: [1, 2]
             - 9000: [1, ]
             - imix
+      - gtpu-hw-sm:
+          framesize:
+            - 64
+            - 1518: [1, 2]
+            - 9000: [1, ]
+            - imix
       - gtpu-sw-reassembly-sm:
           framesize: [1518, ]
 
