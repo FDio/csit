@@ -625,9 +625,9 @@ class Constants:
     DEVICE_TYPE_TO_KEYWORD = {"scapy": None}
 
     PERF_TYPE_TO_KEYWORD = {
-        "mrr": "Traffic should pass with maximum rate",
-        "ndrpdr": "Find NDR and PDR intervals using optimized search",
-        "soak": "Find critical load using PLRsearch",
+        "mrr": "Fail",
+        "ndrpdr": "Fail",
+        "soak": "Fail",
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {
