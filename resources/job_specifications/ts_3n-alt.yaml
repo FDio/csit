@@ -135,7 +135,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - srv6-lg
+      - srv6-md
 
   3n-alt-vpp-cov-vhost-00:
     infra:
@@ -147,7 +147,7 @@ test-sets:
       - 9000: [1, ]
       - imix
     tests:
-      - vhost-lg
+      - vhost-vppl2xc-md
 
 
   3n-alt-vpp-iterative:
@@ -175,6 +175,6 @@ test-sets:
       - ip6-base-sm:
           framesize: [78, ]
       - l2-base-md
-      - srv6-lg:
+      - srv6-md:
           framesize: [78, ]
-      - vhost-lg
+      - vhost-vppl2xc-md

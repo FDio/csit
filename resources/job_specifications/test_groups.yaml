@@ -335,6 +335,10 @@ test-groups:
   l2-1lbvpplacp-sm:
     - eth-l2xcbase-1lbvpplacp
 ## SRv6
+  srv6-md:
+    - ethip6ip6-ip6base-srv6enc1sid
+    - ethip6srhip6-ip6base-srv6enc2sids
+    - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
   srv6-lg:
     - ethip6ip6-ip6base-srv6enc1sid
     - ethip6srhip6-ip6base-srv6enc2sids
@@ -348,6 +352,10 @@ test-groups:
     - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
     - eth-l2xcbase-eth-2vhostvr1024-1vm
     - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+  vhost-vppl2xc-md:
+    - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    - ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
   vhost-lg:
     - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
     - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
