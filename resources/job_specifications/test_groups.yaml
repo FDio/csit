@@ -149,7 +149,12 @@ test-groups:
     - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
     - ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
     - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-policy-aes256gcm
     - ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
+    - ethip4ipsec100000tnlsw-ip4base-policy-fastpath-aes256gcm
   ipsec-hw-async-aes256gcm-md:
     - ethip4ipsec1tnlhwasync-ip4base-int-aes256gcm
     - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
