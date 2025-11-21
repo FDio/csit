@@ -35,6 +35,23 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cefd8d65_ff099d8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2025-11-21T10:27:16Z",
+      "side": 1,
+      "message": "Dudes - please do not take a mickey out of work here - no AI generated review. you can do cHAI, but no pure AI (google cHAI - case sensitive - and you will get \"continuous Human Assisted Intelligence\" - IOW we need human pro engineer reviewed code in this project 😊😎😜).",
+      "revId": "ab207be9ebf73ba402db1f77bb20e004ac99de76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d86e5f5d_a18c7ba0",
