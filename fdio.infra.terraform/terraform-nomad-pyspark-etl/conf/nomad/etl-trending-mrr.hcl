@@ -58,7 +58,7 @@ variable "script_name" {
   default = "local"
 }
 
-job "etl-iterative-ndrpdr" {
+job "etl-trending-mrr" {
   datacenters = [var.datacenter]
   type        = "batch"
   namespace   = var.namespace
@@ -69,7 +69,7 @@ job "etl-iterative-ndrpdr" {
     time_zone        = "UTC"
   }
 
-  group "etl-iterative-ndrpdr" {
+  group "etl-trending-mrr" {
     restart {
       mode = "fail"
     }
@@ -81,13 +81,13 @@ job "etl-iterative-ndrpdr" {
       attribute = "$${node.class}"
       value     = var.constraint_class
     }
-    task "etl-iterative-ndrpdr" {
+    task "etl-trending-mrr" {
       artifact {
-        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/iterative_ndrpdr.py"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/${var.script_name}.py"
         destination = "local/"
       }
       artifact {
-        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/iterative_ndrpdr.json"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/${var.script_name}.json"
         destination = "local/"
       }
       driver = "docker"
@@ -95,10 +95,8 @@ job "etl-iterative-ndrpdr" {
         image   = var.image
         command = "gluesparksubmit"
         args = [
-          "--driver-memory", "20g",
-          "--executor-memory", "20g",
-          "--executor-cores", "2",
-          "--master", "local[2]",
+          "--driver-memory", "30g",
+          "--executor-memory", "30g",
           "${var.script_name}.py"
         ]
         work_dir = "/local"

@@ -1,58 +1,122 @@
-job "${job_name}" {
-  datacenters = ["${datacenters}"]
-  type        = "${type}"
+variable "datacenter" {
+  # Set the `NOMAD_VAR_datacenter` environment variable to override the
+  # default for the task.
+  type    = string
+  default = "yul1"
+}
+
+variable "namespace" {
+  # Set the `NOMAD_VAR_namespace` environment variable to override the
+  # default for the task.
+  type    = string
+  default = "etl"
+}
+
+variable "cron" {
+  type = string
+}
+
+variable "constraint_arch" {
+  # Set the `NOMAD_VAR_constraint_arch` environment variable to override the
+  # default for the task.
+  type    = string
+  default = "amd64"
+}
+
+variable "constraint_class" {
+  # Set the `NOMAD_VAR_constraint_class` environment variable to override the
+  # default for the task.
+  type    = string
+  default = "builder"
+}
+
+variable "cpu" {
+  # Set the `NOMAD_VAR_cpu` environment variable to override the
+  # default for the task.
+  type    = number
+  default = 10000
+}
+
+variable "image" {
+  # Set the `NOMAD_VAR_image` environment variable to override the
+  # default for the task.
+  type    = string
+  default = "pmikus/docker-ubuntu-focal-aws-glue:latest"
+}
+
+variable "memory" {
+  # Set the `NOMAD_VAR_memory` environment variable to override the
+  # default for the task.
+  type    = number
+  default = 24000
+}
+
+variable "script_name" {
+  # Set the `NOMAD_VAR_script_name` environment variable to override the
+  # default for the task.
+  type    = string
+  default = "local"
+}
+
+job "etl-iterative-hoststack" {
+  datacenters = [var.datacenter]
+  type        = "batch"
+  namespace   = var.namespace
+
   periodic {
-    cron             = "${cron}"
-    prohibit_overlap = "${prohibit_overlap}"
-    time_zone        = "${time_zone}"
+    cron             = var.cron
+    prohibit_overlap = true
+    time_zone        = "UTC"
   }
-  group "${job_name}" {
+
+  group "etl-iterative-hoststack" {
     restart {
       mode = "fail"
     }
     constraint {
       attribute = "$${attr.cpu.arch}"
-      operator  = "!="
-      value     = "arm64"
+      value     = var.constraint_arch
     }
     constraint {
       attribute = "$${node.class}"
-      value     = "builder"
+      value     = var.constraint_class
     }
-    task "${job_name}" {
+    task "etl-iterative-hoststack" {
       artifact {
-        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/coverage_hoststack.py"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/${var.script_name}.py"
         destination = "local/"
       }
       artifact {
-        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/coverage_hoststack.json"
+        source      = "https://raw.githubusercontent.com/FDio/csit/master/csit.infra.etl/${var.script_name}.json"
         destination = "local/"
       }
       driver = "docker"
       config {
-        image   = "${image}"
+        image   = var.image
         command = "gluesparksubmit"
         args = [
           "--driver-memory", "20g",
           "--executor-memory", "20g",
           "--executor-cores", "2",
           "--master", "local[2]",
-          "coverage_hoststack.py"
+          "${var.script_name}.py"
         ]
         work_dir = "/local"
       }
-      env {
-        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
-        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
-        AWS_DEFAULT_REGION        = "${aws_default_region}"
-        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
-        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
-        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
-        ${ envs }
+      template {
+        destination = "${NOMAD_SECRETS_DIR}/.env"
+        env         = true
+        data        = <<EOT
+{{- with nomadVar "nomad/jobs" -}}
+{{- range $k, $v := . }}
+{{ $k }}={{ $v }}
+{{- end }}
+{{- end }}
+EOT
       }
       resources {
-        cpu    = ${cpu}
-        memory = ${memory}
+        cpu    = var.cpu
+        memory = var.memory
       }
     }
   }
