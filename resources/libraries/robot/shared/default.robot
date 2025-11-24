@@ -161,6 +161,7 @@
 | | | ... | ${dut}.Add Main Heap Page Size | ${page_size}
 | | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add Default Hugepage Size | ${page_size}
+| | | Run Keyword | ${dut}.Add Ethernet Default MTU
 | | | Run Keyword | ${dut}.Add Statseg Size | 3G
 | | | Run Keyword If | not ${marvell}
 | | | ... | ${dut}.Add Statseg Page Size | ${page_size}
