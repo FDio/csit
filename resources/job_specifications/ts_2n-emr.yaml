@@ -119,6 +119,7 @@ test-sets:
       - imix
     tests:
       - l2-base-md
+      - lb-base-md
 
   2n-emr-vpp-cov-l2-01:
     infra:
