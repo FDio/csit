@@ -52,6 +52,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a7cdae_89e7cdde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-11-24T08:13:58Z",
+      "side": 1,
+      "message": "here is human pro engineer reviewed code:\nCan we see the drawing of full processing pipeline please? This code itself does not meet the efficiency as it converts data between various fomats (html+js -\u003e xml) and then use xPaths. Unless you want line by line code review, which can take significant amount of time due to complexity of generated noise, it would be more convenient to start review the proposal first and then continue on creating the functionality blocks of such pipeline.",
+      "parentUuid": "cefd8d65_ff099d8d",
+      "revId": "ab207be9ebf73ba402db1f77bb20e004ac99de76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d86e5f5d_a18c7ba0",
