@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7152d544_f565d8a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-11-24T09:36:36Z",
+      "side": 1,
+      "message": "csit-2n-emr-preftest mrrANDnic_intel-e810cqAND1cAND9000bAND*loadbalancer* #generate-all",
+      "revId": "bdccfca2d25915c25232f249e965b4fa44a90d28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
