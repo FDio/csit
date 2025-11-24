@@ -100,7 +100,7 @@ jobs:
 
     steps:
       - name: Checkout CSIT repository with the change
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0
