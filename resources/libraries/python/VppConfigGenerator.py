@@ -412,6 +412,18 @@ class VppConfigGenerator:
         path = ["cpu", "corelist-workers"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_ethernet_default_mtu(self, value=None):
+        """Add ethernet option for large enough MTU on sw interfaces.
+
+        :param value: Specific value or None for default from Constants.
+        :type value: Optional[int]
+        """
+        if not value:
+            value = Constants.get_mtu()
+
+        path = ["ethernet", "default-mtu"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_main_heap_size(self, value):
         """Add Main Heap Size configuration.
 
