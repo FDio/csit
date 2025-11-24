@@ -401,8 +401,10 @@ def graph_trending(
                         "colorbar": {
                             "y": 0.5,
                             "len": 0.8,
-                            "title": "Circles Marking Data Classification",
-                            "titleside": "right",
+                            "title": {
+                                "text": "Circles Marking Data Classification",
+                                "side": "right"
+                            },
                             "tickmode": "array",
                             "tickvals": [0.167, 0.500, 0.833],
                             "ticktext": C.TICK_TEXT_LAT \
@@ -754,8 +756,11 @@ def graph_tm_trending(
                             "colorbar": {
                                 "y": 0.5,
                                 "len": 0.8,
-                                "title": "Circles Marking Data Classification",
-                                "titleside": "right",
+                                "title": {
+                                    "text": \
+                                        "Circles Marking Data Classification",
+                                    "side": "right"
+                                },
                                 "tickmode": "array",
                                 "tickvals": [0.167, 0.500, 0.833],
                                 "ticktext": C.TICK_TEXT_TPUT,
