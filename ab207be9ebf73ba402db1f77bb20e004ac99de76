@@ -70,6 +70,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6962eb3f_92005229",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-11-24T08:16:23Z",
+      "side": 1,
+      "message": "I agree that AI generated code should be reviewed by AI itself and that will be an endless loop.\n\nI do have experience on building an ai pipelines and i still would like to see the design first.",
+      "parentUuid": "f1a7cdae_89e7cdde",
+      "revId": "ab207be9ebf73ba402db1f77bb20e004ac99de76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d86e5f5d_a18c7ba0",
