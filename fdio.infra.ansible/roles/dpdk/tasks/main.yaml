@@ -1,7 +1,7 @@
 ---
 # file: tasks/main.yaml
 
-- name: "Update Package Cache (APT)"
+- name: update package cache
   ansible.builtin.apt:
     update_cache: true
   when:
@@ -9,14 +9,14 @@
   tags:
     - dpdk-inst-prerequisites
 
-- name: "Prerequisites"
+- name: prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - dpdk-inst-prerequisites
 
-- name: "Multiple DPDK Versions"
+- name: multiple DPDK versions
   include_tasks: "deploy_block.yaml"
   loop: "{{ dpdk_version }}"
   tags:
