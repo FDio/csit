@@ -35,7 +35,7 @@
 
 - name: apply calico vpp manifest to the cluster
   kubernetes.core.k8s:
-    state: "{{ calico_vpp_state }}"
+    state: "{{ deploy_state }}"
     src: "/tmp/{{ item }}"
   loop:
     - "calico-vpp-multinet.yaml"
