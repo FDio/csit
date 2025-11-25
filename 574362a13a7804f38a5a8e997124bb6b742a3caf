@@ -33,6 +33,23 @@
       "message": "csit-2n-icx-perftest ndrpdrANDdrv_vfio_pciAND1cAND64b #2n-icx-vpp-cov-ip4-00 #ndrpdr",
       "revId": "574362a13a7804f38a5a8e997124bb6b742a3caf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c28af9_edbafadc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2025-11-25T12:08:02Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_intel*ANDdrv_vfio_pciANDethip4-ip4scale200k-rnd #2n-icx-vpp-soak",
+      "revId": "574362a13a7804f38a5a8e997124bb6b742a3caf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
