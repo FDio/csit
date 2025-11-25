@@ -132,6 +132,7 @@ function activate_virtualenv () {
     pip3 install -r "${req_path}" || {
         die "Requirements installation failed."
     }
+    pip3 freeze
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
     export PYTHONPATH="${CSIT_DIR}" || die "Export failed."
 }
