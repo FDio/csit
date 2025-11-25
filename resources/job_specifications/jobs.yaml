@@ -283,6 +283,15 @@ jobs:
       - 3na-spr: 3na-spr-vpp-iterative
       - 3nb-spr: 3nb-spr-vpp-iterative
 
+  csit-calicovpp-perf-verify-{stream}-{node-arch}:
+    stream:
+      - master
+    test-type: mrr
+    framesize: [64, ]
+    core: [1, 2, 4]
+    node-arch:
+      - 2n-emr: 2n-emr-calicovpp-iterative
+
   vpp-csit-bisect-master-ubuntu2404-aarch64-{node-arch}:
     test-type: mrr
     framesize: [64, ]
