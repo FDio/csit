@@ -13,4 +13,4 @@ kubernetes_calico_resources:
 
 calicovppctl_resource: https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v{{ calicovppctl_version }}/test/scripts/vppdev.sh
 
-calico_vpp_state: present
+deploy_state: present

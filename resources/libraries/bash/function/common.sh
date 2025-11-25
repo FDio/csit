@@ -357,6 +357,9 @@ function deploy_topology () {
 
     case "${TEST_CODE}" in
         *"calicovpp"*"2n-emr")
+            export ANSIBLE_deploy_state="absent"
+            ansible_playbook "calico"
+            export ANSIBLE_deploy_state="present"
             ansible_playbook "calico"
             ;;
         *"calicovpp"*)
