@@ -34,15 +34,14 @@ intel_800_matrix: "dpdk24.07"
 intel_dsa_matrix: true
 intel_qat_matrix: true
 
-calico_sut: true
 docker_sut: true
 docker_volumes:
   - source: "/dev/null"
     target: "/etc/sysctl.d/80-vpp.conf"
   - source: "/opt/boot/"
     target: "/opt/boot/"
-  - source: "/opt/dpdk-24.11.1/"
-    target: "/opt/dpdk-24.11.1/"
+  - source: "/opt/dpdk-25.07/"
+    target: "/opt/dpdk-25.07/"
   - source: "/usr/bin/iperf3"
     target: "/usr/bin/iperf3"
   - source: "/usr/lib/x86_64-linux-gnu/libiperf.so.0"
@@ -67,6 +66,7 @@ docker_volumes:
     target: "/etc/4xxx_dev1.conf"
 
 # Calico
+calico_sut: true
 calico_corelist_workers: "2,3,4,5,98,99,100,101"
 calico_uplink_interfaces:
   - interfaceName: "enp56s0np0"
