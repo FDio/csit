@@ -24,6 +24,7 @@ nodes:
         driver: ice
         link: link1
         model: Intel-E810CQ
+        numa_node: 0
       port2:
         # s82-t212-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a0:41"
@@ -32,6 +33,7 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E810CQ
+        numa_node: 0
       port3:
         # s82-t212-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:b4"
@@ -40,6 +42,7 @@ nodes:
         driver: ice
         link: link3
         model: Intel-E810XXV
+        numa_node: 0
       port4:
         # s82-t212-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:b5"
@@ -48,6 +51,7 @@ nodes:
         driver: ice
         link: link4
         model: Intel-E810XXV
+        numa_node: 0
       port5:
         # s82-t212-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:b6"
@@ -56,6 +60,7 @@ nodes:
         driver: ice
         link: link5
         model: Intel-E810XXV
+        numa_node: 0
       port6:
         # s82-t212-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:b7"
@@ -64,6 +69,7 @@ nodes:
         driver: ice
         link: link6
         model: Intel-E810XXV
+        numa_node: 0
       port7:
         # s82-t212-tg1-c2/p1 - 25GE port1 Intel NIC xxv710 4p25GE.
         mac_address: "40:a6:b7:4c:34:48"
@@ -72,6 +78,7 @@ nodes:
         driver: i40e
         link: link7
         model: Intel-XXV710
+        numa_node: 0
       port8:
         # s82-t212-tg1-c2/p2 - 25GE port2 Intel NIC xxv710 4p25GE.
         mac_address: "40:a6:b7:4c:34:49"
@@ -80,6 +87,7 @@ nodes:
         driver: i40e
         link: link8
         model: Intel-XXV710
+        numa_node: 0
       port9:
         # s82-t212-tg1-c8/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
         mac_address: "b8:3f:d2:b7:a1:18"
@@ -88,6 +96,7 @@ nodes:
         driver: mlx5_core
         link: link9
         model: Mellanox-CX7VEAT
+        numa_node: 1
       port10:
         # s82-t212-tg1-c8/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
         mac_address: "b8:3f:d2:b7:a1:19"
@@ -96,6 +105,7 @@ nodes:
         driver: mlx5_core
         link: link10
         model: Mellanox-CX7VEAT
+        numa_node: 1
       port11:
         # s82-t212-tg1-c6/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a7:00"
@@ -104,6 +114,7 @@ nodes:
         driver: ice
         link: link11
         model: Intel-E810CQ
+        numa_node: 1
       port12:
         # s82-t212-tg1-c6/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a7:01"
@@ -112,6 +123,7 @@ nodes:
         driver: ice
         link: link11
         model: Intel-E810CQ
+        numa_node: 1
   DUT1:
     type: DUT
     model: Intel-Icelake
@@ -130,6 +142,7 @@ nodes:
         driver: ice
         link: link1
         model: Intel-E810CQ
+        numa_node: 0
       port2:
         # s81-t212-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a8:49"
@@ -138,6 +151,7 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E810CQ
+        numa_node: 0
       port3:
         # s81-t212-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:79:4c"
@@ -146,6 +160,10 @@ nodes:
         driver: ice
         link: link3
         model: Intel-E810XXV
+        name: "TwentyFiveGigabitEthernet31/0/0"
+        vpp_sw_index: 1
+        mtu: 9000
+        numa_node: 0
       port4:
         # s81-t212-sut1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:79:4d"
@@ -154,6 +172,10 @@ nodes:
         driver: ice
         link: link4
         model: Intel-E810XXV
+        name: "TwentyFiveGigabitEthernet31/0/1"
+        vpp_sw_index: 2
+        mtu: 9000
+        numa_node: 0
       port5:
         # s81-t212-sut1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:79:4e"
@@ -162,6 +184,10 @@ nodes:
         driver: ice
         link: link5
         model: Intel-E810XXV
+        name: "TwentyFiveGigabitEthernet31/0/2"
+        vpp_sw_index: 3
+        mtu: 9000
+        numa_node: 0
       port6:
         # s81-t212-sut1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:79:4f"
@@ -170,6 +196,10 @@ nodes:
         driver: ice
         link: link6
         model: Intel-E810XXV
+        name: "TwentyFiveGigabitEthernet31/0/3"
+        vpp_sw_index: 4
+        mtu: 9000
+        numa_node: 0
       port7:
         # s81-t212-sut1-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "40:a6:b7:4c:34:2c"
@@ -178,6 +208,10 @@ nodes:
         driver: i40e
         link: link7
         model: Intel-XXV710
+        name: "TwentyFiveGigabitEthernet4b/0/0"
+        vpp_sw_index: 5
+        mtu: 9000
+        numa_node: 0
       port8:
         # s81-t212-sut1-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "40:a6:b7:4c:34:2d"
@@ -186,6 +220,10 @@ nodes:
         driver: i40e
         link: link8
         model: Intel-XXV710
+        name: "TwentyFiveGigabitEthernet4b/0/1"
+        vpp_sw_index: 6
+        mtu: 9000
+        numa_node: 0
       port9:
         # s81-t212-sut1-c8/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
         mac_address: "b8:3f:d2:b7:a1:80"
@@ -194,6 +232,10 @@ nodes:
         driver: mlx5_core
         link: link9
         model: Mellanox-CX7VEAT
+        name: "TwentyFiveGigabitEthernetb1/0/0"
+        vpp_sw_index: 7
+        mtu: 9000
+        numa_node: 1
       port10:
         # s81-t212-sut1-c8/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
         mac_address: "b8:3f:d2:b7:a1:81"
@@ -202,3 +244,7 @@ nodes:
         driver: mlx5_core
         link: link10
         model: Mellanox-CX7VEAT
+        name: "TwentyFiveGigabitEthernetb1/0/1"
+        vpp_sw_index: 8
+        mtu: 9000
+        numa_node: 1

@@ -24,6 +24,7 @@ nodes:
         driver: ice
         link: link1
         model: Intel-E810CQ
+        numa_node: 0
       port2:
         # s77-t37-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a1:49"
@@ -32,6 +33,7 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E810CQ
+        numa_node: 0
       port3:
         # s77-t37-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ec"
@@ -40,6 +42,7 @@ nodes:
         driver: ice
         link: link3
         model: Intel-E810XXV
+        numa_node: 0
       port4:
         # s77-t37-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ed"
@@ -48,6 +51,7 @@ nodes:
         driver: ice
         link: link4
         model: Intel-E810XXV
+        numa_node: 0
       port5:
         # s77-t37-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ee"
@@ -56,6 +60,7 @@ nodes:
         driver: ice
         link: link5
         model: Intel-E810XXV
+        numa_node: 0
       port6:
         # s77-t37-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ef"
@@ -64,6 +69,7 @@ nodes:
         driver: ice
         link: link6
         model: Intel-E810XXV
+        numa_node: 0
       port7:
         # s77-t37-tg1-c2/p1 - 25GE port1 Intel NIC x710 2p25GE.
         mac_address: "3c:fd:fe:bd:fa:24"
@@ -72,6 +78,7 @@ nodes:
         driver: i40e
         link: link7
         model: Intel-XXV710
+        numa_node: 0
       port8:
         # s77-t37-tg1-c2/p2 - 25GE port2 Intel NIC x710 2p25GE.
         mac_address: "3c:fd:fe:bd:fa:25"
@@ -80,6 +87,7 @@ nodes:
         driver: i40e
         link: link8
         model: Intel-XXV710
+        numa_node: 0
       port9:
         # s77-t37-tg1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:a6"
@@ -88,6 +96,7 @@ nodes:
         driver: mlx5_core
         link: link9
         model: Mellanox-CX6DX
+        numa_node: 1
       port10:
         # s77-t37-tg1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:a7"
@@ -96,6 +105,7 @@ nodes:
         driver: mlx5_core
         link: link10
         model: Mellanox-CX6DX
+        numa_node: 1
   DUT1:
     type: DUT
     model: Intel-Icelake
@@ -114,6 +124,10 @@ nodes:
         driver: ice
         link: link1
         model: Intel-E810CQ
+        name: "HundredGigabitEthernet17/0/0"
+        vpp_sw_index: 1
+        mtu: 9000
+        numa_node: 0
       port2:
         # s75-t37-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:b2:a7:b1"
@@ -122,6 +136,10 @@ nodes:
         driver: ice
         link: link22
         model: Intel-E810CQ
+        name: "HundredGigabitEthernet17/0/1"
+        vpp_sw_index: 2
+        mtu: 9000
+        numa_node: 0
       port3:
         # s75-t37-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:60"
@@ -130,6 +148,10 @@ nodes:
         driver: ice
         link: link3
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/0"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port4:
         # s75-t37-sut1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:61"
@@ -138,6 +160,10 @@ nodes:
         driver: ice
         link: link44
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/1"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port5:
         # s75-t37-sut1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:62"
@@ -146,6 +172,10 @@ nodes:
         driver: ice
         link: link5
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/2"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port6:
         # s75-t37-sut1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:63"
@@ -154,6 +184,10 @@ nodes:
         driver: ice
         link: link66
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/3"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port7:
         # s75-t37-sut1-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f8:68"
@@ -162,6 +196,10 @@ nodes:
         driver: i40e
         link: link7
         model: Intel-XXV710
+        name: "HundredGigabitEthernet4b/0/0"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port8:
         # s75-t37-sut1-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f8:69"
@@ -170,6 +208,10 @@ nodes:
         driver: i40e
         link: link88
         model: Intel-XXV710
+        name: "HundredGigabitEthernet4b/0/1"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port9:
         # s77-t37-sut1-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:2e"
@@ -178,6 +220,10 @@ nodes:
         driver: mlx5_core
         link: link1010
         model: Mellanox-CX6DX
+        name: "HundredGigabitEthernete3/0/0"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 1
       port10:
         # s77-t37-sut1-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:0f:2f"
@@ -186,6 +232,10 @@ nodes:
         driver: mlx5_core
         link: link9
         model: Mellanox-CX6DX
+        name: "HundredGigabitEthernete3/0/1"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 1
   DUT2:
     type: DUT
     host: 10.30.51.76
@@ -203,6 +253,10 @@ nodes:
         driver: ice
         link: link2
         model: Intel-E810CQ
+        name: "HundredGigabitEthernet17/0/0"
+        vpp_sw_index: 1
+        mtu: 9000
+        numa_node: 0
       port2:
         # s76-t37-sut2-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
         mac_address: "40:a6:b7:67:27:50"
@@ -211,6 +265,10 @@ nodes:
         driver: ice
         link: link22
         model: Intel-E810CQ
+        name: "HundredGigabitEthernet19/0/0"
+        vpp_sw_index: 2
+        mtu: 9000
+        numa_node: 0
       port3:
         # s76-t37-sut2-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:24"
@@ -219,6 +277,10 @@ nodes:
         driver: ice
         link: link4
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/0"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port4:
         # s76-t37-sut2-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:25"
@@ -227,6 +289,10 @@ nodes:
         driver: ice
         link: link44
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/1"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port5:
         # s76-t37-sut2-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:26"
@@ -235,6 +301,10 @@ nodes:
         driver: ice
         link: link6
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/2"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port6:
         # s76-t37-sut2-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:27"
@@ -243,6 +313,10 @@ nodes:
         driver: ice
         link: link66
         model: Intel-E810XXV
+        name: "HundredGigabitEthernet31/0/3"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port7:
         # s76-t37-sut2-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:f4"
@@ -251,6 +325,10 @@ nodes:
         driver: i40e
         link: link8
         model: Intel-XXV710
+        name: "HundredGigabitEthernet4b/0/0"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port8:
         # s76-t37-sut2-c2/p2 - 25GE port2 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:f5"
@@ -259,6 +337,10 @@ nodes:
         driver: i40e
         link: link88
         model: Intel-XXV710
+        name: "HundredGigabitEthernet4b/0/1"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 0
       port9:
         # s76-t37-sut2-c10/p1 - 100GE port1 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:16"
@@ -267,6 +349,10 @@ nodes:
         driver: mlx5_core
         link: link10
         model: Mellanox-CX6DX
+        name: "HundredGigabitEthernete3/0/0"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 1
       port10:
         # s76-t37-sut2-c10/p2 - 100GE port2 Mellanox ConnectX-6 Dx 2p100GE.
         mac_address: "b8:3f:d2:13:4b:17"
@@ -275,3 +361,7 @@ nodes:
         driver: mlx5_core
         link: link1010
         model: Mellanox-CX6DX
+        name: "HundredGigabitEthernete3/0/1"
+        vpp_sw_index: null
+        mtu: 9000
+        numa_node: 1
