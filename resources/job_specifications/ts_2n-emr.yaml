@@ -258,3 +258,10 @@ test-sets:
         - vfio-pci
     tests:
       - hoststack-nginx-md
+
+  2n-emr-calicovpp-iterative:
+    infra:
+      100ge2p1e810cq:
+        - avf
+    tests:
+      - ip4-base-sm
