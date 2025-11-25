@@ -14,7 +14,7 @@
     timeout: 5
   when:
     - calico_sut is defined
-    - calico_vpp_state == "present"
+    - deploy_state == "present"
   tags:
     - calico-pre-action
 
@@ -24,7 +24,7 @@
   register: command_status
   when:
     - calico_sut is defined
-    - calico_vpp_state == "present"
+    - deploy_state == "present"
   tags:
     - calico-pre-action
 
@@ -33,6 +33,6 @@
     msg: "{{ command_status.stdout }}"
   when:
     - calico_sut is defined
-    - calico_vpp_state == "present"
+    - deploy_state == "present"
   tags:
     - calico-pre-action

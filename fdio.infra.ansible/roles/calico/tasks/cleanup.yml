@@ -8,6 +8,6 @@
   loop: "{{ calico_uplink_interfaces }}"
   when:
     - calico_sut is defined
-    - calico_vpp_state == "absent"
+    - deploy_state == "absent"
   tags:
     - calico-cleanup

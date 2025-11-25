@@ -108,6 +108,7 @@ function ansible_playbook () {
     ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
+        --extra-vars "deploy_state=${ANSIBLE_deploy_state:-present}" \
         --inventory inventories/$INVENTORY_PATH/hosts site.yaml \
         --limit "$(echo ${hosts[@]//\"})" \
         --tags "$(echo $@)" || die "Failed to run ansible on host!"
