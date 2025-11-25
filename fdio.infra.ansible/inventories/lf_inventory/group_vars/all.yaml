@@ -1,2 +1,3 @@
 ---
 # file: lf_inventory/group_vars/all.yaml
+ansible_python_interpreter: auto_silent

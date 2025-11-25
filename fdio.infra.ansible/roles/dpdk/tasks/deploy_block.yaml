@@ -1,28 +1,22 @@
 ---
 # file: tasks/deploy_block.yaml
 
-- name: "Download Release {{ item }}"
+- name: download release {{ item }}
   ansible.builtin.get_url:
     url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
     dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
     mode: 0644
   register: dpdk_downloaded
 
-- name: "Extract Release {{ item }}"
+- name: extract release {{ item }}
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
     dest: "{{ dpdk_target_dir }}/"
     creates: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
-  when: dpdk_downloaded
   register: dpdk_extracted
 
-- name: "Rename folder"
-  ansible.builtin.command: "mv {{ dpdk_target_dir }}/dpdk-stable-{{ item }} {{ dpdk_target_dir }}/dpdk-{{ item }}"
-  ignore_errors: true
-  when: dpdk_extracted
-
-- name: "Compile Release I"
+- name: compile release I
   ansible.builtin.command: "meson -Dexamples=l3fwd build"
   args:
     chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
@@ -30,9 +24,15 @@
     CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
   register: dpdk_compiled
 
-- name: "Compile Release II"
+- name: compile release II
   ansible.builtin.command: "ninja -C build"
   args:
     chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
   environment:
     CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
+
+- name: symlink latest
+  ansible.builtin.file:
+    src: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+    dest: "{{ dpdk_target_dir }}/dpdk"
+    state: link
