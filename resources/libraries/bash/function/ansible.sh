@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -54,7 +54,6 @@ function ansible_adhoc () {
     }
     pushd "${CSIT_DIR}"/fdio.infra.ansible || die "Pushd failed!"
     export ANSIBLE_HOST_KEY_CHECKING=False
-    export ANSIBLE_STDOUT_CALLBACK=yaml
     export ANSIBLE_PIPELINING=true
     ansible-playbook \
         --vault-password-file=vault_pass \
@@ -105,7 +104,6 @@ function ansible_playbook () {
     }
     pushd "${CSIT_DIR}"/fdio.infra.ansible || die "Pushd failed!"
     export ANSIBLE_HOST_KEY_CHECKING=False
-    export ANSIBLE_STDOUT_CALLBACK=yaml
     export ANSIBLE_PIPELINING=true
     ansible-playbook \
         --vault-password-file=vault_pass \
