@@ -1,10 +1,10 @@
 ---
 # file: tasks/main.yaml
 
-- name: "Check Kernel Parameters"
+- name: check kernel parameters
   ansible.builtin.assert:
     that:
-      - item in ansible_cmdline
+      - item in ansible_facts["cmdline"]
     fail_msg: "Kernel parameters!"
     success_msg: "Kernel parameters match."
   loop: "{{ grub.keys()|sort }}"
@@ -13,10 +13,10 @@
   tags:
     - check-kernel-params
 
-- name: "Check Kernel Version"
+- name: check kernel version
   ansible.builtin.assert:
     that:
-      - ansible_kernel not in kernel_version_by_distro_by_arch
+      - ansible_facts["kernel"] not in kernel_version_by_distro_by_arch
     fail_msg: "Kernel version!"
     success_msg: "Kernel version match."
   tags:
