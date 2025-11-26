@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f699bd81_4bd2e527",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2025-11-26T10:32:51Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx mrrANDdrv_vfio_pciAND1cAND64b #2n-icx-vpp-cov-l2-00",
+      "revId": "5b55c13ad78ca15f4c0dd28d1fec8ea35a7f85d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
