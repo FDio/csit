@@ -299,6 +299,8 @@
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 | | Run Keyword If | ${with_trace} | VPP Enable Traces On All Duts | ${nodes}
+| | ${jumbo} = | Get Variable | \${jumbo} | ${False}
+| | Run Keyword If | ${jumbo} | Set Jumbo Sw Mtu On All Duts | ${nodes}
 
 | Apply startup configuration on VPP DUT
 | | [Documentation] | Write VPP startup configuration and restart VPP DUT.
