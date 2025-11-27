@@ -2016,3 +2016,32 @@ class InterfaceUtil:
                 InterfaceUtil.vpp_round_robin_rx_placement(
                     node, prefix, workers
                 )
+
+    @staticmethod
+    def set_jumbo_sw_mtu_on_node(nodes):
+        """Set default MTU for software interfaces high enough for encap jumbo.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        cmd = "ethernet_set_default_sw_mtu"
+        args = dict(mtu=Constants.MTU_JUMBO)
+        err_msg = "Failed to set jumbo SW MTU. Old VPP build?"
+        try:
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply()
+        except RuntimeError as err:
+            # TODO: Use more specific exception in crc check and papi executor?
+            # Old VPP build, accept the current default.
+            logger.warn(f"{err_msg} {err}")
+
+    @staticmethod
+    def set_jumbo_sw_mtu_on_all_duts(nodes):
+        """Set default MTU for software interfaces high enough for encap jumbo.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node["type"] == NodeType.DUT:
+                InterfaceUtil.set_jumbo_sw_mtu_on_node(node)
