@@ -92,7 +92,7 @@ jobs:
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
-        uses: pmikus/.github/.github/actions/setup-executor-env@d2c8485d9e23e6c439c8eebae3f8101fb48fcb86
+        uses: fdio/.github/.github/actions/setup-executor-env@b728d1589228e2891a4241a1bba362d76895c225
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
