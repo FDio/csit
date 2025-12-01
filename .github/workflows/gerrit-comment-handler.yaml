@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Prepare workflow selection matrix
         id: set-matrix
-        uses: pmikus/csit/.github/actions/csit-comment-dispatch@master
+        uses: fdio/csit/.github/actions/csit-comment-dispatch@1f3de8c4266cc118bbf3e108dd0f33a42b0cc70f
         with:
           gerrit_comment: ${{ github.event.inputs.GERRIT_COMMENT }}
 
