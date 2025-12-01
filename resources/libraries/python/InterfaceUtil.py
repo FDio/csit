@@ -1011,45 +1011,6 @@ class InterfaceUtil:
         return f"{interface}.{sub_id}", sw_if_index
 
     @staticmethod
-    def create_gre_tunnel_interface(node, source_ip, destination_ip):
-        """Create GRE tunnel interface on node.
-
-        :param node: VPP node to add tunnel interface.
-        :param source_ip: Source of the GRE tunnel.
-        :param destination_ip: Destination of the GRE tunnel.
-        :type node: dict
-        :type source_ip: str
-        :type destination_ip: str
-        :returns: Name and index of created GRE tunnel interface.
-        :rtype: tuple
-        :raises RuntimeError: If unable to create GRE tunnel interface.
-        """
-        cmd = u"gre_tunnel_add_del"
-        tunnel = dict(
-            type=0,
-            instance=Constants.BITWISE_NON_ZERO,
-            src=str(source_ip),
-            dst=str(destination_ip),
-            outer_fib_id=0,
-            session_id=0
-        )
-        args = dict(
-            is_add=1,
-            tunnel=tunnel
-        )
-        err_msg = f"Failed to create GRE tunnel interface " \
-            f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
-            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
-
-        if_key = Topology.add_new_port(node, u"gre_tunnel")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
-        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
-
-        return ifc_name, sw_if_index
-
-    @staticmethod
     def create_gtpu_tunnel_interface(node, teid, source_ip, destination_ip):
         """Create GTPU interface and return sw if index of created interface.
 
