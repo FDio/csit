@@ -561,8 +561,6 @@ function get_test_tag_string () {
     # Variables exported optionally:
     # - GRAPH_NODE_VARIANT - Node variant to test with, set if found in trigger.
 
-    # TODO: ci-management scripts no longer need to perform this.
-
     set -exuo pipefail
 
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
@@ -570,9 +568,6 @@ function get_test_tag_string () {
             # Order matters, bisect job contains "perf" in its name.
             *"bisect"*)
                 trigger="bisecttest"
-                ;;
-            *"device"*)
-                trigger="devicetest"
                 ;;
             *"perf"*)
                 trigger="perftest"
@@ -582,10 +577,6 @@ function get_test_tag_string () {
         esac
         # Ignore lines not containing the trigger word.
         comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}" || true)
-        # The vpp-csit triggers trail stuff we are not interested in.
-        # Removing them and trigger word: https://unix.stackexchange.com/a/13472
-        # (except relying on \s whitespace, \S non-whitespace and . both).
-        # The last string is concatenated, only the middle part is expanded.
         cmd=("grep" "-oP" '\S*'"${trigger}"'\S*\s\K.+$') || die "Unset trigger?"
         # On parsing error, TEST_TAG_STRING probably stays empty.
         TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)

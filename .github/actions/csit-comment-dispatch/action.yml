@@ -40,13 +40,13 @@ runs:
           exit 1
         fi
 
-        # Split <command> (expected format: <project>-<dut>-<node>)
+        # Split <command> (expected format: <trigger>-<dut>-<node>)
         set +e
-        IFS=- read -r -d '' project dut node < <(printf %s $command)
+        IFS=- read -r -d '' trigger dut node < <(printf %s $command)
         set -e
 
-        if [[ -z "${project:-}" || -z "${dut:-}" || -z "${node:-}" ]]; then
-          echo "::error::Malformed command: '$command'. Expected format '<project>-<dut>-<node>'."
+        if [[ -z "${trigger:-}" || -z "${dut:-}" || -z "${node:-}" ]]; then
+          echo "::error::Malformed command: '$command'. Expected format '<trigger>-<dut>-<node>'."
           exit 1
         fi
 
