@@ -6,7 +6,6 @@ on:
   # Runs periodically
   schedule:
     - cron:  "30 22 * * 0-4"
-  workflow_dispatch:
 
 jobs:
   csit-vpp-perf-hoststack-daily:

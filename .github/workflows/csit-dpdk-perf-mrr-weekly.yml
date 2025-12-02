@@ -6,7 +6,6 @@ on:
   # Runs periodically
   schedule:
     - cron:  "0 0 * * 6"
-  workflow_dispatch:
 
 jobs:
   csit-dpdk-perf-mrr-weekly:

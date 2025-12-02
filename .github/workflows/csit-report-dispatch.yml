@@ -116,15 +116,6 @@ jobs:
           bootstrap_script: bootstrap_verify_perf.sh
           with_oper: false
 
-      - name: Archive Logs
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          # yamllint disable-line rule:line-length
-          name: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
-          path: archives/
-          if-no-files-found: ignore
-
       - name: AWS S3 Publish Logs
         if: ${{ always() }}
         # yamllint disable-line rule:line-length
