@@ -18,56 +18,50 @@ The trigger consist of
 
 ### Report
 
-Both iterative and coverage jobs are triggered by user from gerrit.
+Both iterative and coverage jobs are triggered by user from github action panel.
 
 #### Iterative jobs
-
-Trigger name:
-  - csit-vpp-report-iter-`node`-`arch`-perftest
 
 Default values:
   - iterative test set - the same as it is used for periodical jobs
   - test type: mrr
 
-Mandatory trigger parameters:
+Mandatory workflow parameters:
   - no mandatory parameters - default values are used in that case
 
-Optional trigger parameters:
+Optional workflow parameters:
   - test set
   - test type
 
 Examples:
 
-1. csit-vpp-report-iter-2n-emr-perftest
+1. <no input>
    - Generates default test set and default test type.
 
-2. csit-vpp-report-iter-2n-emr-perftest #ndrpdr
+2. #ndrpdr
    - Generates default test set and ndrpdr tests.
 
-3. csit-vpp-report-iter-2n-emr-perftest #2n-emr-vpp-hoststack
+3. #2n-emr-vpp-hoststack
 
-   csit-vpp-report-iter-2n-emr-perftest #2n-emr-vpp-hoststack #hoststack
+   #2n-emr-vpp-hoststack #hoststack
    - Generates hoststack test set.
    - It is not necessary to specify the test type as it is defined in the name
      of the test set, so both examples are equal and correct.
 
 #### Coverage jobs
 
-Trigger name:
-  - csit-vpp-report-cov-`node`-`arch`-perftest
-
 Default values:
   - test type: ndrpdr
 
-Mandatory trigger parameters:
+Mandatory workflow parameters:
   - test set
 
-Optional trigger parameters:
+Optional workflow parameters:
   - test type, default value: ndrpdr
 
 Examples:
 
-1. csit-vpp-report-cov-2n-emr-perftest #2n-emr-vpp-cov-ip4-00
+1. #2n-emr-vpp-cov-ip4-00
    - Generates the defined test set, ndrpdr tests.
 
 ### Development
@@ -75,7 +69,7 @@ Examples:
 #### Verify jobs
 
 Trigger name:
-  - csit-`node`-`arch`-perftest `tags`
+  - gha-run csit-`dut`-`node`-`arch` perftest `tags`
 
 Default values:
   - iterative test set - the same as it is used for periodical jobs
@@ -90,16 +84,16 @@ Optional trigger parameters:
 
 Examples:
 
-1. csit-2n-emr-perftest `tags`
+1. gha-run csit-vpp-2n-emr perftest `tags`
    - Generates iterative mrr tests, runs only those selected by tags.
 
-2. csit-2n-emr-perftest `tags` #2n-emr-vpp-cov-ip4-00 #ndrpdr
+2. gha-run csit-vpp-2n-emr perftest `tags` #2n-emr-vpp-cov-ip4-00 #ndrpdr
    - Generates defined test set, ndrpdr tests, runs only those selected by tags.
 
 #### Bisect jobs
 
 Trigger name:
-  - bisecttest-`node`-`arch` `commit` `tags`
+  - gha-run csit-`dut`-`node`-`arch` bisecttest `commit` `tags`
 
 Default values:
   - iterative test set - the same as it is used for periodical jobs
@@ -114,10 +108,10 @@ Optional trigger parameters:
 
 Examples:
 
-1. bisecttest-2n-emr `commit` `tags`
+1. gha-run csit-vpp-2n-emr bisecttest `commit` `tags`
    - Generates iterative mrr tests, runs only those selected by tags.
 
-2. bisecttest-2n-emr `commit` `tags` #2n-emr-vpp-cov-ip4-00 #ndrpdr
+2. gha-run csit-vpp-2n-emr bisecttest `commit` `tags` #2n-emr-vpp-cov-ip4-00 #ndrpdr
    - Generates defined test set, ndrpdr tests, runs only those selected by tags.
 
 #### Special cases
@@ -138,11 +132,11 @@ test(s).
 
 Examples:
 
-1. csit-2n-emr-perftest `tags` #generate-all
+1. gha-run csit-vpp-2n-emr perftest `tags` #generate-all
    - Generates all tests specified in all test sets for 2n-emr testbed, runs
      only those selected by tags.
 
-1. bisecttest-2n-emr `commit` `tags` #generate-all
+1. gha-run csit-vpp-2n-emr bisecttest `commit` `tags` #generate-all
    - Generates all tests specified in all test sets for 2n-emr testbed, runs
      only those selected by tags.
 

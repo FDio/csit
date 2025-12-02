@@ -15,5 +15,4 @@ weight: 3
 - [Hoststack]({{< relref "/methodology/test/hoststack/" >}})
 - [Generic Segmentation Offload]({{< relref "/methodology/test/generic_segmentation_offload" >}})
 - [Reconfiguration]({{< relref "/methodology/test/reconfiguration" >}})
-- [VPP Device]({{< relref "/methodology/test/vpp_device" >}})
 - [Reassembly]({{< relref "/methodology/test/reassembly" >}})

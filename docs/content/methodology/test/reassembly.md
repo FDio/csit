@@ -1,6 +1,6 @@
 ---
 title: "Reassembly"
-weight: 10
+weight: 9
 ---
 
 # Packet reassembly performance
