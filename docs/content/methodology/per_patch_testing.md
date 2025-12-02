@@ -5,8 +5,6 @@ weight: 5
 
 # Per-patch Testing
 
-Updated for CSIT git commit id: d8ec3f8673346c0dc93e567159771f24c1bf74fc.
-
 A methodology similar to trending analysis is used for comparing performance
 before a DUT code change is merged. This can act as a verify job to disallow
 changes which would decrease performance without a good reason.
@@ -18,10 +16,13 @@ They allow full tag expressions, all types of perf tests are supported.
 
 There are jobs available for multiple types of testbeds,
 based on various processors.
-Their Gerrit triggers words are of the form "perftest-{node_arch}"
-where the node_arch combinations currently supported are:
-2n-icx, 2n-clx, 2n-spr, 2n-zn2, 3n-icx, 3n-tsh, 3n-alt, 2n-tx2, 3n-snr,
-3na-spr, 3nb-spr.
+Their Gerrit triggers words are of the form
+"gha-run csit-{dut}-{node_arch} {testype}", where:
+
+- dut: [vpp, dpdk, trex]
+- testype: [perftest, bisecttest]
+- node_arch: [3n-oct, 3n-emr, 2n-emr, 2n-grc, 2n-icx, 2n-spr, 2n-zn2, 3n-icx,
+3n-alt, 3n-snr, 3na-spr, 3nb-spr]
 
 ## Test selection
 
@@ -35,33 +36,6 @@ to accidentally select too high number of tests, blocking the testbed for days.
 What follows is a list of explanations and recommendations
 to help users to select the minimal set of tests cases.
 
-### Verify cycles
-
-When Gerrit schedules multiple jobs to run for the same patch set,
-it waits until all runs are complete.
-While it is waiting, it is possible to trigger more jobs
-(adding runs to the set Gerrit is waiting for), but it is not possible
-to trigger more runs for the same job, until Gerrit is done waiting.
-After Gerrit is done waiting, it becames possible to trigger
-the same job again.
-
-Example. User triggers one set of tests on 2n-icx and immediately
-also triggers other set of tests on 3n-icx. Then the user notices
-2n-icx run ended early because of a typo in tag expression.
-When the user tries to re-trigger 2n-icx (with a fixed tag expression),
-that comment is ignored by Jenkins.
-Only when 3n-icx job finishes, the user can trigger 2n-icx again.
-
-### One comment many jobs
-
-In the past, the CSIT code which parses for perftest trigger comments
-was buggy, which lead to bad behavior (as in selection all performance test,
-because "perftest" is also a robot tag) when user included multiple
-perftest trigger words in the same comment.
-
-The worst bugs were fixed since then, but it is still recommended
-to use just one trigger word per Gerrit comment, just to be safe.
-
 ### Multiple test cases in run
 
 While Robot supports OR operator, it does not support parentheses,
@@ -69,13 +43,13 @@ so the OR operator is not very useful.
 It is recommended to use space instead of OR operator.
 
 Example template:
-perftest-2n-icx {tag_expression_1} {tag_expression_2}
+gha-run csit-vpp-2n-emr perftest {tag_expression_1} {tag_expression_2}
 
 See below for more concrete examples.
 
 ### Suite tags
 
-Traditionally, CSIT maintains broad Robot tags that can be used to select tests.
+CSIT maintains broad Robot tags that can be used to select tests.
 
 But it is not recommended to use them for test selection,
 as it is not that easy to determine how many test cases are selected.
@@ -85,12 +59,6 @@ and locate a specific suite the user is interested in,
 and use its suite tag. For example, "ethip4-ip4base" is a suite tag
 selecting just one suite in CSIT git repository,
 avoiding all scale, container, and other simialr variants.
-
-Note that CSIT uses "autogen" code generator,
-so the robot running in Jenkins has access to more suites
-than visible just by looking into CSIT git repository.
-Thus, suite tag is not enough to select precisely the intended suite,
-and user is encouraged to narrow down to a single test case within a suite.
 
 ### Fully specified tag expressions
 
@@ -115,9 +83,9 @@ and more for dot1q and other encapsulated traffic;
 
 As there are more test cases than CSIT can periodically test,
 it is possible to encounter an old test case that currently fails.
-To avoid that, you can look at "job spec" files we use for periodic testing,
-for example
-[this one](https://raw.githubusercontent.com/FDio/csit/master/resources/job_specs/report_iterative/2n-spr/vpp-mrr-00.md).
+To avoid that, you can look at "job specifications" files we use for periodic
+testing, for example
+[this one](https://github.com/FDio/csit/blob/master/resources/job_specifications/test_groups.yaml).
 
 ### Shortening triggers
 
@@ -167,7 +135,7 @@ but wants to test both NIC drivers (not AF_XDP), both apps in VM,
 and both 1 and 2 parallel links.
 
 After shortening, this is the trigger comment fianlly used:
-perftest-3n-icx mrrANDnic_intel-e810cqAND1cAND64bAND?lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm\*NOTdrv_af_xdp
+gha-run csit-vpp-3n-icx perftest mrrANDnic_intel-e810cqAND1cAND64bAND?lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm\*NOTdrv_af_xdp
 
 ## Basic operation
 
