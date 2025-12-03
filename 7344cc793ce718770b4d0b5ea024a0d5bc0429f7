@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09820fb7_4d2e42c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-12-03T13:25:18Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-icx perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND9000bANDethip4gtpu?w-ip4base #generate-all",
+      "revId": "7344cc793ce718770b4d0b5ea024a0d5bc0429f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
