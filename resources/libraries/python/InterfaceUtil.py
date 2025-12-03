@@ -1014,6 +1014,9 @@ class InterfaceUtil:
     def create_gtpu_tunnel_interface(node, teid, source_ip, destination_ip):
         """Create GTPU interface and return sw if index of created interface.
 
+        For jumbo tests, also increase MTU value on the created interface,
+        as the VPP default is not enough for some tests like GPTUhw.
+
         :param node: Node where to create GTPU interface.
         :param teid: GTPU Tunnel Endpoint Identifier.
         :param source_ip: Source IP of a GTPU Tunnel End Point.
@@ -1048,6 +1051,15 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
+        jumbo = BuiltIn().get_variable_value("\\${jumbo}", False)
+        if jumbo:
+            mtu = Constants.MTU_JUMBO
+            args = dict(sw_if_index=sw_if_index, mtu=[mtu, mtu, mtu, mtu])
+            cmd = "sw_interface_set_mtu"
+            err_msg = "Failed to set jumbo MTU for GTPU interface."
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+
         if_key = Topology.add_new_port(node, u"gtpu_tunnel")
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
@@ -1076,9 +1088,73 @@ class InterfaceUtil:
             enable=True
         )
 
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 0")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 1")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 2")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 3")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 4")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 5")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 6")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 7")
+        except AssetrionError:
+            pass
         err_msg = f"Failed to enable GTPU offload RX on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 0")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 1")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 2")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 3")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 4")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 5")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 6")
+        except AssetrionError:
+            pass
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, "show ip table 7")
+        except AssetrionError:
+            pass
 
     @staticmethod
     def vpp_create_loopback(node, mac=None):
