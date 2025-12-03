@@ -1053,6 +1053,14 @@ class InterfaceUtil:
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
         Topology.update_interface_name(node, if_key, ifc_name)
 
+        if BuiltIn().get_variable_value("\\${jumbo}", False):
+            mtu = Constants.MTU_JUMBO
+            args = Dict(sw_if_index=sw_if_index, mtu=[mtu, mtu, mtu, mtu])
+            cmd = "sw_interface_set_mtu"
+            msg_err = "Failed to set jumbo MTU for GTPU interface."
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+
         return sw_if_index
 
     @staticmethod
