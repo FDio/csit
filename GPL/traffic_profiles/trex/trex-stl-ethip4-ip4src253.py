@@ -48,11 +48,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_start_ip = u"10.10.10.2"
-        self.p1_src_end_ip = u"10.10.10.254"
+        self.p1_src_end_ip = u"10.10.10.2"
         self.p1_dst_start_ip = u"20.20.20.2"
 
         self.p2_src_start_ip = u"20.20.20.2"
-        self.p2_src_end_ip = u"20.20.20.254"
+        self.p2_src_end_ip = u"20.20.20.2"
         self.p2_dst_start_ip = u"10.10.10.2"
 
     def define_packets(self):
