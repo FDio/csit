@@ -178,6 +178,8 @@
     # vnet/ip/ip.api
     ip_route_add_del: '0xb8ecfe0d'  # dev
     ip_route_add_del_reply: '0x1992deab'  # dev
+    ip_route_v2_details: '0xb09aa6c0'
+    ip_route_v2_dump: '0xd16f72e6'
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
     ip_table_add_del_v2: '0x14e5081f'  # dev
     ip_table_add_del_v2_reply: '0xe8d4e804'  # dev
@@ -344,6 +346,8 @@
     sw_interface_details: '0x6c221fc7'  # dev
     sw_interface_dump: '0xaa610c27'  # dev
     # sw_interface_get_table / reply # honeycomb
+    sw_interface_set_mtu: '0x5cbe85e5'  # critical for GTPUhw jumbo
+    sw_interface_set_mtu_reply: '0xe8d4e804'
 
     # vnet/ip6-nd/ip6_nd.api
     sw_interface_ip6nd_ra_config: '0x3eb00b1c'  # dev
