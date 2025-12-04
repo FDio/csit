@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3bd12ff_611c69ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-12-04T14:02:18Z",
+      "side": 1,
+      "message": "Not triggering verify via comment, as the GTPUhw tests still fails on another issue. Still, the original issues (fragmentation on 25.10-release and crash on stable_vpp) are avoided by this.",
+      "revId": "9aea441c58cfb16ee9a12c36b93433897f7fe282",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
