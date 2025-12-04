@@ -1011,8 +1011,24 @@ class InterfaceUtil:
         return f"{interface}.{sub_id}", sw_if_index
 
     @staticmethod
+    def increase_protocol_mtus_if_jumbo(sw_if_index):
+        """FIXME"""
+        if not BuiltIn().get_variable_value("\\${jumbo}", False):
+            return
+        mtu = Constants.MTU_JUMBO
+        args = dict(sw_if_index=sw_if_index, mtu=[mtu, mtu, mtu, mtu])
+        cmd = "sw_interface_set_mtu"
+        err_msg = f"Failed to set jumbo MTUs for: {sw_if_index=}"
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def create_gtpu_tunnel_interface(node, teid, source_ip, destination_ip):
         """Create GTPU interface and return sw if index of created interface.
+
+        FIXME:
+        For jumbo tests, also increase MTU value on the created interface,
+        as the VPP default is not enough for some tests like GPTUhw.
 
         :param node: Node where to create GTPU interface.
         :param teid: GTPU Tunnel Endpoint Identifier.
@@ -1048,6 +1064,8 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
+        InterfaceUtil.increase_protocol_mtus_if_jumbo(sw_if_index)
+
         if_key = Topology.add_new_port(node, u"gtpu_tunnel")
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
@@ -1059,6 +1077,8 @@ class InterfaceUtil:
     def vpp_enable_gtpu_offload_rx(node, interface, gtpu_if_index):
         """Enable GTPU offload RX onto interface.
 
+        FIXME.
+
         :param node: Node to run command on.
         :param interface: Name of the specific interface.
         :param gtpu_if_index: Index of GTPU tunnel interface.
@@ -1067,18 +1087,25 @@ class InterfaceUtil:
         :type interface: str
         :type gtpu_interface: int
         """
-        sw_if_index = Topology.get_interface_sw_index(node, interface)
 
+        def log_debugs():
+            PapiSocketExecutor.run_cli_cmd(node, f"show adj")
+
+        log_debugs()
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        InterfaceUtil.increase_protocol_mtus_if_jumbo(sw_if_index)
+        log_debugs()
         cmd = u"gtpu_offload_rx"
         args = dict(
             hw_if_index=sw_if_index,
             sw_if_index=gtpu_if_index,
             enable=True
         )
-
         err_msg = f"Failed to enable GTPU offload RX on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+        log_debugs()
+
 
     @staticmethod
     def vpp_create_loopback(node, mac=None):
