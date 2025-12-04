@@ -1011,8 +1011,33 @@ class InterfaceUtil:
         return f"{interface}.{sub_id}", sw_if_index
 
     @staticmethod
+    def increase_protocol_mtus_if_jumbo(node, sw_if_index):
+        """If test is jumbo, apply large enough protocol MTU values.
+
+        :param node: DUT topology node to access.
+        :param sw_if_index: SW interface index to edit MTU on.
+        :type node: dict
+        :type sw_if_index: int
+        """
+        if not BuiltIn().get_variable_value("\\${jumbo}", False):
+            return
+        mtu = Constants.MTU_JUMBO
+        args = dict(sw_if_index=sw_if_index, mtu=[mtu, mtu, mtu, mtu])
+        cmd = "sw_interface_set_mtu"
+        err_msg = f"Failed to set jumbo MTUs for: {sw_if_index=}"
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def create_gtpu_tunnel_interface(node, teid, source_ip, destination_ip):
         """Create GTPU interface and return sw if index of created interface.
+
+        For jumbo tests, also increase MTU value on the created SW interface,
+        as the VPP default is not enough for some tests like GPTUhw.
+
+        It is possible that the MTUs only need to be set on HW interface,
+        but GTPUhw tests are currently failing, so it is not possible to verify.
+        In either case, increased MTU values on SW interface should not be bad.
 
         :param node: Node where to create GTPU interface.
         :param teid: GTPU Tunnel Endpoint Identifier.
@@ -1048,6 +1073,8 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
+        InterfaceUtil.increase_protocol_mtus_if_jumbo(node, sw_if_index)
+
         if_key = Topology.add_new_port(node, u"gtpu_tunnel")
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
@@ -1059,15 +1086,21 @@ class InterfaceUtil:
     def vpp_enable_gtpu_offload_rx(node, interface, gtpu_if_index):
         """Enable GTPU offload RX onto interface.
 
+        This seems to refresh adjacencies compared to GTPUsw tests,
+        so protocol MTUs are incresed on the HW interface for jumbo tests
+        before applying the offload.
+        SW interface had MTU increased already on GTPU intrface creation.
+
         :param node: Node to run command on.
-        :param interface: Name of the specific interface.
-        :param gtpu_if_index: Index of GTPU tunnel interface.
+        :param interface: Name of the specific HW interface.
+        :param gtpu_if_index: Index of GTPU tunnel SW interface.
 
         :type node: dict
         :type interface: str
         :type gtpu_interface: int
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
+        InterfaceUtil.increase_protocol_mtus_if_jumbo(node, sw_if_index)
 
         cmd = u"gtpu_offload_rx"
         args = dict(
@@ -1075,7 +1108,6 @@ class InterfaceUtil:
             sw_if_index=gtpu_if_index,
             enable=True
         )
-
         err_msg = f"Failed to enable GTPU offload RX on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
