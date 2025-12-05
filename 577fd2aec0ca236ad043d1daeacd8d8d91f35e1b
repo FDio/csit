@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6391e681_c21fda0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2025-12-05T12:50:03Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-emr perftest mrrANDnic_intel-e810cqAND1cANDethip4tcp-sfdp-ip4base-h1024-p63-s64512-cps #generate-all",
+      "revId": "577fd2aec0ca236ad043d1daeacd8d8d91f35e1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
