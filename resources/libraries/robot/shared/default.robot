@@ -39,6 +39,7 @@
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.QATUtil
 | Library | resources.libraries.python.OCTEONUtil
+| Library | resources.libraries.python.sfdp
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.Tap.TapFeatureMask
