@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout CSIT repository with the change
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.1
         with:
           ref: master
           fetch-depth: 0
