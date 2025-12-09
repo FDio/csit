@@ -61,9 +61,9 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # IPs used in packet headers.
         p1_src_start_ip = u"192.168.0.0"
-        p1_src_end_ip = u"192.168.3.255"
+        p1_src_end_ip = u"192.168.0.0"
         p1_dst_start_ip = u"20.0.0.0"
-        p1_dst_end_ip = u"20.0.3.255"
+        p1_dst_end_ip = u"20.0.0.0"
 
         # client commands
         prog_c = ASTFProgram()
