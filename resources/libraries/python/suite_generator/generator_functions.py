@@ -121,7 +121,7 @@ def generate_suite_params_default(tmpl: str, infra: tuple, test_type: str,
     # Local (test) template: Keyword performing the search
     tmpl = _replace_defensively(
         tmpl, C.PERF_TYPE_TO_KEYWORD[C.TMPL_TTYPE],
-        C.PERF_TYPE_TO_KEYWORD[test_type], 1, file_name,
+        "Fail", 1, file_name,
         "Main search keyword should appear once in the suite."
     )
 
@@ -177,7 +177,7 @@ def generate_suite_params_trex(tmpl: str, infra: tuple, test_type: str,
     # Local (test) template: Keyword performing the search
     tmpl = _replace_defensively(
         tmpl, C.PERF_TYPE_TO_KEYWORD[C.TMPL_TTYPE],
-        C.PERF_TYPE_TO_KEYWORD[test_type], 1, file_name,
+        "Fail", 1, file_name,
         "Main search keyword should appear once in the suite."
     )
 
