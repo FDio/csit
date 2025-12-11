@@ -52,7 +52,7 @@ nomad_datacenter: "dc1"
 nomad_region: "global"
 nomad_log_level: "INFO"
 nomad_syslog_enable: true
-nomad_iface: "{{ ansible_default_ipv4.interface }}"
+nomad_iface: "{{ ansible_facts['default_ipv4'].interface }}"
 nomad_node_name: "{{ inventory_hostname }}"
 nomad_node_role: "server"
 nomad_leave_on_terminate: true
@@ -69,10 +69,10 @@ nomad_retry_join: true
 nomad_node_gc_threshold: "24h"
 # Specifies the interval between the job garbage collections. Only jobs who have
 # been terminal for at least job_gc_threshold will be collected.
-nomad_job_gc_interval: "10m"
+nomad_job_gc_interval: "30s"
 # Specifies the minimum time a job must be in the terminal state before it is
 # eligible for garbage collection.
-nomad_job_gc_threshold: "4h"
+nomad_job_gc_threshold: "3m"
 # Specifies the minimum time an evaluation must be in the terminal state before
 # it is eligible for garbage collection.
 nomad_eval_gc_threshold: "1h"
