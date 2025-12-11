@@ -68,6 +68,7 @@ jobs:
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
       - fdio:class=builder
+      - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
 
