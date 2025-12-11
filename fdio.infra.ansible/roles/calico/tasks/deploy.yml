@@ -38,7 +38,7 @@
     state: "{{ calico_vpp_state }}"
     src: "/tmp/{{ item }}"
   loop:
-    - "calico-vpp.yaml"
+    - "calico-vpp-multinet.yaml"
   when:
     - calico_sut is defined
   tags:
