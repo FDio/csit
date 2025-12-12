@@ -142,6 +142,19 @@ test-sets:
     tests:
       - vhost-lg
 
+  2n-zn2-vpp-cov-gso-00:
+    framesize: [128000, ]
+    core: [1, 2, 4]
+    tests:
+      - gso-tap-sm:
+          infra:
+            25ge2p1xxv710:
+              - tap
+      - gso-vhost-sm:
+          infra:
+            25ge2p1xxv710:
+              - vhost
+
 
   2n-zn2-vpp-iterative:
     infra:
