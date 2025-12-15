@@ -68,7 +68,7 @@ def select_coverage_data(
     df = df[
         (df.job.str.endswith(topo_arch)) &
         (df.test_id.str.contains(
-            f"^.*\.{selected['area']}\..*{nic}.*{drv_str}.*$",
+            f"^.*[.]{selected['area']}[.].*{nic}.*{drv_str}.*$",
             regex=True
         ))
     ]
