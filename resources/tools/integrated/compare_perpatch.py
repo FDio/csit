@@ -97,7 +97,7 @@ def main() -> int:
         )
         print(f"Value-ordered MRR values for parent build: {parent_values}")
         print(f"Value-ordered MRR values for current build: {current_values}")
-        max_avg = max(current_stats.avg - parent_stats.avg)
+        max_avg = max(abs(current_stats.avg), abs(parent_stats.avg))
         avg_diff = 0.0
         if max_avg:
             avg_diff = (current_stats.avg - parent_stats.avg) / max_avg
