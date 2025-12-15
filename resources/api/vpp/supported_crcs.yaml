@@ -380,7 +380,7 @@
     sw_interface_set_vxlan_bypass: '0x65247409'  # dev
     sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
 
-    # vnet/devices/tap/tapv2.api
+    # plugins/tap/tapv2.api
     sw_interface_tap_v2_details: '0x1e2b2a47'  # dev
     sw_interface_tap_v2_dump: '0xf9e6675e'  # dev
 
@@ -393,7 +393,7 @@
     sw_member_interface_dump: '0xf9e6675e'  # perf
     # ^^ see bond_*
 
-    # vnet/devices/tap/tapv2.api
+    # plugins/tap/tapv2.api
     tap_create_v3: '0x3f3fd1df'  # dev
     tap_create_v3_reply: '0x5383d31f'  # dev
 
