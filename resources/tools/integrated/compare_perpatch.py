@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2025 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -97,7 +97,10 @@ def main() -> int:
         )
         print(f"Value-ordered MRR values for parent build: {parent_values}")
         print(f"Value-ordered MRR values for current build: {current_values}")
-        avg_diff = (current_stats.avg - parent_stats.avg) / parent_stats.avg
+        max_avg = max(current_stats.avg - parent_stats.avg)
+        avg_diff = 0.0
+        if max_avg:
+            avg_diff = (current_stats.avg - parent_stats.avg) / max_avg
         print(f"Difference of averages relative to parent: {100 * avg_diff}%")
         print(f"Jumpavg representation of parent group: {parent_stats}")
         print(f"Jumpavg representation of current group: {current_stats}")
