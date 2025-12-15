@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify workflow start
-        uses: lfit/gerrit-review-action@v0.4
+        uses: lfit/gerrit-review-action@v0.9
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
@@ -104,7 +104,7 @@ jobs:
 
       - name: Archive Logs
         if: ${{ always() }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ github.run_number }}
           path: archives/
@@ -119,7 +119,7 @@ jobs:
     steps:
       - uses: technote-space/workflow-conclusion-action@v3
       - name: Set vote
-        uses: lfit/gerrit-review-action@v0.4
+        uses: lfit/gerrit-review-action@v0.9
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}

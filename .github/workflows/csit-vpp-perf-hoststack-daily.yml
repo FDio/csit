@@ -5,7 +5,7 @@ name: csit-vpp-perf-hoststack-daily
 on:
   # Runs periodically
   schedule:
-    - cron:  "30 22 * * 0-4"
+    - cron: "30 22 * * 0-4"
 
 jobs:
   csit-vpp-perf-hoststack-daily:
@@ -18,7 +18,7 @@ jobs:
       - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
-    timeout-minutes: 3600
+    timeout-minutes: 1440
 
     strategy:
       matrix:
