@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify workflow start
-        uses: lfit/gerrit-review-action@v0.4
+        uses: lfit/gerrit-review-action@v0.9
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
@@ -91,7 +91,7 @@ jobs:
       - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
-    timeout-minutes: 3600
+    timeout-minutes: 1440
 
     strategy:
       matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}

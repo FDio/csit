@@ -5,7 +5,7 @@ name: csit-dpdk-perf-mrr-weekly
 on:
   # Runs periodically
   schedule:
-    - cron:  "0 0 * * 6"
+    - cron: "0 0 * * 6"
 
 jobs:
   csit-dpdk-perf-mrr-weekly:
@@ -18,7 +18,7 @@ jobs:
       - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
-    timeout-minutes: 3600
+    timeout-minutes: 1440
 
     strategy:
       matrix:
