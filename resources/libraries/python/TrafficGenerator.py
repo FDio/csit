@@ -1461,10 +1461,7 @@ class OptimizedSearch:
         preceding_targets: int = 2,
         search_duration_max: float = 1200.0,
         ppta: int = 1,
-        # TODO: Robot Framework v7.3.2 is smart enough to check type hints,
-        # but too stupid to distinguish Callabe arg list from empty Union.
-        # Apply the correct Optional[Capable[[], None]] if Robot gets smarter.
-        resetter: Optional[Callable[..., None]] = None,
+        resetter: Optional[Callable[[], None]] = None,
         traffic_directions: int = 2,
         transaction_duration: float = 0.0,
         transaction_scale: int = 0,
