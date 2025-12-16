@@ -97,7 +97,7 @@ jobs:
           gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
           gerrit-project: vpp
           gerrit-url: ${{ vars.GERRIT_URL }}
-          fetch-depth: "0"
+          fetch-depth: 0
           delay: "10s"
           ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
@@ -106,7 +106,6 @@ jobs:
         with:
           path: csit
           ref: master
-          repository: https://gerrit.fd.io/r/csit
           fetch-depth: 0
 
       - name: Setup Environment
