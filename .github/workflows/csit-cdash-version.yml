@@ -1,5 +1,5 @@
 ---
-name: csit-terraform-aws-eb-version
+name: csit-cdash-version
 
 # yamllint disable-line rule:truthy
 on:
@@ -17,11 +17,11 @@ jobs:
       - fdio:os=ubuntu2404
 
     env:
-      JOB_NAME: csit-terraform-aws-eb-version-verify
+      JOB_NAME: ${{ github.workflow }}-${{ github.job }}
       BUILD_ID: ${{ github.run_number }}
 
     steps:
-      - name: Checkout CSIT repository with the change
+      - name: GitHub Checkout CSIT
         uses: actions/checkout@v6
         with:
           ref: master
@@ -35,7 +35,7 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
         with:
-          bootstrap_script: bootstrap_aws_eb_version_verify.sh
+          bootstrap_script: bootstrap_aws_eb_version_${{ github.job }}.sh
           with_oper: false
 
   deploy:
@@ -50,11 +50,11 @@ jobs:
       - fdio:os=ubuntu2404
 
     env:
-      JOB_NAME: csit-terraform-aws-eb-version-deploy
+      JOB_NAME: ${{ github.workflow }}-${{ github.job }}
       BUILD_ID: ${{ github.run_number }}
 
     steps:
-      - name: Checkout CSIT repository with the change
+      - name: GitHub Checkout CSIT
         uses: actions/checkout@v6
         with:
           ref: master
@@ -68,5 +68,5 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
         with:
-          bootstrap_script: bootstrap_aws_eb_version_deploy.sh
+          bootstrap_script: bootstrap_aws_eb_version_${{ github.job }}.sh
           with_oper: false
