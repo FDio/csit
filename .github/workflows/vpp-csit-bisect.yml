@@ -13,10 +13,6 @@ on:
         description: "VPP Branch that change is against"
         required: true
         type: string
-      GERRIT_PROJECT:
-        description: "VPP Project in Gerrit"
-        required: true
-        type: string
       GERRIT_REFSPEC:
         description: "VPP Gerrit refspec of change"
         required: true
@@ -110,6 +106,7 @@ jobs:
         with:
           path: csit
           ref: master
+          repository: https://gerrit.fd.io/r/csit
           fetch-depth: 0
 
       - name: Setup Environment
@@ -118,9 +115,6 @@ jobs:
 
       - name: Prepare Bisect
         run: |
-          pwd
-          ls -al
-
           pushd csit
           if [[ -n "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}" ]]; then
               git fetch --depth=1 https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"

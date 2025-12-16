@@ -39,7 +39,7 @@ jobs:
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
 
     steps:
-      - name: Checkout CSIT repository with the change
+      - name: Git Checkout CSIT
         uses: actions/checkout@v6
         with:
           ref: master

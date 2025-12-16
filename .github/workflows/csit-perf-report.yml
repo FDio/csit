@@ -100,7 +100,7 @@ jobs:
       GERRIT_BRANCH: ${{ github.event.inputs.branch }}
 
     steps:
-      - name: Checkout CSIT repository with the change
+      - name: Git Checkout CSIT
         uses: actions/checkout@v6
         with:
           ref: ${{ github.event.inputs.branch }}
