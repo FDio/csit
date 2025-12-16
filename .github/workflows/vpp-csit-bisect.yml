@@ -1,0 +1,142 @@
+---
+name: vpp-csit-bisect
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      CSIT_GERRIT_REFSPEC:
+        description: "CSIT Gerrit refspec of change"
+        required: true
+        type: string
+      GERRIT_BRANCH:
+        description: "VPP Branch that change is against"
+        required: true
+        type: string
+      GERRIT_PROJECT:
+        description: "VPP Project in Gerrit"
+        required: true
+        type: string
+      GERRIT_REFSPEC:
+        description: "VPP Gerrit refspec of change"
+        required: true
+        type: string
+      GERRIT_COMMENT:
+        description: "Full command line from Gerrit comment"
+        required: true
+        type: string
+      node:
+        description: Performance testbed node.
+        required: true
+        type: choice
+        options:
+          - 2n-aws
+          - 2n-c6in
+          - 2n-c7g
+          - 2n-emr
+          - 2n-grc
+          - 2n-icx
+          - 2n-spr
+          - 2n-zn2
+          - 3n-alt
+          - 3n-emr
+          - 3n-icx
+          - 3n-icxd
+          - 3n-oct
+          - 3n-snr
+          - 3na-spr
+          - 3nb-spr
+        default: 2n-emr
+      suite_gen_params:
+        description: Parameters for the suite generator.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on:
+      - ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - name: Prepare node selection matrix
+        id: set-matrix
+        uses: fdio/csit/.github/actions/csit-report-dispatch@89e40adc504ab4f2b4ae15a91e26b2f2c754cbf8
+        with:
+          node: ${{ github.event.inputs.node }}
+
+  vpp-csit-bisect:
+    needs: dispatch
+    name: vpp-csit-bisect-master-${{ matrix.node }}
+    runs-on:
+      - self-hosted
+      - nomad
+      - fdio:arch=${{ matrix.executor_arch }}
+      - fdio:class=builder
+      - fdio:size=csit
+      - fdio:namespace=prod
+      - fdio:os=${{ matrix.os }}
+    timeout-minutes: 1440
+
+    strategy:
+      matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
+
+    env:
+      BUILD_TAG: vpp-csit-bisect-master-${{ matrix.node }}-${{ github.run_id }}
+      JOB_NAME: vpp-csit-bisect-master-${{ matrix.node }}
+      GERRIT_BRANCH: ${{ github.event.inputs.GERRIT_BRANCH }}
+      GERRIT_EVENT_TYPE: comment-added
+      GERRIT_EVENT_COMMENT_TEXT: ${{ github.event.inputs.GERRIT_COMMENT }}
+
+    steps:
+      - name: Gerrit Checkout CSIT
+        # yamllint disable-line rule:line-length
+        uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
+        with:
+          gerrit-refspec: ${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}
+          gerrit-project: csit
+          gerrit-url: ${{ vars.GERRIT_URL }}
+          fetch-depth: "0"
+          delay: "10s"
+          ref: refs/heads/master
+
+      - name: Gerrit Checkout VPP
+        # yamllint disable-line rule:line-length
+        uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
+        with:
+          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          gerrit-project: vpp
+          gerrit-url: ${{ vars.GERRIT_URL }}
+          fetch-depth: "0"
+          delay: "10s"
+          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
+
+      - name: Setup Environment
+        # yamllint disable-line rule:line-length
+        uses: fdio/.github/.github/actions/setup-executor-env@b728d1589228e2891a4241a1bba362d76895c225
+
+      - name: Prepare Bisect
+        run: |
+          pwd
+          ls -al
+
+#      - name: Run CSIT Bootstrap
+#        # yamllint disable-line rule:line-length
+#        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
+#        with:
+#          bootstrap_script: bisect.sh
+#          with_oper: true
+#
+#      - name: Archive Logs
+#        if: ${{ always() }}
+#        uses: actions/upload-artifact@v6
+#        with:
+#          name: ${{ github.job }}-${{ github.run_number }}
+#          path: archives/
+#          if-no-files-found: ignore
+#

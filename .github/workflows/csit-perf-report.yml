@@ -1,5 +1,5 @@
 ---
-name: csit-report-dispatch
+name: csit-perf-report
 
 # yamllint disable-line rule:truthy
 on:

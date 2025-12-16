@@ -128,4 +128,4 @@ jobs:
           gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
           gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
           vote-type: ${{ env.WORKFLOW_CONCLUSION }}
-          comment-only: true
+          comment-only: false
