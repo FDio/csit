@@ -94,17 +94,6 @@ jobs:
       GERRIT_EVENT_COMMENT_TEXT: ${{ github.event.inputs.GERRIT_COMMENT }}
 
     steps:
-      - name: Gerrit Checkout CSIT
-        # yamllint disable-line rule:line-length
-        uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
-        with:
-          gerrit-refspec: ${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}
-          gerrit-project: csit
-          gerrit-url: ${{ vars.GERRIT_URL }}
-          fetch-depth: "0"
-          delay: "10s"
-          ref: refs/heads/master
-
       - name: Gerrit Checkout VPP
         # yamllint disable-line rule:line-length
         uses: lfit/checkout-gerrit-change-action@54d751e8bd167bc91f7d665dabe33fae87aaaa63 # v0.9
@@ -116,6 +105,13 @@ jobs:
           delay: "10s"
           ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
 
+      - name: Git Checkout CSIT
+        uses: actions/checkout@v6
+        with:
+          path: csit
+          ref: master
+          fetch-depth: 0
+
       - name: Setup Environment
         # yamllint disable-line rule:line-length
         uses: fdio/.github/.github/actions/setup-executor-env@b728d1589228e2891a4241a1bba362d76895c225
@@ -124,6 +120,15 @@ jobs:
         run: |
           pwd
           ls -al
+
+          pushd csit
+          if [[ -n "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}" ]]; then
+              git fetch --depth=1 https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"
+              git checkout FETCH_HEAD
+          else
+              git checkout HEAD
+          fi
+          popd
 
 #      - name: Run CSIT Bootstrap
 #        # yamllint disable-line rule:line-length
