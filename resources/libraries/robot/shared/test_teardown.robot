@@ -218,6 +218,16 @@
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
 
+| Additional Test Tear Down Action For SFDP
+| | [Documentation]
+| | ... | FIXME
+| |
+| | ... | Additional teardown for tests which uses packet trace.
+| |
+| | Log Sfdp Tenants | ${nodes}[DUT1]
+| | Run Keyword If Test Failed
+| | ... | Log Sfdp Sessions | ${nodes}[DUT1]
+
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
 | | ... | Additional teardown for tests which uses SRv6.
