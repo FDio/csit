@@ -77,7 +77,8 @@ jobs:
       - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
-      - ${{github.run_id}}
+      - ${{ github.run_id }}
+      - ${{ github.job }}
     timeout-minutes: 1440
 
     strategy:
