@@ -15,6 +15,7 @@ jobs:
       - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=ubuntu2404
+      - fdio:workflow=${{ github.run_id }}
 
     env:
       JOB_NAME: ${{ github.workflow }}-${{ github.job }}
@@ -48,6 +49,7 @@ jobs:
       - fdio:size=csit
       - fdio:namespace=prod
       - fdio:os=ubuntu2404
+      - fdio:workflow=${{ github.run_id }}
 
     env:
       JOB_NAME: ${{ github.workflow }}-${{ github.job }}
