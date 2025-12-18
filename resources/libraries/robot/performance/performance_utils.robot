@@ -588,7 +588,7 @@
 | | ... | ${traffic_directions}=${1} | ${extended_debug}=${extended_debug}
 | | ... | ${export_mrr_unit}=${Empty}
 | |
-| | Set Test Variable | ${extended_debug}
+| | Set Test Variable | ${extended_debug} | ${True}
 | | Set Test Variable | ${rate}
 | | Set Test Variable | ${traffic_directions}
 | |

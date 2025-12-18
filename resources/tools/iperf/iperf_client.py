@@ -105,7 +105,7 @@ def simple_burst(args):
                 print(if1_process[i].pid)
         else:
             for i in range(0, args.instances):
-                if1, _ = if1_process[i].communicate(timeout=args.duration + 60)
+                if1, _ = if1_process[i].communicate(timeout=args.duration + 240)
                 if1_results.append(json.loads(if1))
                 if1_results[i][u"end"][u"command"] = cmd
                 print(f"{json.dumps(if1_results[i]['end'], indent = 4)}")
