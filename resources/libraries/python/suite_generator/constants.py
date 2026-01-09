@@ -160,7 +160,7 @@ DRIVERS_NOT_IN_NAME = (
 NIC_DRIVER_TO_PLUGINS = {
     "vfio-pci": "dpdk_plugin.so",
     "oct-vfio-pci": "dev_octeon_plugin.so",
-    "avf": "dev_iavf_plugin.so",
+    "avf": "dev_iavf_plugin.so | dev_iavf_driver.so",
     "rdma-core": "rdma_plugin.so",
     "mlx5_core": "dpdk_plugin.so",
     "af_xdp": "af_xdp_plugin.so"
