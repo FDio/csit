@@ -159,10 +159,11 @@ DRIVERS_NOT_IN_NAME = (
 # Each driver needs different plugin to work.
 NIC_DRIVER_TO_PLUGINS = {
     "vfio-pci": "dpdk_plugin.so",
-    "oct-vfio-pci": "dev_octeon_plugin.so",
-    "avf": "dev_iavf_plugin.so",
-    "rdma-core": "rdma_plugin.so",
     "mlx5_core": "dpdk_plugin.so",
+    "avf": "dev_iavf_plugin.so | iavf_driver.so",
+    # Avf was migrated pre-2602, others are not migrated yet.
+    "oct-vfio-pci": "dev_octeon_plugin.so",
+    "rdma-core": "rdma_plugin.so",
     "af_xdp": "af_xdp_plugin.so"
 }
 
