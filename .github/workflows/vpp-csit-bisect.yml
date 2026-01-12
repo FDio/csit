@@ -124,17 +124,17 @@ jobs:
           fi
           popd
 
-#      - name: Run CSIT Bootstrap
-#        # yamllint disable-line rule:line-length
-#        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
-#        with:
-#          bootstrap_script: bisect.sh
-#          with_oper: true
-#
-#      - name: Archive Logs
-#        if: ${{ always() }}
-#        uses: actions/upload-artifact@v6
-#        with:
-#          name: ${{ github.job }}-${{ github.run_number }}
-#          path: archives/
-#          if-no-files-found: ignore
+      - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
+        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
+        with:
+          bootstrap_script: bisect.sh
+          with_oper: true
+
+      - name: Archive Logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ github.job }}-${{ github.run_number }}
+          path: archives/
+          if-no-files-found: ignore
