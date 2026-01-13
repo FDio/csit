@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -40,8 +40,8 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 common_dirs || die
-source "${BASH_FUNCTION_DIR}/branch.sh" || die "Source failed."
-checkout_csit_for_vpp "${GERRIT_BRANCH}" || die
+#source "${BASH_FUNCTION_DIR}/branch.sh" || die "Source failed."
+#checkout_csit_for_vpp "${GERRIT_BRANCH}" || die
 cmd="${1}"
 shift
 source "${BASH_ENTRY_DIR}/${cmd}" "$@"
