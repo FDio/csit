@@ -5,7 +5,7 @@ name: csit-trex-perf-ndrpdr-weekly
 on:
   # Runs periodically
   schedule:
-    - cron: "0 0 * * 6"
+    - cron: "30 21 * * 5"
 
 jobs:
   csit-trex-perf-ndrpdr-weekly:

@@ -5,7 +5,7 @@ name: csit-vpp-perf-hoststack-daily
 on:
   # Runs periodically
   schedule:
-    - cron: "30 22 * * 0-4"
+    - cron: "0 20 * * 0-4"
 
 jobs:
   csit-vpp-perf-hoststack-daily:

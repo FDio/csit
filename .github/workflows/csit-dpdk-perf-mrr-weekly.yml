@@ -5,7 +5,7 @@ name: csit-dpdk-perf-mrr-weekly
 on:
   # Runs periodically
   schedule:
-    - cron: "0 0 * * 6"
+    - cron: "0 21 * * 5"
 
 jobs:
   csit-dpdk-perf-mrr-weekly:
