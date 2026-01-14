@@ -97,6 +97,7 @@ jobs:
           repository: FDio/vpp
           ref: master
           fetch-depth: 0
+          fetch-tags: 'true'
 
       - name: Git Checkout CSIT
         uses: actions/checkout@v6
@@ -104,6 +105,7 @@ jobs:
           path: vpp/csit
           ref: master
           fetch-depth: 0
+          fetch-tags: 'true'
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
