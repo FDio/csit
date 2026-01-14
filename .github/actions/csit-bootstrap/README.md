@@ -17,10 +17,11 @@ An example workflow step using this action:
 
 <!-- markdownlint-disable MD013 -->
 
-| Variable Name    | Description                            |
-| ---------------- | -------------------------------------- |
-| bootstrap_script | CSIT bootstrap script to source.       |
-| with_oper        | Use oper branch to checkout the code.  |
+| Variable Name    | Description                                                   |
+| ---------------- | ------------------------------------------------------------- |
+| bootstrap_script | CSIT bootstrap script to source.                              |
+| path             | CSIT repository path (usefull in case of nested clone).       |
+| with_oper        | Use oper branch to checkout the code.                         |
 
 <!-- markdownlint-enable MD013 -->
 
