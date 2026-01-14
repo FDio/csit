@@ -112,6 +112,8 @@ jobs:
       - name: Prepare Bisect
         run: |
           pushd vpp
+          git fetch --depth=1 https://gerrit.fd.io/r/vpp "${{ github.event.inputs.GERRIT_REFSPEC }}"
+          git checkout FETCH_HEAD
           pushd csit
           if [[ -n "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}" ]]; then
               git fetch --depth=1 https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"
@@ -119,9 +121,6 @@ jobs:
           else
               git checkout HEAD
           fi
-          popd
-          git fetch --depth=1 https://gerrit.fd.io/r/vpp "${{ github.event.inputs.GERRIT_REFSPEC }}"
-          git checkout FETCH_HEAD
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
