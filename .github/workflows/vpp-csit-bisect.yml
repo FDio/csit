@@ -123,11 +123,14 @@ jobs:
           fi
 
       - name: Run CSIT Bootstrap
-        # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
-        with:
-          bootstrap_script: bisect.sh
-          with_oper: true
+        env:
+          BRANCH_ID: oper
+          GERRIT_BRANCH: master
+          GIT_URL: "https://github.com/FDio"
+        run: |
+          csit_entry_dir="./resources/libraries/bash/entry"
+          source ${csit_entry_dir}/with_oper_for_vpp.sh "bisect.sh"
+        working-directory: vpp/csit
 
       - name: Archive Logs
         if: ${{ always() }}
