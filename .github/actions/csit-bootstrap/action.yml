@@ -8,6 +8,11 @@ inputs:
     description: "CSIT bootstrap shell script to source."
     required: true
     type: string
+  path:
+    description: "CSIT repository path (usefull in case of nested clone)."
+    required: false
+    type: string
+    default: "."
   with_oper:
     description: "Use operational branch to checkout the code."
     required: false
@@ -25,6 +30,7 @@ runs:
         GERRIT_BRANCH: master
         GIT_URL: "https://github.com/FDio"
       run: |
+        pushd ${{ inputs.path }}
         csit_entry_dir="./resources/libraries/bash/entry"
         if [[ "${{ inputs.with_oper }}" == "true" ]]; then
             source ${csit_entry_dir}/with_oper_for_vpp.sh "${{ inputs.bootstrap_script }}"
