@@ -94,6 +94,7 @@ jobs:
       - name: Git Checkout VPP
         uses: actions/checkout@v6
         with:
+          path: vpp
           repository: FDio/vpp
           ref: master
           fetch-depth: 0
@@ -114,11 +115,11 @@ jobs:
       - name: Prepare Bisect
         run: |
           pushd vpp
-          git fetch --depth=1 https://gerrit.fd.io/r/vpp "${{ github.event.inputs.GERRIT_REFSPEC }}"
+          git fetch https://gerrit.fd.io/r/vpp "${{ github.event.inputs.GERRIT_REFSPEC }}"
           git checkout FETCH_HEAD
           pushd csit
           if [[ -n "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}" ]]; then
-              git fetch --depth=1 https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"
+              git fetch https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"
               git checkout FETCH_HEAD
           else
               git checkout HEAD
