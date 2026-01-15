@@ -126,14 +126,11 @@ jobs:
           fi
 
       - name: Run CSIT Bootstrap
-        env:
-          BRANCH_ID: oper
-          GERRIT_BRANCH: master
-          GIT_URL: "https://github.com/FDio"
-        run: |
-          csit_entry_dir="./resources/libraries/bash/entry"
-          source ${csit_entry_dir}/with_oper_for_vpp.sh "bisect.sh"
-        working-directory: vpp/csit
+        uses: fdio/csit/.github/actions/csit-bootstrap@6e2e8dd6eae1a9297bfcc3a1630be181191a0553
+        with:
+          bootstrap_script: bootstrap_verify_perf.sh
+          path: vpp/csit
+          with_oper: true
 
       - name: Archive Logs
         if: ${{ always() }}
