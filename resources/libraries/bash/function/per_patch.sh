@@ -52,9 +52,11 @@ function build_vpp_ubuntu () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
+    df -h
     if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
-        make ${params} pkg-verify || die "VPP build failed."
+        postpars="VPP_EXTRA_CMAKE_ARGS='-v -DVPP_MARCH_VARIANT_HSW=OFF -DVPP_MARCH_VARIANT_SKX=OFF'"
+        params="--jobs=1 UNATTENDED=y"
+        make ${params} pkg-verify ${postpars} || die "VPP build failed."
     else
         pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
         # Old VPP source does not recognize new ARM platforms.
