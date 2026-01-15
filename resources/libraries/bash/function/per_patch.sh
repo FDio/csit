@@ -52,8 +52,9 @@ function build_vpp_ubuntu () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
+    df -h
     if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
+        params="--jobs=1 UNATTENDED=y VPP_EXTRA_CMAKE_ARGS='-v -DVPP_MARCH_VARIANT_HSW=OFF -DVPP_MARCH_VARIANT_SKX=OFF'"
         make ${params} pkg-verify || die "VPP build failed."
     else
         pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
