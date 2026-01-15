@@ -108,34 +108,37 @@ cd "${VPP_DIR}" || die
 git branch -D "earliest" "middle" "latest" || true
 
 # Save the current commit.
-git checkout -b "latest"
+git checkout -b "latest" || die
 # Save the lower bound commit.
-git checkout -b "earliest"
-git reset --hard "${GIT_BISECT_FROM}"
+git checkout -b "earliest" || die
+git reset --hard "${GIT_BISECT_FROM}" || die
 
 # This is the place for custom code manipulating local git history.
 
-#git checkout -b "alter"
+#git checkout -b "alter" || die
 #...
-#git checkout "latest"
-#git rebase "alter" || git rebase --skip
-#git branch -D "alter"
+#git checkout "latest" || die
+#git rebase "alter" || git rebase --skip || true
+#git branch -D "alter" || true
 
 git bisect start || die
 # TODO: Can we add a trap for "git bisect reset" or even "deactivate",
 # without affecting the inner trap for unreserve and cleanup?
-git checkout "latest"
+git checkout "latest" || die
 git status || die
+git log -2 --oneline || die
 git describe || die
 git bisect new || die
 # Performing first iteration early to avoid testing or even building.
 git checkout "earliest" || die "Failed to checkout earliest commit."
 git status || die
+git log -2 --oneline || die
 git describe || die
 # The first iteration.
 git bisect old | tee "git.log" || die "Invalid bisect interval?"
 git checkout -b "middle" || die "Failed to create branch: middle"
 git status || die
+git log -2 --oneline || die
 git describe || die
 if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
     echo "Building and testing initial bounds."
@@ -149,6 +152,7 @@ build_vpp_ubuntu "LATEST" || die
 set_aside_build_artifacts "latest" || die
 git checkout "earliest" || die "Failed to checkout earliest commit."
 git status || die
+git log -2 --oneline || die
 git describe || die
 build_vpp_ubuntu "EARLIEST" || die
 set_aside_build_artifacts "earliest" || die
@@ -172,7 +176,7 @@ move_test_results "csit_earliest" || die
 ln -s -T "csit_earliest" "csit_early" || die
 
 # Explicit cleanup, in case the previous test left the testbed in a bad shape.
-ansible_playbook "cleanup"
+ansible_playbook "cleanup" || die
 
 select_build "build_latest" || die
 check_download_dir || die
@@ -184,4 +188,4 @@ untrap_and_unreserve_testbed || die
 # See function documentation for the logic in the loop.
 main_bisect_loop || die
 # Delete symlinks to prevent duplicate archiving.
-rm -vrf "csit_early" "csit_late" "csit_mid"
+rm -vrf "csit_early" "csit_late" "csit_mid" || true
