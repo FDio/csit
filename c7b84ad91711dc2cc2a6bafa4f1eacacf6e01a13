@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14cd49aa_4c9c1d33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-01-16T09:02:12Z",
+      "side": 1,
+      "message": "gha-run csit-calicovpp-2n-emr perftest mrrANDdrv_vfio_pciAND1cAND64b #2n-emr-vpp-cov-ip4-00",
+      "revId": "c7b84ad91711dc2cc2a6bafa4f1eacacf6e01a13",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
