@@ -342,6 +342,33 @@ function deactivate_docker_topology () {
 }
 
 
+function deploy_topology () {
+
+    # Deploy topology via ansible for the tests that requires ansible
+    # provisioning.
+    #
+    # Variables read:
+    # - TEST_CODE - The test selection string from environment or argument.
+    # Functions called:
+    # - die - Print to stderr and exit.
+    # - ansible_playbook - Perform an action using ansible, see ansible.sh
+
+    set -exuo pipefail
+
+    case "${TEST_CODE}" in
+        *"calicovpp"*"2n-spr")
+            ansible_playbook "calico"
+            ;;
+        *"calicovpp"*)
+            die "Unsupported test code combination: ${TEST_CODE}!"
+            ;;
+        *)
+            # Nothing to deploy
+            ;;
+    esac
+}
+
+
 function die () {
 
     # Print the message to standard error end exit with error code specified
