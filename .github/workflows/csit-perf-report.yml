@@ -49,8 +49,8 @@ on:
         required: true
         type: choice
         options:
-          - rls2510
-        default: rls2510
+          - rls2602
+        default: rls2602
       suite_gen_params:
         description: Parameters for the suite generator.
         required: true
@@ -78,7 +78,7 @@ jobs:
   csit-perf-report:
     needs: dispatch
     # yamllint disable-line rule:line-length
-    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' }}-${{ matrix.node }}
+    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
     runs-on:
       - self-hosted
       - nomad
@@ -97,7 +97,7 @@ jobs:
       # yamllint disable-line rule:line-length
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
       # yamllint disable-line rule:line-length
-      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2510' && '2510' }}-${{ matrix.node }}
+      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.branch }}
 
     steps:

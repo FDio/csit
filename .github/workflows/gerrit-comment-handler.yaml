@@ -99,9 +99,9 @@ jobs:
 
     env:
       # yamllint disable-line rule:line-length
-      BUILD_TAG: csit-${{ matrix.dut }}-perf-verify-${{ github.event.inputs.GERRIT_BRANCH == 'rls2510' && '2510' || github.event.inputs.GERRIT_BRANCH == 'master' && 'master' }}-${{ matrix.node }}-${{ github.run_id }}
+      BUILD_TAG: csit-${{ matrix.dut }}-perf-verify-${{ github.event.inputs.GERRIT_BRANCH == 'rls2602' && '2602' || github.event.inputs.GERRIT_BRANCH == 'master' && 'master' }}-${{ matrix.node }}-${{ github.run_id }}
       # yamllint disable-line rule:line-length
-      JOB_NAME: csit-${{ matrix.dut }}-perf-verify-${{ github.event.inputs.GERRIT_BRANCH == 'rls2510' && '2510' || github.event.inputs.GERRIT_BRANCH == 'master' && 'master' }}-${{ matrix.node }}
+      JOB_NAME: csit-${{ matrix.dut }}-perf-verify-${{ github.event.inputs.GERRIT_BRANCH == 'rls2602' && '2602' || github.event.inputs.GERRIT_BRANCH == 'master' && 'master' }}-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.GERRIT_BRANCH }}
       GERRIT_EVENT_TYPE: comment-added
       GERRIT_EVENT_COMMENT_TEXT: ${{ needs.dispatch.outputs.params }}
