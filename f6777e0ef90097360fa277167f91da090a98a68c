@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea10e379_8f822bc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-01-16T08:57:24Z",
+      "side": 1,
+      "message": "gha-run csit-calicovpp-2n-spr perftest mrrANDdrv_vfio_pciAND1cAND64b #2n-spr-vpp-cov-ip4-00",
+      "revId": "f6777e0ef90097360fa277167f91da090a98a68c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
