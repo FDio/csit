@@ -1,5 +1,5 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
-# Copyright (c) 2025 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
+# Copyright (c) 2026 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -40,6 +40,11 @@ function gather_build () {
 
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
     case "${TEST_CODE}" in
+        *"calicovpp"*)
+            DUT="calicovpp"
+            source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
+            gather_calicovpp || die "The function should have died on error."
+            ;;
         *"vpp"*"3n-oct" | *"vpp"*"2n-grc" | *"vpp"*"3n-alt")
             DUT="vpp"
             source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
