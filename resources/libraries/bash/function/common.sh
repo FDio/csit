@@ -1,5 +1,5 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
-# Copyright (c) 2025 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
+# Copyright (c) 2026 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -597,10 +597,10 @@ function get_test_tag_string () {
         case "${TEST_CODE}" in
             # Order matters, bisect job contains "perf" in its name.
             *"bisect"*)
-                trigger="bisecttest"
+                trigger="bisect"
                 ;;
             *"perf"*)
-                trigger="perftest"
+                trigger="perf"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
