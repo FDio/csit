@@ -597,10 +597,10 @@ function get_test_tag_string () {
         case "${TEST_CODE}" in
             # Order matters, bisect job contains "perf" in its name.
             *"bisect"*)
-                trigger="bisecttest"
+                trigger="bisect"
                 ;;
             *"perf"*)
-                trigger="perftest"
+                trigger="perf"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
