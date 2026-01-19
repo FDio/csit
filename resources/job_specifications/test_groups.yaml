@@ -237,11 +237,74 @@ test-groups:
   nat44-udir-sm:
     - ethip4udp-nat44ed-h65536-p63-s4128768-udir
   nat44-ip4base-cps-sm:
+
+    - ethip4tcp-ip4base-h1024-p63-s64512-cps
+    - ethip4tcp-sfdp-ip4base-h1024-p63-s64512-cps
+    - ethip4tcp-sfdptcp-ip4base-h1024-p63-s64512-cps
+
+    - ethip4tcp-ip4base-h4096-p63-s258048-cps
+    - ethip4tcp-sfdp-ip4base-h4096-p63-s258048-cps
+    - ethip4tcp-sfdptcp-ip4base-h4096-p63-s258048-cps
+
+    - ethip4tcp-ip4base-h16384-p63-s1032192-cps
+    - ethip4tcp-sfdp-ip4base-h16384-p63-s1032192-cps
+    - ethip4tcp-sfdptcp-ip4base-h16384-p63-s1032192-cps
+
     - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+    - ethip4tcp-sfdp-ip4base-h65536-p63-s4128768-cps
+    - ethip4tcp-sfdptcp-ip4base-h65536-p63-s4128768-cps
+
+    - ethip4udp-ip4base-h1024-p63-s64512-cps
+    - ethip4udp-sfdp-ip4base-h1024-p63-s64512-cps
+    - ethip4udp-sfdptcp-ip4base-h1024-p63-s64512-cps
+
+    - ethip4udp-ip4base-h4096-p63-s258048-cps
+    - ethip4udp-sfdp-ip4base-h4096-p63-s258048-cps
+    - ethip4udp-sfdptcp-ip4base-h4096-p63-s258048-cps
+
+    - ethip4udp-ip4base-h16384-p63-s1032192-cps
+    - ethip4udp-sfdp-ip4base-h16384-p63-s1032192-cps
+    - ethip4udp-sfdptcp-ip4base-h16384-p63-s1032192-cps
+
     - ethip4udp-ip4base-h65536-p63-s4128768-cps
+    - ethip4udp-sfdp-ip4base-h65536-p63-s4128768-cps
+    - ethip4udp-sfdptcp-ip4base-h65536-p63-s4128768-cps
+
   nat44-ip4base-tput-sm:
+
+    - ethip4tcp-ip4base-h1024-p63-s64512-tput
+    - ethip4tcp-sfdp-ip4base-h1024-p63-s64512-tput
+    - ethip4tcp-sfdptcp-ip4base-h1024-p63-s64512-tput
+
+    - ethip4tcp-ip4base-h4096-p63-s258048-tput
+    - ethip4tcp-sfdp-ip4base-h4096-p63-s258048-tput
+    - ethip4tcp-sfdptcp-ip4base-h4096-p63-s258048-tput
+
+    - ethip4tcp-ip4base-h16384-p63-s1032192-tput
+    - ethip4tcp-sfdp-ip4base-h16384-p63-s1032192-tput
+    - ethip4tcp-sfdptcp-ip4base-h16384-p63-s1032192-tput
+
     - ethip4tcp-ip4base-h65536-p63-s4128768-tput
+    - ethip4tcp-sfdp-ip4base-h65536-p63-s4128768-tput
+    - ethip4tcp-sfdptcp-ip4base-h65536-p63-s4128768-tput
+
+    - ethip4udp-ip4base-h1024-p63-s64512-tput
+    - ethip4udp-sfdp-ip4base-h1024-p63-s64512-tput
+    - ethip4udp-sfdptcp-ip4base-h1024-p63-s64512-tput
+
+    - ethip4udp-ip4base-h4096-p63-s258048-tput
+    - ethip4udp-sfdp-ip4base-h4096-p63-s258048-tput
+    - ethip4udp-sfdptcp-ip4base-h4096-p63-s258048-tput
+
+    - ethip4udp-ip4base-h16384-p63-s1032192-tput
+    - ethip4udp-sfdp-ip4base-h16384-p63-s1032192-tput
+    - ethip4udp-sfdptcp-ip4base-h16384-p63-s1032192-tput
+
     - ethip4udp-ip4base-h65536-p63-s4128768-tput
+    - ethip4udp-sfdp-ip4base-h65536-p63-s4128768-tput
+    - ethip4udp-sfdptcp-ip4base-h65536-p63-s4128768-tput
+
+
 ## IPv4 Tunnels - Geneve
   geneve-md:
     - ethip4--ethip4udpgeneve-1tun-ip4base
