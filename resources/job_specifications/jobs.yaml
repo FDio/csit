@@ -1,9 +1,7 @@
 # See the documentation in
 # "resources/libraries/python/suite_generator/suite_generator.py"
 
-# TODO: UPDATE
-
-# Jenkins / github actions jobs:
+# GitHub Actions jobs:
 jobs:
 
   csit-dpdk-perf-mrr-weekly-master-{node-arch}:
@@ -26,10 +24,9 @@ jobs:
 
   csit-dpdk-perf-report-iterative-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
-    framesize:  # If the item is str or int, use 'core',
-                # if it is a dict, use the value.
+    framesize:
       - 64
       - 1518: [1, 2]
       - 9000: [1, ]
@@ -51,7 +48,7 @@ jobs:
 
   csit-dpdk-perf-report-coverage-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize:
       - 64
@@ -76,7 +73,7 @@ jobs:
   csit-dpdk-perf-verify-{stream}-{node-arch}:
     stream:
       - master
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize:
       - 64
@@ -108,7 +105,7 @@ jobs:
 
   csit-trex-perf-report-coverage-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize: [64, 1518, 9000, "imix"]
     core: ["-", ]
@@ -118,7 +115,7 @@ jobs:
 
   csit-trex-perf-report-iterative-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: ["-", ]
@@ -129,7 +126,7 @@ jobs:
   csit-trex-perf-verify-{stream}-{node-arch}:
     stream:
       - master
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: ["-", ]
@@ -201,7 +198,7 @@ jobs:
 
   csit-vpp-perf-report-coverage-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize:
       - 64
@@ -229,7 +226,7 @@ jobs:
 
   csit-vpp-perf-report-iterative-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: [1, 2, 4]
@@ -264,7 +261,7 @@ jobs:
   csit-vpp-perf-verify-{stream}-{node-arch}:
     stream:
       - master
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: [1, 2, 4]
