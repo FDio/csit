@@ -26,7 +26,7 @@ jobs:
 
   csit-dpdk-perf-report-iterative-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize:  # If the item is str or int, use 'core',
                 # if it is a dict, use the value.
@@ -51,7 +51,7 @@ jobs:
 
   csit-dpdk-perf-report-coverage-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize:
       - 64
@@ -76,7 +76,7 @@ jobs:
   csit-dpdk-perf-verify-{stream}-{node-arch}:
     stream:
       - master
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize:
       - 64
@@ -108,7 +108,7 @@ jobs:
 
   csit-trex-perf-report-coverage-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize: [64, 1518, 9000, "imix"]
     core: ["-", ]
@@ -118,7 +118,7 @@ jobs:
 
   csit-trex-perf-report-iterative-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: ["-", ]
@@ -129,7 +129,7 @@ jobs:
   csit-trex-perf-verify-{stream}-{node-arch}:
     stream:
       - master
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: ["-", ]
@@ -201,7 +201,7 @@ jobs:
 
   csit-vpp-perf-report-coverage-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: ndrpdr
     framesize:
       - 64
@@ -229,7 +229,7 @@ jobs:
 
   csit-vpp-perf-report-iterative-{stream}-{node-arch}:
     stream:
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: [1, 2, 4]
@@ -264,7 +264,7 @@ jobs:
   csit-vpp-perf-verify-{stream}-{node-arch}:
     stream:
       - master
-      - "2510"
+      - "2602"
     test-type: mrr
     framesize: [64, ]
     core: [1, 2, 4]
