@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3908b711_8bbfd903",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-01-19T14:18:05Z",
+      "side": 1,
+      "message": "Does not make things worse on Sandbox: https://jenkins.fd.io/sandbox/job/vpp-csit-verify-perf-master-ubuntu2404-x86_64-2n-icx/7/console\nHopefully will fix issue on GHA: https://github.com/FDio/vpp/actions/runs/21140186862/job/60791928076#step:4:462\n\n\nrecheck",
+      "revId": "ffc0fe11fe65484f747d91de8f43f0f204b83bcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
