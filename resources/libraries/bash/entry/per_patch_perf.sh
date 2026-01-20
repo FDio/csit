@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,6 +46,8 @@ check_prerequisites || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_vpp_dir || die
+# GHA starts with cwd at CSIT_DIR instead:
+cd "${VPP_DIR}"
 git status || die
 git describe || die
 build_vpp_ubuntu "CURRENT" || die
