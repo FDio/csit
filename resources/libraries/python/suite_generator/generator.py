@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -59,7 +59,7 @@ def _get_suite_type(tmpl_name: str) -> str:
             f"Processing of {tmpl_name} is not implemented.")
 
 
-def _find_test_tmpl(patern: str, test_tag: str) -> str:
+def _find_test_tmpl(pattern: str, test_tag: str) -> str:
     """Find the right test template based on the test tag.
 
     To speed up the search process:
@@ -69,15 +69,15 @@ def _find_test_tmpl(patern: str, test_tag: str) -> str:
     The test tag MUST be lowercase and it MUST be at the end of line, in the
     best case, it is the only tag on the line.
 
-    :param patern: The patern defining the path to the file used by glob.
+    :param pattern: The pattern defining the path to the file used by glob.
     :param: test_tag: The test tag as it is defined in the test template.
-    :type patern: str
+    :type pattern: str
     :type test_tag: str
     :returns: The path to the found test template.
     :rtype: str
     """
     # At first, find the candidates - the test name is in the file name...
-    for file_name in glob(patern, recursive=True):
+    for file_name in glob(pattern, recursive=True):
         if "/vpp/device/" in file_name:
             # We do not use these tests anymore, but they are still in repo.
             continue
@@ -161,7 +161,7 @@ def generate_suites(output_dir: str, spec: dict, job: str) -> int:
 
     - job spec must include only one job
     - iterate through tests (items "tests" in dicts in the list)
-      - find template robot file (suite) with tests (glob with patern=tag and
+      - find template robot file (suite) with tests (glob with pattern=tag and
         then look inside the file for the tag)
       - replace parameters
       - generate tests with cores/framesizes/nics/drivers/test-types
@@ -228,16 +228,16 @@ def generate_suites(output_dir: str, spec: dict, job: str) -> int:
     for test_tag, infras in tests.items():
         logging.info(f"Generating testsuites for '{test_tag}' ...")
         # Look for template files
-        patern = (
+        pattern = (
             f"{C.DIR_TESTS_IN}{sep}tests{sep}{dut}{sep}**{sep}{nodes}"
             f"{C.TMPL_NIC}-{test_tag}*.robot"
         )
         if "-ldpreload-nginx-" in test_tag:  # hoststack nginx
             # We need to generate both cps and rps
             test_tag = test_tag.rsplit("-", 1)[0]
-        full_path = _find_test_tmpl(patern, test_tag)
+        full_path = _find_test_tmpl(pattern, test_tag)
         if full_path is None:
-            logging.error("The template file not found.")
+            logging.error(f"The template file for '{pattern}' not found.")
             return 1
         file_path, file_name = path.split(full_path)
         # Create the whole dir structure
