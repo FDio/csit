@@ -137,5 +137,5 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ github.run_number }}
-          path: archives/
+          path: vpp/csit/archives/
           if-no-files-found: ignore
