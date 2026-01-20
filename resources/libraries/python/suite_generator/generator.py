@@ -237,7 +237,7 @@ def generate_suites(output_dir: str, spec: dict, job: str) -> int:
             test_tag = test_tag.rsplit("-", 1)[0]
         full_path = _find_test_tmpl(patern, test_tag)
         if full_path is None:
-            logging.error("The template file not found.")
+            logging.error(f"The template file for '{pattern}' not found.")
             return 1
         file_path, file_name = path.split(full_path)
         # Create the whole dir structure
