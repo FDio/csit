@@ -587,7 +587,7 @@ function get_test_tag_string () {
             comment=$(fgrep "${trigger}" <<< "${comment}" || true)
             TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
         fi
-        if [[ "${trigger}" == "bisecttest" ]]; then
+        if [[ "${trigger}" == "bisect" ]]; then
             # Intentionally without quotes, so spaces delimit elements.
             test_tag_array=(${TEST_TAG_STRING}) || die "How could this fail?"
             # First "argument" of bisecttest is a commit hash.
