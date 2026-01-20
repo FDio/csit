@@ -42,6 +42,8 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 # Cleanup needs ansible.
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
+# GHA starts with cwd at CSIT_DIR instead:
+cd "${VPP_DIR}"
 check_prerequisites || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
