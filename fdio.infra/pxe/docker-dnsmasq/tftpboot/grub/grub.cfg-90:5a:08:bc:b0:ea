@@ -1,0 +1,4 @@
+menuentry "Install s65-t217-tg1" {
+    linux    /casper/ubuntu-noble-amd64/vmlinuz ip=:::::eno1:dhcp url=https://releases.ubuntu.com/releases/noble/ubuntu-24.04.3-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.24:8081/ubuntu_noble_amd64/90:5a:08:bc:b0:ea/ ---
+    initrd   /casper/ubuntu-noble-amd64/initrd
+}
