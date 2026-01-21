@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_100K | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip6-ip4scale100k
+| ... | ethip6-ip6scale100k
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -93,50 +93,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 78B-1c-ethip6-ip4scale100k-ndrpdr
+| 78B-1c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 78B | 1C
 | | frame_size=${78} | phy_cores=${1}
 
-| 78B-2c-ethip6-ip4scale100k-ndrpdr
+| 78B-2c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 78B | 2C
 | | frame_size=${78} | phy_cores=${2}
 
-| 78B-4c-ethip6-ip4scale100k-ndrpdr
+| 78B-4c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 78B | 4C
 | | frame_size=${78} | phy_cores=${4}
 
-| 1518B-1c-ethip6-ip4scale100k-ndrpdr
+| 1518B-1c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip6-ip4scale100k-ndrpdr
+| 1518B-2c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip6-ip4scale100k-ndrpdr
+| 1518B-4c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip6-ip4scale100k-ndrpdr
+| 9000B-1c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip6-ip4scale100k-ndrpdr
+| 9000B-2c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip6-ip4scale100k-ndrpdr
+| 9000B-4c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip6-ip4scale100k-ndrpdr
+| IMIX-1c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip6-ip4scale100k-ndrpdr
+| IMIX-2c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip6-ip4scale100k-ndrpdr
+| IMIX-4c-ethip6-ip6scale100k-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
