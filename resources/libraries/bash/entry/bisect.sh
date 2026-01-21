@@ -191,6 +191,5 @@ main_bisect_loop || die
 rm -vrf "csit_early" "csit_late" "csit_mid" || true
 # Move archives to a place where log uploading expects them.
 # TODO: Is it possible to recactor so that this move is not needed?
-mkdir -p "${WORKSPACE}/archives" || die "Set WORKSPACE!"
 # Using asterisk as bisect job creates variable number of directories.
-mv -v "${WORKSPACE}/csit_"* "${WORKSPACE}/archives/"
+mv -v "csit_"* "${ARCHIVE_DIR}/"
