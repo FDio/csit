@@ -141,7 +141,7 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-coverage-2510" in path]
+filtered_paths = [path for path in paths if "report-coverage-2602" in path]
 
 out_sdf = process_json_to_dataframe("soak", filtered_paths)
 out_sdf.printSchema()
@@ -163,7 +163,7 @@ except KeyError:
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2510",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2602",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",

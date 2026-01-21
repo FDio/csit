@@ -39,21 +39,23 @@ To access these hosts, VPN connection is required.
 ### Summary List
 
 ```
- #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd #grc #spr
- 1. 1-Node-Skylake         nomad  skx   na    2    2    0    2    0    0    0    0    0    0    0    0    0    0    0     0    0
- 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0     0    0
- 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0     0    0
- 4. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0     0    0
- 6. 2-Node-Icelake         perf   icx   icx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0     0    0
- 7. 2-Node-Octeon          perf   icx   icx   1    1    1    0    0    0    0    0    0    0    0    2    0    0    0     0    0
- 8. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0     0    0
- 9. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0     0    0
-10. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0     0    0
-11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    .5   0    0    2    0    0     0    0
-12. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0     0    0
-13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0    0
-14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1    0
-15. 2-Node-EmeraldRapids   perf   emr   emr   2    2    4    0    0    0    0    0    0    0    0    0    0    0    0     0    6
+ #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd #grc #spr #sfr #gnr
+ 1. 1-Node-Skylake         nomad  skx   na    2    2    0    2    0    0    0    0    0    0    0    0    0    0    0     0    0    0    0
+ 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0     0    0    0    0
+ 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0     0    0    0    0
+ 4. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0     0    0    0    0
+ 6. 2-Node-Icelake         perf   icx   icx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0     0    0    0    0
+ 7. 2-Node-Octeon          perf   icx   icx   1    1    1    0    0    0    0    0    0    0    0    2    0    0    0     0    0    0    0
+ 8. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0     0    0    0    0
+ 9. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0     0    0    0    0
+10. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0     0    0    0    0
+11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    .5   0    0    2    0    0     0    0    0    0
+12. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0     0    0    0    0
+13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0    0    0    0
+14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1    0    0    0
+15. 2-Node-EmeraldRapids   perf   emr   emr   2    2    4    0    0    0    0    0    0    0    0    0    0    0    0     0    6    0    0
+15. 2-Node-SierraForrest   perf   sfr   sfr   1    1    1    0    0    0    0    0    0    0    0    0    0    0    0     0    0    2    0
+15. 2-Node-GraniteRapids   perf   gnr   gnr   2    2    2    0    0    0    0    0    0    0    0    0    0    0    0     0    0    0    4
 ```
 
 ### 2-Node-Zen2 EPYC AMD (2n-zn2)
@@ -122,7 +124,21 @@ Used for FD.io performance tests.
 ### 2-Node-EmeraldRapids Xeon Intel (2n-emr)
 
 Each 2-Node-EmeraldRapids testbed includes one SUT (Server-Type-A1) and
-one TG (Server-Type-A2) connected in a 2-node or 3-node circular topology
+one TG (Server-Type-A2) connected in a 2-node and 3-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
+### 2-Node-EmeraldRapids Xeon Intel (2n-sfr)
+
+Each 2-Node-SierraForrest testbed includes one SUT (Server-Type-K1) and
+one TG (Server-Type-K1) connected in a 2-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
+### 2-Node-EmeraldRapids Xeon Intel (2n-gnr)
+
+Each 2-Node-GraniteRapids testbed includes one SUT (Server-Type-L1) and
+one TG (Server-Type-L2) connected in a 2-node and 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
