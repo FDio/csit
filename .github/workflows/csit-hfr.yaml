@@ -1,0 +1,48 @@
+---
+name: csit-hfr
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+
+
+permissions:
+  contents: read
+
+jobs:
+
+  csit-hfr:
+    name: csit-hfr
+    runs-on:
+      - self-hosted
+      - nomad
+      - fdio:arch=${{ matrix.executor_arch }}
+      - fdio:class=builder
+      - fdio:size=csit
+      - fdio:namespace=prod
+      - fdio:os=${{ matrix.os }}
+      - fdio:workflow=${{ github.run_id }}
+
+    strategy:
+      matrix:
+        os: [ubuntu2404]
+        executor_arch: [x86_64]
+
+    env:
+      JOB_NAME: ${{ github.job }}
+
+    steps:
+      - name: Git Checkout CSIT
+        uses: actions/checkout@v6
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: HFR Test
+        shell: bash
+        run: |
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ env.GITHUB_PAT }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/FDio/csit/actions/runs
