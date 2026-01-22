@@ -124,6 +124,7 @@ jobs:
           fi
           popd
 
+<<<<<<< HEAD   (8c92c3 fix(bisect): Do not rely WORKSPACE env var)
 #      - name: Run CSIT Bootstrap
 #        # yamllint disable-line rule:line-length
 #        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
@@ -138,3 +139,25 @@ jobs:
 #          name: ${{ github.job }}-${{ github.run_number }}
 #          path: archives/
 #          if-no-files-found: ignore
+=======
+      - name: Run CSIT Bootstrap
+        uses: fdio/csit/.github/actions/csit-bootstrap@6e2e8dd6eae1a9297bfcc3a1630be181191a0553
+        with:
+          bootstrap_script: bisect.sh
+          path: vpp/csit
+          with_oper: true
+
+      - name: AWS S3 Publish Logs
+        if: ${{ !cancelled() && (success() || failure()) }}
+        # yamllint disable-line rule:line-length
+        uses: fdio/.github/.github/actions/aws-s3-publish-logs@6af3edc5eabc756240c3d419a3b693466efcbb86
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ vars.AWS_REGION }}
+          s3_bucket: ${{ vars.S3_BUCKET }}
+          # yamllint disable-line rule:line-length
+          s3_path: csit-${{ matrix.dut }}-bisect-${{ matrix.node }}/${{ github.run_id }}
+          archives_path: vpp/csit/archives
+          # Compress flag is on by default.
+>>>>>>> CHANGE (ed8b52 feat(gha): Upload bisect artifacts to S3)
