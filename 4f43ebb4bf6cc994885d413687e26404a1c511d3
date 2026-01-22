@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d02de0_cfaedf71",
+        "filename": ".github/workflows/vpp-csit-bisect.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-01-22T11:21:34Z",
+      "side": 1,
+      "message": "we do not want to have scripts/paths that depends on unclear environment variables set in previous steps, unless it is result of an output of some reusable action/step",
+      "range": {
+        "startLine": 148,
+        "startChar": 25,
+        "endLine": 148,
+        "endChar": 47
+      },
+      "revId": "4f43ebb4bf6cc994885d413687e26404a1c511d3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
