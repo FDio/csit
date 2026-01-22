@@ -132,10 +132,16 @@ jobs:
           path: vpp/csit
           with_oper: true
 
-      - name: Archive Logs
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v6
+      - name: AWS S3 Publish Logs
+        if: ${{ !cancelled() && (success() || failure()) }}
+        # yamllint disable-line rule:line-length
+        uses: fdio/.github/.github/actions/aws-s3-publish-logs@6af3edc5eabc756240c3d419a3b693466efcbb86
         with:
-          name: ${{ github.job }}-${{ github.run_number }}
-          path: vpp/csit/archives/
-          if-no-files-found: ignore
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ vars.AWS_REGION }}
+          s3_bucket: ${{ vars.S3_BUCKET }}
+          # yamllint disable-line rule:line-length
+          s3_path: csit-${{ matrix.dut }}-bisect-${{ matrix.node }}/${{ github.run_id }}
+          archives_path: vpp/csit/archives
+          # Compress flag is on by default.
