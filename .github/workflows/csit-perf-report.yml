@@ -99,6 +99,7 @@ jobs:
       # yamllint disable-line rule:line-length
       JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.branch }}
+      TEST_TAG_STRING: ${{ github.event.inputs.suite_gen_params }}
 
     steps:
       - name: Git Checkout CSIT
