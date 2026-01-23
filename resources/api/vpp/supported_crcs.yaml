@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,8 +29,8 @@
 # TODO: Update comments, as we removed device tests.
 
 # https://packagecloud.io/app/fdio/release
-# /search?q=25.10&filter=debs&filter=all&dist=debian
-25.10-release:
+# /search?q=26.02&filter=debs&filter=all&dist=debian
+26.02-release:
     # plugins/acl/acl.api
     acl_add_replace: '0xee5c2f18'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
@@ -308,6 +308,24 @@
     rdma_create_v4_reply: '0x5383d31f'  # perf
     # 2x^ Any test with drv_rdma. Currently only available on 2n-clx.
     # - Not testable by devicetest (until we have environment with right NICs).
+
+    # plugins/sfdp_services/base/interface_input/interface_input.api
+    sfdp_interface_input_set: '0xfca1e31a'
+    sfdp_interface_input_set_reply: '0xe8d4e804'
+
+    # vnet/sfdp/sfdp.api
+    sfdp_kill_session: '0x01'
+    sfdp_kill_session_reply: '0x01'
+    sfdp_session_details: '0xd2a1b857'
+    sfdp_session_dump: '0x51077d14'
+    sfdp_set_services: '0x6227a034'
+    sfdp_set_services_reply: '0xe8d4e804'
+    sfdp_set_timeout: '0x36440b87'
+    sfdp_set_timeout_reply: '0xe8d4e804'
+    sfdp_tenant_add_del: '0xf03b121c'
+    sfdp_tenant_add_del_reply: '0xe8d4e804'
+    sfdp_tenant_details: '0x128e06c3'
+    sfdp_tenant_dump: '0x51077d14'
 
     # vlibmemory/vlib.api
     show_threads: '0x51077d14'  # dev
