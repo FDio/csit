@@ -129,4 +129,4 @@ jobs:
           aws_region: ${{ vars.AWS_REGION }}
           s3_bucket: ${{ vars.S3_BUCKET }}
           # yamllint disable-line rule:line-length
-          s3_path: ${{ github.job }}-master-${{ matrix.node }}/${{ github.run_id }}
+          s3_path: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}/${{ github.run_id }}
