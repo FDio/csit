@@ -60,7 +60,3 @@ docker_volumes:
     target: "/etc/4xxx_dev0.conf"
   - source: "/etc/4xxx_dev1.conf"
     target: "/etc/4xxx_dev1.conf"
-  - source: "/etc/4xxx_dev2.conf"
-    target: "/etc/4xxx_dev2.conf"
-  - source: "/etc/4xxx_dev3.conf"
-    target: "/etc/4xxx_dev3.conf"
