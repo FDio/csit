@@ -221,24 +221,6 @@ class L3fwdTest:
         if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
         if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
 
-        # Flipping routes logic:
-        # If TG and DUT ports are reordered -> flip
-        # If TG reordered and DUT not reordered -> don't flip
-        # If DUT reordered and TG not reordered -> don't flip
-        # If DUT and TG not reordered -> flip
-
-        # Detect which is the port 0.
-        direction = 0
-        dut_flip = if_pci0 > if_pci1
-        if dut_flip:
-            if_key0, if_key1 = if_key1, if_key0
-            if tg_flip:
-                direction = 1
-        elif not tg_flip:
-            direction = 1
-
-        L3fwdTest.create_routes(node, direction=direction)
-
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key0
         )
@@ -249,6 +231,24 @@ class L3fwdTest:
         if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
         adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
         adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
+
+        # Detect which is the port 0.
+        direction = 0
+
+        if adj_node0["type"] == NodeType.TG and adj_node1 == NodeType.TG:
+            # 2-Node testbed
+            dut_flip = if_pci0 > if_pci1
+            if dut_flip:
+                if tg_flip:
+                    direction = 1
+        elif adj_node0["type"] == NodeType.TG and adj_node1 == NodeType.DUT:
+            # 3-Node testbed
+            if node == "DUT1":
+                direction = 0
+            elif node == "DUT2":
+                direction = 1
+
+        L3fwdTest.create_routes(node, direction=direction)
 
         return adj_mac0, adj_mac1, if_pci0, if_pci1
 
