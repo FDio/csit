@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a3a1282_fb0d28d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-01-26T06:10:56Z",
+      "side": 1,
+      "message": "gha-run csit-dpdk-3n-icx perftest mrrAND1cAND64bANDethip4-ip4base-l3fwd",
+      "revId": "6e1f684597e8893ce7b3c2462fa9033f84d748dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
