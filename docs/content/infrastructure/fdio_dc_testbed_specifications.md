@@ -54,8 +54,8 @@ To access these hosts, VPN connection is required.
 13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0    0    0    0
 14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1    0    0    0
 15. 2-Node-EmeraldRapids   perf   emr   emr   2    2    4    0    0    0    0    0    0    0    0    0    0    0    0     0    6    0    0
-15. 2-Node-SierraForrest   perf   sfr   sfr   1    1    1    0    0    0    0    0    0    0    0    0    0    0    0     0    0    2    0
-15. 2-Node-GraniteRapids   perf   gnr   gnr   2    2    2    0    0    0    0    0    0    0    0    0    0    0    0     0    0    0    4
+16. 2-Node-SierraForrest   perf   sfr   sfr   1    1    1    0    0    0    0    0    0    0    0    0    0    0    0     0    0    2    0
+17. 2-Node-GraniteRapids   perf   gnr   gnr   2    2    2    0    0    0    0    0    0    0    0    0    0    0    0     0    0    0    4
 ```
 
 ### 2-Node-Zen2 EPYC AMD (2n-zn2)
@@ -725,13 +725,11 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot4 ??:00.xx: empty.
-            - PCIe Slot10 ??:00.xx: empty.
-        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot5 ??:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot7 ??:00.xx: empty.
-            - PCIe Slot9 ??:00.xx: empty.
-            - PCIe Slot11 ??:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot1 ??:00.xx: empty.
+            - PCIe Slot3 ??:00.xx: empty.
 
 30. **Server-Type-L1**: Purpose - GraniteRapids SUT for FD.io performance testing.
     - Quantity: 2.
@@ -746,13 +744,11 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot4 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot10 ??:00.xx: empty.
-        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot5 ??:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot7 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot9 ??:00.xx: empty.
-            - PCIe Slot11 ??:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot1 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot3 ??:00.xx: empty.
 
 31. **Server-Type-L1**: Purpose - GraniteRapids TG for FD.io performance testing.
     - Quantity: 2.
@@ -767,13 +763,11 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot2 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot4 ??:00.xx: empty.
-            - PCIe Slot10 ??:00.xx: empty.
+            - PCIe Slot5 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot7 ??:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot7 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot9 ??:00.xx: empty.
-            - PCIe Slot11 ??:00.xx: empty.
+            - PCIe Slot1 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot3 ??:00.xx: empty.
 
 ## Testbeds Configuration
 
@@ -1357,16 +1351,16 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.62
     - Host IP: 10.30.51.62
     - portnames:
-        - s62-t216-sut1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s62-t216-sut1-c1/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s62-t216-sut1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s62-t216-sut1-c5/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
 - TG [Server-Type-K1]:
     - testbedname: testbed216.
     - hostname: s63-t216-tg1.
     - IPMI IP: 10.30.50.63
     - Host IP: 10.30.51.63
     - portnames:
-        - s63-t216-tg1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s63-t216-tg1-c1/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s63-t216-tg1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s63-t216-tg1-c5/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
 ```
 
 ### 2-Node-SapphireRapids (2n-gnr)
@@ -1378,42 +1372,42 @@ FD.io CSIT lab contains following server types:
     - IPMI IP: 10.30.50.64
     - Host IP: 10.30.51.64
     - portnames:
+        - s64-t217-sut1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s64-t217-sut1-c5/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s64-t217-sut1-c7/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s64-t217-sut1-c7/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s64-t217-sut1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s64-t217-sut1-c1/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s64-t217-sut1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s64-t217-sut1-c2/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s64-t217-sut1-c3/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s64-t217-sut1-c3/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
 - TG [Server-Type-L2]:
     - testbedname: testbed217.
     - hostname: s65-t217-tg1.
     - IPMI IP: 10.30.50.65
     - Host IP: 10.30.51.65
     - portnames:
+        - s65-t217-tg1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s65-t217-tg1-c5/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s65-t217-tg1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s65-t217-tg1-c1/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s65-t217-tg1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s65-t217-tg1-c2/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
 - SUT [Server-Type-L1]:
     - testbedname: testbed218.
     - hostname: s66-t218-sut1.
     - IPMI IP: 10.30.50.66
     - Host IP: 10.30.51.66
     - portnames:
+        - s66-t218-sut1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s66-t218-sut1-c5/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s66-t218-sut1-c7/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s66-t218-sut1-c7/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s66-t218-sut1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s66-t218-sut1-c1/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s66-t218-sut1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s66-t218-sut1-c2/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s66-t218-sut1-c3/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s66-t218-sut1-c3/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
 - TG [Server-Type-L2]:
     - testbedname: testbed218.
     - hostname: s67-t218-tg1.
     - IPMI IP: 10.30.50.67
     - Host IP: 10.30.51.67
     - portnames:
-        - s67-t218-tg1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s67-t218-tg1-c1/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s67-t218-tg1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s67-t218-tg1-c5/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s67-t218-tg1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s67-t218-tg1-c2/p2 - 100GE-port1 e810-2CQDA2-2p100GE.
 ```
@@ -1684,8 +1678,8 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed216:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s63-t216-tg1-c1/p1 to s62-t216-sut1-c1/p1.
-        - s62-t216-sut1-c1/p2 to s63-t216-tg1-c1/p2.
+        - s63-t216-tg1-c5/p1 to s62-t216-sut1-c5/p1.
+        - s62-t216-sut1-c5/p2 to s63-t216-tg1-c5/p2.
 ```
 
 
@@ -1694,18 +1688,18 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed217:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s65-t217-tg1-c1/p1 to s64-t217-sut1-c1/p2
-        - s65-t217-tg1-c1/p2 to s64-t217-sut1-c2/p2
-        - s64-t217-sut1-c1/p1 to s64-t217-sut1-c2/p1
+        - s65-t217-tg1-c1/p1 to s64-t217-sut1-c7/p2
+        - s65-t217-tg1-c1/p2 to s64-t217-sut1-c1/p2
+        - s64-t217-sut1-c7/p1 to s64-t217-sut1-c1/p1
     - ring2 100GE-ports e810-CQDA2-2p100GE:
-        - s64-t217-sut1-c3/p1 to s65-t217-tg1-c2/p1.
-        - s65-t217-tg1-c2/p2 to s64-t217-sut1-c3/p2.
+        - s64-t217-sut1-c5/p1 to s65-t217-tg1-c5/p1.
+        - s65-t217-tg1-c5/p2 to s64-t217-sut1-c5/p2.
 - testbed218:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s43-t29-tg1-c4/p1 to s42-t29-sut1-c9/p2
-        - s43-t29-tg1-c4/p2 to s42-t29-sut1-c4/p2
-        - s42-t29-sut1-c9/p1 to s43-t29-tg1-c4/p1
+        - s43-t218-tg1-c1/p1 to s42-t218-sut1-c7/p2
+        - s43-t218-tg1-c1/p2 to s42-t218-sut1-c1/p2
+        - s42-t218-sut1-c7/p1 to s43-t218-sut1-c1/p1
     - ring2 100GE-ports e810-CQDA2-2p100GE:
-        - s42-t29-sut1-c2/p1 to s43-t29-tg1-c2/p1.
-        - s43-t29-tg1-c2/p2 to s42-t29-sut1-c2/p2.
+        - s42-t218-sut1-c5/p1 to s43-t218-tg1-c5/p1.
+        - s43-t218-tg1-c5/p2 to s42-t218-sut1-c5/p2.
 ```
