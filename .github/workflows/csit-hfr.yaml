@@ -112,3 +112,10 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+      - name: HFR Test
+        shell: bash
+        run: |
+          echo ${BUILD_TAG}
+          echo ${JOB_NAME}
+          echo ${GERRIT_BRANCH}
+          echo ${TEST_TAG_STRING}
