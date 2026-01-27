@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7070519a_cb0e9082",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 74
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-01-27T13:03:01Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-emr perftest nic_intel-e810cqANDdrv_avfANDethip4udp*-sfdp-*-h65* #generate-all",
+      "revId": "d7f2f1a91795a1677a9810c230f3e145168ad24d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
