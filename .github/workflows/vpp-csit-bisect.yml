@@ -28,7 +28,7 @@ on:
         options:
           - 2n-aws
           - 2n-c6in
-          - 2n-c7g
+          - 2n-c7gn
           - 2n-emr
           - 2n-grc
           - 2n-icx
