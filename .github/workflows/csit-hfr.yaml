@@ -1,5 +1,6 @@
 ---
 name: csit-hfr
+run-name: csit-${{ github.event.inputs.dut }}-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ github.event.inputs.node }}-${{ github.event.inputs.my_run_id }}
 
 # yamllint disable-line rule:truthy
 on:
@@ -98,7 +99,6 @@ jobs:
       matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
 
     env:
-      run-name: ${{ github.job }}-${{ github.event.inputs.my_run_id }}
       # yamllint disable-line rule:line-length
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
       # yamllint disable-line rule:line-length
