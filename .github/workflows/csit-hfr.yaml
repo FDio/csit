@@ -1,18 +1,85 @@
 ---
 name: csit-hfr
+run-name: ${{ github.job }}-${{ github.run_id }}
 
 # yamllint disable-line rule:truthy
 on:
   workflow_dispatch:
-
+    inputs:
+      job_type:
+        description: "The type of job: iterative or coverage."
+        required: true
+        type: choice
+        options:
+          - iterative
+          - coverage
+        default: iterative
+      dut:
+        description: "CSIT test/ subdirectory containing suites to execute."
+        required: true
+        type: choice
+        options:
+          - dpdk
+          - trex
+          - vpp
+        default: vpp
+      node:
+        description: Performance testbed node.
+        required: true
+        type: choice
+        options:
+          - 2n-aws
+          - 2n-c6in
+          - 2n-c7g
+          - 2n-emr
+          - 2n-grc
+          - 2n-icx
+          - 2n-spr
+          - 2n-zn2
+          - 3n-alt
+          - 3n-emr
+          - 3n-icx
+          - 3n-icxd
+          - 3n-oct
+          - 3n-snr
+          - 3na-spr
+          - 3nb-spr
+        default: 2n-emr
+      branch:
+        description: Branch or patch.
+        required: true
+        type: choice
+        options:
+          - rls2602
+        default: rls2602
+      suite_gen_params:
+        description: Parameters for the suite generator.
+        required: true
+        type: string
 
 permissions:
   contents: read
 
 jobs:
+  dispatch:
+    runs-on:
+      - ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - name: Prepare node selection matrix
+        id: set-matrix
+        uses: fdio/csit/.github/actions/csit-report-dispatch@89e40adc504ab4f2b4ae15a91e26b2f2c754cbf8
+        with:
+          node: ${{ github.event.inputs.node }}
+          dut: ${{ github.event.inputs.dut }}
 
   csit-hfr:
-    name: csit-hfr
+    needs: dispatch
+    # yamllint disable-line rule:line-length
+    name: csit-${{ github.event.inputs.dut }}-hfr-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
     runs-on:
       - self-hosted
       - nomad
@@ -22,14 +89,18 @@ jobs:
       - fdio:namespace=prod
       - fdio:os=${{ matrix.os }}
       - fdio:workflow=${{ github.run_id }}
+    timeout-minutes: 1440
 
     strategy:
-      matrix:
-        os: [ubuntu2404]
-        executor_arch: [x86_64]
+      matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
 
     env:
-      JOB_NAME: ${{ github.job }}
+      # yamllint disable-line rule:line-length
+      BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
+      # yamllint disable-line rule:line-length
+      JOB_NAME: csit-${{ github.event.inputs.dut }}-hfr-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
+      GERRIT_BRANCH: ${{ github.event.inputs.branch }}
+      TEST_TAG_STRING: ${{ github.event.inputs.suite_gen_params }}
 
     steps:
       - name: Git Checkout CSIT
@@ -37,12 +108,3 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
-
-      - name: HFR Test
-        shell: bash
-        run: |
-          curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ env.GITHUB_PAT }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/FDio/csit/actions/runs
