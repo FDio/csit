@@ -1,6 +1,5 @@
 ---
 name: csit-hfr
-run-name: ${{ github.job }}-${{ github.run_id }}
 
 # yamllint disable-line rule:truthy
 on:
@@ -56,6 +55,10 @@ on:
         description: Parameters for the suite generator.
         required: true
         type: string
+      my_run_id:
+        description: Run ID.
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -95,6 +98,7 @@ jobs:
       matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
 
     env:
+      run-name: ${{ github.job }}-${{ github.event.inputs.my_run_id }}
       # yamllint disable-line rule:line-length
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
       # yamllint disable-line rule:line-length
