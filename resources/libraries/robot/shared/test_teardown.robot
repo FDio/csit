@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -217,6 +217,16 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+
+| Additional Test Tear Down Action For SFDP
+| | [Documentation]
+| | ... | FIXME
+| |
+| | ... | Additional teardown for tests which uses packet trace.
+| |
+| | Log Sfdp Tenants | ${nodes}[DUT1]
+| | # TODO: Avoid PAPI when UDP scale is high, or investigate and open an issue.
+| | Run Keyword If Test Failed | Log Sfdp Num Sessions | ${nodes}[DUT1]
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
