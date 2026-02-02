@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42b5839_c3e46cb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 80
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-02-02T16:41:07Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx perftest ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cANDethip4*-sfdp-*-h65* !1518b !imix !9000b #generate-all",
+      "revId": "e56a5b4553c01c0f388dd849d59a1819aa63481b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
