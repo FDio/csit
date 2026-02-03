@@ -29,7 +29,7 @@ import os
 
 from trex.stl.api import *
 
-CP = os.path.join(os.path.abspath(os.sep), "etc")
+CP = os.path.join(os.path.abspath(os.sep), "/opt/frouter-perf")
 
 
 class TrafficStreamsJsonClass:
