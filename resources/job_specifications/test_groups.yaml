@@ -149,7 +149,12 @@ test-groups:
     - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
     - ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
     - ethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm
+    - ethip4ipsec10000tnlhwasync-ip4base-policy-aes256gcm
     - ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm
+    - ethip4ipsec10000tnlsw-ip4base-policy-flow-cache-aes256gcm
+    - ethip4ipsec100000tnlsw-ip4base-policy-fastpath-aes256gcm
   ipsec-hw-async-aes256gcm-md:
     - ethip4ipsec1tnlhwasync-ip4base-int-aes256gcm
     - ethip4ipsec4tnlhwasync-ip4base-int-aes256gcm
@@ -332,6 +337,11 @@ test-groups:
     - eth-l2bdscale1mmaclrn
   l2-1lbvpplacp-sm:
     - eth-l2xcbase-1lbvpplacp
+## Loadbalancer
+  lb-base-md:
+    - ethip4-loadbalancer-l3dsr
+    - ethip4-loadbalancer-maglev
+    - ethip4-loadbalancer-nat4
 ## SRv6
   srv6-md:
     - ethip6ip6-ip6base-srv6enc1sid

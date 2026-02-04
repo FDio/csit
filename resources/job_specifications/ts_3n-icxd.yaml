@@ -7,6 +7,7 @@ test-sets:
   3n-icxd-dpdk-iterative:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     tests:
       - dpdk-sm
@@ -15,6 +16,7 @@ test-sets:
   3n-icxd-vpp-cov-crypto-00:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -29,6 +31,7 @@ test-sets:
   3n-icxd-vpp-cov-crypto-01:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize: [1518, imix]
     core: [2, 3, 4]
@@ -40,6 +43,7 @@ test-sets:
   3n-icxd-vpp-cov-crypto-02:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     tests:
       - ipsec-sw-udp:
@@ -49,6 +53,7 @@ test-sets:
   3n-icxd-vpp-cov-crypto-03:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize: [1518, ]
     tests:
@@ -57,6 +62,7 @@ test-sets:
   3n-icxd-vpp-cov-crypto-04:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -68,6 +74,7 @@ test-sets:
   3n-icxd-vpp-cov-ip4-00:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -80,6 +87,7 @@ test-sets:
   3n-icxd-vpp-cov-ip4tun-00:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -92,6 +100,7 @@ test-sets:
   3n-icxd-vpp-cov-ip4tun-01:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize: [1518, imix]
     tests:
@@ -101,6 +110,7 @@ test-sets:
   3n-icxd-vpp-cov-ip4tun-02:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize: [1518, ]
     tests:
@@ -109,6 +119,7 @@ test-sets:
   3n-icxd-vpp-cov-ip6-00:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize:
       - 78
@@ -122,6 +133,7 @@ test-sets:
   3n-icxd-vpp-cov-l2-00:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -136,6 +148,7 @@ test-sets:
   3n-icxd-vpp-iterative:
     infra:
       25ge2p1e823c:
+        - avf
         - vfio-pci
     framesize: [1518, imix]
     tests:
@@ -175,16 +188,19 @@ test-sets:
       - soak-crypto-md:
           infra:
             25ge2p1e823c:
+              - avf
               - vfio-pci
           framesize: [1518, ]
       - soak-ip4-sm:
           infra:
             25ge2p1e823c:
+              - avf
               - vfio-pci
       - soak-ip4-md
       - soak-ip6-sm:
           infra:
             25ge2p1e823c:
+              - avf
               - vfio-pci
           framesize: [78, ]
       - soak-ip6-md:
@@ -192,6 +208,7 @@ test-sets:
       - soak-l2-sm:
           infra:
             25ge2p1e823c:
+              - avf
               - vfio-pci
       - soak-l2-md
       - soak-vhost-sm
