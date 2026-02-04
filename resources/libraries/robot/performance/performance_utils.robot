@@ -762,4 +762,3 @@
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in ${unit_text}: ${results}
 | | ... | append=yes
-| | Fail if no traffic forwarded

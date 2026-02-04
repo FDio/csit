@@ -106,6 +106,7 @@ test-sets:
     framesize: [64, 1518, imix]
     tests:
       - wireguard-sw-lg
+      - wireguard-hw-lg
 
   3na-spr-vpp-cov-ip4tun-02:
     infra:
