@@ -1565,7 +1565,7 @@ class OptimizedSearch:
             resetter=resetter,
             traffic_directions=traffic_directions,
             transaction_duration=transaction_duration,
-            transaction_scale=transaction_scale,
+            transaction_scale=1,  #transaction_scale,
             transaction_type=transaction_type,
             use_latency=use_latency,
             ramp_up_rate=ramp_up_rate,

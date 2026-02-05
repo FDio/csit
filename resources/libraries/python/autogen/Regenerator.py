@@ -286,7 +286,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
         tmp_prolog = replace_defensively(
             tmp_prolog,
             "Find NDR and PDR intervals using optimized search",
-            Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
+            "Fail", 1,
             "Main search keyword should appear once in suite.",
             in_filename
         )
@@ -630,7 +630,7 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
         tmp_prolog = replace_defensively(
             tmp_prolog,
             u"Find NDR and PDR intervals using optimized search",
-            Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
+            "Fail", 1,
             u"Main search keyword should appear once in suite.",
             in_filename
         )
