@@ -101,7 +101,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=64512,  # TODO: set via input parameter
+            limit=1,  #64512,  # TODO: set via input parameter
             port=8080,
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
