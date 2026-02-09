@@ -20,8 +20,7 @@ set +x
 # Second argument: Pattern to looks for (e.g. identifying release instead of RC2).
 
 # Example usage:
-# bash rca_xc.sh csit-vpp-perf-report-coverage-2506-2n-c6in 2510-release
-# export job="csit-vpp-perf-report-iterative-2510-2n-c7gn"; bash rca_xc.sh "${job}" 2510-release | tee "{job}.txt"
+# export job="csit-vpp-perf-report-iterative-2602-2n-aws"; bash rca_xc.sh "${job}" "26.02-rc1" | tee "{job}.txt"
 
 # For each run, this script prints hints on whether skip or look deeper.
 # Also testbeds are printed, to see possible correlations with failures.
@@ -40,8 +39,17 @@ for i in `grep -o '"[0-9]\+/index.html' index.html | cut -d '"' -f 2- | cut -d '
     run_url="${job_url}/${i}"
     if [ -f "${target_dir}/console.log" ]; then
         continue
+        #echo "Not skipping downloaded log during script debugging."
     fi
-    if ! curl -sf "${run_url}/console.log.gz" | zcat > "${target_dir}/console.log"; then
+    gha_path="repos/fdio/csit/actions/runs/${i}/jobs"
+    jq_query='.jobs[] | select(.name | contains("'"${job_name}"'")) | .id'
+    job_id=$(gh api "${gha_path}" --jq "${jq_query}")
+    if [[ "" == "${job_id}" ]]; then
+        echo "Did not detect job id. What is wrong?"
+        gh api "${gha_path}"
+        exit 1
+    fi
+    if ! gh run view -R "fdio/csit" -j "${job_id}" --log > "${target_dir}/console.log"; then
         echo "${i}: failed to download console log. Aborted run?"
         continue
     fi
@@ -73,7 +81,7 @@ for i in `grep -o '"[0-9]\+/index.html' index.html | cut -d '"' -f 2- | cut -d '
                 if ($0 !~ /Tests/) {
                     print
                     getline
-                    while ($0 !~ /^[-=]+$/) {
+                    while ($0 !~ / [-=]+$/) {
                         last_line = $0
                         getline
                     }
