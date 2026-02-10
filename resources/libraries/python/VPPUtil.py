@@ -390,6 +390,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        PapiSocketExecutor.run_cli_cmd(node, u"show vlib graph")
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod

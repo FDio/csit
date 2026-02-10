@@ -191,7 +191,8 @@ class VppConfigGenerator:
         """
         if variant == "":
             return
-        variant_list = ["hsw", "skx", "icl"]
+        variant_list = ["hsw", "skx", "icl", "scalar", "x86-64-v2", "x86-64-v3", "x86-64-v4"]
+        # TODO: Add ARM variants.
         if variant not in variant_list:
             raise ValueError("Invalid graph node variant value")
         path = ["node", "default", "variant"]
