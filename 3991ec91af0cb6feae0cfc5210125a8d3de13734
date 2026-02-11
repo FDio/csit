@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-spr perftest ndrpdrANDnic_intel-e810cqANDdrv_avfAND1cAND100bANDethip4tcp-sfdp-l4ip4-h10*-tput #generate-all",
       "revId": "3991ec91af0cb6feae0cfc5210125a8d3de13734",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3de5933_6d19b496",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 92
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-02-11T09:18:01Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-spr perftest nic_intel-e810cqANDdrv_avfAND*-sfdp-* !1518b !imix !9000b #generate-all",
+      "revId": "3991ec91af0cb6feae0cfc5210125a8d3de13734",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
