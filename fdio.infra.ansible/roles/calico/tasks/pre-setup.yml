@@ -1,0 +1,35 @@
+---
+# file: tasks/pre-setup.yml
+
+- name: download cloud image iso with check (sha256)
+  ansible.builtin.get_url:
+    url: "{{ cloudimg_url }}"
+    dest: "{{ cloudimg_dest }}"
+    checksum: "{{ cloudimg_checksum }}"
+  when:
+    - calico_sut is defined
+    - deploy_state == "present"
+  tags:
+    - calico-pre-setup
+
+- name: upload cloud init configuration to the host
+  ansible.builtin.template:
+    dest: "/tmp/{{ item }}"
+    src: "{{ item }}"
+  loop:
+    - "meta-data"
+    - "network-config"
+    - "user-data"
+  when:
+    - calico_sut is defined
+  tags:
+    - calico-pre-setup
+
+- name: create cloud init configuration iso
+  ansible.builtin.shell: |
+    genisoimage -output seed.img -volid cidata -rational-rock -joliet /tmp/user-data /tmp/meta-data /tmp/network-config
+  when:
+    - calico_sut is defined
+    - deploy_state == "present"
+  tags:
+    - calico-pre-setup
