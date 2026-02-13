@@ -1,4 +1,8 @@
 ---
+cloudimg_url: https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+cloudimg_dest: /opt/noble-server-cloudimg-amd64.img
+cloudimg_checksum: sha256:00786c0936a7dd91a6b07941ca60bb56652975e0e72f9dacf73c887ada420966
+
 kubernetes_pod_network:
   # Calico CNI.
   cni: "calico"

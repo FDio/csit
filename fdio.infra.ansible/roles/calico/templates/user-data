@@ -1,0 +1,80 @@
+#cloud-config
+
+users:
+  - default
+  - name: testuser
+    groups: sudo
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    plain_text_passwd: Csit1234
+    lock_passwd: false
+chpasswd:
+  list: |
+    testuser:Csit1234
+  expire: False
+
+package_update: true
+package_upgrade: false
+package_reboot_if_required: false
+
+packages:
+ - gnupg2
+ - software-properties-common
+ - apt-transport-https
+ - ca-certificates
+ - jq
+ - containerd.io
+ - kubelet
+ - kubeadm
+ - kubectl
+
+write_files:
+  - path: /etc/sysctl.d/kubernetes.conf
+    content: |
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.bridge.bridge-nf-call-iptables = 1
+      net.ipv4.ip_forward = 1
+  - path: /etc/modules-load.d/containerd.conf
+    content: |
+      overlay
+      br_netfilter
+  - path: /etc/containerd/config.toml
+    content: |
+      version = 2
+      [plugins]
+      [plugins."io.containerd.grpc.v1.cri"]
+      [plugins."io.containerd.grpc.v1.cri".containerd]
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+      runtime_type = "io.containerd.runc.v2"
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+      SystemdCgroup = true
+  - path: /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+    content: |
+      # Enabling password authentication
+      PasswordAuthentication yes
+
+runcmd:
+  - apt-mark hold kubelet kubeadm kubectl
+  - systemctl enable containerd
+  - ip -4 --json addr show | jq -r '.[] | select(.addr_info[0].local | startswith("10.1.0.")) .addr_info[0].local' > /etc/node-ip
+  - echo "KUBELET_EXTRA_ARGS='--node-ip=$(cat /etc/node-ip) --cloud-provider=external'" > /etc/default/kubelet
+  - systemctl daemon-reload
+  - systemctl enable kubelet
+  - kubeadm config images pull
+
+apt:
+  sources:
+    kubernetes.list:
+      source: deb https://apt.kubernetes.io/ kubernetes-xenial main
+      keyid: FEEA9169307EA071
+
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+      keyid: 8D81803C0EBFCD88
+
+cloud_config_modules:
+  - apt-configure
+  - apt-update-upgrade
+  - updates-check
+  - runcmd
+  - write-files
