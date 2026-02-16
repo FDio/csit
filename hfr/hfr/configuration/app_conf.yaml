@@ -1,0 +1,17 @@
+# For more information see the documentation in app_configuration.py
+
+logging_level: "INFO"
+sleep_interval: 5
+
+re_run_canceled: True
+nr_of_re_runs: 3
+max_waiting_time: 600  # minutes
+
+run_config: "hfr/configuration/run_conf.yaml"
+
+oper_data: "hfr/oper/data.json"
+csv_data: "hfr/oper/data.csv"
+
+keep_old_oper_data: False
+
+dir_testbeds: "hfr/topologies"
