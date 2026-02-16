@@ -1,0 +1,21 @@
+# For more information see the documentation in app_configuration.py
+
+logging_level: "DEBUG"
+sleep_interval: 60  # seconds
+
+re_run_canceled: True
+nr_of_re_runs: 3
+max_waiting_time: 600  # minutes
+max_gha_retries: 3
+
+run_config: "hfr/configuration/run_conf.yaml"
+
+oper_data: "hfr_oper/data.json"
+csv_data: "hfr_oper/data.csv"
+testbed_data: "hfr_oper/testbeds.csv"
+
+run_log_url: "https://logs.fd.io/vex-yul-rot-jenkins-1"
+
+keep_old_oper_data: False
+
+dir_testbeds: "hfr/topologies"
