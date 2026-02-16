@@ -1,0 +1,678 @@
+# For more information see the documentation in job_configuration.py
+
+workflows:
+  csit-hfr:
+    runs:
+      # 2n-emr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-gso"
+        params:
+          prio: 3
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      # 2n-grc
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      # 2n-icx
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "trex"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-trex-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "trex"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-trex-iterative #ndrpdr"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "trex"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-trex-coverage"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-gso"
+        params:
+          prio: 3
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-soak"
+        params:
+          prio: 5
+          repeat: 3
+      # 2n-spr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "trex"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-trex-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "trex"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-trex-iterative #ndrpdr"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "trex"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-trex-coverage"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-gso"
+        params:
+          prio: 3
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-soak"
+        params:
+          prio: 5
+          repeat: 3
+      # 2n-zn2
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-gso"
+        params:
+          prio: 3
+          repeat: 3
+      # 3n-alt
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params: "#3n-alt-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params: "#3n-alt-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params: "#3n-alt-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params: "#3n-alt-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      # 3n-emr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      # 3n-icx
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-soak"
+        params:
+          prio: 5
+          repeat: 3
+      # 3n-icxd
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-vpp-soak"
+        params:
+          prio: 5
+          repeat: 3
+      # 3n-oct
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-oct"
+          branch: "rls2602"
+          suite_gen_params: "#3n-oct-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-oct"
+          branch: "rls2602"
+          suite_gen_params: "#3n-oct-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      # # 3n-snr - it is dead
+      # - inputs:
+      #     job_type: "iterative"
+      #     dut: "vpp"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params: "#3n-snr-vpp-iterative"
+      #   params:
+      #     prio: 1
+      #     repeat: 3
+      # - inputs:
+      #     job_type: "iterative"
+      #     dut: "vpp"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params: "#3n-snr-vpp-iterative #ndrpdr"
+      #   params:
+      #     prio: 1
+      #     repeat: 3
+      # - inputs:
+      #     job_type: "iterative"
+      #     dut: "dpdk"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params: "#3n-snr-dpdk-iterative"
+      #   params:
+      #     prio: 2
+      #     repeat: 10
+      # - inputs:
+      #     job_type: "coverage"
+      #     dut: "dpdk"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params: "#3n-snr-dpdk-iterative"
+      #   params:
+      #     prio: 2
+      #     repeat: 1
+      # 3na-spr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+      # 3nb-spr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 3
+      - inputs:
+          job_type: "iterative"
+          dut: "dpdk"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "dpdk"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-dpdk-iterative"
+        params:
+          prio: 2
+          repeat: 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-vpp-hoststack"
+        params:
+          prio: 3
+          repeat: 3
+    parameters:  # Workflow parameters
+      name: "csit-{dut}-{job_type}-{branch}-{node}"
+      ref: "master"
+      needed_params:
+        - "job_type"
+        - "dut"
+        - "node"
+        - "branch"
+        - "suite_gen_params"
+
+parameters:  # Global parameters
+  queuing: "mixed"
