@@ -1,0 +1,11 @@
+# For more information see the documentation in app_configuration.py
+
+logging_level: "INFO"
+sleep_interval: 5
+
+job_config: "hfr/configuration/job_conf_rls.yaml"
+
+oper_data: "hfr/oper/data.json"
+keep_old_oper_data: False
+
+dir_testbeds: "hfr/topologies"
