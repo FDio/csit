@@ -1,0 +1,36 @@
+# For more information see the documentation in job_configuration.py
+
+workflows:
+  csit-hfr:
+    runs:
+      # 2n-icx
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 2
+      # 2n-zn2
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-gso"
+        params:
+          prio: 3
+          repeat: 3
+    parameters:  # Workflow parameters
+      name: "csit-{dut}-{job_type}-{branch}-{node}"
+      ref: "master"
+      needed_params:
+        - "job_type"
+        - "dut"
+        - "node"
+        - "branch"
+        - "suite_gen_params"
+parameters:  # Global parameters
+  queuing: "mixed"
