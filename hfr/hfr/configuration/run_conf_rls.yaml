@@ -1,0 +1,685 @@
+# For more information see the documentation in job_configuration.py
+
+workflows:
+  csit-hfr:
+    runs:
+      # 2n-emr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-gso"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#2n-emr-vpp-cov-ip4-00"
+            - "#2n-emr-vpp-cov-ip4-01"
+            - "#2n-emr-vpp-cov-ip4-02"
+            - "#2n-emr-vpp-cov-ip4tun-00"
+            - "#2n-emr-vpp-cov-ip6-00"
+            - "#2n-emr-vpp-cov-l2-00"
+            - "#2n-emr-vpp-cov-l2-01"
+            - "#2n-emr-vpp-cov-memif-00"
+            - "#2n-emr-vpp-cov-vhost-00"
+        params:
+          prio: 5
+          repeat: 1
+      # 2n-grc
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params: "#2n-grc-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "2n-grc"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#2n-grc-vpp-cov-ip4-00"
+            - "#2n-grc-vpp-cov-ip4-01"
+            - "#2n-grc-vpp-cov-ip4-02"
+            - "#2n-grc-vpp-cov-ip4tun-00"
+            - "#2n-grc-vpp-cov-ip6-00"
+            - "#2n-grc-vpp-cov-l2-00"
+            - "#2n-grc-vpp-cov-l2-01"
+            - "#2n-grc-vpp-cov-memif-00"
+            - "#2n-grc-vpp-cov-vhost-00"
+        params:
+          prio: 5
+          repeat: 1
+      # 2n-icx
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-gso"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-soak"
+        params:
+          prio: 3
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#2n-icx-vpp-cov-ip4-00"
+            - "#2n-icx-vpp-cov-ip4-01"
+            - "#2n-icx-vpp-cov-ip4-02"
+            - "#2n-icx-vpp-cov-ip4-10"
+            - "#2n-icx-vpp-cov-ip4-11"
+            - "#2n-icx-vpp-cov-ip4tun-00"
+            - "#2n-icx-vpp-cov-ip6-00"
+            - "#2n-icx-vpp-cov-ip6-10"
+            - "#2n-icx-vpp-cov-l2-00"
+            - "#2n-icx-vpp-cov-l2-01"
+            - "#2n-icx-vpp-cov-l2-10"
+            - "#2n-icx-vpp-cov-l2-11"
+            - "#2n-icx-vpp-cov-memif-00"
+            - "#2n-icx-vpp-cov-memif-10"
+            - "#2n-icx-vpp-cov-vhost-00"
+            - "#2n-icx-vpp-cov-vhost-10"
+        params:
+          prio: 5
+          repeat: 1
+      # 2n-spr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-gso"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-spr-vpp-soak"
+        params:
+          prio: 3
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "2n-spr"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#2n-spr-vpp-cov-ip4-00"
+            - "#2n-spr-vpp-cov-ip4-01"
+            - "#2n-spr-vpp-cov-ip4-02"
+            - "#2n-spr-vpp-cov-ip4-10"
+            - "#2n-spr-vpp-cov-ip4-11"
+            - "#2n-spr-vpp-cov-ip4tun-00"
+            - "#2n-spr-vpp-cov-ip6-00"
+            - "#2n-spr-vpp-cov-ip6-10"
+            - "#2n-spr-vpp-cov-l2-00"
+            - "#2n-spr-vpp-cov-l2-01"
+            - "#2n-spr-vpp-cov-l2-10"
+            - "#2n-spr-vpp-cov-l2-11"
+            - "#2n-spr-vpp-cov-memif-00"
+            - "#2n-spr-vpp-cov-memif-10"
+            - "#2n-spr-vpp-cov-vhost-00"
+            - "#2n-spr-vpp-cov-vhost-10"
+        params:
+          prio: 5
+          repeat: 1
+      # 2n-zn2
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params: "#2n-zn2-gso"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "2n-zn2"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#2n-zn2-vpp-cov-ip4-00"
+            - "#2n-zn2-vpp-cov-ip4-01"
+            - "#2n-zn2-vpp-cov-ip4-02"
+            - "#2n-zn2-vpp-cov-ip4tun-00"
+            - "#2n-zn2-vpp-cov-ip6-00"
+            - "#2n-zn2-vpp-cov-ip6-01"
+            - "#2n-zn2-vpp-cov-l2-00"
+            - "#2n-zn2-vpp-cov-memif-00"
+            - "#2n-zn2-vpp-cov-vhost-00"
+        params:
+          prio: 5
+          repeat: 1
+      # 3n-alt
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params: "#3n-alt-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params: "#3n-alt-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3n-alt"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3n-alt-vpp-cov-crypto-01"
+            - "#3n-alt-vpp-cov-crypto-02"
+            - "#3n-alt-vpp-cov-crypto-03"
+            - "#3n-alt-vpp-cov-crypto-04"
+            - "#3n-alt-vpp-cov-ip4-00"
+            - "#3n-alt-vpp-cov-ip4-01"
+            - "#3n-alt-vpp-cov-ip4tun-00"
+            - "#3n-alt-vpp-cov-ip4tun-01"
+            - "#3n-alt-vpp-cov-ip6-00"
+            - "#3n-alt-vpp-cov-l2-00"
+            - "#3n-alt-vpp-cov-srv6-00"
+            - "#3n-alt-vpp-cov-vhost-00"
+        params:
+          prio: 1
+          repeat: 10
+      # 3n-emr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#3n-emr-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3n-emr"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3n-emr-vpp-cov-crypto-00"
+            - "#3n-emr-vpp-cov-crypto-01"
+            - "#3n-emr-vpp-cov-crypto-02"
+            - "#3n-emr-vpp-cov-crypto-03"
+            - "#3n-emr-vpp-cov-crypto-04"
+            - "#3n-emr-vpp-cov-crypto-05"
+            - "#3n-emr-vpp-cov-crypto-06"
+            - "#3n-emr-vpp-cov-ip4-00"
+            - "#3n-emr-vpp-cov-ip4tun-00"
+            - "#3n-emr-vpp-cov-ip4tun-01"
+            - "#3n-emr-vpp-cov-ip4tun-02"
+            - "#3n-emr-vpp-cov-ip4tun-03"
+            - "#3n-emr-vpp-cov-ip6-00"
+            - "#3n-emr-vpp-cov-l2-00"
+            - "#3n-emr-vpp-cov-srv6-00"
+        params:
+          prio: 5
+          repeat: 1
+      # 3n-icx
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icx-vpp-soak"
+        params:
+          prio: 3
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3n-icx"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3n-icx-vpp-cov-crypto-00"
+            - "#3n-icx-vpp-cov-crypto-01"
+            - "#3n-icx-vpp-cov-crypto-02"
+            - "#3n-icx-vpp-cov-crypto-03"
+            - "#3n-icx-vpp-cov-crypto-04"
+            - "#3n-icx-vpp-cov-crypto-05"
+            - "#3n-icx-vpp-cov-crypto-10"
+            - "#3n-icx-vpp-cov-crypto-11"
+            - "#3n-icx-vpp-cov-crypto-12"
+            - "#3n-icx-vpp-cov-crypto-13"
+            - "#3n-icx-vpp-cov-ip4-00"
+            - "#3n-icx-vpp-cov-ip4-10"
+            - "#3n-icx-vpp-cov-ip4tun-00"
+            - "#3n-icx-vpp-cov-ip4tun-01"
+            - "#3n-icx-vpp-cov-ip4tun-02"
+            - "#3n-icx-vpp-cov-ip4tun-10"
+            - "#3n-icx-vpp-cov-ip4tun-11"
+            - "#3n-icx-vpp-cov-ip6-00"
+            - "#3n-icx-vpp-cov-ip6-10"
+            - "#3n-icx-vpp-cov-l2-00"
+            - "#3n-icx-vpp-cov-l2-01"
+            - "#3n-icx-vpp-cov-l2-10"
+            - "#3n-icx-vpp-cov-l2-11"
+            - "#3n-icx-vpp-cov-srv6-00"
+            - "#3n-icx-vpp-cov-srv6-10"
+        params:
+          prio: 5
+          repeat: 1
+      # 3n-icxd
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params: "#3n-icxd-vpp-soak"
+        params:
+          prio: 3
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3n-icxd"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3n-icxd-vpp-cov-crypto-00"
+            - "#3n-icxd-vpp-cov-crypto-01"
+            - "#3n-icxd-vpp-cov-crypto-02"
+            - "#3n-icxd-vpp-cov-crypto-03"
+            - "#3n-icxd-vpp-cov-crypto-04"
+            - "#3n-icxd-vpp-cov-ip4-00"
+            - "#3n-icxd-vpp-cov-ip4tun-00"
+            - "#3n-icxd-vpp-cov-ip4tun-01"
+            - "#3n-icxd-vpp-cov-ip4tun-02"
+            - "#3n-icxd-vpp-cov-ip6-00"
+            - "#3n-icxd-vpp-cov-l2-00"
+        params:
+          prio: 5
+          repeat: 1
+      # 3n-oct
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-oct"
+          branch: "rls2602"
+          suite_gen_params: "#3n-oct-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3n-oct"
+          branch: "rls2602"
+          suite_gen_params: "#3n-oct-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3n-oct"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3n-oct-vpp-cov-ip4-00"
+            - "#3n-oct-vpp-cov-l2-00"
+        params:
+          prio: 5
+          repeat: 1
+      # # 3n-snr - it is dead
+      # - inputs:
+      #     job_type: "iterative"
+      #     dut: "vpp"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params: "#3n-snr-vpp-iterative"
+      #   params:
+      #     prio: 1
+      #     repeat: 10
+      # - inputs:
+      #     job_type: "iterative"
+      #     dut: "vpp"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params: "#3n-snr-vpp-iterative #ndrpdr"
+      #   params:
+      #     prio: 1
+      #     repeat: 10
+      # - inputs:
+      #     job_type: "coverage"
+      #     dut: "vpp"
+      #     node: "3n-snr"
+      #     branch: "rls2602"
+      #     suite_gen_params:
+      #       - "#3n-snr-vpp-cov-crypto-00"
+      #       - "#3n-snr-vpp-cov-crypto-01"
+      #       - "#3n-snr-vpp-cov-crypto-02"
+      #       - "#3n-snr-vpp-cov-crypto-03"
+      #       - "#3n-snr-vpp-cov-crypto-04"
+      #       - "#3n-snr-vpp-cov-ip4-00"
+      #       - "#3n-snr-vpp-cov-ip4tun-00"
+      #       - "#3n-snr-vpp-cov-ip4tun-01"
+      #       - "#3n-snr-vpp-cov-ip6-00"
+      #       - "#3n-snr-vpp-cov-l2-00"
+      #   params:
+      #     prio: 5
+      #     repeat: 1
+      # 3na-spr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3na-spr-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3na-spr"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3na-spr-vpp-cov-crypto-01"
+            - "#3na-spr-vpp-cov-crypto-02"
+            - "#3na-spr-vpp-cov-crypto-03"
+            - "#3na-spr-vpp-cov-ip4-00"
+            - "#3na-spr-vpp-cov-ip4tun-00"
+            - "#3na-spr-vpp-cov-ip4tun-01"
+            - "#3na-spr-vpp-cov-ip4tun-02"
+            - "#3na-spr-vpp-cov-ip6-00"
+            - "#3na-spr-vpp-cov-l2-00"
+            - "#3na-spr-vpp-cov-srv6-00"
+        params:
+          prio: 5
+          repeat: 1
+      # 3nb-spr
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params: "#3nb-spr-vpp-hoststack"
+        params:
+          prio: 1
+          repeat: 10
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "3nb-spr"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#3nb-spr-vpp-cov-crypto-00"
+            - "#3nb-spr-vpp-cov-crypto-01"
+            - "#3nb-spr-vpp-cov-crypto-02"
+            - "#3nb-spr-vpp-cov-crypto-03"
+            - "#3nb-spr-vpp-cov-crypto-04"
+            - "#3nb-spr-vpp-cov-crypto-05"
+            - "#3nb-spr-vpp-cov-ip4-00"
+            - "#3nb-spr-vpp-cov-ip4tun-00"
+            - "#3nb-spr-vpp-cov-ip4tun-01"
+            - "#3nb-spr-vpp-cov-ip4tun-03"
+            - "#3nb-spr-vpp-cov-ip4tun-04"
+            - "#3nb-spr-vpp-cov-ip6-00"
+            - "#3nb-spr-vpp-cov-ip6-01"
+            - "#3nb-spr-vpp-cov-l2-00"
+            - "#3nb-spr-vpp-cov-srv6-00"
+            - "#3nb-spr-vpp-cov-srv6-10"
+        params:
+          prio: 5
+          repeat: 1
+    parameters:  # Workflow parameters
+      name: "csit-{dut}-{job_type}-{branch}-{node}"
+      ref: "master"
+      needed_params:
+        - "job_type"
+        - "dut"
+        - "node"
+        - "branch"
+        - "suite_gen_params"
+
+parameters:  # Global parameters
+  queuing: "mixed"
