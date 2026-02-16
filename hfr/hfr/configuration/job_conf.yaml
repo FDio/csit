@@ -1,0 +1,199 @@
+# For more information see the documentation in job_configuration.py
+
+workflows:
+
+  workflow_name_1:
+    # ...each workflow has runs...
+    runs:
+      # run 1
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative"
+        params:
+          prio: 1
+          repeat: 10
+      # run 2
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      # run 3
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-vpp-iterative #ndrpdr"
+        params:
+          prio: 1
+          repeat: 10
+      # run 4
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-vpp-soak"
+        params:
+          prio: 3
+          repeat: 10
+      # run 5
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params: "#2n-icx-gso"
+        params:
+          prio: 2
+          repeat: 10
+      # run 6
+      - inputs:
+          job_type: "iterative"
+          dut: "vpp"
+          node: "2n-emr"
+          branch: "rls2602"
+          suite_gen_params: "#2n-emr-gso"
+        params:
+          prio: 2
+          repeat: 10
+      # run 7
+      - inputs:
+          job_type: "coverage"
+          dut: "vpp"
+          node: "2n-icx"
+          branch: "rls2602"
+          suite_gen_params:
+            - "#2n-icx-vpp-cov-ip4-00"
+            - "#2n-icx-vpp-cov-ip4-01"
+            - "#2n-icx-vpp-cov-ip4-02"
+            - "#2n-icx-vpp-cov-ip4-10"
+            - "#2n-icx-vpp-cov-ip4-11"
+            - "#2n-icx-vpp-cov-ip4tun-00"
+            - "#2n-icx-vpp-cov-ip6-00"
+            - "#2n-icx-vpp-cov-ip6-10"
+            - "#2n-icx-vpp-cov-l2-00"
+            - "#2n-icx-vpp-cov-l2-01"
+            - "#2n-icx-vpp-cov-l2-10"
+            - "#2n-icx-vpp-cov-l2-11"
+            - "#2n-icx-vpp-cov-memif-00"
+            - "#2n-icx-vpp-cov-memif-10"
+            - "#2n-icx-vpp-cov-vhost-00"
+            - "#2n-icx-vpp-cov-vhost-10"
+        params:
+          prio: 5
+          repeat: 1
+    parameters:
+      needed_params:  # Only for validation, but neccessary for report jobs
+        - "job_type"
+        - "dut"
+        - "node"  # neccessary for report jobs
+        - "branch"
+        - "suite_gen_params"
+
+  # workflow_name_2:
+  #   # ...each workflow has runs...
+  #   runs:
+  #     # run 1
+  #     - inputs:
+  #         job_type: "iterative"
+  #         dut: "vpp"
+  #         node: "2n-icx"
+  #         branch: "rls2602"
+  #         suite_gen_params: "#2n-icx-vpp-iterative"
+  #       params:
+  #         prio: 1
+  #         repeat: 10
+  #     # run 2
+  #     - inputs:
+  #         job_type: "iterative"
+  #         dut: "vpp"
+  #         node: "2n-icx"
+  #         branch: "rls2602"
+  #         suite_gen_params: "#2n-icx-vpp-iterative #ndrpdr"
+  #       params:
+  #         prio: 1
+  #         repeat: 10
+  #     # run 3
+  #     - inputs:
+  #         job_type: "iterative"
+  #         dut: "vpp"
+  #         node: "2n-emr"
+  #         branch: "rls2602"
+  #         suite_gen_params: "#2n-emr-vpp-iterative #ndrpdr"
+  #       params:
+  #         prio: 1
+  #         repeat: 10
+  #     # run 4
+  #     - inputs:
+  #         job_type: "iterative"
+  #         dut: "vpp"
+  #         node: "2n-icx"
+  #         branch: "rls2602"
+  #         suite_gen_params: "#2n-icx-vpp-soak"
+  #       params:
+  #         prio: 3
+  #         repeat: 10
+  #     # run 5
+  #     - inputs:
+  #         job_type: "iterative"
+  #         dut: "vpp"
+  #         node: "2n-icx"
+  #         branch: "rls2602"
+  #         suite_gen_params: "#2n-icx-gso"
+  #       params:
+  #         prio: 2
+  #         repeat: 10
+  #     # run 6
+  #     - inputs:
+  #         job_type: "iterative"
+  #         dut: "vpp"
+  #         node: "2n-emr"
+  #         branch: "rls2602"
+  #         suite_gen_params: "#2n-emr-gso"
+  #       params:
+  #         prio: 2
+  #         repeat: 10
+  #     # run 7
+  #     - inputs:
+  #         job_type: "coverage"
+  #         dut: "vpp"
+  #         node: "2n-icx"
+  #         branch: "rls2602"
+  #         suite_gen_params:
+  #           - "#2n-icx-vpp-cov-ip4-00"
+  #           - "#2n-icx-vpp-cov-ip4-01"
+  #           - "#2n-icx-vpp-cov-ip4-02"
+  #           - "#2n-icx-vpp-cov-ip4-10"
+  #           - "#2n-icx-vpp-cov-ip4-11"
+  #           - "#2n-icx-vpp-cov-ip4tun-00"
+  #           - "#2n-icx-vpp-cov-ip6-00"
+  #           - "#2n-icx-vpp-cov-ip6-10"
+  #           - "#2n-icx-vpp-cov-l2-00"
+  #           - "#2n-icx-vpp-cov-l2-01"
+  #           - "#2n-icx-vpp-cov-l2-10"
+  #           - "#2n-icx-vpp-cov-l2-11"
+  #           - "#2n-icx-vpp-cov-memif-00"
+  #           - "#2n-icx-vpp-cov-memif-10"
+  #           - "#2n-icx-vpp-cov-vhost-00"
+  #           - "#2n-icx-vpp-cov-vhost-10"
+  #       params:
+  #         prio: 5
+  #         repeat: 1
+  #     needed_params:  # Only for validation
+  #       - "job_type"
+  #       - "dut"
+  #       - "node"
+  #       - "branch"
+  #       - "suite_gen_params"
+
+parameters:
+  queuing: "mixed"  #"sequential" or "mixed" or "random"
