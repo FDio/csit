@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -295,7 +295,7 @@
     # 4x^ 1280B-1c-eth-ip4udpquicscale10cl1s-vppecho-bps
     # ^ 1280BAND1cANDeth-ip4udpquicscale10cl1s-vppecho
 
-    # vnet/policer/policer.api
+    # plugins/policer/policer.api
     policer_add: '0x4d949e35'  # dev
     policer_add_reply: '0xa177cef2'  # dev
 
