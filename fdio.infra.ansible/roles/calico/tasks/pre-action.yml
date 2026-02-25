@@ -3,11 +3,11 @@
 
 - name: pre-setup network interface
   ansible.builtin.shell: |
+    python3 /opt/dpdk/usertools/dpdk-devbind.py -b ice {{ item.pci }}
     ip l set dev {{ item.interfaceName }} up
     ip a add {{ item.ip_addr }} dev {{ item.interfaceName }}
   loop: "{{ calico_uplink_interfaces }}"
   when:
-    - calico_sut is defined
     - deploy_state == "present"
   tags:
     - calico-pre-action
@@ -17,7 +17,6 @@
     ip r add {{ item.ip_route }}
   loop: "{{ calico_uplink_interfaces }}"
   when:
-    - calico_sut is defined
     - deploy_state == "present"
   tags:
     - calico-pre-action
