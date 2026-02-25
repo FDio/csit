@@ -85,7 +85,7 @@ function checkout_csit_for_vpp () {
         git fetch --depth=1 https://gerrit.fd.io/r/csit "${override_ref}" || die
         git checkout FETCH_HEAD || die
     else
-        git checkout "${csit_branch}" || die
+        echo 'git checkout "${csit_branch}"' || die
     fi
     git status || die
     git log -1 || die
