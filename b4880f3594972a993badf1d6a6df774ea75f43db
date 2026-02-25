@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-spr perftest nic_intel-e810cqANDdrv_avfAND1cAND64bAND*-ip4scale20k-rnd nic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch #generate-all",
       "revId": "b4880f3594972a993badf1d6a6df774ea75f43db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c78cb28d_e78251a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-02-25T06:37:13Z",
+      "side": 1,
+      "message": "as per agreement, switch all flavors to compiled",
+      "revId": "b4880f3594972a993badf1d6a6df774ea75f43db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
