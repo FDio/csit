@@ -7,7 +7,6 @@
     dest: "{{ cloudimg_dest }}"
     checksum: "{{ cloudimg_checksum }}"
   when:
-    - calico_sut is defined
     - deploy_state == "present"
   tags:
     - calico-pre-setup
@@ -20,8 +19,6 @@
     - "meta-data"
     - "network-config"
     - "user-data"
-  when:
-    - calico_sut is defined
   tags:
     - calico-pre-setup
 
@@ -29,7 +26,6 @@
   ansible.builtin.shell: |
     genisoimage -output seed.img -volid cidata -rational-rock -joliet /tmp/user-data /tmp/meta-data /tmp/network-config
   when:
-    - calico_sut is defined
     - deploy_state == "present"
   tags:
     - calico-pre-setup

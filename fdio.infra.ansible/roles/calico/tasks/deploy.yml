@@ -7,8 +7,6 @@
     dest: "/tmp/{{ item.key }}"
     mode: "0664"
   loop: "{{ kubernetes_calico_resources | dict2items }}"
-  when:
-    - calico_sut is defined
   tags:
     - calico-deploy
 
@@ -17,8 +15,6 @@
     state: present
     src: "/tmp/{{ item.key }}"
   loop: "{{ kubernetes_calico_resources | dict2items }}"
-  when:
-    - calico_sut is defined
   tags:
     - calico-deploy
 
@@ -28,8 +24,6 @@
     src: "{{ item }}.j2"
   loop:
     - "calico-vpp-multinet.yaml"
-  when:
-    - calico_sut is defined
   tags:
     - calico-deploy
 
@@ -39,8 +33,6 @@
     src: "/tmp/{{ item }}"
   loop:
     - "calico-vpp-multinet.yaml"
-  when:
-    - calico_sut is defined
   tags:
     - calico-deploy
 
@@ -52,7 +44,6 @@
     label_selectors:
       - k8s-app=calico-vpp-node
   register: pod_list
-  when: calico_sut is defined
   tags:
     - calico-info
 
@@ -62,7 +53,6 @@
   loop:
     - "{{ pod_list['resources'] }}"
   when:
-    - calico_sut is defined
     - pod_list['resources'] | length > 0
   tags:
     - calico-info
@@ -72,7 +62,5 @@
     url: "{{ calicovppctl_resource }}"
     dest: /usr/bin/calicovppctl
     mode: 0740
-  when:
-    - calico_sut is defined
   tags:
     - calico-deploy
