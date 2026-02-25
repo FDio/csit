@@ -515,22 +515,27 @@ function get_test_code () {
         *"2n-icx")
             NODENESS="2n"
             FLAVOR="icx"
+            VPP_PLATFORM="icelake"
             ;;
         *"2n-spr")
             NODENESS="2n"
             FLAVOR="spr"
+            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3n-icx")
             NODENESS="3n"
             FLAVOR="icx"
+            VPP_PLATFORM="icelake"
             ;;
         *"3na-spr")
             NODENESS="3na"
             FLAVOR="spr"
+            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3nb-spr")
             NODENESS="3nb"
             FLAVOR="spr"
+            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3n-snr")
             NODENESS="3n"
@@ -553,10 +558,12 @@ function get_test_code () {
         *"2n-emr")
             NODENESS="2n"
             FLAVOR="emr"
+            VPP_PLATFORM="emeraldrapids"
             ;;
         *"3n-emr")
             NODENESS="3n"
             FLAVOR="emr"
+            VPP_PLATFORM="emeraldrapids"
             ;;
         *"3n-oct")
             NODENESS="3n"

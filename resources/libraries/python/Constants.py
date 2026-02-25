@@ -261,7 +261,7 @@ class Constants:
     MTU_FOR_FRAGMENTATION = 1043
 
     # Number of trials to execute in MRR test.
-    PERF_TRIAL_MULTIPLICITY = get_int_from_env("PERF_TRIAL_MULTIPLICITY", 10)
+    PERF_TRIAL_MULTIPLICITY = get_int_from_env("PERF_TRIAL_MULTIPLICITY", 100)
 
     # Duration [s] of one trial in MRR test.
     PERF_TRIAL_DURATION = get_float_from_env("PERF_TRIAL_DURATION", 1.0)
