@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58bde80f_85708800",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-02-26T08:09:04Z",
+      "side": 1,
+      "message": "remove, no need to keep obsolete hardware that we cannot test.",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 50
+      },
+      "revId": "bf4dd5f26f11d8dfb1cad252fef1dbc532bf019b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
