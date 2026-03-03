@@ -6,7 +6,7 @@
     file: "{{ item }}"
   with_first_found:
     - files:
-        - "{{ ansible_os_family }}.yaml"
+        - "{{ ansible_facts['os_family'] }}.yaml"
         - default.yaml
   tags:
     - kubernetes-inst-prerequisites

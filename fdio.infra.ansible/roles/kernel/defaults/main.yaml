@@ -2,7 +2,7 @@
 # file: defaults/main.yaml
 
 # Kernel version to install (Default to any version).
-kernel_version: "{{ kernel_version_by_distro[ansible_distribution|lower][ansible_distribution_release] | join(' ') }}"
+kernel_version: "{{ kernel_version_by_distro[ansible_facts['distribution'] | lower][ansible_facts['distribution_release']] | join(' ') }}"
 
 kernel_version_by_distro:
   ubuntu:
@@ -11,7 +11,7 @@ kernel_version_by_distro:
     noble:
       - "6.8.0-45"
 
-kernel_packages: "{{ kernel_packages_by_distro[ansible_distribution|lower] | flatten(levels=1) }}"
+kernel_packages: "{{ kernel_packages_by_distro[ansible_facts['distribution'] | lower] | flatten(levels=1) }}"
 
 kernel_packages_by_distro:
   ubuntu:
@@ -22,7 +22,7 @@ kernel_packages_by_distro:
     - "linux-tools"
 
 # Packages to remove in relation to kernel upgrade.
-absent_packages: "{{ absent_packages_by_distro[ansible_distribution|lower] | flatten(levels=1) }}"
+absent_packages: "{{ absent_packages_by_distro[ansible_facts['distribution'] | lower] | flatten(levels=1) }}"
 
 absent_packages_by_distro:
   ubuntu:

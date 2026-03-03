@@ -34,6 +34,6 @@
     - "make check"
     - "make install"
   when:
-    - intel_driver_extracted
+    - intel_driver_extracted is not skipped
   tags:
     - intel-inst

@@ -1,44 +1,44 @@
 ---
 # file: tasks/turbo_boost.yaml
 
-- name: "Update Package Cache (APT)"
+- name: update package cache (apt)
   apt:
     update_cache: true
     cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_facts['distribution'] | lower == 'ubuntu'
   tags:
     - turbo-inst-prerequisites
 
-- name: "msr-tools"
+- name: msr-tools
   package:
     name:
-      - "msr-tools"
-    state: "latest"
+      - msr-tools
+    state: latest
   tags:
     - turbo-inst-prerequisites
 
-- name: "Load msr By Default"
+- name: load msr by default
   lineinfile:
-    path: "/etc/modules"
-    state: "present"
-    line: "msr"
+    path: /etc/modules
+    state: present
+    line: msr
   tags:
     - turbo-conf-msr
 
-- name: "Custom Startup Service Hook"
+- name: custom startup service hook
   copy:
-    src: "files/disable-turbo-boost.service"
-    dest: "/etc/systemd/system/disable-turbo-boost.service"
-    owner: "root"
-    group: "root"
+    src: files/disable-turbo-boost.service
+    dest: /etc/systemd/system/disable-turbo-boost.service
+    owner: root
+    group: root
     mode: 0644
   tags:
     - turbo-conf-msr
 
-- name: "Custom Startup Service Hook Enable"
+- name: custom startup service hook enable
   service:
-    name: "disable-turbo-boost"
+    name: disable-turbo-boost
     enabled: true
   tags:
     - turbo-conf-msr

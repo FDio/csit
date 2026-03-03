@@ -1,23 +1,23 @@
 ---
 # file: tasks/main.yaml
 
-- name: Update Package Cache (APT)
+- name: update package cache (apt)
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_facts['distribution']|lower == 'ubuntu'
   tags:
     - intel-inst-drivers
 
-- name: Install Prerequisites
+- name: prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - intel-inst-drivers
 
-- name: Check Presence of Intel Ethernet 700 Series
+- name: check presence of intel ethernet 700 series
   ansible.builtin.shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572; lspci -d 8086:158a; lspci -d 8086:158b"
   register: intel_700_pcis
   failed_when: false
@@ -25,7 +25,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Check Presence of Intel Ethernet 800 Series
+- name: check presence of intel ethernet 800 series
   ansible.builtin.shell: "lspci -d 8086:1592; lspci -d 8086:1891; lspci -d 8086:188c"
   register: intel_800_pcis
   failed_when: false
@@ -33,7 +33,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Check Presence of Intel DSA
+- name: check presence of intel dsa
   ansible.builtin.shell: "lspci -d 8086:0b25"
   register: intel_dsa_pcis
   failed_when: false
@@ -41,7 +41,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Check Presence of Intel C4XXX
+- name: check presence of intel C4XXX
   ansible.builtin.shell: "lspci -d 8086:18a0"
   register: intel_qat1_pcis
   failed_when: false
@@ -49,7 +49,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Check Presence of Intel 4XXX
+- name: check presence of intel 4XXX
   ansible.builtin.shell: "lspci -d 8086:4942; lspci -d 8086:4940"
   register: intel_qat2_pcis
   failed_when: false
@@ -57,7 +57,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Get Intel Ethernet 700 Series driver versions
+- name: get intel ethernet 700 series driver versions
   ansible.builtin.set_fact:
     i40e: "{{ intel_700_compatibility_matrix[intel_700_matrix]['i40e'] }}"
     iavf: "{{ intel_700_compatibility_matrix[intel_700_matrix]['iavf'] }}"
@@ -67,7 +67,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Get Intel Ethernet 800 Series driver versions
+- name: get intel ethernet 800 series driver versions
   ansible.builtin.set_fact:
     ice: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ice'] }}"
     ddp: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ddp'] }}"
@@ -78,7 +78,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Get Intel DSA driver versions
+- name: get intel dsa driver versions
   ansible.builtin.set_fact:
     dsa: "{{ intel_dsa_compatibility_matrix['dsa'] }}"
   when: >
@@ -86,7 +86,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Get Intel QAT driver versions
+- name: get intel qat driver versions
   ansible.builtin.set_fact:
     qat1: "{{ intel_qat_compatibility_matrix['qat1'] }}"
     qat2: "{{ intel_qat_compatibility_matrix['qat2'] }}"
@@ -95,7 +95,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel Ethernet 700 Series
+- name: driver intel ethernet 700 series
   import_tasks: i40e.yaml
   when: >
     intel_700_pcis.stdout_lines | length > 0 and
@@ -103,7 +103,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel Ethernet 800 Series
+- name: driver intel ethernet 800 series
   import_tasks: ice.yaml
   when: >
     intel_800_pcis.stdout_lines | length > 0 and
@@ -111,7 +111,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel iAVF
+- name: driver intel iavf
   import_tasks: iavf.yaml
   when: >
     (intel_700_pcis.stdout_lines | length > 0 and
@@ -121,7 +121,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel DSA
+- name: driver intel dsa
   import_tasks: dsa.yaml
   when: >
     intel_dsa_pcis.stdout_lines | length > 0 and
@@ -129,7 +129,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel QAT 1.x
+- name: driver intel qat 1.x
   import_tasks: qat1.yaml
   when: >
     intel_qat1_pcis.stdout_lines | length > 0 and
@@ -137,7 +137,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Driver Intel QAT 2.x
+- name: driver intel qat 2.x
   import_tasks: qat2.yaml
   when: >
     intel_qat2_pcis.stdout_lines | length > 0 and
