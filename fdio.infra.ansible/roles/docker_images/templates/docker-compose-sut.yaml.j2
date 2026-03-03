@@ -11,7 +11,7 @@ services:
     command: ["/usr/sbin/sshd","-D", "-p", "6001"]
     expose:
       - "6001"
-    hostname: "{{ ansible_hostname[:-1] }}1"
+    hostname: "{{ ansible_facts['hostname'][:-1] }}1"
     network_mode: "host"
     privileged: true
     restart: "always"
@@ -43,7 +43,7 @@ services:
     command: ["/usr/sbin/sshd","-D", "-p", "6002"]
     expose:
       - "6002"
-    hostname: "{{ ansible_hostname[:-1] }}2"
+    hostname: "{{ ansible_facts['hostname'][:-1] }}2"
     network_mode: "host"
     privileged: true
     restart: "always"

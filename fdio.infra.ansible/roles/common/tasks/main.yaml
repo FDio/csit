@@ -1,29 +1,29 @@
 ---
 # file: tasks/main.yaml
 
-- name: Update Repositories Cache
+- name: update repositories cache
   ansible.builtin.apt:
     update_cache: true
   when:
-    - ansible_os_family == 'Debian'
+    - ansible_facts["os_family"] == 'Debian'
   tags:
     - common-inst-prerequisites
 
-- name: Prerequisites
+- name: prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - common-inst-prerequisites
 
-- name: PIP management
+- name: pip management
   ansible.builtin.file:
     path: "/usr/lib/python3.12/EXTERNALLY-MANAGED"
     state: "absent"
   tags:
     - common-inst-pip
 
-- name: Meson (DPDK)
+- name: meson (dpdk)
   ansible.builtin.pip:
     name:
       - "meson==0.64.1"

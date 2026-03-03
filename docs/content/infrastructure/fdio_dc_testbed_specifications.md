@@ -712,11 +712,11 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 a8:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot11 d8:00.xx: empty.
 
-29. **Server-Type-K1**: Purpose - SierraForrest SUT/TG for FD.io performance testing.
+29. **Server-Type-K1**: Purpose - SierraForrest SUT for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
-        - NIC ports connected into 2-node testbed topologies.
+        - NIC ports connected into 3-node testbed topologies.
     - Main HW configuration:
         - Chassis: SuperMicro SYS-222H-TN.
         - Motherboard: X14DBM-SP.
@@ -744,10 +744,10 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot5 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot7 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot3 4d:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot1281 b8:00.xx: e810-CQDA2-2p100GE Intel.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot1 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot513 15:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot3 ??:00.xx: empty.
 
 31. **Server-Type-L1**: Purpose - GraniteRapids TG for FD.io performance testing.
@@ -763,10 +763,10 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot5 ??:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot7 ??:00.xx: empty.
+            - PCIe Slot3 4d:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot1281 b800.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot1 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot513 15:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot3 ??:00.xx: empty.
 
 ## Testbeds Configuration

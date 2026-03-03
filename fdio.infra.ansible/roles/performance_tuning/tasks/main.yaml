@@ -1,32 +1,34 @@
 ---
 # file: tasks/main.yaml
 
-- name: "Update Package Cache (APT)"
+- name: update package cache (apt)"
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_facts['distribution'] | lower == 'ubuntu'
   tags:
     - perf-inst-prerequisites
 
-- name: "Machine Prerequisites"
+- name: machine prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
-    state: "latest"
+    state: latest
   tags:
     - perf-inst-prerequisites
 
-- name: "Turbo Boost"
+- name: turbo boost
   import_tasks: "turbo_boost.yaml"
   when: >
     cpu_microarchitecture == "icelake" or
     cpu_microarchitecture == "sapphirerapids" or
-    cpu_microarchitecture == "emeraldrapids"
+    cpu_microarchitecture == "emeraldrapids" or
+    cpu_microarchitecture == "graniterapids" or
+    cpu_microarchitecture == "sierraforest"
   tags:
     - perf-conf-turbo-boost
 
-- name: "Adjust max_map_count"
+- name: adjust max_map_count
   # this file contains the maximum number of memory map areas a process
   # may have. memory map areas are used as a side-effect of calling
   # malloc, directly by mmap and mprotect, and also when loading shared
@@ -37,57 +39,57 @@
   # e.g., up to one or two maps per allocation.
   # must be greater than or equal to (2 * vm.nr_hugepages).
   ansible.builtin.sysctl:
-    name: "vm.max_map_count"
+    name: vm.max_map_count
     value: "{{ sysctl.vm.nr_hugepages * 4  }}"
-    state: "present"
-    sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
+    state: present
+    sysctl_file: /etc/sysctl.d/90-csit.conf
+    reload: yes
   tags:
     - perf-conf-sysctl
 
-- name: "Adjust hugetlb_shm_group"
+- name: adjust hugetlb_shm_group
   # hugetlb_shm_group contains group id that is allowed to create sysv
   # shared memory segment using hugetlb page.
   ansible.builtin.sysctl:
-    name: "vm.hugetlb_shm_group"
+    name: vm.hugetlb_shm_group
     value: "1000"
-    state: "present"
+    state: present
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
+    reload: yes
   tags:
     - perf-conf-sysctl
 
-- name: "Adjust swappiness"
+- name: adjust swappiness
   # this control is used to define how aggressive the kernel will swap
   # memory pages.  higher values will increase agressiveness, lower values
   # decrease the amount of swap.  a value of 0 instructs the kernel not to
   # initiate swap until the amount of free and file-backed pages is less
   # than the high water mark in a zone.
   ansible.builtin.sysctl:
-    name: "vm.swappiness"
+    name: vm.swappiness
     value: "0"
-    state: "present"
-    sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
+    state: present
+    sysctl_file: /etc/sysctl.d/90-csit.conf
+    reload: yes
   tags:
     - perf-conf-sysctl
 
-- name: "Adjust shmmax"
+- name: adjust shmmax
   # shared memory max must be greator or equal to the total size of hugepages.
   # for 2mb pages, totalhugepagesize = vm.nr_hugepages * 2 * 1024 * 1024
   # if the existing kernel.shmmax setting (cat /sys/proc/kernel/shmmax)
   # is greater than the calculated totalhugepagesize then set this parameter
   # to current shmmax value.
   ansible.builtin.sysctl:
-    name: "kernel.shmmax"
+    name: kernel.shmmax
     value: "{{ sysctl.vm.nr_hugepages * 2 * 1024 * 1024 }}"
-    state: "present"
-    sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
+    state: present
+    sysctl_file: /etc/sysctl.d/90-csit.conf
+    reload: yes
   tags:
     - perf-conf-sysctl
 
-- name: "Adjust watchdog_cpumask"
+- name: adjust watchdog_cpumask
   # this value can be used to control on which cpus the watchdog may run.
   # the default cpumask is all possible cores, but if no_hz_full is
   # enabled in the kernel config, and cores are specified with the
@@ -99,15 +101,15 @@
   # to re-enable cores that by default were not running the watchdog,
   # if a kernel lockup was suspected on those cores.
   ansible.builtin.sysctl:
-    name: "kernel.watchdog_cpumask"
+    name: kernel.watchdog_cpumask
     value: "{{ sysctl.kernel.watchdog_cpumask }}"
-    state: "present"
-    sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
+    state: present
+    sysctl_file: /etc/sysctl.d/90-csit.conf
+    reload: yes
   tags:
     - perf-conf-sysctl
 
-- name: "Adjust randomize_va_space"
+- name: adjust randomize_va_space
   # this option can be used to select the type of process address
   # space randomization that is used in the system, for architectures
   # that support this feature.
@@ -115,38 +117,38 @@
   #     default for architectures that do not support this feature anyways,
   #     and kernels that are booted with the "norandmaps" parameter.
   ansible.builtin.sysctl:
-    name: "kernel.randomize_va_space"
+    name: kernel.randomize_va_space
     value: "0"
-    state: "present"
-    sysctl_file: "/etc/sysctl.d/90-csit.conf"
-    reload: "yes"
+    state: present
+    sysctl_file: /etc/sysctl.d/90-csit.conf
+    reload: yes
   tags:
     - perf-conf-sysctl
 
-- name: "Cpufrequtils"
+- name: cpufrequtils
   ansible.builtin.copy:
-    src: "files/cpufrequtils"
-    dest: "/etc/default/cpufrequtils"
-    owner: "root"
-    group: "root"
+    src: files/cpufrequtils
+    dest: /etc/default/cpufrequtils
+    owner: root
+    group: root
     mode: 0644
   tags:
     - perf-conf-cpufrequtils
 
-- name: "Irqbalance"
+- name: irqbalance
   ansible.builtin.template:
-    src: "files/irqbalance"
-    dest: "/etc/default/irqbalance"
-    owner: "root"
-    group: "root"
+    src: files/irqbalance
+    dest: /etc/default/irqbalance
+    owner: root
+    group: root
     mode: 0644
   tags:
     - perf-conf-irqbalance
 
-- name: "Kernel Parameters"
+- name: kernel parameters
   ansible.builtin.lineinfile:
-    path: "/etc/default/grub"
-    state: "present"
+    path: /etc/default/grub
+    state: present
     regexp: "^GRUB_CMDLINE_LINUX="
     line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}\""
   notify:
@@ -156,53 +158,53 @@
 
 - meta: flush_handlers
 
-- name: "Load Kernel Modules By Default"
+- name: load kernel modules by default
   ansible.builtin.lineinfile:
-    path: "/etc/modules"
-    state: "present"
+    path: /etc/modules
+    state: present
     line: "{{ item }}"
   with_items:
-    - "vfio-pci"
+    - vfio-pci
   notify:
     - "Reboot Server"
   tags:
     - perf-conf-load-kernel-modules
 
-- name: "Create a directory for 1G HugeTLBs hugepages"
+- name: create a directory for 1G hugetlbs hugepages
   ansible.builtin.file:
-    path: "/dev/hugepages1G"
-    state: "directory"
+    path: /dev/hugepages1G
+    state: directory
     mode: 0755
   tags:
     - perf-conf-hugepages-1g
 
-- name: "Mount 1G HugeTLBs hugepages"
+- name: mount 1G hugetlbs hugepages
   ansible.builtin.mount:
-    path: "/dev/hugepages1G"
-    src: "hugetlbfs"
+    path: /dev/hugepages1G
+    src: hugetlbfs
     opts: "pagesize=1G"
     boot: false
-    state: "mounted"
-    fstype: "hugetlbfs"
+    state: mounted
+    fstype: hugetlbfs
   tags:
     - perf-conf-hugepages-1g
 
-- name: "Create a directory if it does not exist"
+- name: create a directory if it does not exist
   ansible.builtin.file:
-    path: "/dev/hugepages2M"
-    state: "directory"
+    path: /dev/hugepages2M
+    state: directory
     mode: 0755
   tags:
     - perf-conf-hugepages-2m
 
-- name: "Create a directory for 2M HugeTLBs hugepages"
+- name: create a directory for 2M hugetlbs hugepages
   ansible.builtin.mount:
-    path: "/dev/hugepages2M"
-    src: "hugetlbfs"
+    path: /dev/hugepages2M
+    src: hugetlbfs
     opts: "pagesize=2M"
     boot: false
-    state: "mounted"
-    fstype: "hugetlbfs"
+    state: mounted
+    fstype: hugetlbfs
   tags:
     - perf-conf-hugepages-2m
 

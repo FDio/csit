@@ -1,23 +1,23 @@
 ---
 # file: tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: update package cache (apt)
   apt:
     update_cache: true
     cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_facts["distribution"]|lower == 'ubuntu'
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Prerequisites
+- name: prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Check Presence of Mellanox
+- name: check presence of mellanox
   shell: "lspci | grep Mellanox | awk '{print $1}'"
   register: mellanox_pcis
   failed_when: false
@@ -25,7 +25,7 @@
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Get Mellanox OFED driver versions
+- name: get mellanox ofed driver versions
   set_fact:
     ofed: "{{ mellanox_compatibility_matrix[mellanox_matrix]['ofed'] }}"
   when: >
@@ -34,7 +34,7 @@
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Driver Mellanox
+- name: driver mellanox
   import_tasks: ofed.yaml
   when: >
     mellanox_pcis.stdout_lines | length > 0 and

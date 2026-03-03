@@ -1,0 +1,41 @@
+---
+# file: host_vars/10.30.51.65.yaml
+
+hostname: "s65-t217-tg1"
+grub:
+  audit: "0"
+  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
+  hpet: "disable"
+  intel_idle.max_cstate: "1"
+  intel_iommu: "on,sm_on"
+  intel_pstate: "disable"
+  iommu: "pt"
+  isolcpus: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
+  mce: "off"
+  nmi_watchdog: "0"
+  nohz_full: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
+  nosoftlockup: true
+  no5lvl: true
+  numa_balancing: "disable"
+  processor.max_cstate: "1"
+  rcu_nocbs: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
+  tsc: "reliable"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0,32,64,96,128,160,192"
+  vm:
+    nr_hugepages: 32768
+    max_map_count: 20000
+
+
+inventory_ipmi_hostname: "10.30.50.65"
+cpu_microarchitecture: "graniterapids"
+
+intel_800_matrix: "dpdk24.07"
+intel_dsa_matrix: true
+intel_qat_matrix: true
+
+docker_tg: true
+docker_volumes:
+  - source: "/usr/lib/firmware/"
+    target: "/usr/lib/firmware/"

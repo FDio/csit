@@ -17,8 +17,7 @@
 
 - name: "Set target APT kernel version"
   ansible.builtin.set_fact:
-    _kernel: "{{ apt_kernel_list | deb_kernel(
-                 kernel_version, ansible_kernel) }}"
+    _kernel: "{{ apt_kernel_list | deb_kernel(kernel_version, ansible_facts['kernel']) }}"
   tags:
     - kernel-inst
 
@@ -35,17 +34,14 @@
 
 - name: "Ensure Packages Versions"
   ansible.builtin.apt:
-    name: "{{ apt_kernel_list | deb_kernel_pkg(
-              kernel_version, ansible_kernel, ansible_distribution,
-              ansible_architecture, item) }}"
+    name: "{{ apt_kernel_list | deb_kernel_pkg(kernel_version, ansible_facts['kernel'], ansible_facts['distribution'], ansible_facts['architecture'], item) }}"
   loop: "{{ kernel_packages }}"
   tags:
     - kernel-inst
 
 - name: "Ensure Any Other Kernel Packages Are Removed"
   ansible.builtin.apt:
-    name: "{{ apt_packages_list | deb_installed_kernel(
-              apt_kernel_list, kernel_version, ansible_kernel) }}"
+    name: "{{ apt_packages_list | deb_installed_kernel(apt_kernel_list, kernel_version, ansible_facts['kernel']) }}"
     state: "absent"
     purge: true
   notify:
