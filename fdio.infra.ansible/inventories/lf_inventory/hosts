@@ -5,6 +5,7 @@ all:
         10.30.51.37: #s37-t27-tg1 - icelake
         10.30.51.41: #s41-t28-tg1 - emeraldrapids
         10.30.51.43: #s43-t29-tg1 - emeraldrapids
+        10.30.51.49: #s49-t216-tg1 - emeraldrapids
         10.30.51.53: #s53-t21-tg1 - sapphirerapids
         10.30.51.55: #s55-t22-tg1 - sapphirerapids
         10.30.51.57: #s57-t23-tg1 - sapphirerapids

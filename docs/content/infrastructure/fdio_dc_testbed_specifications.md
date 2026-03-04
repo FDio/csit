@@ -128,10 +128,10 @@ one TG (Server-Type-A2) connected in a 2-node and 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
-### 2-Node-EmeraldRapids Xeon Intel (2n-sfr)
+### 2-Node-EmeraldRapids Xeon Intel (3n-srf)
 
 Each 2-Node-SierraForrest testbed includes one SUT (Server-Type-K1) and
-one TG (Server-Type-K1) connected in a 2-node circular topology
+one TG (Server-Type-K1) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -1342,7 +1342,7 @@ FD.io CSIT lab contains following server types:
         - s37-t27-tg1-c2/p2 - 200GE port2 ConnectX7-2p200GE.
 ```
 
-### 2-Node-SierraForrest (2n-sfr)
+### 3-Node-SierraForrest (3n-srf)
 
 ```
 - SUT [Server-Type-K1]:
@@ -1673,13 +1673,14 @@ FD.io CSIT lab contains following server types:
         - s43-t29-tg1-c2/p2 to s42-t29-sut1-c2/p2.
 ```
 
-### 2-Node-SierraForrest (2n-sfr)
+### 3-Node-SierraForrest (3n-srf)
 
 ```
 - testbed216:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s63-t216-tg1-c5/p1 to s62-t216-sut1-c5/p1.
-        - s62-t216-sut1-c5/p2 to s63-t216-tg1-c5/p2.
+        - s49-t216-tg1-c5/p1 to s62-t216-sut1-c5/p1.
+        - s62-t216-sut1-c5/p2 to s63-t216-sut2-c5/p1.
+        - s63-t216-sut2-c5/p1 to s49-t216-tg1-c5/p2.
 ```
 
 
