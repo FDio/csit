@@ -42,7 +42,7 @@ jobs:
           - node: 3n-alt
             os: ubuntu2404
             executor_arch: aarch64
-          #- node: 3n-snr
+          #- node: 3n-srf
           #  os: ubuntu2404
           #  executor_arch: x86_64
           - node: 3n-icxd

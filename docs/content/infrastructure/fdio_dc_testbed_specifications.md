@@ -725,7 +725,7 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot5 ??:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot513 10:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot7 ??:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot1 ??:00.xx: empty.
@@ -739,7 +739,7 @@ FD.io CSIT lab contains following server types:
     - Main HW configuration:
         - Chassis: SuperMicro SYS-222H-TN.
         - Motherboard: X14DBM-SP.
-        - Processors: 2* Intel Xeon 6767P 64 core 2.2 GHz.
+        - Processors: 2* Intel Xeon 6767P 64 core 2.4 GHz.
         - RAM Memory: 16* 32GB DDR5-3200.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
@@ -758,13 +758,13 @@ FD.io CSIT lab contains following server types:
     - Main HW configuration:
         - Chassis: SuperMicro SYS-222H-TN.
         - Motherboard: X14DBM-SP.
-        - Processors: 2* Intel Xeon 6767P 64 core 2.2 GHz.
+        - Processors: 2* Intel Xeon 6767P 64 core 2.4 GHz.
         - RAM Memory: 16* 32GB DDR5-3200.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot3 4d:00.xx: e810-CQDA2-2p100GE Intel.
-            - PCIe Slot1281 b800.xx: empty.
+            - PCIe Slot1281 b8:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot513 15:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot3 ??:00.xx: empty.

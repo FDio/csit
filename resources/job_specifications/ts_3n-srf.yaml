@@ -4,17 +4,16 @@
 # Test groups assigned to infrastructure.
 test-sets:
 
-  3n-snr-dpdk-iterative:
+  3n-srf-dpdk-iterative:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     tests:
       - dpdk-sm
 
-
-  3n-snr-vpp-cov-crypto-00:
+  3n-srf-vpp-cov-crypto-00:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize:
       - 64
@@ -26,9 +25,9 @@ test-sets:
       - ipsec-sw-aes256gcm-md
       - ipsec-sw-policy-aes256gcm-sm
 
-  3n-snr-vpp-cov-crypto-01:
+  3n-srf-vpp-cov-crypto-01:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize: [1518, imix]
     core: [2, 3, 4]
@@ -37,7 +36,7 @@ test-sets:
       - ipsec-sw-async-aes128gcm-md
       - ipsec-sw-async-aes256gcm-md
 
-  3n-snr-vpp-cov-crypto-02:
+  3n-srf-vpp-cov-crypto-02:
     infra:
       100ge2p1e810cq:
         - vfio-pci
@@ -45,7 +44,7 @@ test-sets:
     tests:
       - ipsec-sw-reassembly-sm
 
-  3n-snr-vpp-cov-crypto-03:
+  3n-srf-vpp-cov-crypto-03:
     infra:
       100ge2p1e810cq:
         - vfio-pci
@@ -54,7 +53,7 @@ test-sets:
           framesize: [1518, ]
           core: [1, ]
 
-  3n-snr-vpp-cov-crypto-04:
+  3n-srf-vpp-cov-crypto-04:
     infra:
       100ge2p1e810cq:
         - vfio-pci
@@ -65,9 +64,9 @@ test-sets:
     tests:
       - ipsec-hw-async-aes256gcm-md
 
-  3n-snr-vpp-cov-ip4-00:
+  3n-srf-vpp-cov-ip4-00:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize:
       - 64
@@ -77,9 +76,9 @@ test-sets:
     tests:
       - ip4-lg
 
-  3n-snr-vpp-cov-ip4tun-00:
+  3n-srf-vpp-cov-ip4tun-00:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize:
       - 64
@@ -89,9 +88,9 @@ test-sets:
     tests:
       - vxlan-sm
 
-  3n-snr-vpp-cov-ip4tun-01:
+  3n-srf-vpp-cov-ip4tun-01:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize: [64, 1518, imix]
     tests:
@@ -100,9 +99,9 @@ test-sets:
       - gtpu-sw-reassembly-sm:
           framesize: [1518, ]
 
-  3n-snr-vpp-cov-ip6-00:
+  3n-srf-vpp-cov-ip6-00:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize:
       - 78
@@ -113,9 +112,9 @@ test-sets:
       - ip6-base-sm
       - ip6-scale-lg
 
-  3n-snr-vpp-cov-l2-00:
+  3n-srf-vpp-cov-l2-00:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize:
       - 64
@@ -127,9 +126,9 @@ test-sets:
       - l2-scale-md
 
 
-  3n-snr-vpp-iterative:
+  3n-srf-vpp-iterative:
     infra:
-      25ge2p1e822cq:
+      100ge2p1e810cq:
         - vfio-pci
     framesize: [1518, imix]
     tests:

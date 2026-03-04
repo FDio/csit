@@ -1,0 +1,267 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  2n-gnr-dpdk-iterative:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - dpdk-sm
+
+
+  2n-gnr-vpp-cov-ip4-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-lg
+
+  2n-gnr-vpp-cov-ip4-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
+  2n-gnr-vpp-cov-ip4-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+    framesize: [64, imix]
+    tests:
+      - nat44det-sm
+      - nat44-udir-sm
+      - nat44ed-cps-sm:
+          framesize: [64, ]
+      - nat44ed-tput-sm:
+          framesize: [100, ]
+      - nat44-ip4base-cps-sm:
+          framesize: [64, ]
+      - nat44-ip4base-tput-sm:
+          framesize: [100, ]
+
+  2n-gnr-vpp-cov-ip4-03:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  2n-gnr-vpp-cov-ip4tun-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - geneve-lg
+
+  2n-gnr-vpp-cov-ip6-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-base-sm
+      - ip6-scale-lg
+
+  2n-gnr-vpp-cov-ip6-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-sm
+
+  2n-gnr-vpp-cov-l2-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+
+  2n-gnr-vpp-cov-l2-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-scale-md
+
+  2n-gnr-vpp-cov-memif-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - container-memif-l2bd-sw-sm
+      - container-memif-sw-sm
+      - container-memif-hw-sm
+
+  2n-gnr-vpp-cov-vhost-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vhost-lg
+
+  2n-gnr-vpp-cov-gso-00:
+    framesize: [128000, ]
+    core: [1, 2, 4]
+    tests:
+      - gso-tap-sm:
+          infra:
+            100ge2p1e810cq:
+              - tap
+      - gso-vhost-sm:
+          infra:
+            100ge2p1e810cq:
+              - vhost
+
+
+  2n-gnr-vpp-iterative:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    tests:
+      - container-memif-l2bd-sw-sm:
+          framesize: [64, 1518]
+      - container-memif-hw-sm:
+          framesize: [64, 1518]
+      - container-memif-sw-sm
+      - ip4-md
+      - ip4-acl-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - ip4-pol-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - nat44det-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - nat44-udir-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - nat44ed-cps-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - nat44ed-tput-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [100, ]
+      - nat44-ip4base-cps-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - nat44-ip4base-tput-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [100, ]
+      - geneve-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - ip6-md:
+          framesize: [78, ]
+      - ip6-acl-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [78, ]
+      - l2-lg
+      - vhost-md
+
+
+  2n-gnr-gso:
+    framesize: [128000, ]
+    core: [1, 2, 4]
+    tests:
+      - gso-tap-sm:
+          infra:
+            100ge2p1e810cq:
+              - tap
+      - gso-vhost-sm:
+          infra:
+            100ge2p1e810cq:
+              - vhost
+
+
+  2n-gnr-vpp-hoststack:
+    framesize: [0, 2048]
+    core: [1, 2]
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - hoststack-nginx-md
+
+  2n-gnr-calicovpp-iterative:
+    infra:
+      100ge2p1e810cq:
+        - avf
+    tests:
+      - ip4-base-sm

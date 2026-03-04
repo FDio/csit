@@ -1,0 +1,311 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  3n-gnr-dpdk-iterative:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - dpdk-sm
+
+
+  3n-gnr-vpp-cov-crypto-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    core: [1, ]
+    tests:
+      - ipsec-sw-aes128cbc-hmac512sha-lg
+
+  3n-gnr-vpp-cov-crypto-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes128gcm-lg
+
+  3n-gnr-vpp-cov-crypto-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes256gcm-lg
+
+  3n-gnr-vpp-cov-crypto-03:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize: [1518, imix]
+    core: [2, 3, 4]
+    tests:
+      - ipsec-sw-async-aes128cbc-hmac512sha-md
+      - ipsec-sw-async-aes128gcm-md
+      - ipsec-sw-async-aes256gcm-md
+
+  3n-gnr-vpp-cov-crypto-04:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-hw-async-aes256gcm-md
+
+  3n-gnr-vpp-cov-crypto-05:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    framesize: [1518, ]
+    tests:
+      - ipsec-sw-reassembly-sm
+
+  3n-gnr-vpp-cov-crypto-06:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - ipsec-sw-udp:
+          framesize: [1518, ]
+          core: [1, ]
+
+  3n-gnr-vpp-cov-ip4-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-lg
+
+  3n-gnr-vpp-cov-ip4-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-pol-md
+
+  3n-gnr-vpp-cov-ip4-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip4-acl-lg
+
+  3n-gnr-vpp-cov-ip4tun-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - vxlan-sm
+
+  3n-gnr-vpp-cov-ip4tun-01:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - gtpu-sw-sm:
+          framesize:
+            - 64
+            - 1518: [1, 2]
+            - 9000: [1, ]
+            - imix
+      - gtpu-sw-reassembly-sm:
+          framesize: [1518, ]
+
+  3n-gnr-vpp-cov-ip4tun-02:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    tests:
+      - wireguard-sw-lg
+
+  3n-gnr-vpp-cov-ip4tun-03:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    framesize: [1518, imix]
+    tests:
+      - wireguard-hw-lg
+
+  3n-gnr-vpp-cov-ip6-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-base-sm
+      - ip6-scale-lg
+
+  3n-gnr-vpp-cov-ip6-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - ip6-acl-sm
+
+  3n-gnr-vpp-cov-l2-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-base-md
+      - l2-scale-md
+
+  3n-gnr-vpp-cov-srv6-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - srv6-lg
+
+
+  3n-gnr-vpp-iterative:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    tests:
+      - ipsec-sw-lg:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [1518, imix]
+      - ipsec-sw-async-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+          framesize: [1518, imix]
+          core: [2, 3, 4]
+      - ipsec-sw-md:
+          framesize: [1518, imix]
+      - ipsec-hw-md:
+          framesize: [1518, imix]
+      - ipsec-sw-reassembly-sm:
+          framesize: [1518, ]
+      - ipsec-sw-udp:
+          framesize: [1518, ]
+          core: [1, ]
+      - ip4-base-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - ip4-pol-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - ip4-acl-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - vxlan-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - gtpu-sw-sm
+      - gtpu-sw-reassembly-sm:
+          framesize: [1518, ]
+      - gtpu-hw-sm
+      - wireguard-sw-md:
+          framesize: [1518, imix]
+      - wireguard-hw-md:
+          framesize: [1518, imix]
+      - ip6-base-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+          framesize: [78, ]
+      - ip6-acl-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [78, ]
+      - l2-base-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - srv6-lg:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [78, ]
+
+
+  3n-gnr-vpp-hoststack:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    core: [1, ]
+    tests:
+      - hoststack-iperf-md:
+          framesize: [1460, ]
+      - hoststack-vppecho-md:
+          framesize: [1280, ]

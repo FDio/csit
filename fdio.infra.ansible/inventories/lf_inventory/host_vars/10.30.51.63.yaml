@@ -10,19 +10,19 @@ grub:
   intel_iommu: "on,sm_on"
   intel_pstate: "disable"
   iommu: "pt"
-  isolcpus: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
+  isolcpus: "1-143,145-287"
   mce: "off"
   nmi_watchdog: "0"
-  nohz_full: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
+  nohz_full: "1-143,145-287"
   nosoftlockup: true
   no5lvl: true
   numa_balancing: "disable"
   processor.max_cstate: "1"
-  rcu_nocbs: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
+  rcu_nocbs: "1-143,145-287"
   tsc: "reliable"
 sysctl:
   kernel:
-    watchdog_cpumask: "0,32,64,96,128,160,192"
+    watchdog_cpumask: "0,144"
   vm:
     nr_hugepages: 32768
     max_map_count: 20000

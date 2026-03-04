@@ -22,11 +22,10 @@ grub:
   tsc: "reliable"
 sysctl:
   kernel:
-    watchdog_cpumask: "0,32,64,96,128,160,192"
+    watchdog_cpumask: "0,32,64,96,128,160,192,224"
   vm:
     nr_hugepages: 32768
     max_map_count: 20000
-
 
 inventory_ipmi_hostname: "10.30.50.65"
 cpu_microarchitecture: "graniterapids"

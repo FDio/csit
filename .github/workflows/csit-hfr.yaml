@@ -41,7 +41,7 @@ on:
           - 3n-icx
           - 3n-icxd
           - 3n-oct
-          - 3n-snr
+          - 3n-srf
           - 3na-spr
           - 3nb-spr
         default: 2n-emr
