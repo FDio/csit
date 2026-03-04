@@ -356,7 +356,7 @@ function deploy_topology () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"calicovpp"*"2n-emr")
+        *"calicovpp"*"2n-emr" | *"calicovpp"*"2n-gnr")
             export ANSIBLE_deploy_state=absent
             ansible_playbook "calico"
             export ANSIBLE_deploy_state=present
@@ -492,9 +492,9 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="c7gn"
             ;;
-        *"3n-c7gn")
-            NODENESS="3n"
-            FLAVOR="c7gn"
+        *"2n-c8gn")
+            NODENESS="2n"
+            FLAVOR="c8gn"
             ;;
         *"1n-c6in")
             NODENESS="1n"
@@ -502,10 +502,6 @@ function get_test_code () {
             ;;
         *"2n-c6in")
             NODENESS="2n"
-            FLAVOR="c6in"
-            ;;
-        *"3n-c6in")
-            NODENESS="3n"
             FLAVOR="c6in"
             ;;
         *"2n-zn2")
@@ -532,9 +528,9 @@ function get_test_code () {
             NODENESS="3nb"
             FLAVOR="spr"
             ;;
-        *"3n-snr")
+        *"3n-srf")
             NODENESS="3n"
-            FLAVOR="snr"
+            FLAVOR="srf"
             ;;
         *"3n-icxd")
             NODENESS="3n"
@@ -557,6 +553,14 @@ function get_test_code () {
         *"3n-emr")
             NODENESS="3n"
             FLAVOR="emr"
+            ;;
+        *"2n-gnr")
+            NODENESS="2n"
+            FLAVOR="gnr"
+            ;;
+        *"3n-gnr")
+            NODENESS="3n"
+            FLAVOR="gnr"
             ;;
         *"3n-oct")
             NODENESS="3n"
@@ -721,7 +725,7 @@ function prepare_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_aws" | "2n_aws" | "3n_aws")
+        "1n_aws" | "2n_aws")
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
             terraform_init || die "Failed to call terraform init."
@@ -730,7 +734,7 @@ function prepare_topology () {
             }
             terraform_apply || die "Failed to call terraform apply."
             ;;
-        "2n_c7gn" | "3n_c7gn")
+        "2n_c7gn" | "2n_c8gn")
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c7gn"
             terraform_init || die "Failed to call terraform init."
@@ -739,7 +743,7 @@ function prepare_topology () {
             }
             terraform_apply || die "Failed to call terraform apply."
             ;;
-        "1n_c6in" | "2n_c6in" | "3n_c6in")
+        "1n_c6in" | "2n_c6in")
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c6in"
             terraform_init || die "Failed to call terraform init."
@@ -1050,6 +1054,9 @@ function select_topology () {
         *"2n-c7gn")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c7gn*.yaml )
             ;;
+        *"2n-c8gn")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c8gn*.yaml )
+            ;;
         *"2n-c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
             ;;
@@ -1074,14 +1081,14 @@ function select_topology () {
         *"3n-emr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_emr_*.yaml )
             ;;
+        *"2n-gnr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_gnr_*.yaml )
+            ;;
+        *"3n-gnr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_gnr_*.yaml )
+            ;;
         *"3n-oct")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_oct_*.yaml )
-            ;;
-        *"3n-aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
-            ;;
-        *"3n-c7gn")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c7gn*.yaml )
             ;;
         *"3n-c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6in*.yaml )
@@ -1092,8 +1099,8 @@ function select_topology () {
         *"3n-icxd")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd_*.yaml )
             ;;
-        *"3n-snr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr_*.yaml )
+        *"3n-srf")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_srf_*.yaml )
             ;;
         *"3na-spr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr_*.yaml )
@@ -1135,21 +1142,21 @@ function set_environment_variables () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
+        *"1n-aws" | *"2n-aws")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
-        *"2n-c7gn" | *"3n-c7gn")
+        *"2n-c7gn" | *"2n-c8gn")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+        *"1n-c6in" | *"2n-c6in")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
@@ -1209,15 +1216,15 @@ function untrap_and_unreserve_testbed () {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
         case "${TEST_CODE}" in
-            *"1n-aws" | *"2n-aws" | *"3n-aws")
+            *"1n-aws" | *"2n-aws")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"2n-c7gn" | *"3n-c7gn")
+            *"2n-c7gn" | *"2n-c8gn")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+            *"1n-c6in" | *"2n-c6in")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
