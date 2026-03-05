@@ -532,10 +532,6 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="srf"
             ;;
-        *"3n-icxd")
-            NODENESS="3n"
-            FLAVOR="icxd"
-            ;;
         *"3n-alt")
             NODENESS="3n"
             FLAVOR="alt"
@@ -1095,9 +1091,6 @@ function select_topology () {
             ;;
         *"3n-icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx_*.yaml )
-            ;;
-        *"3n-icxd")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icxd_*.yaml )
             ;;
         *"3n-srf")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_srf_*.yaml )

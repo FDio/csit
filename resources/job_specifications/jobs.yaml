@@ -19,7 +19,6 @@ jobs:
       - 3n-emr: 3n-emr-dpdk-iterative
       - 3n-gnr: 3n-gnr-dpdk-iterative
       - 3n-icx: 3n-icx-dpdk-iterative
-      - 3n-icxd: 3n-icxd-dpdk-iterative
       - 3n-srf: 3n-srf-dpdk-iterative
       - 3na-spr: 3na-spr-dpdk-iterative
       - 3nb-spr: 3nb-spr-dpdk-iterative
@@ -45,7 +44,6 @@ jobs:
       - 3n-emr: 3n-emr-dpdk-iterative
       - 3n-gnr: 3n-gnr-dpdk-iterative
       - 3n-icx: 3n-icx-dpdk-iterative
-      - 3n-icxd: 3n-icxd-dpdk-iterative
       - 3n-srf: 3n-srf-dpdk-iterative
       - 3na-spr: 3na-spr-dpdk-iterative
       - 3nb-spr: 3nb-spr-dpdk-iterative
@@ -71,7 +69,6 @@ jobs:
       - 3n-emr: 3n-emr-dpdk-iterative
       - 3n-gnr: 3n-gnr-dpdk-iterative
       - 3n-icx: 3n-icx-dpdk-iterative
-      - 3n-icxd: 3n-icxd-dpdk-iterative
       - 3n-srf: 3n-srf-dpdk-iterative
       - 3na-spr: 3na-spr-dpdk-iterative
       - 3nb-spr: 3nb-spr-dpdk-iterative
@@ -98,7 +95,6 @@ jobs:
       - 3n-emr: 3n-emr-dpdk-iterative
       - 3n-gnr: 3n-gnr-dpdk-iterative
       - 3n-icx: 3n-icx-dpdk-iterative
-      - 3n-icxd: 3n-icxd-dpdk-iterative
       - 3n-srf: 3n-srf-dpdk-iterative
       - 3na-spr: 3na-spr-dpdk-iterative
       - 3nb-spr: 3nb-spr-dpdk-iterative
@@ -173,7 +169,6 @@ jobs:
       - 3n-emr: 3n-emr-vpp-iterative
       - 3n-gnr: 3n-gnr-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
       - 3n-oct: 3n-oct-vpp-iterative
       - 3n-srf: 3n-srf-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
@@ -204,7 +199,6 @@ jobs:
       - 3n-emr: 3n-emr-vpp-iterative
       - 3n-gnr: 3n-gnr-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
       - 3n-oct: 3n-oct-vpp-iterative
       - 3n-srf: 3n-srf-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
@@ -234,7 +228,6 @@ jobs:
       - 3n-emr
       - 3n-gnr
       - 3n-icx
-      - 3n-icxd
       - 3n-oct
       - 3n-srf
       - 3na-spr
@@ -260,7 +253,6 @@ jobs:
       - 3n-emr: 3n-emr-vpp-iterative
       - 3n-gnr: 3n-gnr-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
       - 3n-oct: 3n-oct-vpp-iterative
       - 3n-srf: 3n-srf-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
@@ -274,7 +266,6 @@ jobs:
       - 2n-icx: 2n-icx-vpp-soak
       - 2n-spr: 2n-spr-vpp-soak
       - 3n-icx: 3n-icx-vpp-soak
-      - 3n-icxd: 3n-icxd-vpp-soak
 
   csit-vpp-perf-verify-{stream}-{node-arch}:
     stream:
@@ -297,7 +288,6 @@ jobs:
       - 3n-emr: 3n-emr-vpp-iterative
       - 3n-gnr: 3n-gnr-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
       - 3n-oct: 3n-oct-vpp-iterative
       - 3n-srf: 3n-srf-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
@@ -335,7 +325,6 @@ jobs:
       - 3n-emr: 3n-emr-vpp-iterative
       - 3n-gnr: 3n-gnr-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
       - 3n-srf: 3n-srf-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
       - 3nb-spr: 3nb-spr-vpp-iterative
@@ -362,7 +351,6 @@ jobs:
       - 3n-emr: 3n-emr-vpp-iterative
       - 3n-gnr: 3n-gnr-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
       - 3n-srf: 3n-srf-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
       - 3nb-spr: 3nb-spr-vpp-iterative

@@ -51,11 +51,11 @@ runs:
         fi
 
         case "$node" in
-          2n-emr|2n-gnr|2n-zn2|3n-emr|3n-gnr|3n-icx|3n-icxd|3n-srf|3na-spr|3nb-spr|2n-icx|2n-spr|2n-aws|2n-c6in)
+          2n-emr|2n-gnr|2n-zn2|3n-emr|3n-gnr|3n-icx|3n-srf|3na-spr|3nb-spr|2n-icx|2n-spr|2n-aws|2n-c6in)
             os="ubuntu2404"
             executor_arch="x86_64"
             ;;
-          2n-grc|3n-alt|3n-oct|2n-c7gn)
+          2n-grc|3n-alt|3n-oct|2n-c7gn|2n-c8gn)
             os="ubuntu2404"
             executor_arch="aarch64"
             ;;

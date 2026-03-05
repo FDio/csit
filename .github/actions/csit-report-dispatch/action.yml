@@ -35,7 +35,7 @@ runs:
         os="ubuntu2404"
 
         case "$node" in
-          2n-emr|2n-gnr|2n-zn2|3n-emr|3n-gnr|3n-icx|3n-icxd|3n-srf|3na-spr|3nb-spr)
+          2n-emr|2n-gnr|2n-zn2|3n-emr|3n-gnr|3n-icx|3n-srf|3na-spr|3nb-spr)
             dpdk="true"
             executor_arch="x86_64"
             ;;
@@ -54,7 +54,7 @@ runs:
           2n-aws|2n-c6in)
             executor_arch="x86_64"
             ;;
-          2n-c7gn)
+          2n-c7gn|2n-c8gn)
             executor_arch="aarch64"
             ;;
           *)

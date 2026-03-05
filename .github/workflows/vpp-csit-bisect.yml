@@ -29,6 +29,7 @@ on:
           - 2n-aws
           - 2n-c6in
           - 2n-c7gn
+          - 2n-c8gn
           - 2n-emr
           - 2n-grc
           - 2n-icx
@@ -37,7 +38,6 @@ on:
           - 3n-alt
           - 3n-emr
           - 3n-icx
-          - 3n-icxd
           - 3n-oct
           - 3n-srf
           - 3na-spr
