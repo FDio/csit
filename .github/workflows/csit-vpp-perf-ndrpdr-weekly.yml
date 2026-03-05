@@ -45,9 +45,6 @@ jobs:
           #- node: 3n-srf
           #  os: ubuntu2404
           #  executor_arch: x86_64
-          - node: 3n-icxd
-            os: ubuntu2404
-            executor_arch: x86_64
           - node: 3na-spr
             os: ubuntu2404
             executor_arch: x86_64
