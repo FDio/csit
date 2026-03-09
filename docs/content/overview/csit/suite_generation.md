@@ -213,7 +213,7 @@ framesize:
   - `9000: [1, ]`    Only [1, ] core will be aplied.
   - `imix`           Cores defined in the job will be applied.
 
-For more examples, see the specification yaml files. 
+For more examples, see the specification yaml files.
 
 ### Jobs
 
@@ -259,8 +259,6 @@ Examples:
       - 2n-zn2: 2n-zn2-vpp-iterative
       - 3n-alt: 3n-alt-vpp-iterative
       - 3n-icx: 3n-icx-vpp-iterative
-      - 3n-icxd: 3n-icxd-vpp-iterative
-      - 3n-snr: 3n-snr-vpp-iterative
       - 3na-spr: 3na-spr-vpp-iterative
       - 3nb-spr: 3nb-spr-vpp-iterative
 ```
@@ -291,8 +289,6 @@ must be defined, no matter on which level (job, test set).
       - 2n-zn2
       - 3n-alt
       - 3n-icx
-      - 3n-icxd
-      - 3n-snr
       - 3na-spr
       - 3nb-spr: 3nb-spr-vpp-iterative
 ```
