@@ -108,7 +108,6 @@ class DPDKTools:
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
             f"/entry/install_dpdk.sh"
         message = u"Install the DPDK failed!"
-        # One hour is not enough to build DPDK 24.11 on 3n-snr.
         exec_cmd_no_error(node, command, timeout=5400, message=message)
         DPDKTools.get_dpdk_version(node)
 

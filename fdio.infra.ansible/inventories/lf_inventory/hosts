@@ -24,10 +24,6 @@ all:
         10.30.51.61: #s61-t210-tg1 - epyc
     sut:
       hosts:
-        10.30.51.32: #s32-t31-sut1 - icelaked                                   # Decommission
-        10.30.51.33: #s33-t31-sut2 - icelaked                                   # Decommission
-        10.30.51.34: #s34-t32-sut1 - icelaked                                   # Decommission
-        10.30.51.35: #s35-t32-sut2 - icelaked                                   # Decommission
         10.30.51.36: #s36-t27-sut1 - grace
         10.30.51.40: #s40-t28-sut1 - emeraldrapids
         10.30.51.42: #s42-t29-sut1 - emeraldrapids
@@ -49,8 +45,6 @@ all:
         10.30.51.83: #s83-t213-sut1 - icelake
         10.30.51.85: #s85-t214-sut1 - icelake
         10.30.51.87: #s87-t215-sut1 - icelake-octeon
-        10.30.51.93: #s93-t39-sut1 - snowridge                                  # Decommission
-        10.30.51.94: #s94-t39-sut2 - snowridge                                  # Decommission
         10.30.51.95: #s95-t215-sut1 - octeon
         10.30.51.96: #s96-t215-sut1 - octeon
         10.30.51.60: #s60-t210-sut1 - epyc

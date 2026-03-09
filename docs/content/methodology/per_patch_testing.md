@@ -22,7 +22,7 @@ Their Gerrit triggers words are of the form
 - dut: [vpp, dpdk, trex]
 - testype: [perftest, bisecttest]
 - node_arch: [3n-oct, 3n-emr, 2n-emr, 2n-grc, 2n-icx, 2n-spr, 2n-zn2, 3n-icx,
-3n-alt, 3n-snr, 3na-spr, 3nb-spr]
+3n-alt, 3na-spr, 3nb-spr]
 
 ## Test selection
 

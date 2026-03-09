@@ -39,23 +39,21 @@ To access these hosts, VPN connection is required.
 ### Summary List
 
 ```
- #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr #icxd #grc #spr #sfr #gnr
- 1. 1-Node-Skylake         nomad  skx   na    2    2    0    2    0    0    0    0    0    0    0    0    0    0    0     0    0    0    0
- 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0     0    0    0    0
- 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0     0    0    0    0
- 4. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    0    4    0     0    0    0    0
- 6. 2-Node-Icelake         perf   icx   icx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0     0    0    0    0
- 7. 2-Node-Octeon          perf   icx   icx   1    1    1    0    0    0    0    0    0    0    0    2    0    0    0     0    0    0    0
- 8. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0     0    0    0    0
- 9. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0     0    0    0    0
-10. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0     0    0    0    0
-11. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    .5   0    0    2    0    0     0    0    0    0
-12. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0     0    0    0    0
-13. 3-Node-IcelakeD        perf   icxd  icx   2    4    1    0    0    0    0    0    0    0    0    1    0    0    4     0    0    0    0
-14. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    0    0     1    0    0    0
-15. 2-Node-EmeraldRapids   perf   emr   emr   2    2    4    0    0    0    0    0    0    0    0    0    0    0    0     0    6    0    0
-16. 2-Node-SierraForrest   perf   sfr   sfr   1    1    1    0    0    0    0    0    0    0    0    0    0    0    0     0    0    2    0
-17. 2-Node-GraniteRapids   perf   gnr   gnr   2    2    2    0    0    0    0    0    0    0    0    0    0    0    0     0    0    0    4
+ #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #spr #grc #spr #sfr #gnr
+ 1. 1-Node-Skylake         nomad  skx   na    2    2    0    2    0    0    0    0    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Cascadelake     nomad  clx   na    4    4    0    0    0    0    0    0    0    4    0    0    0    0    0    0    0
+ 3. 1-Node-AmpereAltra     nomad  alt   na    4    4    0    0    0    0    0    0    4    0    0    0    0    0    0    0    0
+ 4. 1-Node-SapphireRapids  nomad  spr   na    4    4    0    0    0    0    0    0    0    0    0    0    4    0    0    0    0
+ 5. 2-Node-Icelake         perf   icx   icx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0    0    0
+ 6. 2-Node-Octeon          perf   icx   icx   1    1    1    0    0    0    0    0    0    0    0    2    0    0    0    0    0
+ 7. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0    0    0    0
+ 8. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0    0    0    0
+ 9. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0    0    0    0
+10. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    8    0    0    0    0
+11. 2-Node-Grace           perf   grc   icx   1    1    1    0    0    0    0    0    0    0    0    1    0    1    0    0    0
+12. 2-Node-EmeraldRapids   perf   emr   emr   2    2    4    0    0    0    0    0    0    0    0    0    0    0    6    0    0
+13. 2-Node-SierraForrest   perf   sfr   sfr   1    1    1    0    0    0    0    0    0    0    0    0    0    0    0    2    0
+14. 2-Node-GraniteRapids   perf   gnr   gnr   2    2    2    0    0    0    0    0    0    0    0    0    0    0    0    0    4
 ```
 
 ### 2-Node-Zen2 EPYC AMD (2n-zn2)
@@ -97,20 +95,6 @@ Used for FD.io performance tests.
 
 Each 3-Node-Icelake testbed includes two SUTs (Server-Type-F3) and one
 TG (Server-Type-F3) connected in a 3-node circular topology
-([Server Types](#server-types)).
-Used for FD.io performance tests.
-
-### 3-Node-IcelakeD Xeon Intel (3n-icxd)
-
-Each 3-Node-IcelakeD testbed includes two SUTs (Server-Type-I1) and one numa of
-TG (Server-Type-F5) connected in a 3-node circular topology
-([Server Types](#server-types)).
-Used for FD.io performance tests.
-
-### 3-Node-SnowRidge Atom Intel (3n-snr)
-
-Each 3-Node-SnowRidge testbed includes two SUTs (Server-Type-G1) and one
-TG (Server-Type-F5) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -1090,43 +1074,6 @@ FD.io CSIT lab contains following server types:
         - s80-t38-tg1-c10/p2 - 100GE-port2 ConnectX6-2p100GE.
 ```
 
-### 3-Node-SnowRidge (3n-snr)
-
-{{< figure src="/cdocs/testbed-3n-snr.svg" >}}
-
-```
-- ServerG1 [Server-Type-G1]:
-    - testbedname: testbed39.
-    - hostname: s93-t39-sut1.
-    - IPMI IP: 10.30.50.93
-    - Host IP: 10.30.51.93
-    - portnames:
-        - s93-t39-sut1-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s93-t39-sut1-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s93-t39-sut1-c1/p2 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s93-t39-sut1-c1/p2 - 25GE-port4 e810-XXVDA4-4p25GE.
-- ServerG1 [Server-Type-G1]:
-    - testbedname: testbed39.
-    - hostname: s94-t39-sut2.
-    - IPMI IP: 10.30.50.94
-    - Host IP: 10.30.51.94
-    - portnames:
-        - s94-t39-sut2-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s94-t39-sut2-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s94-t39-sut2-c1/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s94-t39-sut2-c1/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-- ServerC2 [Server-Type-C2]:
-    - testbedname: testbed39.
-    - hostname: s89-t39t310-tg1.
-    - IPMI IP: 10.30.50.89
-    - Host IP: 10.30.51.89
-    - portnames:
-        - s89-t39t310-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s89-t39t310-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s89-t39t310-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s89-t39t310-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-```
-
 ### 2-Node-SapphireRapids (2n-spr)
 
 {{< figure src="/cdocs/testbed-2n-spr.svg" >}}
@@ -1258,65 +1205,6 @@ FD.io CSIT lab contains following server types:
         - s59-t24-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s59-t24-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s59-t24-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-```
-
-### 3-Node-IcelakeD (3n-icxd)
-
-{{< figure src="/cdocs/testbed-3n-icxd.svg" >}}
-
-```
-- ServerI1 [Server-Type-I1]:
-    - testbedname: testbed31.
-    - hostname: s32-t31-sut1.
-    - IPMI IP: 10.30.50.32
-    - Host IP: 10.30.51.32
-    - portnames:
-        - s32-t31-sut1-c1/p1 - 25GE-port1 e822cq-2p25GE.
-        - s32-t31-sut1-c1/p2 - 25GE-port2 e822cq-2p25GE.
-- ServerI1 [Server-Type-I1]:
-    - testbedname: testbed31.
-    - hostname: s33-t31-sut2.
-    - IPMI IP: 10.30.50.33
-    - Host IP: 10.30.51.33
-    - portnames:
-        - s33-t31-sut2-c1/p1 - 25GE-port1 e822cq-2p25GE.
-        - s33-t31-sut2-c1/p2 - 25GE-port2 e822cq-2p25GE.
-- ServerF3 [Server-Type-F5]:
-    - testbedname: testbed31.
-    - hostname: s90-t31t32-tg1.
-    - IPMI IP: 10.30.50.90
-    - Host IP: 10.30.51.90
-    - portnames:
-        - s90-t31t32-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s90-t31t32-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s90-t31t32-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s90-t31t32-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-- ServerI1 [Server-Type-I1]:
-    - testbedname: testbed32.
-    - hostname: s34-t32-sut1.
-    - IPMI IP: 10.30.50.34
-    - Host IP: 10.30.51.34
-    - portnames:
-        - s34-t32-sut1-c1/p1 - 25GE-port1 e822cq-2p25GE.
-        - s34-t32-sut1-c1/p2 - 25GE-port2 e822cq-2p25GE.
-- ServerI1 [Server-Type-I1]:
-    - testbedname: testbed32.
-    - hostname: s35-t32-sut2.
-    - IPMI IP: 10.30.50.35
-    - Host IP: 10.30.51.35
-    - portnames:
-        - s35-t32-sut2-c1/p1 - 25GE-port1 e822cq-2p25GE.
-        - s35-t32-sut2-c1/p2 - 25GE-port2 e822cq-2p25GE.
-- ServerF3 [Server-Type-F5]:
-    - testbedname: testbed32.
-    - hostname: s90-t31t32-tg1.
-    - IPMI IP: 10.30.50.90
-    - Host IP: 10.30.51.90
-    - portnames:
-        - s90-t31t32-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s90-t31t32-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s90-t31t32-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s90-t31t32-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
 ```
 
 ### 2-Node-Grace (2n-grc)
@@ -1556,19 +1444,6 @@ FD.io CSIT lab contains following server types:
         - s79-t38-sut2-c10/p1 to s80-t38-tg1-c10/p2.
 ```
 
-### 3-Node-SnowRidge (3n-snr)
-
-```
-- testbed39:
-    - ring1 25GE-ports e810-XXVDA4-4p25GE:
-        - s89-t39t310-tg1-c6/p1 to s93-t39-sut1-c1/p1.
-        - s93-t39-sut1-c1/p2 to s94-t39-sut2-c1/p2.
-        - s94-t39-sut2-c1/p1 to s89-t39t310-tg1-c6/p2.
-        - s89-t39t310-tg1-c6/p3 to s93-t39-sut1-c1/p3.
-        - s93-t39-sut1-c1/p4 to s94-t39-sut2-c1/p4.
-        - s94-t39-sut2-c1/p3 to s89-t39t310-tg1-c6/p4.
-```
-
 ### 2-Node-SapphireRapids (2n-spr)
 
 ```
@@ -1626,21 +1501,6 @@ FD.io CSIT lab contains following server types:
         - s59-t24-tg1-c7/p1 to s59-t24-tg1-c7/p2.
     - ring5 100GE-ports e810-2CQDA2-2p100GE:
         - s59-t24-tg1-c9/p1 to s59-t24-tg1-c9/p2.
-```
-
-### 3-Node-IcelakeD (3n-icxd)
-
-```
-- testbed31:
-    - ring1 25GE-ports e822cq-2p25GE:
-        - s90-t31t32-tg1-c4/p1 to s32-t31-sut1-c1/p1.
-        - s32-t31-sut1-c1/p2 to s33-t31-sut2-c1/p2.
-        - s33-t31-sut2-c1/p1 to s90-t31t32-tg1-c4/p2.
-- testbed32:
-    - ring1 25GE-ports e822cq-2p25GE:
-        - s90-t31t32-tg1-c6/p1 to s34-t32-sut1-c1/p1.
-        - s34-t32-sut1-c1/p2 to s35-t32-sut2-c1/p2.
-        - s35-t32-sut2-c1/p1 to s90-t31t32-tg1-c6/p2.
 ```
 
 ### 2-Node-GraceServer (2n-grc)
