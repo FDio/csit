@@ -92,7 +92,7 @@ job "etl-coverage-ndrpdr" {
       }
       driver = "docker"
       config {
-        image   = "${image}"
+        image   = var.image
         command = "gluesparksubmit"
         args = [
           "--driver-memory", "20g",
