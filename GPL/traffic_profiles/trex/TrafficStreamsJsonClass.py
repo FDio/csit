@@ -93,7 +93,7 @@ class TrafficStreamsJsonClass:
 
         streams = []
         streams.extend(pkt_streams)
-        streams.extend(lat_streams)
+        #streams.extend(lat_streams)
         return streams
 
     def get_streams(self, **kwargs):
