@@ -10,7 +10,7 @@ weight: 1
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-    - 
+    - No updates
 
 # Known Issues
 
