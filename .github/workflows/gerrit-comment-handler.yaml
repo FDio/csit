@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Prepare workflow selection matrix
         id: set-matrix
-        uses: fdio/csit/.github/actions/csit-comment-dispatch@1f3de8c4266cc118bbf3e108dd0f33a42b0cc70f
+        uses: fdio/csit/.github/actions/csit-comment-dispatch@9dfd78245563386a8b7d517345d3b0555a5d5a61
         with:
           gerrit_comment: ${{ github.event.inputs.GERRIT_COMMENT }}
 
@@ -123,7 +123,7 @@ jobs:
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@a372372ca8f89676c55631f8650468dfab86cc2a
+        uses: fdio/csit/.github/actions/csit-bootstrap@9dfd78245563386a8b7d517345d3b0555a5d5a61
         with:
           bootstrap_script: bootstrap_verify_perf.sh
           with_oper: false
