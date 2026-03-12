@@ -1241,9 +1241,9 @@ FD.io CSIT lab contains following server types:
     - portnames:
         - s62-t216-sut1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s62-t216-sut1-c5/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-- TG [Server-Type-K1]:
+- SUT [Server-Type-K1]:
     - testbedname: testbed216.
-    - hostname: s63-t216-tg1.
+    - hostname: s63-t216-sut2.
     - IPMI IP: 10.30.50.63
     - Host IP: 10.30.51.63
     - portnames:
@@ -1540,7 +1540,7 @@ FD.io CSIT lab contains following server types:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
         - s49-t216-tg1-c5/p1 to s62-t216-sut1-c5/p1.
         - s62-t216-sut1-c5/p2 to s63-t216-sut2-c5/p1.
-        - s63-t216-sut2-c5/p1 to s49-t216-tg1-c5/p2.
+        - s63-t216-sut2-c5/p2 to s49-t216-tg1-c5/p2.
 ```
 
 
