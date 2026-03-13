@@ -727,9 +727,18 @@ function prepare_topology () {
             }
             terraform_apply || die "Failed to call terraform apply."
             ;;
-        "2n_c7gn" | "2n_c8gn")
+        "2n_c7gn")
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c7gn"
+            terraform_init || die "Failed to call terraform init."
+            trap "terraform_destroy" ERR EXIT || {
+                die "Trap attempt failed, please cleanup manually. Aborting!"
+            }
+            terraform_apply || die "Failed to call terraform apply."
+            ;;
+        "2n_c8gn")
+            export TF_VAR_testbed_name="${TEST_CODE}"
+            TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c8gn"
             terraform_init || die "Failed to call terraform init."
             trap "terraform_destroy" ERR EXIT || {
                 die "Trap attempt failed, please cleanup manually. Aborting!"
@@ -1082,9 +1091,6 @@ function select_topology () {
             ;;
         *"3n-oct")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_oct_*.yaml )
-            ;;
-        *"3n-c6in")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-c6in*.yaml )
             ;;
         *"3n-icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx_*.yaml )

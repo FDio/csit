@@ -182,6 +182,7 @@ jobs:
       - 2n-aws: 2n-aws-vpp-iterative
       - 2n-c6in: 2n-c6in-vpp-iterative
       - 2n-c7gn: 2n-c7gn-vpp-iterative
+      - 2n-c8gn: 2n-c8gn-vpp-iterative
       - 2n-icx: 2n-icx-nfv
 
   csit-vpp-perf-ndrpdr-weekly-master-{node-arch}:
@@ -218,6 +219,7 @@ jobs:
       - 2n-aws
       - 2n-c6in
       - 2n-c7gn
+      - 2n-c8gn
       - 2n-emr
       - 2n-gnr
       - 2n-grc
@@ -243,6 +245,7 @@ jobs:
       - 2n-aws: 2n-aws-vpp-iterative
       - 2n-c6in: 2n-c6in-vpp-iterative
       - 2n-c7gn: 2n-c7gn-vpp-iterative
+      - 2n-c8gn: 2n-c8gn-vpp-iterative
       - 2n-emr: 2n-emr-vpp-iterative
       - 2n-gnr: 2n-gnr-vpp-iterative
       - 2n-grc: 2n-grc-vpp-iterative
@@ -278,6 +281,7 @@ jobs:
       - 2n-aws: 2n-aws-vpp-iterative
       - 2n-c6in: 2n-c6in-vpp-iterative
       - 2n-c7gn: 2n-c7gn-vpp-iterative
+      - 2n-c8gn: 2n-c8gn-vpp-iterative
       - 2n-emr: 2n-emr-vpp-iterative
       - 2n-gnr: 2n-gnr-vpp-iterative
       - 2n-grc: 2n-grc-vpp-iterative

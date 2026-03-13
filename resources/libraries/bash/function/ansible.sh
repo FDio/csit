@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,13 +28,13 @@ function ansible_adhoc () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
+        *"1n-aws" | *"2n-aws")
             INVENTORY_PATH="cloud_inventory"
             ;;
-        *"2n-c7gn" | *"3n-c7gn")
+        *"2n-c7gn" | *"2n-c8gn")
             INVENTORY_PATH="cloud_inventory"
             ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+        *"1n-c6in" | *"2n-c6in")
             INVENTORY_PATH="cloud_inventory"
             ;;
         *"-x-2n"* | *"-x-3n"*)
@@ -78,13 +78,13 @@ function ansible_playbook () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws" | *"3n-aws")
+        *"1n-aws" | *"2n-aws")
             INVENTORY_PATH="cloud_inventory"
             ;;
-        *"2n-c7gn" | *"3n-c7gn")
+        *"2n-c7gn" | *"2n-c8gn")
             INVENTORY_PATH="cloud_inventory"
             ;;
-        *"1n-c6in" | *"2n-c6in" | *"3n-c6in")
+        *"1n-c6in" | *"2n-c6in")
             INVENTORY_PATH="cloud_inventory"
             ;;
         *"-x-2n"* | *"-x-3n"*)
