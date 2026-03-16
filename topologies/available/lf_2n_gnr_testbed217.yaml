@@ -15,31 +15,19 @@ nodes:
     port: 6001
     username: testuser
     password: Csit1234
-    bus:
-      device1:
-        pci_address: "0000:6a:01.0"
-        driver: idxd
-        model: Intel-DSA
-    cryptodev:
-      device1:
-        pci_address: "0000:70:00.0"
-        driver: 4xxx
-        model: HW_4xxx
-        module: qat_4xxx
-        numvfs: 8
     interfaces:
       port1:
         # s65-t217-tg1-c5/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
-        mac_address: "40:a6:b7:ca:2a:70"
-        pci_address: "0000:38:00.0"
+        mac_address: "40:a6:b7:cf:86:28"
+        pci_address: "0000:15:00.0"
         ip4_address: 172.16.10.1
         driver: ice
         link: link1
         model: Intel-E810CQ
       port2:
         # s65-t217-tg1-c5/p1 - 100GE port2 Intel E810-2C-Q2 2p100GE.
-        mac_address: "40:a6:b7:ca:2a:74"
-        pci_address: "0000:3a:00.0"
+        mac_address: "40:a6:b7:cf:86:2c"
+        pci_address: "0000:17:00.0"
         ip4_address: 172.16.20.1
         driver: ice
         link: link2
@@ -55,12 +43,42 @@ nodes:
     uio_driver: vfio-pci
     bus:
       device1:
-        pci_address: "0000:6a:01.0"
+        pci_address: "0000:00:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device2:
+        pci_address: "0000:05:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device3:
+        pci_address: "0000:0a:01.0"
+        driver: idxd
+        model: Intel-DSA
+      device4:
+        pci_address: "0000:0f:01.0"
         driver: idxd
         model: Intel-DSA
     cryptodev:
       device1:
-        pci_address: "0000:70:00.0"
+        pci_address: "0000:01:00.0"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+        numvfs: 8
+      device2:
+        pci_address: "0000:06:00.0"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+        numvfs: 8
+      device3:
+        pci_address: "0000:0b:00.0"
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+        numvfs: 8
+      device4:
+        pci_address: "0000:10:00.0"
         driver: 4xxx
         model: HW_4xxx
         module: qat_4xxx
@@ -68,16 +86,16 @@ nodes:
     interfaces:
       port1:
         # s64-t217-sut1-c5/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
-        mac_address: "40:a6:b7:ca:2a:68"
-        pci_address: "0000:38:00.0"
+        mac_address: "40:a6:b7:cf:82:d8"
+        pci_address: "0000:15:00.0"
         ip4_address: 172.16.10.2
         driver: ice
         link: link1
         model: Intel-E810CQ
       port2:
-        # s40-t217-sut1-c5/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
-        mac_address: "40:a6:b7:ca:2a:6c"
-        pci_address: "0000:3a:00.0"
+        # s64-t217-sut1-c5/p2 - 100GE port2 Intel E810-2C-Q2 2p100GE.
+        mac_address: "40:a6:b7:cf:82:dc"
+        pci_address: "0000:16:00.0"
         ip4_address: 172.16.20.2
         driver: ice
         link: link2
