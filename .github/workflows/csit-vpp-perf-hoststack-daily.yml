@@ -45,6 +45,9 @@ jobs:
           - node: 2n-emr
             os: ubuntu2404
             executor_arch: x86_64
+          - node: 2n-gnr
+            os: ubuntu2404
+            executor_arch: x86_64
           - node: 3n-emr
             os: ubuntu2404
             executor_arch: x86_64

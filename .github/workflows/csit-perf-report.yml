@@ -32,6 +32,7 @@ on:
           - 2n-c7gn
           - 2n-c8gn
           - 2n-emr
+          - 2n-gnr
           - 2n-grc
           - 2n-icx
           - 2n-spr
