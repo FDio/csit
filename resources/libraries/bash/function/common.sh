@@ -1138,21 +1138,7 @@ function set_environment_variables () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws")
-            export TREX_RX_DESCRIPTORS_COUNT=1024
-            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
-            # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
-            ;;
-        *"2n-c7gn" | *"2n-c8gn")
-            export TREX_RX_DESCRIPTORS_COUNT=1024
-            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
-            # Settings to prevent duration stretching.
-            export PERF_TRIAL_STL_DELAY=0.1
-            ;;
-        *"1n-c6in" | *"2n-c6in")
+        *"1n-aws" | *"2n-aws"| *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
@@ -1216,11 +1202,7 @@ function untrap_and_unreserve_testbed () {
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"2n-c7gn" | *"2n-c8gn")
-                TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
-                terraform_destroy || die "Failed to call terraform destroy."
-                ;;
-            *"1n-c6in" | *"2n-c6in")
+            *"2n-c7gn" | *"2n-c8gn"| *"2n-c6in")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
