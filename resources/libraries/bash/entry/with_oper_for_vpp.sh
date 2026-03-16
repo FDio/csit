@@ -41,7 +41,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 common_dirs || die
 source "${BASH_FUNCTION_DIR}/branch.sh" || die "Source failed."
-checkout_csit_for_vpp "${GERRIT_BRANCH}" || die
+#checkout_csit_for_vpp "${GERRIT_BRANCH}" || die
 cmd="${1}"
 shift
 source "${BASH_ENTRY_DIR}/${cmd}" "$@"
