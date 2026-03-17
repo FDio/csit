@@ -114,12 +114,17 @@ git checkout -b "earliest" || die
 git reset --hard "${GIT_BISECT_FROM}" || die
 
 # This is the place for custom code manipulating local git history.
-
-#git checkout -b "alter" || die
-#...
-#git checkout "latest" || die
-#git rebase "alter" || git rebase --skip || die
-#git branch -D "alter" || die
+git_cmd="git -c user.name=Vratko.CI -c user.email=fake@e.mail"
+git checkout -b "alter" || die
+to_fix="0cea6395a9cc768c644c46962fd83dacdcef71f5"
+fix_with="24438abbf4ed6fc7938829963726dce20afd665e"
+git reset --hard "${to_fix}" || die
+$git_cmd cherry-pick "${fix_with}" || die
+git reset --soft "${to_fix}" || die
+git commit --amend --no-edit || die
+git checkout "latest" || die
+git rebase "alter" || git rebase --skip || die
+git branch -D "alter" || die
 
 git bisect start || die
 # TODO: Can we add a trap for "git bisect reset" or even "deactivate",
