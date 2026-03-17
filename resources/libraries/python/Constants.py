@@ -190,7 +190,7 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = "csit_sut-ubuntu2404:local"
 
     # TRex install directory.
-    TREX_INSTALL_DIR = "/opt/trex-core-3.03"
+    TREX_INSTALL_DIR = "/opt/trex-core"
 
     # TRex pcap files directory.
     TREX_PCAP_DIR = f"{TREX_INSTALL_DIR}/scripts/avl"

@@ -72,6 +72,7 @@ RUN mkdir -p /var/run/sshd
 
 # CSIT PIP pre-cache
 RUN python3 -m venv venv \
+    && python3 -m pip config set global.break-system-packages true \
     && venv/bin/pip3 install --upgrade --no-cache-dir pip \
     && venv/bin/pip3 install --upgrade setuptools \
     && venv/bin/pip3 install --upgrade wheel \
@@ -85,10 +86,11 @@ RUN apt-get -q update \
  && rm -rf /var/lib/apt/lists/*
 
 # Install T-Rex
-RUN wget -c https://github.com/cisco-system-traffic-generator/trex-core/archive/v${TREX_VERSION}.tar.gz -P /opt/ \
+RUN wget -c https://github.com/cisco-system-traffic-generator/trex-core/archive/refs/tags/v${TREX_VERSION}.tar.gz -P /opt/ \
   && cd /opt/ \
   && tar xzfv v${TREX_VERSION}.tar.gz \
-  && cd /opt/trex-core-${TREX_VERSION}/linux_dpdk/ \
+  && ln -s /opt/trex-core-${TREX_VERSION} trex-core \
+  && cd /opt/trex-core/linux_dpdk/ \
   && ./b configure \
   && ./b build
 

@@ -171,10 +171,3 @@ variable "first_run_commands" {
     "echo 'testuser ALL = (ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers"
   ]
 }
-
-# Variables for Null Resource
-variable "ansible_topology_path" {
-  description = "Ansible topology path."
-  type        = string
-  default     = "../../fdio.infra.ansible/cloud_topology.yaml"
-}

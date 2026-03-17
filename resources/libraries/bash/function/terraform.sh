@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -78,16 +78,6 @@ function terraform_init () {
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
     pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
-
-    #plugin_url="https://github.com/radekg/terraform-provisioner-ansible/"
-    #plugin_url+="releases/download/v2.5.0/"
-    #plugin_url+="terraform-provisioner-ansible-linux-amd64_v2.5.0"
-    #plugin_dir="${HOME}/.terraform.d/plugins/"
-    #plugin_path+="${plugin_dir}terraform-provisioner-ansible_v2.5.0"
-
-    #mkdir -p "${plugin_dir}" || die "Failed to create dir!"
-    #wget -O "${plugin_path}" "${plugin_url}" || die "Failed to download plugin!"
-    #chmod +x "${plugin_path}" || die "Failed to add execute rights!"
 
     rm -f terraform.tfstate || die "Failed to clear terraform state!"
     export TF_LOG=INFO

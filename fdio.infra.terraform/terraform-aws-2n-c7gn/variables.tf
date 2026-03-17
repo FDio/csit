@@ -149,13 +149,7 @@ variable "first_run_commands" {
   description = "List of private IPs to assign to the ENI without regard to order."
   type        = list(string)
   default = [
-    "sudo /sbin/shutdown -P +720"
+    "sudo /sbin/shutdown -P +720",
+    "sudo ln -s /opt/trex-core-3.03 /opt/trex-core | true"
   ]
-}
-
-# Variables for Null Resource
-variable "ansible_topology_path" {
-  description = "Ansible topology path."
-  type        = string
-  default     = "../../fdio.infra.ansible/cloud_topology.yaml"
 }

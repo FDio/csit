@@ -35,12 +35,6 @@ variable "ansible_python_executable" {
   default     = "/usr/bin/python3"
 }
 
-variable "ansible_topology_path" {
-  description = "Path to Ansible playbook which creates a topology file"
-  type        = string
-  default     = "../../fdio.infra.ansible/cloud_topology.yaml"
-}
-
 variable "ansible_provision_pwd" {
   description = "Password used for ansible provisioning (ansible_ssh_pass)"
   type        = string
