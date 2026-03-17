@@ -95,7 +95,7 @@ def parse(dirpath: str, fake_value: float = 1.0) -> Dict[str, List[float]]:
             if result_type == "mrr":
                 results[name] = result_object["receive_rate"]["rate"]["values"]
             elif result_type == "ndrpdr":
-                results[name] = [result_object["pdr"]["lower"]["rate"]["value"]]
+                results[name] = [result_object["ndr"]["lower"]["rate"]["value"]]
             elif result_type == "soak":
                 results[name] = [
                     result_object["critical_rate"]["lower"]["rate"]["value"]
