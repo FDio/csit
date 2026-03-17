@@ -39,7 +39,7 @@ import sys
 from collections import OrderedDict  # Needed to parse xstats representation.
 
 sys.path.insert(
-    0, "/opt/trex-core-3.03/scripts/automation/trex_control_plane/interactive/"
+    0, "/opt/trex-core/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.stl.api import STLClient
 
