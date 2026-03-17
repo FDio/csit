@@ -5,14 +5,14 @@ services:
       dockerfile: "Dockerfile"
       args:
         BASE_IMAGE: "ubuntu:22.04"
-        TREX_VERSION: "3.03"
+        TREX_VERSION: "3.0.7"
         IPERF_VERSION: "3.7"
     command: ["sh", "-c", "env | grep LD_ >> /etc/environment && /usr/sbin/sshd -D -p 6001"]
     environment:
       - LD_LIBRARY_PATH=/usr/local/lib/
     expose:
       - "6001"
-    hostname: "{{ ansible_hostname }}"
+    hostname: "{{ ansible_facts['hostname'] }}"
     network_mode: "host"
     privileged: true
     restart: "always"
@@ -40,14 +40,14 @@ services:
       dockerfile: "Dockerfile"
       args:
         BASE_IMAGE: "ubuntu:22.04"
-        TREX_VERSION: "3.03"
+        TREX_VERSION: "3.0.7"
         IPERF_VERSION: "3.7"
     command: ["sh", "-c", "env | grep LD_ >> /etc/environment && /usr/sbin/sshd -D -p 6002"]
     environment:
       - LD_LIBRARY_PATH=/usr/local/lib/
     expose:
       - "6002"
-    hostname: "{{ ansible_hostname }}"
+    hostname: "{{ ansible_facts['hostname'] }}"
     network_mode: "host"
     privileged: true
     restart: "always"
