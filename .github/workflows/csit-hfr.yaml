@@ -1,6 +1,6 @@
 ---
 name: csit-hfr
-run-name: csit-${{ github.event.inputs.dut }}-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ github.event.inputs.node }}-${{ github.event.inputs.my_run_id }}
+run-name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ github.event.inputs.node }}-${{ github.event.inputs.my_run_id }}
 
 # yamllint disable-line rule:truthy
 on:
@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Prepare node selection matrix
         id: set-matrix
-        uses: fdio/csit/.github/actions/csit-report-dispatch@89e40adc504ab4f2b4ae15a91e26b2f2c754cbf8
+        uses: fdio/csit/.github/actions/csit-report-dispatch@9dfd78245563386a8b7d517345d3b0555a5d5a61
         with:
           node: ${{ github.event.inputs.node }}
           dut: ${{ github.event.inputs.dut }}
@@ -83,7 +83,7 @@ jobs:
   csit-hfr:
     needs: dispatch
     # yamllint disable-line rule:line-length
-    name: csit-${{ github.event.inputs.dut }}-hfr-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
+    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
     runs-on:
       - self-hosted
       - nomad
@@ -100,9 +100,9 @@ jobs:
 
     env:
       # yamllint disable-line rule:line-length
-      BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
+      BUILD_TAG: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}-${{ github.run_id }}
       # yamllint disable-line rule:line-length
-      JOB_NAME: csit-${{ github.event.inputs.dut }}-hfr-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
+      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.branch }}
       TEST_TAG_STRING: ${{ github.event.inputs.suite_gen_params }}
 
@@ -110,9 +110,21 @@ jobs:
       - name: Git Checkout CSIT
         uses: actions/checkout@v6
         with:
-          ref: master
+          ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0
-      - name: HFR Test
+
+      - name: Setup Environment
+        # yamllint disable-line rule:line-length
+        uses: fdio/.github/.github/actions/setup-executor-env@b728d1589228e2891a4241a1bba362d76895c225
+
+      - name: Run CSIT Bootstrap
+        # yamllint disable-line rule:line-length
+        uses: fdio/csit/.github/actions/csit-bootstrap@9dfd78245563386a8b7d517345d3b0555a5d5a61
+        with:
+          bootstrap_script: bootstrap_verify_perf.sh
+          with_oper: false
+
+      - name: AWS S3 Publish Logs
         shell: bash
         run: |
           echo ${BUILD_TAG}
