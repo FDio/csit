@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -716,6 +716,16 @@ class VppConfigGenerator:
         """Add session use-dma configuration."""
         path = [u"session", u"use-dma"]
         self.add_config_item(self._nodeconfig, u"", path)
+
+    def add_sfdp_log2_sessions(self, value):
+        """FIXME"""
+        path = ["sfdp", "sessions-log2"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_sfdp_log2_sessions_cache_per_thread(self, value):
+        """FIXME"""
+        path = ["sfdp", "sessions-per-thread-cache-log2"]
+        self.add_config_item(self._nodeconfig, value, path)
 
     def add_dma_dev(self, devices):
         """Add DMA devices configuration.
