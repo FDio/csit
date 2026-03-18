@@ -11,7 +11,6 @@ test-sets:
     tests:
       - dpdk-sm
 
-
   2n-zn2-vpp-cov-ip4-00:
     infra:
       25ge2p1xxv710:
@@ -188,6 +187,9 @@ test-sets:
           framesize: [78, ]
       - l2-lg
       - vhost-md
+      - nat44-ip4base-cps-sm
+      - nat44-ip4base-tput-sm
+          framesize: [100, ]
 
 
   2n-zn2-gso:
