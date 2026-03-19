@@ -411,3 +411,14 @@ test-sets:
       - nfv-dcr-memif-pipeline-lg
       - nfv-vm-vhost-chain-lg
       - nfv-vm-vhost-chain-vxlan-md
+
+
+  # Only for HFR development - to be removed.
+  2n-icx-vpp-cov-ip4-hfr:
+    infra:
+      100ge2p1e810cq:
+        - avf
+    framesize: [64, ]
+    core: [1, ]
+    tests:
+      - ip4-base-sm

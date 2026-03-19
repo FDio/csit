@@ -202,3 +202,14 @@ test-sets:
           infra:
             25ge2p1xxv710:
               - vhost
+
+
+  # Only for HFR development - to be removed.
+  2n-zn2-vpp-cov-ip4-hfr:
+    infra:
+      25ge2p1xxv710:
+        - avf
+    framesize: [64, ]
+    core: [1, ]
+    tests:
+      - ip4-base-sm
