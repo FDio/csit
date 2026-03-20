@@ -5,6 +5,15 @@ FROM ${BASE_IMAGE}
 ARG TREX_VERSION
 ARG IPERF_VERSION
 
+ARG D_OFED_VERSION="24.10-4.1.4.0"
+ARG D_OS="ubuntu22.04"
+ARG D_ARCH="x86_64"
+ARG D_OFED_PATH="MLNX_OFED_LINUX-${D_OFED_VERSION}-${D_OS}-${D_ARCH}"
+
+ARG D_OFED_TARBALL_NAME="${D_OFED_PATH}.tgz"
+ARG D_OFED_BASE_URL="https://www.mellanox.com/downloads/ofed/MLNX_OFED-${D_OFED_VERSION}"
+ARG D_OFED_URL_PATH="${D_OFED_BASE_URL}/${D_OFED_TARBALL_NAME}"
+
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -85,12 +94,17 @@ RUN apt-get -q update \
         apache2-utils \
  && rm -rf /var/lib/apt/lists/*
 
+# Install OFED
+RUN (curl -sL ${D_OFED_URL_PATH} | tar -xzf -) \
+  && /${D_OFED_PATH}/mlnxofedinstall --without-fw-update --kernel-only --force --without-rshim-dkms --without-iser-dkms --without-isert-dkms --without-srp-dkms --without-kernel-mft-dkms --without-mlnx-rdma-rxe-dkms
+
 # Install T-Rex
 RUN wget -c https://github.com/cisco-system-traffic-generator/trex-core/archive/refs/tags/v${TREX_VERSION}.tar.gz -P /opt/ \
   && cd /opt/ \
   && tar xzfv v${TREX_VERSION}.tar.gz \
   && ln -s /opt/trex-core-${TREX_VERSION} trex-core \
   && cd /opt/trex-core/linux_dpdk/ \
+  && sed -i "662s/.*/        'type', 'ibv_import_device' ],/" ws_main.py \
   && ./b configure \
   && ./b build
 
