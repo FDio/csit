@@ -130,7 +130,7 @@ jobs:
         with:
           bootstrap_script: bisect.sh
           path: vpp/csit
-          with_oper: true
+          with_oper: false
 
       - name: AWS S3 Publish Logs
         if: ${{ !cancelled() && (success() || failure()) }}
