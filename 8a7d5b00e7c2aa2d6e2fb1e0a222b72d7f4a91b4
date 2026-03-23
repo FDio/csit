@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_*AND2cAND64bANDethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm #generate-all",
       "revId": "8a7d5b00e7c2aa2d6e2fb1e0a222b72d7f4a91b4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3219622_d07d72f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-03-23T13:42:06Z",
+      "side": 1,
+      "message": "This should fix 64B tests. 1518B ones will be fixed separately.",
+      "revId": "8a7d5b00e7c2aa2d6e2fb1e0a222b72d7f4a91b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
