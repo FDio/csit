@@ -51,7 +51,7 @@ test-sets:
       100ge2p1e810cq:
         - avf
         - vfio-pci
-    framesize: [1518, imix]
+    framesize: [64, 1518, imix]
     core: [2, 3, 4]
     tests:
       - ipsec-sw-async-aes128cbc-hmac512sha-md
