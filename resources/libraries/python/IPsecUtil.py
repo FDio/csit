@@ -1,5 +1,5 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
-# Copyright (c) 2024 PANTHEON.tech s.r.o.
+# Copyright (c) 2026 Cisco and/or its affiliates.
+# Copyright (c) 2026 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -345,10 +345,13 @@ class IPsecUtil:
             err_msg = f"Failed to set IPsec async mode on host {node['host']}"
             args = dict(async_enable=async_enable)
             papi_exec.add(cmd, **args).get_reply(err_msg)
+            # TODO: Remove the below when 2602 support is no longer needed.
             cmd = "crypto_set_async_dispatch_v2"
-            err_msg = "Failed to set dispatch mode."
             args = dict(mode=0, adaptive=False)
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+            try:
+                papi_exec.add(cmd, **args).get_reply()
+            except AsseritonError:
+                logger.debug("Ignore unsupported crypto_set_async_dispatch_v2.")
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker(
