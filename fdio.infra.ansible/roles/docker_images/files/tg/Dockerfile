@@ -94,9 +94,11 @@ RUN apt-get -q update \
         apache2-utils \
  && rm -rf /var/lib/apt/lists/*
 
-# Install OFED
-RUN (curl -sL ${D_OFED_URL_PATH} | tar -xzf -) \
-  && /${D_OFED_PATH}/mlnxofedinstall --without-fw-update --kernel-only --force --without-rshim-dkms --without-iser-dkms --without-isert-dkms --without-srp-dkms --without-kernel-mft-dkms --without-mlnx-rdma-rxe-dkms
+# Install DOCA-OFED
+RUN wget -qO - https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub | gpg --dearmor -o /usr/share/keyrings/GPG-KEY-Mellanox.pub \
+ && echo "deb [signed-by=/usr/share/keyrings/GPG-KEY-Mellanox.pub] https://linux.mellanox.com/public/repo/doca/latest/${D_OS}/${D_ARCH} /" | tee /etc/apt/sources.list.d/doca.list \
+ && apt-get update \
+ && apt-get install doca-ofed -y
 
 # Install T-Rex
 RUN wget -c https://github.com/cisco-system-traffic-generator/trex-core/archive/refs/tags/v${TREX_VERSION}.tar.gz -P /opt/ \
