@@ -1,0 +1,19 @@
+# See the documentation in
+# "resources/libraries/python/suite_generator/suite_generator.py"
+
+# Test groups assigned to infrastructure.
+test-sets:
+
+  2n-c8gn-vpp-iterative:
+    infra:
+      100ge1p1ena:
+        - vfio-pci
+    framesize: [64, 1518]
+    core: [1, 2]
+    tests:
+      - ip4-base-sm
+      - ip4-scale-sm
+      - ip6-base-sm:
+          framesize: [78, 1518]
+      - ip6-scale-sm:
+          framesize: [78, 1518]
