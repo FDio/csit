@@ -75,6 +75,7 @@ jobs:
     steps:
       - name: Prepare node selection matrix
         id: set-matrix
+        # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-report-dispatch@9dfd78245563386a8b7d517345d3b0555a5d5a61
         with:
           node: ${{ github.event.inputs.node }}
@@ -108,7 +109,7 @@ jobs:
 
     steps:
       - name: Git Checkout CSIT
-        uses: actions/checkout@v6
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98  # v6.0.2
         with:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0

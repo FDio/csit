@@ -38,7 +38,8 @@ jobs:
 
     steps:
       - name: Git Checkout CSIT
-        uses: actions/checkout@v6
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98  # v6.0.2
         with:
           ref: master
           fetch-depth: 0
