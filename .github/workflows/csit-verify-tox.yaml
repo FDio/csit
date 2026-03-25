@@ -105,7 +105,8 @@ jobs:
 
       - name: Archive Logs
         if: ${{ always() }}
-        uses: actions/upload-artifact@v7
+        # yamllint disable-line rule:line-length
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ github.job }}-${{ github.run_number }}
           path: archives/
@@ -118,9 +119,11 @@ jobs:
       - csit-verify-tox
     runs-on: ubuntu-latest
     steps:
-      - uses: technote-space/workflow-conclusion-action@v3
+      # yamllint disable-line rule:line-length
+      - uses: technote-space/workflow-conclusion-action@45ce8e0eb155657ab8ccf346ade734257fd196a5  # v3.0.3 archived Nov 16, 2023
       - name: Set vote
-        uses: lfit/gerrit-review-action@v0.9
+        # yamllint disable-line rule:line-length
+        uses: lfit/gerrit-review-action@3a1b27891502e0786a3e2e5a2d0cb0bff1f30c25 # v1.0.0
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
