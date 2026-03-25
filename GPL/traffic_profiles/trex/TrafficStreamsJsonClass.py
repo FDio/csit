@@ -83,17 +83,10 @@ class TrafficStreamsJsonClass:
                         mode=STLTXCont(pps=9000)
                     )
                 )
-                lat_streams.append(
-                    STLStream(
-                        packet=packet,
-                        flow_stats=STLFlowLatencyStats(pg_id=i),
-                        mode=STLTXCont(pps=9000)
-                    )
-                )
 
         streams = []
         streams.extend(pkt_streams)
-        #streams.extend(lat_streams)
+        streams.extend(pkt_streams)
         return streams
 
     def get_streams(self, **kwargs):
