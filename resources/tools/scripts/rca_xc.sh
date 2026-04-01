@@ -20,7 +20,7 @@ set +x
 # Second argument: Pattern to looks for (e.g. identifying release instead of RC2).
 
 # Example usage:
-# export job="csit-vpp-perf-report-iterative-2602-2n-aws"; bash rca_xc.sh "${job}" "26.02-rc1" | tee "{job}.txt"
+# export job="csit-vpp-perf-report-iterative-2602-2n-aws"; bash rca_xc.sh "${job}" "26.02-release" | tee -a "${job}.txt"
 
 # For each run, this script prints hints on whether skip or look deeper.
 # Also testbeds are printed, to see possible correlations with failures.
