@@ -508,6 +508,10 @@
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
 | | ... | ${vpp_echo_server_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_server_attr}[cfg_vpp_feature] | ${vpp_echo_server}
+| | # !!!
+| | Export Hoststack Results | bandwidth=${1000.0} | duration=${1.0}
+| | Return From Keyword | ${False}
+| | # !!!
 | | ${vpp_echo_client}= | Get VPP Echo Command | ${vpp_echo_client_attr}
 | | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
 | | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
