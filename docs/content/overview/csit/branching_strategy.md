@@ -1,6 +1,6 @@
 ---
 title: "Branching Strategy"
-weight: 7
+weight: 8
 ---
 
 # Branching Strategy
