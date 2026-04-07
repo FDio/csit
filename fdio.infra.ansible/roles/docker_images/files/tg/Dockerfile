@@ -106,9 +106,12 @@ RUN wget -c https://github.com/cisco-system-traffic-generator/trex-core/archive/
   && tar xzfv v${TREX_VERSION}.tar.gz \
   && ln -s /opt/trex-core-${TREX_VERSION} trex-core \
   && cd /opt/trex-core/linux_dpdk/ \
-  && sed -i "662s/.*/        'type', 'ibv_import_device' ],/" ws_main.py \
   && ./b configure \
   && ./b build
+
+#
+#  && sed -i "662s/.*/        'type', 'ibv_import_device' ],/" ws_main.py \
+#
 
 # Install iPerf
 RUN wget -c https://downloads.es.net/pub/iperf/iperf-${IPERF_VERSION}.tar.gz -P /opt/ \
