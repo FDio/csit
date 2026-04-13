@@ -180,6 +180,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        sleep(1)
         cmd = u"echo \"show pci\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
         exec_cmd_no_error(
             node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
