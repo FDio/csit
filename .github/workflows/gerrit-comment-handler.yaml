@@ -170,4 +170,4 @@ jobs:
           gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
           gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
           vote-type: ${{ steps.overall.outputs.result }}
-          comment-only: true
+          comment-only: false
