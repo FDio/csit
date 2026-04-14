@@ -138,7 +138,7 @@ jobs:
           username: ${{ vars.GERRIT_SSH_USER }}
           key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
-          gerrit-change-number: ${{ env.GERRIT_CHANGE_NUMBER }}
-          gerrit-patchset-number: ${{ env.GERRIT_PATCHSET_NUMBER }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
           vote-type: ${{ steps.overall.outputs.result }}
           comment-only: true
