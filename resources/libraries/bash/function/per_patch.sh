@@ -1,5 +1,5 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
-# Copyright (c) 2025 PANTHEON.tech s.r.o.
+# Copyright (c) 2026 Cisco and/or its affiliates.
+# Copyright (c) 2026 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -321,6 +321,8 @@ function set_perpatch_vpp_dir () {
 
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # - CSIT_WORKSPACE - Optional, signals this is CI with tweaked paths.
+    # - WORKSPACE - Optional, points to cloned VPP repo in tweaked CI.
     # Variables set:
     # - VPP_DIR - Path to existing root of local VPP git repository.
     # Functions called:
@@ -328,8 +330,14 @@ function set_perpatch_vpp_dir () {
 
     set -exuo pipefail
 
-    # In perpatch, CSIT is cloned inside VPP clone.
-    VPP_DIR="$(readlink -e "${CSIT_DIR}/..")" || die "Readlink failed."
+    # In local invocation, CSIT is cloned inside VPP clone.
+    fallback_dir="$(readlink -e "${CSIT_DIR}/..")" || die "Readlink failed."
+    if [[ -v CSIT_WORKSPACE ]]; then
+        # In perpatch CI, CSIT is cloned separately from VPP clone.
+        VPP_DIR="${WORKSPACE:-${fallback_dir}}" || die "Cannot fail."
+    else
+        VPP_DIR="${fallback_dir}" || die "Cannot fail."
+    fi
 }
 
 
