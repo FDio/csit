@@ -53,17 +53,19 @@ jobs:
   notify-start:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify workflow start
-        uses: lfit/gerrit-review-action@3a1b27891502e0786a3e2e5a2d0cb0bff1f30c25 # v1.0.0
+      - name: Clear Gerrit vote
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/gerrit-review-action@537251ec667665b386f70b330b05446e3fc29087 # v0.9
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
           key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
-          gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
-          gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
           vote-type: clear
           comment-only: true
+
 
   dispatch:
     runs-on: ubuntu-latest
@@ -147,15 +149,25 @@ jobs:
       - csit-verify-handler
     runs-on: ubuntu-latest
     steps:
-      - uses: technote-space/workflow-conclusion-action@v3
-      - name: Set vote
-        uses: lfit/gerrit-review-action@3a1b27891502e0786a3e2e5a2d0cb0bff1f30c25 # v1.0.0
+      - name: Collect workflow results
+        id: overall
+        run: |
+          if [[ "${{ needs.notify-start.result }}" == "success" && \
+                "${{ needs.csit-verify-handler.result }}" == "success" ]]; then
+            echo "result=success" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=failure" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Gerrit Vote
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/gerrit-review-action@537251ec667665b386f70b330b05446e3fc29087 # v0.9
         with:
           host: ${{ vars.GERRIT_SERVER }}
-          username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
-          key: ${{ secrets.GERRIT_SSH_REQUIRED_PRIVKEY }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
-          gerrit-change-number: ${{ github.event.inputs.GERRIT_CHANGE_NUMBER }}
-          gerrit-patchset-number: ${{ github.event.inputs.GERRIT_PATCHSET_NUMBER }}
-          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
+          gerrit-change-number: ${{ env.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ env.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ steps.overall.outputs.result }}
           comment-only: true
