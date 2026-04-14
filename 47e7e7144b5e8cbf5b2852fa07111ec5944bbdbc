@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcb0cdf_09c2f801",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-14T13:53:01Z",
+      "side": 1,
+      "message": "This (together with a VPP fix [1]) restores the older symptom [0] of csit-4091.\n\n[0] https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-bisect-3n-emr/24399749008/csit_latest/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k4-k15\n[1] https://gerrit.fd.io/r/c/vpp/+/45516",
+      "revId": "47e7e7144b5e8cbf5b2852fa07111ec5944bbdbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
