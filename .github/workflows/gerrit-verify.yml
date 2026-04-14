@@ -1,5 +1,5 @@
 ---
-name: csit-verify-tox
+name: gerrit-verify
 
 # yamllint disable-line rule:truthy
 on:
