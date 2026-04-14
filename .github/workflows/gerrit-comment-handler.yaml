@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify workflow start
-        uses: lfit/gerrit-review-action@v0.9
+        uses: lfit/gerrit-review-action@3a1b27891502e0786a3e2e5a2d0cb0bff1f30c25 # v1.0.0
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Prepare workflow selection matrix
         id: set-matrix
-        uses: fdio/csit/.github/actions/csit-comment-dispatch@9dfd78245563386a8b7d517345d3b0555a5d5a61
+        uses: fdio/csit/.github/actions/csit-comment-dispatch@cee2088675d00de5f4a47f386a6c05315bfc170c
         with:
           gerrit_comment: ${{ github.event.inputs.GERRIT_COMMENT }}
 
@@ -119,11 +119,11 @@ jobs:
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
-        uses: fdio/.github/.github/actions/setup-executor-env@b728d1589228e2891a4241a1bba362d76895c225
+        uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@9dfd78245563386a8b7d517345d3b0555a5d5a61
+        uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
         with:
           bootstrap_script: bootstrap_verify_perf.sh
           with_oper: false
@@ -131,7 +131,7 @@ jobs:
       - name: AWS S3 Publish Logs
         if: ${{ !cancelled() && (success() || failure()) }}
         # yamllint disable-line rule:line-length
-        uses: fdio/.github/.github/actions/aws-s3-publish-logs@a28ad9abc70855292df1ea0d59829e814e78c2f4
+        uses: fdio/.github/.github/actions/aws-s3-publish-logs@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -149,7 +149,7 @@ jobs:
     steps:
       - uses: technote-space/workflow-conclusion-action@v3
       - name: Set vote
-        uses: lfit/gerrit-review-action@v0.9
+        uses: lfit/gerrit-review-action@3a1b27891502e0786a3e2e5a2d0cb0bff1f30c25 # v1.0.0
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}

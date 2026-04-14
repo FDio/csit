@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Prepare node selection matrix
         id: set-matrix
-        uses: fdio/csit/.github/actions/csit-report-dispatch@89e40adc504ab4f2b4ae15a91e26b2f2c754cbf8
+        uses: fdio/csit/.github/actions/csit-report-dispatch@cee2088675d00de5f4a47f386a6c05315bfc170c
         with:
           node: ${{ github.event.inputs.node }}
 
@@ -112,7 +112,7 @@ jobs:
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
-        uses: fdio/.github/.github/actions/setup-executor-env@b728d1589228e2891a4241a1bba362d76895c225
+        uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
 
       - name: Prepare Bisect
         run: |
@@ -129,7 +129,7 @@ jobs:
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@6e2e8dd6eae1a9297bfcc3a1630be181191a0553
+        uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
         with:
           bootstrap_script: bisect.sh
           path: vpp/csit
@@ -138,7 +138,7 @@ jobs:
       - name: AWS S3 Publish Logs
         if: ${{ !cancelled() && (success() || failure()) }}
         # yamllint disable-line rule:line-length
-        uses: fdio/.github/.github/actions/aws-s3-publish-logs@6af3edc5eabc756240c3d419a3b693466efcbb86
+        uses: fdio/.github/.github/actions/aws-s3-publish-logs@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
