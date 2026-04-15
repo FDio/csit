@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c4573d_e1f61ca8",
+        "filename": ".github/actions/csit-fetch-and-bootstrap/action.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-15T18:03:14Z",
+      "side": 1,
+      "message": "copy logic from vpp:\n\n```\nruns:\n  using: \"composite\"\n  steps:\n    - name: Get Gerrit Change\n      shell: bash\n      env:\n        LOG_DIR: ${{ inputs.LOG_DIR }}\n        WORKSPACE: ${{ inputs.WORKSPACE }}\n        GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}\n        GERRIT_REFSPEC: ${{ inputs.GERRIT_REFSPEC }}\n        TUI_LINE: ${{ inputs.TUI_LINE }}\n      run: |\n        set -euxo pipefail\n        mkdir -p \"$LOG_DIR\"\n        {\n          echo \"$TUI_LINE\"\n          echo \"* Checkout $GERRIT_BRANCH ($GERRIT_REFSPEC)\"\n          echo \"$TUI_LINE\"\n          cd \"$WORKSPACE\"\n          .....\u003cgit code here\u003e....\n          git show --stat\n        } | tee \"$LOG_DIR/checkout.log\"\n```",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 12
+      },
+      "revId": "f4a927316a3f25e5dd36384a763691266f0e6d9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eae78d7_b4665e54",
+        "filename": ".github/actions/csit-fetch-and-bootstrap/action.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-15T18:03:14Z",
+      "side": 1,
+      "message": "remove bootstrap",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "f4a927316a3f25e5dd36384a763691266f0e6d9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
