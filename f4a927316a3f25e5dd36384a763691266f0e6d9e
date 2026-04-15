@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91e5af4f_26da9aca",
+        "filename": ".github/actions/csit-bootstrap/action.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-15T18:12:05Z",
+      "side": 1,
+      "message": "why it need to be there?",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 82
+      },
+      "revId": "f4a927316a3f25e5dd36384a763691266f0e6d9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cfb3d2b_9eb8bc37",
+        "filename": ".github/actions/csit-fetch-and-bootstrap/action.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-15T18:12:05Z",
+      "side": 1,
+      "message": "combining make it difficult to update",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "f4a927316a3f25e5dd36384a763691266f0e6d9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99c4573d_e1f61ca8",
         "filename": ".github/actions/csit-fetch-and-bootstrap/action.yml",
         "patchSetId": 2
