@@ -16,6 +16,24 @@
       "message": "bootstrap is bootstrap. checkout is checkout. do not mix",
       "revId": "560a6945182e1c8982aaa636957dd4fbc6c7dac5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f6e5b4_5b3739e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-15T15:11:07Z",
+      "side": 1,
+      "message": "\u003e bootstrap is bootstrap\n\nDone, restored the old one.\n\n\u003e do not mix\n\nI still prefer a single integrated action to be used especially in VPP. I do not want anybody (like me) \"improving\" a separate csit fetch there. I already broke it twice.",
+      "parentUuid": "76dd4838_1c681f0f",
+      "revId": "560a6945182e1c8982aaa636957dd4fbc6c7dac5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
