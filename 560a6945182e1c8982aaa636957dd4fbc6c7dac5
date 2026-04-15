@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76dd4838_1c681f0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-15T13:54:14Z",
+      "side": 1,
+      "message": "bootstrap is bootstrap. checkout is checkout. do not mix",
+      "revId": "560a6945182e1c8982aaa636957dd4fbc6c7dac5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
