@@ -16,6 +16,23 @@
       "message": "Currently I prefer https://gerrit.fd.io/r/c/csit/+/45542 instead.",
       "revId": "ea46da42130f2b81151ec7e60d1a1fa74573303b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4480d25f_d91caf3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-15T13:56:32Z",
+      "side": 1,
+      "message": "cooy paste the vpp checkout and do s/vpp/csit/g then add the refspec if condition",
+      "revId": "ea46da42130f2b81151ec7e60d1a1fa74573303b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
