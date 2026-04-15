@@ -1,0 +1,56 @@
+Version 1.0
+---
+name: "🛠️ CSIT Fetch and Bootstrap"
+description: |
+  This GitHub Action runs FD.io CSIT bootstrap after updating local CSIT repo.
+
+inputs:
+  path:
+    description: "Path to the root of an existing old clone of CSIT repository."
+    required: false
+    type: string
+    default: "."
+  csit_ref:
+    description: "CSIT refspec to checkout if origin/master is not desired."
+    required: false
+    type: string
+    default: ""
+  git_branch: "Git branch to use for oper branch detection or bootstrap code."
+    required: false
+    type: string
+    default: "origin/master"
+  with_oper:
+    description: "Checkout newest oper branch, only if csit_ref is empty."
+    required: false
+    type: boolean
+    default: "true"
+  bootstrap_script:
+    description: "CSIT bootstrap shell script to source."
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+  steps:
+    - name: CSIT Fetch
+      id: fetch
+      shell: bash
+      env:
+        GERRIT_BRANCH: {{ inputs.git_branch }}
+      run: |
+        pushd ${{ inputs.path }}
+        git log -1
+        git status
+        git fetch --all --depth=1
+        checkout_target="${csit_ref:-GERRIT_BRANCH}"
+        git checkout "${checkout_target}"
+        git log -1
+        git status
+        popd
+    - name: CSIT Bootstrap
+      id: bootstrap
+      uses: fdio/csit/.github/actions/csit-bootstrap@6e2e8dd6eae1a9297bfcc3a1630be181191a0553
+      with:
+        path: {{ inputs.path }}
+        with_oper: {{ inputs.with_oper }}
+        bootstrap_script: {{ bootstrap_script }}

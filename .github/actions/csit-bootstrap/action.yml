@@ -37,3 +37,4 @@ runs:
         else
             source ${csit_entry_dir}/${{ inputs.bootstrap_script }}
         fi
+        # Never calling popd, as archival actions use paths relative to CSIT repo.
