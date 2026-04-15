@@ -1,39 +1,57 @@
+Version 1.0
 ---
 name: "🛠️ CSIT Bootstrap"
 description: |
-  This GitHub Action runs FD.io CSIT bootstrap.
+  This GitHub Action runs FD.io CSIT bootstrap after updating local CSIT repo.
 
 inputs:
+  path:
+    description: "Path to the root of an existing old clone of CSIT repository."
+    required: false
+    type: string
+    default: "."
+  csit_ref:
+    description: "CSIT refspec to checkout if origin/master is not desired."
+    required: false
+    type: string
+    default: ""
+  git_branch: "Git branch to use for oper branch detection or bootstrap code."
+    required: false
+    type: string
+    default: "origin/master"
+  with_oper:
+    description: "Checkout newest oper branch, only if csit_ref is empty."
+    required: false
+    type: boolean
+    default: "true"
   bootstrap_script:
     description: "CSIT bootstrap shell script to source."
     required: true
     type: string
-  path:
-    description: "CSIT repository path (usefull in case of nested clone)."
-    required: false
-    type: string
-    default: "."
-  with_oper:
-    description: "Use operational branch to checkout the code."
-    required: false
-    type: boolean
-    default: "false"
 
 runs:
   using: "composite"
   steps:
-    - name: Run Bootstrap
+    - name: Fetch and Bootstrap
       id: bootstrap
       shell: bash
       env:
-        BRANCH_ID: oper
-        GERRIT_BRANCH: master
         GIT_URL: "https://github.com/FDio"
+        BRANCH_ID: oper
+        GERRIT_BRANCH: {{ inputs.git_branch }}
       run: |
         pushd ${{ inputs.path }}
-        csit_entry_dir="./resources/libraries/bash/entry"
+        git log -1
+        git status
+        git fetch --all --depth=1
+        checkout_target="${csit_ref:-GERRIT_BRANCH}"
+        git checkout "${checkout_target}"
+        git log -1
+        git status
+        entry_dir="./resources/libraries/bash/entry"
         if [[ "${{ inputs.with_oper }}" == "true" ]]; then
-            source ${csit_entry_dir}/with_oper_for_vpp.sh "${{ inputs.bootstrap_script }}"
+            source ${entry_dir}/with_oper_for_vpp.sh "${{ inputs.bootstrap_script }}"
         else
-            source ${csit_entry_dir}/${{ inputs.bootstrap_script }}
+            source ${entry_dir}/${{ inputs.bootstrap_script }}
         fi
+        # Never calling popd, as archival actions use paths relative to CSIT repo.
