@@ -16,6 +16,23 @@
       "message": "I have some TODOs in .yml, but readme (and commit message) should be stable enough now for next round of review.",
       "revId": "5cb33bc69d2453da6b9140dae729c83aecbdced3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c76d0432_4445af18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-04-16T12:01:44Z",
+      "side": 1,
+      "message": "same as before",
+      "revId": "5cb33bc69d2453da6b9140dae729c83aecbdced3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
