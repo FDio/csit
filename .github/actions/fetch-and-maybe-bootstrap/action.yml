@@ -1,0 +1,119 @@
+Version 1.0
+---
+name: "FDio Fetch and Bootstrap"
+description: |
+  This GitHub Action runs FD.io updates local git repo,
+  checks out desired commit and optionally executes a botstrap script.
+
+inputs:
+  repo_dir:
+    description: "Path to the root of an existing old clone of a git repository."
+    required: false
+    type: string
+    default: "."
+  git_branch: "Git branch to use for oper branch detection or script code."
+    required: false
+    type: string
+    default: "origin/master"
+  refspec:
+    description: "Git refspec to checkout, empty if git_branch HEAD is fine."
+    required: false
+    type: string
+    default: ""
+  depth:
+    description: "Limit fetch depth, unlimited if empty."
+    required: false
+    type: string
+    default: ""
+  with_oper:
+    description: "Checkout newest oper branch, only if refspec is empty."
+    required: false
+    type: boolean
+    default: "false"
+  script:
+    description: "Filename of CSIT bootstrap shell script to execute if nonempty.."
+    required: false
+    type: string
+    default: ""
+  log_file:
+    description: "File to store console logs, path is relative to repo_dir."
+    required: false
+    type: string
+    default: "fetch.log"
+  tui_line:
+    description: "Visually apparent string to guide humans reading the logs."
+    required: false
+    type: string
+    default: "============================"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Fetch
+      id: fetch
+      shell: bash
+      env:
+        GERRIT_BRANCH: ${{ inputs.git_branch }}
+      run: |
+        set -euxo pipefail
+        mkdir -p "${{ inputs.log_dir }}"
+        {
+          checkout_target="${refspec:-GERRIT_BRANCH}"
+          echo "${{ inputs.tui_line }}"
+          echo "* Checking out into local repo: ${checkout_target}"
+          echo "${{ inputs.tui_line }}"
+          cd ${{ inputs.repo_dir }}
+          oper_needed="false"
+          if [[ "${{ inputs.with_oper }}" == "true" ]]; then
+            if [[ "${{ inputs.refspec }}" == "" ]]; then
+              oper_needed="true"
+            fi
+          fi
+          if [[ "${oper_needed}" == "true" ]]; then
+            fetch_opt="--all"
+            fetch_target=""
+          else
+            fetch_opt="--tags"
+            fetch_target="${checkout_target}"
+          fi
+          if [ -n "${{ inputs.depth }}" ]; then
+            depth_opt="--depth=${{ inputs.depth }}"
+          else
+            depth_opt=""
+          fi
+          git fetch "${fetch_opt}" "${depth_opt}" "origin" "${fetch_target}"
+          git checkout "${checkout_target}"
+          git log -1
+          git status
+        } | tee "${{ inputs.log_file }}"
+    - name: Bootstrap
+      id: bootstrap
+      if: ${{ inputs.script != '' }}
+      shell: bash
+      env:
+        # TODO: Verify all the envvars are still needed.
+        GERRIT_BRANCH: ${{ inputs.git_branch }}
+        BRANCH_ID: oper
+        GIT_URL: "https://github.com/FDio"
+      run: |
+        set -euxo pipefail
+        mkdir -p "${{ inputs.log_dir }}"
+        {
+          echo "${{ inputs.tui_line }}"
+          echo "* Executing CSIT bootstrap script: ${{ inputs.bootstrap_script }}"
+          echo "${{ inputs.tui_line }}"
+          cd ${{ inputs.repo_dir }}
+          entry_dir="./resources/libraries/bash/entry"
+          TODO: Inherit oper_needed value from the fetch step.
+          oper_needed="false"
+          if [[ "${{ inputs.with_oper }}" == "true" ]]; then
+            if [[ "${{ inputs.refspec }}" == "" ]]; then
+              oper_needed="true"
+            fi
+          fi
+          if [[ "${oper_needed}" == "true" ]]; then
+            source "${entry_dir}/with_oper_for_vpp.sh "${{ inputs.script }}"
+          else
+            source "${entry_dir}/{{ inputs.script }}"
+          fi
+        } | tee -a "${{ inputs.log_file }}"

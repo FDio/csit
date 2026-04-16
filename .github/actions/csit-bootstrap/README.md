@@ -2,6 +2,8 @@
 
 Runs CSIT bootstrap script of choice. Optionally runs on top of oper branch.
 
+Deprecated. Use the combined fetch-and-maybe-bootstrap action.
+
 ## Usage Example
 
 An example workflow step using this action:
