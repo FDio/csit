@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8a24a86_c8318105",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-16T11:59:04Z",
+      "side": 1,
+      "message": "I have some TODOs in .yml, but readme (and commit message) should be stable enough now for next round of review.",
+      "revId": "5cb33bc69d2453da6b9140dae729c83aecbdced3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
