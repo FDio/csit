@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7a4bd4_8e921382",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-16T15:10:12Z",
+      "side": 1,
+      "message": "Looks good to me: https://github.com/FDio/csit/actions/runs/24513120023/job/71649458751",
+      "revId": "72936db41409a25f628f47d292ca0af1c1c89274",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
