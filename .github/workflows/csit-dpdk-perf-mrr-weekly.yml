@@ -68,22 +68,18 @@ jobs:
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
 
     steps:
-      - name: Git Checkout CSIT
-        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98  # v6.0.2
-        with:
-          ref: master
-          fetch-depth: 0
-
       - name: Setup Environment
         # yamllint disable-line rule:line-length
         uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
 
-      - name: Run CSIT Bootstrap
+      - name: Checkout and bootstrap CSIT
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
+        uses: fdio/csit/.github/actions/fetch-and-maybe-bootstrap@master
         with:
-          bootstrap_script: bootstrap_verify_perf.sh
+          repo_dir: /scratch/docker-build/csit
+          depth: 1
           with_oper: true
+          script: bootstrap_verify_perf.sh
 
       - name: AWS S3 Publish Logs
         if: ${{ !cancelled() && (success() || failure()) }}
