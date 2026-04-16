@@ -91,49 +91,26 @@ jobs:
       GERRIT_EVENT_COMMENT_TEXT: ${{ github.event.inputs.GERRIT_COMMENT }}
 
     steps:
-      - name: Git Checkout VPP
-        # yamllint disable-line rule:line-length
-        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98  # v6.0.2
-        with:
-          path: vpp
-          repository: FDio/vpp
-          ref: master
-          fetch-depth: 0
-          fetch-tags: 'true'
-
-      - name: Git Checkout CSIT
-        # yamllint disable-line rule:line-length
-        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98  # v6.0.2
-        with:
-          path: vpp/csit
-          ref: master
-          fetch-depth: 0
-          fetch-tags: 'true'
-
       - name: Setup Environment
         # yamllint disable-line rule:line-length
         uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
 
-      - name: Prepare Bisect
-        run: |
-          pushd vpp
-          git fetch https://gerrit.fd.io/r/vpp "${{ github.event.inputs.GERRIT_REFSPEC }}"
-          git checkout FETCH_HEAD
-          pushd csit
-          if [[ -n "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}" ]]; then
-              git fetch https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"
-              git checkout FETCH_HEAD
-          else
-              git checkout HEAD
-          fi
-
-      - name: Run CSIT Bootstrap
+      - name: Checkout VPP
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
+        uses: fdio/csit/.github/actions/fetch-and-maybe-bootstrap@master
         with:
-          bootstrap_script: bisect.sh
-          path: vpp/csit
-          with_oper: false
+          repo_dir: /scratch/docker-build/vpp
+          refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+
+      - name: Checkout and bootstrap CSIT
+        # yamllint disable-line rule:line-length
+        uses: fdio/csit/.github/actions/fetch-and-maybe-bootstrap@master
+        with:
+          repo_dir: /scratch/docker-build/csit
+          refspec: ${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}
+          depth: 1
+          with_oper: true
+          script: bisect.sh
 
       - name: AWS S3 Publish Logs
         if: ${{ !cancelled() && (success() || failure()) }}
@@ -146,5 +123,5 @@ jobs:
           s3_bucket: ${{ vars.S3_BUCKET }}
           # yamllint disable-line rule:line-length
           s3_path: csit-${{ matrix.dut }}-bisect-${{ matrix.node }}/${{ github.run_id }}
-          archives_path: vpp/csit/archives
+          archives_path: /scratch/docker-build/csit/archives
           # Compress flag is on by default.

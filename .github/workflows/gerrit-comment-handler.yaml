@@ -109,26 +109,18 @@ jobs:
       GERRIT_EVENT_COMMENT_TEXT: ${{ needs.dispatch.outputs.params }}
 
     steps:
-      - name: Gerrit Checkout
-        # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/checkout-gerrit-change-action@8523d768952d9690702b4696a8310d2a84b1be39 # v1.0.1
-        with:
-          gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
-          gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
-          gerrit-url: ${{ vars.GERRIT_URL }}
-          delay: "10s"
-          ref: refs/heads/${{ github.event.inputs.GERRIT_BRANCH }}
-
       - name: Setup Environment
         # yamllint disable-line rule:line-length
         uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
 
-      - name: Run CSIT Bootstrap
+      - name: Checkout and bootstrap CSIT
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
+        uses: fdio/csit/.github/actions/fetch-and-maybe-bootstrap@master
         with:
-          bootstrap_script: bootstrap_verify_perf.sh
-          with_oper: false
+          repo_dir: /scratch/docker-build/csit
+          refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
+          depth: 1
+          script: bootstrap_verify_perf.sh
 
       - name: AWS S3 Publish Logs
         if: ${{ !cancelled() && (success() || failure()) }}
