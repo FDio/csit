@@ -169,6 +169,12 @@ function main_bisect_loop () {
     do
         let iteration+=1
         git clean -dffx "build"/ "build-root"/ || die
+        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+            echo "Iteration ${iteration}"
+        else
+            echo "Perpatch usage done."
+            break
+        fi
         build_vpp_ubuntu "MIDDLE" || die
         select_build "build-root" || die
         check_download_dir || die

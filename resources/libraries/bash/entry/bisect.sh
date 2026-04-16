@@ -143,8 +143,7 @@ git describe || die
 if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
     echo "Building and testing initial bounds."
 else
-    echo "Single commit, no work needed."
-    exit 0
+    echo "Used as perpatch, still building and testing."
 fi
 # Building latest first, good for avoiding DPDK rebuilds.
 git checkout "latest" || die "Failed to checkout latest commit."
