@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cef3df5_2e050c93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-16T12:24:53Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDdrv_avfAND4cAND64bANDeth-l2patch",
+      "revId": "136f4abfb586233d5b7d4c668e9d5e03b626c131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
