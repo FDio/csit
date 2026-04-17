@@ -51,16 +51,14 @@ function build_vpp_ubuntu () {
         echo "Building VPP. Number of cores not set, " \
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
-
-    if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
-        make ${params} pkg-verify || die "VPP build failed."
-    else
-        pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
-        # Old VPP source does not recognize new ARM platforms.
-        opars="UNATTENDED=y"
-        make ${pars} pkg-verify || make ${opars} pkg-verify || die "Build fail."
+    if [ -n "${VPP_PLATFORM-}" ]; then
+        die "FIXME: Make VPP debug build work with platform detection."
     fi
+    make_params="UNATTENDED=y"
+    ## Uncomment when clang-11 does not cause truble.
+    #make ${make_params} install-dep install-ext-deps || die
+    #make ${make_params} install-opt-deps || echo "Old build, ignoring opt-deps error"
+    make ${make_params} pkg-deb-debug VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON' || die
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
