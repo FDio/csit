@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1266,10 +1266,19 @@ class InterfaceUtil:
             device_id=f"pci/{vf_pci_addr}",
             driver_name="iavf",
         )
+        if num_rx_queues:
+            # One more qpair is needed for possible main thread TX.
+            args["args"] = f"request_qpairs={num_rx_queues + 1}"
         err_msg = f"Failed to attach AVF driver on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
-            logger.debug(f"reply: {reply}")
+            try:
+                reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+                logger.debug(f"reply: {reply}")
+            except AssertionError:
+                # TODO: Remove this workaround after rls2610.
+                del args["args"]
+                reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+                logger.debug(f"reply: {reply}")
             dev_index = reply["dev_index"]
 
         cmd = u"dev_create_port_if"
