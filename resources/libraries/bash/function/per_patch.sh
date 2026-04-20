@@ -172,6 +172,7 @@ function main_bisect_loop () {
         if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
             echo "Iteration ${iteration}"
         else
+            # TODO: Call a script to compare performances?
             echo "Perpatch usage done."
             break
         fi
