@@ -70,6 +70,17 @@ set -exuo pipefail
 # Test results are parsed from json files,
 # symlinks are used to tell python script which results to compare.
 #
+# Two special modes are enabled by specific hashes for the earliest label.
+#
+# When the earliest label points to the direct parent of the latest commit,
+# both commits are built and tested even though VPP cause is only one.
+# This enabled the usage of bisect job similar to VPP per-patch job,
+# but with unmerged CSIT code.
+#
+# When the earliest label point to the latest commit,
+# that one commit is built and tested.
+# This saves time when parent performance is already known.
+#
 # Assumptions:
 # + There is a directory holding VPP repo with patch under test checked out.
 # + It contains csit subdirectory with CSIT code to use (this script is there).
@@ -149,12 +160,16 @@ fi
 git checkout "latest" || die "Failed to checkout latest commit."
 build_vpp_ubuntu "LATEST" || die
 set_aside_build_artifacts "latest" || die
-git checkout "earliest" || die "Failed to checkout earliest commit."
-git status || die
-git log -2 --oneline || die
-git describe || die
-build_vpp_ubuntu "EARLIEST" || die
-set_aside_build_artifacts "earliest" || die
+if [[ head -n 1 "git.log" | fgrep -q ' was both old and news' ]]; then
+    echo "Singleperpatch mode detected, not compiling the earliest.
+else
+    git checkout "earliest" || die "Failed to checkout earliest commit."
+    git status || die
+    git log -2 --oneline || die
+    git describe || die
+    build_vpp_ubuntu "EARLIEST" || die
+    set_aside_build_artifacts "earliest" || die
+fi
 git checkout "middle" || die "Failed to checkout middle commit."
 # Done with repo manipulation for now, testing commences.
 initialize_csit_dirs "earliest" "middle" "latest" || die
@@ -167,15 +182,18 @@ archive_tests || die
 
 # TODO: Does it matter which build is tested first?
 
-select_build "build_earliest" || die
-check_download_dir || die
-reserve_and_cleanup_testbed || die
-run_robot || die
-move_test_results "csit_earliest" || die
-ln -s -T "csit_earliest" "csit_early" || die
-
-# Explicit cleanup, in case the previous test left the testbed in a bad shape.
-ansible_playbook "cleanup" || die
+if [[ head -n 1 "git.log" | fgrep -q ' was both old and news' ]]; then
+    echo "Singleperpatch mode detected, not testing the earliest.
+else
+    select_build "build_earliest" || die
+    check_download_dir || die
+    reserve_and_cleanup_testbed || die
+    run_robot || die
+    move_test_results "csit_earliest" || die
+    ln -s -T "csit_earliest" "csit_early" || die
+    # Explicit cleanup, in case the previous test left the testbed in a bad shape.
+    ansible_playbook "cleanup" || die
+fi
 
 select_build "build_latest" || die
 check_download_dir || die
