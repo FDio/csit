@@ -169,9 +169,10 @@ function main_bisect_loop () {
     do
         let iteration+=1
         git clean -dffx "build"/ "build-root"/ || die
-        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+        if head -n 1 "GIT_LOG_FILE" | cut -b -11 | fgrep -q "Bisecting:"; then
             echo "Iteration ${iteration}"
         else
+            # TODO: Call a script to compare performances?
             echo "Perpatch usage done."
             break
         fi
