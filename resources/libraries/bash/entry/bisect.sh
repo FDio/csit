@@ -70,6 +70,17 @@ set -exuo pipefail
 # Test results are parsed from json files,
 # symlinks are used to tell python script which results to compare.
 #
+# Two special modes are enabled by specific hashes for the earliest label.
+#
+# When the earliest label points to the direct parent of the latest commit,
+# both commits are built and tested even though VPP cause is only one.
+# This enabled the usage of bisect job similar to VPP per-patch job,
+# but with unmerged CSIT code.
+#
+# When the earliest label point to the latest commit,
+# that one commit is built and tested.
+# This saves time when parent performance is already known.
+#
 # Assumptions:
 # + There is a directory holding VPP repo with patch under test checked out.
 # + It contains csit subdirectory with CSIT code to use (this script is there).
@@ -97,6 +108,7 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 # Cleanup needs ansible.
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
+export GIT_LOG_FILE="${CSIT_DIR}/git.log"
 check_prerequisites || die
 set_perpatch_vpp_dir || die
 get_test_code "${1-}" || die
@@ -135,27 +147,30 @@ git status || die
 git log -2 --oneline || die
 git describe || die
 # The first iteration.
-git bisect old | tee "git.log" || die "Invalid bisect interval?"
+if git bisect old | tee "${GIT_LOG_FILE}"; then
+    echo "Proceeding with normal bisect mode."
+else
+    echo "One of per-patch modes detected, still creating middle branch."
+fi
 git checkout -b "middle" || die "Failed to create branch: middle"
 git status || die
 git log -2 --oneline || die
 git describe || die
-if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
-    echo "Building and testing initial bounds."
-else
-    echo "Used as perpatch, still building and testing."
-fi
 # Building latest first, good for avoiding DPDK rebuilds.
 git checkout "latest" || die "Failed to checkout latest commit."
 build_vpp_ubuntu "LATEST" || die
 set_aside_build_artifacts "latest" || die
-git checkout "earliest" || die "Failed to checkout earliest commit."
-git status || die
-git log -2 --oneline || die
-git describe || die
-build_vpp_ubuntu "EARLIEST" || die
-set_aside_build_artifacts "earliest" || die
-git checkout "middle" || die "Failed to checkout middle commit."
+if head -n 1 "${GIT_LOG_FILE}" | fgrep -q ' was both old and new'; then
+    echo "Not compiling the earliest in singleperpatch mode."
+else
+    git checkout "earliest" || die "Failed to checkout earliest commit."
+    git status || die
+    git log -2 --oneline || die
+    git describe || die
+    build_vpp_ubuntu "EARLIEST" || die
+    set_aside_build_artifacts "earliest" || die
+    git checkout "middle" || die "Failed to checkout middle commit."
+fi
 # Done with repo manipulation for now, testing commences.
 initialize_csit_dirs "earliest" "middle" "latest" || die
 set_perpatch_dut || die
@@ -167,15 +182,18 @@ archive_tests || die
 
 # TODO: Does it matter which build is tested first?
 
-select_build "build_earliest" || die
-check_download_dir || die
-reserve_and_cleanup_testbed || die
-run_robot || die
-move_test_results "csit_earliest" || die
-ln -s -T "csit_earliest" "csit_early" || die
-
-# Explicit cleanup, in case the previous test left the testbed in a bad shape.
-ansible_playbook "cleanup" || die
+if head -n 1 "${GIT_LOG_FILE}" | fgrep -q ' was both old and new'; then
+    echo "Not testing the earliest in singleperpatch mode."
+else
+    select_build "build_earliest" || die
+    check_download_dir || die
+    reserve_and_cleanup_testbed || die
+    run_robot || die
+    move_test_results "csit_earliest" || die
+    ln -s -T "csit_earliest" "csit_early" || die
+    # Explicit cleanup, in case the previous test left the testbed in a bad shape.
+    ansible_playbook "cleanup" || die
+fi
 
 select_build "build_latest" || die
 check_download_dir || die
