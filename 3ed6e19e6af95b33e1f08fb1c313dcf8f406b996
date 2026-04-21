@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3427efc6_11301b85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-21T12:03:49Z",
+      "side": 1,
+      "message": "Bisect finally works in all three models, re-verifying normal verify bootstrap now.\n\ngha-run csit-vpp-2n-emr perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch",
+      "revId": "3ed6e19e6af95b33e1f08fb1c313dcf8f406b996",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
