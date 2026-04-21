@@ -433,6 +433,7 @@ function generate_tests () {
         done
     )
     ./suite_generator.py "${suite_gen_params[@]}" || die "Suite gen failed."
+    popd || die
 }
 
 

@@ -162,16 +162,20 @@ function main_bisect_loop () {
     # The new adjective ("old" or "new") is selected,
     # and git bisect with the adjective is executed.
     # The symlinks csit_early and csit_late are updated to tightest bounds.
-    # The git.log file is examined and if the bisect is finished, loop ends.
+    # The git log file is examined and if the bisect is finished, loop ends.
+    # Variables read:
+    # - GIT_LOG_FILE - Path to store output of last git command.
+    # - TOOLS_DIR - Directory with tools needed to parse test results.
 
     iteration=0
     while true
     do
         let iteration+=1
         git clean -dffx "build"/ "build-root"/ || die
-        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+        if head -n 1 "${GIT_LOG_FILE}" | cut -b -11 | fgrep -q "Bisecting"; then
             echo "Iteration ${iteration}"
         else
+            # TODO: Call a script to compare performances in pair mode?
             echo "Perpatch usage done."
             break
         fi
@@ -202,7 +206,7 @@ function main_bisect_loop () {
         git bisect "${adjective}" | tee "git.log" || die
         git describe || die
         git status || die
-        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+        if head -n 1 "${GIT_LOG_FILE}" | cut -b -11 | fgrep -q "Bisecting"; then
             echo "Still bisecting..."
         else
             echo "Bisecting done."
