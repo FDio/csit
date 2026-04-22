@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a733c5_27b6d17c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-04-22T11:20:03Z",
+      "side": 1,
+      "message": "Due to late fixes on VPP side, this change is not fully backward compatible. Still, it is better to have merged CSIT code that can pass once VPP is fully fixed. I can apply a workaround at RCA time if bisecting is needed (not a high chance).",
+      "revId": "3e606d19766545a76a0d9aa5de6baa3e06362ccb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
