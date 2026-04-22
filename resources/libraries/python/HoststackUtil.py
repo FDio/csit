@@ -363,7 +363,7 @@ class HoststackUtil:
         :param sleep_time: waiting stecific time.
         """
         logger.info(f"Sleeping for {sleep_time} seconds")
-        sleep(sleep_time + 1)
+        sleep(float(sleep_time) + 1)
 
     @staticmethod
     def hoststack_test_program_finished(

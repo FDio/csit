@@ -81,6 +81,7 @@
 | ... | nclients=1
 | ... | quic_streams=1
 | ... | time=sconnect:lastbyte
+| ... | sleep=40
 | ... | fifo_size=4M
 | ... | rx_bytes=0
 | ... | tx_bytes=0
@@ -516,8 +517,11 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${vpp_echo_client_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_client_attr}[cfg_vpp_feature] | ${vpp_echo_client}
-| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | Run Keyword If | ${vpp_hoststack_attr}[strace]
+| | ... | Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ... | ${vpp_echo_client} | ${dut2} | ${vpp_echo_server}
+| | ... | ELSE
+| | ... | Sleep For Hoststack Test Duration | ${vpp_echo_client_attr}[sleep]
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_client}
