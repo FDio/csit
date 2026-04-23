@@ -191,7 +191,12 @@ class VppConfigGenerator:
         """
         if variant == "":
             return
-        variant_list = ["hsw", "skx", "icl"]
+        # New x86 variants.
+        variant_list = ["scalar", "x86-64-v2", "x86-64-v3", "x86-64-v4"] # FIXME: Is -v2 even supported now?
+        # New ARM variants.
+        variant_list.extend(["neoversen1", "neoversen2", "neoversen2", "neoversev2"]) # FIXME: neoversen2 should fail.
+        # Untestable and old variants are not included.
+        # TODO: Move all of the above to Constants?
         if variant not in variant_list:
             raise ValueError("Invalid graph node variant value")
         path = ["node", "default", "variant"]
