@@ -1555,6 +1555,8 @@ class OptimizedSearch:
             preceding_targets = 1
             # TODO: Move the value to Constants.py?
             search_duration_max += transaction_scale * 3e-4
+            # FIXME: Make less generous when SFDP cleanup confirmation gets faster.
+            search_duration_max += 3 * 500  # 500 trials, each sleeps for 3 seconds.
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
