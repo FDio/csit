@@ -54,12 +54,14 @@ function build_vpp_ubuntu () {
 
     if [ -z "${VPP_PLATFORM-}" ]; then
         params="UNATTENDED=y"
-        make ${params} pkg-verify || die "VPP build failed."
+        make ${params} pkg-verify > "tmp.log" || die "VPP build failed."
     else
         pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
         # Old VPP source does not recognize new ARM platforms.
         opars="UNATTENDED=y"
-        make ${pars} pkg-verify || make ${opars} pkg-verify || die "Build fail."
+        make ${pars} pkg-verify > "tmp.log" || make ${opars} pkg-verify > "tmp.log" || die "Build fail."
+        # TODO: Configurable log filenames?
+        # TODO: Line lengths!
     fi
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
