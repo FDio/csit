@@ -175,7 +175,10 @@ function main_bisect_loop () {
         if head -n 1 "${GIT_LOG_FILE}" | cut -b -11 | fgrep -q "Bisecting"; then
             echo "Iteration ${iteration}"
         else
-            # TODO: Call a script to compare performances in pair mode?
+            if head -n 1 "${GIT_LOG_FILE}" | fgrep -q "first new commit"; then
+                echo "Pair mode, summarizing the performance differences."
+                compare_test_results
+            fi
             echo "Perpatch usage done."
             break
         fi
