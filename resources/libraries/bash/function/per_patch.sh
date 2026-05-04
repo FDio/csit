@@ -203,7 +203,7 @@ function main_bisect_loop () {
         else
             die "Unexpected return code: ${bisect_rc}"
         fi
-        git bisect "${adjective}" | tee "git.log" || die
+        git bisect "${adjective}" | tee "${GIT_LOG_FILE}" || die
         git describe || die
         git status || die
         if head -n 1 "${GIT_LOG_FILE}" | cut -b -11 | fgrep -q "Bisecting"; then
