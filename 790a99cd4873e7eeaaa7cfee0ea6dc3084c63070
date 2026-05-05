@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7431f8c_54ae7579",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-05T11:47:03Z",
+      "side": 1,
+      "message": "Return code is good but output is empty due to directory mismatch. To be fixed separately in the Python took, this bash part is good to go in the meantime.",
+      "revId": "790a99cd4873e7eeaaa7cfee0ea6dc3084c63070",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
