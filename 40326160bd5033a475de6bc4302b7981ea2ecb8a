@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810cqANDdrv_vfio_pciANDeth-ip4tcp*-ldpreload-iperf3",
       "revId": "40326160bd5033a475de6bc4302b7981ea2ecb8a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca703ce6_65b82429",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2026-05-06T15:09:27Z",
+      "side": 1,
+      "message": "2026",
+      "revId": "40326160bd5033a475de6bc4302b7981ea2ecb8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
