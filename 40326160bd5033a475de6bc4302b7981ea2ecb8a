@@ -33,6 +33,24 @@
       "message": "2026",
       "revId": "40326160bd5033a475de6bc4302b7981ea2ecb8a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc98b7ab_2e410d2a",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3139
+      },
+      "writtenOn": "2026-05-06T15:50:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ca703ce6_65b82429",
+      "revId": "40326160bd5033a475de6bc4302b7981ea2ecb8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
