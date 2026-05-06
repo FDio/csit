@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -55,15 +55,27 @@ def main() -> int:
         iteration += 1
         parent_results = {}
         current_results = {}
-        parent_results = parse(f"csit_parent/{iteration}", fake_value=2.0)
+        parent_dir = f"csit_parent/{iteration}"
+        current_dir = f"csit_current/{iteration}"
+        parent_results = parse(parent_dir, fake_value=2.0)
         parent_names = list(parent_results)
         if test_names is None:
             test_names = parent_names
         if not parent_names:
-            # No more iterations.
-            break
+            if iteration > 0:
+                # No more iterations, parsing done.
+                break
+            # This branch is entered in pair mode of bisect.
+            parent_dir = "csit_early"
+            current_dir = "csit_late"
+            parent_results = parse(parent_dir, fake_value=2.0)
+            parent_names = list(parent_results)
+            if test_names is None:
+                test_names = parent_names
+            if not parent_names:
+                raise RuntimeError("No results found!")
         assert parent_names == test_names, f"{parent_names} != {test_names}"
-        current_results = parse(f"csit_current/{iteration}", fake_value=1.0)
+        current_results = parse(current_dir, fake_value=1.0)
         current_names = list(current_results)
         assert (
             current_names == parent_names
