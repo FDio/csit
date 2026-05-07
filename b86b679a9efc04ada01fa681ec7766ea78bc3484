@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "961f7f08_eed3fe31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-07T14:48:37Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-spr perftest nic_intel-e810cqANDdrv_avfAND1cAND64bAND*-ip4scale20k-rnd nic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2patch #generate-all",
+      "revId": "b86b679a9efc04ada01fa681ec7766ea78bc3484",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
