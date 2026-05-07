@@ -1,6 +1,6 @@
 ---
 name: csit-hfr
-run-name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ github.event.inputs.node }}-${{ github.event.inputs.my_run_id }}
+run-name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2606' && '2606' }}-${{ github.event.inputs.node }}-${{ github.event.inputs.hfr_run_id }}
 
 # yamllint disable-line rule:truthy
 on:
@@ -33,12 +33,14 @@ on:
           - 2n-c7gn
           - 2n-c8gn
           - 2n-emr
+          - 2n-gnr
           - 2n-grc
           - 2n-icx
           - 2n-spr
           - 2n-zn2
           - 3n-alt
           - 3n-emr
+          - 3n-gnr
           - 3n-icx
           - 3n-oct
           - 3n-srf
@@ -50,14 +52,14 @@ on:
         required: true
         type: choice
         options:
-          - rls2602
-        default: rls2602
+          - rls2606
+        default: rls2606
       suite_gen_params:
         description: Parameters for the suite generator.
         required: true
         type: string
-      my_run_id:
-        description: Run ID.
+      hfr_run_id:
+        description: HFR run ID.
         required: true
         type: string
 
@@ -84,7 +86,7 @@ jobs:
   csit-hfr:
     needs: dispatch
     # yamllint disable-line rule:line-length
-    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
+    name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2606' && '2606' }}-${{ matrix.node }}
     runs-on:
       - self-hosted
       - nomad
@@ -101,9 +103,9 @@ jobs:
 
     env:
       # yamllint disable-line rule:line-length
-      BUILD_TAG: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}-${{ github.run_id }}
+      BUILD_TAG: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2606' && '2606' }}-${{ matrix.node }}-${{ github.run_id }}
       # yamllint disable-line rule:line-length
-      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2602' && '2602' }}-${{ matrix.node }}
+      JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2606' && '2606' }}-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.branch }}
       TEST_TAG_STRING: ${{ github.event.inputs.suite_gen_params }}
 
