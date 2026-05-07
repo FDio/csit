@@ -56,7 +56,7 @@ function build_vpp_ubuntu () {
     make ${preargs} install-dep install-ext-deps > "tmp.log" || die
     make ${preargs} install-opt-deps > "tmp.log" || echo "Old build, ignoring opt-deps error"
 
-    postarg="VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON'"
+    postarg="VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON -DVPP_ENABLE_SANITIZE_ADDR=ON'"
     if [ -n "${VPP_PLATFORM-}" ]; then
         preargs="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
