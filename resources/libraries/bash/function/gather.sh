@@ -45,16 +45,6 @@ function gather_build () {
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
             gather_calicovpp || die "The function should have died on error."
             ;;
-        *"vpp"*"3n-oct" | *"vpp"*"2n-grc" | *"vpp"*"3n-alt")
-            DUT="vpp"
-            source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
-            build_vpp || die "The function should have died on error."
-            ;;
-        *"vpp"*)
-            DUT="vpp"
-            source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
-            gather_vpp || die "The function should have died on error."
-            ;;
         *"dpdk"*)
             DUT="dpdk"
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
@@ -64,6 +54,16 @@ function gather_build () {
             DUT="trex"
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
             gather_trex || die "The function should have died on error."
+            ;;
+        *"-oct" | *"-emr" | *"-spr" | *"-icx" | *"-grc" | *"-alt")
+            DUT="vpp"
+            source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
+            build_vpp || die "The function should have died on error."
+            ;;
+        *"vpp"*)
+            DUT="vpp"
+            source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
+            gather_vpp || die "The function should have died on error."
             ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
