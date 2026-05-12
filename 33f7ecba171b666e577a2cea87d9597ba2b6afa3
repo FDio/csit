@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f2b08d2_a955c7f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-12T11:56:56Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3nb-spr perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND2cAND1518bANDethip4ipsec1tnlhwasync-ip4base-int-aes256gcm mrrANDnic_intel-e810cqANDdrv_vfio_pciAND2cAND1518bANDethip4ipsec1tnlsw-ip4base-int-aes256gcm mrrANDnic_intel-e810cqANDdrv_vfio_pciAND2cAND1518bANDethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm mrrANDnic_intel-e810cqANDdrv_vfio_pciAND2cAND1518bANDethip4udpwireguard1tnlhwasync-ip4base mrrANDnic_intel-e810cqANDdrv_vfio_pciAND2cAND1518bANDethip4udpwireguard1tnlsw-ip4base #generate-all",
+      "revId": "33f7ecba171b666e577a2cea87d9597ba2b6afa3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
