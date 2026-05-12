@@ -278,4 +278,8 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show crypto async status")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show crypto engines")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show crypto handlers")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show crypto algorithm")
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show ipsec all")
