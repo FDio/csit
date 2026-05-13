@@ -31,7 +31,7 @@ function gather_build () {
     # - ${DOWNLOAD_DIR} - Files needed by tests are gathered here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - gather_dpdk, gather_vpp - See their definitions.
+    # - gather_dpdk, gather_trex, gather_calicovpp - See their definitions.
     # - build_vpp - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
@@ -55,15 +55,10 @@ function gather_build () {
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
             gather_trex || die "The function should have died on error."
             ;;
-        *"-oct" | *"-emr" | *"-spr" | *"-icx" | *"-grc" | *"-alt")
-            DUT="vpp"
-            source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
-            build_vpp || die "The function should have died on error."
-            ;;
         *"vpp"*)
             DUT="vpp"
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
-            gather_vpp || die "The function should have died on error."
+            build_vpp || die "The function should have died on error."
             ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
