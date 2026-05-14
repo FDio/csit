@@ -324,6 +324,17 @@ test-sets:
             100ge2p1e810cq:
               - avf
           framesize: [100, ]
+      - sfdp-base-cps-sm
+          infra:
+            100ge2p1e810cq:
+              - avf
+          core: [1]
+      - sfdp-base-tput-sm
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [100, ]
+          core: [1]
       - geneve-md:
           infra:
             200ge2p1cx7veat:
