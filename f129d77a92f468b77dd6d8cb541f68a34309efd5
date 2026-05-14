@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a99088_566a111a",
+        "filename": "resources/job_specifications/ts_2n-emr.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2026-05-14T11:36:00Z",
+      "side": 1,
+      "message": "Add \":\"\ncheck everywhere",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 24
+      },
+      "revId": "f129d77a92f468b77dd6d8cb541f68a34309efd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0565a749_b6b34ee2",
+        "filename": "resources/job_specifications/ts_2n-emr.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2026-05-14T11:36:00Z",
+      "side": 1,
+      "message": "use [1, ]",
+      "range": {
+        "startLine": 228,
+        "startChar": 16,
+        "endLine": 228,
+        "endChar": 19
+      },
+      "revId": "f129d77a92f468b77dd6d8cb541f68a34309efd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
