@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ee2b13a_213a1da5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T13:26:02Z",
+      "side": 1,
+      "message": "Do you think that you can copyright file names edits? Is it worth enough?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4053e704_606ed94a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
