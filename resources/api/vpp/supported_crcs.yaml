@@ -281,6 +281,24 @@
     rdma_create_v4: '0xc6287ea8'
     rdma_create_v4_reply: '0x5383d31f'
 
+    # plugins/sfdp_services/base/interface_input/interface_input.api
+    sfdp_interface_input_set: '0xc80a0902'
+    sfdp_interface_input_set_reply: '0xe8d4e804'
+
+    # vnet/sfdp/sfdp.api
+    sfdp_kill_session: '0x1a16d196'
+    sfdp_kill_session_reply: '0xe8d4e804'
+    sfdp_session_details: '0x3eaab6b9'
+    sfdp_session_dump: '0x51077d14'
+    sfdp_set_services: '0x6227a034'
+    sfdp_set_services_reply: '0xe8d4e804'
+    sfdp_set_timeout: '0x36440b87'
+    sfdp_set_timeout_reply: '0xe8d4e804'
+    sfdp_tenant_add_del: '0xf03b121c'
+    sfdp_tenant_add_del_reply: '0xe8d4e804'
+    sfdp_tenant_details: '0x128e06c3'
+    sfdp_tenant_dump: '0x51077d14'
+
     # vlibmemory/vlib.api
     show_threads: '0x51077d14'
     show_threads_reply: '0xefd78e83'
