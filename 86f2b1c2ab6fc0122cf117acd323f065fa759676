@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53f10495_647c0ee7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T14:36:14Z",
+      "side": 1,
+      "message": "Do you want to say that I lost all my know-how, research, etc. just because I use all my skill to compose tailored prompt(s) to write my knowledge using AI?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0b727d9_ecd629f4",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 3
