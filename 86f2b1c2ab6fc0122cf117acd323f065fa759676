@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b727d9_ecd629f4",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "1. everything its copyrightable, already existed with some copyright or new one where you just add copyright\n\n2. it does not matter if it was fully/partially/none human authored",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597f6b8e_1ea857fd",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "what about Snyk, GH bots?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "429981eb_ad3144f7",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "now, you give a non-human copyright hold even when you say bot cannot sign off?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c88209_72c17264",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "yes, I prefer Co-authored-by, do you have any links to tell what\u0027s the standard in Gerrit, GH?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b83aeb1_f34fc619",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "IMO: all code is copyrighted, authored by human only on paper and/or human with AI on computer, AI alone\n\nDo you have a statement agains it?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "687848ac_ee0b1f46",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "we care about the purpose of the commit and why its done, not how (I have it written in a train to Zurich 😊)\n\nIs that train driven by AI?\n\nhttps://cbea.ms/git-commit/",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95c504b4_73bd8321",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-14T11:43:44Z",
+      "side": 1,
+      "message": "Signed-off-by is the last line, please",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
