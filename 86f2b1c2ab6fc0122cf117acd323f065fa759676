@@ -105,6 +105,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a41c1cdd_7cc03ab9",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "1. No. There is such thing as Public Domain code.\n\n2. It does, as only adult humans and corporations can hold copyright. I guess human children can inherit \"ownership\" of a copyright, but they need adults to \"do\" anything with that copyright, such as attaching licenses or suing copyright violators. Also, the human must have enough \"creative expression\" in the text form (not just ideas behind it). A work without copyright owner meeting such requirements is Public Domain by default, if there are no other conditions making it some other form of intellectual ownership (patents, trademarks, classified information, ...).\n\nI guess this document could give a better summary of differences between contributor, author and copyright holder.",
+      "parentUuid": "c0b727d9_ecd629f4",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "597f6b8e_1ea857fd",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 3
@@ -116,6 +134,24 @@
       "writtenOn": "2026-05-14T11:43:44Z",
       "side": 1,
       "message": "what about Snyk, GH bots?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab8cb93_6fd2b025",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "Can you sue them? Can they go to prison or at least pay fines like corporations do? If not, that cannot sign DCO. A human must bear the responsibility. Creating a script that adds Signed-off-by on behalf of consenting human is probably allowed, but risky for that human. For example, does your script verify license compatibility?\nI am not sure how much of such details need to be discussed in the text of this document. Should I create a separate blog article outlining some concerns, examples and the trade-offs I made when prompting for this document?",
+      "parentUuid": "597f6b8e_1ea857fd",
       "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
@@ -139,6 +175,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdf5251a_4808f8fb",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "DCO is different than copyright. The person signing DCO only claims it is allowed to incorporate this contribution, regardless of who/what has created the text and who holds copyright. I am not sure how much this document should be explaining what DCO does or does not say.",
+      "parentUuid": "429981eb_ad3144f7",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7c88209_72c17264",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 3
@@ -150,6 +204,24 @@
       "writtenOn": "2026-05-14T11:43:44Z",
       "side": 1,
       "message": "yes, I prefer Co-authored-by, do you have any links to tell what\u0027s the standard in Gerrit, GH?",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72a3dac_e6f979fe",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "Assisted-by comes from Linux [1], Co-authored-by is what Claude is taught to add without explicit user prompting. Best practices may change in future (before any usage stabilizes into standard), hence this document is not strict and only offers non-binding examples. I can add references to the current examples and turn this reply into official text in next patchset.\n\n[1] https://raw.githubusercontent.com/torvalds/linux/refs/heads/master/Documentation/process/coding-assistants.rst",
+      "parentUuid": "d7c88209_72c17264",
       "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
@@ -173,6 +245,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2aef0202_0fe7b972",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "Yes, I will improve text in next patchset.",
+      "parentUuid": "6b83aeb1_f34fc619",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "687848ac_ee0b1f46",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 3
@@ -184,6 +274,24 @@
       "writtenOn": "2026-05-14T11:43:44Z",
       "side": 1,
       "message": "we care about the purpose of the commit and why its done, not how (I have it written in a train to Zurich 😊)\n\nIs that train driven by AI?\n\nhttps://cbea.ms/git-commit/",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acdbb4f1_ba67e00c",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "For copyright tracking reasons, in this case the project cares about \"how\". This commit message points out few human-authored (thus copyrighted) blocks among mostly AI-generated (thus public domain) code.",
+      "parentUuid": "687848ac_ee0b1f46",
       "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
@@ -201,6 +309,24 @@
       "writtenOn": "2026-05-14T11:43:44Z",
       "side": 1,
       "message": "Signed-off-by is the last line, please",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f79df48_d870cc36",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T08:45:05Z",
+      "side": 1,
+      "message": "Good idea, I will add in next patch set.",
+      "parentUuid": "95c504b4_73bd8321",
       "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
