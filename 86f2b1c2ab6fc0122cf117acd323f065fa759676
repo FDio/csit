@@ -88,6 +88,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "293120e3_e2fd2396",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T09:01:03Z",
+      "side": 1,
+      "message": "\u003e Its very simple in the end\n\nGive me an example when this statement was not immediately followed by an oversimplification that is factually wrong. :)\n\n\u003e no guides needed IMO\n\nI myself made a mistake of using AI to generate code and adding a copyright notice without thinking, which is perhaps not illegal, just misleading and legally null.\n\n\u003e AFAICT that\u0027s the real work explanation\n\nLet me guess, you did NOT ask an AI about validity of your opinions.\n\nI did. I argued that Apache-2.0 is a permissive license so my employer does not really need to care if the code is really \"owned\" by the corporation. It (Gemini 3.0 Pro Preview) quickly created a counter-example where another company tries to create a patent based on my (prompted but AI-generated) code where lack of Apache-2.0 patent clause might be a concern.\n\nThe conclusion is that marking some blocks as AI generated strengthens the ownership claims on the human generated ones. (The other company lawyers will not succeed in their \"everybody uses AI anyway\" argument.)\n\n\u003e contact legal if you want\n\nI did. My contact wisely declined to give me any legally binding comment. Copyright law is a mess, and several important court cases are still in progress.\n\nCorporate layers and CEOs will always be few years behind when deciding what tradeoff between code velocity and intellectual ownership is the best.\nMy document does not tell contributors to start or stop using generative AI, just how to mark the contribution.",
+      "parentUuid": "a4b46427_186f0031",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0b727d9_ecd629f4",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 3
