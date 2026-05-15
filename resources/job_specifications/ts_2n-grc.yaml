@@ -170,6 +170,11 @@ test-sets:
       - nat44-ip4base-cps-sm
       - nat44-ip4base-tput-sm:
           framesize: [100, ]
+      - sfdp-base-cps-sm:
+          core: [1]
+      - sfdp-base-tput-sm:
+          framesize: [100, ]
+          core: [1]
       - geneve-md
       - ip6-md:
           framesize: [78, ]
