@@ -106,6 +106,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be2772c9_23cb0327",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T09:05:25Z",
+      "side": 1,
+      "message": "You only lost copyright, because your level of authorship is not direct enough. You are still the person signing off DCO. Skills are irrelevant for copyright purposes.",
+      "parentUuid": "53f10495_647c0ee7",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7818cadc_11c0f3c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-15T09:05:25Z",
+      "side": 1,
+      "message": "No. I will think how to improve the text.",
+      "parentUuid": "f5c90f52_55ac1ccc",
+      "revId": "86f2b1c2ab6fc0122cf117acd323f065fa759676",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0b727d9_ecd629f4",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 3
