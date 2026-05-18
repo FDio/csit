@@ -84,6 +84,23 @@
       "message": "gha-run csit-vpp-2n-c7gn perftest mrrANDnic_*ANDethip4-ip4scale20k-rnd",
       "revId": "1a09de6b3dbd87140f528c7b9b9e001795285934",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa573ce_20f41427",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-18T10:59:04Z",
+      "side": 1,
+      "message": "Oh, not rebased on zn4 4C fix.\n\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDethip4-ip4scale* !4c",
+      "revId": "1a09de6b3dbd87140f528c7b9b9e001795285934",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
