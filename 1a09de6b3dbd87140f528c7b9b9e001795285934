@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDethip4-ip4scale20k-rnd",
       "revId": "1a09de6b3dbd87140f528c7b9b9e001795285934",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43f8cdb_fe9b5f54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-18T10:43:14Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-c61n perftest mrrANDnic_*ANDethip4-ip4scale20k-rnd",
+      "revId": "1a09de6b3dbd87140f528c7b9b9e001795285934",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
