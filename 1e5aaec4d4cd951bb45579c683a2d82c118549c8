@@ -33,6 +33,23 @@
       "message": "One official run for an unedited tesbed.\n\ngha-run csit-vpp-3n-srf perftest nic_*AND1cAND64bANDethip4-ip4base nic_*AND1cAND64bANDeth-l2patch #generate-all",
       "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f29db80_7b10b3f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-18T13:00:03Z",
+      "side": 1,
+      "message": "Baseline for 45818:\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDethip4-ip4scale* !4c",
+      "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
