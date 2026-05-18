@@ -101,6 +101,23 @@
       "message": "Oh, not rebased on zn4 4C fix.\n\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDethip4-ip4scale* !4c",
       "revId": "1a09de6b3dbd87140f528c7b9b9e001795285934",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d899717_dc251b21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-05-18T11:49:22Z",
+      "side": 1,
+      "message": "removing this will break internal cisco testing",
+      "revId": "1a09de6b3dbd87140f528c7b9b9e001795285934",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
