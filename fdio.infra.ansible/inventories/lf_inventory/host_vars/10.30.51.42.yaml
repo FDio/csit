@@ -54,8 +54,6 @@ docker_volumes:
     target: "/usr/lib/firmware/"
   - source: "/usr/local/bin/adf_ctl"
     target: "/usr/local/bin/adf_ctl"
-  - source: "/usr/local/bin/adf_ctl"
-    target: "/usr/local/bin/adf_ctl"
   - source: "/usr/bin/accel-config"
     target: "/usr/bin/accel-config"
   - source: "/usr/lib64/libaccel-config.so.1"

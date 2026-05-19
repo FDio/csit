@@ -25,7 +25,6 @@
     remote_src: true
     src: "{{ intel_extract_dir }}/QAT20.L.{{ qat2 }}.tar.gz"
     dest: "{{ intel_extract_dir }}/QAT20.L.{{ qat2 }}/"
-  register: intel_driver_extracted
   tags:
     - intel-inst
 
@@ -39,8 +38,6 @@
     - "./configure --enable-icp-sriov=host"
     - "make"
     - "make install"
-  when:
-    - intel_driver_extracted
   tags:
     - intel-inst
 

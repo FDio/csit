@@ -50,7 +50,7 @@
     - intel-inst-drivers
 
 - name: check presence of intel 4XXX
-  ansible.builtin.shell: "lspci -d 8086:4942; lspci -d 8086:4940"
+  ansible.builtin.shell: "lspci -d 8086:4942; lspci -d 8086:4940; lspci -d 8086:4944"
   register: intel_qat2_pcis
   failed_when: false
   changed_when: false
