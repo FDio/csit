@@ -16,6 +16,23 @@
       "message": "What about the coverage tests?",
       "revId": "8ce13a6231fa1a87804ce25b369d19a12551da60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ff0e78e_37b0bad1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-19T12:02:47Z",
+      "side": 1,
+      "message": "Coverage? Not in rls2606 yet.",
+      "revId": "8ce13a6231fa1a87804ce25b369d19a12551da60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
