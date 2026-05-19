@@ -50,6 +50,29 @@
       "message": "Baseline for 45818:\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDethip4-ip4scale* !4c",
       "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efda398c_fba742a4",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-05-19T08:49:27Z",
+      "side": 1,
+      "message": "did we agreed on building others as well? What is a criteria to consume packagecloud?",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 66
+      },
+      "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
