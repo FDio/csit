@@ -73,6 +73,30 @@
       },
       "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b878b76d_00e0ad8c",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-19T12:00:02Z",
+      "side": 1,
+      "message": "The current selection of VPP platform names is visible here [0]. For perf testbeds in fd.io lab, 3n-sfr will probably use sierraforest, and VPP could add graniterapids. But as those two testbeds are new, I did not test them. See common.sh edits in this change for the assignment.\n\nI think it does not make sense to build generic builds when they should behave identically to packagecloud downloads, and some private labs might not have executors ready for compilation.\n\n[0] https://github.com/FDio/vpp/tree/52babdde8f4992348910f8cce8c625d2b2b1041c/src/cmake/platform",
+      "parentUuid": "efda398c_fba742a4",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 66
+      },
+      "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
