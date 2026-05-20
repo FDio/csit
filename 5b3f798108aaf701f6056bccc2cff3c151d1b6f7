@@ -39,6 +39,30 @@
       },
       "revId": "5b3f798108aaf701f6056bccc2cff3c151d1b6f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07edfef_f1602efd",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 3139
+      },
+      "writtenOn": "2026-05-20T19:53:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "adeab73b_31d470b5",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 0
+      },
+      "revId": "5b3f798108aaf701f6056bccc2cff3c151d1b6f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
