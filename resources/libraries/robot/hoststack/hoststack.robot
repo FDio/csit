@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -30,13 +30,15 @@
 *** Variables ***
 | ${quic_crypto_engine}= | nocrypto
 | ${quic_fifo_size}= | 4M
+| ${quic_no_tx_pacing}= | ${True}
+| ${dpdk_enable_tso}= | ${False}
 | &{vpp_hoststack_attr}=
-| ... | rxd=${256}
+| ... | rxd=${512}
 | ... | txd=${256}
 | ... | phy_cores=${1}
 | ... | app_api_socket=/run/vpp/app_ns_sockets/default
 | ... | tcp_cc_algo=cubic
-| ... | sess_evt_q_length=16384
+| ... | sess_evt_q_length=100000
 | ... | sess_prealloc_sess=1024
 | ... | sess_v4_tbl_buckets=20000
 | ... | sess_v4_tbl_mem=64M
@@ -44,49 +46,13 @@
 | ... | sess_v4_hopen_mem=64M
 | ... | sess_lendpt_buckets=250000
 | ... | sess_lendpt_mem=512M
+| ... | main_heap_size=4g
+| ... | api_global_size=2000M
+| ... | api_size=1G
+| ... | buffers_per_numa=${16536}
+| ... | tcp_max_rx_fifo=128m
+| ... | tls_fifo_size=1m
 | ... | strace=${False}
-| &{vpp_echo_server_attr}=
-| ... | role=server
-| ... | cpu_cnt=${1}
-| ... | cfg_vpp_feature=${None}
-| ... | namespace=default
-| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
-| ... | json_output=json
-| ... | uri_protocol=quic
-| ... | uri_ip4_addr=${EMPTY}
-| ... | uri_port=1234
-| ... | nthreads=1
-| ... | mq_size=${vpp_hoststack_attr}[sess_evt_q_length]
-| ... | nclients=1
-| ... | quic_streams=1
-| ... | time=sconnect:lastbyte
-| ... | fifo_size=4M
-| ... | rx_bytes=0
-| ... | tx_bytes=0
-| ... | rx_results_diff=${False}
-| ... | tx_results_diff=${False}
-| ... | use_app_socket_api=${True}
-| &{vpp_echo_client_attr}=
-| ... | role=client
-| ... | cpu_cnt=${1}
-| ... | cfg_vpp_feature=${None}
-| ... | namespace=default
-| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
-| ... | json_output=json
-| ... | uri_protocol=quic
-| ... | uri_ip4_addr=${EMPTY}
-| ... | uri_port=1234
-| ... | nthreads=1
-| ... | mq_size=${vpp_hoststack_attr}[sess_evt_q_length]
-| ... | nclients=1
-| ... | quic_streams=1
-| ... | time=sconnect:lastbyte
-| ... | fifo_size=4M
-| ... | rx_bytes=0
-| ... | tx_bytes=0
-| ... | rx_results_diff=${False}
-| ... | tx_results_diff=${False}
-| ... | use_app_socket_api=${True}
 | &{iperf3_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${2}
@@ -113,6 +79,34 @@
 | ... | udp=${False}
 | ... | bandwidth=10000000
 | ... | length=${0}
+| &{vperf_server_attr}=
+| ... | role=server
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${None}
+| ... | namespace=default
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
+| ... | vcl_config=vcl_vperf.conf
+| ... | port=22000
+| ... | use_app_socket_api=${True}
+| ... | print_stats=${False}
+| ... | protocol=tcp
+| &{vperf_client_attr}=
+| ... | role=client
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${None}
+| ... | namespace=default
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
+| ... | vcl_config=vcl_vperf.conf
+| ... | ip4_addr=${EMPTY}
+| ... | port=22000
+| ... | use_app_socket_api=${True}
+| ... | bytes=61440000000
+| ... | print_stats=${True}
+| ... | uni_direct=${True}
+| ... | bi_direct=${False}
+| ... | protocol=tcp
+| ... | nclients=${1}
+| ... | quic_streams=${1}
 | &{nginx_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -161,6 +155,12 @@
 | | ... | table buckets Type: string
 | | ... | - ${sess_lendpt_mem} - Session local endpoint
 | | ... | table memory size Type: string
+| | ... | - ${main_heap_size} - VPP main heap size Type: string
+| | ... | - ${api_global_size} - API segment global size Type: string
+| | ... | - ${api_size} - API segment api size Type: string
+| | ... | - ${buffers_per_numa} - Buffers per NUMA node Type: int
+| | ... | - ${tcp_max_rx_fifo} - TCP max Rx fifo size Type: string
+| | ... | - ${tls_fifo_size} - TLS fifo size Type: string
 | |
 | | ... | *Example:*
 | |
@@ -180,6 +180,12 @@
 | | ... | ${sess_v4_hopen_mem}=${vpp_hoststack_attr}[sess_v4_hopen_mem]
 | | ... | ${sess_lendpt_buckets}=${vpp_hoststack_attr}[sess_lendpt_buckets]
 | | ... | ${sess_lendpt_mem}=${vpp_hoststack_attr}[sess_lendpt_mem]
+| | ... | ${main_heap_size}=${vpp_hoststack_attr}[main_heap_size]
+| | ... | ${api_global_size}=${vpp_hoststack_attr}[api_global_size]
+| | ... | ${api_size}=${vpp_hoststack_attr}[api_size]
+| | ... | ${buffers_per_numa}=${vpp_hoststack_attr}[buffers_per_numa]
+| | ... | ${tcp_max_rx_fifo}=${vpp_hoststack_attr}[tcp_max_rx_fifo]
+| | ... | ${tls_fifo_size}=${vpp_hoststack_attr}[tls_fifo_size]
 | |
 | | Set To Dictionary | ${vpp_hoststack_attr} | rxd | ${rxd}
 | | Set To Dictionary | ${vpp_hoststack_attr} | txd | ${txd}
@@ -204,122 +210,18 @@
 | | ... | sess_lendpt_buckets | ${sess_lendpt_buckets}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | sess_lendpt_mem | ${sess_lendpt_mem}
-
-| Set VPP Echo Server Attributes
-| | [Documentation]
-| | ... | Set the HostStack vpp_echo test program attributes
-| | ... | in the vpp_echo_server_attr dictionary.
-| |
-| | ... | *Arguments:*
-| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
-| | ... | - ${namespace} - Namespace Type: string
-| | ... | - ${nthreads} - Number of threads Type: string
-| | ... | - ${mq_size} - Number of threads Type: string
-| | ... | - ${nclients} - Number of clients Type: string
-| | ... | - ${quic_streams} - Number of quic streams Type: string
-| | ... | - ${fifo_size} - Session Fifo Size Type: integer
-| | ... | - ${time} - Timing events (start:end) Type: string
-| | ... | - ${rx_bytes} - Number of Bytes to receive Type: string
-| | ... | - ${tx_bytes} - Number of Bytes to send Type: string
-| | ... | - ${rx_results_diff} - Rx Results are different to pass Type: boolean
-| | ... | - ${tx_results_diff} - Tx Results are different to pass Type: boolean
-| | ... | - ${use_app_socket_api} - Use app socket API instead of VPP API
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Set VPP Echo Server Attributes \| nclients=${nclients} \|
-| | ... | \| tx_bytes=${tx_bytes} \|
-| |
-| | [Arguments]
-| | ... | ${cfg_vpp_feature}=${vpp_echo_server_attr}[cfg_vpp_feature]
-| | ... | ${namespace}=${vpp_echo_server_attr}[namespace]
-| | ... | ${nthreads}=${vpp_echo_server_attr}[nthreads]
-| | ... | ${mq_size}=${vpp_echo_server_attr}[mq_size]
-| | ... | ${nclients}=${vpp_echo_server_attr}[nclients]
-| | ... | ${quic_streams}=${vpp_echo_server_attr}[quic_streams]
-| | ... | ${time}=${vpp_echo_server_attr}[time]
-| | ... | ${fifo_size}=${vpp_echo_server_attr}[fifo_size]
-| | ... | ${rx_bytes}=${vpp_echo_server_attr}[rx_bytes]
-| | ... | ${tx_bytes}=${vpp_echo_server_attr}[tx_bytes]
-| | ... | ${rx_results_diff}=${vpp_echo_server_attr}[rx_results_diff]
-| | ... | ${tx_results_diff}=${vpp_echo_server_attr}[tx_results_diff]
-| | ... | ${use_app_socket_api}=${vpp_echo_server_attr}[use_app_socket_api]
-| |
-| | Set To Dictionary | ${vpp_echo_server_attr} | cfg_vpp_feature
-| | ... | ${cfg_vpp_feature}
-| | Set To Dictionary | ${vpp_echo_server_attr} | namespace | ${namespace}
-| | Set To Dictionary | ${vpp_echo_server_attr} | nthreads | ${nthreads}
-| | Set To Dictionary | ${vpp_echo_server_attr} | mq_size | ${mq_size}
-| | Set To Dictionary | ${vpp_echo_server_attr} | nclients | ${nclients}
-| | Set To Dictionary | ${vpp_echo_server_attr} | quic_streams | ${quic_streams}
-| | Set To Dictionary | ${vpp_echo_server_attr} | time | ${time}
-| | Set To Dictionary | ${vpp_echo_server_attr} | fifo_size | ${fifo_size}
-| | Set To Dictionary | ${vpp_echo_server_attr} | rx_bytes | ${rx_bytes}
-| | Set To Dictionary | ${vpp_echo_server_attr} | tx_bytes | ${tx_bytes}
-| | Set To Dictionary
-| | ... | ${vpp_echo_server_attr} | rx_results_diff | ${rx_results_diff}
-| | Set To Dictionary
-| | ... | ${vpp_echo_server_attr} | tx_results_diff | ${tx_results_diff}
-| | Set To Dictionary
-| | ... | ${vpp_echo_server_attr} | use_app_socket_api | ${use_app_socket_api}
-
-| Set VPP Echo Client Attributes
-| | [Documentation]
-| | ... | Set the HostStack vpp_echo test program attributes
-| | ... | in the vpp_echo_client_attr dictionary.
-| |
-| | ... | *Arguments:*
-| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
-| | ... | - ${namespace} - Namespace Type: string
-| | ... | - ${nthreads} - Number of threads Type: string
-| | ... | - ${mq_size} - Number of threads Type: string
-| | ... | - ${nclients} - Number of clients Type: string
-| | ... | - ${quic_streams} - Number of quic streams Type: string
-| | ... | - ${fifo_size} - Session Fifo Size Type: integer
-| | ... | - ${time} - Timing events (start:end) Type: string
-| | ... | - ${rx_bytes} - Number of Bytes to receive Type: string
-| | ... | - ${tx_bytes} - Number of Bytes to send Type: string
-| | ... | - ${rx_results_diff} - Rx Results are different to pass Type: boolean
-| | ... | - ${tx_results_diff} - Tx Results are different to pass Type: boolean
-| | ... | - ${use_app_socket_api} - Use app socket API instead of VPP API
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Set VPP Echo Client Attributes \| nclients=${nclients} \|
-| | ... | \| tx_bytes=${tx_bytes} \|
-| |
-| | [Arguments]
-| | ... | ${cfg_vpp_feature}=${vpp_echo_client_attr}[cfg_vpp_feature]
-| | ... | ${namespace}=${vpp_echo_client_attr}[namespace]
-| | ... | ${nthreads}=${vpp_echo_client_attr}[nthreads]
-| | ... | ${mq_size}=${vpp_echo_client_attr}[mq_size]
-| | ... | ${nclients}=${vpp_echo_client_attr}[nclients]
-| | ... | ${quic_streams}=${vpp_echo_client_attr}[quic_streams]
-| | ... | ${time}=${vpp_echo_client_attr}[time]
-| | ... | ${fifo_size}=${vpp_echo_client_attr}[fifo_size]
-| | ... | ${rx_bytes}=${vpp_echo_client_attr}[rx_bytes]
-| | ... | ${tx_bytes}=${vpp_echo_client_attr}[tx_bytes]
-| | ... | ${rx_results_diff}=${vpp_echo_client_attr}[rx_results_diff]
-| | ... | ${tx_results_diff}=${vpp_echo_client_attr}[tx_results_diff]
-| | ... | ${use_app_socket_api}=${vpp_echo_client_attr}[use_app_socket_api]
-| |
-| | Set To Dictionary | ${vpp_echo_client_attr} | cfg_vpp_feature
-| | ... | ${cfg_vpp_feature}
-| | Set To Dictionary | ${vpp_echo_client_attr} | namespace | ${namespace}
-| | Set To Dictionary | ${vpp_echo_client_attr} | nthreads | ${nthreads}
-| | Set To Dictionary | ${vpp_echo_client_attr} | mq_size | ${mq_size}
-| | Set To Dictionary | ${vpp_echo_client_attr} | nclients | ${nclients}
-| | Set To Dictionary | ${vpp_echo_client_attr} | quic_streams | ${quic_streams}
-| | Set To Dictionary | ${vpp_echo_client_attr} | time | ${time}
-| | Set To Dictionary | ${vpp_echo_client_attr} | fifo_size | ${fifo_size}
-| | Set To Dictionary | ${vpp_echo_client_attr} | rx_bytes | ${rx_bytes}
-| | Set To Dictionary | ${vpp_echo_client_attr} | tx_bytes | ${tx_bytes}
-| | Set To Dictionary
-| | ... | ${vpp_echo_client_attr} | rx_results_diff | ${rx_results_diff}
-| | Set To Dictionary
-| | ... | ${vpp_echo_client_attr} | tx_results_diff | ${tx_results_diff}
-| | Set To Dictionary
-| | ... | ${vpp_echo_client_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | main_heap_size | ${main_heap_size}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | api_global_size | ${api_global_size}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | api_size | ${api_size}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | buffers_per_numa | ${buffers_per_numa}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | tcp_max_rx_fifo | ${tcp_max_rx_fifo}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | tls_fifo_size | ${tls_fifo_size}
 
 | Set Iperf3 Server Attributes
 | | [Documentation]
@@ -390,6 +292,100 @@
 | | Set To Dictionary | ${iperf3_client_attr} | udp | ${udp}
 | | Set To Dictionary | ${iperf3_client_attr} | length | ${length}
 
+| Set Vperf Server Attributes
+| | [Documentation]
+| | ... | Set the HostStack vperf_server test program attributes
+| | ... | in the vperf_server_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
+| | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${vcl_config} - VCL configuration file name Type: string
+| | ... | - ${port} - TCP/UDP listen port Type: string
+| | ... | - ${use_app_socket_api} - Use app socket API Type: boolean
+| | ... | - ${print_stats} - Print test stats (-S) Type: boolean
+| | ... | - ${protocol} - Transport protocol (tcp/udp/quic) Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set Vperf Server Attributes \| cfg_vpp_feature=${None} \|
+| | ... | \| protocol=tcp \|
+| |
+| | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vperf_server_attr}[cfg_vpp_feature]
+| | ... | ${namespace}=${vperf_server_attr}[namespace]
+| | ... | ${vcl_config}=${vperf_server_attr}[vcl_config]
+| | ... | ${port}=${vperf_server_attr}[port]
+| | ... | ${use_app_socket_api}=${vperf_server_attr}[use_app_socket_api]
+| | ... | ${print_stats}=${vperf_server_attr}[print_stats]
+| | ... | ${protocol}=${vperf_server_attr}[protocol]
+| |
+| | Set To Dictionary
+| | ... | ${vperf_server_attr} | cfg_vpp_feature | ${cfg_vpp_feature}
+| | Set To Dictionary | ${vperf_server_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vperf_server_attr} | vcl_config | ${vcl_config}
+| | Set To Dictionary | ${vperf_server_attr} | port | ${port}
+| | Set To Dictionary
+| | ... | ${vperf_server_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary
+| | ... | ${vperf_server_attr} | print_stats | ${print_stats}
+| | Set To Dictionary | ${vperf_server_attr} | protocol | ${protocol}
+
+| Set Vperf Client Attributes
+| | [Documentation]
+| | ... | Set the HostStack vperf_client test program attributes
+| | ... | in the vperf_client_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
+| | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${vcl_config} - VCL configuration file name Type: string
+| | ... | - ${port} - TCP/UDP destination port Type: string
+| | ... | - ${use_app_socket_api} - Use app socket API Type: boolean
+| | ... | - ${bytes} - Total bytes to transfer (-b) Type: string
+| | ... | - ${print_stats} - Print test stats (-S) Type: boolean
+| | ... | - ${uni_direct} - Uni-directional test (-U) Type: boolean
+| | ... | - ${bi_direct} - Bi-directional test (-B) Type: boolean
+| | ... | - ${protocol} - Transport protocol (tcp/udp/quic) Type: string
+| | ... | - ${nclients} - Number of client sessions (-s) Type: integer
+| | ... | - ${quic_streams} - QUIC streams per session (-q) Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set Vperf Client Attributes \| cfg_vpp_feature=${None} \|
+| | ... | \| protocol=tcp \|
+| |
+| | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vperf_client_attr}[cfg_vpp_feature]
+| | ... | ${namespace}=${vperf_client_attr}[namespace]
+| | ... | ${vcl_config}=${vperf_client_attr}[vcl_config]
+| | ... | ${port}=${vperf_client_attr}[port]
+| | ... | ${use_app_socket_api}=${vperf_client_attr}[use_app_socket_api]
+| | ... | ${bytes}=${vperf_client_attr}[bytes]
+| | ... | ${print_stats}=${vperf_client_attr}[print_stats]
+| | ... | ${uni_direct}=${vperf_client_attr}[uni_direct]
+| | ... | ${bi_direct}=${vperf_client_attr}[bi_direct]
+| | ... | ${protocol}=${vperf_client_attr}[protocol]
+| | ... | ${nclients}=${vperf_client_attr}[nclients]
+| | ... | ${quic_streams}=${vperf_client_attr}[quic_streams]
+| |
+| | Set To Dictionary
+| | ... | ${vperf_client_attr} | cfg_vpp_feature | ${cfg_vpp_feature}
+| | Set To Dictionary | ${vperf_client_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vperf_client_attr} | vcl_config | ${vcl_config}
+| | Set To Dictionary | ${vperf_client_attr} | port | ${port}
+| | Set To Dictionary
+| | ... | ${vperf_client_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary | ${vperf_client_attr} | bytes | ${bytes}
+| | Set To Dictionary
+| | ... | ${vperf_client_attr} | print_stats | ${print_stats}
+| | Set To Dictionary | ${vperf_client_attr} | uni_direct | ${uni_direct}
+| | Set To Dictionary | ${vperf_client_attr} | bi_direct | ${bi_direct}
+| | Set To Dictionary | ${vperf_client_attr} | protocol | ${protocol}
+| | Set To Dictionary | ${vperf_client_attr} | nclients | ${nclients}
+| | Set To Dictionary
+| | ... | ${vperf_client_attr} | quic_streams | ${quic_streams}
+
 | Run hoststack test program on DUT
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
@@ -410,7 +406,7 @@
 | |
 | | ... | \| Run hoststack test program on DUT \| ${dut1} \| ${dut1_if1} \|
 | | ... | \| ${dut1_if1_ip4_addr} \| ${dut1_if1_ip4_mask} \| default \|
-| | ... | \| quic \| ${vpp_echo_server} \|
+| | ... | \| quic \| ${vperf_server} \|
 | |
 | | [Arguments] | ${node} | ${intf} | ${ip4_addr} | ${ip4_mask}
 | | | ... | ${namespace} | ${core_list} | ${cfg_vpp_feature}
@@ -421,7 +417,7 @@
 | | Run Keyword If
 | | ... | ${is_dut1} and ${vpp_nsim_attr}[output_nsim_enable]
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
-| | Run Keyword If | '${cfg_vpp_feature}' != ''
+| | Run Keyword If | '${cfg_vpp_feature}' != '' and '${cfg_vpp_feature}' != 'None'
 | | ... | Additional VPP Config for Feature ${cfg_vpp_feature} | ${node}
 | | VPP Get Interface Data | ${node}
 | | Set Interface State | ${node} | ${intf} | up
@@ -459,8 +455,29 @@
 | | | Run Keyword If
 | | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_nsim_enable]
 | | | ... | ${dut}.Add Nsim poll main thread
+| | | Run keyword | ${dut}.Add Main Heap Size
+| | | ... | ${vpp_hoststack_attr}[main_heap_size]
+| | | Run keyword | ${dut}.Add Api Segment Global Size
+| | | ... | ${vpp_hoststack_attr}[api_global_size]
+| | | Run keyword | ${dut}.Add Api Segment Api Size
+| | | ... | ${vpp_hoststack_attr}[api_size]
+| | | Run keyword | ${dut}.Add Buffers Per Numa
+| | | ... | ${vpp_hoststack_attr}[buffers_per_numa]
+| | | Run keyword | ${dut}.Add Dpdk Enable Tcp Udp Checksum
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
+| | | Run Keyword If | ${dpdk_enable_tso}
+| | | ... | ${dut}.Add Tcp Tso
+| | | Run Keyword If | ${dpdk_enable_tso}
+| | | ... | ${dut}.Add Dpdk Dev Default Tso
+| | | Run keyword | ${dut}.Add Tcp Max Rx Fifo
+| | | ... | ${vpp_hoststack_attr}[tcp_max_rx_fifo]
+| | | Run keyword | ${dut}.Add Tls Fifo Size
+| | | ... | ${vpp_hoststack_attr}[tls_fifo_size]
+| | | Run Keyword If | ${quic_perf_config}
+| | | ... | ${dut}.Add Quic Enable Vnet Crypto
+| | | Run Keyword If | ${quic_perf_config} and ${quic_no_tx_pacing}
+| | | ... | ${dut}.Add Quic No Tx Pacing
 | | | Run keyword | ${dut}.Add session enable
 | | | Run keyword | ${dut}.Add session app socket api
 | | | Run keyword | ${dut}.Add session event queue length
@@ -482,51 +499,50 @@
 | | END
 | | Apply startup configuration on all VPP DUTs
 
-| Get Test Results From Hoststack VPP Echo Test
+| Get Test Results From Hoststack Vperf
 | | [Documentation]
-| | ... | Configure IP address on the port, set it up and start the specified
-| | ... | HostStack test programs on the DUTs. Gather test program
-| | ... | output and append JSON formatted test data in message.
-| | ... | Return boolean indicating there was a defered failure of either the
-| | ... | server and/or client test programs.
+| | ... | Configure IP address on the port, set it up and start the
+| | ... | vperf_server / vperf_client HostStack test programs on the
+| | ... | DUTs. Gather test program output and append formatted test data in
+| | ... | message. Return boolean indicating there was a defered failure of
+| | ... | either the server and/or client test programs.
 | |
-| | Set To Dictionary | ${vpp_echo_server_attr} | uri_ip4_addr
-| | ... | ${dut2_if1_ip4_addr}
-| | Set To Dictionary | ${vpp_echo_client_attr} | uri_ip4_addr
+| | Set To Dictionary | ${vperf_client_attr} | ip4_addr
 | | ... | ${dut2_if1_ip4_addr}
 | | Configure VPP Hoststack Attributes on all DUTs
-| | ${vpp_echo_server}= | Get VPP Echo Command | ${vpp_echo_server_attr}
+| | ${vperf_server}= | Get Vperf Command | ${vperf_server_attr}
 | | ${skip_cnt}= | Evaluate
 | | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
 | | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
 | | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vpp_echo_server_attr}[cpu_cnt]
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vperf_server_attr}[cpu_cnt]
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${server_pid}= | Run hoststack test program on DUT
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
-| | ... | ${vpp_echo_server_attr}[namespace] | ${core_list}
-| | ... | ${vpp_echo_server_attr}[cfg_vpp_feature] | ${vpp_echo_server}
-| | ${vpp_echo_client}= | Get VPP Echo Command | ${vpp_echo_client_attr}
+| | ... | ${vperf_server_attr}[namespace] | ${core_list}
+| | ... | ${vperf_server_attr}[cfg_vpp_feature] | ${vperf_server}
+| | Sleep For Hoststack Test Duration | ${3}
+| | ${vperf_client}= | Get Vperf Command | ${vperf_client_attr}
 | | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
 | | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vpp_echo_client_attr}[cpu_cnt]
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vperf_client_attr}[cpu_cnt]
 | | ${client_pid}= | Run hoststack test program on DUT
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
-| | ... | ${vpp_echo_client_attr}[namespace] | ${core_list}
-| | ... | ${vpp_echo_client_attr}[cfg_vpp_feature] | ${vpp_echo_client}
+| | ... | ${vperf_client_attr}[namespace] | ${core_list}
+| | ... | ${vperf_client_attr}[cfg_vpp_feature] | ${vperf_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
-| | ... | ${vpp_echo_client} | ${dut2} | ${vpp_echo_server}
+| | ... | ${vperf_client} | ${dut2} | ${vperf_server}
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
-| | ... | ${vpp_nsim_attr} | ${vpp_echo_client}
+| | ... | ${vpp_nsim_attr} | ${vperf_client}
 | | Then Set test message | ${client_output}
 | | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
-| | ... | ${vpp_echo_server} | ${dut1} | ${vpp_echo_client}
+| | ... | ${vperf_server} | ${dut1} | ${vperf_client}
 | | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
-| | ... | ${vpp_nsim_attr} | ${vpp_echo_server}
+| | ... | ${vpp_nsim_attr} | ${vperf_server}
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
