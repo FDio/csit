@@ -15,7 +15,7 @@
 
 import re
 from time import monotonic, sleep
-from typing import Callable, List
+from typing import Callable, List, Tuple
 
 from robot.api import logger
 
