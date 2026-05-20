@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,6 +18,8 @@
 *** Variables ***
 | ${dpdk_enable_tcp_udp_checksum}= | ${False}
 | ${dpdk_no_tx_checksum_offload}= | ${True}
+| ${dpdk_enable_tso}= | ${False}
+| ${quic_perf_config}= | ${False}
 
 *** Keywords ***
 | Set single interfaces in path up
@@ -167,6 +169,8 @@
 | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
 | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | ... | ${dut}.Add DPDK No Tx Checksum Offload
+| | Run Keyword If | ${dpdk_enable_tso}
+| | ... | ${dut}.Add DPDK Dev Default Tso
 | | Run Keyword | ${dut}.Add DPDK Log Level | debug
 | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
 | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
