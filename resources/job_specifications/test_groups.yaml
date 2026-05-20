@@ -181,11 +181,13 @@ test-groups:
     - eth-ip4tcpscale1cl10s-ldpreload-iperf3
     - eth-ip4udpbase-ldpreload-iperf3
     - eth-ip4udpscale1cl10s-ldpreload-iperf3
-  hoststack-vppecho-md:
-    - eth-ip4udpquicbase-vppecho
-    - eth-ip4udpquicscale1cl10s-vppecho
-    - eth-ip4udpquicscale10cl1s-vppecho
-    - eth-ip4udpquicscale10cl10s-vppecho
+  hoststack-vperf-md:
+    - eth-ip4tcpbase-vperf
+    - eth-ip4quicbase-vperf
+    - eth-ip4quicbase-native-vperf
+    - eth-ip4quicscale1cl10s-native-vperf
+
+
 ## IPv4
   ip4-base-sm:
     - ethip4-ip4base
