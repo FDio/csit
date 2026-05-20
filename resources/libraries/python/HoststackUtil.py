@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,6 +14,7 @@
 """Host Stack util library."""
 
 import json
+import re
 from time import sleep
 
 from robot.api import logger
@@ -145,6 +146,91 @@ class HoststackUtil:
                     "args"
                 ] += f" --length {iperf3_attributes['length']}"
         return iperf3_cmd
+
+    @staticmethod
+    def get_vcl_test_command(vcl_test_attributes):
+        """Construct the vcl_test_client / vcl_test_server command line.
+
+        :param vcl_test_attributes: vcl_test program attributes.
+        :type vcl_test_attributes: dict
+        :returns: Command line components of the vcl_test_client/server
+            command:
+            'env_vars' - environment variables
+            'name'     - program name (vcl_test_client or vcl_test_server)
+            'args'     - command arguments.
+        :rtype: dict
+        """
+        role = vcl_test_attributes["role"]
+        env_vars = (
+            f"VCL_VPP_SAPI_SOCKET={vcl_test_attributes['app_api_socket']}"
+        )
+        if vcl_test_attributes.get("vcl_config"):
+            env_vars = (
+                f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/"
+                f"{Constants.RESOURCES_TPL_VCL}/"
+                f"{vcl_test_attributes['vcl_config']} {env_vars}"
+            )
+        vcl_test_cmd = {
+            "env_vars": env_vars,
+            "name": f"vcl_test_{role}",
+            "args": "",
+        }
+
+        if role == "client":
+            if vcl_test_attributes.get("bytes"):
+                # Use -b <total-bytes> instead of -N <num-writes> so that the
+                # test duration is bounded by total data, not by write count.
+                vcl_test_cmd["args"] += (
+                    f" -b {vcl_test_attributes['bytes']}"
+                )
+            elif vcl_test_attributes.get("num_writes"):
+                vcl_test_cmd["args"] += (
+                    f" -N {vcl_test_attributes['num_writes']}"
+                )
+                if vcl_test_attributes.get("tx_buff"):
+                    vcl_test_cmd["args"] += (
+                        f" -T {vcl_test_attributes['tx_buff']}"
+                    )
+                if vcl_test_attributes.get("rx_buff"):
+                    vcl_test_cmd["args"] += (
+                        f" -R {vcl_test_attributes['rx_buff']}"
+                    )
+            if vcl_test_attributes.get("uni_direct"):
+                vcl_test_cmd["args"] += " -U"
+            elif vcl_test_attributes.get("bi_direct"):
+                vcl_test_cmd["args"] += " -B"
+            # -s <total_sessions> = nclients * quic_streams
+            # -q <quic_streams>   = streams per session
+            # e.g. 10 clients x 10 streams -> -s 100 -q 10
+            nclients = int(vcl_test_attributes.get("nclients", 1))
+            quic_streams = int(vcl_test_attributes.get("quic_streams", 1))
+            total_sessions = nclients * quic_streams
+            if total_sessions > 1:
+                vcl_test_cmd["args"] += f" -s {total_sessions} -q {quic_streams}"
+            # Always exit after the test run so the process does not block
+            # on user input (vtc_read_user_input) after completion.
+            vcl_test_cmd["args"] += " -X"
+
+        if vcl_test_attributes.get("print_stats"):
+            vcl_test_cmd["args"] += " -S"
+
+        if vcl_test_attributes.get("protocol"):
+            vcl_test_cmd["args"] += f" -p {vcl_test_attributes['protocol']}"
+
+        if role == "server":
+            # -w <N> is only valid for N > 1; without it, the server uses
+            # a single worker by default.
+            if vcl_test_attributes.get("cpu_cnt", 1) > 1:
+                vcl_test_cmd["args"] += (
+                    f" -w {vcl_test_attributes['cpu_cnt']}"
+                )
+            vcl_test_cmd["args"] += f" {vcl_test_attributes['port']}"
+        else:
+            vcl_test_cmd["args"] += (
+                f" {vcl_test_attributes['ip4_addr']} "
+                f"{vcl_test_attributes['port']}"
+            )
+        return vcl_test_cmd
 
     @staticmethod
     def set_hoststack_quic_fifo_size(node, fifo_size):
@@ -312,7 +398,7 @@ class HoststackUtil:
         program_path = program.get("path", "")
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = ""
-        if program_name != "nginx":
+        if program_name != "nginx" and program_name not in ("vcl_test_client", "vcl_test_server"):
             taskset_cmd = f"taskset --cpu-list {core_list} chrt -r 99 "
         cmd = (
             f"nohup {taskset_cmd}{shell_cmd} '{env_vars} "
@@ -393,10 +479,9 @@ class HoststackUtil:
             exec_cmd(node, cmd, sudo=True)
         except:
             sleep(180)
-            if "client" in program["args"]:
-                role = "client"
-            else:
-                role = "server"
+            # Use program name (vcl_test_client / vpp_echo client …) to
+            # determine role rather than args, which vary per program type.
+            role = "client" if "client" in program["name"] else "server"
             program_stdout, program_stderr = (
                 HoststackUtil.get_hoststack_test_program_logs(node, program)
             )
@@ -413,10 +498,7 @@ class HoststackUtil:
                 )
             else:
                 logger.debug(f"Empty {program['name']} stderr log :(")
-            if "client" in other_program["args"]:
-                role = "client"
-            else:
-                role = "server"
+            role = "client" if "client" in other_program["name"] else "server"
             program_stdout, program_stderr = (
                 HoststackUtil.get_hoststack_test_program_logs(
                     other_node, other_program
@@ -532,6 +614,35 @@ class HoststackUtil:
                 duration=program_json["seconds"],
                 retransmits=retransmits,
             )
+        elif program["name"] in ("vcl_test_client", "vcl_test_server"):
+            test_results += program_stdout
+            # vcl_test_stats_dump() prints:
+            #   CLIENT RESULTS: Streamed <bytes> bytes
+            #     in <duration> seconds (<rate> Gbps <duplex>-duplex)!
+            # The Gbps line has no colon so key:value splitting misses it.
+            # Use a regex to extract both values directly from the raw stdout.
+            program_json = {}
+            for line in program_stdout.splitlines():
+                line = line.strip()
+                if ":" not in line:
+                    continue
+                key, _, value = line.partition(":")
+                program_json[key.strip()] = value.strip()
+            if program["name"] == "vcl_test_client":
+                m = re.search(
+                    r"in\s+([\d.]+)\s+seconds\s+\(([\d.]+)\s+Gbps",
+                    program_stdout,
+                )
+                if m:
+                    duration = float(m.group(1))
+                    bandwidth = float(m.group(2)) * 1e9
+                    export_hoststack_results(
+                        bandwidth=bandwidth,
+                        duration=duration,
+                    )
+                else:
+                    test_results += "Could not parse vcl_test_client stats!\n"
+                    return (True, test_results)
         else:
             test_results += "Unknown HostStack Test Program!\n" + program_stdout
             return (True, program_stdout)
