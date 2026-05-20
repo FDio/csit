@@ -18,24 +18,25 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
-| ... | 1CLIENT | 1STREAM | HOSTSTACK | 1280B | eth-ip4udpquicbase-vppecho
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VCLTEST
+| ... | 1CLIENT | 1STREAM | HOSTSTACK | 1280B | eth-ip4udpquicbase-vcltest
 |
-| Suite Setup | Setup suite topology interfaces with no TG | vppecho
-| Suite Teardown | Tear down suite
+| Suite Setup | Setup suite topology interfaces with no TG | vcltest
+| Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
 | Test Template | Local template
 |
-| Documentation | **QUIC Unidirectional Echo Client -> Echo Server goodput.**
+| Documentation | **VCL Test client -> VCL Test server QUIC goodput.**
 | ... |
 | ... | - **[Top] Network Topologies:** DUT-DUT 2-node topology \
 | ... | with single link between nodes.
 | ... |
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-UDP-QUIC
 | ... |
-| ... | - **[Cfg] DUT configuration:**
+| ... | - **[Cfg] DUT configuration:** vcl_test_server on DUT2, \
+| ... | vcl_test_client on DUT1 using the VPP app socket API (VCL) with QUIC.
 | ... |
 | ... | - **[Ref] Applicable standard specifications:**
 
@@ -52,22 +53,24 @@
 | ${overhead}= | ${0}
 | ${dpdk_enable_tcp_udp_checksum}= | ${True}
 | ${dpdk_no_tx_checksum_offload}= | ${False}
+| ${quic_perf_config}= | ${True}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
-| ${bytes}= | 5G
+| ${bytes}= | 61440000
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
-| | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | rx_bytes=${bytes}
-| | Set VPP Echo Client Attributes | cfg_vpp_feature=quic | tx_bytes=${bytes}
-| | ${defer_fail}= | Get Test Results From Hoststack VPP Echo Test
+| | Set VCL Test Server Attributes | cfg_vpp_feature=quic | protocol=quic
+| | Set VCL Test Client Attributes | cfg_vpp_feature=quic | protocol=quic
+| | ... | bytes=${bytes}
+| | ${defer_fail}= | Get Test Results From Hoststack VCL Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
-| | ... | Defered Failure From Hoststack VPP Echo Test Program
+| | ... | Defered Failure From Hoststack VCL Test Program
 
 *** Test Cases ***
-| 1280B-1c-eth-ip4udpquicbase-vppecho-bps
+| 1280B-1c-eth-ip4udpquicbase-vcltest-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
