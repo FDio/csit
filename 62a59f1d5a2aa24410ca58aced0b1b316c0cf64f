@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c2695a6_d08983ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-05-20T09:16:38Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-gnr perftest mrrANDdrv_vfio_pciAND1cAND64b #2n-gnr-vpp-cov-l2-00",
+      "revId": "62a59f1d5a2aa24410ca58aced0b1b316c0cf64f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
