@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5cddb7c_a0551978",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-20T15:35:45Z",
+      "side": 1,
+      "message": "I am not satisfied with some sentences, more tweaks will come.",
+      "revId": "837da8f2952faf7221cb7af2881c72aa0d130645",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
