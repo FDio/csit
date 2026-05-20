@@ -97,6 +97,30 @@
       },
       "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b2214c_37289dde",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-05-20T05:43:47Z",
+      "side": 1,
+      "message": "\u003e some private labs\nCan you name?\n\n\u003e they should behave identically\nso we can compile them.",
+      "parentUuid": "b878b76d_00e0ad8c",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 66
+      },
+      "revId": "1e5aaec4d4cd951bb45579c683a2d82c118549c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
