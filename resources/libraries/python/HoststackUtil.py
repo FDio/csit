@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,6 +14,7 @@
 """Host Stack util library."""
 
 import json
+import re
 from time import sleep
 
 from robot.api import logger
@@ -47,44 +48,6 @@ class HoststackUtil:
             return ret
         arch = Topology.get_node_arch(node)
         return f"/usr/lib/{arch}-linux-gnu/libvcl_ldpreload.so"
-
-    @staticmethod
-    def get_vpp_echo_command(vpp_echo_attributes):
-        """Construct the vpp_echo command using the specified attributes.
-
-        :param vpp_echo_attributes: vpp_echo test program attributes.
-        :type vpp_echo_attributes: dict
-        :returns: Command line components of the vpp_echo command
-            'name' - program name
-            'args' - command arguments.
-        :rtype: dict
-        """
-        proto = vpp_echo_attributes["uri_protocol"]
-        addr = vpp_echo_attributes["uri_ip4_addr"]
-        port = vpp_echo_attributes["uri_port"]
-        vpp_echo_cmd = {}
-        vpp_echo_cmd["name"] = "vpp_echo"
-        vpp_echo_cmd["args"] = (
-            f"{vpp_echo_attributes['role']} "
-            f"socket-name {vpp_echo_attributes['app_api_socket']} "
-            f"{vpp_echo_attributes['json_output']} "
-            f"uri {proto}://{addr}/{port} "
-            f"nthreads {vpp_echo_attributes['nthreads']} "
-            f"mq-size {vpp_echo_attributes['mq_size']} "
-            f"nclients {vpp_echo_attributes['nclients']} "
-            f"quic-streams {vpp_echo_attributes['quic_streams']} "
-            f"time {vpp_echo_attributes['time']} "
-            f"fifo-size {vpp_echo_attributes['fifo_size']} "
-            f"TX={vpp_echo_attributes['tx_bytes']} "
-            f"RX={vpp_echo_attributes['rx_bytes']}"
-        )
-        if vpp_echo_attributes["rx_results_diff"]:
-            vpp_echo_cmd["args"] += " rx-results-diff"
-        if vpp_echo_attributes["tx_results_diff"]:
-            vpp_echo_cmd["args"] += " tx-results-diff"
-        if vpp_echo_attributes["use_app_socket_api"]:
-            vpp_echo_cmd["args"] += " use-app-socket-api"
-        return vpp_echo_cmd
 
     @staticmethod
     def get_iperf3_command(iperf3_attributes, node):
@@ -145,6 +108,91 @@ class HoststackUtil:
                     "args"
                 ] += f" --length {iperf3_attributes['length']}"
         return iperf3_cmd
+
+    @staticmethod
+    def get_vperf_command(vperf_attributes):
+        """Construct the vperf_client / vperf_server command line.
+
+        :param vperf_attributes: vperf program attributes.
+        :type vperf_attributes: dict
+        :returns: Command line components of the vperf_client/server
+            command:
+            'env_vars' - environment variables
+            'name'     - program name (vperf_client or vperf_server)
+            'args'     - command arguments.
+        :rtype: dict
+        """
+        role = vperf_attributes["role"]
+        env_vars = (
+            f"VCL_VPP_SAPI_SOCKET={vperf_attributes['app_api_socket']}"
+        )
+        if vperf_attributes.get("vcl_config"):
+            env_vars = (
+                f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/"
+                f"{Constants.RESOURCES_TPL_VCL}/"
+                f"{vperf_attributes['vcl_config']} {env_vars}"
+            )
+        vperf_cmd = {
+            "env_vars": env_vars,
+            "name": f"vperf_{role}",
+            "args": "",
+        }
+
+        if role == "client":
+            if vperf_attributes.get("bytes"):
+                # Use -b <total-bytes> instead of -N <num-writes> so that the
+                # test duration is bounded by total data, not by write count.
+                vperf_cmd["args"] += (
+                    f" -b {vperf_attributes['bytes']}"
+                )
+            elif vperf_attributes.get("num_writes"):
+                vperf_cmd["args"] += (
+                    f" -N {vperf_attributes['num_writes']}"
+                )
+                if vperf_attributes.get("tx_buff"):
+                    vperf_cmd["args"] += (
+                        f" -T {vperf_attributes['tx_buff']}"
+                    )
+                if vperf_attributes.get("rx_buff"):
+                    vperf_cmd["args"] += (
+                        f" -R {vperf_attributes['rx_buff']}"
+                    )
+            if vperf_attributes.get("uni_direct"):
+                vperf_cmd["args"] += " -U"
+            elif vperf_attributes.get("bi_direct"):
+                vperf_cmd["args"] += " -B"
+            # -s <total_sessions> = nclients * quic_streams
+            # -q <quic_streams>   = streams per session
+            # e.g. 10 clients x 10 streams -> -s 100 -q 10
+            nclients = int(vperf_attributes.get("nclients", 1))
+            quic_streams = int(vperf_attributes.get("quic_streams", 1))
+            total_sessions = nclients * quic_streams
+            if total_sessions > 1:
+                vperf_cmd["args"] += f" -s {total_sessions} -q {quic_streams}"
+            # Always exit after the test run so the process does not block
+            # on user input (vtc_read_user_input) after completion.
+            vperf_cmd["args"] += " -X"
+
+        if vperf_attributes.get("print_stats"):
+            vperf_cmd["args"] += " -S"
+
+        if vperf_attributes.get("protocol"):
+            vperf_cmd["args"] += f" -p {vperf_attributes['protocol']}"
+
+        if role == "server":
+            # -w <N> is only valid for N > 1; without it, the server uses
+            # a single worker by default.
+            if vperf_attributes.get("cpu_cnt", 1) > 1:
+                vperf_cmd["args"] += (
+                    f" -w {vperf_attributes['cpu_cnt']}"
+                )
+            vperf_cmd["args"] += f" {vperf_attributes['port']}"
+        else:
+            vperf_cmd["args"] += (
+                f" {vperf_attributes['ip4_addr']} "
+                f"{vperf_attributes['port']}"
+            )
+        return vperf_cmd
 
     @staticmethod
     def set_hoststack_quic_fifo_size(node, fifo_size):
@@ -312,7 +360,7 @@ class HoststackUtil:
         program_path = program.get("path", "")
         # NGINX used `worker_cpu_affinity` in configuration file
         taskset_cmd = ""
-        if program_name != "nginx":
+        if program_name != "nginx" and program_name not in ("vperf_client", "vperf_server"):
             taskset_cmd = f"taskset --cpu-list {core_list} chrt -r 99 "
         cmd = (
             f"nohup {taskset_cmd}{shell_cmd} '{env_vars} "
@@ -388,15 +436,35 @@ class HoststackUtil:
         if other_node["type"] != "DUT":
             raise RuntimeError("Other node type is not a DUT!")
 
+        if program["name"] in ("vperf_client", "vperf_server", "iperf3"):
+            # strace is not applicable for vperf/iperf3; poll until the
+            # process exits.  Scale tests (many QUIC sessions, large data
+            # volumes) may need significantly more time than base tests;
+            # use a generous timeout.
+            timeout = 900
+            poll_interval = 2
+            elapsed = 0
+            while elapsed < timeout:
+                ret, _, _ = exec_cmd(
+                    node,
+                    f"sh -c 'kill -0 {program_pid} 2>/dev/null'",
+                    sudo=True,
+                )
+                if ret != 0:
+                    break
+                sleep(poll_interval)
+                elapsed += poll_interval
+            sleep(1)
+            return
+
         cmd = f"sh -c 'strace -c -fp {program_pid}'"
         try:
             exec_cmd(node, cmd, sudo=True)
         except:
             sleep(180)
-            if "client" in program["args"]:
-                role = "client"
-            else:
-                role = "server"
+            # Use program name (vperf_client …) to
+            # determine role rather than args, which vary per program type.
+            role = "client" if "client" in program["name"] else "server"
             program_stdout, program_stderr = (
                 HoststackUtil.get_hoststack_test_program_logs(node, program)
             )
@@ -413,10 +481,7 @@ class HoststackUtil:
                 )
             else:
                 logger.debug(f"Empty {program['name']} stderr log :(")
-            if "client" in other_program["args"]:
-                role = "client"
-            else:
-                role = "server"
+            role = "client" if "client" in other_program["name"] else "server"
             program_stdout, program_stderr = (
                 HoststackUtil.get_hoststack_test_program_logs(
                     other_node, other_program
@@ -504,23 +569,7 @@ class HoststackUtil:
             )
             test_results += f"{ls_stdout}\n"
             return (True, test_results)
-        if program["name"] == "vpp_echo":
-            if (
-                "JSON stats" in program_stdout
-                and '"has_failed": "0"' in program_stdout
-            ):
-                json_start = program_stdout.find("{")
-                json_end = program_stdout.find(',\n  "closing"')
-                json_results = f"{program_stdout[json_start:json_end]}\n}}"
-                program_json = json.loads(json_results)
-                export_hoststack_results(
-                    bandwidth=program_json["rx_bits_per_second"],
-                    duration=float(program_json["time"]),
-                )
-            else:
-                test_results += "Invalid test data output!\n" + program_stdout
-                return (True, test_results)
-        elif program["name"] == "iperf3":
+        if program["name"] == "iperf3":
             test_results += program_stdout
             program_json = json.loads(program_stdout)["intervals"][0]["sum"]
             try:
@@ -532,6 +581,35 @@ class HoststackUtil:
                 duration=program_json["seconds"],
                 retransmits=retransmits,
             )
+        elif program["name"] in ("vperf_client", "vperf_server"):
+            test_results += program_stdout
+            # vperf_test_stats_dump() prints:
+            #   CLIENT RESULTS: Streamed <bytes> bytes
+            #     in <duration> seconds (<rate> Gbps <duplex>-duplex)!
+            # The Gbps line has no colon so key:value splitting misses it.
+            # Use a regex to extract both values directly from the raw stdout.
+            program_json = {}
+            for line in program_stdout.splitlines():
+                line = line.strip()
+                if ":" not in line:
+                    continue
+                key, _, value = line.partition(":")
+                program_json[key.strip()] = value.strip()
+            if program["name"] == "vperf_client":
+                m = re.search(
+                    r"in\s+([\d.]+)\s+seconds\s+\(([\d.]+)\s+Gbps",
+                    program_stdout,
+                )
+                if m:
+                    duration = float(m.group(1))
+                    bandwidth = float(m.group(2)) * 1e9
+                    export_hoststack_results(
+                        bandwidth=bandwidth,
+                        duration=duration,
+                    )
+                else:
+                    test_results += "Could not parse vperf_client stats!\n"
+                    return (True, test_results)
         else:
             test_results += "Unknown HostStack Test Program!\n" + program_stdout
             return (True, program_stdout)
