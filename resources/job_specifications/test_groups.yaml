@@ -186,6 +186,15 @@ test-groups:
     - eth-ip4udpquicscale1cl10s-vppecho
     - eth-ip4udpquicscale10cl1s-vppecho
     - eth-ip4udpquicscale10cl10s-vppecho
+  hoststack-vcltest-md:
+    - eth-ip4tcpbase-vcltest
+    - eth-ip4udpquicbase-vcltest
+    - eth-ip4udpquicbase-native-vcltest
+    - eth-ip4udpquicscale1cl10s-native-vcltest
+    - eth-ip4udpquicscale10cl1s-native-vcltest
+    - eth-ip4udpquicscale10cl10s-native-vcltest
+
+
 ## IPv4
   ip4-base-sm:
     - ethip4-ip4base

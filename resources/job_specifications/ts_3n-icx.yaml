@@ -443,6 +443,8 @@ test-sets:
           framesize: [1460, ]
       - hoststack-vppecho-md:
           framesize: [1280, ]
+      - hoststack-vcltest-md:
+          framesize: [1280, ]
 
 
   3n-icx-vpp-soak:

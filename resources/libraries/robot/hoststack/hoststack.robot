@@ -113,6 +113,32 @@
 | ... | udp=${False}
 | ... | bandwidth=10000000
 | ... | length=${0}
+| &{vcl_test_server_attr}=
+| ... | role=server
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${None}
+| ... | namespace=default
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
+| ... | port=22000
+| ... | use_app_socket_api=${True}
+| ... | print_stats=${False}
+| ... | protocol=tcp
+| &{vcl_test_client_attr}=
+| ... | role=client
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${None}
+| ... | namespace=default
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
+| ... | ip4_addr=${EMPTY}
+| ... | port=22000
+| ... | use_app_socket_api=${True}
+| ... | bytes=147456000000
+| ... | print_stats=${True}
+| ... | uni_direct=${True}
+| ... | bi_direct=${False}
+| ... | protocol=tcp
+| ... | nclients=${1}
+| ... | quic_streams=${1}
 | &{nginx_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -390,6 +416,94 @@
 | | Set To Dictionary | ${iperf3_client_attr} | udp | ${udp}
 | | Set To Dictionary | ${iperf3_client_attr} | length | ${length}
 
+| Set VCL Test Server Attributes
+| | [Documentation]
+| | ... | Set the HostStack vcl_test_server test program attributes
+| | ... | in the vcl_test_server_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
+| | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${port} - TCP/UDP listen port Type: string
+| | ... | - ${use_app_socket_api} - Use app socket API Type: boolean
+| | ... | - ${print_stats} - Print test stats (-S) Type: boolean
+| | ... | - ${protocol} - Transport protocol (tcp/udp) Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set VCL Test Server Attributes \| cfg_vpp_feature=${None} \|
+| | ... | \| protocol=tcp \|
+| |
+| | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vcl_test_server_attr}[cfg_vpp_feature]
+| | ... | ${namespace}=${vcl_test_server_attr}[namespace]
+| | ... | ${port}=${vcl_test_server_attr}[port]
+| | ... | ${use_app_socket_api}=${vcl_test_server_attr}[use_app_socket_api]
+| | ... | ${print_stats}=${vcl_test_server_attr}[print_stats]
+| | ... | ${protocol}=${vcl_test_server_attr}[protocol]
+| |
+| | Set To Dictionary
+| | ... | ${vcl_test_server_attr} | cfg_vpp_feature | ${cfg_vpp_feature}
+| | Set To Dictionary | ${vcl_test_server_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vcl_test_server_attr} | port | ${port}
+| | Set To Dictionary
+| | ... | ${vcl_test_server_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary
+| | ... | ${vcl_test_server_attr} | print_stats | ${print_stats}
+| | Set To Dictionary | ${vcl_test_server_attr} | protocol | ${protocol}
+
+| Set VCL Test Client Attributes
+| | [Documentation]
+| | ... | Set the HostStack vcl_test_client test program attributes
+| | ... | in the vcl_test_client_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
+| | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${port} - TCP/UDP destination port Type: string
+| | ... | - ${use_app_socket_api} - Use app socket API Type: boolean
+| | ... | - ${bytes} - Total bytes to transfer (-b) Type: string
+| | ... | - ${print_stats} - Print test stats (-S) Type: boolean
+| | ... | - ${uni_direct} - Uni-directional test (-U) Type: boolean
+| | ... | - ${bi_direct} - Bi-directional test (-B) Type: boolean
+| | ... | - ${protocol} - Transport protocol (tcp/udp) Type: string
+| | ... | - ${nclients} - Number of client sessions (-s) Type: integer
+| | ... | - ${quic_streams} - QUIC streams per session (-q) Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set VCL Test Client Attributes \| cfg_vpp_feature=${None} \|
+| | ... | \| protocol=tcp \|
+| |
+| | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vcl_test_client_attr}[cfg_vpp_feature]
+| | ... | ${namespace}=${vcl_test_client_attr}[namespace]
+| | ... | ${port}=${vcl_test_client_attr}[port]
+| | ... | ${use_app_socket_api}=${vcl_test_client_attr}[use_app_socket_api]
+| | ... | ${bytes}=${vcl_test_client_attr}[bytes]
+| | ... | ${print_stats}=${vcl_test_client_attr}[print_stats]
+| | ... | ${uni_direct}=${vcl_test_client_attr}[uni_direct]
+| | ... | ${bi_direct}=${vcl_test_client_attr}[bi_direct]
+| | ... | ${protocol}=${vcl_test_client_attr}[protocol]
+| | ... | ${nclients}=${vcl_test_client_attr}[nclients]
+| | ... | ${quic_streams}=${vcl_test_client_attr}[quic_streams]
+| |
+| | Set To Dictionary
+| | ... | ${vcl_test_client_attr} | cfg_vpp_feature | ${cfg_vpp_feature}
+| | Set To Dictionary | ${vcl_test_client_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vcl_test_client_attr} | port | ${port}
+| | Set To Dictionary
+| | ... | ${vcl_test_client_attr} | use_app_socket_api | ${use_app_socket_api}
+| | Set To Dictionary | ${vcl_test_client_attr} | bytes | ${bytes}
+| | Set To Dictionary
+| | ... | ${vcl_test_client_attr} | print_stats | ${print_stats}
+| | Set To Dictionary | ${vcl_test_client_attr} | uni_direct | ${uni_direct}
+| | Set To Dictionary | ${vcl_test_client_attr} | bi_direct | ${bi_direct}
+| | Set To Dictionary | ${vcl_test_client_attr} | protocol | ${protocol}
+| | Set To Dictionary | ${vcl_test_client_attr} | nclients | ${nclients}
+| | Set To Dictionary
+| | ... | ${vcl_test_client_attr} | quic_streams | ${quic_streams}
+
 | Run hoststack test program on DUT
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
@@ -421,7 +535,7 @@
 | | Run Keyword If
 | | ... | ${is_dut1} and ${vpp_nsim_attr}[output_nsim_enable]
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
-| | Run Keyword If | '${cfg_vpp_feature}' != ''
+| | Run Keyword If | '${cfg_vpp_feature}' != '' and '${cfg_vpp_feature}' != 'None'
 | | ... | Additional VPP Config for Feature ${cfg_vpp_feature} | ${node}
 | | VPP Get Interface Data | ${node}
 | | Set Interface State | ${node} | ${intf} | up
@@ -461,6 +575,14 @@
 | | | ... | ${dut}.Add Nsim poll main thread
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
+| | | Run Keyword If | ${dpdk_enable_tso}
+| | | ... | ${dut}.Add Tcp Tso
+| | | Run Keyword If | ${dpdk_enable_tso}
+| | | ... | ${dut}.Add Tcp Max Rx Fifo | 128m
+| | | Run Keyword If | ${quic_perf_config}
+| | | ... | ${dut}.Add Quic Enable Vnet Crypto
+| | | Run Keyword If | ${quic_perf_config}
+| | | ... | ${dut}.Add Quic No Tx Pacing
 | | | Run keyword | ${dut}.Add session enable
 | | | Run keyword | ${dut}.Add session app socket api
 | | | Run keyword | ${dut}.Add session event queue length
@@ -527,6 +649,57 @@
 | | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_server}
+| | FOR | ${action} | IN | @{stat_post_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Set test message | ${server_output} | append=True
+| | Run Keyword And Return | Hoststack Test Program Defer Fail
+| | ... | ${server_defer_fail} | ${client_defer_fail}
+
+| Get Test Results From Hoststack VCL Test
+| | [Documentation]
+| | ... | Configure IP address on the port, set it up and start the
+| | ... | vcl_test_server / vcl_test_client HostStack test programs on the
+| | ... | DUTs. Gather test program output and append formatted test data in
+| | ... | message. Return boolean indicating there was a defered failure of
+| | ... | either the server and/or client test programs.
+| |
+| | Set To Dictionary | ${vcl_test_client_attr} | ip4_addr
+| | ... | ${dut2_if1_ip4_addr}
+| | Configure VPP Hoststack Attributes on all DUTs
+| | ${vcl_test_server}= | Get VCL Test Command | ${vcl_test_server_attr}
+| | ${skip_cnt}= | Evaluate
+| | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
+| | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
+| | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vcl_test_server_attr}[cpu_cnt]
+| | FOR | ${action} | IN | @{stat_pre_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | ${server_pid}= | Run hoststack test program on DUT
+| | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
+| | ... | ${vcl_test_server_attr}[namespace] | ${core_list}
+| | ... | ${vcl_test_server_attr}[cfg_vpp_feature] | ${vcl_test_server}
+| | Sleep For Hoststack Test Duration | ${3}
+| | ${vcl_test_client}= | Get VCL Test Command | ${vcl_test_client_attr}
+| | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vcl_test_client_attr}[cpu_cnt]
+| | ${client_pid}= | Run hoststack test program on DUT
+| | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
+| | ... | ${vcl_test_client_attr}[namespace] | ${core_list}
+| | ... | ${vcl_test_client_attr}[cfg_vpp_feature] | ${vcl_test_client}
+| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | ... | ${vcl_test_client} | ${dut2} | ${vcl_test_server}
+| | ${client_defer_fail} | ${client_output}=
+| | ... | Analyze hoststack test program output | ${dut1} | Client
+| | ... | ${vpp_nsim_attr} | ${vcl_test_client}
+| | Then Set test message | ${client_output}
+| | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
+| | ... | ${vcl_test_server} | ${dut1} | ${vcl_test_client}
+| | ${server_defer_fail} | ${server_output}=
+| | ... | Analyze hoststack test program output | ${dut2} | Server
+| | ... | ${vpp_nsim_attr} | ${vcl_test_server}
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END

@@ -73,4 +73,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Kill Program | ${nodes['${dut}']} | iperf3
 | | | Kill Program | ${nodes['${dut}']} | vpp_echo
+| | | Kill Program | ${nodes['${dut}']} | vcl_test_client
+| | | Kill Program | ${nodes['${dut}']} | vcl_test_server
 | | END
