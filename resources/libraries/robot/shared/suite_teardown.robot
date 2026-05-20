@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -72,5 +72,6 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Kill Program | ${nodes['${dut}']} | iperf3
-| | | Kill Program | ${nodes['${dut}']} | vpp_echo
+| | | Kill Program | ${nodes['${dut}']} | vperf_client
+| | | Kill Program | ${nodes['${dut}']} | vperf_server
 | | END
