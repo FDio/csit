@@ -18,59 +18,71 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VCLTEST
 | ... | HOSTSTACK | 10CLIENT | 1STREAM | 1280B
-| ... | eth-ip4udpquicscale10cl1s-vppecho
+| ... | eth-ip4udpquicscale10cl1s-native-vcltest
 |
-| Suite Setup | Setup suite topology interfaces with no TG | vppecho
-| Suite Teardown | Tear down suite
+| Suite Setup | Setup suite topology interfaces with no TG | vcltest
+| Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
 | Test Template | Local template
 |
-| Documentation | **QUIC Unidirectional Echo Client -> Echo Server goodput.**
+| Documentation | **VCL Test client -> VCL Test server QUIC goodput (10 clients, 1 stream, native crypto).**
 | ... |
 | ... | - **[Top] Network Topologies:** DUT-DUT 2-node topology \
 | ... | with single link between nodes.
 | ... |
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-UDP-QUIC
 | ... |
-| ... | - **[Cfg] DUT configuration:**
+| ... | - **[Cfg] DUT configuration:** vcl_test_server on DUT2, \
+| ... | vcl_test_client on DUT1 using the VPP app socket API (VCL) with QUIC. \
+| ... | 10 independent QUIC connections each carrying 1 stream. \
+| ... | VPP crypto API activated via "quic set crypto api vpp" with \
+| ... | native AES handlers.
 | ... |
 | ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | quic_plugin.so
-| ... | quic_quicly_plugin.so | crypto_openssl_plugin.so
+| ... | quic_quicly_plugin.so | crypto_native_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
+| ${smt_used}= | ${False}
 | ${overhead}= | ${0}
 | ${dpdk_enable_tcp_udp_checksum}= | ${True}
 | ${dpdk_no_tx_checksum_offload}= | ${False}
+| ${quic_perf_config}= | ${True}
+| ${quic_crypto_engine}= | native
+| ${quic_no_tx_pacing}= | ${False}
 | ${frame_size}= | ${1518}
 | ${crypto_type}= | ${None}
 | ${clients}= | ${10}
-| ${bytes}= | 1G
+| ${bytes}= | 61440000
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
-| | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | nclients=${clients}
-| | ... | rx_bytes=${bytes}
-| | Set VPP Echo Client Attributes | cfg_vpp_feature=quic | nclients=${clients}
-| | ... | tx_bytes=${bytes}
-| | ${defer_fail}= | Get Test Results From Hoststack VPP Echo Test
+| | ... | rxd=${512} | sess_evt_q_length=${100000}
+| | Set VCL Test Server Attributes
+| | ... | cfg_vpp_feature=quic | protocol=quic
+| | ... | vcl_config=vcl_vcltest.conf
+| | Set VCL Test Client Attributes
+| | ... | cfg_vpp_feature=quic | protocol=quic
+| | ... | vcl_config=vcl_vcltest.conf
+| | ... | nclients=${clients} | bytes=${bytes}
+| | ${defer_fail}= | Get Test Results From Hoststack VCL Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
-| | ... | Defered Failure From Hoststack VPP Echo Test Program
+| | ... | Defered Failure From Hoststack VCL Test Program
 
 *** Test Cases ***
-| 1280B-1c-eth-ip4udpquicscale10cl1s-vppecho-bps
+| 1280B-1c-eth-ip4udpquicscale10cl1s-native-vcltest-bps
 | | [Tags] | 1C
 | | phy_cores=${1}

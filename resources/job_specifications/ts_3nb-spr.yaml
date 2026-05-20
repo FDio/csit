@@ -322,5 +322,5 @@ test-sets:
     tests:
       - hoststack-iperf-md:
           framesize: [1460, ]
-      - hoststack-vppecho-md:
+      - hoststack-vcltest-md:
           framesize: [1280, ]
