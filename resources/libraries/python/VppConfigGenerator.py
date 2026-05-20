@@ -621,6 +621,34 @@ class VppConfigGenerator:
         path = ["tcp", "tso"]
         self.add_config_item(self._nodeconfig, "", path)
 
+    def add_tcp_max_rx_fifo(self, value):
+        """Add TCP max-rx-fifo configuration.
+
+        :param value: The max-rx-fifo size (e.g. 128m).
+        :type value: str
+        """
+        path = ["tcp", "max-rx-fifo"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_tls_fifo_size(self, value):
+        """Add TLS fifo-size configuration.
+
+        :param value: TLS fifo size (e.g. 1m).
+        :type value: str
+        """
+        path = ["tls", "fifo-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_quic_enable_vnet_crypto(self):
+        """Add QUIC enable-vnet-crypto configuration."""
+        path = ["quic", "enable-vnet-crypto"]
+        self.add_config_item(self._nodeconfig, "", path)
+
+    def add_quic_no_tx_pacing(self):
+        """Add QUIC no-tx-pacing configuration."""
+        path = ["quic", "no-tx-pacing"]
+        self.add_config_item(self._nodeconfig, "", path)
+
     def add_session_enable(self):
         """Add session enable."""
         path = ["session", "enable"]
