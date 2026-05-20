@@ -16,6 +16,29 @@
       "message": "gha-run csit-vpp-3nb-spr perftest nic_*AND1cANDVCLTEST #generate-all",
       "revId": "5b3f798108aaf701f6056bccc2cff3c151d1b6f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adeab73b_31d470b5",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2026-05-20T19:02:40Z",
+      "side": 1,
+      "message": "in reality this works bit different:\nnumber_of_clients \u003d number_of_sessions / number_of_streams\n\ne.g.\n1 client with 10 streams: -s 10 -q 10\n10 clients each with 1 stream: -s 10 -q 1\n10 clients each with 10 streams: -s 100 -q 10",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 0
+      },
+      "revId": "5b3f798108aaf701f6056bccc2cff3c151d1b6f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
