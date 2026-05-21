@@ -30,56 +30,56 @@ variable "nomad_jobs" {
       script_name = "stats"
       memory = 50000
     },
-#    {
-#      job_name = "etl-iterative-hoststack"
-#      script_name = "iterative_hoststack"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-iterative-mrr"
-#      script_name = "iterative_mrr"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-iterative-ndrpdr"
-#      script_name = "iterative_ndrpdr"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-iterative-reconf"
-#      script_name = "iterative_reconf"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-iterative-soak"
-#      script_name = "iterative_soak"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-coverage-hoststack"
-#      script_name = "coverage_hoststack"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-coverage-mrr"
-#      script_name = "coverage_mrr"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-coverage-ndrpdr"
-#      script_name = "coverage_ndrpdr"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-coverage-reconf"
-#      script_name = "coverage_reconf"
-#      memory = 50000
-#    },
-#    {
-#      job_name = "etl-coverage-soak"
-#      script_name = "coverage_soak"
-#      memory = 50000
-#    },
+    {
+      job_name = "etl-iterative-hoststack"
+      script_name = "iterative_hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-mrr"
+      script_name = "iterative_mrr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-ndrpdr"
+      script_name = "iterative_ndrpdr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-reconf"
+      script_name = "iterative_reconf"
+      memory = 50000
+    },
+    {
+      job_name = "etl-iterative-soak"
+      script_name = "iterative_soak"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-hoststack"
+      script_name = "coverage_hoststack"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-mrr"
+      script_name = "coverage_mrr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-ndrpdr"
+      script_name = "coverage_ndrpdr"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-reconf"
+      script_name = "coverage_reconf"
+      memory = 50000
+    },
+    {
+      job_name = "etl-coverage-soak"
+      script_name = "coverage_soak"
+      memory = 50000
+    },
     {
       job_name = "etl-trending-hoststack"
       script_name = "trending_hoststack"
