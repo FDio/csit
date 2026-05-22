@@ -16,6 +16,23 @@
       "message": "I am not satisfied with some sentences, more tweaks will come.",
       "revId": "837da8f2952faf7221cb7af2881c72aa0d130645",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3934faa_f3851af3",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 3328
+      },
+      "writtenOn": "2026-05-22T09:08:19Z",
+      "side": 1,
+      "message": "employer - organization? corporation? instead?",
+      "revId": "837da8f2952faf7221cb7af2881c72aa0d130645",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
