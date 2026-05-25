@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-c6in perftest nic_*AND1cAND64bAND*-ip4scale20k-rnd",
       "revId": "ae6853792d7299d32cb2bf9956d95139585903be",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aad53868_c7297f52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-25T08:45:10Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx perftest nic_*AND1cAND64bAND*-ip4scale20k-rnd",
+      "revId": "ae6853792d7299d32cb2bf9956d95139585903be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
