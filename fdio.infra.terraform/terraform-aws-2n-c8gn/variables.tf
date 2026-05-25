@@ -56,7 +56,7 @@ variable "tg_instance_initiated_shutdown_behavior" {
 variable "tg_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c6in.4xlarge"
+  default     = "c5n.4xlarge"
 }
 
 variable "tg_private_ip" {
