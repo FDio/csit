@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3421a509_6039a830",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-25T08:24:16Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-c6in perftest nic_*AND1cAND64bAND*-ip4scale20k-rnd",
+      "revId": "9d04a75f58bfa7d18a8f0a9c768871d1c7f65842",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
