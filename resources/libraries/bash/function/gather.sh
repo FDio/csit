@@ -31,7 +31,7 @@ function gather_build () {
     # - ${DOWNLOAD_DIR} - Files needed by tests are gathered here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - gather_dpdk, gather_vpp - See their definitions.
+    # - gather_* - See their definitions.
     # - build_vpp - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
@@ -45,16 +45,6 @@ function gather_build () {
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
             gather_calicovpp || die "The function should have died on error."
             ;;
-        *"vpp"*"3n-oct" | *"vpp"*"2n-grc" | *"vpp"*"3n-alt")
-            DUT="vpp"
-            source "${BASH_FUNCTION_DIR}/build_${DUT}.sh" || die "Source fail."
-            build_vpp || die "The function should have died on error."
-            ;;
-        *"vpp"*)
-            DUT="vpp"
-            source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
-            gather_vpp || die "The function should have died on error."
-            ;;
         *"dpdk"*)
             DUT="dpdk"
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
@@ -64,6 +54,17 @@ function gather_build () {
             DUT="trex"
             source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
             gather_trex || die "The function should have died on error."
+            ;;
+        *"vpp"*"-x-"*)
+            DUT="vpp"
+            source "${BASH_FUNCTION_DIR}/gather_${DUT}.sh" || die "Source fail."
+            # Gathering can be replaced with compiling once no private lab objects.
+            gather_vpp || die "The function should have died on error."
+            ;;
+        *"vpp"*)
+            DUT="vpp"
+            source "${BASH_FUNCTION_DIR}/build_vpp.sh" || die "Source fail."
+            build_vpp || die "The function should have died on error."
             ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
