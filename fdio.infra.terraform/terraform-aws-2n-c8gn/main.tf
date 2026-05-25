@@ -5,7 +5,7 @@ data "vault_aws_access_credentials" "creds" {
 
 locals {
   ansible_python_executable = "/usr/bin/python3"
-  availability_zone         = "${var.region}a"
+  availability_zone         = "${var.region}b"
   name                      = "csit-vpc"
   environment               = "csit-vpc-environment"
   key_pair_key_name         = "${var.resource_prefix}-${var.testbed_name}-pk"
