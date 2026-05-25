@@ -448,7 +448,7 @@ function get_test_code () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
-    # - VPP_PLATFORM - VPP build optimisation string.
+    # - VPP_PLATFORM - VPP optimisation string. If not set, build is generic.
 
     set -exuo pipefail
 
@@ -509,22 +509,27 @@ function get_test_code () {
         *"2n-icx")
             NODENESS="2n"
             FLAVOR="icx"
+            VPP_PLATFORM="icelake-server"
             ;;
         *"2n-spr")
             NODENESS="2n"
             FLAVOR="spr"
+            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3n-icx")
             NODENESS="3n"
             FLAVOR="icx"
+            VPP_PLATFORM="icelake-server"
             ;;
         *"3na-spr")
             NODENESS="3na"
             FLAVOR="spr"
+            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3nb-spr")
             NODENESS="3nb"
             FLAVOR="spr"
+            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3n-srf")
             NODENESS="3n"
@@ -543,10 +548,12 @@ function get_test_code () {
         *"2n-emr")
             NODENESS="2n"
             FLAVOR="emr"
+            VPP_PLATFORM="emeraldrapids"
             ;;
         *"3n-emr")
             NODENESS="3n"
             FLAVOR="emr"
+            VPP_PLATFORM="emeraldrapids"
             ;;
         *"2n-gnr")
             NODENESS="2n"

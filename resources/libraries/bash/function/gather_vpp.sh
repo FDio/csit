@@ -1,5 +1,5 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
-# Copyright (c) 2024 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
+# Copyright (c) 2026 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,6 +16,8 @@ set -exuo pipefail
 
 # This library defines functions used mainly by "bootstrap" entry scripts.
 # Generally, the functions assume "common.sh" library has been sourced already.
+
+# FIXME: CSIT does not use this anymore, but somehow deleting breaks Cisco lab?
 
 # Keep functions ordered alphabetically, please.
 
