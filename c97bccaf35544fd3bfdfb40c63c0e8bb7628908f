@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21ca9e2c_1378daa0",
+        "filename": "resources/libraries/bash/function/gather_vpp.sh",
+        "patchSetId": 24
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-05-25T19:05:34Z",
+      "side": 1,
+      "message": "you need to remove this comment.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 79
+      },
+      "revId": "c97bccaf35544fd3bfdfb40c63c0e8bb7628908f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
