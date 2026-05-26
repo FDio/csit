@@ -30,7 +30,7 @@ jobs:
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
-        uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
+        uses: fdio/.github/.github/actions/setup-executor-env@4eb74b59c8f76192681941b89e277454d96bebb8
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
@@ -65,7 +65,7 @@ jobs:
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
-        uses: fdio/.github/.github/actions/setup-executor-env@1b8eff3ffd9d355b28052be9ad22acc57b3430b5
+        uses: fdio/.github/.github/actions/setup-executor-env@4eb74b59c8f76192681941b89e277454d96bebb8
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
