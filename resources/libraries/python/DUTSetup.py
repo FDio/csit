@@ -629,9 +629,11 @@ class DUTSetup:
             f"docker inspect "
             f"--format='{{{{.GraphDriver.Data.MergedDir}}}}' {uuid}"
         )
-        message = f"Failed to get directory of {uuid} on host {node[u'host']}"
-
-        stdout, _ = exec_cmd_no_error(node, command, sudo=True, message=message)
+        ret_code, stdout, _ = exec_cmd(node, command, sudo=True)
+        if int(ret_code) > 0:
+            # Docker is running using overlayfs.
+            return f"/var/lib/docker/rootfs/overlayfs/{uuid}"
+        # Docker is running using overlay2.
         return stdout.strip()
 
     @staticmethod
