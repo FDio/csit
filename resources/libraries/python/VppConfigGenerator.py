@@ -191,9 +191,14 @@ class VppConfigGenerator:
         """
         if variant == "":
             return
-        variant_list = ["hsw", "skx", "icl"]
+        # New x86 variants.
+        variant_list = ["scalar", "x86-64-v3", "x86-64-v4"]
+        # New ARM variants.
+        variant_list.extend(["neoversen1", "neoversen2", "neoversev2"])
+        # Untestable and old variants are not included.
+        # TODO: Move all of the above to Constants?
         if variant not in variant_list:
-            raise ValueError("Invalid graph node variant value")
+            raise ValueError("Not supported: {variant=}")
         path = ["node", "default", "variant"]
         self.add_config_item(self._nodeconfig, variant, path)
 
