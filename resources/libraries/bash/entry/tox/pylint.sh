@@ -30,6 +30,28 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
+
+# Rebuild and reinstall SciPy from the currently checked out scipy_git commit.
+# Intended for manual SciPy bisecting inside tox's pylint environment.
+SCIPY_GIT_DIR="./scipy_git"
+
+if [ -d "${SCIPY_GIT_DIR}/scipy" ]; then
+    python -m pip uninstall -y scipy
+
+    python -m pip install \
+        --force-reinstall \
+        --no-deps \
+        --no-cache-dir \
+        --no-binary=scipy \
+        "${SCIPY_GIT_DIR}"
+
+    python - <<'PYEND'
+from sys import stderr
+import scipy
+print(f"Using scipy {scipy.__version__} from {scipy.__file__}", file=stderr)
+PYEND
+fi
+
 pylint_args=("--rcfile=pylint.cfg" "resources/" "GPL/traffic_scripts")
 if pylint "${pylint_args[@]}" > "pylint.log"; then
     warn
