@@ -190,6 +190,8 @@ class Sfdp:
         logger.info(f"{tenants=}")
         _, detail = Sfdp.get_remaining_sfdp_tenant_sessions(node, log=False)
         logger.info(f"{detail=}")
+        cmd = "show features verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
 
     @staticmethod
     def log_sfdp_sessions(node: dict, max_num: int = 10) -> None:
