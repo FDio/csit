@@ -80,7 +80,7 @@ class TrafficStreamsJsonClass:
                 pkt_streams.append(
                     STLStream(
                         packet=packet,
-                        mode=STLTXCont(pps=9000)
+                        mode=STLTXCont(pps=10)
                     )
                 )
 
