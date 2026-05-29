@@ -216,7 +216,7 @@
 | | ... | rate=${rate_for_teardown}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
-| | ... | duration_limit=${1.0}
+#| | ... | duration_limit=${1.0}
 
 | Additional Test Tear Down Action For SFDP
 | | [Documentation]

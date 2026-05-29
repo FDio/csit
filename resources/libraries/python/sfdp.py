@@ -204,6 +204,8 @@ class Sfdp:
         """
         cmd = f"show sfdp session-table max {max_num}"
         PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show features verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
 
     @staticmethod
     def create_sfdp_resetter(node: dict) -> Callable[[], None]:
