@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-srf perftest nic_*AND1cAND64bANDethip4-ip4scale20k-rnd",
       "revId": "0fe894de8e3f51f69433e1957a2867d21b64f6bf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "666d406b_7f22f20d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-05-29T11:44:50Z",
+      "side": 1,
+      "message": "Ready.",
+      "revId": "0fe894de8e3f51f69433e1957a2867d21b64f6bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
