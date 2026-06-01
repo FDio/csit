@@ -280,8 +280,6 @@ test-sets:
       100ge2p1e810cq:
         - avf
         - vfio-pci
-      25ge2p1e810xxv:
-        - avf
     tests:
       - container-memif-l2bd-sw-sm:
           framesize: [64, 1518]
@@ -289,6 +287,16 @@ test-sets:
       - container-memif-hw-sm:
           framesize: [64, 1518]
       - ip4-md
+      - ip4-base-sm
+          infra:
+            25ge2p1e810xxv:
+              - avf
+              - vfio-pci
+      - ip4-scale-sm
+          infra:
+            25ge2p1e810xxv:
+              - avf
+              - vfio-pci
       - ip4-acl-md:
           infra:
             200ge2p1cx7veat:
@@ -353,6 +361,11 @@ test-sets:
       - ip6-md:
           framesize: [78, ]
       - l2-lg
+      - l2-base-md
+          infra:
+            25ge2p1e810xxv:
+              - avf
+              - vfio-pci
       - vhost-md
 
 
