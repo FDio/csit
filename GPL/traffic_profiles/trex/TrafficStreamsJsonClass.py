@@ -64,7 +64,6 @@ class TrafficStreamsJsonClass:
         :rtype: list
         """
         pkt_streams = []
-        lat_streams = []
 
         with open(os.path.join(CP, "packet-profile.json")) as packets_json:
             packets_data = json.load(packets_json)
@@ -84,10 +83,7 @@ class TrafficStreamsJsonClass:
                     )
                 )
 
-        streams = []
-        streams.extend(pkt_streams)
-        streams.extend(pkt_streams)
-        return streams
+        return pkt_streams
 
     def get_streams(self, **kwargs):
         """Get traffic streams created by "create_streams" method.
