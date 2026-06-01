@@ -202,7 +202,7 @@ class Constants:
     TREX_LIMIT_MEMORY_MULTI = get_int_from_env("TREX_LIMIT_MEMORY_MULTI", 16384)
 
     # TRex number of cores.
-    TREX_CORE_COUNT = get_int_from_env("TREX_CORE_COUNT", 16)
+    TREX_CORE_COUNT = get_int_from_env("TREX_CORE_COUNT", 1)
 
     # TRex number of cores in case multiple dual interface configurations.
     TREX_CORE_COUNT_MULTI = get_int_from_env("TREX_CORE_COUNT_MULTI", 8)
