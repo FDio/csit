@@ -1148,7 +1148,7 @@ function set_environment_variables () {
             ;;
         *"2n-zn2")
             # Maciek's workaround for Zen2 with lower amount of cores.
-            export TREX_CORE_COUNT=14
+            export TREX_CORE_COUNT=3
             ;;
         *"-x-2n"* | *"-x-3n"* )
             export TREX_CORE_COUNT=14
