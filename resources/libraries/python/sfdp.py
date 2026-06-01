@@ -190,6 +190,24 @@ class Sfdp:
         logger.info(f"{tenants=}")
         _, detail = Sfdp.get_remaining_sfdp_tenant_sessions(node, log=False)
         logger.info(f"{detail=}")
+        cmd = "show features verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show interface iavf0/0 features verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show interface iavf1/0 features verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show vlib graph iavf0/0-rx"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show vlib graph iavf1/0-rx"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show node iavf0/0-rx verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show node iavf1/0-rx verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show vlib graph ethernet-input"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        cmd = "show node ethernet-input verbose"
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
 
     @staticmethod
     def log_sfdp_sessions(node: dict, max_num: int = 10) -> None:
