@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-icx perftest nic_*AND1cANDVCLTEST #generate-all",
       "revId": "ba156c2eb7d96e09e3e6a7f3d1f84487674c8f91",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a13029e_02f334fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2026-06-03T17:26:39Z",
+      "side": 1,
+      "message": "can we use just \"ip4quic\" instead of \"ip4udpquic\"?",
+      "revId": "ba156c2eb7d96e09e3e6a7f3d1f84487674c8f91",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
