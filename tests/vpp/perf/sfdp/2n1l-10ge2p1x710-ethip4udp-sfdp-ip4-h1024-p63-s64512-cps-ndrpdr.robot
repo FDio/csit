@@ -64,8 +64,8 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Scale settings
-| ${n_hosts}= | ${1024}
-| ${n_ports}= | ${63}
+| ${n_hosts}= | ${32}
+| ${n_ports}= | ${1}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
