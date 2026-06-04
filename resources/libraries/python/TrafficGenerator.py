@@ -751,7 +751,9 @@ class TrafficGenerator(AbstractMeasurer):
         )
         command_line.add_with_value("duration", f"{duration!r}")
         command_line.add_with_value("frame_size", self.frame_size)
-        command_line.add_with_value("rate", f"{rate!r}")
+        float_rate = float(rate[:-3]) if "pps" in rate else float(rate)
+        tweaked_rate = (float_rate + 1) // 2.0 * 2.0
+        command_line.add_with_value("rate", f"{tweaked_rate!r}")
         command_line.add_with_value("ports", " ".join(self._ifaces))
         command_line.add_with_value(
             "traffic_directions", self.traffic_directions
@@ -762,7 +764,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value("delay", Constants.PERF_TRIAL_STL_DELAY)
 
         self._start_time = time.monotonic()
-        self._rate = float(rate[:-3]) if "pps" in rate else float(rate)
+        self._rate = tweaked_rate
         stdout, _ = exec_cmd_no_error(
             self._node, command_line, timeout=int(duration) + 60,
             message="T-Rex STL runtime error", include_reason=True
