@@ -107,7 +107,7 @@
 | |
 | | ... | \| \${min_rate_hard} = \| Get Min Rate Hard \|
 | |
-| | Return From Keyword | ${9001.0}
+| | Return From Keyword | ${5.7}
 
 | Get Min Rate Soft
 | | [Documentation]
@@ -381,7 +381,7 @@
 | |
 | | ... | \| \${traffic_directions} = \| Get Traffic Directions \|
 | |
-| | ${traffic_directions} = | Get Variable Value | \${traffic_directions} | ${2}
+| | ${traffic_directions} = | Get Variable Value | \${traffic_directions} | ${1}
 | | Return From Keyword | ${traffic_directions}
 
 | Get Transaction Duration

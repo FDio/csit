@@ -202,10 +202,10 @@ class Constants:
     TREX_LIMIT_MEMORY_MULTI = get_int_from_env("TREX_LIMIT_MEMORY_MULTI", 16384)
 
     # TRex number of cores.
-    TREX_CORE_COUNT = get_int_from_env("TREX_CORE_COUNT", 16)
+    TREX_CORE_COUNT = get_int_from_env("TREX_CORE_COUNT", 1)
 
     # TRex number of cores in case multiple dual interface configurations.
-    TREX_CORE_COUNT_MULTI = get_int_from_env("TREX_CORE_COUNT_MULTI", 8)
+    TREX_CORE_COUNT_MULTI = get_int_from_env("TREX_CORE_COUNT_MULTI", 1)
 
     TREX_PORT_MTU = get_int_from_env("TREX_PORT_MTU", 0)
 
@@ -323,13 +323,13 @@ class Constants:
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
-        "Intel-X710": 10000000000,
-        "Intel-XL710": 24500000000,
-        "Intel-XXV710": 24500000000,
-        "Intel-E810XXV": 24500000000,
+        "Intel-X710": 1000000000,
+        "Intel-XL710": 2450000000,
+        "Intel-XXV710": 2450000000,
+        "Intel-E810XXV": 2450000000,
         "Intel-E822CQ": 24500000000,
         "Intel-E823C": 24500000000,
-        "Intel-E810CQ": 100000000000,
+        "Intel-E810CQ": 10000000000,
         "Mellanox-CX556A": 100000000000,
         "Mellanox-CX6DX": 100000000000,
         "Mellanox-CX7VEAT": 200000000000,
@@ -342,13 +342,13 @@ class Constants:
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
-        "Intel-X710": 14880952,
-        "Intel-XL710": 18750000,
-        "Intel-XXV710": 18750000,
-        "Intel-E810XXV": 29000000,
+        "Intel-X710": 1488095,
+        "Intel-XL710": 1875000,
+        "Intel-XXV710": 1875000,
+        "Intel-E810XXV": 2900000,
         "Intel-E822CQ": 29000000,
         "Intel-E823C": 29000000,
-        "Intel-E810CQ": 58500000,
+        "Intel-E810CQ": 5850000,
         "Mellanox-CX556A": 148809523,
         "Mellanox-CX6DX": 148809523,
         "Mellanox-CX7VEAT": 297619046,
