@@ -73,8 +73,8 @@ class LoadRounding:
 
         :raises RuntimeError: If a requirement is not met.
         """
-        self.min_load = float(self.min_load)
-        self.max_load = float(self.max_load)
+        self.min_load = float(self.min_load) // 2.0 * 2.0 + 1.0
+        self.max_load = float(self.max_load) // 2.0 * 2.0 - 1.0
         if not 0.0 < self.min_load < self.max_load:
             raise RuntimeError("Load limits not supported: {self}")
         self.quality_lower = float(self.quality_lower)
@@ -107,6 +107,7 @@ class LoadRounding:
         :returns: Value to be stored as max_int_load.
         :rtype: int
         """
+        return int((self.max_load - self.min_load) // 2.0)
         minmax_log_width = math.log(self.max_load) - math.log(self.min_load)
         log_goals = [-math.log1p(-goal) for goal in self.float_goals]
         candidate = 1
@@ -144,6 +145,7 @@ class LoadRounding:
             return self.min_load
         if int_load >= self.max_int_load:
             return self.max_load
+        return self.min_load + int_load * 2.0
         lo_index, hi_index = 0, len(self._int2load)
         lo_int, hi_int = 0, self.max_int_load
         lo_load, hi_load = self.min_load, self.max_load
@@ -182,6 +184,7 @@ class LoadRounding:
             return 0
         if float_load >= self.max_load:
             return self.max_int_load
+        return int((float_load - self.min_load) // 2.0)
         lo_index, hi_index = 0, len(self._int2load)
         lo_int, hi_int = 0, self.max_int_load
         lo_load, hi_load = self.min_load, self.max_load

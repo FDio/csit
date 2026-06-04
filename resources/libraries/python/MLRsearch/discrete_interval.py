@@ -80,6 +80,8 @@ class DiscreteInterval:
         :returns: Self width in multiples of (integer form of) goal width.
         :rtype: float
         """
+        if int(self.discrete_width) <= 1:
+            return 0.1
         return int(self.discrete_width) / int(goal)
 
     def middle(self, goal: DiscreteWidth) -> DiscreteLoad:

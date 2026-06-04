@@ -76,6 +76,8 @@ class DiscreteWidth:
         verify_load = self.rounding.int2float(int_load)
         if verify_load > increased_load:
             int_load -= 1
+        if int_load < 1:
+            int_load = 1
         self.int_width = int_load
 
     def __str__(self) -> str:
