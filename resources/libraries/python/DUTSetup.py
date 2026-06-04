@@ -299,7 +299,7 @@ class DUTSetup:
 
     @staticmethod
     def set_sriov_numvfs(
-            node, pf_pci_addr, path="devices", numvfs=0, skip_check=True):
+            node, pf_pci_addr, path="devices", numvfs=0, skip_check=True, pf_eth=""):
         """Init or reset SR-IOV virtual functions by setting its number on PCI
         device on DUT. Setting to zero removes all VFs.
 
@@ -337,10 +337,10 @@ class DUTSetup:
             f"tee /sys/bus/pci/{path}/{pci}/sriov_numvfs\""
         message = f"Failed to create {numvfs} VFs on {pf_pci_addr} device " \
             f"on {node[u'host']}"
-
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
         )
+        exec_cmd_no_error(node, f"ethtool -c {pf_eth}", sudo=True)
 
     @staticmethod
     def pci_driver_unbind(node, pci_addr):
