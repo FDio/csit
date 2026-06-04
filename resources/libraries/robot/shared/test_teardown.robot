@@ -36,14 +36,14 @@
 | | Run Keyword If Test Failed
 | | ... | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
-| | ... | Get Core Files on All Nodes | ${nodes}
-| | Run Keyword If Test Failed
 | | ... | Verify VPP PID in Teardown
 | | Run Keyword If Test Failed
 | | ... | VPP Show Memory On All DUTs | ${nodes}
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
+| | Run Keyword If Test Failed
+| | ... | Get Core Files on All Nodes | ${nodes}
 | | Clean Sockets On All Nodes | ${nodes}
 | | Finalize Test Export
 
@@ -216,7 +216,7 @@
 | | ... | rate=${rate_for_teardown}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
-| | ... | duration_limit=${1.0}
+#| | ... | duration_limit=${1.0}
 
 | Additional Test Tear Down Action For SFDP
 | | [Documentation]

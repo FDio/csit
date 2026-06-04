@@ -55,6 +55,7 @@ class CpuUtils:
         :returns: True if SMT is enabled, False if SMT is disabled.
         :rtype: bool
         """
+        return False
         cpu_mems = [item[-4:] for item in cpu_info]
         cpu_mems_len = len(cpu_mems) // CpuUtils.NR_OF_THREADS
         count = 0
