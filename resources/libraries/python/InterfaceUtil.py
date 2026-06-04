@@ -1864,7 +1864,7 @@ class InterfaceUtil:
             DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
 
         # Initialize PCI VFs.
-        DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs=numvfs)
+        DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs=numvfs, pf_eth=pf_dev)
 
         if not numvfs:
             if osi_layer == u"L2":
