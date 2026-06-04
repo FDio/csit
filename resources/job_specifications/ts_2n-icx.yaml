@@ -276,6 +276,9 @@ test-sets:
         - vfio-pci
       25ge2p1e810xxv:
         - avf
+      25ge2p1xxv710:
+        - avf
+        - vfio-pci
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
