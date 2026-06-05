@@ -49,6 +49,7 @@
 | |
 | | ... | See documentation of the called keyword for required test variables.
 | |
+| | Return From Keyword
 | | ${duration} = | Get Infra Warm Up Duration
 | | Return From Keyword If | not ${duration}
 | | ${rate} = | Get Infra Warm Up Rate
@@ -88,6 +89,7 @@
 | | # TODO: Check if low-rate is enough to avoid unsent packets.
 | | # TODO: If it is, figure out how to skip tg warmup if infra warmup happened.
 | |
+| | Return From Keyword
 | | ${duration} = | Get Tg Warm Up Duration
 | | Return From Keyword If | not ${duration}
 | | ${rate} = | Get Tg Warm Up Rate
@@ -146,6 +148,7 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | Fail
 | | Perform Infra Warmup
 | | Perform Tg Warmup
 | | # Ready for main search.
@@ -231,6 +234,7 @@
 | | ${use_latency} = | Get Use Latency
 | | Perform Infra Warmup
 | | Perform Tg Warmup
+| | Fail
 | | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -320,6 +324,7 @@
 | | ${use_latency} = | Get Use Latency
 | | Perform Infra Warmup
 | | Perform Tg Warmup
+| | Fail
 | | ${result} = | Perform MLR Search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -374,6 +379,7 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | Call Resetter
+| | Fail
 | | Send traffic on tg
 | | ... | duration=${PERF_TRIAL_LATENCY_DURATION}
 | | ... | rate=${real_rate}
@@ -427,6 +433,7 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | Fail
 | | Send traffic on tg
 | | ... | duration=${ramp_up_duration}
 | | ... | rate=${ramp_up_rate}
@@ -750,6 +757,7 @@
 | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
 | | ... | cps | pps
 | | Perform Infra Warmup
+| | Fail
 | | ${results} = | Send traffic at specified rate
 | | ... | rate=${max_rate}
 | | ... | trial_duration=${trial_duration}
