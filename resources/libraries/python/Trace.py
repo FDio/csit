@@ -29,11 +29,12 @@ class Trace:
         :type nodes: dict
         :type maximum: int
         """
-        max_opt = f"" if maximum is None else f" max {maximum}"
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-                    node, f"show trace{max_opt}")
+                for i in range((maximum - 1) // 100 + 1):
+                    PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+                        node, f"show trace max 100 offset {i*100}"
+                    )
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
