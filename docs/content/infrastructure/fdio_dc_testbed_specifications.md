@@ -728,10 +728,10 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot7 4d:00.xx: e810-CQDA2-2p100GE Intel.
             - PCIe Slot5 15:00.xx: e810-CQDA2-2p100GE Intel.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot1 b8:00.xx: e810-CQDA2-2p100GE Intel.
+            - PCIe Slot3 95:00.xx: e810-CQDA2-2p100GE Intel.
 
 31. **Server-Type-L1**: Purpose - GraniteRapids TG for FD.io performance testing.
     - Quantity: 2.
@@ -1281,8 +1281,8 @@ FD.io CSIT lab contains following server types:
     - portnames:
         - s66-t218-sut1-c5/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s66-t218-sut1-c5/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s66-t218-sut1-c7/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s66-t218-sut1-c7/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s66-t218-sut1-c3/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s66-t218-sut1-c3/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
         - s66-t218-sut1-c1/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s66-t218-sut1-c1/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - TG [Server-Type-L2]:
@@ -1546,18 +1546,18 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed217:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s65-t217-tg1-c1/p1 to s64-t217-sut1-c7/p2
+        - s65-t217-tg1-c1/p1 to s64-t217-sut1-c5/p2
         - s65-t217-tg1-c1/p2 to s64-t217-sut1-c1/p2
-        - s64-t217-sut1-c7/p1 to s64-t217-sut1-c1/p1
+        - s64-t217-sut1-c5/p1 to s64-t217-sut1-c1/p1
     - ring2 100GE-ports e810-CQDA2-2p100GE:
-        - s64-t217-sut1-c5/p1 to s65-t217-tg1-c5/p1.
-        - s65-t217-tg1-c5/p2 to s64-t217-sut1-c5/p2.
+        - s64-t217-sut1-c3/p1 to s65-t217-tg1-c5/p1.
+        - s65-t217-tg1-c5/p2 to s64-t217-sut1-c3/p2.
 - testbed218:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s67-t218-tg1-c1/p1 to s66-t218-sut1-c7/p2
+        - s67-t218-tg1-c1/p1 to s66-t218-sut1-c5/p2
         - s67-t218-tg1-c1/p2 to s66-t218-sut1-c1/p2
-        - s66-t218-sut1-c7/p1 to s67-t218-sut1-c1/p1
+        - s66-t218-sut1-c5/p1 to s67-t218-sut1-c1/p1
     - ring2 100GE-ports e810-CQDA2-2p100GE:
-        - s66-t218-sut1-c5/p1 to s67-t218-tg1-c5/p1.
-        - s67-t218-tg1-c5/p2 to s66-t218-sut1-c5/p2.
+        - s66-t218-sut1-c3/p1 to s67-t218-tg1-c5/p1.
+        - s67-t218-tg1-c5/p2 to s66-t218-sut1-c3/p2.
 ```
