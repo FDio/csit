@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-srf perftest mrrANDnic_*AND1cAND1518bANDethip4ipsec4tnlhwasync-ip4base-int-aes256gcm #generate-all",
       "revId": "9f334548e0e6f0c1a461bb42a2579746bed292e4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf123efd_c50def87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-06-10T12:26:53Z",
+      "side": 1,
+      "message": "Before: https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-3n-srf/27241255030/log.html.gz#s1-s1-s1-s1-s19-t1-k2-k5-k1-k1-k1-k1\nAfter: https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-3n-srf/27275204629/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k5-k1-k1-k1-k1",
+      "revId": "9f334548e0e6f0c1a461bb42a2579746bed292e4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
