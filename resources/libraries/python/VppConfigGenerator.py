@@ -16,6 +16,7 @@
 import re
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.math_util import div_round_up
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
@@ -277,7 +278,7 @@ class VppConfigGenerator:
         """
         cryptodevs = Topology.get_cryptodev(self._node)
         for device in cryptodevs.values():
-            for i in range(int(count/len(cryptodevs))):
+            for i in range(div_round_up(count, len(cryptodevs))):
                 numvfs = device["numvfs"]
                 computed = f"{(i+1)//numvfs}.{(i+1)%numvfs}"
                 addr = re.sub(r"\d.\d$", computed, device["pci_address"])
