@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "456cfa11_b966ebbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-06-11T10:58:39Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-srf perftest mrrANDnic_*AND1cAND1518bANDethip4ipsec4tnlhwasync-ip4base-int-aes256gcm",
+      "revId": "47f08ca0c19adfd6778be4d20c31a2a44642da14",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
