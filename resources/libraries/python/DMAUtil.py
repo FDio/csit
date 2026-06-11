@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Intel and/or its affiliates.
+# Copyright (c) 2026 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,6 +16,7 @@
 from re import search
 
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.math_util import div_round_down, div_round_up
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -182,10 +183,13 @@ class DMAUtil:
             groups = dma_info["group"]
             engines = dma_info["engine"]
             wqs = dma_info["wq"]
-            wq_num_per_dma = wq_num//len(dma_devs) if wq_num > 1 else 1
-            max_transfer_size = \
-                    int(dma_info["max_transfer_size"])//wq_num_per_dma
-            wq_size = int(dma_info["max_work_queues_size"])//wq_num_per_dma
+            wq_num_per_dma = div_round_up(wq_num, len(dma_devs))
+            max_transfer_size = div_round_down(
+                int(dma_info["max_transfer_size"]), wq_num_per_dma
+            )
+            wq_size = div_round_down(
+                int(dma_info["max_work_queues_size"]), wq_num_per_dma
+            )
             max_batch_size = int(dma_info["max_batch_size"])
 
             DMAUtil.disable_dma_device(node, dma_name)
