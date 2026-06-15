@@ -27,7 +27,7 @@ nodes:
       port2:
         # s65-t217-tg1-c1/p1 - 100GE port2 Intel E810-2CQDA2 2p100GE.
         mac_address: "40:a6:b7:cf:83:c4"
-        pci_address: "0000:ba:00.0"
+        pci_address: "0000:b9:00.0"
         ip4_address: 172.16.20.1
         driver: ice
         link: link2
@@ -69,7 +69,7 @@ nodes:
       port1:
         # s64-t217-sut1-c5/p1 - 100GE port1 Intel E810-2CQDA2 2p100GE.
         mac_address: "40:a6:b7:cf:84:78"
-        pci_address: "0000:b8:00.0"
+        pci_address: "0000:15:00.0"
         ip4_address: 172.16.30.2
         driver: ice
         link: link3
@@ -77,7 +77,7 @@ nodes:
       port2:
         # s64-t217-sut1-c5/p2 - 100GE port2 Intel E810-2CQDA2 2p100GE.
         mac_address: "40:a6:b7:cf:84:7c"
-        pci_address: "0000:17:00.0"
+        pci_address: "0000:16:00.0"
         ip4_address: 172.16.10.2
         driver: ice
         link: link1
@@ -127,7 +127,7 @@ nodes:
       port2:
         # s64-t217-sut1-c1/p2 - 100GE port2 Intel E810-2CQDA2 2p100GE.
         mac_address: "40:a6:b7:cf:84:7c"
-        pci_address: "0000:ba:00.0"
+        pci_address: "0000:b9:00.0"
         ip4_address: 172.16.20.2
         driver: ice
         link: link2
