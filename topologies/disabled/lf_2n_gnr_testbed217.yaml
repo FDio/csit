@@ -68,7 +68,7 @@ nodes:
     interfaces:
       port1:
         # s64-t217-sut1-c3/p1 - 100GE port1 Intel E810-2CQDA2 2p100GE.
-        mac_address: "?"
+        mac_address: "40:a6:b7:cf:82:08"
         pci_address: "0000:95:00.0"
         ip4_address: 172.16.10.2
         driver: ice
@@ -76,8 +76,8 @@ nodes:
         model: Intel-E810CQ
       port2:
         # s64-t217-sut1-c3/p2 - 100GE port2 Intel E810-2CQDA2 2p100GE.
-        mac_address: "?"
-        pci_address: "0000:97:00.0"
+        mac_address: "40:a6:b7:cf:82:0c"
+        pci_address: "0000:96:00.0"
         ip4_address: 172.16.20.2
         driver: ice
         link: link2
