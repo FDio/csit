@@ -16,6 +16,24 @@
       "message": "This looks like it removes HW offload runs, is it expected?",
       "revId": "cc5d85974ae12e367851501611a0cf6ce2337c6b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00f3238b_82ae55d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2026-06-16T09:00:35Z",
+      "side": 1,
+      "message": "HW tests returned back, thank you for your notice.",
+      "parentUuid": "31417b12_8af47798",
+      "revId": "cc5d85974ae12e367851501611a0cf6ce2337c6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
