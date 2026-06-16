@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bd13531_63b6b145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2026-06-16T14:18:24Z",
+      "side": 1,
+      "message": "good to see that 3n-srf and 3n-gnr reflect now 3n-icx and 3n-spr and 3n-emr sets.",
+      "revId": "6574562494695a4ede3568f29cf4fa5e72e3eb44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
