@@ -54,6 +54,13 @@ nodes:
         model: HW_4xxx
         module: qat_4xxx
         numvfs: 8
+      device2:
+        pci_address: "0000:0b:00.0"
+        qat_dev: qat_dev1
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+        numvfs: 8
     interfaces:
       port1:
         # s62-t216-sut1-c5/p1 - 100GE port1 Intel E810-2C-Q2 2p100GE.
@@ -89,6 +96,13 @@ nodes:
       device1:
         pci_address: "0000:01:00.0"
         qat_dev: qat_dev0
+        driver: 4xxx
+        model: HW_4xxx
+        module: qat_4xxx
+        numvfs: 8
+      device2:
+        pci_address: "0000:0b:00.0"
+        qat_dev: qat_dev1
         driver: 4xxx
         model: HW_4xxx
         module: qat_4xxx
