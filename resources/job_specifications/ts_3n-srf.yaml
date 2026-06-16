@@ -11,23 +11,46 @@ test-sets:
     tests:
       - dpdk-sm
 
+
   3n-srf-vpp-cov-crypto-00:
     infra:
       100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize: [64, 1518, imix]
+    core: [1, ]
+    tests:
+      - ipsec-sw-aes128cbc-hmac512sha-lg
+      - ipsec-sw-policy-aes256gcm-sm
+
+  3n-srf-vpp-cov-crypto-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
         - vfio-pci
     framesize:
       - 64
       - 1518: [1, 2]
       - imix
     tests:
-      - ipsec-sw-aes128cbc-hmac512sha-md
-      - ipsec-sw-aes128gcm-md
-      - ipsec-sw-aes256gcm-md
-      - ipsec-sw-policy-aes256gcm-sm
+      - ipsec-sw-aes128gcm-lg
 
-  3n-srf-vpp-cov-crypto-01:
+  3n-srf-vpp-cov-crypto-02:
     infra:
       100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - imix
+    tests:
+      - ipsec-sw-aes256gcm-lg
+
+  3n-srf-vpp-cov-crypto-03:
+    infra:
+      100ge2p1e810cq:
+        - avf
         - vfio-pci
     framesize: [1518, imix]
     core: [2, 3, 4]
@@ -36,7 +59,7 @@ test-sets:
       - ipsec-sw-async-aes128gcm-md
       - ipsec-sw-async-aes256gcm-md
 
-  3n-srf-vpp-cov-crypto-02:
+  3n-srf-vpp-cov-crypto-04:
     infra:
       100ge2p1e810cq:
         - vfio-pci
@@ -44,7 +67,7 @@ test-sets:
     tests:
       - ipsec-sw-reassembly-sm
 
-  3n-srf-vpp-cov-crypto-03:
+  3n-srf-vpp-cov-crypto-05:
     infra:
       100ge2p1e810cq:
         - vfio-pci
@@ -53,20 +76,10 @@ test-sets:
           framesize: [1518, ]
           core: [1, ]
 
-  3n-srf-vpp-cov-crypto-04:
-    infra:
-      100ge2p1e810cq:
-        - vfio-pci
-    framesize:
-      - 64
-      - 1518: [1, 2]
-      - imix
-    tests:
-      - ipsec-hw-async-aes256gcm-md
-
   3n-srf-vpp-cov-ip4-00:
     infra:
       100ge2p1e810cq:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -79,6 +92,7 @@ test-sets:
   3n-srf-vpp-cov-ip4tun-00:
     infra:
       100ge2p1e810cq:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -95,13 +109,26 @@ test-sets:
     framesize: [64, 1518, imix]
     tests:
       - wireguard-sw-lg
-      - wireguard-hw-lg
+
+  3n-srf-vpp-cov-ip4tun-02:
+    infra:
+      100ge2p1e810cq:
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - gtpu-sw-sm
+      - gtpu-hw-sm
       - gtpu-sw-reassembly-sm:
           framesize: [1518, ]
 
   3n-srf-vpp-cov-ip6-00:
     infra:
       100ge2p1e810cq:
+        - avf
         - vfio-pci
     framesize:
       - 78
@@ -115,6 +142,7 @@ test-sets:
   3n-srf-vpp-cov-l2-00:
     infra:
       100ge2p1e810cq:
+        - avf
         - vfio-pci
     framesize:
       - 64
@@ -125,35 +153,126 @@ test-sets:
       - l2-base-md
       - l2-scale-md
 
+  3n-srf-vpp-cov-l2-01:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 64
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - l2-1lbvpplacp-sm
+
+  3n-srf-vpp-cov-srv6-00:
+    infra:
+      100ge2p1e810cq:
+        - avf
+        - vfio-pci
+    framesize:
+      - 78
+      - 1518: [1, 2]
+      - 9000: [1, ]
+      - imix
+    tests:
+      - srv6-lg
+
 
   3n-srf-vpp-iterative:
+    tests:
+      - ipsec-sw-md:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, imix]
+      - ipsec-sw-lg:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [1518, imix]
+          core: [1, ]
+      - ipsec-sw-udp:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+          core: [1, ]
+      - ipsec-sw-async-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [1518, imix]
+          core: [2, 3, 4]
+      - ipsec-sw-async-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, imix]
+          core: [2, 3, 4]
+      - ipsec-sw-reassembly-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+      - ip4-base-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - gtpu-sw-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+      - gtpu-hw-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+      - gtpu-sw-reassembly-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, ]
+      - wireguard-sw-lg:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+          framesize: [1518, imix]
+      - vxlan-sm:
+          infra:
+            100ge2p1e810cq:
+              - vfio-pci
+              - avf
+      - ip6-base-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+          framesize: [78, ]
+      - l2-base-md:
+          infra:
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - l2-1lbvpplacp-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+      - srv6-lg:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [78, ]
+
+
+  3n-srf-vpp-hoststack:
     infra:
       100ge2p1e810cq:
         - vfio-pci
-    framesize: [1518, imix]
+    core: [1, ]
     tests:
-      - ipsec-sw-md
-      - ipsec-sw-udp:
-          framesize: [1518, ]
-          core: [1, ]
-      - ipsec-sw-async-2-sm:
-          core: [2, 3, 4]
-      - ipsec-sw-reassembly-sm:
-          framesize: [1518, ]
-      - ipsec-hw-sm
-      - ip4-base-sm:
-          framesize: [64, ]
-      - ip4-scale-sm:
-          framesize: [64, ]
-      - vxlan-sm:
-          framesize: [64, ]
-      - wireguard-sw-lg
-      - wireguard-hw-lg
-      - gtpu-sw-reassembly-sm:
-          framesize: [1518, ]
-      - ip6-base-sm:
-          framesize: [78, ]
-      - ip6-scale-sm:
-          framesize: [78, ]
-      - l2-lg:
-          framesize: [64, ]
+      - hoststack-iperf-md:
+          framesize: [1460, ]
+      - hoststack-vppecho-md:
+          framesize: [1280, ]
