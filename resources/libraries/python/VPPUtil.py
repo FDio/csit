@@ -314,6 +314,9 @@ class VPPUtil:
             u"trace add memif-input 50",
             u"trace add iavf0/0-rx 50",
             u"trace add iavf1/0-rx 50",
+            u"trace add crypto-deq 50",  # ipsechw
+            u"trace add eth0-rx 50",  # octeon
+            u"trace add eth1-rx 50",
         ]
 
         for cmd in cmds:
