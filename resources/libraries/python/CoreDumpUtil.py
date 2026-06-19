@@ -13,6 +13,8 @@
 
 """Core dump library."""
 
+import time
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.LimitUtil import LimitUtil
@@ -136,11 +138,12 @@ class CoreDumpUtil:
         :type nodes: dict
         :type disable_on_success: bool
         """
+        time.sleep(60)
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 command = (
                     f"for f in {Constants.CORE_DUMP_DIR}/*.core; do"
-                    f" sleep 10; sudo gdb /usr/bin/vpp ${{f}}"
+                    f" sudo gdb /usr/bin/vpp ${{f}}"
                     f" -ex 'source -v {Constants.REMOTE_FW_DIR}"
                     f"/resources/tools/scripts/gdb-commands' -ex quit;"
                     f" sudo rm -f ${{f}}; done"
