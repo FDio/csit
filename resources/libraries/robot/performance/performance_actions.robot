@@ -159,6 +159,14 @@
 | | Run Keyword If | ${extended_debug}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 
+| Additional Statistics Action For infra-warmup
+| | [Documentation]
+| | ... | Additional Statistics Action for state warmup with running traffic.
+| |
+| | ... | See documentation of the called keyword for required test variables.
+| |
+| | Perform Infra Warmup
+
 | Additional Statistics Action For vpp-runtime
 | | [Documentation]
 | | ... | Additional Statistics Action for clear and show runtime counters with
