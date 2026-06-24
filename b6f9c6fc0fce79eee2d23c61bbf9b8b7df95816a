@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01e837ca_2e9ebc9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3139
+      },
+      "writtenOn": "2026-06-24T14:51:48Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-icx perftest nic_*AND1cANDVPERF #generate-all",
+      "revId": "b6f9c6fc0fce79eee2d23c61bbf9b8b7df95816a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
