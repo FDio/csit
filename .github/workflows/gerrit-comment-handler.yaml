@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: Clear Gerrit vote
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/gerrit-review-action@91db81bb09f604bb620810640c045eeb1f6a9e54 # v1.1.0
+        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13 # v1.1.2
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_REQUIRED_USER }}
@@ -161,7 +161,7 @@ jobs:
 
       - name: Gerrit Vote
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/gerrit-review-action@91db81bb09f604bb620810640c045eeb1f6a9e54 # v1.1.0
+        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13 # v1.1.2
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
