@@ -30,39 +30,39 @@ jobs:
           - node: 2n-icx
             os: ubuntu2404
             executor_arch: x86_64
-          - node: 2n-spr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 2n-zn2
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3n-icx
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3n-alt
-            os: ubuntu2404
-            executor_arch: aarch64
-          - node: 3n-srf
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3na-spr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3nb-spr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 2n-emr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3n-emr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 2n-gnr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3n-gnr
-            os: ubuntu2404
-            executor_arch: x86_64
+          # - node: 2n-spr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 2n-zn2
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3n-icx
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3n-alt
+          #   os: ubuntu2404
+          #   executor_arch: aarch64
+          # - node: 3n-srf
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3na-spr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3nb-spr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 2n-emr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3n-emr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 2n-gnr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3n-gnr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
           - node: 3n-oct
             os: ubuntu2404
             executor_arch: aarch64
