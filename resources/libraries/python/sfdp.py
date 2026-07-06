@@ -40,17 +40,26 @@ class Sfdp:
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
         cmd = "sfdp_set_timeout"
-        args = dict(tenant_id=tenant_id, timeout_id=0, timeout_value=3000)
+        args = dict(
+            tenant_id=tenant_id,
+            timeout_id=0,
+            timeout_type=0,
+            timeout_value=3000,
+        )
         with PapiSocketExecutor(node) as papi_exec:
+            # TODO: Remove timeout_id when pre-45564 VPP is not relevant.
             papi_exec.add(cmd, **args).get_reply(err_msg)
+            args["timeout_type"] += 1
             args["timeout_id"] += 1
             papi_exec.add(cmd, **args).get_reply(err_msg)
+            args["timeout_type"] += 1
             args["timeout_id"] += 1
             papi_exec.add(cmd, **args).get_reply(err_msg)
+            args["timeout_type"] += 1
             args["timeout_id"] += 1
             papi_exec.add(cmd, **args).get_reply(err_msg)
-            args["timeout_id"] += 1
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+            # TODO: Add fifth timeout when time_wait is supported.
+            # Current VPP builds would reject the call.
 
     @staticmethod
     def enable_sfdp_interface_input(
