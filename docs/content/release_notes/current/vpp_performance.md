@@ -8,6 +8,8 @@ weight: 1
 1. TEST FRAMEWORK
     - **CSIT test environment** version is ver. 19, see
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+    - **Hands-Free Releasing**: Automation of CSIT release flow so that a single
+      action drives a fully automated pipeline.
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
     - No updates
