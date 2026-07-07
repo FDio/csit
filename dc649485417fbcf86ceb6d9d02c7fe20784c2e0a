@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-2n-icx perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cANDethip4??p-sfdp-*-h65536-p63-s4128768-* #generate-all",
       "revId": "dc649485417fbcf86ceb6d9d02c7fe20784c2e0a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00392398_01922f50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-07-07T11:37:39Z",
+      "side": 1,
+      "message": "Timeout values are correct now: https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-2n-icx/28800406908/log.html.gz#s1-s1-s1-s1-s1-t1-k3-k7-k1-k1-k1-k1",
+      "revId": "dc649485417fbcf86ceb6d9d02c7fe20784c2e0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
