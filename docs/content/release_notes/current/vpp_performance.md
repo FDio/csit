@@ -10,9 +10,13 @@ weight: 1
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
     - **Hands-Free Releasing**: Automation of CSIT release flow so that a single
       action drives a fully automated pipeline.
-    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
+    - **Local compilation**: CSIT no longer downloads generic builds from packagecloud.
+    - **Platform builds**: After ARM in previous releases, three generations of Xeon processors
+      were also switched to platform builds, mainly to restore IPsec perfomance.
+    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes,
+      including tweaks to job specifications.
 2. VPP PERFORMANCE TESTS
-    - No updates
+    - **SFDP suites**: Added for initial coverage fo VPP's SFDP functionality and performance.
 
 # Known Issues
 
