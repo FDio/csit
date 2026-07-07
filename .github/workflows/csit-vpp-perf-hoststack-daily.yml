@@ -39,9 +39,9 @@ jobs:
           - node: 3na-spr
             os: ubuntu2404
             executor_arch: x86_64
-          # - node: 3nb-spr
-          #   os: ubuntu2404
-          #   executor_arch: x86_64
+          - node: 3nb-spr
+            os: ubuntu2404
+            executor_arch: x86_64
           - node: 2n-emr
             os: ubuntu2404
             executor_arch: x86_64
