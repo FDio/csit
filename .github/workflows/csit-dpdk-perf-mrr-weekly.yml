@@ -39,9 +39,9 @@ jobs:
           - node: 3n-icx
             os: ubuntu2404
             executor_arch: x86_64
-          - node: 3n-alt
-            os: ubuntu2404
-            executor_arch: aarch64
+          # - node: 3n-alt
+          #   os: ubuntu2404
+          #   executor_arch: aarch64
           - node: 3n-srf
             os: ubuntu2404
             executor_arch: x86_64
@@ -57,12 +57,12 @@ jobs:
           - node: 3n-emr
             os: ubuntu2404
             executor_arch: x86_64
-          - node: 2n-gnr
-            os: ubuntu2404
-            executor_arch: x86_64
-          - node: 3n-gnr
-            os: ubuntu2404
-            executor_arch: x86_64
+          # - node: 2n-gnr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
+          # - node: 3n-gnr
+          #   os: ubuntu2404
+          #   executor_arch: x86_64
       fail-fast: false
 
     env:
