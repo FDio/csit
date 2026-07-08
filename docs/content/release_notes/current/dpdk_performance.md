@@ -11,7 +11,8 @@ weight: 2
    - **CSIT test environment** is ver. 19, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 2. DPDK PERFORMANCE TESTS
-   - No updates
+   - Added 2n-gnr, 3n-gnr and 3n-srf testbeds, see
+     [FD.io DC Testbed Specifications]({{< ref "../../../infrastructure/fdio_dc_testbed_specifications" >}})
 3. DPDK RELEASE VERSION CHANGE
    - The DPDK version has been upgrated to v26.03.
 
