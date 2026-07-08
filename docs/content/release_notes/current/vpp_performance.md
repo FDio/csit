@@ -10,10 +10,16 @@ weight: 1
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
     - **Hands-Free Releasing**: Automation of CSIT release flow so that a single
       action drives a fully automated pipeline.
-    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
+    - **Local compilation**: CSIT no longer downloads generic builds from packagecloud.
+    - **Platform builds**: After ARM in previous releases, three generations of Xeon processors
+      were also switched to platform builds, mainly to restore IPsec perfomance.
+    - **General Code Housekeeping**: Ongoing code optimizations and bug fixes,
+      including tweaks to job specifications.
 2. VPP PERFORMANCE TESTS
-    - Added 2n-gnr, 3n-gnr and 3n-srf testbeds, see
+    - **SFDP suites**: Added for initial coverage for VPP's SFDP functionality and performance.
+    - **Added 2n-gnr, 3n-gnr and 3n-srf testbeds**, see
       [FD.io DC Testbed Specifications]({{< ref "../../../infrastructure/fdio_dc_testbed_specifications" >}})
+    - **Removed 3n-snr and 3n-icxd testbeds**.
 
 # Known Issues
 
