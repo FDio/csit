@@ -10,7 +10,8 @@ weight: 1
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes.
 2. VPP PERFORMANCE TESTS
-    - No updates
+    - Added 2n-gnr, 3n-gnr and 3n-srf testbeds, see
+      [FD.io DC Testbed Specifications]({{< ref "../../../infrastructure/fdio_dc_testbed_specifications" >}})
 
 # Known Issues
 
