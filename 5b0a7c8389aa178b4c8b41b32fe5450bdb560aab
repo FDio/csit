@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-emr perftest nic_*ANDhoststack #generate-all",
       "revId": "5b0a7c8389aa178b4c8b41b32fe5450bdb560aab",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "480b1373_4643301a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-07-10T10:36:55Z",
+      "side": 1,
+      "message": "Looks good, iperf3 performance might even be better stabilized now, trending will show.",
+      "revId": "5b0a7c8389aa178b4c8b41b32fe5450bdb560aab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
