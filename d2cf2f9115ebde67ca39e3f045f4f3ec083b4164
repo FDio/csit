@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe1204e7_6a0b11ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2026-07-10T07:29:34Z",
+      "side": 1,
+      "message": "Wait for the right time when the release testing is over.",
+      "revId": "d2cf2f9115ebde67ca39e3f045f4f3ec083b4164",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
