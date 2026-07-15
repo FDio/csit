@@ -18,7 +18,7 @@ users:
 sshd_disable_password_login: true
 
 # Nomad settings.
-nomad_version: "1.8.2"
+nomad_version: "2.0.4"
 nomad_certificates:
   - src: "{{ file_nomad_ca_pem }}"
     dest: "{{ nomad_tls_ca_file }}"
@@ -56,7 +56,7 @@ nomad_servers:
 
 # Consul settings.
 nomad_use_consul: true
-consul_version: "1.19.1"
+consul_version: "2.0.2"
 consul_certificates:
   - src: "{{ file_consul_ca_pem }}"
     dest: "{{ consul_ca_file }}"
@@ -71,7 +71,7 @@ consul_allow_tls: false
 consul_datacenter: "yul1"
 consul_node_role: "client"
 consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
-consul_node_name: "{{ ansible_hostname }}"
+consul_node_name: "{{ ansible_facts['hostname'] }}"
 consul_retry_join: true
 consul_retry_servers:
   - "10.30.51.26"
@@ -80,10 +80,10 @@ consul_retry_servers:
 consul_service_mgr: "systemd"
 
 # Vault settings.
-vault_version: "1.17.2"
+vault_version: "2.0.3"
 
 # Docker daemon settings.
 docker_daemon:
   dns: ["172.17.0.1"]
   dns-opts: []
-  dns-search: ["{{ansible_hostname}}"]
+  dns-search: ["{{ ansible_facts['hostname'] }}"]
