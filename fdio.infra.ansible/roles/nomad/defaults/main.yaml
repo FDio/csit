@@ -2,7 +2,7 @@
 # file: roles/nomad/defaults/main.yaml
 
 # Prerequisites
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_facts['distribution'] | lower] + packages_by_arch[ansible_facts['machine']] }}"
 packages_base:
   - "curl"
   - "unzip"
@@ -24,7 +24,7 @@ nomad_architecture_map:
   aarch64: "arm64"
   32-bit: "386"
   64-bit: "amd64"
-nomad_architecture: "{{ nomad_architecture_map[ansible_architecture] }}"
+nomad_architecture: "{{ nomad_architecture_map[ansible_facts['architecture']] }}"
 nomad_pkg: "nomad_{{ nomad_version }}_linux_{{nomad_architecture}}.zip"
 nomad_zip_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/nomad_{{ nomad_version }}_linux_{{nomad_architecture}}.zip"
 nomad_checksum_file_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/nomad_{{ nomad_version}}_SHA256SUMS"
@@ -102,8 +102,8 @@ nomad_chroot_env: false
 nomad_plugins: {}
 
 # Addresses
-nomad_bind_address: "{{ hostvars[inventory_hostname]['ansible_'+ nomad_iface ]['ipv4']['address'] }}"
-nomad_advertise_address: "{{ hostvars[inventory_hostname]['ansible_' + nomad_iface]['ipv4']['address'] }}"
+nomad_bind_address: "{{ hostvars[inventory_hostname]['ansible_facts'][nomad_iface]['ipv4']['address'] }}"
+nomad_advertise_address: "{{ hostvars[inventory_hostname]['ansible_facts'][nomad_iface]['ipv4']['address'] }}"
 
 # Ports
 nomad_ports:

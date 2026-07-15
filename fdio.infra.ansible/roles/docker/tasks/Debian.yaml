@@ -14,17 +14,17 @@
   tags:
     - docker-inst-dependencies
 
-- name: "Add APT Key"
-  ansible.builtin.apt_key:
-    url: "{{ docker_apt_gpg_key }}"
-    state: "{{ docker_apt_gpg_key_state }}"
-  tags:
-    - docker-conf-apt
-
-- name: "Install APT Repository"
-  ansible.builtin.apt_repository:
-    repo: "{{ docker_apt_repository }}"
-    state: "{{ docker_apt_repository_state }}"
-    update_cache: true
-  tags:
-    - docker-conf-apt
+#- name: "Add APT Key"
+#  ansible.builtin.apt_key:
+#    url: "{{ docker_apt_gpg_key }}"
+#    state: "{{ docker_apt_gpg_key_state }}"
+#  tags:
+#    - docker-conf-apt
+#
+#- name: "Install APT Repository"
+#  ansible.builtin.apt_repository:
+#    repo: "{{ docker_apt_repository }}"
+#    state: "{{ docker_apt_repository_state }}"
+#    update_cache: true
+#  tags:
+#    - docker-conf-apt
