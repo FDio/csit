@@ -5,7 +5,7 @@
   ansible.builtin.apt:
     update_cache: true
   when:
-    - ansible_os_family == 'Debian'
+    - ansible_facts['os_family'] == 'Debian'
   tags:
     - nomad-inst-package
 
@@ -16,7 +16,7 @@
     cache_valid_time: 3600
     install_recommends: false
   when:
-    - ansible_os_family == 'Debian'
+    - ansible_facts['os_family'] == 'Debian'
   tags:
     - nomad-inst-dependencies
 
@@ -144,6 +144,30 @@
     - "Restart Nomad"
   when:
     - nomad_service_mgr == "systemd"
+  tags:
+    - nomad-conf
+
+- name: Create a scratch directory structure
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "/scratch"
+    - "/scratch/nomad"
+    - "/scratch/nomad/.docker-ro"
+  tags:
+    - nomad-conf
+
+- name: Custom Configuration
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/scratch/nomad/{{ item }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  with_items:
+    - "nomad-client"
   tags:
     - nomad-conf
 
