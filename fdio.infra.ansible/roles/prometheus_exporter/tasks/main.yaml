@@ -6,7 +6,7 @@
     update_cache: true
     cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_facts['distribution'] | lower == 'ubuntu'
   tags:
     - prometheus-inst
 
