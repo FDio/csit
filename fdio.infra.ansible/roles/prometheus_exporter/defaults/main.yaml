@@ -1,7 +1,7 @@
 ---
 # file: prometheus_exporter/defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_facts['distribution'] | lower] + packages_by_arch[ansible_facts['machine']] }}"
 
 packages_base:
   - []
@@ -17,7 +17,7 @@ packages_by_arch:
   x86_64:
     - []
 
-ne_image: "{{ ne_image_by_arch[ansible_machine] }}"
+ne_image: "{{ ne_image_by_arch[ansible_facts['machine']] }}"
 
 ne_image_by_arch:
   aarch64: "prom/node-exporter:v1.9.1"
