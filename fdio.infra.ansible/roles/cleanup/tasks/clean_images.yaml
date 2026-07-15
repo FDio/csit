@@ -10,7 +10,7 @@
       hour: "7"
       job: "/usr/bin/docker pull {{ item }}"
     loop:
-      "{{ images_to_prefetch_by_arch[ansible_machine] }}"
+      "{{ images_to_prefetch_by_arch[ansible_facts['machine']] }}"
     tags:
       - prefetch-docker-images
 

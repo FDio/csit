@@ -2,7 +2,7 @@
 # file: defaults/main.yaml
 
 # Inst - Prerequisites.
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_facts['distribution'] | lower] + packages_by_arch[ansible_facts['machine']] }}"
 packages_base:
   - "curl"
   - "unzip"
@@ -23,7 +23,7 @@ consul_architecture_map:
   aarch64: "arm64"
   32-bit: "386"
   64-bit: "amd64"
-consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
+consul_architecture: "{{ consul_architecture_map[ansible_facts['architecture']] }}"
 consul_version: "1.16.1"
 consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
 consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
@@ -51,7 +51,7 @@ consul_user: "consul"
 
 # Conf - base.hcl
 consul_allow_tls: true
-consul_bind_addr: "{{ ansible_default_ipv4.address }}"
+consul_bind_addr: "{{ ansible_facts['default_ipv4']['address'] }}"
 consul_bootstrap_expect: 2
 consul_client_addr: "0.0.0.0"
 consul_datacenter: "dc1"
