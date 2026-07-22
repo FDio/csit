@@ -47,21 +47,35 @@ Issues reported in previous releases which still affect the current results
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
-
-## Hidden
-
-Issues listed here are not affecting current release results,
-either because we are no longer running the affected tests or testbeds,
-or because the adverse effect would be triggered by a symptom not currently present.
-Issues listed here would generally need to be verified using an unmerged CSIT code,
-which was not done for most of the issues.
-Having this list here is useful if the symptom appears in next release,
-either by a different trigger enabling it, or CSIT increasing test coverage.
-
-**#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+  1   | [csit/issues/3879](https://github.com/FDio/csit/issues/3879) | [CSIT-1795] Ocassionally not all DET44 sessions have been established: 4128767 != 4128768
+  2   | [csit/issues/3966](https://github.com/FDio/csit/issues/3966) | [CSIT-1884] 2n-icx, 2n-spr: All NAT44DET IMIX large scale BIDIR tests fail to create enough sessions
+  3   | [csit/issues/3968](https://github.com/FDio/csit/issues/3968) | [CSIT-1886] 3n: Wireguard tests with 100 and more tunnels are failing PDR criteria
+  4   | [csit/issues/3996](https://github.com/FDio/csit/issues/3996) | [CSIT-1914] TRex does not produce latency data on ICE NICs
+  5   | [csit/issues/3997](https://github.com/FDio/csit/issues/3997) | [CSIT-1915] 2n-icx testbeds do not have the same performance
+  6   | [csit/issues/3998](https://github.com/FDio/csit/issues/3998) | [CSIT-1916] Poor CPU scaling on 2n-zn2 RDMA
+  7   | [csit/issues/3999](https://github.com/FDio/csit/issues/3999) | [CSIT-1917] TRex STL performance is unstable at high pps due to unsent packets
+  8   | [csit/issues/4011](https://github.com/FDio/csit/issues/4011) | [CSIT-1929] Lossy trials in nat udp mlx5 and avf tests
+  9   | [csit/issues/4018](https://github.com/FDio/csit/issues/4018) | [CSIT-1936] TRex occasionally sees link down in E8xx (dpdk) tests
+ 10   | [csit/issues/4020](https://github.com/FDio/csit/issues/4020) | [CSIT-1938] 3n-alt: High scale ipsec policy tests may crash VPP
+ 11   | [csit/issues/4023](https://github.com/FDio/csit/issues/4023) | [CSIT-1941] TRex may wrongly detect link bandwidth
+ 12   | [csit/issues/4024](https://github.com/FDio/csit/issues/4024) | [CSIT-1942] 3nb-spr hoststack: interface not up after first test
+ 13   | [vpp/issues/3551](https://github.com/FDio/vpp/issues/3551)   | [VPP-2090] MRR < PDR: dpdk plugin with mlx5 driver does not read full queue
+ 14   | [csit/issues/4030](https://github.com/FDio/csit/issues/4030) | [CSIT-1948] NICs do not consistently distribute tunnels over RXQs depending on model or plugin
+ 15   | [csit/issues/4033](https://github.com/FDio/csit/issues/4033) | [CSIT-1951] Combination of AVF and vhost drops all 9000B packets
+ 16   | [csit/issues/4045](https://github.com/FDio/csit/issues/4045) | [CSIT-1964] 3nb-spr, 3n-snr: Wireguardhw tests are likely to crash
+ 17   | [csit/issues/4073](https://github.com/FDio/csit/issues/4073) | Tests combining iavf+jumbo gradually run out of buffers for rx
+ 18   | [csit/issues/4076](https://github.com/FDio/csit/issues/4076) | 3n-icx: vhost mounting /dev failed
+ 19   | [csit/issues/4088](https://github.com/FDio/csit/issues/4088) | Occasional timeout in iperf vhost non-gso
+ 20   | [csit/issues/4090](https://github.com/FDio/csit/issues/4090) | crypto engine error in 1tnl wireguardhw test
+ 21   | [csit/issues/4091](https://github.com/FDio/csit/issues/4091) | udpquicbase fails due to: Echo connect failed
+ 22   | [csit/issues/4092](https://github.com/FDio/csit/issues/4092) | udp ldpreload fails on no test data retrieved
+ 23   | [csit/issues/4094](https://github.com/FDio/csit/issues/4094) | 3n-oct: unsent packets even at min load
+ 24   | [csit/issues/4096](https://github.com/FDio/csit/issues/4096) | rare crash in nginx tests
+ 25   | [csit/issues/4097](https://github.com/FDio/csit/issues/4097) | 2n-zn2 iavf: two-band structure in 1c mrr tests
+ 26   | [vpp/issues/3628](https://github.com/FDio/vpp/issues/3628)   | ip: route APIs are not thread safe
+ 27   | [csit/issues/4106](https://github.com/FDio/csit/issues/4106) | Unstable performance of ldpreload+tcp tests
+ 28   | [csit/issues/4113](https://github.com/FDio/csit/issues/4113) | 2n-grc: rarely, Linux is too slow to re-detect interfaces after VPP kill
+ 29   | [csit/issues/4118](https://github.com/FDio/csit/issues/4118) | GTPUhw jumbo has zero traffic due to tx_errors
 
 ## Fixed
 
@@ -70,7 +84,11 @@ forever) in this release:
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+  1   | [vpp/issues/3538](https://github.com/FDio/vpp/issues/3538)   | [VPP-2077] IP fragmentation: running_fragment_id is not thread safe
+  2   | [vpp/issues/3552](https://github.com/FDio/vpp/issues/3552)   | [VPP-2091] Memif crashes VPP in container with jumbo frames
+  3   | [vpp/issues/3597](https://github.com/FDio/vpp/issues/3597)   | dev_iavf: Unable to use more queues than offered initially
+  4   | [csit/issues/4089](https://github.com/FDio/csit/issues/4089) | 2n-zn2 iavf 2c: PDR fails due to delayed packets
+  5   | [csit/issues/4140](https://github.com/FDio/csit/issues/4140) | udpquic: signum=11 on quic set fifo-size
 
 # Root Cause Analysis for Regressions
 
