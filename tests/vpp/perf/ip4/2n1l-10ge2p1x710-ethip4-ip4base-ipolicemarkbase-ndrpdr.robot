@@ -53,7 +53,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC2544, RFC2698.
 
 *** Variables ***
-| @{plugins_to_enable}= | policer_plugin.so | dpdk_plugin.so | perfmon_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | policer_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
