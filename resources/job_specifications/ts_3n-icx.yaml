@@ -442,7 +442,7 @@ test-sets:
       - hoststack-iperf-md:
           framesize: [1460, ]
       - hoststack-vperf-md:
-          framesize: [1280, ]
+          framesize: [1460, ]
 
 
   3n-icx-vpp-soak:
