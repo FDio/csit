@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-grc perftest nic_*ANDethip4tcp-sfdp-ip4-h65536-p63-s4128768-cps #generate-all",
       "revId": "b6417f9b9cc634d20b98ff40122f9c64906f8fe6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34fb6ca4_643be610",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-07-27T13:37:52Z",
+      "side": 1,
+      "message": "Before (no core visible): https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-2606-2n-grc/28134787854/log.html.gz#s1-s1-s1-s6-s1-t1-k3-k4-k1\nAfter (yes core visible): https://logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-2n-grc/30269880859/log.html.gz#s1-s1-s1-s1-s2-t1-k3-k4-k1",
+      "revId": "b6417f9b9cc634d20b98ff40122f9c64906f8fe6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
