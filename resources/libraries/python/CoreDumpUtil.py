@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,6 +12,8 @@
 # limitations under the License.
 
 """Core dump library."""
+
+import time
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -136,11 +138,13 @@ class CoreDumpUtil:
         :type nodes: dict
         :type disable_on_success: bool
         """
+        # TODO: Check frequently for first core to appear?
+        time.sleep(60)
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 command = (
                     f"for f in {Constants.CORE_DUMP_DIR}/*.core; do"
-                    f" sleep 10; sudo gdb /usr/bin/vpp ${{f}}"
+                    f" sudo gdb /usr/bin/vpp ${{f}}"
                     f" -ex 'source -v {Constants.REMOTE_FW_DIR}"
                     f"/resources/tools/scripts/gdb-commands' -ex quit;"
                     f" sudo rm -f ${{f}}; done"
