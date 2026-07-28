@@ -37,8 +37,17 @@ For reporting reasons, even issues fixed during release are listed here,
 as long as they caused some results to be missing (or performance wrong).
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+------|--------------------------------------------------------------|------------------------------------------------------------------------------
+  1   | [vpp/issues/3693](https://github.com/FDio/vpp/issues/3693)   | SFDP does not implement any Conntrack TIME-WAIT Timeout
+  2   | [csit/issues/4160](https://github.com/FDio/csit/issues/4160) | 3n-oct: large losses due to no free tx slots
+  3   | [csit/issues/4161](https://github.com/FDio/csit/issues/4161) | gtpu_offload_rx PAPI call started to fail
+  4   | [csit/issues/4162](https://github.com/FDio/csit/issues/4162) | ipolicemarkbase suites are failing since octeon refactor, fixed after rls2606
+  5   | [csit/issues/4163](https://github.com/FDio/csit/issues/4163) | 2n-zn2: jumbo+geneve loses packets after VPP
+  6   | [csit/issues/4164](https://github.com/FDio/csit/issues/4164) | ocassional crypto error in swasync tests
+  7   | [vpp/issues/3731](https://github.com/FDio/vpp/issues/3731)   | SFDP: Possible worker deadlock when killing sessions
+  8   | [csit/issues/4166](https://github.com/FDio/csit/issues/4166) | 2n-gnr DMA: ZeroDivisionError
+  9   | [csit/issues/4167](https://github.com/FDio/csit/issues/4167) | 3n-icx TB38 e810 has poor PDR results with jumbo
+ 10   | [csit/issues/4170](https://github.com/FDio/csit/issues/4170) | rare losses on 2n-spr in e180+avf+ip4scale200k-rnd+soak
 
 ## Previous
 
@@ -46,7 +55,7 @@ Issues reported in previous releases which still affect the current results
 (or would be affecting if other issues were not hiding the symptoms):
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
+------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------
   1   | [csit/issues/3879](https://github.com/FDio/csit/issues/3879) | [CSIT-1795] Ocassionally not all DET44 sessions have been established: 4128767 != 4128768
   2   | [csit/issues/3966](https://github.com/FDio/csit/issues/3966) | [CSIT-1884] 2n-icx, 2n-spr: All NAT44DET IMIX large scale BIDIR tests fail to create enough sessions
   3   | [csit/issues/3968](https://github.com/FDio/csit/issues/3968) | [CSIT-1886] 3n: Wireguard tests with 100 and more tunnels are failing PDR criteria
@@ -83,7 +92,7 @@ Issues reported in previous releases which were fixed (or stopped being tested
 forever) in this release:
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
+------|--------------------------------------------------------------|--------------------------------------------------------------------
   1   | [vpp/issues/3538](https://github.com/FDio/vpp/issues/3538)   | [VPP-2077] IP fragmentation: running_fragment_id is not thread safe
   2   | [vpp/issues/3552](https://github.com/FDio/vpp/issues/3552)   | [VPP-2091] Memif crashes VPP in container with jumbo frames
   3   | [vpp/issues/3597](https://github.com/FDio/vpp/issues/3597)   | dev_iavf: Unable to use more queues than offered initially
@@ -103,5 +112,7 @@ of CSIT testing. So even if they are not fixed
 they will not be re-listed in the next release report.
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+------|--------------------------------------------------------------|----------------------------------------------------
+  1   | [csit/issues/4165](https://github.com/FDio/csit/issues/4165) | rls2606 March regression: tighter throttling in AWS
+  2   | [csit/issues/4168](https://github.com/FDio/csit/issues/4168) | rls2606: ip6 regressions related to platform builds
+  3   | [csit/issues/4169](https://github.com/FDio/csit/issues/4169) | rls2606: aes128nullgmac regression in March
