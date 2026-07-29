@@ -233,20 +233,23 @@ test-sets:
           infra:
             100ge2p1e810cq:
               - avf
-          framesize: [1518, imix]
+          framesize: [1518, ]
       - ipsec-sw-async-md:
           infra:
             100ge2p1e810cq:
               - avf
               - vfio-pci
-          framesize: [1518, imix]
-          core: [2, 3, 4]
+          framesize: [1518, ]
+          core: [2, 3]
       - ipsec-sw-md:
-          framesize: [1518, imix]
+          framesize: [1518, ]
+          core: [1, 2]
       - ipsec-hw-md:
-          framesize: [1518, imix]
+          framesize: [1518, ]
+          core: [1, 2]
       - ipsec-sw-reassembly-sm:
           framesize: [1518, ]
+          core: [1, 2]
       - ipsec-sw-udp:
           framesize: [1518, ]
           core: [1, ]
@@ -273,9 +276,11 @@ test-sets:
           framesize: [1518, ]
       - gtpu-hw-sm
       - wireguard-sw-md:
-          framesize: [1518, imix]
+          framesize: [1518, ]
+          core: [1, 2]
       - wireguard-hw-md:
-          framesize: [1518, imix]
+          framesize: [1518, ]
+          core: [1, 2]
       - ip6-base-sm:
           infra:
             100ge2p1e810cq:
