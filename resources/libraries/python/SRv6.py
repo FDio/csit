@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -151,7 +151,7 @@ class SRv6:
             PapiSocketExecutor.run_cli_cmd(node, cli_cmd)
             return
 
-        cmd = u"sr_localsid_add_del"
+        cmd = "sr_localsid_add_del_v2"
         args = dict(
             is_del=False,
             localsid=IPv6Address(local_sid).packed,
@@ -160,7 +160,10 @@ class SRv6:
             sw_if_index=Constants.BITWISE_NON_ZERO,
             vlan_index=0,
             fib_table=0,
-            nh_addr=0
+            nh_addr=0,
+            locator_block_len=0,
+            locator_node_len=0,
+            function_len=0,
         )
         err_msg = f"Failed to add SR localSID {local_sid} " \
             f"host {node[u'host']}"
