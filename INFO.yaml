@@ -2,7 +2,7 @@
 project: 'csit'
 project_creation_date: '2016-01-05'
 project_category: 'Integration & Testing'
-lifecycle_state: 'Incubation'
+lifecycle_state: 'Core'
 project_lead: &csit_ptl
     name: 'Maciek Konstantynowicz'
     email: 'mkonstan@cisco.com'
@@ -11,23 +11,23 @@ project_lead: &csit_ptl
     timezone: 'Europe/London'
 primary_contact: *csit_ptl
 issue_tracking:
-    type: 'jira'
-    url: 'https://jira.fd.io/secure/RapidBoard.jspa'
-    key: 'CSIT'
+    type: 'GitHub Issues'
+    url: 'https://github.com/FDio/csit/issues'
 mailing_list:
     type: 'groups.io'
     url: 'https://lists.fd.io/g/csit-dev'
     tag: 'n/a'
 realtime_discussion:
-    type: 'Slack'
-    server: 'fdio-project.slack.com'
-    channel: '#csit-dev'
+    type: 'Zulip'
+    server: 'linuxfoundation.zulipchat.com'
+    channel: 'lfn-fdio-wg-csit'
+    url: 'https://linuxfoundation.zulipchat.com/#narrow/channel/547905'
 meetings:
     - type: 'zoom'
-      agenda: 'https://wiki.fd.io/view/CSIT/Meeting'
-      url: 'https://wiki.fd.io/view/CSIT/Meeting'
-      server: ''
-      channel: 'fdio-csit'
+      url: 'https://zoom.us/my/fastdata'
+      agenda: 'https://github.com/FDio/csit/wiki'
+      irc_channel: 'fdio-meeting'
+      irc_webui: 'https://web.libera.chat/gamja/#/#fdio-meeting'
       repeats: 'weekly'
       time: '15:00 UTC'
 repositories:
@@ -56,6 +56,9 @@ committers:
       timezone: 'Europe/Bratislava'
 tsc:
     approval: 'https://wiki.fd.io/view/TSC/Meeting_Minutes'
+    # TODO: Find correct approval/maturation/core links in:
+    # https://lf-networking.atlassian.net/wiki/spaces/FDio/pages/
+    #  /1004371970/FD.io+TSC+Meetbot+Minutes+Archive
     changes:
         - type: ''
           name: ''
