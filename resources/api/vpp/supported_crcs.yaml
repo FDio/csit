@@ -24,9 +24,7 @@
 # Please keep alphabetic order.
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
-# https://packagecloud.io/app/fdio/release
-# /search?q=26.02&filter=debs&filter=all&dist=debian
-26.02-release:
+26.06-release:
     # plugins/acl/acl.api
     acl_add_replace: '0xee5c2f18'
     acl_add_replace_reply: '0xac407b0c'
@@ -108,6 +106,7 @@
     det44_map_dump: '0x51077d14'
     det44_plugin_enable_disable: '0x617b6bf8'
     det44_plugin_enable_disable_reply: '0xe8d4e804'
+    # det44_session_details is not encountered as dump returns an empty list.
     det44_session_dump: '0xe45a3af7'
     # dhcp_proxy_dump / details
 
@@ -260,6 +259,8 @@
     nat44_show_running_config_reply: '0x93d8e267'
     nat44_static_mapping_details: '0x06cb40b2'
     nat44_static_mapping_dump: '0x51077d14'
+    # nat44_user_dump / details # unused L1 keyword show_nat_user_data
+    # nat44_user_session_dump / details # unused L1 keyword show_nat_user_data
     nat_worker_details: '0x84bf06fc'
     nat_worker_dump: '0x51077d14'
 
@@ -268,6 +269,8 @@
     nsim_configure2_reply: '0xe8d4e804'
     nsim_output_feature_enable_disable: '0x3865946c'
     nsim_output_feature_enable_disable_reply: '0xe8d4e804'
+    # nsim_cross_connect_feature_enable_disable but
+    # in VPP only nsim_cross_connect_enable_disable exists.
 
     # plugins/policer/policer.api
     policer_add: '0x4d949e35'
@@ -308,8 +311,8 @@
     show_version_reply: '0xc919bde1'
 
     # vnet/srv6/sr.api
-    sr_localsid_add_del: '0x5a36c324'
-    sr_localsid_add_del_reply: '0xe8d4e804'
+    sr_localsid_add_del_v2: '0x8da7805a'
+    sr_localsid_add_del_v2_reply: '0xe8d4e804'
     sr_localsids_details: '0x2e9221b9'
     sr_localsids_dump: '0x51077d14'
     sr_policies_v2_details: '0x96dcb699'
@@ -393,8 +396,8 @@
     # plugins/wireguard/wireguard.api
     wireguard_interface_create: '0xa530137e'
     wireguard_interface_create_reply: '0x5383d31f'
-    wireguard_peer_add: '0x9b8aad61'
-    wireguard_peer_add_reply: '0x084a0cd3'
+    wireguard_peer_add_v2: '0x4a07ba90'
+    wireguard_peer_add_v2_reply: '0x084a0cd3'
     wg_set_async_mode: '0xa6465f7c'
     wg_set_async_mode_reply: '0xe8d4e804'
 
@@ -402,6 +405,6 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # Hint to see the currently used command messages:
-# $ egrep -r 'cmd[0-9]* = ["'"'"'][a-z0-9]*_[a-z0-9_]*["'"'"']' | cut -d '=' -f 2- | cut -c 3- | cut -d "'" -f 1 | cut -d '"' -f 1 | env LC_COLLATE=C sort -u | less
+# $ egrep -r 'cmd[0-9]* = u?["'"'"'][a-z0-9]*_[a-z0-9_]*["'"'"']' | cut -d '=' -f 2- | cut -d '"' -f 2 | cut -d "'" -f 1 | cut -d '"' -f 1 | env LC_COLLATE=C sort -u | less
 # Independent hint:
 # $ fgrep -rn dump_and_log
