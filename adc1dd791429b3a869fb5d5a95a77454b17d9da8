@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_e810cqANDdrv_vfio_pciAND1cAND1518bANDethip4udpwireguard1tnlsw-ip4base mrrANDnic_e810cqANDdrv_vfio_pciAND1cAND78bANDethip6srhip6-ip6base-srv6enc2sids #generate-all",
       "revId": "adc1dd791429b3a869fb5d5a95a77454b17d9da8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "669623a9_3e1d7b14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-07-30T08:47:44Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND1518bANDethip4udpwireguard1tnlsw-ip4base mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND78bANDethip6srhip6-ip6base-srv6enc2sids #generate-all",
+      "revId": "adc1dd791429b3a869fb5d5a95a77454b17d9da8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
