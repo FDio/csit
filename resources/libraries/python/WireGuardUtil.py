@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2026 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -118,18 +118,19 @@ class WireGuardUtil:
         :type keepalive_time: int
         """
         endpoint_ip = ip_address(endpoint_ip)
-        cmd = u"wireguard_peer_add"
+        cmd = "wireguard_peer_add_v2"
         err_msg = f"Failed to add peer of wireguard interface" \
             f"{interface} on host {node[u'host']}"
         args = dict(
             peer=dict(
+                preshared_key_set=False,
                 public_key=peer_pubkey,
                 port=int(dst_port),
                 endpoint=endpoint_ip,
                 sw_if_index=interface,
                 persistent_keepalive=int(keepalive_time),
                 n_allowed_ips=int(n_allowed_ips),
-                allowed_ips=allowed_ips
+                allowed_ips=allowed_ips,
             )
         )
         with PapiSocketExecutor(node) as papi_exec:
@@ -203,7 +204,7 @@ class WireGuardUtil:
         #Set wireguard interface up
         InterfaceUtil.set_interface_state(node, dut_wg_sw_index, state=u'up')
         #Set wireguard interface IP address
-        cmd = u'sw_interface_add_del_address'
+        cmd = "sw_interface_add_del_address"
         args = dict(
             sw_if_index=dut_wg_sw_index,
             is_add=True,
