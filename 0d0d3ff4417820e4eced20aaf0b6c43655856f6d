@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2696829_8aa0b980",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-07-30T11:15:19Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND1518bANDethip4udpwireguard1tnlsw-ip4base mrrANDnic_intel-e810cqANDdrv_vfio_pciAND1cAND78bANDethip6srhip6-ip6base-srv6enc2sids #generate-all",
+      "revId": "0d0d3ff4417820e4eced20aaf0b6c43655856f6d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
