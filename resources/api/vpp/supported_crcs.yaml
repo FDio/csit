@@ -24,7 +24,7 @@
 # Please keep alphabetic order.
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
-26.06-release:
+26.06-release: &rls2606
     # plugins/acl/acl.api
     acl_add_replace: '0xee5c2f18'
     acl_add_replace_reply: '0xac407b0c'
@@ -403,6 +403,12 @@
 
     # Please keep alphabetic order.
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
+g45564:
+    <<: *rls2606
+    sfdp_set_timeout: '0x00'
+g46218:
+    <<: *rls2606
+    sfdp_set_timeout: '0x39b82486'
 
 # Hint to see the currently used command messages:
 # $ egrep -r 'cmd[0-9]* = u?["'"'"'][a-z0-9]*_[a-z0-9_]*["'"'"']' | cut -d '=' -f 2- | cut -d '"' -f 2 | cut -d "'" -f 1 | cut -d '"' -f 1 | env LC_COLLATE=C sort -u | less

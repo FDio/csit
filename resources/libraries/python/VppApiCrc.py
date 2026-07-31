@@ -290,7 +290,7 @@ class VppApiCrcChecker:
                     msg_crc = self._get_crc(msg_obj)
                     msg_options = self._get_options(msg_obj, version)
                     self._process_crc(msg_name, msg_crc, msg_options)
-        logger.debug(f"Surviving collections: {self._expected.keys()!r}")
+        logger.console(f"Surviving CRC collections: {self._expected.keys()!r}")
 
     def report_initial_conflicts(self, report_missing=False):
         """Report issues discovered by _check_dir, if not done that already.
