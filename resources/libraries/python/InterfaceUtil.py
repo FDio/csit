@@ -1271,14 +1271,7 @@ class InterfaceUtil:
             args["args"] = f"request_qpairs={num_rx_queues + 1}"
         err_msg = f"Failed to attach AVF driver on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
-            try:
-                reply = papi_exec.add(cmd, **args).get_reply(err_msg)
-                logger.debug(f"reply: {reply}")
-            except AssertionError:
-                # TODO: Remove this workaround after rls2610.
-                del args["args"]
-                reply = papi_exec.add(cmd, **args).get_reply(err_msg)
-                logger.debug(f"reply: {reply}")
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
             dev_index = reply["dev_index"]
 
         cmd = u"dev_create_port_if"

@@ -282,9 +282,6 @@ class NATUtil:
         so it can start failing when VPP changes the output format.
         TODO: Switch to API (or stat segment) when available.
 
-        The current implementation supports both 2202 and post-2202 format.
-        (The Gerrit number changing the output format is 34877.)
-
         For TCP proto, the expected state after rampup is
         some number of sessions in transitory state (VPP has seen the FINs),
         and some number of sessions in established state (meaning
@@ -294,8 +291,7 @@ class NATUtil:
         both of them the "fast path", so they are both counted as expected.
 
         As the tests should fail if a session is timed-out,
-        the logic substracts timed out sessions for the returned value
-        (only available for post-2202 format).
+        the logic substracts timed out sessions for the returned value.
 
         TODO: Investigate if it is worth to insert additional rampup trials
         in TPUT tests to ensure all sessions are transitory before next
@@ -315,14 +311,6 @@ class NATUtil:
             raise ValueError(f"Unsupported protocol: {proto}!")
         summary_text = NATUtil.show_nat44_summary(node)
         summary_lines = summary_text.splitlines()
-        # Output from VPP v22.02 and before, delete when no longer needed.
-        pattern_2202 = f"total {proto_l} sessions:"
-        if pattern_2202 in summary_text:
-            for line in summary_lines:
-                if pattern_2202 not in line:
-                    continue
-                return int(line.split(u":", 1)[1].strip())
-        # Post-2202, the proto info and session info are not on the same line.
         found = False
         for line in summary_lines:
             if not found:
