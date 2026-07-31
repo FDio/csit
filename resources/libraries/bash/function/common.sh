@@ -514,7 +514,6 @@ function get_test_code () {
         *"2n-spr")
             NODENESS="2n"
             FLAVOR="spr"
-            VPP_PLATFORM="sapphirerapids"
             ;;
         *"3n-icx")
             NODENESS="3n"
