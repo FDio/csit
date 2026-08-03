@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -58,7 +58,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ... | crypto_native_plugin.so
-| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so | ipip_plugin.so
 | ${crypto_type}= | HW_DH895xcc
 | ${encr_alg}= | AES GCM 256
 | ${auth_alg}= | NONE
