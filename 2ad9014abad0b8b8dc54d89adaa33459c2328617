@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e939af_0d005544",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-03T11:19:02Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-icx perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch #generate-all",
+      "revId": "2ad9014abad0b8b8dc54d89adaa33459c2328617",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
