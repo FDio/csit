@@ -277,6 +277,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
       100ge2p1e810cq:
         - avf
         - vfio-pci
