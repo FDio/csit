@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_intel-e810cqANDdrv_vfio_pciAND4cAND1518bANDethip4ipsec10000tnlsw-ip4base-policy-aes256gcm mrrANDnic_intel-e810cqANDdrv_vfio_pciAND4cAND1518bANDethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm mrrANDnic_intel-e810cqANDdrv_vfio_pciAND4cAND1518bANDethip4ipsec10000tnlsw-ip4base-int-aes256gcm mrrANDnic_intel-e810cqANDdrv_vfio_pciAND4cAND1518bANDethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm #generate-all",
       "revId": "1861b87d23cbfba4b238fd8a93bcfb8065700af9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4efbd861_afd0718a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-03T10:47:57Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_*AND1cAND1518bANDethip4ipsec10000tnlsw-ip4base-policy-aes256gcm mrrANDnic_*AND2cAND1518bANDethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm mrrANDnic_*AND1cAND1518bANDethip4ipsec10000tnlsw-ip4base-int-aes256gcm mrrANDnic_*AND1cAND1518bANDethip4ipsec10000tnlhwasync-ip4base-int-aes256gcm #generate-all",
+      "revId": "1861b87d23cbfba4b238fd8a93bcfb8065700af9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
