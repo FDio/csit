@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -285,36 +285,18 @@ class PapiSocketExecutor:
             # It is right, we should refactor the code and move initialization
             # of package outside.
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
-            try:
-                # The old way. Deduplicate when pre-2402 support is not needed.
-
-                vpp_class.apidir = cls.api_json_path
-                # We need to create instance before removing from sys.path.
-                # Cannot use loglevel parameter, robot.api.logger lacks the support.
-                vpp_instance = vpp_class(
-                    use_socket=True,
-                    server_address="TBD",
-                    async_thread=False,
-                    # Large read timeout was originally there for VPP-1722,
-                    # it may still be helping against AVF device creation failures.
-                    read_timeout=14,
-                    logger=FilteredLogger(logger, "INFO"),
-                )
-            except vpp_class.VPPRuntimeError:
-                # The 39871 way.
-
-                # We need to create instance before removing from sys.path.
-                # Cannot use loglevel parameter, robot.api.logger lacks the support.
-                vpp_instance = vpp_class(
-                    apidir=cls.api_json_path,
-                    use_socket=True,
-                    server_address="TBD",
-                    async_thread=False,
-                    # Large read timeout was originally there for VPP-1722,
-                    # it may still be helping against AVF device creation failures.
-                    read_timeout=14,
-                    logger=FilteredLogger(logger, "INFO"),
-                )
+            # We need to create instance before removing from sys.path.
+            # Cannot use loglevel parameter, robot.api.logger lacks the support.
+            vpp_instance = vpp_class(
+                apidir=cls.api_json_path,
+                use_socket=True,
+                server_address="TBD",
+                async_thread=False,
+                # Some operations take considerable time.
+                # For example, 4c dpdk interface up on e810cq, takes ~3 seconds.
+                read_timeout=14.0,
+                logger=FilteredLogger(logger, "INFO"),
+            )
             # The following is needed to prevent union (e.g. Ip4) debug logging
             # of VPP part of PAPI from spamming robot logs.
             logging.getLogger("vpp_papi.serializer").setLevel(logging.INFO)
@@ -531,25 +513,10 @@ class PapiSocketExecutor:
             key_file.close()
         # Everything is ready, set the local socket address and connect.
         vpp_instance.transport.server_address = api_socket
-        # It seems we can get read error even if every preceding check passed.
-        # Single retry seems to help. TODO: Confirm this is still needed.
-        for _ in range(2):
-            try:
-                vpp_instance.connect("csit_socket", do_async=True)
-            except (IOError, struct.error) as err:
-                logger.warn(f"Got initial connect error {err!r}")
-                vpp_instance.disconnect()
-            else:
-                break
-        else:
-            raise RuntimeError("Failed to connect to VPP over a socket.")
-        # Only after rls2302 all relevant VPP builds should have do_async.
-        if hasattr(vpp_instance.transport, "do_async"):
-            deq = deque()
-            vpp_instance.csit_deque = deq
-            vpp_instance.register_event_callback(lambda x, y: deq.append(y))
-        else:
-            vpp_instance.csit_deque = None
+        vpp_instance.connect("csit_socket", do_async=True)
+        deq = deque()
+        vpp_instance.csit_deque = deq
+        vpp_instance.register_event_callback(lambda x, y: deq.append(y))
         duration_conn = time.monotonic() - time_enter
         logger.trace(f"Establishing socket connection took {duration_conn}s.")
         return self
@@ -874,13 +841,13 @@ class PapiSocketExecutor:
                 logger.debug(f"{cmd}:\n{pformat(dump)}")
 
     @staticmethod
-    def _read_internal(vpp_instance, timeout=None):
+    def _read(vpp_instance, timeout=None):
         """Blockingly read within timeout.
 
-        This covers behaviors both before and after 37758.
         One read attempt is guaranteed even with zero timeout.
 
-        TODO: Simplify after 2302 RCA is done.
+        Most of the time, early None means VPP crashed (see VPP-2033),
+        but there is a legitimate use in _drain cleanup functionality.
 
         :param vpp_instance: Client instance to read from.
         :param timeout: How long to wait for reply (or transport default).
@@ -890,8 +857,6 @@ class PapiSocketExecutor:
         :rtype: Optional[namedtuple]
         """
         timeout = vpp_instance.read_timeout if timeout is None else timeout
-        if vpp_instance.csit_deque is None:
-            return vpp_instance.read_blocking(timeout=timeout)
         time_stop = time.monotonic() + timeout
         while 1:
             try:
@@ -901,38 +866,6 @@ class PapiSocketExecutor:
                 time.sleep(0.01)
             if time.monotonic() > time_stop:
                 return None
-
-    @staticmethod
-    def _read(vpp_instance, tries=3):
-        """Blockingly read within timeout, retry on early None.
-
-        For (sometimes) unknown reasons, VPP client in async mode likes
-        to return None occasionally before time runs out.
-        This function retries in that case.
-
-        Most of the time, early None means VPP crashed (see VPP-2033),
-        but is is better to give VPP more chances to respond without failure.
-
-        TODO: Perhaps CSIT now never triggers VPP-2033,
-        so investigate and remove this layer if even more speed is needed.
-
-        :param vpp_instance: Client instance to read from.
-        :param tries: Maximum number of tries to attempt.
-        :type vpp_instance: vpp_papi.VPPApiClient
-        :type tries: int
-        :returns: Message read or None if nothing got read even with retries.
-        :rtype: Optional[namedtuple]
-        """
-        timeout = vpp_instance.read_timeout
-        for _ in range(tries):
-            time_stop = time.monotonic() + 0.9 * timeout
-            reply = PapiSocketExecutor._read_internal(vpp_instance)
-            if reply is None and time.monotonic() < time_stop:
-                logger.trace("Early None. Retry?")
-                continue
-            return reply
-        logger.trace(f"Got {tries} early Nones, probably a real None.")
-        return None
 
     @staticmethod
     def _drain(vpp_instance, err_msg, timeout=30.0):
@@ -957,7 +890,7 @@ class PapiSocketExecutor:
         """
         time_stop = time.monotonic() + timeout
         while time.monotonic() < time_stop:
-            if PapiSocketExecutor._read_internal(vpp_instance, 0.0) is None:
+            if PapiSocketExecutor._read(vpp_instance, 0.0) is None:
                 return
         raise RuntimeError(f"{err_msg}\nTimed out while draining.")
 

@@ -332,8 +332,6 @@ class IPsecUtil:
     def vpp_ipsec_set_async_mode(node: dict, async_enable: int = 1) -> None:
         """Set IPsec async mode on|off.
 
-        Unconditionally, attempt to switch crypto dispatch into polling mode.
-
         :param node: VPP node to set IPsec async mode.
         :param async_enable: Async mode on or off.
         :type node: dict
@@ -341,18 +339,11 @@ class IPsecUtil:
         :raises RuntimeError: If failed to set IPsec async mode or if no API
             reply received.
         """
+        cmd = "ipsec_set_async_mode"
+        err_msg = f"Failed to set IPsec async mode on host {node['host']}"
+        args = dict(async_enable=async_enable)
         with PapiSocketExecutor(node) as papi_exec:
-            cmd = "ipsec_set_async_mode"
-            err_msg = f"Failed to set IPsec async mode on host {node['host']}"
-            args = dict(async_enable=async_enable)
             papi_exec.add(cmd, **args).get_reply(err_msg)
-            # TODO: Remove the below when 2602 support is no longer needed.
-            cmd = "crypto_set_async_dispatch_v2"
-            args = dict(mode=0, adaptive=False)
-            try:
-                papi_exec.add(cmd, **args).get_reply()
-            except AssertionError:
-                logger.debug("Ignore unsupported crypto_set_async_dispatch_v2.")
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker(
