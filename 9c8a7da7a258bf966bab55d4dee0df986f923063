@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "416408a2_2c5f2b67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-04T08:40:44Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND78bANDethip6-ip6base #generate-all",
+      "revId": "9c8a7da7a258bf966bab55d4dee0df986f923063",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
