@@ -1384,7 +1384,7 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
-            # Note: Set True for non-jumbo packets.
+            # TODO: Set True for non-jumbo packets.
             no_multi_seg=False,
             max_pktlen=0,
             # TODO: Apply desired RSS flags.
