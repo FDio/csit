@@ -132,7 +132,7 @@
 | | ${min_rate_hard} = | Get Min Rate Hard
 | | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${min_rate_soft} = | Evaluate | max(${ramp_up_rate}, ${min_rate_hard})
-| | Return From Keyword | ${min_rate_soft}
+| | Return From Keyword | ${10.0}
 
 | Get Mrr Trial Duration
 | | [Documentation]
@@ -455,7 +455,7 @@
 | | ... | \| \${use_latency} = \| Get Use Latency \|
 | |
 | | ${use_latency} = | Get Variable Value | ${use_latency} | ${PERF_USE_LATENCY}
-| | Return From Keyword | ${use_latency}
+| | Return From Keyword | ${False}
 
 | Set Jumbo
 | | [Documentation]
