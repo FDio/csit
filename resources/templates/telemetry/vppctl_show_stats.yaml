@@ -249,3 +249,8 @@ programs:
             - thread_id
     code: |
       vppctl -s {socket} show node counters verbose
+  - name: bundle_vppctl
+    metrics:
+      gauge: []
+    code: |
+      vppctl -s {socket} show dpdk buffer
