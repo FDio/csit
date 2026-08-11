@@ -335,7 +335,7 @@
 | | ... | ${nodes['${dut}']} | tap${${pf}-1}_namespace
 | | ${tap_feature_mask}= | Create Tap feature mask | gso=${enable_gso}
 | | ${_tap}=
-| | ... | And Add Tap Interface | ${nodes['${dut}']} | tap${${pf}-1}
+| | ... | Add Tap Interface | ${nodes['${dut}']} | tap${${pf}-1}
 | | ... | host_namespace=tap${${pf}-1}_namespace
 | | ... | num_rx_queues=${rxq_count_int}
 | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}

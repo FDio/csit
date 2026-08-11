@@ -84,15 +84,15 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Set interfaces in path up
-| | And Initialize IPv6 Forwarding | count=${rts_per_flow} | pfs=${nic_pfs}
-| | Then Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Set interfaces in path up
+| | Initialize IPv6 Forwarding | count=${rts_per_flow} | pfs=${nic_pfs}
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 78B-1c-ethip6-ip6scale100k-ndrpdr

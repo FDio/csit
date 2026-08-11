@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -90,18 +90,18 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And VPP Interface Set IP Address
+| | Set Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.2 | 30
-| | And VPP Interface Set IP Address
+| | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.1 | 30
 | | Set Test Variable | ${iperf_server_pf_key} | ${DUT1_pf1}[0]
-| | Then Traffic should pass with maximum rate on iPerf3
+| | Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
 | 128KB-1c-ethip4-ip4base-2tap-iperf3-mrr

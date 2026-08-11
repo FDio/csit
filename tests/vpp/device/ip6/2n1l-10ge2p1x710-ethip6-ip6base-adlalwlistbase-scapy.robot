@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -70,18 +70,18 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv6 forwarding in circular topology
-| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
-| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
-| | And ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
-| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
-| | Then Send packet and verify headers
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv6 forwarding in circular topology
+| | Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | Send packet and verify headers
 | | ... | ${tg} | 2001:1::2 | 2001:2::2
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]

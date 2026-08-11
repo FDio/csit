@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -90,19 +90,19 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
 | | ... | count=${nf_chains}
-| | And Initialize L2 bridge domains for multiple chains with Vhost-User
+| | Initialize L2 bridge domains for multiple chains with Vhost-User
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | And Configure chains of NFs connected via vhost-user
+| | Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=vppip4_2vhostvr1024
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-eth-l2bd-4ch-8vh-4vm1t-vppip4-ndrpdr

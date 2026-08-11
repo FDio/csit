@@ -86,16 +86,16 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Set Rates For Policer
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv4 forwarding in circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Set Rates For Policer
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv4 forwarding in circular topology
+| | Initialize IPv4 policer 2r3c-'ca' in circular topology
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-ipolicemarkbase-ndrpdr

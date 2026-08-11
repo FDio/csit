@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,22 +94,22 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver} | validate=${False}
-| | And Initialize layer interface
-| | And VPP Interface Set IP Address
+| | Set Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver} | validate=${False}
+| | Initialize layer interface
+| | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}1}[0]
 | | ... | ${iperf_server_bind_gw} | ${iperf_server_bind_mask}
-| | And VPP Interface Set IP Address
+| | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}2}[0]
 | | ... | ${iperf_client_bind_gw} | ${iperf_client_bind_mask}
-| | And Configure chains of NFs connected via vhost-user on single node
+| | Configure chains of NFs connected via vhost-user on single node
 | | ... | node=DUT1 | nf_nodes=${2} | vnf=iperf3 | auto_scale=${True}
 | | ... | fixed_auto_scale=${True} | validate=${False}
-| | And Get CPU Info from All Nodes | ${nodes}
+| | Get CPU Info from All Nodes | ${nodes}
 | | Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***

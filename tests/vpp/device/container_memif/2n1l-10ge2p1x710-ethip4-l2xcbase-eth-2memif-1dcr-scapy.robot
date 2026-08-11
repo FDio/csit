@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -75,15 +75,15 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize L2 xconnect with memif pairs
-| | Then Send IPv4 bidirectionally and verify received packets
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Start containers for test | auto_scale=${False} | pinning=${False}
+| | Initialize L2 xconnect with memif pairs
+| | Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***

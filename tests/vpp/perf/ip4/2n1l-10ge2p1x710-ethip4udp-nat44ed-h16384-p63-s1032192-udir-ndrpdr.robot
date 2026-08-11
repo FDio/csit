@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -113,17 +113,17 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv4 forwarding for NAT44 in circular topology
-| | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Then Send ramp-up traffic
-| | And Verify NAT44 UDP sessions number on DUT1 node
-| | And Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv4 forwarding for NAT44 in circular topology
+| | Initialize NAT44 endpoint-dependent mode in circular topology
+| | Send ramp-up traffic
+| | Verify NAT44 UDP sessions number on DUT1 node
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr

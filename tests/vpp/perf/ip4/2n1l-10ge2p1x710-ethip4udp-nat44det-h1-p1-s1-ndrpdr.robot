@@ -109,17 +109,17 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv4 forwarding for NAT44 in circular topology
-| | And Initialize NAT44 deterministic mode in circular topology
-| | Then Send ramp-up traffic
-| | And Verify DET44 sessions number on DUT1 node
-| | And Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv4 forwarding for NAT44 in circular topology
+| | Initialize NAT44 deterministic mode in circular topology
+| | Send ramp-up traffic
+| | Verify DET44 sessions number on DUT1 node
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44det-h1-p1-s1-ndrpdr

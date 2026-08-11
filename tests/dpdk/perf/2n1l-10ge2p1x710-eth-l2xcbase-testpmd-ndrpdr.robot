@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -76,11 +76,11 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Pre-initialize layer driver | ${nic_driver}
-| | When Start testpmd on all DUTs | ${nodes} | ${topology_info}
+| | Set Max Rate And Jumbo
+| | Pre-initialize layer driver | ${nic_driver}
+| | Start testpmd on all DUTs | ${nodes} | ${topology_info}
 | | ... | ${phy_cores} | ${rxq} | ${jumbo}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-eth-l2xcbase-testpmd-ndrpdr

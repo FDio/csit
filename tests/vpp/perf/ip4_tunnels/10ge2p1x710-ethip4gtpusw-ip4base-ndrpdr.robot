@@ -83,14 +83,14 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IP4 forwarding with GTPU tunnel in 3-node circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IP4 forwarding with GTPU tunnel in 3-node circular topology
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4gtpusw-ip4base-ndrpdr

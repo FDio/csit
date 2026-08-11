@@ -85,13 +85,13 @@ reusable and readable code for CSIT.
         | | ...
         | | Set Test Variable | \${frame_size}
         | | ...
-        | | Given Add worker threads and rxqueues to all DUTs
+        | | Add worker threads and rxqueues to all DUTs
         | | ... | ${phy_cores} | ${rxq}
-        | | And Add PCI devices to all DUTs
+        | | Add PCI devices to all DUTs
         | | Set Max Rate And Jumbo And Handle Multi Seg
-        | | And Apply startup configuration on all VPP DUTs
-        | | When Initialize L2 patch
-        | | Then Find NDR and PDR intervals using optimized search
+        | | Apply startup configuration on all VPP DUTs
+        | | Initialize L2 patch
+        | | Find NDR and PDR intervals using optimized search
 
   + Every suite and test case template (or testcase)
     SHALL contain short documentation.

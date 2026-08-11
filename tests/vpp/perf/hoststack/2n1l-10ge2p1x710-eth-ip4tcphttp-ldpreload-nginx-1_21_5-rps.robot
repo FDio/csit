@@ -78,20 +78,20 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Configure VPP startup configuration for NGINX | ${sess_prealloc_sess}
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Configure VPP startup configuration for NGINX | ${sess_prealloc_sess}
 | | ... | ${sess_evt_q_length} | ${v4_sess_tbl_buckets} | ${v4_sess_tbl_mem}
 | | ... | ${local_endpts_tbl_buckets} | ${local_endpts_tbl_mem}
 | | ... | ${tcp_prealloc_conns} | ${tcp_prealloc_ho_conns}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Set up LDP or VCL Nginx on DUT1 node | ${mode}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Set up LDP or VCL Nginx on DUT1 node | ${mode}
 | | ... | ${rps_cps} | ${phy_cores} | ${qat} | ${tls_tcp}
-| | And Additional Suite Setup Action For ab
-| | Then Measure TLS requests or connections per second
+| | Additional Suite Setup Action For ab
+| | Measure TLS requests or connections per second
 | | ... | ${ciphers} | ${frame_size} | ${tls_tcp} | ${rps_cps}
 
 *** Test Cases ***

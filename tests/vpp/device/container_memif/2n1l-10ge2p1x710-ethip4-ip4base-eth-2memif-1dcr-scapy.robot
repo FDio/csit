@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -77,15 +77,15 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize IPv4 routing with memif pairs
-| | Then Send packet and verify headers
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Start containers for test | auto_scale=${False} | pinning=${False}
+| | Initialize IPv4 routing with memif pairs
+| | Send packet and verify headers
 | | ... | ${tg} | 10.10.10.1 | 20.20.20.1
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]

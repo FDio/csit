@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -83,26 +83,26 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv4 forwarding in circular topology
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv4 forwarding in circular topology
+| | ${table_idx} | ${skip_n} | ${match_n}= | VPP Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst | 255.255.255.0
-| | And Vpp Configures Classify Session L3
+| | Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
 | | ... | 20.20.20.0
-| | And Vpp Enable Input Acl Interface
+| | Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ip4 | ${table_idx}
-| | And Vpp Configures Classify Session L3
+| | Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
 | | ... | 10.10.10.0
-| | And Vpp Enable Input Acl Interface
+| | Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ip4 | ${table_idx}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-iacldstbase-ndrpdr

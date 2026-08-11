@@ -96,16 +96,16 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Set SFDP Capacity For Sessions | ${transaction_scale}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize SFDP Services | ${sfdp_services}
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Set SFDP Capacity For Sessions | ${transaction_scale}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize SFDP Services | ${sfdp_services}
 | | ... | 192.168.0.0 | 20.0.0.0 | ${16}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 100B-1c-ethip4udp-sfdp-ip4-h65536-p63-s4128768-tput-ndrpdr

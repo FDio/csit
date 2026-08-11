@@ -79,8 +79,8 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | Then Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-ndrpdr

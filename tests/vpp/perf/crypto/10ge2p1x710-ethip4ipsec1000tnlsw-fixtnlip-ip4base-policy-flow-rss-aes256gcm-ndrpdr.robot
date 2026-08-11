@@ -1,5 +1,5 @@
-# Copyright (c) 2024 Intel and/or its affiliates.
-# Copyright (c) 2024 Cisco and/or its affiliates.
+# Copyright (c) 2026 Intel and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -107,22 +107,22 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPSec in 3-node circular topology
-| | ${flow_index} = | And VPP Ipsec Flow Enable Rss | ${dut1}
-| | And VPP Flow Enable | ${dut1} | ${DUT1_${int}2}[0] | ${flow_index}
-| | ${flow_index} = | And VPP Ipsec Flow Enable Rss | ${dut2}
-| | And VPP Flow Enable | ${dut2} | ${DUT2_${int}1}[0] | ${flow_index}
-| | And VPP IPsec Add Multiple Tunnels
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPSec in 3-node circular topology
+| | ${flow_index} = | VPP Ipsec Flow Enable Rss | ${dut1}
+| | VPP Flow Enable | ${dut1} | ${DUT1_${int}2}[0] | ${flow_index}
+| | ${flow_index} = | VPP Ipsec Flow Enable Rss | ${dut2}
+| | VPP Flow Enable | ${dut2} | ${DUT2_${int}1}[0] | ${flow_index}
+| | VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${DUT1_${int}2}[0] | ${DUT2_${int}1}[0] | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range} | ${False}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm-ndrpdr

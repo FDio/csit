@@ -532,13 +532,13 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${vperf_client_attr}[namespace] | ${core_list}
 | | ... | ${vperf_client_attr}[cfg_vpp_feature] | ${vperf_client}
-| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ... | ${vperf_client} | ${dut2} | ${vperf_server}
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${vperf_client}
-| | Then Set test message | ${client_output}
-| | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
+| | Set test message | ${client_output}
+| | Hoststack Test Program Finished | ${dut2} | ${server_pid}
 | | ... | ${vperf_server} | ${dut1} | ${vperf_client}
 | | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
@@ -582,7 +582,7 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
 | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
-| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ... | ${iperf3_client} | ${dut2} | ${iperf3_server}
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
@@ -590,7 +590,7 @@
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
-| | Then Set test message | ${client_output}
+| | Set test message | ${client_output}
 | | Return From Keyword | ${client_defer_fail}
 
 | Set up LDP or VCL Nginx on DUT1 node

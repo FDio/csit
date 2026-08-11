@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -84,22 +84,22 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv6 forwarding in circular topology
-| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
-| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
-| | And Add Fib Table | ${dut2} | 1 | ipv6=${TRUE}
-| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
-| | And ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
-| | And ADL Add allowlist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip6 | 1
-| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
-| | And ADL interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
-| | Then Find NDR and PDR intervals using optimized search
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv6 forwarding in circular topology
+| | Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | Add Fib Table | ${dut2} | 1 | ipv6=${TRUE}
+| | Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
+| | ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | ADL Add allowlist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip6 | 1
+| | ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | ADL interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 78B-1c-ethip6-ip6base-adlalwlistbase-ndrpdr

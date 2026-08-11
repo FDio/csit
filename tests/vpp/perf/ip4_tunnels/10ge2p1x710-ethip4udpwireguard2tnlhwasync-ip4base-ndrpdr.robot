@@ -103,21 +103,21 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And VPP Enable Wireguard Async Mode on all VPP DUTs
-| | And Initialize WireGuard in 3-node circular topology
-| | And VPP WireGuard Create Tunnel Interfaces On DUTs
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | VPP Enable Wireguard Async Mode on all VPP DUTs
+| | Initialize WireGuard in 3-node circular topology
+| | VPP WireGuard Create Tunnel Interfaces On DUTs
 | | ... | ${nodes} | ${DUT1_${int}2}[0] | ${DUT2_${int}1}[0]
 | | ... | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2_mac}[0]
 | | ... | ${DUT2_${int}1_mac}[0] | ${wg_if1_ip4} | ${wg_if2_ip4}
 | | ... | ${n_tunnels} | ${listen_port} | ${keepalive_time}
 | | ... | ${laddr_ip4} | ${raddr_ip4}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udpwireguard2tnlhwasync-ip4base-ndrpdr

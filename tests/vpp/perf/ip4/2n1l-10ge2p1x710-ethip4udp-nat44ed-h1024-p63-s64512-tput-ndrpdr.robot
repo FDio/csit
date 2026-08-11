@@ -109,18 +109,18 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv4 forwarding for NAT44 in circular topology
-| | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Then Send ramp-up traffic
-| | And Verify NAT44 UDP sessions number on DUT1 node
-| | And Find NDR and PDR intervals using optimized search
-| | And Verify NAT44 UDP sessions number on DUT1 node
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv4 forwarding for NAT44 in circular topology
+| | Initialize NAT44 endpoint-dependent mode in circular topology
+| | Send ramp-up traffic
+| | Verify NAT44 UDP sessions number on DUT1 node
+| | Find NDR and PDR intervals using optimized search
+| | Verify NAT44 UDP sessions number on DUT1 node
 
 *** Test Cases ***
 | 100B-1c-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr

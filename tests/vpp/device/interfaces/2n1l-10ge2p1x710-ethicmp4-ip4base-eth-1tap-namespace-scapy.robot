@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -83,31 +83,31 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | ${int1}= | And Add Tap Interface | ${dut1} | tap0
-| | And VPP Interface Set IP Address
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | ${int1}= | Add Tap Interface | ${dut1} | tap0
+| | VPP Interface Set IP Address
 | | ... | ${dut1} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And VPP Interface Set IP Address
+| | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut_ip_address} | ${prefix}
-| | And Set Interface State | ${dut1} | ${int1} | up
-| | And Create Namespace | ${dut1} | nmspace1
-| | And Attach Interface To Namespace | ${dut1} | nmspace1 | tap0
-| | And Set Linux Interface MAC
+| | Set Interface State | ${dut1} | ${int1} | up
+| | Create Namespace | ${dut1} | nmspace1
+| | Attach Interface To Namespace | ${dut1} | nmspace1 | tap0
+| | Set Linux Interface MAC
 | | ... | ${dut1} | tap0 | ${tap1_NM_mac} | nmspace1
-| | And Set Linux Interface IP
+| | Set Linux Interface IP
 | | ... | ${dut1} | tap0 | ${tap1_NM_ip} | ${prefix} | nmspace1
-| | And VPP Add IP Neighbor
+| | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_ip_address} | ${TG_pf1_mac}[0]
-| | And VPP Add IP Neighbor
+| | VPP Add IP Neighbor
 | | ... | ${dut1} | ${int1} | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | And Add Linux Route
+| | Add Linux Route
 | | ... | ${dut1} | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | nmspace1
-| | Then Send ICMP echo request and verify answer
+| | Send ICMP echo request and verify answer
 | | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_vf1_mac}[0] | ${TG_pf1_mac}[0]
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 

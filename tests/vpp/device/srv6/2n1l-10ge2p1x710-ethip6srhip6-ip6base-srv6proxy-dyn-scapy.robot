@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -106,15 +106,15 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize SRv6 with 'dynamic_proxy' SR-unaware Service Function
-| | Then Send IPv6 Packet and verify SRv6 encapsulation in received packet
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Start containers for test | auto_scale=${False} | pinning=${False}
+| | Initialize SRv6 with 'dynamic_proxy' SR-unaware Service Function
+| | Send IPv6 Packet and verify SRv6 encapsulation in received packet
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | ${DUT1_${int}2_mac}[0] | ${tg_if1_ip6_subnet}2 | ${tg_if2_ip6_subnet}2
 | | ... | ${dut1_sid1} | ${dut1_sid2} | ${dut2_sid2} | ${dut2_sid1}

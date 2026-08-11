@@ -87,21 +87,21 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize LISP IPv4 forwarding in 3-node circular topology
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Configure LISP topology in 3-node circular topology
+| | Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${NONE}
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4lispip4-ip4base-ndrpdr

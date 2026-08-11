@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -92,18 +92,18 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
 | | ... | count=${nf_chains}
-| | And Start containers for test
+| | Start containers for test
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | auto_scale=${False}
-| | And Initialize L2 Bridge Domain for multiple chains with memif pairs
+| | Initialize L2 Bridge Domain for multiple chains with memif pairs
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | auto_scale=${False}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-eth-l2bd-2ch-24mif-12dcr2t-vppip4-ndrpdr

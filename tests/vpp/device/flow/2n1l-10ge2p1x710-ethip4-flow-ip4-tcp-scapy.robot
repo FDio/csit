@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2026 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -68,54 +68,54 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
 | |
 | | Clear Packet Trace On Dut | ${dut1}
 | | Vpp Enable Traces On Dut | ${dut1}
-| | ${flow_index} = | And Vpp Create Ip4 Flow | ${dut1}
+| | ${flow_index} = | VPP Create Ip4 Flow | ${dut1}
 | | ... | ${src_ip} | ${dst_ip} | proto=TCP
 | | ... | action=redirect-to-queue | value=${${rxq}-1}
-| | And Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | Then Send flow packet and verify action
+| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Send flow packet and verify action
 | | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | flow_type=IP4 | proto=TCP
 | | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
 | | ... | action=redirect-to-queue | action_value=${${rxq}-1}
-| | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | And Vpp Flow Del | ${dut1} | ${flow_index}
+| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Vpp Flow Del | ${dut1} | ${flow_index}
 | |
 | | Clear Packet Trace On Dut | ${dut1}
 | | Vpp Enable Traces On Dut | ${dut1}
-| | ${flow_index} = | And Vpp Create Ip4 Flow | ${dut1}
+| | ${flow_index} = | VPP Create Ip4 Flow | ${dut1}
 | | ... | ${src_ip} | ${dst_ip} | proto=TCP
 | | ... | action=drop
-| | And Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | Then Send flow packet and verify action
+| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Send flow packet and verify action
 | | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | flow_type=IP4 | proto=TCP
 | | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
 | | ... | action=drop
-| | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | And Vpp Flow Del | ${dut1} | ${flow_index}
+| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Vpp Flow Del | ${dut1} | ${flow_index}
 | |
 | | Clear Packet Trace On Dut | ${dut1}
 | | Vpp Enable Traces On Dut | ${dut1}
-| | ${flow_index} = | And Vpp Create Ip4 Flow | ${dut1}
+| | ${flow_index} = | VPP Create Ip4 Flow | ${dut1}
 | | ... | ${src_ip} | ${dst_ip} | proto=TCP
 | | ... | action=mark | value=${7}
-| | And Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | Then Send flow packet and verify action
+| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Send flow packet and verify action
 | | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | flow_type=IP4 | proto=TCP
 | | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
 | | ... | action=mark
-| | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | And Vpp Flow Del | ${dut1} | ${flow_index}
+| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Vpp Flow Del | ${dut1} | ${flow_index}
 
 *** Test Cases ***
 | 64B-0c-ethip4-flow-ip4-tcp-scapy

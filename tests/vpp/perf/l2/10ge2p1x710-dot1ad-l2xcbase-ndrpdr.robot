@@ -89,23 +89,23 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply Startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | When Initialize VLAN sub-interfaces in 3-node circular topology
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply Startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2} | ${DUT2_${int}1}[0] | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And Configure L2 tag rewrite method on interfaces
+| | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Configure L2XC
+| | Configure L2XC
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${subif_index_1}
-| | And Configure L2XC
+| | Configure L2XC
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${subif_index_2}
-| | Then Find NDR and PDR intervals using optimized search
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-dot1ad-l2xcbase-ndrpdr

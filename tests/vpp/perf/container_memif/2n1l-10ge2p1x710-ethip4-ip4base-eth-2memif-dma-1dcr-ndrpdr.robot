@@ -89,18 +89,18 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Enable DMA WQs on all DUTs
-| | And Start containers for test
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Enable DMA WQs on all DUTs
+| | Start containers for test
 | | ... | nf_chains=${1} | nf_nodes=${1} | auto_scale=${True}
 | | ... | pinning=${True}
-| | And Initialize IPv4 routing with memif pairs
-| | Then Find NDR and PDR intervals using optimized search
+| | Initialize IPv4 routing with memif pairs
+| | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-eth-2memif-dma-1dcr-ndrpdr

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,16 +73,16 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Set Rates For Policer
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv6 forwarding in circular topology
-| | And Initialize IPv6 policer 2r3c-'ca' in circular topology
-| | Then Send packet and verify marking
+| | Set Max Rate And Jumbo
+| | Set Rates For Policer
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Initialize IPv6 forwarding in circular topology
+| | Initialize IPv6 policer 2r3c-'ca' in circular topology
+| | Send packet and verify marking
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ... | ${TG_pf1_mac}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | 2001:1::2 | 2001:2::2

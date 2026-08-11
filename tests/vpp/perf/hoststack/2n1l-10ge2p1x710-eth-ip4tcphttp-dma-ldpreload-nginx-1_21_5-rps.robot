@@ -74,18 +74,18 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Add Additional Startup Configuration For DMA On All DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Set up LDP or VCL Nginx on DUT1 node | ${mode}
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Add Additional Startup Configuration For DMA On All DUTs
+| | Apply startup configuration on all VPP DUTs
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | Set up LDP or VCL Nginx on DUT1 node | ${mode}
 | | ... | ${rps_cps} | ${phy_cores} | ${qat} | ${tls_tcp}
 | | ... | ${True}
-| | And Additional Suite Setup Action For ab
-| | Then Measure TLS requests or connections per second
+| | Additional Suite Setup Action For ab
+| | Measure TLS requests or connections per second
 | | ... | ${ciphers} | ${frame_size} | ${tls_tcp} | ${rps_cps}
 
 *** Test Cases ***

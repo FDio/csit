@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -74,24 +74,24 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Given Set Max Rate And Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
-| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | ${int1}= | And Add Tap Interface | ${dut1} | tap0
-| | ${int2}= | And Add Tap Interface | ${dut1} | tap1
-| | And Set Interface State | ${dut1} | ${int1} | up
-| | And Set Interface State | ${dut1} | ${int2} | up
-| | And Create L2 BD | ${dut1} | 19 | learn=${TRUE}
-| | And Create L2 BD | ${dut1} | 20 | learn=${TRUE}
-| | And Linux Add Bridge | ${dut1} | ${bid_TAP} | tap0 | tap1
-| | And Add interface to bridge domain | ${dut1} | ${int1} | 20 | 0
-| | And Add interface to bridge domain | ${dut1} | ${DUT1_${int}1}[0] | 20 | 0
-| | And Add interface to bridge domain | ${dut1} | ${int2} | 19 | 0
-| | And Add interface to bridge domain | ${dut1} | ${DUT1_${int}2}[0] | 19 | 0
-| | Then Send IP packet and verify received packet
+| | Set Max Rate And Jumbo
+| | Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | Pre-initialize layer driver | ${nic_driver}
+| | Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | Initialize layer driver | ${nic_driver}
+| | Initialize layer interface
+| | ${int1}= | Add Tap Interface | ${dut1} | tap0
+| | ${int2}= | Add Tap Interface | ${dut1} | tap1
+| | Set Interface State | ${dut1} | ${int1} | up
+| | Set Interface State | ${dut1} | ${int2} | up
+| | Create L2 BD | ${dut1} | 19 | learn=${TRUE}
+| | Create L2 BD | ${dut1} | 20 | learn=${TRUE}
+| | Linux Add Bridge | ${dut1} | ${bid_TAP} | tap0 | tap1
+| | Add interface to bridge domain | ${dut1} | ${int1} | 20 | 0
+| | Add interface to bridge domain | ${dut1} | ${DUT1_${int}1}[0] | 20 | 0
+| | Add interface to bridge domain | ${dut1} | ${int2} | 19 | 0
+| | Add interface to bridge domain | ${dut1} | ${DUT1_${int}2}[0] | 19 | 0
+| | Send IP packet and verify received packet
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,7 +67,7 @@
 | |
 | | ${tx_src_mac}= | Get Interface Mac | ${tg_node} | ${tx_src_port}
 | | ${rx_dst_mac}= | Get Interface Mac | ${tg_node} | ${rx_dst_port}
-| | Then Send packet and verify headers
+| | Send packet and verify headers
 | | ... | ${tg} | 192.168.0.1 | 192.168.0.2
 | | ... | ${tx_src_port} | ${tx_src_mac} | ${rx_dst_mac}
 | | ... | ${rx_dst_port} | ${tx_src_mac} | ${rx_dst_mac}
