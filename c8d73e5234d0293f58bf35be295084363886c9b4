@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b915125_529db35f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-11T11:49:33Z",
+      "side": 1,
+      "message": "Only one test is enough to verify the updated default resource still works.\n\ngha-run csit-vpp-2n-emr perftest mrrANDnic_*AND1cAND64bANDeth-l2bdbasemaclrn-eth-2memif-dma-1dcr #generate-all",
+      "revId": "c8d73e5234d0293f58bf35be295084363886c9b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
