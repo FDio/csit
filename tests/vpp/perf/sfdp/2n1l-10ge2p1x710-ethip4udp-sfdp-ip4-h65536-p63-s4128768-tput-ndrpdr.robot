@@ -96,15 +96,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | ${pre_stats}= | Create List
-| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
-| | ... | vpp-clear-runtime
-| | Set Test Variable | ${pre_stats}
-| | ${post_stats}= | Create List
-| | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog
-| | ... | vpp-show-runtime
-| | Set Test Variable | ${post_stats}
-| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Set SFDP Capacity For Sessions | ${transaction_scale}

@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -109,15 +109,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | ${pre_stats}= | Create List
-| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
-| | ... | vpp-clear-runtime
-| | Set Test Variable | ${pre_stats}
-| | ${post_stats}= | Create List
-| | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog
-| | ... | vpp-show-runtime
-| | Set Test Variable | ${post_stats}
-| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
