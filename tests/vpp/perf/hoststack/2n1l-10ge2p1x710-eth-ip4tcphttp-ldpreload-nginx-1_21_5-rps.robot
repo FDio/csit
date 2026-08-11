@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Intel and/or its affiliates.
+# Copyright (c) 2026 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | HOSTSTACK | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
