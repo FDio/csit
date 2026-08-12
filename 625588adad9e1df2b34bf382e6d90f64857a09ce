@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0257eee_1d0b7993",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2026-08-12T06:43:46Z",
+      "side": 1,
+      "message": "Feel free to merge it and cherry-pick to oper branch, and then watch daily and weekly runs for a week.",
+      "revId": "625588adad9e1df2b34bf382e6d90f64857a09ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
