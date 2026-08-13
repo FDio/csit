@@ -54,15 +54,15 @@ function build_vpp_ubuntu () {
 
     # Not silencing stdout as typos are likely in experiments.
     preargs="UNATTENDED=y"
-    make ${preargs} install-dep install-ext-deps || die
-    make ${preargs} install-opt-deps || echo "Old build, ignoring opt-deps error"
+    make ${preargs} install-dep install-ext-deps > "tmp.log" || die
+    make ${preargs} install-opt-deps > "tmp.log" || echo "Old build, ignoring opt-deps error"
 
     postarg="VPP_EXTRA_CMAKE_ARGS='-DVPP_VECTOR_GROW_BY_ONE=ON -DVPP_ENABLE_SANITIZE_ADDR=ON'"
     if [ -n "${VPP_PLATFORM-}" ]; then
         preargs="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
     # Yes, preargs must not be quoted, but postarg must.
-    make ${preargs} pkg-deb-debug "${postarg}" || die "VPP build failed."
+    make ${preargs} pkg-deb-debug "${postarg}" > "tmp.log" || die "VPP build failed."
     # TODO: Add platform backward compatibility when needed.
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
