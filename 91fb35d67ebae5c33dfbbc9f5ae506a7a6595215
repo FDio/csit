@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23c5bb5c_0cf0e11d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-13T11:34:38Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-emr perftest mrrANDnic_*ANDethip4tcp-sfdp-ip4nat-h65536-p63-s4128768-cps #generate-all",
+      "revId": "91fb35d67ebae5c33dfbbc9f5ae506a7a6595215",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
