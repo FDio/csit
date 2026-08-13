@@ -1,7 +1,7 @@
 ---
 # file: tasks/main.yaml
 
-- name: "Install Prerequisites Based on OS"
+- name: Install Prerequisites Based on OS
   ansible.builtin.include_tasks:
     file: "{{ item }}"
   with_first_found:
@@ -11,7 +11,7 @@
   tags:
     - docker-inst-dependencies
 
-- name: "Install Docker"
+- name: Install Docker
   ansible.builtin.package:
     name:
       - "{{ docker_package }}"
@@ -20,7 +20,7 @@
   tags:
     - docker-inst-package
 
-- name: "Enable Docker Service"
+- name: Enable Docker Service
   ansible.builtin.service:
     name: docker
     state: "{{ docker_service_state }}"
@@ -30,13 +30,13 @@
   tags:
     - docker-conf-service
 
-- name: "Configure Docker Daemon"
+- name: Configure Docker Daemon
   ansible.builtin.template:
-    src: "templates/daemon.json.j2"
-    dest: "/etc/docker/daemon.json"
-    owner: "root"
-    group: "root"
-    mode: "0644"
+    src: templates/daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
   notify:
     - "Restart Docker"
   when: >
@@ -45,5 +45,19 @@
   tags:
     - docker-conf-daemon
 
-- name: "Meta - Flush handlers"
+- name: Configure modules
+  ansible.builtin.lineinfile:
+    path: "/etc/modules-load.d/{{ item }}.conf"
+    line: "{{ item }}"
+    create: true
+    state: present
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "ip_tables"
+  tags:
+    - docker-conf-daemon
+
+- name: Flush handlers
   ansible.builtin.meta: flush_handlers
