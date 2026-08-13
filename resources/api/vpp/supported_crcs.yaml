@@ -291,6 +291,11 @@
     # vnet/sfdp/sfdp.api
     sfdp_kill_session: '0x1a16d196'
     sfdp_kill_session_reply: '0xe8d4e804'
+
+    # plugins/sfdp_services/base/nat/nat.api
+    sfdp_nat_alloc_pool_add_del: '0x6ca85aad'
+
+    # vnet/sfdp/sfdp.api
     sfdp_session_details: '0x3eaab6b9'
     sfdp_session_dump: '0x51077d14'
     sfdp_set_services: '0x6227a034'
