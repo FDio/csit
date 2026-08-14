@@ -158,11 +158,12 @@ test-sets:
 
   2n-zn2-vpp-iterative:
     infra:
+      10ge2p1x710:
+        - vfio-pci
       25ge2p1xxv710:
-        - avf
         - vfio-pci
       100ge2p1cx556a:
-        - rdma-core
+        - mlx5_core
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
