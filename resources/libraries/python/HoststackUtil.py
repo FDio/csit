@@ -358,9 +358,23 @@ class HoststackUtil:
         env_vars = f"{program['env_vars']} " if "env_vars" in program else ""
         args = program["args"]
         program_path = program.get("path", "")
-        # NGINX used `worker_cpu_affinity` in configuration file
+        # NGINX handles its own affinity via `worker_cpu_affinity`.
+        # Everything else must be pinned via taskset to the caller-
+        # provided core_list (already on the NIC's NUMA in
+        # hoststack.robot), otherwise on isolcpus-heavy CI hosts the
+        # scheduler lands them cross-socket vs VPP + NIC.
+        # vperf uses VCL (user-space TCP over shared-mem FIFOs) and
+        # must NOT be `chrt -r 99`: on isolcpus + nohz_full the RT
+        # bandwidth throttle (sched_rt_runtime_us) preempts it
+        # periodically, collapsing TCP cwnd (visible as sawtooth
+        # 44 -> ~1 Gbps in the vperf output).  iperf3 uses kernel
+        # sockets and does benefit from SCHED_FIFO 99.
         taskset_cmd = ""
-        if program_name != "nginx" and program_name not in ("vperf_client", "vperf_server"):
+        if program_name == "nginx":
+            taskset_cmd = ""
+        elif program_name in ("vperf_client", "vperf_server"):
+            taskset_cmd = f"taskset --cpu-list {core_list} "
+        else:
             taskset_cmd = f"taskset --cpu-list {core_list} chrt -r 99 "
         cmd = (
             f"nohup {taskset_cmd}{shell_cmd} '{env_vars} "
@@ -414,6 +428,500 @@ class HoststackUtil:
         sleep(sleep_time + 1)
 
     @staticmethod
+    def _sample_system_metrics(node, tag):
+        """Runtime snapshot of the load-time signals not covered by the
+        one-shot environment baseline: for each core >= 25% busy, log
+        its **delivered** frequency (APERF/MPERF delta, matches
+        turbostat's Bzy_MHz) alongside the P-state driver's requested
+        frequency, its NUMA/package id, the top process(es) landed on
+        it; plus a compact CPU package temperature line and a
+        hugepages usage line.
+
+        Static info (arch, top-N process table, ``free -h``, full CPU
+        temperature enumeration) is intentionally omitted -- it lives
+        in :meth:`_log_environment_baseline`.  APERF/MPERF is x86-only
+        and requires ``msr-tools`` (``rdmsr``) plus the ``msr`` kernel
+        module; if either is missing (e.g. on ARM DUTs) the ``actual``
+        column is simply left off.
+
+        :param node: DUT node to sample.
+        :param tag: Free-form label included in the log (e.g. program name).
+        :type node: dict
+        :type tag: str
+        """
+        busy_threshold = 25.0
+        max_busy_reported = 24
+
+        # /proc/stat delta over 1s + APERF/MPERF delta over the same
+        # window (only if rdmsr is installed).  Everything in a single
+        # SSH round-trip so we don't drift.
+        stat_cmd = (
+            "sh -c \""
+            "grep '^cpu[0-9]' /proc/stat > /tmp/_hs_stat1; "
+            "have=0; "
+            "modprobe msr 2>/dev/null; "
+            "command -v rdmsr >/dev/null 2>&1 && have=1; "
+            "if [ \\$have -eq 1 ]; then "
+            "  rdmsr -a 0xE8 > /tmp/_hs_aperf1 2>/dev/null || "
+            "    : > /tmp/_hs_aperf1; "
+            "  rdmsr -a 0xE7 > /tmp/_hs_mperf1 2>/dev/null || "
+            "    : > /tmp/_hs_mperf1; "
+            "fi; "
+            "sleep 1; "
+            "grep '^cpu[0-9]' /proc/stat > /tmp/_hs_stat2; "
+            "if [ \\$have -eq 1 ]; then "
+            "  rdmsr -a 0xE8 > /tmp/_hs_aperf2 2>/dev/null || "
+            "    : > /tmp/_hs_aperf2; "
+            "  rdmsr -a 0xE7 > /tmp/_hs_mperf2 2>/dev/null || "
+            "    : > /tmp/_hs_mperf2; "
+            "fi; "
+            "echo === STAT ===; "
+            "paste /tmp/_hs_stat1 /tmp/_hs_stat2; "
+            "echo === MSR ===; "
+            "[ \\$have -eq 1 ] && paste /tmp/_hs_aperf1 "
+            "/tmp/_hs_mperf1 /tmp/_hs_aperf2 /tmp/_hs_mperf2\""
+        )
+        try:
+            _, stat_out, _ = exec_cmd(node, stat_cmd, sudo=True)
+        except Exception:  # pylint: disable=broad-except
+            stat_out = ""
+
+        # Split into STAT and MSR sections.
+        stat_lines, msr_lines = [], []
+        section = None
+        for line in (stat_out or "").splitlines():
+            s = line.strip()
+            if s == "=== STAT ===":
+                section = "stat"
+                continue
+            if s == "=== MSR ===":
+                section = "msr"
+                continue
+            if section == "stat":
+                stat_lines.append(line)
+            elif section == "msr":
+                msr_lines.append(line)
+
+        busy_cores = []
+        for line in stat_lines:
+            parts = line.split()
+            # 8 fields per sample (name + user nice system idle iowait
+            # irq softirq); paste joins them side by side -> 16 fields.
+            if len(parts) < 16 or not parts[0].startswith("cpu"):
+                continue
+            try:
+                core = parts[0]
+                u1, n1, s1, i1, w1, q1, x1 = map(int, parts[1:8])
+                u2, n2, s2, i2, w2, q2, x2 = map(int, parts[9:16])
+                total1 = u1 + n1 + s1 + i1 + w1 + q1 + x1
+                total2 = u2 + n2 + s2 + i2 + w2 + q2 + x2
+                idle_delta = (i2 + w2) - (i1 + w1)
+                delta = total2 - total1
+                if delta <= 0:
+                    continue
+                usage = 100.0 * (delta - idle_delta) / delta
+                if usage >= busy_threshold:
+                    busy_cores.append((core, usage))
+            except (ValueError, IndexError):
+                continue
+
+        # APERF/MPERF -> delivered MHz per CPU. rdmsr -a emits one hex
+        # value per online CPU in ascending index order, so line index
+        # == cpu index.  MSRs are 64-bit; mask to handle wrap (in 1s at
+        # a few GHz there is no wrap in practice).
+        core_actual_mhz = {}
+        for cpu_i, line in enumerate(msr_lines):
+            parts = line.split()
+            if len(parts) < 4:
+                continue
+            try:
+                a1 = int(parts[0], 16)
+                m1 = int(parts[1], 16)
+                a2 = int(parts[2], 16)
+                m2 = int(parts[3], 16)
+            except ValueError:
+                continue
+            da = (a2 - a1) & 0xFFFFFFFFFFFFFFFF
+            dm = (m2 - m1) & 0xFFFFFFFFFFFFFFFF
+            if dm == 0:
+                continue
+            # ~1s window -> ΔAPERF / 1e6 = delivered MHz. Small sleep
+            # drift is negligible for "at turbo or at base" decisions.
+            core_actual_mhz[cpu_i] = int(da // 1_000_000)
+
+        # Per-CPU topology + requested (P-state) frequency, one call.
+        topo_cmd = (
+            "sh -c '"
+            "for c in /sys/devices/system/cpu/cpu[0-9]*; do "
+            "n=${c##*/cpu}; "
+            "pkg=$(cat $c/topology/physical_package_id 2>/dev/null); "
+            "numa=$(basename $(readlink -f $c/node* 2>/dev/null) 2>/dev/null); "
+            "f=$(cat $c/cpufreq/scaling_cur_freq 2>/dev/null); "
+            "echo \"$n pkg=$pkg node=$numa freq_khz=$f\"; "
+            "done'"
+        )
+        try:
+            _, topo_out, _ = exec_cmd(node, topo_cmd)
+        except Exception:  # pylint: disable=broad-except
+            topo_out = ""
+        core_topo = {}
+        for line in (topo_out or "").splitlines():
+            parts = line.split()
+            if not parts:
+                continue
+            try:
+                core_i = int(parts[0])
+            except ValueError:
+                continue
+            d = {}
+            for tok in parts[1:]:
+                if "=" in tok:
+                    k, v = tok.split("=", 1)
+                    d[k] = v
+            core_topo[core_i] = d
+
+        # ps table is parsed to attach processes to busy cores; not
+        # printed in full.
+        try:
+            _, ps_out, _ = exec_cmd(
+                node,
+                "sh -c 'ps -eo pid,psr,pcpu,comm --sort=-pcpu | head -40'",
+            )
+        except Exception:  # pylint: disable=broad-except
+            ps_out = ""
+        core_to_procs = {}
+        for line in (ps_out or "").splitlines()[1:]:
+            fields = line.split(None, 3)
+            if len(fields) < 4:
+                continue
+            pid, psr, pcpu, comm = fields
+            try:
+                psr_i = int(psr)
+            except ValueError:
+                continue
+            core_to_procs.setdefault(psr_i, []).append(
+                f"pid={pid} %cpu={pcpu} {comm}"
+            )
+
+        # Package-level CPU temps only.  Intel: coretemp Package id N.
+        # AMD: k10temp Tctl / Tccd*.  ARM: fall back to thermal_zone
+        # types that look CPU/SoC related.
+        temp_cmd = (
+            "sh -c '"
+            "matched=0; "
+            "for h in /sys/class/hwmon/hwmon*; do "
+            "  n=$(cat $h/name 2>/dev/null); "
+            "  case \"$n\" in coretemp|k10temp|zenpower) ;; *) continue ;; esac; "
+            "  for t in $h/temp*_input; do "
+            "    [ -r \"$t\" ] || continue; "
+            "    lbl=$(cat ${t%_input}_label 2>/dev/null); "
+            "    case \"$lbl\" in Package*|Tctl*|Tccd*) ;; *) continue ;; esac; "
+            "    v=$(cat $t 2>/dev/null); "
+            "    [ -n \"$v\" ] && "
+            "      awk -v n=\"$n\" -v l=\"$lbl\" -v v=\"$v\" "
+            "        \"BEGIN{printf \\\"%s/%s=%.1fC \\\", n, l, v/1000}\" && "
+            "    matched=1; "
+            "  done; "
+            "done; "
+            "if [ $matched -eq 0 ]; then "
+            "  for z in /sys/class/thermal/thermal_zone*; do "
+            "    y=$(cat $z/type 2>/dev/null); "
+            "    case \"$y\" in cpu*|CPU*|soc*|SoC*|TSKN*|package*|x86_pkg_temp) ;; "
+            "      *) continue ;; esac; "
+            "    v=$(cat $z/temp 2>/dev/null); "
+            "    [ -n \"$v\" ] && "
+            "      awk -v y=\"$y\" -v v=\"$v\" "
+            "        \"BEGIN{printf \\\"%s=%.1fC \\\", y, v/1000}\"; "
+            "  done; "
+            "fi; echo'"
+        )
+        try:
+            _, temp_out, _ = exec_cmd(node, temp_cmd)
+        except Exception:  # pylint: disable=broad-except
+            temp_out = ""
+
+        huge_cmd = (
+            "sh -c 'grep -E "
+            "\"^(HugePages_(Total|Free|Rsvd|Surp)|Hugepagesize)\" "
+            "/proc/meminfo | awk \"{printf \\\"%s=%s%s \\\", "
+            "\\$1, \\$2, (\\$3?\\$3:\\\"\\\")}\" && echo'"
+        )
+        try:
+            _, huge_out, _ = exec_cmd(node, huge_cmd)
+        except Exception:  # pylint: disable=broad-except
+            huge_out = ""
+
+        host = node.get("host", "?")
+        lines = [f"Runtime metrics [{tag}] on {host}:"]
+        if busy_cores:
+            busy_cores.sort(key=lambda x: -x[1])
+            shown = busy_cores[:max_busy_reported]
+            hidden = len(busy_cores) - len(shown)
+            has_actual = any(
+                core_actual_mhz.get(
+                    int(c.replace("cpu", "")) if c.startswith("cpu") else -1
+                ) is not None
+                for c, _ in shown
+            )
+            legend = "req = P-state target"
+            if has_actual:
+                legend += ", actual = APERF/MPERF delivered"
+            lines.append(
+                f"Busy>={busy_threshold:.0f}% "
+                f"({len(shown)}/{len(busy_cores)}) [{legend}]:"
+            )
+            for core, usage in shown:
+                try:
+                    core_i = int(core.replace("cpu", ""))
+                except ValueError:
+                    core_i = -1
+                d = core_topo.get(core_i, {})
+                pkg = d.get("pkg", "?")
+                numa = d.get("node", "?")
+                req_khz = d.get("freq_khz", "")
+                try:
+                    req_str = f"req={int(req_khz) // 1000}MHz"
+                except ValueError:
+                    req_str = "req=?"
+                actual = core_actual_mhz.get(core_i)
+                act_str = (
+                    f" actual={actual}MHz" if actual is not None else ""
+                )
+                procs = core_to_procs.get(core_i, [])
+                procs_str = "; ".join(procs) if procs else "-"
+                lines.append(
+                    f"  {core} {usage:5.1f}% pkg={pkg} {numa} "
+                    f"{req_str}{act_str} -> {procs_str}"
+                )
+            if hidden > 0:
+                lines.append(f"  ... {hidden} more cores omitted")
+        else:
+            lines.append(f"Busy>={busy_threshold:.0f}%: none")
+        lines.append(f"CPU pkg temps: {(temp_out or '').strip() or '-'}")
+        lines.append(f"Hugepages: {(huge_out or '').strip() or '-'}")
+        logger.trace("\n".join(lines))
+
+    @staticmethod
+    def _snapshot_turbostat(node, tag, seconds=3):
+        """Best-effort ``turbostat`` capture while the test is running.
+
+        Single 3-sample window (default 1s x 3) — the definitive check
+        for actual turbo residency, %c1/%c6, PkgWatt and PkgTmp under
+        load. Requires ``turbostat`` (Ubuntu: ``linux-tools-common``)
+        and MSR access. Silently no-ops (empty TRACE line) if either
+        prerequisite is missing on the CI image.
+
+        :param node: DUT node.
+        :param tag: Free-form label included in the log.
+        :param seconds: Number of 1-second iterations to capture.
+        :type node: dict
+        :type tag: str
+        :type seconds: int
+        """
+        cmd = (
+            f"sh -c 'if ! command -v turbostat >/dev/null 2>&1; then "
+            f"echo turbostat_not_installed; exit 0; fi; "
+            f"turbostat --quiet --interval 1 --num_iterations {seconds} "
+            f"2>&1'"
+        )
+        try:
+            _, out, _ = exec_cmd(node, cmd, sudo=True)
+        except Exception:  # pylint: disable=broad-except
+            out = ""
+        host = node.get("host", "?")
+        logger.trace(
+            f"=== turbostat [{tag}] on {host} ({seconds}x1s) ===\n"
+            f"{out or '-'}"
+        )
+
+    @staticmethod
+    def _log_environment_baseline(node, tag):
+        """One-shot environment snapshot for cross-testbed comparison.
+
+        Emits kernel cmdline, CPU SKU / microcode / lscpu -e, cpufreq
+        governor + turbo + c-state config, CPU vulnerabilities/mitigations,
+        RAPL package power limits, NUMA topology, memory / hugepages,
+        DMI (BIOS, CPU version, memory speed), PCIe link state + NUMA
+        node + driver for every interface listed in the topology, and a
+        set of VPP CLI dumps (version / threads / hardware / session /
+        tcp / tls / quic).
+
+        Intended to be logged once per DUT per test at TRACE level, so
+        two log.html files from different testbeds can be diff'd to spot
+        SKU / BIOS / kernel / NIC / VPP-config deltas responsible for
+        performance discrepancies.
+
+        :param node: DUT node.
+        :param tag: Free-form label included in the log (program name).
+        :type node: dict
+        :type tag: str
+        """
+        # (section, shell_cmd, needs_sudo)
+        sections = (
+            ("kernel", "sh -c 'uname -a; echo ---; cat /proc/cmdline'", False),
+            (
+                "cpu/model+microcode",
+                "sh -c 'grep -m1 -E "
+                "\"^(model name|Model|CPU implementer|Hardware|vendor_id)\" "
+                "/proc/cpuinfo; grep -m1 microcode /proc/cpuinfo'",
+                False,
+            ),
+            (
+                "cpu/lscpu",
+                "sh -c 'lscpu 2>/dev/null; echo ---; "
+                "lscpu -e 2>/dev/null | head -80'",
+                False,
+            ),
+            (
+                "cpu/freq",
+                "sh -c '"
+                "echo no_turbo=$(cat /sys/devices/system/cpu/intel_pstate/"
+                "no_turbo 2>/dev/null); "
+                "echo intel_pstate_status=$(cat /sys/devices/system/cpu/"
+                "intel_pstate/status 2>/dev/null); "
+                "echo intel_idle_max_cstate=$(cat /sys/module/intel_idle/"
+                "parameters/max_cstate 2>/dev/null); "
+                "for c in /sys/devices/system/cpu/cpu[0-9]*; do "
+                "  n=${c##*/cpu}; "
+                "  g=$(cat $c/cpufreq/scaling_governor 2>/dev/null); "
+                "  mn=$(cat $c/cpufreq/scaling_min_freq 2>/dev/null); "
+                "  mx=$(cat $c/cpufreq/scaling_max_freq 2>/dev/null); "
+                "  cur=$(cat $c/cpufreq/scaling_cur_freq 2>/dev/null); "
+                "  echo cpu$n gov=$g min=$mn max=$mx cur=$cur; "
+                "done | head -40'",
+                False,
+            ),
+            (
+                "cpu/cstates",
+                "sh -c 'for s in /sys/devices/system/cpu/cpu0/cpuidle/state*; "
+                "do n=$(cat $s/name 2>/dev/null); "
+                "d=$(cat $s/disable 2>/dev/null); "
+                "[ -n \"$n\" ] && echo cpu0/${s##*/} $n disable=$d; done'",
+                False,
+            ),
+            (
+                "cpu/vulnerabilities",
+                "sh -c 'for v in /sys/devices/system/cpu/vulnerabilities/*; "
+                "do echo ${v##*/}=$(cat $v 2>/dev/null); done'",
+                False,
+            ),
+            (
+                "cpu/rapl_power_limits",
+                "sh -c 'for r in /sys/class/powercap/intel-rapl:*/; do "
+                "n=$(cat $r/name 2>/dev/null); "
+                "for f in $r/constraint_*_power_limit_uw "
+                "$r/constraint_*_name $r/constraint_*_time_window_us "
+                "$r/enabled; do "
+                "[ -r \"$f\" ] && echo $n ${f##*/}=$(cat $f 2>/dev/null); "
+                "done; done'",
+                False,
+            ),
+            (
+                "numa",
+                "sh -c 'numactl --hardware 2>/dev/null; echo ---; "
+                "for n in /sys/devices/system/node/node[0-9]*; do "
+                "echo $n cpulist=$(cat $n/cpulist 2>/dev/null); "
+                "done'",
+                False,
+            ),
+            (
+                "memory",
+                "sh -c 'free -h; echo ---; grep -i -E "
+                "\"^(Huge|MemTotal|MemFree|MemAvailable|DirectMap)\" "
+                "/proc/meminfo'",
+                False,
+            ),
+            (
+                "dmi/bios+cpu",
+                "sh -c 'echo manufacturer=$(dmidecode -s "
+                "system-manufacturer 2>/dev/null); "
+                "echo product=$(dmidecode -s system-product-name "
+                "2>/dev/null); "
+                "echo bios_vendor=$(dmidecode -s bios-vendor 2>/dev/null); "
+                "echo bios_version=$(dmidecode -s bios-version "
+                "2>/dev/null); "
+                "echo bios_date=$(dmidecode -s bios-release-date "
+                "2>/dev/null); "
+                "echo ---; "
+                "dmidecode -t processor 2>/dev/null | grep -E "
+                "\"(Version|Max Speed|Current Speed|Core Count|"
+                "Core Enabled|Thread Count|Signature)\"'",
+                True,
+            ),
+            (
+                "dmi/memory",
+                "sh -c 'dmidecode -t memory 2>/dev/null | grep -E "
+                "\"(Size:|Type:|Speed:|Configured (Memory|Voltage) "
+                "Speed:|Locator:|Rank:|Manufacturer:)\" | head -80'",
+                True,
+            ),
+        )
+
+        host = node.get("host", "?")
+        lines = [
+            f"=== Environment baseline [{tag}] on {host} ===",
+        ]
+        for section, cmd, sudo in sections:
+            try:
+                _, out, _ = exec_cmd(node, cmd, sudo=sudo)
+            except Exception:  # pylint: disable=broad-except
+                out = ""
+            lines.append(f"--- {section} ---\n{out or '-'}")
+
+        # Per-interface PCIe + driver + NUMA using topology data
+        # (VPP-owned NICs are bound to vfio-pci with no netdev, so we
+        # can't rely on ethtool by ifname; look them up by PCI BDF).
+        iface_lines = []
+        for iface_key, iface in (node.get("interfaces") or {}).items():
+            bdf = iface.get("pci_address")
+            if not bdf:
+                continue
+            iface_lines.append(
+                f"* interface={iface_key} pci={bdf} "
+                f"model={iface.get('model')} "
+                f"topo_driver={iface.get('driver')}"
+            )
+            cmd = (
+                f"sh -c 'echo numa_node=$(cat /sys/bus/pci/devices/{bdf}/"
+                f"numa_node 2>/dev/null); "
+                f"echo current_driver=$(basename $(readlink -f "
+                f"/sys/bus/pci/devices/{bdf}/driver 2>/dev/null) "
+                f"2>/dev/null); "
+                f"lspci -vvv -s {bdf} 2>/dev/null | "
+                f"grep -E \"(LnkCap:|LnkSta:|LnkCtl:)\"'"
+            )
+            try:
+                _, out, _ = exec_cmd(node, cmd, sudo=True)
+            except Exception:  # pylint: disable=broad-except
+                out = ""
+            iface_lines.append(out or "-")
+        lines.append(
+            "--- nic/pcie ---\n"
+            + ("\n".join(iface_lines) if iface_lines else "-")
+        )
+
+        # VPP CLI dumps confirm the configuration actually landed.
+        # Use PapiSocketExecutor.run_cli_cmd defensively; VPP might not
+        # yet be responsive on some code paths.
+        vpp_cmds = (
+            "show version verbose",
+            "show threads",
+            "show hardware verbose",
+            "show session verbose",
+            "show tcp",
+            "show tls",
+            "show quic",
+        )
+        for vcmd in vpp_cmds:
+            try:
+                out = PapiSocketExecutor.run_cli_cmd(node, vcmd)
+            except Exception:  # pylint: disable=broad-except
+                out = ""
+            lines.append(f"--- vpp: {vcmd} ---\n{out or '-'}")
+
+        logger.trace("\n".join(lines))
+
+    @staticmethod
     def hoststack_test_program_finished(
         node, program_pid, program, other_node, other_program
     ):
@@ -443,7 +951,18 @@ class HoststackUtil:
             # use a generous timeout.
             timeout = 900
             poll_interval = 2
+            # Runtime sampler every ~30s -- steady-state signals don't
+            # change fast, and denser sampling just spams TRACE.
+            metrics_every = 15
+            # One-shot per-DUT env dump (BIOS/CPU/kernel/NIC/VPP config)
+            # for cross-testbed diffing when CLI access is unavailable.
+            HoststackUtil._log_environment_baseline(node, program["name"])
+            # turbostat window taken once, right after baseline (program
+            # is already running by the time _finished is invoked, so
+            # the CPU is under load) -- definitive turbo/c-state check.
+            HoststackUtil._snapshot_turbostat(node, program["name"])
             elapsed = 0
+            iteration = 0
             while elapsed < timeout:
                 ret, _, _ = exec_cmd(
                     node,
@@ -452,8 +971,13 @@ class HoststackUtil:
                 )
                 if ret != 0:
                     break
+                if iteration % metrics_every == 0:
+                    HoststackUtil._sample_system_metrics(
+                        node, program["name"]
+                    )
                 sleep(poll_interval)
                 elapsed += poll_interval
+                iteration += 1
             sleep(1)
             return
 
