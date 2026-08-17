@@ -31,6 +31,8 @@ from pyspark.sql.types import StructType
 
 S3_LOGS_BUCKET=environ.get("S3_LOGS_BUCKET", "fdio-logs-s3-cloudfront-index")
 S3_DOCS_BUCKET=environ.get("S3_DOCS_BUCKET", "csit-docs-s3-cloudfront-index")
+GLUE_DATABASE=environ.get("GLUE_DATABASE", "csit")
+GLUE_TABLE="trending"
 PATH=f"s3://{S3_LOGS_BUCKET}/vex-yul-rot-jenkins-1/csit-*-perf-*"
 SUFFIX="info.json.gz"
 IGNORE_SUFFIX=[
@@ -169,6 +171,12 @@ try:
         compression="snappy",
         use_threads=True,
         mode="overwrite_partitions",
+        database=GLUE_DATABASE,
+        table=GLUE_TABLE,
+        glue_table_settings={
+            "description": "FD.io CSIT trending dataset",
+            "parameters": {"source": "csit.infra.etl"},
+        },
         boto3_session=boto3_session
     )
 except EmptyDataFrame:
