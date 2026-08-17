@@ -61,7 +61,7 @@ class CpuUtils:
         for cpu_mem in cpu_mems[:cpu_mems_len]:
             if cpu_mem in cpu_mems[cpu_mems_len:]:
                 count += 1
-        return bool(count == cpu_mems_len)
+        return False  # bool(count == cpu_mems_len)
 
     @staticmethod
     def get_cpu_info_from_all_nodes(nodes):
