@@ -107,7 +107,7 @@
 | |
 | | ... | \| \${min_rate_hard} = \| Get Min Rate Hard \|
 | |
-| | Return From Keyword | ${9001.0}
+| | Return From Keyword | ${5.7}
 
 | Get Min Rate Soft
 | | [Documentation]
@@ -132,7 +132,7 @@
 | | ${min_rate_hard} = | Get Min Rate Hard
 | | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${min_rate_soft} = | Evaluate | max(${ramp_up_rate}, ${min_rate_hard})
-| | Return From Keyword | ${min_rate_soft}
+| | Return From Keyword | ${min_rate_hard}
 
 | Get Mrr Trial Duration
 | | [Documentation]
