@@ -996,24 +996,24 @@ class TrafficGenerator(AbstractMeasurer):
                 bigger_delay = max(ramp_up_start_delay, ramp_up_stop_delay)
                 # Final boolean decision.
                 ramp_up_needed = (bigger_delay >= self.state_timeout)
-            if ramp_up_needed:
-                logger.debug(
-                    u"State may time out during next real trial, "
-                    u"inserting a ramp-up trial."
-                )
-                self.ramp_up_start = time.monotonic()
-                self._send_traffic_on_tg_internal(
-                    duration=self.ramp_up_duration,
-                    rate=self.ramp_up_rate,
-                    async_call=async_call,
-                )
-                self.ramp_up_stop = time.monotonic()
-                logger.debug(u"Ramp-up done.")
-            else:
-                logger.debug(
-                    u"State will probably not time out during next real trial, "
-                    u"no ramp-up trial needed just yet."
-                )
+#            if ramp_up_needed:
+#                logger.debug(
+#                    u"State may time out during next real trial, "
+#                    u"inserting a ramp-up trial."
+#                )
+#                self.ramp_up_start = time.monotonic()
+#                self._send_traffic_on_tg_internal(
+#                    duration=self.ramp_up_duration,
+#                    rate=self.ramp_up_rate,
+#                    async_call=async_call,
+#                )
+#                self.ramp_up_stop = time.monotonic()
+#                logger.debug(u"Ramp-up done.")
+#            else:
+#                logger.debug(
+#                    u"State will probably not time out during next real trial, "
+#                    u"no ramp-up trial needed just yet."
+#                )
         if ramp_up_only:
             return None
         trial_start = time.monotonic()
