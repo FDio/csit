@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-emr perftest nic_*AND1cANDeth-ip4tcpbase-vperf #generate-all",
       "revId": "e8ffb673660e6b550c833bec86b9d240a9d91fdc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0073017_a0e4a0fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-18T14:39:02Z",
+      "side": 1,
+      "message": "LGTM, time to test in production. :)",
+      "revId": "e8ffb673660e6b550c833bec86b9d240a9d91fdc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
