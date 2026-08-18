@@ -173,10 +173,6 @@ try:
         mode="overwrite_partitions",
         database=GLUE_DATABASE,
         table=GLUE_TABLE,
-        glue_table_settings={
-            "description": "FD.io CSIT iterative dataset",
-            "parameters": {"source": "csit.infra.etl"},
-        },
         boto3_session=boto3_session
     )
 except EmptyDataFrame:
