@@ -358,9 +358,23 @@ class HoststackUtil:
         env_vars = f"{program['env_vars']} " if "env_vars" in program else ""
         args = program["args"]
         program_path = program.get("path", "")
-        # NGINX used `worker_cpu_affinity` in configuration file
+        # NGINX handles its own affinity via `worker_cpu_affinity`.
+        # Everything else must be pinned via taskset to the caller-
+        # provided core_list (already on the NIC's NUMA in
+        # hoststack.robot), otherwise on isolcpus-heavy CI hosts the
+        # scheduler lands them cross-socket vs VPP + NIC.
+        # vperf uses VCL (user-space TCP over shared-mem FIFOs) and
+        # must NOT be `chrt -r 99`: on isolcpus + nohz_full the RT
+        # bandwidth throttle (sched_rt_runtime_us) preempts it
+        # periodically, collapsing TCP cwnd (visible as sawtooth
+        # 44 -> ~1 Gbps in the vperf output).  iperf3 uses kernel
+        # sockets and does benefit from SCHED_FIFO 99.
         taskset_cmd = ""
-        if program_name != "nginx" and program_name not in ("vperf_client", "vperf_server"):
+        if program_name == "nginx":
+            taskset_cmd = ""
+        elif program_name in ("vperf_client", "vperf_server"):
+            taskset_cmd = f"taskset --cpu-list {core_list} "
+        else:
             taskset_cmd = f"taskset --cpu-list {core_list} chrt -r 99 "
         cmd = (
             f"nohup {taskset_cmd}{shell_cmd} '{env_vars} "
