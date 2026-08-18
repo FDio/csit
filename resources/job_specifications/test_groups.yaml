@@ -255,6 +255,16 @@ test-groups:
     - ethip4tcp-sfdp-l4ip4-h65536-p63-s4128768-tput
     - ethip4udp-sfdp-ip4-h65536-p63-s4128768-tput
     - ethip4udp-sfdp-l4ip4-h65536-p63-s4128768-tput
+  sfdp-nat-cps-sm:
+    - ethip4tcp-sfdp-natip4-h65536-p63-s4128768-cps
+    #- ethip4tcp-sfdp-natl4ip4-h65536-p63-s4128768-cps
+    - ethip4udp-sfdp-natip4-h65536-p63-s4128768-cps
+    #- ethip4udp-sfdp-natl4ip4-h65536-p63-s4128768-cps
+  sfdp-nat-tput-sm:
+    - ethip4tcp-sfdp-natip4-h65536-p63-s4128768-tput
+    #- ethip4tcp-sfdp-natl4ip4-h65536-p63-s4128768-tput
+    - ethip4udp-sfdp-natip4-h65536-p63-s4128768-tput
+    #- ethip4udp-sfdp-natl4ip4-h65536-p63-s4128768-tput
 ## IPv4 Tunnels - Geneve
   geneve-md:
     - ethip4--ethip4udpgeneve-1tun-ip4base
