@@ -104,14 +104,14 @@
 | | Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4udp-sfdp-ip4-h16384-p63-s1032192-cps-ndrpdr
+| 64B-1c-ethip4udp-sfdp-l4ip4-h16384-p63-s1032192-cps-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4udp-sfdp-ip4-h16384-p63-s1032192-cps-ndrpdr
+| 64B-2c-ethip4udp-sfdp-l4ip4-h16384-p63-s1032192-cps-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4udp-sfdp-ip4-h16384-p63-s1032192-cps-ndrpdr
+| 64B-4c-ethip4udp-sfdp-l4ip4-h16384-p63-s1032192-cps-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
