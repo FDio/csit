@@ -2,7 +2,7 @@
 # file: host_vars/10.30.51.50.yaml
 
 hostname: "s50-nomad"
-inventory_ipmi_hostname: "10.30.50.47"
+inventory_ipmi_hostname: "10.30.50.50"
 
 # User management.
 users:
@@ -83,4 +83,4 @@ vault_version: "2.0.3"
 docker_daemon:
   dns: ["172.17.0.1"]
   dns-opts: []
-  dns-search: ["{{ ansible_hostname }}"]
+  dns-search: ["{{ ansible_facts['hostname'] }}"]
