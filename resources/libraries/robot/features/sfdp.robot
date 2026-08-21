@@ -93,3 +93,53 @@
 | | ${ramp_up_rate} = | Get Ramp Up Rate
 | | Return From Keyword If | ${ramp_up_rate}
 | | Set Test Variable | \${resetter}
+
+| Initialize SFDP services for NAT44
+| | [Documentation]
+| | ... | FIXME!
+| |
+| | [Arguments] | ${services}
+| |
+| | Set interfaces in path up
+| |
+| | ${dut}= | Set Variable | ${dut1}
+| | ${in1}= | Set Variable | ${DUT1_${int}1}[0]
+| | ${in2}= | Set Variable | ${DUT1_${int}2}[0]
+| | ${ix1}= | Get Interface Index | ${dut} | ${in1}
+| | ${ix2}= | Get Interface Index | ${dut} | ${in2}
+| |
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${in1} | ${dut1_if1_ip4} | ${dut1_if1_mask}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${in2} | ${dut1_if2_ip4} | ${dut1_if2_mask}
+| |
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${in1} | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${in2} | ${tg_if2_ip4} | ${TG_pf2_mac}[0]
+| |
+| | Sfdp Nat Alloc Pool | ${dut} | ip_start=${out_net} | num_addr=${out_num}
+| |
+| | Add Sfdp Tenant | ${dut}
+| |
+| | ${nat_services} = | Copy List | ${services}
+| | Append To List | ${nat_services} | sfdp-nat-output
+| | Set Sfdp Services | ${dut} | ${nat_services} | dir=${0}
+| | Set Sfdp Services | ${dut} | ${services} | dir=${1}
+| |
+| | Enable Sfdp Interface Input | ${dut} | ${ix1}
+| | Enable Sfdp External Nat Interface | ${dut} | ${ix2}
+| |
+| | Sfdp Nat Snat | ${dut}
+| |
+| | Vpp Route Add
+| | ... | ${dut1} | ${in_net} | ${in_mask} | gateway=${tg_if1_ip4}
+| | ... | interface=${in1}
+| | Vpp Route Add
+| | ... | ${dut1} | ${dest_net} | ${dest_mask} | gateway=${tg_if2_ip4}
+| | ... | interface=${in2}
+| |
+| | ${resetter} = | Create SFDP Resetter | ${dut}
+| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | Return From Keyword If | ${ramp_up_rate}
+| | Set Test Variable | \${resetter}

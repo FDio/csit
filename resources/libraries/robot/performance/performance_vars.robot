@@ -599,6 +599,8 @@
 | |
 | | ... | \| Set Numeric Frame Sizes \|
 | |
+| | # TODO: Rely on \\${transaction_type} instead of parsing tags.
+| |
 | | ${bare_max_frame_size} = | Run Keyword If
 | | ... | '${frame_size}' == 'IMIX_v4_1' | Set Variable | ${1518.0}
 | | ... | ELSE | Convert To Number | ${frame_size}
