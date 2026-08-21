@@ -14,11 +14,13 @@
 """SFDP library."""
 
 import re
+from ipaddress import ip_network
 from time import monotonic, sleep
-from typing import Callable, List, Tuple
+from typing import Callable, List, Optional, Tuple
 
 from robot.api import logger
 
+from resources.libraries.python.IPUtil import NetworkIncrement
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -81,8 +83,59 @@ class Sfdp:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
+    def enable_sfdp_external_nat_interface(
+        node: dict, sw_if_index: int, tenant_id: int = 1
+    ) -> None:
+        """FIXME"""
+        cmd = "sfdp_nat_set_external_interface"
+        err_msg = f"Failed to enable SFDP NAT external iface on {sw_if_index=}"
+        args = dict(sw_if_index=sw_if_index, tenant_id=tenant_id, is_disable=0)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
+    def sfdp_nat_alloc_pool(
+        node: dict,
+        ip_start: str,
+        num_addr: int,
+    ) -> None:
+        """FIXME"""
+        # TODO: Move the ip_network layer upstream.
+        addr_iter = NetworkIncrement(ip_network(ip_start), format="addr")
+        cmd = "sfdp_nat_alloc_pool_add_del"
+        err_msg = "Failed to allocate SFDP NAT pool."
+        addrs = []
+        for _ in range(num_addr):
+            addrs.append(addr_iter.inc_fmt())
+        args = dict(alloc_pool_id=1, is_del=0, addr=addrs, n_addr=num_addr)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
+    def sfdp_nat_snat(
+        node: dict,
+        tenant_id: int = 1,
+        outside_tenant_id: int = 1,
+    ) -> None:
+        """FIXME"""
+        cmd = "sfdp_nat_snat_set_unset"
+        err_msg = "Failed to set SFDP NAT snat"
+        args = dict(
+            tenant_id=tenant_id,
+            outside_tenant_id=outside_tenant_id,
+            table_id=0,
+            alloc_pool_id=1,
+            is_disable=0,
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def set_sfdp_services(
-        node: dict, services: List[str], tenant_id: int = 1
+        node: dict,
+        services: List[str],
+        tenant_id: int = 1,
+        dir: Optional[int] = None,
     ) -> None:
         """Enable listed services for the SFDP tenant.
 
@@ -100,17 +153,20 @@ class Sfdp:
         :type tenant_id: int
         """
         cmd = "sfdp_set_services"
-        err_msg = "Failed to enable IP4 for SFDP"
+        err_msg = f"Failed to enable SFDP {services=}"
         args = dict(
             tenant_id=tenant_id,
             services=[dict(data=service) for service in services],
             n_services=len(services),
         )
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+        if dir is None or dir == 0:
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
         args["dir"] = 1
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+        if dir is None or dir == 1:
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+        # TODO: Fail if no dir applied.
 
     @staticmethod
     def get_remaining_sfdp_tenant_sessions(
