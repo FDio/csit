@@ -79,7 +79,7 @@ jobs:
       - name: Prepare node selection matrix
         id: set-matrix
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-report-dispatch@cee2088675d00de5f4a47f386a6c05315bfc170c
+        uses: fdio/csit/.github/actions/csit-report-dispatch@43433d27fe755fe3fe5fe2ba9a734bc7141491c2
         with:
           node: ${{ github.event.inputs.node }}
           dut: ${{ github.event.inputs.dut }}
@@ -123,7 +123,7 @@ jobs:
 
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
-        uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
+        uses: fdio/csit/.github/actions/csit-bootstrap@43433d27fe755fe3fe5fe2ba9a734bc7141491c2
         with:
           bootstrap_script: bootstrap_verify_perf.sh
           with_oper: false
