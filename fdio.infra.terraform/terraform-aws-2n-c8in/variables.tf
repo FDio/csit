@@ -5,7 +5,7 @@ variable "vault-name" {
 variable "region" {
   description = "AWS Region."
   type        = string
-  default     = "eu-east-1a"
+  default     = "us-east-1a"
 }
 
 variable "resource_prefix" {
