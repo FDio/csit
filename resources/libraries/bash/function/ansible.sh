@@ -28,7 +28,7 @@ function ansible_adhoc () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws" | *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in")
+        *"1n-aws" | *"2n-aws" | *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in" | *"2n-c8in")
             INVENTORY_PATH="cloud_inventory"
             ;;
         *"-x-2n"* | *"-x-3n"*)
@@ -72,7 +72,7 @@ function ansible_playbook () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws" | *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in")
+        *"1n-aws" | *"2n-aws" | *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in" | *"2n-c8in")
             INVENTORY_PATH="cloud_inventory"
             ;;
         *"-x-2n"* | *"-x-3n"*)

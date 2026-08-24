@@ -502,6 +502,10 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="c6in"
             ;;
+        *"2n-c8in")
+            NODENESS="2n"
+            FLAVOR="c8in"
+            ;;
         *"2n-zn2")
             NODENESS="2n"
             FLAVOR="zn2"
@@ -756,6 +760,15 @@ function prepare_topology () {
         "1n_c6in" | "2n_c6in")
             export TF_VAR_testbed_name="${TEST_CODE}"
             TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c6in"
+            terraform_init || die "Failed to call terraform init."
+            trap "terraform_destroy" ERR EXIT || {
+                die "Trap attempt failed, please cleanup manually. Aborting!"
+            }
+            terraform_apply || die "Failed to call terraform apply."
+            ;;
+        "2n_c8in")
+            export TF_VAR_testbed_name="${TEST_CODE}"
+            TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-c8in"
             terraform_init || die "Failed to call terraform init."
             trap "terraform_destroy" ERR EXIT || {
                 die "Trap attempt failed, please cleanup manually. Aborting!"
@@ -1070,6 +1083,9 @@ function select_topology () {
         *"2n-c6in")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c6in*.yaml )
             ;;
+        *"2n-c8in")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-c8in*.yaml )
+            ;;
         *"2n-icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx_*.yaml )
             ;;
@@ -1146,7 +1162,7 @@ function set_environment_variables () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"1n-aws" | *"2n-aws"| *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in")
+        *"1n-aws" | *"2n-aws"| *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in" | *"2n-c8in")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
@@ -1210,7 +1226,7 @@ function untrap_and_unreserve_testbed () {
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
-            *"2n-c7gn" | *"2n-c8gn"| *"2n-c6in")
+            *"2n-c7gn" | *"2n-c8gn"| *"2n-c6in" | *"2n-c8in")
                 TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;

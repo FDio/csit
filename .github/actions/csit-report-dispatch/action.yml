@@ -51,7 +51,7 @@ runs:
           3n-oct)
             executor_arch="aarch64"
             ;;
-          2n-aws|2n-c6in)
+          2n-aws|2n-c6in|2n-c8in)
             executor_arch="x86_64"
             ;;
           2n-c7gn|2n-c8gn)
