@@ -47,7 +47,7 @@ class VPPUtil:
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
 
         VPPUtil.stop_vpp_service(node)
-        command = "/usr/bin/vpp -c /etc/vpp/startup.conf"
+        command = "ASAN_OPTIONS='log_path=/tmp/asan.log' /usr/bin/vpp -c /etc/vpp/startup.conf"
         message = f"Node {node[u'host']} failed to start VPP!"
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
@@ -394,6 +394,11 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        exec_cmd(node, "cat /tmp/asan.log*", timeout=180, sudo=True)
+        exec_cmd(node, "rm /tmp/asan.log*", timeout=180, sudo=True)
+        exec_cmd(node, "tail -n 99 /var/log/vpp/vpp.log", timeout=180, sudo=True)
+        exec_cmd(node, "journalctl --no-pager --lines=999", timeout=180, sudo=True)
+        exec_cmd(node, "dmesg | tail -n 99", timeout=180, sudo=True)
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
