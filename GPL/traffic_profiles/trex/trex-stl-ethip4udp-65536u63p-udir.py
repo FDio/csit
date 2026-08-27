@@ -28,7 +28,7 @@ Stream profile:
  - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
    - Source IP address range:      192.168.0.0 - 192.168.255.255
-   - Destination IP address range: 20.0.255.255 - 20.0.255.255
+   - Destination IP address range: 20.0.0.0 - 20.0.0.0
    - Source UDP port range:        1024 - 1086
    - Destination UDP port range:   8080
 """
@@ -49,7 +49,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         self.p1_src_start_ip = u"192.168.0.0"
         self.p1_src_end_ip = u"192.168.255.255"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.255.255"
+        self.p1_dst_end_ip = u"20.0.0.0"
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1024
