@@ -70,6 +70,29 @@
     - telemetry
 - data_type: trending
   partition: test_type
+  partition_name: hoststack
+  path: s3://csit-docs-s3-cloudfront-index/csit/parquet/trending
+  schema: trending_hoststack
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - tg_type
+    - result_bandwidth_unit
+    - result_bandwidth_value
+    - result_rate_unit
+    - result_rate_value
+    - result_latency_unit
+    - result_latency_value
+    - start_time
+    - passed
+    - telemetry
+    - test_id
+    - version
+- data_type: trending
+  partition: test_type
   partition_name: soak
   path: s3://csit-docs-s3-cloudfront-index/csit/parquet/trending
   schema: trending_soak
