@@ -14,20 +14,20 @@ services:
       FLASK_DEBUG: 1
       FLASK_ENV: "development"
       CSIT_START_TRENDING: "True"
-      CSIT_START_REPORT: "True"
-      CSIT_START_COMPARISONS: "True"
-      CSIT_START_COVERAGE: "True"
+      CSIT_START_REPORT: "False"
+      CSIT_START_COMPARISONS: "False"
+      CSIT_START_COVERAGE: "False"
       CSIT_START_STATISTICS: "True"
-      CSIT_START_FAILURES: "True"
+      CSIT_START_FAILURES: "False"
       CSIT_START_SEARCH: "True"
-      CSIT_START_DOC: "True"
+      CSIT_START_DOC: "False"
       CSIT_TITLE: "FD.io CSIT"
       CSIT_BRAND: "CSIT-Dash"
       CSIT_CICD_TYPE: "csit"
       CSIT_URL_CICD: "https://github.com/FDio/csit/actions/workflows/"
       CSIT_URL_LOGS: "https://logs.fd.io/vex-yul-rot-jenkins-1/"
       CSIT_URL_DOC: "https://csit.fd.io/cdocs/"
-      CSIT_TIME_PERIOD: 200
+      CSIT_TIME_PERIOD: 5
     mem_limit: "16g"
     networks:
       - "csit-data"
