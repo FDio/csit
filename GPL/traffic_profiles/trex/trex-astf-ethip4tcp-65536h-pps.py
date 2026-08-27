@@ -29,7 +29,7 @@ Traffic profile:
  - Packet: ETH / IP / TCP
  - Direction 0 --> 1:
    - Source IP address range:      192.168.0.0 - 192.168.255.255
-   - Destination IP address range: 20.0.0.0 - 20.0.255.255
+   - Destination IP address range: 20.0.0.0 - 20.0.0.0
  - Direction 1 --> 0:
    - Source IP address range:      destination IP address from packet received
      on port 1
@@ -61,7 +61,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         p1_src_start_ip = u"192.168.0.0"
         p1_src_end_ip = u"192.168.255.255"
         p1_dst_start_ip = u"20.0.0.0"
-        p1_dst_end_ip = u"20.0.255.255"
+        p1_dst_end_ip = u"20.0.0.0"
 
         # Headers length, not sure why TRex needs 32B for segment header.
         real_headers_size = 70  # 18B L2 + 20B IPv4 + 32B TCP.
