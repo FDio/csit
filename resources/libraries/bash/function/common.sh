@@ -1165,16 +1165,16 @@ function set_environment_variables () {
         *"1n-aws" | *"2n-aws"| *"2n-c7gn" | *"2n-c8gn" | *"2n-c6in" | *"2n-c8in")
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
-            export TREX_CORE_COUNT=6
+            export TREX_CORE_COUNT=1
             # Settings to prevent duration stretching.
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
         *"2n-zn2")
             # Maciek's workaround for Zen2 with lower amount of cores.
-            export TREX_CORE_COUNT=14
+            export TREX_CORE_COUNT=1
             ;;
         *"-x-2n"* | *"-x-3n"* )
-            export TREX_CORE_COUNT=14
+            export TREX_CORE_COUNT=1
             export TREX_PORT_MTU=9000
             # Be gentle on infra.
             export INFRA_WARMUP_DURATION=5
