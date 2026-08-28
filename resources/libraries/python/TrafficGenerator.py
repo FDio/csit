@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1005,7 +1005,8 @@ class TrafficGenerator(AbstractMeasurer):
                 self._send_traffic_on_tg_internal(
                     duration=self.ramp_up_duration,
                     rate=self.ramp_up_rate,
-                    async_call=async_call,
+                    # Even if main trial is async, ramp-up must be sync.
+                    async_call=False,
                 )
                 self.ramp_up_stop = time.monotonic()
                 logger.debug(u"Ramp-up done.")
