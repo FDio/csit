@@ -14,6 +14,8 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
+
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -103,17 +105,33 @@ class Layout:
             "regressions": list(),
             "progressions": list()
         }
+        stats_builds = pd.to_numeric(data_stats["build"], errors="coerce")
         for job in self._jobs:
             # Create lists of failed tests:
             df_job = data_trending.loc[(data_trending["job"] == job)]
-            last_build = str(max(pd.to_numeric(df_job["build"].unique())))
-            df_build = df_job.loc[(df_job["build"] == last_build)]
+            job_builds = pd.to_numeric(df_job["build"], errors="coerce")
+            last_build_number = job_builds.max()
+            df_build = df_job.loc[(job_builds == last_build_number)]
+            last_build = str(df_build["build"].iloc[-1])
+
+            df_stats_build = data_stats.loc[
+                (data_stats["job"] == job) &
+                (stats_builds == last_build_number)
+            ]
+            start_time = df_stats_build["start_time"].dropna().max()
+            if pd.isna(start_time):
+                logging.warning(
+                    f"No statistics start time for job {job!r}, build "
+                    f"{last_build!r}; using trending data."
+                )
+                start_time = df_build["start_time"].dropna().max()
+
             tst_info["job"].append(job)
             tst_info["build"].append(last_build)
-            tst_info["start"].append(data_stats.loc[
-                (data_stats["job"] == job) &
-                (data_stats["build"] == last_build)
-            ]["start_time"].iloc[-1].strftime('%Y-%m-%d %H:%M'))
+            tst_info["start"].append(
+                start_time.strftime('%Y-%m-%d %H:%M')
+                if pd.notna(start_time) else str()
+            )
             tst_info["dut_type"].append(df_build["dut_type"].iloc[-1])
             tst_info["dut_version"].append(df_build["dut_version"].iloc[-1])
             tst_info["hosts"].append(df_build["hosts"].iloc[-1])

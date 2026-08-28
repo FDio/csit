@@ -86,6 +86,48 @@ class Data:
         return self._data
 
     @staticmethod
+    def _normalize_parquet_schema(schema: pa.Schema) -> pa.Schema:
+        """Replace undetermined list element types with their known types.
+
+        A schema generated from a parquet containing only empty lists records
+        the list element as Arrow ``null``.  Using such a schema to read a
+        newer parquet containing strings makes Arrow attempt the unsupported
+        cast from ``string`` to ``null``.
+        """
+        expected_list_types = {
+            "hosts": pa.list_(pa.string()),
+            "telemetry": pa.list_(pa.string())
+        }
+
+        for column, expected_type in expected_list_types.items():
+            field_index = schema.get_field_index(column)
+            if field_index < 0:
+                continue
+
+            field = schema.field(field_index)
+            if not (
+                pa.types.is_list(field.type) and
+                pa.types.is_null(field.type.value_type)
+            ):
+                continue
+
+            schema = schema.set(
+                field_index,
+                pa.field(
+                    field.name,
+                    expected_type,
+                    nullable=field.nullable,
+                    metadata=field.metadata
+                )
+            )
+            logging.warning(
+                f"Replacing Arrow type of {column!r} from "
+                f"{field.type} to {expected_type}."
+            )
+
+        return schema
+
+    @staticmethod
     def _get_list_of_files(
             path,
             last_modified_begin=None,
@@ -227,7 +269,9 @@ class Data:
                         pd.api.types.is_string_dtype(itm["column_name"]),
                         pd.api.types.is_string_dtype(itm["telemetry"][0])
                     )):
-                    schema = pa.Schema.from_pandas(itm)
+                    schema = Data._normalize_parquet_schema(
+                        pa.Schema.from_pandas(itm)
+                    )
                     pa.parquet.write_metadata(
                         schema, f"{C.PATH_TO_SCHEMAS}_tmp_schema"
                     )
@@ -366,6 +410,7 @@ class Data:
                     schema = pa.parquet.read_schema(
                         f"{C.PATH_TO_SCHEMAS}{schema_file}"
                     )
+                    schema = Data._normalize_parquet_schema(schema)
                 except FileNotFoundError as err:
                     logging.error(repr(err))
                     logging.error("Proceeding without schema.")
