@@ -334,6 +334,10 @@ class Data:
                 f"{repr(err)}"
             )
 
+        if "telemetry" in df.columns:
+            df["telemetry"] = df["telemetry"].astype(
+                pd.ArrowDtype(pa.large_list(pa.large_string()))
+            )
         return df
 
     def read_all_data(self, days: int=None) -> dict:
