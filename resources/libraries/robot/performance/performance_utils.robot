@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -392,57 +392,6 @@
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 | | Export Ndrpdr Latency | ${message_prefix} | ${latency}
-
-| Send ramp-up traffic
-| | [Documentation]
-| | ... | Fail unless positive ramp-up rate is specified.
-| | ... | Else perform one trial with appropriate rate and duration.
-| | ... | This is useful for tests that set DUT state via traffic.
-| | ... | Rate has to bee low enough so packets are not lost,
-| | ... | Duration has to be long enough to set all the state.
-| | ... | The trial results are discarded.
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - traffic_profile - Name of module defining traffic for measurements.
-| | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| | ... | - ramp_up_duration - Suitable traffic duration [s].
-| | ... | Type: float
-| | ... | - ramp_up_rate - Suitable unidirectional transmit rate [tps].
-| | ... | Type: float
-| | ... | - transaction_type - String identifier to determine how to count
-| | ... | transactions. Default is "packet".
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Send ramp-up traffic \|
-| |
-| | ${ramp_up_rate} = | Get Ramp Up Rate
-| | Run Keyword If | ${ramp_up_rate} <= 0.0 | Fail | Ramp up rate missing!
-| | ${ramp_up_duration} = | Get Ramp Up Duration
-| | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${traffic_directions} = | Get Traffic Directions
-| | ${transaction_duration} = | Get Transaction Duration
-| | ${transaction_scale} = | Get Transaction Scale
-| | ${transaction_type} = | Get Transaction Type
-| | ${use_latency} = | Get Use Latency
-| | Send traffic on tg
-| | ... | duration=${ramp_up_duration}
-| | ... | rate=${ramp_up_rate}
-| | ... | frame_size=${frame_size}
-| | ... | traffic_profile=${traffic_profile}
-| | ... | async_call=${False}
-| | ... | duration_limit=${0.0}
-| | ... | ppta=${ppta}
-| | ... | use_latency=${use_latency}
-| | ... | traffic_directions=${traffic_directions}
-| | ... | transaction_duration=${transaction_duration}
-| | ... | transaction_scale=${transaction_scale}
-| | ... | transaction_type=${transaction_type}
-| | ... | ramp_up_duration=${ramp_up_duration}
-| | ... | ramp_up_rate=${ramp_up_rate}
-| | ... | ramp_up_only=${True}
 
 | Send traffic at specified rate
 | | [Documentation]

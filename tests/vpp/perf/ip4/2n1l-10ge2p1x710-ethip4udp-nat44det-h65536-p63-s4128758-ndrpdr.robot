@@ -118,7 +118,6 @@
 | | Initialize layer interface
 | | Initialize IPv4 forwarding for NAT44 in circular topology
 | | Initialize NAT44 deterministic mode in circular topology
-| | Send ramp-up traffic
 | | Verify DET44 sessions number on DUT1 node
 | | Find NDR and PDR intervals using optimized search
 
