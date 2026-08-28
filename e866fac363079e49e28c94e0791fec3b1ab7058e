@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-grc perftest nic_*AND*nat*",
       "revId": "e866fac363079e49e28c94e0791fec3b1ab7058e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8a9744e_1ac43cab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-28T13:31:31Z",
+      "side": 1,
+      "message": "Not all NAT44 TCP sessions have been established: 0 !\u003d 4128768\nBecause there is a check before the first trial. I guess the old way is correct and I should update newer SFDP suites with that rampup+check pattern.",
+      "revId": "e866fac363079e49e28c94e0791fec3b1ab7058e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
