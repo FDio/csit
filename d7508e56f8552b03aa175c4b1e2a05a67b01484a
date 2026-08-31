@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-2n-gnr perftest nic_*ANDdrv_vfio_pciAND4cAND64bANDeth-l2patch #generate-all",
       "revId": "d7508e56f8552b03aa175c4b1e2a05a67b01484a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84615108_c76a3d29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-08-31T12:29:49Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-gnr perftest nic_*ANDdrv_vfio_pciANDeth-l2patch #generate-all",
+      "revId": "d7508e56f8552b03aa175c4b1e2a05a67b01484a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
