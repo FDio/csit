@@ -61,6 +61,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
+| ${rxq_ratio}= | ${2}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4-ip4src254
 
