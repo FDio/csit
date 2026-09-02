@@ -1322,22 +1322,22 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed212:
     - ring1 25GE-ports xxv710-DA2-2p25GE:
-        - s72-t212-tg1-c2/p1 to s71-t212-sut1-c2/p1.
-        - s71-t212-sut1-c2/p2 to s72-t212-tg1-c2/p2.
+        - s82-t212-tg1-c2/p1 to s81-t212-sut1-c2/p1.
+        - s81-t212-sut1-c2/p2 to s82-t212-tg1-c2/p2.
     - ring2 25GE-ports e810-XXVDA4-2p25GE:
-        - s72-t212-tg1-c4/p1 to s71-t212-sut1-c4/p1.
-        - s71-t212-sut1-c4/p2 to s72-t212-tg1-c4/p2.
-        - s72-t212-tg1-c4/p3 to s71-t212-sut1-c4/p3.
-        - s71-t212-sut1-c4/p4 to s72-t212-tg1-c4/p4.
+        - s82-t212-tg1-c4/p1 to s81-t212-sut1-c4/p1.
+        - s81-t212-sut1-c4/p2 to s82-t212-tg1-c4/p2.
+        - s82-t212-tg1-c4/p3 to s81-t212-sut1-c4/p3.
+        - s81-t212-sut1-c4/p4 to s82-t212-tg1-c4/p4.
     - ring3 100GE-ports e810-2CQDA2-2p100GE:
-        - s72-t212-tg1-c9/p1 to s71-t212-sut1-c9/p1.
-        - s71-t212-sut1-c9/p2 to s72-t212-tg1-c9/p2.
+        - s82-t212-tg1-c9/p1 to s81-t212-sut1-c9/p1.
+        - s81-t212-sut1-c9/p2 to s82-t212-tg1-c9/p2.
     - ring4 100GE-ports e810-2CQDA2-2p100GE:
-        - s72-t212-tg1-c6/p1 to s72-t212-tg1-c6/p2.
-        - s72-t212-tg1-c6/p2 to s72-t212-tg1-c6/p1.
+        - s82-t212-tg1-c6/p1 to s82-t212-tg1-c6/p2.
+        - s82-t212-tg1-c6/p2 to s82-t212-tg1-c6/p1.
     - ring5 200GE-ports ConnectX7-2p200GE:
-        - s72-t212-tg1-c8/p1 to s71-t212-sut1-c8/p1.
-        - s71-t212-sut1-c8/p2 to s72-t212-tg1-c8/p2.
+        - s82-t212-tg1-c8/p1 to s81-t212-sut1-c8/p1.
+        - s81-t212-sut1-c8/p2 to s82-t212-tg1-c8/p2.
 - testbed213:
     - ring1 25GE-ports xxv710-DA2-2p25GE:
         - s84-t213-tg1-c2/p1 to s83-t213-sut1-c2/p1.
