@@ -126,10 +126,12 @@ def select_comp_data(
         tmp_df = pd.DataFrame(data.loc[(
             (data["passed"] == True) &
             (data["dut_type"] == itm["dut"]) &
-            (data["dut_version"] == dutver[1]) &
             (data["test_type"] == test_type) &
             (data["release"] == dutver[0])
         )])
+        tmp_df = tmp_df[
+            (tmp_df.dut_version.str.contains(dutver[1], regex=False))
+        ]
 
         if itm["driver"] in C.DRVS_NOT_IN_NAME:
             drv = str()

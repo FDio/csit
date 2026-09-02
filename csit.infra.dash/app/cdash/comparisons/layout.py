@@ -124,7 +124,13 @@ class Layout:
         for _, row in self._data[cols].drop_duplicates().iterrows():
             lst_job = row["job"].split("-")
             dut = lst_job[1]
-            dver = f"{row['release']}-{row['dut_version']}"
+            if dut == "vpp":
+                dut_version = "-".join(row["dut_version"].split("-")[:2])
+                if dut_version.endswith("-rc1") or dut_version.endswith("-rc2"):
+                    dut_version += "-oct"
+            else:
+                dut_version = row["dut_version"]
+            dver = f"{row['release']}-{dut_version}"
             tbed = get_topo_arch(lst_job)
             lst_test_id = row["test_id"].split(".")
 
