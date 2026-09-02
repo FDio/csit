@@ -112,6 +112,9 @@ def select_coverage_data(
         """
         return test_id.split(".")[-1].replace("-ndrpdr", "")
 
+    def _add_link(test_id: str, job: str, build: str) -> str:
+        return f"[{test_id}]({C.URL_LOGS}{job}/{build})"
+
     cov = pd.DataFrame()
     cov["Suite"] = df.apply(lambda row: _get_suite(row["test_id"]), axis=1)
     cov["Test Name"] = df.apply(lambda row: _get_test(row["test_id"]), axis=1)
@@ -155,6 +158,14 @@ def select_coverage_data(
         return cov
 
     # Split data into tables depending on the test suite.
+    cov["Test Name"] = df.apply(
+        lambda row: _add_link(
+            _get_test(row["test_id"]),
+            row["job"],
+            row["build"]
+        ),
+        axis=1
+    )
     for suite in cov["Suite"].unique().tolist():
         df_suite = pd.DataFrame(cov.loc[(cov["Suite"] == suite)])
 
@@ -227,6 +238,7 @@ def coverage_tables(
                         "id": col,
                         "deletable": False,
                         "selectable": False,
+                        "presentation": "markdown",
                         "type": "text"
                     })
                 else:
@@ -254,6 +266,7 @@ def coverage_tables(
                         "id": col,
                         "deletable": False,
                         "selectable": False,
+                        "presentation": "markdown",
                         "type": "text"
                     })
                 elif idx < 5:
@@ -296,6 +309,7 @@ def coverage_tables(
                     selected_columns=[],
                     selected_rows=[],
                     page_action="none",
+                    markdown_options={"link_target": "_blank"},
                     style_cell=style_cell,
                     style_cell_conditional=style_cell_conditional
                 )
