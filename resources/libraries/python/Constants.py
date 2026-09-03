@@ -332,7 +332,7 @@ class Constants:
         "Intel-E810CQ": 100000000000,
         "Mellanox-CX556A": 100000000000,
         "Mellanox-CX6DX": 100000000000,
-        "Mellanox-CX7VEAT": 200000000000,
+        "Mellanox-CX7VEAT": 100000000000,
         "Amazon-Nitro-50G": 10000000000,
         "Amazon-Nitro-100G": 10000000000,
         "Amazon-Nitro-200G": 16000000000,
