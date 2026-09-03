@@ -113,7 +113,10 @@ def select_coverage_data(
         return test_id.split(".")[-1].replace("-ndrpdr", "")
 
     def _add_link(test_id: str, job: str, build: str) -> str:
-        return f"[{test_id}]({C.URL_LOGS}{job}/{build})"
+        """Generate a clickable link from the test ID.
+        """
+        link_test = "/".join(test_id.split(".")) + ".info.json.gz"
+        return f"[{_get_test(test_id)}]({C.URL_LOGS}{job}/{build}/{link_test})"
 
     cov = pd.DataFrame()
     cov["Suite"] = df.apply(lambda row: _get_suite(row["test_id"]), axis=1)
@@ -159,11 +162,7 @@ def select_coverage_data(
 
     # Split data into tables depending on the test suite.
     cov["Test Name"] = df.apply(
-        lambda row: _add_link(
-            _get_test(row["test_id"]),
-            row["job"],
-            row["build"]
-        ),
+        lambda row: _add_link(row["test_id"], row["job"], row["build"]),
         axis=1
     )
     for suite in cov["Suite"].unique().tolist():
