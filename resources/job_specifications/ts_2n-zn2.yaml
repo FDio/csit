@@ -163,10 +163,12 @@ test-sets:
         - vfio-pci
       100ge2p1cx556a:
         - rdma-core
+        - mlx5_core
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
-      - ip4-base-sm
+      - ip4-base-sm:
+          framesize: [64, 1518, 9000]
       - ip4-scale-sm
       - ip4-acl-md:
           infra:
@@ -194,10 +196,11 @@ test-sets:
             25ge2p1xxv710:
               - avf
       - ip6-base-sm:
-          framesize: [78, ]
+          framesize: [78, 1518, 9000]
       - ip6-scale-sm:
           framesize: [78, ]
-      - l2-lg
+      - l2-lg:
+          framesize: [64, 1518, 9000]
       - vhost-md
 
 
