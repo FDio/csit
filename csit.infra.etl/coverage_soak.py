@@ -25,7 +25,7 @@ from pyspark.sql.types import (
 S3_LOGS_BUCKET=environ.get("S3_LOGS_BUCKET", "fdio-logs-s3-cloudfront-index")
 S3_DOCS_BUCKET=environ.get("S3_DOCS_BUCKET", "csit-docs-s3-cloudfront-index")
 GLUE_DATABASE=environ.get("GLUE_DATABASE", "csit")
-GLUE_TABLE="coverage_rls2606"
+GLUE_TABLE="coverage_rls2610"
 SPARK_TO_ATHENA = {
     "string": "string",
     "tinyint": "tinyint",
@@ -181,7 +181,7 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-coverage-2606" in path]
+filtered_paths = [path for path in paths if "report-coverage-2610" in path]
 
 out_sdf = process_json_to_dataframe("soak", filtered_paths)
 out_sdf.printSchema()
@@ -208,7 +208,7 @@ dtype = {
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2606",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2610",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",

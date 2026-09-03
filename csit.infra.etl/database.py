@@ -30,8 +30,8 @@ wr.catalog.create_database(
 
 datasets = {
     "trending": "trending",
-    "iterative_rls2606": "iterative_rls2606",
-    "coverage_rls2606": "coverage_rls2606",
+    "iterative_rls2610": "iterative_rls2610",
+    "coverage_rls2610": "coverage_rls2610",
     "stats": "stats",
 }
 
