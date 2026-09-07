@@ -17,107 +17,106 @@
 does not need to be hard coded here, but can be read from environment variables.
 """
 
-
 import os
-
-
-def get_str_from_env(env_var_names, default_value):
-    """Attempt to read string from environment variable, return that or default.
-
-    If environment variable exists, but is empty (and default is not),
-    empty string is returned.
-
-    Several environment variable names are examined, as CSIT currently supports
-    a mix of naming conventions.
-    Here "several" means there are hard coded prefixes to try,
-    and env_var_names itself can be single name, or a list or a tuple of names.
-
-    :param env_var_names: Base names of environment variable to attempt to read.
-    :param default_value: Value to return if the env var does not exist.
-    :type env_var_names: str, or list of str, or tuple of str
-    :type default_value: str
-    :returns: The value read, or default value.
-    :rtype: str
-    """
-    prefixes = ("FDIO_CSIT_", "CSIT_", "")
-    if not isinstance(env_var_names, (list, tuple)):
-        env_var_names = [env_var_names]
-    for name in env_var_names:
-        for prefix in prefixes:
-            value = os.environ.get(prefix + name, None)
-            if value is not None:
-                return value
-    return default_value
-
-
-def get_int_from_env(env_var_names, default_value):
-    """Attempt to read int from environment variable, return that or default.
-
-    String value is read, default is returned also if conversion fails.
-
-    :param env_var_names: Base names of environment variable to attempt to read.
-    :param default_value: Value to return if read or conversion fails.
-    :type env_var_names: str, or list of str, or tuple of str
-    :type default_value: int
-    :returns: The value read, or default value.
-    :rtype: int
-    """
-    env_str = get_str_from_env(env_var_names, "")
-    try:
-        return int(env_str)
-    except ValueError:
-        return default_value
-
-
-def get_float_from_env(env_var_names, default_value):
-    """Attempt to read float from environment variable, return that or default.
-
-    String value is read, default is returned also if conversion fails.
-
-    :param env_var_names: Base names of environment variable to attempt to read.
-    :param default_value: Value to return if read or conversion fails.
-    :type env_var_names: str, or list of str, or tuple of str
-    :type default_value: float
-    :returns: The value read, or default value.
-    :rtype: float
-    """
-    env_str = get_str_from_env(env_var_names, "")
-    try:
-        return float(env_str)
-    except ValueError:
-        return default_value
-
-
-def get_pessimistic_bool_from_env(env_var_names):
-    """Attempt to read bool from environment variable, assume False by default.
-
-    Conversion is lenient and pessimistic, only few strings are considered true.
-
-    :param env_var_names: Base names of environment variable to attempt to read.
-    :type env_var_names: str, or list of str, or tuple of str
-    :returns: The value read, or False.
-    :rtype: bool
-    """
-    env_str = get_str_from_env(env_var_names, "").lower()
-    return bool(env_str in ("true", "yes", "y", "1"))
-
-
-def get_optimistic_bool_from_env(env_var_names):
-    """Attempt to read bool from environment variable, assume True by default.
-
-    Conversion is lenient and optimistic, only few strings are considered false.
-
-    :param env_var_names: Base names of environment variable to attempt to read.
-    :type env_var_names: str, or list of str, or tuple of str
-    :returns: The value read, or True.
-    :rtype: bool
-    """
-    env_str = get_str_from_env(env_var_names, "").lower()
-    return bool(env_str not in ("false", "no", "n", "0"))
 
 
 class Constants:
     """Constants used in CSIT."""
+
+    @staticmethod
+    def get_str_from_env(env_var_names, default_value):
+        """Attempt to read string from environment variable, return that or default.
+
+        If environment variable exists, but is empty (and default is not),
+        empty string is returned.
+
+        Several environment variable names are examined, as CSIT currently supports
+        a mix of naming conventions.
+        Here "several" means there are hard coded prefixes to try,
+        and env_var_names itself can be single name, or a list or a tuple of names.
+
+        :param env_var_names: Base names of environment variable to attempt to read.
+        :param default_value: Value to return if the env var does not exist.
+        :type env_var_names: str, or list of str, or tuple of str
+        :type default_value: str
+        :returns: The value read, or default value.
+        :rtype: str
+        """
+        prefixes = ("FDIO_CSIT_", "CSIT_", "")
+        if not isinstance(env_var_names, (list, tuple)):
+            env_var_names = [env_var_names]
+        for name in env_var_names:
+            for prefix in prefixes:
+                value = os.environ.get(prefix + name, None)
+                if value is not None:
+                    return value
+        return default_value
+
+    @staticmethod
+    def get_int_from_env(env_var_names, default_value):
+        """Attempt to read int from environment variable, return that or default.
+
+        String value is read, default is returned also if conversion fails.
+
+        :param env_var_names: Base names of environment variable to attempt to read.
+        :param default_value: Value to return if read or conversion fails.
+        :type env_var_names: str, or list of str, or tuple of str
+        :type default_value: int
+        :returns: The value read, or default value.
+        :rtype: int
+        """
+        env_str = Constants.get_str_from_env(env_var_names, "")
+        try:
+            return int(env_str)
+        except ValueError:
+            return default_value
+
+    @staticmethod
+    def get_float_from_env(env_var_names, default_value):
+        """Attempt to read float from environment variable, return that or default.
+
+        String value is read, default is returned also if conversion fails.
+
+        :param env_var_names: Base names of environment variable to attempt to read.
+        :param default_value: Value to return if read or conversion fails.
+        :type env_var_names: str, or list of str, or tuple of str
+        :type default_value: float
+        :returns: The value read, or default value.
+        :rtype: float
+        """
+        env_str = Constants.get_str_from_env(env_var_names, "")
+        try:
+            return float(env_str)
+        except ValueError:
+            return default_value
+
+    @staticmethod
+    def get_pessimistic_bool_from_env(env_var_names):
+        """Attempt to read bool from environment variable, assume False by default.
+
+        Conversion is lenient and pessimistic, only few strings are considered true.
+
+        :param env_var_names: Base names of environment variable to attempt to read.
+        :type env_var_names: str, or list of str, or tuple of str
+        :returns: The value read, or False.
+        :rtype: bool
+        """
+        env_str = Constants.get_str_from_env(env_var_names, "").lower()
+        return bool(env_str in ("true", "yes", "y", "1"))
+
+    @staticmethod
+    def get_optimistic_bool_from_env(env_var_names):
+        """Attempt to read bool from environment variable, assume True by default.
+
+        Conversion is lenient and optimistic, only few strings are considered false.
+
+        :param env_var_names: Base names of environment variable to attempt to read.
+        :type env_var_names: str, or list of str, or tuple of str
+        :returns: The value read, or True.
+        :rtype: bool
+        """
+        env_str = Constants.get_str_from_env(env_var_names, "").lower()
+        return bool(env_str not in ("false", "no", "n", "0"))
 
     # Version for CSIT data model. See docs/model/.
     MODEL_VERSION = "1.5.1"
@@ -279,7 +278,7 @@ class Constants:
     TG_WARMUP_DURATION = get_float_from_env("TG_WARMUP_DURATION", 1.0)
 
     ## TG warmup load tweaking should not be needed, default max rate is best.
-    #TG_WARMUP_RATE = get_float_from_env("TG_WARMUP_RATE")
+    # TG_WARMUP_RATE = get_float_from_env("TG_WARMUP_RATE")
 
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
@@ -374,7 +373,7 @@ class Constants:
         "Mellanox-CX556A": "100ge2p1cx556a",
         "Mellanox-CX6DX": "100ge2p1cx6dx",
         "Mellanox-CX7VEAT": "200ge2p1cx7veat",
-        "Mellanox-CX7VEAT": "200ge6p3cx7veat",
+        # "Mellanox-CX7VEAT": "200ge6p3cx7veat", # duplicate key
         "Cavium-A063-100G": "100ge2p1a063",
         "virtual": "1ge1p82540em",
     }
@@ -619,7 +618,7 @@ class Constants:
         "Intel-E823C": "HW_C4xxx",
         "Intel-X710": "HW_DH895xcc",
         "Intel-XL710": "HW_DH895xcc",
-        "Cavium-A063-100G":"HW_A0FD",
+        "Cavium-A063-100G": "HW_A0FD",
     }
 
     DEVICE_TYPE_TO_KEYWORD = {"scapy": None}
@@ -652,22 +651,3 @@ class Constants:
         "ndrpdr": "Measure NDR and PDR values using MLRsearch algorithm.",
         "soak": "Estimate critical rate using PLRsearch algorithm. \\",
     }
-
-    # MTU values to use. Must allow tested packets including encap overhead.
-    # Max overhead is 96, xxv710 refuses above 9194, 9145 is in the middle.
-    MTU_JUMBO = get_str_from_env("MTU_JUMBO", 9145)
-    # VPP can handle just below 2048 without chaining, 1800 should be enough.
-    MTU_NORMAL = get_str_from_env("MTU_NORMAL", 1800)
-
-    @classmethod
-    def get_mtu(cls, is_jumbo: bool) -> int:
-        """Return MTU value depending on whether jumbo frames are enabled.
-
-        :param is_jumbo: Whether the current tests uses jumbo frames.
-        :type is_jumbo: bool
-        :returns: One of the two constant values defined above.
-        :rtype: int
-        """
-        if is_jumbo:
-            return cls.MTU_JUMBO
-        return cls.MTU_NORMAL
