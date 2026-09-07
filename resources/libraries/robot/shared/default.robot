@@ -54,6 +54,7 @@
 | Library | resources.libraries.python.VppConfigGenerator.VppInitConfig
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
+| Library | resources.libraries.python.jumbo
 |
 | Resource | resources/libraries/robot/lb/load_balancer.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot

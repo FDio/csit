@@ -26,6 +26,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.jumbo.Jumbo import MTU_JUMBO, jumbo_enabled
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
@@ -260,7 +261,7 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def set_interface_mtu(node, pf_pcis, mtu=Constants.MTU_JUMBO):
+    def set_interface_mtu(node, pf_pcis, mtu=MTU_JUMBO):
         """Set Ethernet MTU for specified interfaces.
 
         :param node: Topology node.
@@ -1019,9 +1020,9 @@ class InterfaceUtil:
         :type node: dict
         :type sw_if_index: int
         """
-        if not BuiltIn().get_variable_value("\\${jumbo}", False):
+        if not jumbo_enabled():
             return
-        mtu = Constants.MTU_JUMBO
+        mtu = MTU_JUMBO
         args = dict(sw_if_index=sw_if_index, mtu=[mtu, mtu, mtu, mtu])
         cmd = "sw_interface_set_mtu"
         err_msg = f"Failed to set jumbo MTUs for: {sw_if_index=}"
@@ -1350,7 +1351,7 @@ class InterfaceUtil:
     @staticmethod
     def vpp_create_rdma_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
-            mode=u"auto"):
+            mode=u"ibv"):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
@@ -1384,8 +1385,7 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
-            # Note: Set True for non-jumbo packets.
-            no_multi_seg=False,
+            no_multi_seg=not jumbo_enabled(),
             max_pktlen=0,
             # TODO: Apply desired RSS flags.
             # rss4 kept 0 (auto) as API default.
