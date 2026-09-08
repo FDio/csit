@@ -151,15 +151,16 @@ test-sets:
     tests:
       - vhost-lg
 
-
   2n-grc-vpp-iterative:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
-      - ip4-md
+      - ip4-md:
+          framesize: [64, 1518, 9000]
       - ip4-acl-md
       - ip4-pol-md
       - nat44det-sm
@@ -177,10 +178,11 @@ test-sets:
           core: [1,]
       - geneve-md
       - ip6-md:
-          framesize: [78, ]
+          framesize: [78, 1518, 9000]
       - ip6-acl-sm:
           framesize: [78, ]
-      - l2-lg
+      - l2-lg:
+          framesize: [64, 1518, 9000]
       - vhost-md
 
 
