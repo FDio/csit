@@ -29,6 +29,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.FlowUtil
 | Library | resources.libraries.python.HoststackUtil
+| Library | resources.libraries.python.Jumbo
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPTopology
