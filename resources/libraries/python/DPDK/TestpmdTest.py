@@ -19,6 +19,7 @@ from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.jumbo import Jumbo
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -138,6 +139,7 @@ class TestpmdTest:
         :type txq_size: int
         :raises RuntimeError: If the script "run_testpmd.sh" fails.
         """
+        # TODO: Autodetect jumbo using jumbo.jumbo_enabled().
         if node["type"] == NodeType.DUT:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
@@ -152,7 +154,7 @@ class TestpmdTest:
                 pmd_fwd_mode="io",
                 pmd_nb_ports=2,
                 pmd_portmask="0x3",
-                pmd_max_pkt_len=Constants.get_mtu(jumbo),
+                pmd_max_pkt_len=Jumbo.get_mtu(jumbo),
                 pmd_mbuf_size=16384,
                 pmd_rxd=rxq_size,
                 pmd_txd=txq_size,
