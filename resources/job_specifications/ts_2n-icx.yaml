@@ -271,6 +271,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
       100ge2p1e810cq:
         - avf
         - vfio-pci
@@ -279,7 +280,8 @@ test-sets:
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
-      - ip4-md
+      - ip4-md:
+          framesize: [64, 1518, 9000]
       - ip4-acl-md:
           infra:
             200ge2p1cx7veat:
@@ -342,8 +344,9 @@ test-sets:
             100ge2p1e810cq:
               - avf
       - ip6-md:
-          framesize: [78, ]
-      - l2-lg
+          framesize: [78, 1518, 9000]
+      - l2-lg:
+          framesize: [64, 1518, 9000]
       - vhost-md
 
 

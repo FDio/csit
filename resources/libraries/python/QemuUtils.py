@@ -25,6 +25,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DpdkUtil import DpdkUtil
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.Jumbo import Jumbo
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VhostUser import VirtioFeaturesFlags
@@ -382,7 +383,7 @@ class QemuUtils:
             pmd_fwd_mode=u"io",
             pmd_nb_ports=2,
             pmd_portmask=u"0x3",
-            pmd_max_pkt_len=Constants.get_mtu(kwargs["jumbo"]),
+            pmd_max_pkt_len=Jumbo.get_mtu(kwargs["jumbo"]),
             pmd_mbuf_size=16384,
             pmd_rxq=kwargs[u"queues"],
             pmd_txq=kwargs[u"queues"],
@@ -409,7 +410,7 @@ class QemuUtils:
             pmd_fwd_mode=u"mac",
             pmd_nb_ports=2,
             pmd_portmask=u"0x3",
-            pmd_max_pkt_len=Constants.get_mtu(kwargs[u"jumbo"]),
+            pmd_max_pkt_len=Jumbo.get_mtu(kwargs[u"jumbo"]),
             pmd_mbuf_size=16384,
             pmd_eth_peer_0=f"0,{kwargs[u'vif1_mac']}",
             pmd_eth_peer_1=f"1,{kwargs[u'vif2_mac']}",

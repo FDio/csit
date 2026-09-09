@@ -154,6 +154,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     tests:
       - ipsec-sw-async-md:
           framesize: [1518, imix]
@@ -174,7 +175,8 @@ test-sets:
           framesize: [1518, ]
       - ip6-base-sm:
           framesize: [78, ]
-      - l2-base-md
+      - l2-base-md:
+          framesize: [64, 1518, 9000]
       - srv6-md:
           framesize: [78, ]
       - vhost-vppl2xc-md
