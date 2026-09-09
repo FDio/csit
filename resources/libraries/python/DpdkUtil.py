@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,8 +13,8 @@
 
 """Dpdk Utilities Library."""
 
-from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.Jumbo import Jumbo
 from resources.libraries.python.ssh import exec_cmd_no_error
 
 
@@ -222,7 +222,7 @@ class DpdkUtil:
         )
         # Set the max packet length.
         options.add_with_value_if_from_dict(
-            "max-pkt-len", Constants.MTU_JUMBO, "pmd_max_pkt_len", kwargs, False
+            "max-pkt-len", Jumbo.MTU_JUMBO, "pmd_max_pkt_len", kwargs, False
         )
         return options
 
