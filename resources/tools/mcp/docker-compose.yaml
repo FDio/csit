@@ -1,0 +1,57 @@
+networks:
+  mcp:
+    external: true
+
+services:
+  mcp-server:
+    build:
+      context: ./mcp-server
+      dockerfile: Dockerfile
+    container_name: csit-mcp-server
+    environment:
+      AWS_CONFIG_FILE: /home/csit-mcp/.aws/config
+      AWS_SHARED_CREDENTIALS_FILE: /home/csit-mcp/.aws/credentials
+      CSIT_START_TRENDING: "True"
+      CSIT_START_REPORT: "False"
+      CSIT_START_COVERAGE: "True"
+      CSIT_START_STATISTICS: "True"
+      CSIT_START_FAILURES: "True"
+      CSIT_TIME_PERIOD: 20
+      HOME: /home/csit-mcp
+      UV_CACHE_DIR: /tmp/uv-runtime-cache
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 900s
+    mem_limit: "16g"
+    networks:
+      - mcp
+    ports:
+      - "8000:8000"
+    user: "${UID}:${GID}"
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - "${HOME}/.aws:/home/csit-mcp/.aws:ro"
+  mcp-client:
+    build:
+      context: ./mcp-client
+      dockerfile: Dockerfile
+    container_name: csit-mcp-client
+    depends_on:
+      mcp-server:
+        condition: service_started
+    environment:
+      HOME: /home/csit-mcp
+      MCP_SERVER_URL: http://mcp-server:8000
+      MCP_PATH: /mcp
+      UV_CACHE_DIR: /tmp/uv-runtime-cache
+    networks:
+      - mcp
+    ports:
+      - "7860:7860"
+    user: "${UID}:${GID}"
+    restart: unless-stopped
