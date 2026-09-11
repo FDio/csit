@@ -1,0 +1,52 @@
+[
+  {
+    "job": "csit-vpp-perf-mrr-release-2n-skx",
+    "build": 301,
+    "test_type": "mrr",
+    "dut_type": "vpp",
+    "dut_version": "24.10-release",
+    "tg_type": "trex",
+    "hosts": ["2n-skx", "host-a"],
+    "start_time": "2099-01-05T12:00:00+00:00",
+    "passed": true,
+    "test_id": "fixture-iter-test-a",
+    "version": "fixture",
+    "release": "rls2606",
+    "telemetry": ["eJxtjr0OwjAQg/c+xSldUXUZgKljEQMSHViYopDeELXKleTKjyrenUgZwZtlf5ZrOHanHlzyYmbrRpJkhMVO0BcHfEsUHzRUNVyuffev6ngJQrH6jdYnx5Fiq1BtBh/JiefQqvhSH9CIoPc7LCrwZIWCe5tEjsOQ1vtig/iJ8kCzxQxhg6jzle58qL67lz/e"],
+    "result_receive_rate_rate_avg": 100.0,
+    "result_receive_rate_bandwidth_avg": 10.0
+  },
+  {
+    "job": "csit-vpp-perf-mrr-release-3n-alt",
+    "build": 302,
+    "test_type": "mrr",
+    "dut_type": "vpp",
+    "dut_version": "24.10-release",
+    "tg_type": "trex",
+    "hosts": ["3n-alt", "host-b"],
+    "start_time": "2099-01-06T12:00:00+00:00",
+    "passed": true,
+    "test_id": "fixture-iter-test-a",
+    "version": "fixture",
+    "release": "rls2606",
+    "telemetry": ["eJxtjj8LwjAUxPd+ike6SnlBWqeOEQfBDi5OIaZvCA1JTV79Q/G7W+motx13v+NKOKhjBzY71qOxA3HWHNl46FYH8Zop3akvSjhfOvWvauMUmFLxG82PmAZKrUCx6V0iyy6GVqSneIPcIshdg181uMLeMAX70plsDH2eb5MJ7DwtA1WNC4QVoqyXL+q0Lz7980Ac"],
+    "result_receive_rate_rate_avg": 140.0,
+    "result_receive_rate_bandwidth_avg": 14.0
+  },
+  {
+    "job": "csit-vpp-perf-ndrpdr-release-2n-skx",
+    "build": 303,
+    "test_type": "ndrpdr",
+    "dut_type": "vpp",
+    "dut_version": "24.10-release",
+    "tg_type": "trex",
+    "hosts": ["2n-skx", "host-a"],
+    "start_time": "2000-01-05T12:00:00+00:00",
+    "passed": false,
+    "test_id": "fixture-iter-test-b",
+    "version": "fixture",
+    "release": "rls2606",
+    "result_pdr_lower_rate_value": 80.0,
+    "result_ndr_lower_rate_value": 70.0
+  }
+]

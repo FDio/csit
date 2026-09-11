@@ -1,0 +1,34 @@
+[
+  {
+    "job": "csit-vpp-coverage-2n-skx",
+    "build": 401,
+    "test_type": "ndrpdr",
+    "dut_type": "vpp",
+    "dut_version": "24.10-release",
+    "tg_type": "trex",
+    "hosts": ["2n-skx", "host-a"],
+    "start_time": "2099-01-05T13:00:00+00:00",
+    "passed": false,
+    "test_id": "fixture-coverage-test-a",
+    "version": "fixture",
+    "release": "rls2606",
+    "result_pdr_lower_rate_value": 60.0,
+    "result_ndr_lower_rate_value": 55.0
+  },
+  {
+    "job": "csit-vpp-coverage-3n-alt",
+    "build": 402,
+    "test_type": "ndrpdr",
+    "dut_type": "vpp",
+    "dut_version": "24.10-release",
+    "tg_type": "trex",
+    "hosts": ["3n-alt", "host-b"],
+    "start_time": "2099-01-06T13:00:00+00:00",
+    "passed": true,
+    "test_id": "fixture-coverage-test-a",
+    "version": "fixture",
+    "release": "rls2606",
+    "result_pdr_lower_rate_value": 72.0,
+    "result_ndr_lower_rate_value": 68.0
+  }
+]
