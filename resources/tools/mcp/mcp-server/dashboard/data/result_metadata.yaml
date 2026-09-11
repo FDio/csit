@@ -1,0 +1,233 @@
+default_comparable_dimensions:
+  - hosts
+  - test_id
+  - build
+  - release
+  - job
+  - dut_type
+  - dut_version
+  - tg_type
+  - passed
+  - start_time
+
+results:
+  result_receive_rate_rate_avg:
+    display_name: MRR receive rate average
+    unit_column: result_receive_rate_rate_unit
+    scale: 1
+    preferred_direction: higher
+    description: Average receive rate measured by MRR tests.
+  result_receive_rate_rate_stdev:
+    display_name: MRR receive rate standard deviation
+    unit_column: result_receive_rate_rate_unit
+    scale: 1
+    preferred_direction: lower
+    description: Standard deviation of MRR receive rate samples.
+  result_receive_rate_rate_unit:
+    display_name: MRR receive rate unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for MRR receive rate fields.
+  result_receive_rate_rate_values:
+    display_name: MRR receive rate samples
+    unit_column: result_receive_rate_rate_unit
+    scale: 1
+    preferred_direction: higher
+    description: Sample values used to calculate MRR receive rate summaries.
+  result_receive_rate_bandwidth_avg:
+    display_name: MRR receive bandwidth average
+    unit_column: result_receive_rate_bandwidth_unit
+    scale: 1
+    preferred_direction: higher
+    description: Average receive bandwidth measured by MRR tests.
+  result_receive_rate_bandwidth_stdev:
+    display_name: MRR receive bandwidth standard deviation
+    unit_column: result_receive_rate_bandwidth_unit
+    scale: 1
+    preferred_direction: lower
+    description: Standard deviation of MRR receive bandwidth samples.
+  result_receive_rate_bandwidth_unit:
+    display_name: MRR receive bandwidth unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for MRR receive bandwidth fields.
+  result_receive_rate_bandwidth_values:
+    display_name: MRR receive bandwidth samples
+    unit_column: result_receive_rate_bandwidth_unit
+    scale: 1
+    preferred_direction: higher
+    description: Sample values used to calculate MRR receive bandwidth summaries.
+
+  result_pdr_lower_rate_unit:
+    display_name: PDR lower rate unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for PDR lower rate fields.
+  result_pdr_lower_rate_value:
+    display_name: PDR lower rate
+    unit_column: result_pdr_lower_rate_unit
+    scale: 1
+    preferred_direction: higher
+    description: Lower bound of packet rate at partial drop rate.
+  result_ndr_lower_rate_unit:
+    display_name: NDR lower rate unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for NDR lower rate fields.
+  result_ndr_lower_rate_value:
+    display_name: NDR lower rate
+    unit_column: result_ndr_lower_rate_unit
+    scale: 1
+    preferred_direction: higher
+    description: Lower bound of packet rate at no drop rate.
+  result_pdr_lower_bandwidth_unit:
+    display_name: PDR lower bandwidth unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for PDR lower bandwidth fields.
+  result_pdr_lower_bandwidth_value:
+    display_name: PDR lower bandwidth
+    unit_column: result_pdr_lower_bandwidth_unit
+    scale: 1
+    preferred_direction: higher
+    description: Lower bound of bandwidth at partial drop rate.
+  result_ndr_lower_bandwidth_unit:
+    display_name: NDR lower bandwidth unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for NDR lower bandwidth fields.
+  result_ndr_lower_bandwidth_value:
+    display_name: NDR lower bandwidth
+    unit_column: result_ndr_lower_bandwidth_unit
+    scale: 1
+    preferred_direction: higher
+    description: Lower bound of bandwidth at no drop rate.
+
+  result_latency_forward_pdr_0_hdrh:
+    display_name: Forward latency PDR 0 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Forward-direction latency histogram at 0 percent PDR load.
+  result_latency_forward_pdr_10_hdrh:
+    display_name: Forward latency PDR 10 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Forward-direction latency histogram at 10 percent PDR load.
+  result_latency_forward_pdr_50_avg:
+    display_name: Forward latency PDR 50 average
+    unit_column: result_latency_forward_pdr_50_unit
+    scale: 1
+    preferred_direction: lower
+    description: Average forward-direction latency at 50 percent PDR load.
+  result_latency_forward_pdr_50_hdrh:
+    display_name: Forward latency PDR 50 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Forward-direction latency histogram at 50 percent PDR load.
+  result_latency_forward_pdr_50_unit:
+    display_name: Forward latency PDR 50 unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for forward latency PDR 50 average.
+  result_latency_forward_pdr_90_hdrh:
+    display_name: Forward latency PDR 90 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Forward-direction latency histogram at 90 percent PDR load.
+  result_latency_reverse_pdr_0_hdrh:
+    display_name: Reverse latency PDR 0 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Reverse-direction latency histogram at 0 percent PDR load.
+  result_latency_reverse_pdr_10_hdrh:
+    display_name: Reverse latency PDR 10 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Reverse-direction latency histogram at 10 percent PDR load.
+  result_latency_reverse_pdr_50_hdrh:
+    display_name: Reverse latency PDR 50 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Reverse-direction latency histogram at 50 percent PDR load.
+  result_latency_reverse_pdr_90_hdrh:
+    display_name: Reverse latency PDR 90 HDRH
+    unit: hdrh
+    scale: 1
+    preferred_direction: lower
+    description: Reverse-direction latency histogram at 90 percent PDR load.
+
+  result_bandwidth_unit:
+    display_name: Hoststack bandwidth unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for hoststack bandwidth fields.
+  result_bandwidth_value:
+    display_name: Hoststack bandwidth
+    unit_column: result_bandwidth_unit
+    scale: 1
+    preferred_direction: higher
+    description: Hoststack bandwidth result value.
+  result_rate_unit:
+    display_name: Hoststack rate unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for hoststack rate fields.
+  result_rate_value:
+    display_name: Hoststack rate
+    unit_column: result_rate_unit
+    scale: 1
+    preferred_direction: higher
+    description: Hoststack rate result value.
+  result_latency_unit:
+    display_name: Hoststack latency unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for hoststack latency fields.
+  result_latency_value:
+    display_name: Hoststack latency
+    unit_column: result_latency_unit
+    scale: 1
+    preferred_direction: lower
+    description: Hoststack latency result value.
+
+  result_critical_rate_lower_bandwidth_unit:
+    display_name: Soak critical bandwidth unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for soak critical bandwidth fields.
+  result_critical_rate_lower_bandwidth_value:
+    display_name: Soak critical bandwidth lower bound
+    unit_column: result_critical_rate_lower_bandwidth_unit
+    scale: 1
+    preferred_direction: higher
+    description: Lower bound of critical bandwidth measured by soak tests.
+  result_critical_rate_lower_rate_unit:
+    display_name: Soak critical rate unit
+    unit: text
+    scale: 1
+    preferred_direction: neutral
+    description: Unit label for soak critical rate fields.
+  result_critical_rate_lower_rate_value:
+    display_name: Soak critical rate lower bound
+    unit_column: result_critical_rate_lower_rate_unit
+    scale: 1
+    preferred_direction: higher
+    description: Lower bound of critical packet rate measured by soak tests.

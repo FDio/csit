@@ -1,0 +1,39 @@
+$catalog_warning
+<form class="iterative-filters" method="get" action="/" data-iterative-filters>
+  <input type="hidden" name="dataset" value="iterative">
+  $selected_inputs
+  $filter_controls
+  <button class="command-button command-button-primary iterative-add" type="submit"
+          name="iterative_action" value="add"$add_disabled>Add Selected</button>
+</form>
+<div class="iterative-layout">
+  <section class="selected-tests iterative-selected-tests" aria-labelledby="iterative-selected-tests-heading">
+    <h2 id="iterative-selected-tests-heading">Selected tests</h2>
+    <form method="get" action="/" data-selected-tests-form>
+      <input type="hidden" name="dataset" value="iterative">
+      $filter_inputs
+      $selected_inputs
+      <div class="selected-tests-list" role="group" aria-label="Selected iterative tests">
+        $selected_tests
+      </div>
+      <div class="selected-tests-actions">
+        <button class="command-button command-button-secondary" type="submit"
+                name="iterative_action" value="remove_selected"$remove_disabled>
+          Remove Selected
+        </button>
+        <button class="command-button command-button-secondary" type="submit"
+                name="iterative_action" value="remove_all"$remove_disabled>
+          Remove All
+        </button>
+      </div>
+    </form>
+  </section>
+  <div class="iterative-graphs">
+    $series_warning
+    $charts
+  </div>
+</div>
+$iterative_actions
+$details_dialog
+$download_dialog
+$show_url_dialog

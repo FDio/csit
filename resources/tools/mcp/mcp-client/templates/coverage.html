@@ -1,0 +1,14 @@
+$catalog_warning
+<form class="coverage-filters" method="get" action="/" data-coverage-filters
+      data-coverage-complete="$complete">
+  <input type="hidden" name="dataset" value="coverage">
+  $filter_controls
+  <noscript><button class="apply-button" type="submit">Apply filters</button></noscript>
+</form>
+<section class="coverage-results" data-coverage-results aria-live="polite">
+  $table_warning
+  $tables
+  $coverage_actions
+</section>
+$download_dialog
+$show_url_dialog
