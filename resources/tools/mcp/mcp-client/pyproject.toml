@@ -1,0 +1,13 @@
+[project]
+name = "csit-mcp-client"
+version = "0.0.1"
+description = "CSIT MCP client app."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastmcp[apps]>=3.3.0",
+    "prefab-ui>=0.19.0",
+    "starlette>=1.0.0",
+    "uvicorn>=0.44.0",
+    "xlsxwriter>=3.2.0",
+]

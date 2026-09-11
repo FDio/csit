@@ -1,0 +1,14 @@
+[
+  {
+    "job": "csit-vpp-perf-mrr-daily-master-2n-skx",
+    "build": 201,
+    "start_time": "2099-01-05T10:00:00+00:00",
+    "duration": 123.4
+  },
+  {
+    "job": "csit-vpp-perf-ndrpdr-daily-master-2n-skx",
+    "build": 203,
+    "start_time": "2000-01-07T10:00:00+00:00",
+    "duration": 456.7
+  }
+]

@@ -1,0 +1,11 @@
+.DS_Store
+.coverage
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+*.log
+*.py[cod]
+htmlcov/
+tests/

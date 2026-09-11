@@ -1,0 +1,6 @@
+services:
+  mcp-server:
+    environment:
+      CSIT_DATA_MODE: fixture
+    healthcheck:
+      start_period: 30s
