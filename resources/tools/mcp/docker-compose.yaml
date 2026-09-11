@@ -1,0 +1,74 @@
+networks:
+  mcp:
+    external: true
+
+services:
+  mcp-server:
+    build:
+      context: ./mcp-server
+      dockerfile: Dockerfile
+    container_name: csit-mcp-server
+    environment:
+      AWS_CONFIG_FILE: /home/csit-mcp/.aws/config
+      AWS_SHARED_CREDENTIALS_FILE: /home/csit-mcp/.aws/credentials
+      CSIT_START_TRENDING: "True"
+      CSIT_START_REPORT: "False"
+      CSIT_START_COVERAGE: "True"
+      CSIT_START_STATISTICS: "True"
+      CSIT_START_FAILURES: "True"
+      CSIT_TIME_PERIOD: 60
+      CSIT_CACHE_SNAPSHOT_PATH: /home/csit-mcp/cache/data
+      CSIT_TELEMETRY_QUERY_MAX_CONCURRENT: 1
+      CSIT_TELEMETRY_QUERY_QUEUE_TIMEOUT_SECONDS: 5
+      CSIT_TELEMETRY_QUERY_TIMEOUT_SECONDS: 30
+      CSIT_TELEMETRY_QUERY_MAX_SOURCE_ROWS: 2000
+      CSIT_TELEMETRY_QUERY_MAX_SAMPLES: 20000
+      CSIT_TELEMETRY_QUERY_MAX_ENCODED_BYTES: 134217728
+      CSIT_TELEMETRY_QUERY_MAX_DECODED_BYTES: 536870912
+      CSIT_TELEMETRY_WORKER_MEMORY_LIMIT_BYTES: 2147483648
+      CSIT_QUERY_MAX_CONCURRENT: 1
+      CSIT_QUERY_QUEUE_TIMEOUT_SECONDS: 5
+      CSIT_QUERY_HEAVY_ROW_THRESHOLD: 100000
+      CSIT_QUERY_MEMORY_SOFT_LIMIT_PERCENT: 75
+      HOME: /home/csit-mcp
+      UV_CACHE_DIR: /tmp/uv-runtime-cache
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 900s
+    mem_limit: "16g"
+    networks:
+      - mcp
+    ports:
+      - "8000:8000"
+    user: "${UID}:${GID}"
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - "${HOME}/.aws:/home/csit-mcp/.aws:ro"
+      - csit-mcp-cache:/home/csit-mcp/cache
+  mcp-client:
+    build:
+      context: ./mcp-client
+      dockerfile: Dockerfile
+    container_name: csit-mcp-client
+    depends_on:
+      mcp-server:
+        condition: service_started
+    environment:
+      HOME: /home/csit-mcp
+      MCP_SERVER_URL: http://mcp-server:8000
+      MCP_PATH: /mcp
+      UV_CACHE_DIR: /tmp/uv-runtime-cache
+    networks:
+      - mcp
+    ports:
+      - "7860:7860"
+    user: "${UID}:${GID}"
+    restart: unless-stopped
+
+volumes:
+  csit-mcp-cache:

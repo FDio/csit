@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+  <title id="title">CSIT MCP Architecture</title>
+  <desc id="desc">Browser and AI clients use the resilient Starlette client or FastMCP server, backed by a normalized cache and S3 or fixture data.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#1976D2"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2E7D32"/></marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7B1FA2"/></marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#EF6C00"/></marker>
+    <style>
+      .title{font:700 26px Arial,sans-serif;fill:#172B4D}.head{font:700 16px Arial,sans-serif;fill:#172B4D}.body{font:15px Arial,sans-serif;fill:#263238}.box{stroke-width:2}.line{fill:none;stroke-width:3}
+    </style>
+  </defs>
+  <rect width="1400" height="850" fill="#FFFFFF"/>
+  <text class="title" x="40" y="48">CSIT MCP Architecture</text>
+  <rect class="box" x="40" y="110" width="220" height="90" rx="7" fill="#E3F2FD" stroke="#1976D2"/>
+  <text class="head" x="150" y="145" text-anchor="middle">Browser user</text><text class="body" x="150" y="174" text-anchor="middle">http://localhost:7860</text>
+  <rect class="box" x="40" y="270" width="220" height="90" rx="7" fill="#F3E5F5" stroke="#7B1FA2"/>
+  <text class="head" x="150" y="305" text-anchor="middle">Codex / Claude</text><text class="body" x="150" y="334" text-anchor="middle">MCP HTTP clients</text>
+  <rect class="box" x="340" y="80" width="320" height="230" rx="7" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text class="head" x="500" y="115" text-anchor="middle">mcp-client · Starlette · :7860</text>
+  <text class="body" x="500" y="153" text-anchor="middle">Lazy MCP reconnect</text>
+  <text class="body" x="500" y="184" text-anchor="middle">Statistics · Trending · Iterative</text>
+  <text class="body" x="500" y="213" text-anchor="middle">Coverage · Comparison</text>
+  <text class="body" x="500" y="254" text-anchor="middle">CSV/XLSX export · URL sharing</text>
+  <rect class="box" x="760" y="80" width="350" height="210" rx="7" fill="#FFF3E0" stroke="#EF6C00"/>
+  <text class="head" x="935" y="115" text-anchor="middle">mcp-server · FastAPI + FastMCP · :8000</text>
+  <text class="body" x="935" y="157" text-anchor="middle">/mcp · 28 public tools</text>
+  <text class="body" x="935" y="190" text-anchor="middle">server://info public resource</text>
+  <text class="body" x="935" y="223" text-anchor="middle">data://parquet/{query} private preview</text>
+  <rect class="box" x="760" y="350" width="260" height="110" rx="7" fill="#FFFDE7" stroke="#F9A825"/>
+  <text class="head" x="890" y="382" text-anchor="middle">Operational HTTP</text><text class="body" x="890" y="414" text-anchor="middle">/health · /ready</text><text class="body" x="890" y="441" text-anchor="middle">POST /data/refresh</text>
+  <rect class="box" x="1100" y="350" width="250" height="120" rx="7" fill="#F5F5F5" stroke="#616161"/>
+  <text class="head" x="1225" y="382" text-anchor="middle">Runtime controls</text><text class="body" x="1225" y="411" text-anchor="middle">validated CSIT_* settings</text><text class="body" x="1225" y="438" text-anchor="middle">CORS · structured logs</text>
+  <rect class="box" x="760" y="540" width="350" height="150" rx="7" fill="#E0F7FA" stroke="#00838F"/>
+  <text class="head" x="935" y="575" text-anchor="middle">DataCacheService</text><text class="body" x="935" y="606" text-anchor="middle">result cache + telemetry sidecar</text><text class="body" x="935" y="635" text-anchor="middle">Arrow v2 restart snapshot</text><text class="body" x="935" y="664" text-anchor="middle">bounded query admission</text>
+  <rect class="box" x="1160" y="540" width="190" height="150" rx="7" fill="#FCE4EC" stroke="#C2185B"/>
+  <text class="head" x="1255" y="575" text-anchor="middle">Data sources</text><text class="body" x="1255" y="606" text-anchor="middle">S3 parquet</text><text class="body" x="1255" y="635" text-anchor="middle">fixture JSON</text><text class="body" x="1255" y="664" text-anchor="middle">YAML metadata</text>
+  <path class="line" d="M260 155 H340" stroke="#1976D2" marker-end="url(#arrow-blue)"/>
+  <path class="line" d="M660 195 H760" stroke="#2E7D32" marker-end="url(#arrow-green)"/>
+  <path class="line" d="M260 315 H700 V255 H760" stroke="#7B1FA2" marker-end="url(#arrow-purple)"/>
+  <path class="line" d="M1060 290V540" stroke="#EF6C00" marker-end="url(#arrow-orange)"/>
+  <path class="line" d="M1160 615 H1110" stroke="#C2185B" marker-end="url(#arrow-orange)"/>
+  <path class="line" d="M890 460 V540" stroke="#F9A825" marker-end="url(#arrow-orange)"/>
+  <path class="line" d="M1100 390 H1060 V290" stroke="#616161" stroke-dasharray="8 6"/>
+</svg>

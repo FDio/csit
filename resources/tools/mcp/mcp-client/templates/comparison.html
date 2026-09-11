@@ -1,0 +1,28 @@
+$catalog_warning
+<form class="comparison-filters" method="get" action="/" data-comparison-filters>
+  <input type="hidden" name="dataset" value="comparison">
+  <fieldset class="comparison-fieldset comparison-reference">
+    <legend>Reference Value</legend>
+    <div class="comparison-reference-controls">$reference_controls</div>
+  </fieldset>
+  <fieldset class="comparison-fieldset comparison-compared">
+    <legend>Compared Value</legend>
+    <div class="comparison-compared-controls">$compared_controls</div>
+  </fieldset>
+  <fieldset class="comparison-fieldset comparison-manipulation">
+    <legend>Data Manipulation</legend>
+    <label class="comparison-checkbox">
+      <input type="checkbox" name="remove_extreme_outliers" value="true"
+             data-comparison-outliers$outliers_checked>
+      <span>Remove Extreme Outliers</span>
+    </label>
+  </fieldset>
+</form>
+$table_warning
+<section class="comparison-results" aria-live="polite">
+  $comparison_table
+</section>
+$comparison_actions
+$table_download_dialog
+$data_download_dialog
+$show_url_dialog

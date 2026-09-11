@@ -1,0 +1,40 @@
+$catalog_warning
+<form class="trending-filters" method="get" action="/" data-trending-filters>
+  <input type="hidden" name="dataset" value="trending">
+  $selected_inputs
+  $filter_controls
+  <button class="command-button command-button-primary trending-add" type="submit"
+          name="trending_action" value="add"$add_disabled>Add Selected</button>
+</form>
+<div class="trending-layout">
+  <section class="selected-tests" aria-labelledby="selected-tests-heading">
+    <h2 id="selected-tests-heading">Selected tests</h2>
+    <form method="get" action="/" data-selected-tests-form>
+      <input type="hidden" name="dataset" value="trending">
+      $filter_inputs
+      $selected_inputs
+      <div class="selected-tests-list" role="group" aria-label="Selected trending tests">
+        $selected_tests
+      </div>
+      <div class="selected-tests-actions">
+        <button class="command-button command-button-secondary" type="submit"
+                name="trending_action" value="remove_selected"$remove_disabled>
+          Remove Selected
+        </button>
+        <button class="command-button command-button-secondary" type="submit"
+                name="trending_action" value="remove_all"$remove_disabled>
+          Remove All
+        </button>
+      </div>
+    </form>
+  </section>
+  <div class="trending-graphs">
+    $series_warning
+    $analysis_warning
+    $charts
+  </div>
+</div>
+$trending_actions
+$details_dialog
+$download_dialog
+$show_url_dialog

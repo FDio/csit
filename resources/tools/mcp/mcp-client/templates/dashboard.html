@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSIT Dashboard</title>
+  <link rel="stylesheet" href="/static/dashboard.css?v=18">
+  <script src="/static/dashboard.js?v=18" defer></script>
+</head>
+<body>
+  <main class="dashboard-shell">
+    <header class="top-panel">
+      <div class="top-row">
+        <h1>CSIT Dashboard</h1>
+        <aside class="status-panel $status_class" aria-label="Service status">
+          <p><strong>MCP:</strong> $connection_status</p>
+          <p><strong>Data status:</strong> $data_status</p>
+          <p><strong>Freshness:</strong> $freshness</p>
+          <p><strong>URL:</strong> <code>$mcp_url</code></p>
+        </aside>
+      </div>
+      <nav class="dataset-nav" aria-label="Datasets">
+        $dataset_tabs
+      </nav>
+    </header>
+    <div class="content-panel">
+      $dashboard_content
+    </div>
+  </main>
+</body>
+</html>
