@@ -156,19 +156,19 @@ git checkout -b "middle" || die "Failed to create branch: middle"
 git status || die
 git log -2 --oneline || die
 git describe || die
-# Building latest first, good for avoiding DPDK rebuilds.
-git checkout "latest" || die "Failed to checkout latest commit."
-build_vpp_ubuntu "LATEST" || die
-set_aside_build_artifacts "latest" || die
+# Building latest first would save time on DPDK recompile,
+# but if DPDK bump causes build errors it is better to startr with earliest.
+git checkout "earliest" || die "Failed to checkout earliest commit."
+git status || die
+build_vpp_ubuntu "EARLIEST" || die
+set_aside_build_artifacts "earliest" || die
 if head -n 1 "${GIT_LOG_FILE}" | fgrep -q ' was both old and new'; then
-    echo "Not compiling the earliest in singleperpatch mode."
+    echo "Not compiling the latest in singleperpatch mode."
 else
-    git checkout "earliest" || die "Failed to checkout earliest commit."
+    git checkout "latest" || die "Failed to checkout latest commit."
     git status || die
-    git log -2 --oneline || die
-    git describe || die
-    build_vpp_ubuntu "EARLIEST" || die
-    set_aside_build_artifacts "earliest" || die
+    build_vpp_ubuntu "LATEST" || die
+    set_aside_build_artifacts "latest" || die
     git checkout "middle" || die "Failed to checkout middle commit."
 fi
 # Done with repo manipulation for now, testing commences.
