@@ -33,23 +33,23 @@ nodes:
         link: link2
         model: Mellanox-CX556A
       port3:
-        # s61-t210-tg1-c2/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        # s61-t210-tg1-c3/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
         mac_address: "40:a6:b7:02:89:dc"
         pci_address: "0000:41:00.0"
         ip4_address: 172.16.30.2
         driver: i40e
-        link: link3
+        link: link4
         model: Intel-XXV710
       port4:
-        # s61-t210-tg1-c2/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        # s61-t210-tg1-c3/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
         mac_address: "40:a6:b7:02:89:dd"
         pci_address: "0000:41:00.1"
         ip4_address: 172.16.40.2
         driver: i40e
-        link: link4
+        link: link3
         model: Intel-XXV710
       port5:
-        # s61-t210-tg1-c3/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        # s61-t210-tg1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "80:61:5f:01:5a:72"
         pci_address: "0000:81:00.0"
         ip4_address: 172.16.50.2
@@ -57,7 +57,7 @@ nodes:
         link: link5
         model: Intel-X710
       port6:
-        # s61-t210-tg1-c3/p2 - 10GE port2 on Intel NIC x710 4p10GE.
+        # s61-t210-tg1-c2/p2 - 10GE port2 on Intel NIC x710 4p10GE.
         mac_address: "80:61:5f:01:5a:73"
         pci_address: "0000:81:00.1"
         ip4_address: 172.16.60.2
@@ -65,7 +65,7 @@ nodes:
         link: link6
         model: Intel-X710
       port7:
-        # s61-t210-tg1-c3/p3 - 10GE port3 on Intel NIC x710 4p10GE.
+        # s61-t210-tg1-c2/p3 - 10GE port3 on Intel NIC x710 4p10GE.
         mac_address: "80:61:5f:01:5a:74"
         pci_address: "0000:81:00.2"
         ip4_address: 172.16.70.2
@@ -73,7 +73,7 @@ nodes:
         link: link7
         model: Intel-X710
       port8:
-        # s61-t210-tg1-c3/p4 - 10GE port4 on Intel NIC x710 4p10GE.
+        # s61-t210-tg1-c2/p4 - 10GE port4 on Intel NIC x710 4p10GE.
         mac_address: "80:61:5f:01:5a:75"
         pci_address: "0000:81:00.3"
         ip4_address: 172.16.80.2
