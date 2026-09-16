@@ -8,7 +8,6 @@ grub:
   hpet: "disable"
   intel_idle.max_cstate: "1"
   intel_iommu: "on,sm_on"
-  intel_pstate: "disable"
   iommu: "pt"
   isolcpus: "1-31,33-63,65-95,97-127,129-159,161-191,193-223,225-255"
   mce: "off"
