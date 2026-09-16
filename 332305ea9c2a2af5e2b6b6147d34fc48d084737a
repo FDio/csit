@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-3n-oct perftest mrrAND64bAND1c #cov-l2-00",
       "revId": "332305ea9c2a2af5e2b6b6147d34fc48d084737a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fbc5a28_3ca4d8c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-09-16T17:57:02Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-oct perftest mrrAND64bAND1c #cov-l2-00",
+      "revId": "332305ea9c2a2af5e2b6b6147d34fc48d084737a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
