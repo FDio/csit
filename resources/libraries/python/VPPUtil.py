@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -315,6 +315,9 @@ class VPPUtil:
             u"trace add memif-input 50",
             u"trace add iavf0/0-rx 50",
             u"trace add iavf1/0-rx 50",
+            u"trace add crypto-deq 50",  # ipsechw
+            u"trace add eth0-rx 50",  # octeon
+            u"trace add eth1-rx 50",
         ]
 
         for cmd in cmds:
