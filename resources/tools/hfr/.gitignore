@@ -1,0 +1,4 @@
+.env
+.venv
+.terraform
+.DS_Store

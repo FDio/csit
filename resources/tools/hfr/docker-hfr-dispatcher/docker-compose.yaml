@@ -1,0 +1,5 @@
+services:
+    build: .
+    command: uv run app.py
+    env_file:
+      - ../.env
