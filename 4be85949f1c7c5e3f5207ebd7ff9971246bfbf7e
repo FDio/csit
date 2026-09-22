@@ -67,6 +67,23 @@
       "message": "gha-run csit-vpp-3n-alt perftest mrrAND64bAND1c",
       "revId": "4be85949f1c7c5e3f5207ebd7ff9971246bfbf7e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "338f9278_d2e3361d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-09-22T06:13:15Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-gnr perftest mrrAND64bAND1cANDethip4-ip4base",
+      "revId": "4be85949f1c7c5e3f5207ebd7ff9971246bfbf7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
