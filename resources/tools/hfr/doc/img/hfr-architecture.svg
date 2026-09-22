@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hands-Free Releasing architecture and run flow</title>
+  <desc id="desc">A spaced flow diagram showing the operator and configuration inputs to HFR, its GitHub Actions and testbed integrations, operational files, report processing, and CI/Terraform/Nomad deployment.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a78a8"/></marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7a8795"/></marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c58b31"/></marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9060a8"/></marker>
+    <marker id="arrow-purple-start" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#9060a8"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #24303b; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #586571; }
+      .box { stroke-width: 2; rx: 14; }
+      .label { font-size: 17px; font-weight: 650; text-anchor: middle; }
+      .detail { font-size: 15px; font-weight: 400; text-anchor: middle; }
+      .edge { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+    </style>
+  </defs>
+  <rect width="1440" height="900" fill="#ffffff"/>
+  <text x="40" y="43" class="title">Hands-Free Releasing: architecture and run flow</text>
+  <text x="40" y="72" class="subtitle">Inputs, dispatcher lifecycle, external systems, persistent outputs, and separate report processing</text>
+
+  <!-- Connectors run through the whitespace between nodes; labels stay inside the nodes. -->
+  <path class="edge" stroke="#4a78a8" marker-end="url(#arrow-blue)" d="M290 205 H350 V235 H420"/>
+  <path class="edge" stroke="#7a8795" marker-end="url(#arrow-gray)" d="M290 445 H345 V286 H420"/>
+  <path class="edge" stroke="#4a78a8" stroke-dasharray="9 7" marker-end="url(#arrow-blue)" d="M40 715 H20 V100 H570 V200"/>
+  <path class="edge" stroke="#c58b31" marker-end="url(#arrow-orange)" d="M720 225 H880"/>
+  <path class="edge" stroke="#c58b31" marker-end="url(#arrow-orange)" d="M1005 270 V350"/>
+  <path class="edge" stroke="#c58b31" marker-end="url(#arrow-orange)" d="M1005 450 V510"/>
+  <path class="edge" stroke="#4a78a8" marker-end="url(#arrow-blue)" d="M720 294 H820 V555 H880"/>
+  <path class="edge" stroke="#9060a8" marker-end="url(#arrow-purple)" d="M570 330 V680"/>
+  <path class="edge" stroke="#9060a8" marker-start="url(#arrow-purple-start)" marker-end="url(#arrow-purple)" d="M720 730 H840"/>
+  <path class="edge" stroke="#c58b31" marker-end="url(#arrow-orange)" d="M1160 730 H1090"/>
+
+  <!-- Components -->
+  <rect class="box" x="40" y="155" width="250" height="90" fill="#e8f1fb" stroke="#4a78a8"/>
+  <text class="label" x="165" y="192">Operator</text>
+  <text class="detail" x="165" y="218">starts the dispatcher</text>
+
+  <rect class="box" x="40" y="380" width="250" height="130" fill="#f2f4f7" stroke="#7a8795"/>
+  <text class="label" x="165" y="418">Configuration inputs</text>
+  <text class="detail" x="165" y="445">app_conf.yaml · run_conf_*.yaml</text>
+  <text class="detail" x="165" y="472">CSIT topology YAML files</text>
+
+  <rect class="box" x="40" y="650" width="250" height="130" fill="#e8f1fb" stroke="#4a78a8"/>
+  <text class="label" x="165" y="688">Build and deployment</text>
+  <text class="detail" x="165" y="715">CI builds the container image</text>
+  <text class="detail" x="165" y="742">Terraform submits Nomad batch job</text>
+
+  <rect class="box" x="420" y="200" width="300" height="130" fill="#e8f5e9" stroke="#4d8b57"/>
+  <text class="label" x="570" y="241">HFR dispatcher</text>
+  <text class="detail" x="570" y="267">configuration + run manager</text>
+  <text class="detail" x="570" y="293">dispatches, polls, and writes state</text>
+
+  <rect class="box" x="880" y="180" width="250" height="90" fill="#fff3e0" stroke="#c58b31"/>
+  <text class="label" x="1005" y="216">GitHub REST API</text>
+  <text class="detail" x="1005" y="242">dispatch · status · cancel</text>
+
+  <rect class="box" x="880" y="350" width="250" height="100" fill="#fff3e0" stroke="#c58b31"/>
+  <text class="label" x="1005" y="389">GitHub Actions workflow</text>
+  <text class="detail" x="1005" y="417">runs the configured CSIT job</text>
+
+  <rect class="box" x="880" y="510" width="250" height="90" fill="#e8f1fb" stroke="#4a78a8"/>
+  <text class="label" x="1005" y="542">Testbed traffic-generator</text>
+  <text class="detail" x="1005" y="565">SSH availability</text>
+  <text class="detail" x="1005" y="586">/tmp/reservation_dir/</text>
+
+  <rect class="box" x="420" y="680" width="300" height="100" fill="#f3eafa" stroke="#9060a8"/>
+  <text class="label" x="570" y="718">Operational files</text>
+  <text class="detail" x="570" y="744">data.json · data.csv · testbeds.csv</text>
+  <text class="detail" x="570" y="766">under PATH_OPER</text>
+
+  <rect class="box" x="840" y="680" width="250" height="100" fill="#f3eafa" stroke="#9060a8"/>
+  <text class="label" x="965" y="718">process_reports.py</text>
+  <text class="detail" x="965" y="746">enriches data.csv with report stats</text>
+
+  <rect class="box" x="1160" y="680" width="230" height="100" fill="#fff3e0" stroke="#c58b31"/>
+  <text class="label" x="1275" y="718">Robot report</text>
+  <text class="detail" x="1275" y="746">report.html.gz from each Log URL</text>
+</svg>

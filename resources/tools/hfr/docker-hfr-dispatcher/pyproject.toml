@@ -1,0 +1,18 @@
+[project]
+name = "python-hfr-dispatcher"
+version = "0.1.0"
+description = "Python tool to dispatch GHA Jobs based on GitHub REST API."
+authors = [
+    {name = "Peter Mikus"},
+    {name = "Tibor Frank"}
+]
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "requests>=2.32.5",
+    "PyYAML>=6.0.3",
+    "paramiko>=4.0.0",
+]
