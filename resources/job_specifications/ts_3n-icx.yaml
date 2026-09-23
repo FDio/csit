@@ -84,6 +84,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize: [64, 1518, imix]
     core: [1, ]
     tests:
@@ -94,6 +95,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -105,6 +107,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -116,6 +119,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize: [1518, imix]
     core: [2, 3, 4]
     tests:
@@ -140,6 +144,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -190,6 +195,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -202,6 +208,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize: [64, 1518, imix]
     tests:
       - wireguard-sw-lg
@@ -224,6 +231,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 78
       - 1518: [1, 2]
@@ -264,6 +272,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -277,6 +286,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -302,6 +312,7 @@ test-sets:
     infra:
       100ge2p1cx6dx:
         - mlx5_core
+        - rdma-core
     framesize:
       - 78
       - 1518: [1, 2]
@@ -321,7 +332,7 @@ test-sets:
       - ipsec-sw-lg:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
           framesize: [1518, imix]
       - ipsec-sw-lg:
           infra:
@@ -332,7 +343,7 @@ test-sets:
       - ipsec-sw-async-md:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
           framesize: [1518, imix]
@@ -362,14 +373,14 @@ test-sets:
       - ip4-base-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
               - vfio-pci
       - gtpu-sw-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             25ge2p1e810xxv:
               - vfio-pci
             100ge2p1e810cq:
@@ -388,7 +399,7 @@ test-sets:
       - wireguard-sw-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             25ge2p1e810xxv:
               - vfio-pci
       - wireguard-sw-lg:
@@ -404,7 +415,7 @@ test-sets:
       - ip6-base-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
               - vfio-pci
@@ -412,20 +423,20 @@ test-sets:
       - l2-base-md:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
               - vfio-pci
       - l2-1lbvpplacp-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - srv6-lg:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
           framesize: [78, ]
@@ -460,6 +471,7 @@ test-sets:
           infra:
             100ge2p1cx6dx:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - vfio-pci
       - soak-ip4-md
@@ -467,6 +479,7 @@ test-sets:
           infra:
             100ge2p1cx6dx:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - vfio-pci
           framesize: [78, ]
@@ -476,6 +489,7 @@ test-sets:
           infra:
             100ge2p1cx6dx:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - vfio-pci
       - soak-l2-md
