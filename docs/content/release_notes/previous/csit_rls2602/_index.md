@@ -2,7 +2,7 @@
 bookCollapseSection: true
 bookFlatSection: false
 title: "CSIT rls2602"
-weight: 1
+weight: 2
 ---
 
 # CSIT-2602 Release Report

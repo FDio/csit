@@ -3,23 +3,26 @@ title: "DPDK Performance"
 weight: 2
 ---
 
-# CSIT 26.10 - DPDK Performance
+# CSIT 26.06 - DPDK Performance
+
+**DPDK has NOT been tested in CSIT 26.06 release**
 
 1. TEST FRAMEWORK
-   - **CSIT test environment** is ver. 20, see
+   - **CSIT test environment** is ver. 19, see
      [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
 2. DPDK PERFORMANCE TESTS
-   - No updates
+   - Added 2n-gnr, 3n-gnr and 3n-srf testbeds, see
+     [FD.io DC Testbed Specifications]({{< ref "../../../infrastructure/fdio_dc_testbed_specifications" >}})
 3. DPDK RELEASE VERSION CHANGE
-   - The DPDK version has been upgrated to v26.07.
+   - The DPDK version has been upgrated to v26.03.
 
 # Known Issues
 
-List of known issues in CSIT 26.10 for DPDK performance tests.
+List of known issues in CSIT 26.06 for DPDK performance tests.
 
 ## New
 
-List of new issues in CSIT 26.10 for DPDK performance tests:
+List of new issues in CSIT 26.06 for DPDK performance tests:
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
@@ -27,7 +30,7 @@ List of new issues in CSIT 26.10 for DPDK performance tests:
 
 ## Previous
 
-List of known issues in CSIT 26.10 for DPDK performance tests:
+List of known issues in CSIT 26.06 for DPDK performance tests:
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
@@ -35,7 +38,7 @@ List of known issues in CSIT 26.10 for DPDK performance tests:
 
 ## Fixed
 
-List of fixed issues in CSIT 26.10 for DPDK performance tests:
+List of fixed issues in CSIT 26.06 for DPDK performance tests:
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
