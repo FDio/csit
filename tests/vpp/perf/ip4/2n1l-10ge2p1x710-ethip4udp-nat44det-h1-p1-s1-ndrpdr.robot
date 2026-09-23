@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | det44
+| Test Teardown | Tear down test | det44 | performance
 |
 | Test Template | Local Template
 |

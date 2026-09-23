@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | acl
+| Test Teardown | Tear down test | acl | performance
 |
 | Test Template | Local Template
 |
