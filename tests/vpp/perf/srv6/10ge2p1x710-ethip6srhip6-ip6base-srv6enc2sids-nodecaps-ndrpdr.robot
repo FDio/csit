@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | srv6
+| Test Teardown | Tear down test | srv6 | performance
 |
 | Test Template | Local Template
 |
