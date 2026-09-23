@@ -16,6 +16,16 @@
   tags:
     - dpdk-inst-prerequisites
 
+- name: meson (dpdk)
+  ansible.builtin.pip:
+    name:
+      - "meson==0.64.1"
+    state: "forcereinstall"
+  environment:
+    ANSIBLE_SKIP_CONFLICT_CHECK: 1
+  tags:
+    - dpdk-inst-prerequisites
+
 - name: multiple DPDK versions
   include_tasks: "deploy_block.yaml"
   loop: "{{ dpdk_version }}"

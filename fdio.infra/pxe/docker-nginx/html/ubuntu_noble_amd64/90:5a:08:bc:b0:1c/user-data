@@ -14,7 +14,7 @@ autoinstall:
         source: deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable
         keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
   identity:
-    hostname: s64-t217-sut1
+    hostname: s64-t217-tg1
     password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
     realname: testuser
     username: testuser
@@ -35,8 +35,13 @@ autoinstall:
           addresses: [ 1.1.1.1, 8.8.8.8 ]
     version: 2
   packages:
+    - autoconf
+    - ca-certificates
+    - cgroup-tools
+    - dkms
     - docker-ce
     - docker-ce-cli
+    - iperf3
     - python3-all
     - python3-apt
     - python3-cffi
@@ -45,6 +50,13 @@ autoinstall:
     - python3-pip
     - python3-pyelftools
     - python3-setuptools
+    - linux-tools-common
+    - ninja-build
+    - numactl
+    - qemu-system
+    - socat
+    - unzip
+    - virtualenv
   refresh-installer:
     update: no
   ssh:
@@ -96,3 +108,14 @@ autoinstall:
       id: mount-0
       path: /boot/efi
       type: mount
+  user-data:
+    users:
+      - name: testuser
+        gecos: CSIT User
+        sudo: 'ALL=(ALL:ALL) NOPASSWD: ALL'
+        shell: /bin/bash
+        lock_passwd: false
+        passwd: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
+        ssh_authorized_keys:
+          - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIP6lbZ05YCxUFgUbHmSnmuDlFk0tsi4oNW08EDvCRL9 peter.mikus@icloud.com"
+        groups: [testuser, adm, cdrom, sudo, dip, plugdev, lxd]
