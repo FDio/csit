@@ -16,6 +16,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -27,6 +28,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -38,6 +40,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize: [1518, imix]
     core: [2, 3, 4]
     tests:
@@ -49,6 +52,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -60,6 +64,7 @@ test-sets:
           infra:
             200ge6p3cx7veat:
               - mlx5_core
+              - rdma-core
           framesize: [64, 1518, imix]
           core: [3, 6, 12]
 
@@ -67,6 +72,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -79,6 +85,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -91,6 +98,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -103,6 +111,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize: [64, 1518, imix]
     tests:
       - wireguard-sw-lg
@@ -111,6 +120,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -123,6 +133,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 78
       - 1518: [1, 2]
@@ -136,6 +147,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 78
       - 1518: [1, 2]
@@ -148,6 +160,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -161,6 +174,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 78
       - 1518: [1, 2]
@@ -174,9 +188,11 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize: [1518, imix]
     tests:
-      - ipsec-sw-lg
+      - ipsec-sw-lg:
+          framesize: [1518, ]
       - ipsec-sw-udp:
           framesize: [1518, ]
           core: [1, ]
@@ -188,6 +204,7 @@ test-sets:
           infra:
             200ge6p3cx7veat:
               - mlx5_core
+              - rdma-core
           framesize: [64, 1518, imix]
           core: [3, 6, 12]
       - ip4-pol-md:

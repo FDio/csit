@@ -92,6 +92,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -104,6 +105,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -142,6 +144,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 78
       - 1518: [1, 2]
@@ -181,6 +184,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -193,6 +197,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -219,6 +224,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -245,6 +251,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
     framesize:
       - 64
       - 1518: [1, 2]
@@ -271,6 +278,7 @@ test-sets:
     infra:
       200ge2p1cx7veat:
         - mlx5_core
+        - rdma-core
       100ge2p1e810cq:
         - avf
         - vfio-pci
@@ -283,44 +291,44 @@ test-sets:
       - ip4-acl-md:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - nat44det-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - nat44-udir-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - nat44ed-cps-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - nat44ed-tput-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
           framesize: [100, ]
       - nat44-ip4base-cps-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - nat44-ip4base-tput-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
           framesize: [100, ]
@@ -339,6 +347,7 @@ test-sets:
           infra:
             200ge2p1cx7veat:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - avf
       - ip6-md:
@@ -387,6 +396,7 @@ test-sets:
           infra:
             200ge2p1cx7veat:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - vfio-pci
       - soak-ip4-md
@@ -397,6 +407,7 @@ test-sets:
           infra:
             200ge2p1cx7veat:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - vfio-pci
           framesize: [78, ]
@@ -406,6 +417,7 @@ test-sets:
           infra:
             200ge2p1cx7veat:
               - mlx5_core
+              - rdma-core
             100ge2p1e810cq:
               - vfio-pci
       - soak-l2-md
