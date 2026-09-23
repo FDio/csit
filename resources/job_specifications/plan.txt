@@ -1,0 +1,56 @@
+
+2n_grc: CX7
+before:
+MRR: 6 / 6
+PDR: 8 / 8
+plan: double everything (except hoststack)
+MRR: 12 / 12
+PDR: 16 / 16
+
+2n_icx: CX7
+before:
+MRR: 3 / 9
+PDR: / 20.5
+plan:
+MRR: /
+PDR: /
+
+2n_spr: CX7
+before:
+MRR: / 10.5
+PDR: / 23
+plan:
+MRR: /
+PDR: /
+
+2n_zn2: CX5
+before:
+MRR: / 6
+PDR: / 13
+plan: no change
+MRR: / 6
+PDR: / 13
+
+3n_alt: CX6
+before:
+MRR: / 7
+PDR: / 10
+plan:
+MRR: /
+PDR: /
+
+3na_spr: CX7
+before:
+MRR: / 5
+PDR: / 12
+plan:
+MRR: /
+PDR: /
+
+3n_icx: CX6
+before:
+MRR: / 11.5
+PDR: / 22
+plan:
+MRR: /
+PDR: /
