@@ -29,6 +29,7 @@ common_dirs
 work_dir="$(pwd)" || die
 trap "cd '${work_dir}'" EXIT || die
 
+JOB_NAME="csit-vpp-perf-ndrpdr-weekly-master-2n-spr"
 get_test_code
 RET_VAL="PASS"
 OUTPUT=$(generate_tests) || RET_VAL="FAIL"
