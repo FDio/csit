@@ -34,7 +34,7 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-024eb8fd1f2da9a05"
+  default     = "ami-04d585a768b055c37"
 }
 
 variable "tg_associate_public_ip_address" {
@@ -70,7 +70,7 @@ variable "tg_source_dest_check" {
 variable "sut1_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-00b12b6477625721b"
+  default     = "ami-0ffdaef2a6bb71ea6"
 }
 
 variable "sut1_associate_public_ip_address" {
@@ -117,15 +117,27 @@ variable "tg_if2_private_ip" {
 }
 
 variable "destination_cidr_block_tg_if1" {
-  description = "The destination CIDR block."
+  description = "The TG-side data-plane destination CIDR block for ENI 1."
   type        = string
-  default     = "10.0.0.0/24"
+  default     = "10.10.10.0/24"
 }
 
 variable "destination_cidr_block_tg_if2" {
-  description = "The destination CIDR block."
+  description = "The TG-side data-plane destination CIDR block for ENI 2."
   type        = string
-  default     = "20.0.0.0/24"
+  default     = "20.20.20.0/24"
+}
+
+variable "destination_cidr_block_sut1_if1" {
+  description = "The SUT-side data-plane destination CIDR block for ENI 1."
+  type        = string
+  default     = "20.20.20.0/24"
+}
+
+variable "destination_cidr_block_sut1_if2" {
+  description = "The SUT-side data-plane destination CIDR block for ENI 2."
+  type        = string
+  default     = "10.10.10.0/24"
 }
 
 variable "sut1_if1_private_ip" {

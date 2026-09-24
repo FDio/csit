@@ -335,7 +335,7 @@ class Constants:
         "Mellanox-CX7VEAT": 200000000000,
         "Amazon-Nitro-50G": 10000000000,
         "Amazon-Nitro-100G": 10000000000,
-        "Amazon-Nitro-200G": 16000000000,
+        "Amazon-Nitro-200G": 10000000000,
         "Cavium-A063-100G": 100000000000,
         "virtual": 100000000,
     }
@@ -354,7 +354,7 @@ class Constants:
         "Mellanox-CX7VEAT": 297619046,
         "Amazon-Nitro-50G": 1500000,
         "Amazon-Nitro-100G": 3000000,
-        "Amazon-Nitro-200G": 6000000,
+        "Amazon-Nitro-200G": 1500000,
         "Cavium-A063-100G": 195312500,
         "virtual": 14880952,
     }
