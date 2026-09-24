@@ -19,8 +19,18 @@ locals {
 
 # Create VPC
 module "vpc" {
-  source                   = "../terraform-aws-vpc"
-  security_group_name      = local.security_group_name
+  source              = "../terraform-aws-vpc"
+  security_group_name = local.security_group_name
+  security_group_ingress = [
+    {
+      from_port        = 0
+      to_port          = 0
+      protocol         = "-1"
+      self             = false
+      cidr_blocks      = ["10.0.0.0/8", "20.0.0.0/8"]
+      ipv6_cidr_blocks = []
+    }
+  ]
   subnet_availability_zone = local.availability_zone
   tags_name                = local.name
   tags_environment         = local.environment
@@ -157,22 +167,65 @@ data "aws_network_interface" "tg_if2" {
   id = aws_network_interface.tg_if2.id
 }
 
+# Use separate route tables for the two data-plane subnets.  The same
+# destination CIDR must point at different ENIs depending on the link, so a
+# single VPC main route table cannot express the topology.
+resource "aws_route_table" "subnet_b" {
+  vpc_id = module.vpc.vpc_id
+}
+
+resource "aws_route_table_association" "subnet_b" {
+  route_table_id = aws_route_table.subnet_b.id
+  subnet_id      = module.subnet_b.subnet_id
+}
+
+resource "aws_route_table" "subnet_d" {
+  vpc_id = module.vpc.vpc_id
+}
+
+resource "aws_route_table_association" "subnet_d" {
+  route_table_id = aws_route_table.subnet_d.id
+  subnet_id      = module.subnet_d.subnet_id
+}
+
 resource "aws_route" "route_tg_if1" {
   depends_on = [
-    aws_instance.tg
+    aws_network_interface.tg_if1,
+    aws_network_interface.sut1_if1
   ]
   destination_cidr_block = var.destination_cidr_block_tg_if1
-  network_interface_id   = aws_instance.tg.primary_network_interface_id
-  route_table_id         = module.vpc.vpc_main_route_table_id
+  network_interface_id   = aws_network_interface.tg_if1.id
+  route_table_id         = aws_route_table.subnet_b.id
 }
 
 resource "aws_route" "route_tg_if2" {
   depends_on = [
-    aws_instance.tg
+    aws_network_interface.tg_if2,
+    aws_network_interface.sut1_if2
   ]
   destination_cidr_block = var.destination_cidr_block_tg_if2
-  network_interface_id   = aws_instance.tg.primary_network_interface_id
-  route_table_id         = module.vpc.vpc_main_route_table_id
+  network_interface_id   = aws_network_interface.tg_if2.id
+  route_table_id         = aws_route_table.subnet_d.id
+}
+
+resource "aws_route" "route_sut1_if1" {
+  depends_on = [
+    aws_network_interface.tg_if1,
+    aws_network_interface.sut1_if1
+  ]
+  destination_cidr_block = var.destination_cidr_block_sut1_if1
+  network_interface_id   = aws_network_interface.sut1_if1.id
+  route_table_id         = aws_route_table.subnet_b.id
+}
+
+resource "aws_route" "route_sut1_if2" {
+  depends_on = [
+    aws_network_interface.tg_if2,
+    aws_network_interface.sut1_if2
+  ]
+  destination_cidr_block = var.destination_cidr_block_sut1_if2
+  network_interface_id   = aws_network_interface.sut1_if2.id
+  route_table_id         = aws_route_table.subnet_d.id
 }
 
 resource "aws_instance" "sut1" {
