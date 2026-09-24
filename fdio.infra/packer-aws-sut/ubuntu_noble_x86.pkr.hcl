@@ -51,37 +51,37 @@ variable "ansible_provision_pwd" {
 }
 
 source "amazon-ebs" "csit_ubuntu_noble_x86_sut" {
-  ami_name        = "csit_ubuntu_noble_x86_sut"
+  ami_name        = "csit_ubuntu_noble_x86_c8in_sut"
   ami_description = "CSIT SUT image based on Ubuntu noble"
   ena_support     = true
-  instance_type   = "c6in.4xlarge"
+  instance_type   = "c8in.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
     volume_type = "gp2"
   }
   force_deregister = true
-  region           = "eu-central-1"
+  region           = "us-east-1"
   skip_create_ami  = false
-  source_ami       = "ami-0084a47cc718c111a"
+  source_ami       = "ami-0f8a61b66d1accaee"
   ssh_username     = "ubuntu"
   ssh_timeout      = "60m"
 }
 
 source "amazon-ebs" "csit_ubuntu_noble_x86_tg" {
-  ami_name        = "csit_ubuntu_noble_x86_tg"
+  ami_name        = "csit_ubuntu_noble_x86_c8in_tg"
   ami_description = "CSIT TG image based on Ubuntu noble"
   ena_support     = true
-  instance_type   = "c6in.4xlarge"
+  instance_type   = "c8in.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
     volume_type = "gp2"
   }
   force_deregister = true
-  region           = "eu-central-1"
+  region           = "us-east-1"
   skip_create_ami  = false
-  source_ami       = "ami-0084a47cc718c111a"
+  source_ami       = "ami-0f8a61b66d1accaee"
   ssh_username     = "ubuntu"
   ssh_timeout      = "60m"
 }
