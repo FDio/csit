@@ -1546,12 +1546,12 @@ FD.io CSIT lab contains following server types:
 ```
 - testbed217:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
-        - s65-t217-tg1-c1/p1 to s64-t217-sut1-c5/p2
-        - s65-t217-tg1-c1/p2 to s64-t217-sut1-c1/p2
-        - s64-t217-sut1-c5/p1 to s64-t217-sut1-c1/p1
+        - s64-t217-tg1-c1/p1 to s65-t217-sut1-c5/p2
+        - s64-t217-tg1-c1/p2 to s65-t217-sut1-c1/p2
+        - s65-t217-sut1-c5/p1 to s65-t217-sut1-c1/p1
     - ring2 100GE-ports e810-CQDA2-2p100GE:
-        - s64-t217-sut1-c3/p1 to s65-t217-tg1-c5/p1.
-        - s65-t217-tg1-c5/p2 to s64-t217-sut1-c3/p2.
+        - s65-t217-sut1-c3/p1 to s64-t217-tg1-c5/p1.
+        - s64-t217-tg1-c5/p2 to s65-t217-sut1-c3/p2.
 - testbed218:
     - ring1 100GE-ports e810-CQDA2-2p100GE:
         - s67-t218-tg1-c1/p1 to s66-t218-sut1-c5/p2
