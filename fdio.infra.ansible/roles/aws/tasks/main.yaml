@@ -3,7 +3,7 @@
 
 - name: "Enable deb-src APT Repository"
   ansible.builtin.apt_repository:
-    repo: "deb-src {{ packages_repo[ansible_distribution|lower][ansible_machine] }} noble main"
+    repo: "deb-src {{ packages_repo[ansible_facts['distribution']|lower][ansible_facts['machine']] }} noble main"
     state: "present"
     update_cache: true
   tags:

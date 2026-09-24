@@ -60,8 +60,6 @@
       tags: aws
     - role: vpp
       tags: vpp
-    - role: docker
-      tags: docker
     - role: cleanup
       tags: cleanup
     - role: calibration
@@ -83,8 +81,6 @@
       tags: common
     - role: azure
       tags: azure
-    - role: docker
-      tags: docker
     - role: vpp
       tags: vpp
     - role: cleanup
@@ -106,8 +102,6 @@
       tags: user_add
     - role: common
       tags: common
-    - role: docker
-      tags: docker
     - role: vpp
       tags: vpp
     - role: cleanup
