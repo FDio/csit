@@ -9,7 +9,7 @@ test-sets:
       100ge1p1ena:
         - vfio-pci
     framesize: [64, 1518]
-    core: [1, 2]
+    core: [1, 2, 4, 8]
     tests:
       - ip4-base-sm
       - ip4-scale-sm
