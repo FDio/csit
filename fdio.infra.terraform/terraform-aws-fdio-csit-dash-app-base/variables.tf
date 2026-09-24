@@ -1,32 +1,3 @@
-variable "region" {
-  description = "AWS Region."
-  type        = string
-  default     = "us-east-1"
-}
-
-variable "vault_provider_address" {
-  description = "Vault cluster address."
-  type        = string
-  default     = "http://10.30.51.24:8200"
-}
-
-variable "vault_provider_skip_tls_verify" {
-  description = "Verification of the Vault server's TLS certificate."
-  type        = bool
-  default     = false
-}
-
-variable "vault_provider_token" {
-  description = "Vault root token."
-  type        = string
-  default     = "hvs.bzHw4ZHsz9B0019P8I73yS6l"
-}
-
-variable "vault_name" {
-  type    = string
-  default = "dynamic-aws-creds-vault-fdio-csit-jenkins"
-}
-
 variable "application_bucket" {
   description = "The name of the bucket."
   type        = string
