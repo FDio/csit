@@ -293,17 +293,21 @@ test-sets:
       - container-memif-sw-sm
       - container-memif-hw-sm:
           framesize: [64, 1518]
-      - ip4-md
       - ip4-base-sm:
           infra:
-            25ge2p1e810xxv:
+            200ge2p1cx7veat:
+              - mlx5_core
+              - rdma-core
+            100ge2p1e810cq:
               - avf
               - vfio-pci
-      - ip4-scale-sm:
+      - ip4-scale-sm
+      - ip4-scale-2m:
           infra:
-            25ge2p1e810xxv:
+            200ge2p1cx7veat:
+              - rdma-core
+            100ge2p1e810cq:
               - avf
-              - vfio-pci
       - ip4-acl-md:
           infra:
             200ge2p1cx7veat:
@@ -365,7 +369,23 @@ test-sets:
               - rdma-core
             100ge2p1e810cq:
               - avf
-      - ip6-md:
+      - ip6-base-sm:
+          infra:
+            200ge2p1cx7veat:
+              - mlx5_core
+              - rdma-core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+          framesize: [78, ]
+      - ip6-scale-sm:
+          framesize: [78, ]
+      - ip6-scale-2m:
+          infra:
+            200ge2p1cx7veat:
+              - rdma-core
+            100ge2p1e810cq:
+              - avf
           framesize: [78, ]
       - l2-lg
       - l2-base-md:
@@ -415,23 +435,19 @@ test-sets:
       - soak-ip4-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
               - rdma-core
             100ge2p1e810cq:
               - vfio-pci
-      - soak-ip4-md
+              - avf
       - soak-nat44-cps-sm
       - soak-nat44-tput-sm:
           framesize: [100, ]
       - soak-ip6-sm:
           infra:
             200ge2p1cx7veat:
-              - mlx5_core
               - rdma-core
             100ge2p1e810cq:
-              - vfio-pci
-          framesize: [78, ]
-      - soak-ip6-md:
+              - avf
           framesize: [78, ]
       - soak-l2-sm:
           infra:
@@ -440,5 +456,6 @@ test-sets:
               - rdma-core
             100ge2p1e810cq:
               - vfio-pci
+              - avf
       - soak-l2-md
       - soak-vhost-sm

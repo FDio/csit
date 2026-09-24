@@ -410,7 +410,6 @@ test-sets:
       - vxlan-sm:
           infra:
             100ge2p1e810cq:
-              - vfio-pci
               - avf
       - ip6-base-sm:
           infra:
@@ -470,20 +469,16 @@ test-sets:
       - soak-ip4-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
               - rdma-core
             100ge2p1e810cq:
               - vfio-pci
-      - soak-ip4-md
+              - avf
       - soak-ip6-sm:
           infra:
             100ge2p1cx6dx:
-              - mlx5_core
               - rdma-core
             100ge2p1e810cq:
-              - vfio-pci
-          framesize: [78, ]
-      - soak-ip6-md:
+              - avf
           framesize: [78, ]
       - soak-l2-sm:
           infra:
@@ -492,6 +487,7 @@ test-sets:
               - rdma-core
             100ge2p1e810cq:
               - vfio-pci
+              - avf
       - soak-l2-md
       - soak-srv6-sm:
           framesize: [78, ]
