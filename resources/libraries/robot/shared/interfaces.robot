@@ -167,20 +167,20 @@
 | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | Run Keyword If | ${dpdk_enable_tcp_udp_checksum}
 | | ... | ${dut}.Add DPDK Enable TCP UDP Checksum
-| | Run Keyword If | ${dpdk_no_tx_checksum_offload}
-| | ... | ${dut}.Add DPDK No Tx Checksum Offload
+#| | Run Keyword If | ${dpdk_no_tx_checksum_offload}
+#| | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | Run Keyword If | ${dpdk_enable_tso}
 | | ... | ${dut}.Add DPDK Dev Default Tso
 | | Run Keyword | ${dut}.Add DPDK Log Level | debug
 | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
-| | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-| | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-100G'
-| | ... | ${dut}.Add DPDK Dev Default Devargs | "llq_policy=2"
-| | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-200G'
-| | ... | ${dut}.Add DPDK Dev Default Devargs | "llq_policy=2"
+#| | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+#| | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-100G'
+#| | ... | ${dut}.Add DPDK Dev Default Devargs | "llq_policy=2"
+#| | Run Keyword If | '${nic_name}' == 'Amazon-Nitro-200G'
+#| | ... | ${dut}.Add DPDK Dev Default Devargs | "llq_policy=2"
 | | Run Keyword If | not ${jumbo}
-| | ... | ${dut}.Add DPDK No Multi Seg
-| | Run Keyword If | ${nic_rxq_size} > 0
+#| | ... | ${dut}.Add DPDK No Multi Seg
+#| | Run Keyword If | ${nic_rxq_size} > 0
 | | ... | ${dut}.Add DPDK Dev Default RXD | ${nic_rxq_size}
 | | Run Keyword If | ${nic_txq_size} > 0
 | | ... | ${dut}.Add DPDK Dev Default TXD | ${nic_txq_size}
