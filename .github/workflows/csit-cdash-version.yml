@@ -54,6 +54,8 @@ jobs:
     env:
       JOB_NAME: ${{ github.workflow }}-${{ github.job }}
       BUILD_ID: ${{ github.run_number }}
+      VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
+      VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
 
     steps:
       - name: GitHub Checkout CSIT

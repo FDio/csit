@@ -6,7 +6,7 @@ locals {
   source       = var.application_source
 }
 
-data "vault_kv_secret_v2" "creds" {
+ephemeral "vault_kv_secret_v2" "creds" {
   mount = "kv"
   name  = "elasticbeanstalk"
 }
