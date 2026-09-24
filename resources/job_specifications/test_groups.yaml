@@ -194,9 +194,7 @@ test-groups:
   ip4-scale-sm:
     - ethip4-ip4scale20k
     - ethip4-ip4scale20k-rnd
-  ip4-md:
-    - ethip4-ip4base
-    - ethip4-ip4scale20k-rnd
+  ip4-scale-2m:
     - ethip4-ip4scale2m-rnd
   ip4-lg:
     - ethip4-ip4base
@@ -312,9 +310,7 @@ test-groups:
   ip6-scale-sm:
     - ethip6-ip6scale20k
     - ethip6-ip6scale20k-rnd
-  ip6-md:
-    - ethip6-ip6base
-    - ethip6-ip6scale20k-rnd
+  ip6-scale-2m:
     - ethip6-ip6scale2m-rnd
   ip6-scale-lg:
     - ethip6-ip6scale20k
@@ -388,10 +384,7 @@ test-groups:
     - ethip4ipsec1000tnlhwasync-ip4base-int-aes128cbc-hmac512sha
     - ethip4ipsec1000tnlhwasync-ip4base-int-aes256gcm
   soak-ip4-sm:
-    - ethip4-ip4scale200k-rnd
-  soak-ip4-md:
     - ethip4-ip4base
-    - ethip4-ip4scale20k-rnd
     - ethip4-ip4scale200k-rnd
   soak-nat44-cps-sm:
     - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
@@ -400,10 +393,7 @@ test-groups:
     - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
     - ethip4udp-nat44ed-h65536-p63-s4128768-tput
   soak-ip6-sm:
-    - ethip6-ip6scale200k-rnd
-  soak-ip6-md:
     - ethip6-ip6base
-    - ethip6-ip6scale20k-rnd
     - ethip6-ip6scale200k-rnd
   soak-l2-sm:
     - eth-l2bdbasemaclrn
