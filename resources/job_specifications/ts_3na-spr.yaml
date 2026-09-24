@@ -198,7 +198,8 @@ test-sets:
           core: [1, ]
       - ipsec-sw-async-md:
           core: [2, 3, 4]
-      - ip4-md:
+      - ip4-base-sm
+      - ip4-scale-sm:
           framesize: [64, ]
       - ip4-60k-sm:
           infra:

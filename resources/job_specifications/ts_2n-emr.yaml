@@ -186,7 +186,8 @@ test-sets:
       - container-memif-hw-sm:
           framesize: [64, 1518]
       - container-memif-sw-sm
-      - ip4-md
+      - ip4-base-sm
+      - ip4-scale-sm
       - ip4-acl-md:
           infra:
             100ge2p1e810cq:
@@ -236,7 +237,9 @@ test-sets:
           infra:
             100ge2p1e810cq:
               - avf
-      - ip6-md:
+      - ip6-base-sm:
+          framesize: [78, ]
+      - ip6-scale-sm:
           framesize: [78, ]
       - ip6-acl-sm:
           infra:

@@ -171,7 +171,8 @@ test-sets:
     tests:
       - container-memif-l2bd-sw-sm
       - container-memif-sw-sm
-      - ip4-md
+      - ip4-base-sm
+      - ip4-scale-sm
       - ip4-acl-md
       - ip4-pol-md
       - nat44det-sm
@@ -188,7 +189,9 @@ test-sets:
           framesize: [100, ]
           core: [1,]
       - geneve-md
-      - ip6-md:
+      - ip6-base-sm:
+          framesize: [78, ]
+      - ip6-scale-sm:
           framesize: [78, ]
       - ip6-acl-sm:
           framesize: [78, ]
