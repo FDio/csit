@@ -95,10 +95,10 @@ RUN apt-get -q update \
  && rm -rf /var/lib/apt/lists/*
 
 # Install DOCA-OFED
-RUN wget -qO - https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub | gpg --dearmor -o /usr/share/keyrings/GPG-KEY-Mellanox.pub \
- && echo "deb [signed-by=/usr/share/keyrings/GPG-KEY-Mellanox.pub] https://linux.mellanox.com/public/repo/doca/latest/${D_OS}/${D_ARCH} /" | tee /etc/apt/sources.list.d/doca.list \
- && apt-get update \
- && apt-get install doca-ofed -y
+#RUN wget -qO - https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub | gpg --dearmor -o /usr/share/keyrings/GPG-KEY-Mellanox.pub \
+# && echo "deb [signed-by=/usr/share/keyrings/GPG-KEY-Mellanox.pub] https://linux.mellanox.com/public/repo/doca/latest/${D_OS}/${D_ARCH} /" | tee /etc/apt/sources.list.d/doca.list \
+# && apt-get update \
+# && apt-get install doca-ofed -y
 
 # Install T-Rex
 RUN wget -c https://github.com/cisco-system-traffic-generator/trex-core/archive/refs/tags/v${TREX_VERSION}.tar.gz -P /opt/ \
