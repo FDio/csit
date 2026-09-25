@@ -1,6 +1,6 @@
-data "vault_aws_access_credentials" "creds" {
-  backend = "${var.vault-name}-path"
-  role    = "${var.vault-name}-role"
+ephemeral "vault_kv_secret_v2" "creds" {
+  mount = "kv"
+  name  = "perftest"
 }
 
 locals {
