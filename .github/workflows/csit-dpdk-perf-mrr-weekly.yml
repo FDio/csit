@@ -81,6 +81,13 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: fdio/.github/.github/actions/setup-executor-env@4eb74b59c8f76192681941b89e277454d96bebb8
 
+      - name: Setup Terraform
+        # yamllint disable-line rule:line-length
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: 1.14.6
+          terraform_wrapper: false
+
       - name: Run CSIT Bootstrap
         # yamllint disable-line rule:line-length
         uses: fdio/csit/.github/actions/csit-bootstrap@cee2088675d00de5f4a47f386a6c05315bfc170c
