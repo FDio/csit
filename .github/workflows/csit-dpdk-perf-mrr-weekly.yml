@@ -69,6 +69,8 @@ jobs:
       JOB_NAME: ${{ github.job }}-master-${{ matrix.node }}
       # yamllint disable-line rule:line-length
       BUILD_TAG: ${{ github.job }}-master-${{ matrix.node }}-${{ github.run_id }}
+      VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
+      VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
 
     steps:
       - name: Git Checkout CSIT

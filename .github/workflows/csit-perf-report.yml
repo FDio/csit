@@ -109,6 +109,8 @@ jobs:
       JOB_NAME: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2610' && '2610' }}-${{ matrix.node }}
       GERRIT_BRANCH: ${{ github.event.inputs.branch }}
       TEST_TAG_STRING: ${{ github.event.inputs.suite_gen_params }}
+      VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
+      VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
 
     steps:
       - name: Git Checkout CSIT
