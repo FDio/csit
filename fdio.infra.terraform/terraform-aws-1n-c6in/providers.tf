@@ -1,11 +1,8 @@
 provider "aws" {
   region     = var.region
-  access_key = data.vault_aws_access_credentials.creds.access_key
-  secret_key = data.vault_aws_access_credentials.creds.secret_key
+  access_key = ephemeral.vault_kv_secret_v2.creds.data["access_key"]
+  secret_key = ephemeral.vault_kv_secret_v2.creds.data["secret_key"]
 }
 
 provider "vault" {
-  address         = "http://10.30.51.24:8200"
-  skip_tls_verify = true
-  token           = "hvs.bzHw4ZHsz9B0019P8I73yS6l"
 }
