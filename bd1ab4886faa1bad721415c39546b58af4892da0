@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad7812dd_fff73d46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-09-28T13:14:53Z",
+      "side": 1,
+      "message": "Needs to be verified again to confirm latest edits did not break anything. Jobspec edits should be probably moved to a separate Change.",
+      "revId": "bd1ab4886faa1bad721415c39546b58af4892da0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
