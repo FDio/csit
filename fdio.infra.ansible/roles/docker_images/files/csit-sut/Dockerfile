@@ -1,4 +1,4 @@
-FROM base-ubuntu2404:local
+FROM ghcr.io/fdio/csit-executor-sut-prod:latest
 
 EXPOSE 2222
 
