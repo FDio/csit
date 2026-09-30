@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-2n-icx perftest *sfdp*",
       "revId": "02a2fb31b1e9449fc99f8d56b9cc39defb3339c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7078fb18_f5d4b51c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-09-30T10:55:14Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx perftest ndrpdrAND*sfdp* #generate-all",
+      "revId": "02a2fb31b1e9449fc99f8d56b9cc39defb3339c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
