@@ -9,7 +9,7 @@ kernel_version_by_distro:
     jammy:
       - "5.15.0-46"
     noble:
-      - "6.8.0-45"
+      - "6.8.0-100"
 
 kernel_packages: "{{ kernel_packages_by_distro[ansible_facts['distribution'] | lower] | flatten(levels=1) }}"
 
