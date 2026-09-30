@@ -16,6 +16,15 @@
   tags:
     - dpdk-inst-prerequisites
 
+# To be removed
+- name: pip management
+  ansible.builtin.file:
+    path: "/usr/lib/python3.12/EXTERNALLY-MANAGED"
+    state: "absent"
+  tags:
+    - common-inst-pip
+
+
 - name: meson (dpdk)
   ansible.builtin.pip:
     name:
