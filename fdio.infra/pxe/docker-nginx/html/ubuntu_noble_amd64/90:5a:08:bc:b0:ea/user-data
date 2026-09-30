@@ -14,7 +14,11 @@ autoinstall:
         source: deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable
         keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
   identity:
+<<<<<<< HEAD   (21382c C-Dash: Add rls2610 data)
     hostname: s65-t217-tg1
+=======
+    hostname: s65-t217-sut1
+>>>>>>> CHANGE (041f4c infra: 2n-gnr)
     password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
     realname: testuser
     username: testuser

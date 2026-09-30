@@ -2,7 +2,7 @@
 # file: defaults/main.yaml
 
 # Kernel version to check.
-kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lower][ansible_distribution_release][ansible_machine] }}"
+kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_facts['distribution'] | lower][ansible_facts['distribution_release']][ansible_facts['machine']] }}"
 
 kernel_version_by_distro_by_arch:
   ubuntu:
@@ -12,11 +12,9 @@ kernel_version_by_distro_by_arch:
     noble:
       x86_64:
         - "6.8.0-45-generic"
+        - "6.8.0-100-generic"
         - "6.8.0-1016-aws"
         - "5.15.0-1000-aws"
         - "5.4.0-1009-aws"
       aarch64:
         - "6.8.0-45-generic"
-  debian:
-    bullseye:
-        - "5.15.0-107-generic"
