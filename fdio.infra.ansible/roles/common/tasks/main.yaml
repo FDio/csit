@@ -15,6 +15,7 @@
     state: "latest"
   tags:
     - common-inst-prerequisites
+<<<<<<< HEAD   (21382c C-Dash: Add rls2610 data)
 
 - name: pip management
   ansible.builtin.file:
@@ -52,3 +53,5 @@
     validate: "/usr/sbin/visudo -cf %s"
   tags:
     - common-conf-sudoers
+=======
+>>>>>>> CHANGE (041f4c infra: 2n-gnr)
