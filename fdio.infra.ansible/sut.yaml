@@ -22,8 +22,8 @@
       tags: intel
     - role: docker
       tags: docker
-    - role: kubernetes
-      tags: kubernetes
+    #- role: kubernetes
+    #  tags: kubernetes
     - role: calico
       tags: calico
     - role: vpp
