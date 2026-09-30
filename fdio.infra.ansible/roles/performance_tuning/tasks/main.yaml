@@ -23,7 +23,8 @@
     cpu_microarchitecture == "icelake" or
     cpu_microarchitecture == "sapphirerapids" or
     cpu_microarchitecture == "emeraldrapids" or
-    cpu_microarchitecture == "sierraforest"
+    cpu_microarchitecture == "sierraforest" or
+    cpu_microarchitecture == "graniterapids"
   tags:
     - perf-conf-turbo-boost
 

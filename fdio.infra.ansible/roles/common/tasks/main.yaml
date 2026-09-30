@@ -16,6 +16,7 @@
   tags:
     - common-inst-prerequisites
 
+<<<<<<< HEAD   (8a3d2f telemetry: cpu)
 #- name: pip management
 #  ansible.builtin.file:
 #    path: "/usr/lib/python3.12/EXTERNALLY-MANAGED"
@@ -42,3 +43,5 @@
 #    validate: "/usr/sbin/visudo -cf %s"
 #  tags:
 #    - common-conf-sudoers
+=======
+>>>>>>> CHANGE (2e2a19 infra: 2n-gnr)

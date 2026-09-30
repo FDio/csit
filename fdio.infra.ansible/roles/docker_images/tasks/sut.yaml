@@ -13,7 +13,7 @@
   tags:
     - docker-sut
 
-- name: "Copy csit-initialize-docker-sut.service"
+- name: "Start csit-initialize-docker-sut.service"
   ansible.builtin.copy:
     src: "files/csit-initialize-docker-sut.service"
     dest: "/etc/systemd/system/"

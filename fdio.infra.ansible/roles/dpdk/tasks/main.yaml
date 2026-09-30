@@ -16,6 +16,17 @@
   tags:
     - dpdk-inst-prerequisites
 
+<<<<<<< HEAD   (8a3d2f telemetry: cpu)
+=======
+# To be removed
+- name: pip management
+  ansible.builtin.file:
+    path: "/usr/lib/python3.12/EXTERNALLY-MANAGED"
+    state: "absent"
+  tags:
+    - common-inst-pip
+
+>>>>>>> CHANGE (2e2a19 infra: 2n-gnr)
 - name: meson (dpdk)
   ansible.builtin.pip:
     name:
