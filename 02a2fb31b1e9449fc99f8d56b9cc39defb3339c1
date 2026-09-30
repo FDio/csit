@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30fde667_74c04246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-09-30T09:53:28Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-grc perftest mrrAND*sfdp*6553*",
+      "revId": "02a2fb31b1e9449fc99f8d56b9cc39defb3339c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
