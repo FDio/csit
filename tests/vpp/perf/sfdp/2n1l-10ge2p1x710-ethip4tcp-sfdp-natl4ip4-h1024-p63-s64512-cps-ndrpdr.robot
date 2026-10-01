@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SFDP | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_CPS | DRV_VFIO_PCI
 | ... | SCALE | HOSTS_1024 | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4tcp-sfdp-natl4ip4-h1024-p63-s64512-cps

@@ -734,6 +734,10 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     ACL plugin configured and tested with 50 not-hitting ACEs.
 
+**SFDP**
+
+    StateFull Data Plane functionality involving any SFDP services.
+
 **SRv6_PROXY**
 
     SRv6 endpoint to SR-unaware appliance via proxy.
