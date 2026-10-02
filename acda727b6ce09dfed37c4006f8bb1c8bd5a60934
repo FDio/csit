@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf36f787_7e9f9097",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2026-10-02T10:12:42Z",
+      "side": 1,
+      "message": "At least for 2n-icx and 2n-spr it looks like too many tests for one run.",
+      "revId": "acda727b6ce09dfed37c4006f8bb1c8bd5a60934",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
