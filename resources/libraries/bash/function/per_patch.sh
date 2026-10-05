@@ -52,6 +52,8 @@ function build_vpp_ubuntu () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
+    # Force recompilation of DPDK and similar dependencies.
+    sudo dpkg -P vpp-ext-deps || echo "Ignoring vpp-ext-dep purge failure."
     if [ -z "${VPP_PLATFORM-}" ]; then
         params="UNATTENDED=y"
         make ${params} pkg-verify > "tmp.log" || die "VPP build failed."
