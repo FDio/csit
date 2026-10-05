@@ -188,6 +188,11 @@ test-sets:
       - sfdp-base-tput-sm:
           framesize: [100, ]
           core: [1,]
+      - sfdp-nat-cps-sm:
+          core: [1,]
+      - sfdp-nat-tput-sm:
+          framesize: [100, ]
+          core: [1,]
       - geneve-md
       - ip6-base-sm:
           framesize: [78, ]

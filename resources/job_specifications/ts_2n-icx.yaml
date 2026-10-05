@@ -285,8 +285,22 @@ test-sets:
       25ge2p1e810xxv:
         - avf
     tests:
-      - container-memif-l2bd-sw-sm
-      - container-memif-sw-sm
+      - container-memif-l2bd-sw-sm:
+          infra:
+            200ge2p1cx7veat:
+              - mlx5_core
+              - rdma-core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
+      - container-memif-sw-sm:
+          infra:
+            200ge2p1cx7veat:
+              - mlx5_core
+              - rdma-core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
       - ip4-base-sm
       - ip4-scale-sm:
           infra:
@@ -357,6 +371,17 @@ test-sets:
               - avf
           framesize: [100, ]
           core: [1,]
+      - sfdp-nat-cps-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          core: [1,]
+      - sfdp-nat-tput-sm:
+          infra:
+            100ge2p1e810cq:
+              - avf
+          framesize: [100, ]
+          core: [1,]
       - geneve-md:
           infra:
             200ge2p1cx7veat:
@@ -383,7 +408,14 @@ test-sets:
               - avf
           framesize: [78, ]
       - l2-lg
-      - vhost-md
+      - vhost-md:
+          infra:
+            200ge2p1cx7veat:
+              - mlx5_core
+              - rdma-core
+            100ge2p1e810cq:
+              - avf
+              - vfio-pci
 
 
   2n-icx-gso:
