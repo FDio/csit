@@ -1,43 +1,8 @@
 ---
 # file: tasks/base.yaml
 
-- name: "Create a Directory For Docker Images"
-  ansible.builtin.file:
-    path: "/opt/csit-docker-images/"
-    state: "directory"
-    mode: 0755
-  tags:
-    - docker-base
-
-- name: "Copy Build Items"
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "/opt/csit-docker-images/{{ item }}"
-    owner: "root"
-    group: "root"
-    mode: 0755
-  with_items:
-    - "base/"
-    - "csit-sut/"
-  tags:
-    - docker-base
-
-- name: "Build CSIT OLD Docker Image"
-  ansible.builtin.shell: "docker build -t csit_sut-ubuntu2404:local ."
-  args:
-    chdir: "/opt/csit-docker-images/csit-sut"
-  async: 3000
-  poll: 0
-  register: "docker_built"
-  tags:
-    - docker-base
-
-- name: "Check if CSIT OLD Docker Image is Built"
-  async_status:
-    jid: "{{ docker_built.ansible_job_id }}"
-  register: "docker_built"
-  until: "docker_built.finished"
-  delay: 10
-  retries: 300
+- name: Pull inner SUT image
+  community.docker.docker_image_pull:
+    name: ghcr.io/fdio/csit-executor-sut-inner-prod:latest
   tags:
     - docker-base

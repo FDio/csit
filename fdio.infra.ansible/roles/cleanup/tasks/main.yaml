@@ -12,9 +12,3 @@
   when: "'sut' in group_names"
   tags:
     - cleanup
-
-- name: "nomad specific"
-  include_tasks: "nomad.yaml"
-  when: "'nomad' in group_names"
-  tags:
-    - cleanup

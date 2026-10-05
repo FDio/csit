@@ -24,5 +24,3 @@
       tags: vault
     - role: prometheus_exporter
       tags: prometheus_exporter
-    - role: cleanup
-      tags: cleanup
