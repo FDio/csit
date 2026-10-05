@@ -156,19 +156,19 @@ git checkout -b "middle" || die "Failed to create branch: middle"
 git status || die
 git log -2 --oneline || die
 git describe || die
-# Building latest first, good for avoiding DPDK rebuilds.
-git checkout "latest" || die "Failed to checkout latest commit."
-build_vpp_ubuntu "LATEST" || die
-set_aside_build_artifacts "latest" || die
+# Building latest first would save time on DPDK recompile,
+# but if DPDK bump causes build errors it is better to startr with earliest.
+git checkout "earliest" || die "Failed to checkout earliest commit."
+git status || die
+build_vpp_ubuntu "EARLIEST" || die
+set_aside_build_artifacts "earliest" || die
 if head -n 1 "${GIT_LOG_FILE}" | fgrep -q ' was both old and new'; then
-    echo "Not compiling the earliest in singleperpatch mode."
+    echo "Not compiling the latest in singleperpatch mode."
 else
-    git checkout "earliest" || die "Failed to checkout earliest commit."
+    git checkout "latest" || die "Failed to checkout latest commit."
     git status || die
-    git log -2 --oneline || die
-    git describe || die
-    build_vpp_ubuntu "EARLIEST" || die
-    set_aside_build_artifacts "earliest" || die
+    build_vpp_ubuntu "LATEST" || die
+    set_aside_build_artifacts "latest" || die
     git checkout "middle" || die "Failed to checkout middle commit."
 fi
 # Done with repo manipulation for now, testing commences.
@@ -184,22 +184,22 @@ archive_tests || die
 
 reserve_and_cleanup_testbed || die
 if head -n 1 "${GIT_LOG_FILE}" | fgrep -q ' was both old and new'; then
-    echo "Not testing the earliest in singleperpatch mode."
+    echo "Not testing the latest in singleperpatch mode."
 else
-    select_build "build_earliest" || die
+    select_build "build_latest" || die
     check_download_dir || die
     run_robot || die
-    move_test_results "csit_earliest" || die
-    ln -s -T "csit_earliest" "csit_early" || die
+    move_test_results "csit_latest" || die
+    ln -s -T "csit_latest" "csit_late" || die
     # Explicit cleanup, in case the previous test left the testbed in a bad shape.
     ansible_playbook "cleanup" || die
 fi
 
-select_build "build_latest" || die
+select_build "build_earliest" || die
 check_download_dir || die
 run_robot || die
-move_test_results "csit_latest" || die
-ln -s -T "csit_latest" "csit_late" || die
+move_test_results "csit_earliest" || die
+ln -s -T "csit_earliest" "csit_early" || die
 untrap_and_unreserve_testbed || die
 
 # See function documentation for the logic in the loop.
