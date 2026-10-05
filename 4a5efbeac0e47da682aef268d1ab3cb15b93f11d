@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11fc5acd_7e1111bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-05T13:46:17Z",
+      "side": 1,
+      "message": "Ready for merge (master only, I want one week of non-nat job durations in trending).",
+      "revId": "4a5efbeac0e47da682aef268d1ab3cb15b93f11d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
