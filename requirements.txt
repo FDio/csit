@@ -34,7 +34,7 @@ ansible-core==2.20.0
 # PLRsearch dependencies
 dill==0.4.0
 numpy==2.3.5
-scipy==1.15.3 # from 1.16.0rc1 on, RecursionError happens when pylint looks at PLRsearch.
+scipy==1.15.3  # upgrade blocked by astroid for pylint
 
 # VPP requirements
 ply==3.11
@@ -45,7 +45,7 @@ rfc3339-validator==0.1.4
 rfc3987==1.3.8
 
 # Dependencies for some tox checkers (not tox setup itself).
-pylint==4.0.3
+pylint==4.0.3  # blocking scipy upgrade until 4.1.2
 
 # Other PIP freeze dependencies.
 astroid==4.0.2
