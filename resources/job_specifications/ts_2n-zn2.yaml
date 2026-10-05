@@ -182,11 +182,30 @@ test-sets:
           infra:
             25ge2p1xxv710:
               - avf
+            100ge2p1cx556a:
+              - rdma-core
           core: [1,]
       - sfdp-base-tput-sm:
           infra:
             25ge2p1xxv710:
               - avf
+            100ge2p1cx556a:
+              - rdma-core
+          framesize: [100, ]
+          core: [1,]
+      - sfdp-nat-cps-sm:
+          infra:
+            25ge2p1xxv710:
+              - avf
+            100ge2p1cx556a:
+              - rdma-core
+          core: [1,]
+      - sfdp-nat-tput-sm:
+          infra:
+            25ge2p1xxv710:
+              - avf
+            100ge2p1cx556a:
+              - rdma-core
           framesize: [100, ]
           core: [1,]
       - geneve-lg:
