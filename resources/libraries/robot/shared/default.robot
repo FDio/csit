@@ -212,6 +212,7 @@
 | | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${${dut}_cpu_wt}
 | | | Run Keyword | ${dut}.Add Buffers Per Numa | ${buffers_numa}
+| | | Run keyword | ${dut}.Add Buffers Layout
 | | END
 
 | Create compute resources variables

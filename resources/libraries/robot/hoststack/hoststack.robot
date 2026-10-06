@@ -463,6 +463,7 @@
 | | | ... | ${vpp_hoststack_attr}[api_size]
 | | | Run keyword | ${dut}.Add Buffers Per Numa
 | | | ... | ${vpp_hoststack_attr}[buffers_per_numa]
+| | | Run keyword | ${dut}.Add Buffers Layout
 | | | Run keyword | ${dut}.Add Dpdk Enable Tcp Udp Checksum
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
