@@ -256,6 +256,15 @@ class VppConfigGenerator:
         path = ["buffers", "default data-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_buffers_layout(self, value="natural"):
+        """Set buffer layout with better performance.
+
+        :param value: Old behavior is "natural", the new is "packed".
+        :type value: str
+        """
+        path = ["buffers", "layout"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev(self, *devices):
         """Add DPDK PCI device configuration.
 
