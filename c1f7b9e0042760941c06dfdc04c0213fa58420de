@@ -33,6 +33,23 @@
       "message": "Bisecting for CSIT regression.\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_ANDdrv_rdmaAND1cAND64bANDeth-l2patch",
       "revId": "c1f7b9e0042760941c06dfdc04c0213fa58420de",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83595fc2_1dc7e3e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-07T13:03:26Z",
+      "side": 1,
+      "message": "Bisecting for CSIT regression.\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDdrv_rdma*AND1cAND64bANDeth-l2patch",
+      "revId": "c1f7b9e0042760941c06dfdc04c0213fa58420de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
