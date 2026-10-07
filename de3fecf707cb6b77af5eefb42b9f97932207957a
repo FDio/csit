@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff6e0be_6e748750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-07T11:51:04Z",
+      "side": 1,
+      "message": "Base comparison for bisect.\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDdrv_rdma*AND1cAND64bANDeth-l2patch",
+      "revId": "de3fecf707cb6b77af5eefb42b9f97932207957a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
