@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f85bada6_3cc812b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-07T13:40:05Z",
+      "side": 1,
+      "message": "Bisecting for CSIT regression.\n\ngha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDdrv_rdma*AND1cAND64bANDeth-l2patch",
+      "revId": "427cf6215bbd2abd48a5d0f31fe654b00336517e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
