@@ -1385,7 +1385,7 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
-            no_multi_seg=not Jumbo.jumbo_enabled(),
+            no_multi_seg=False,  # not Jumbo.jumbo_enabled(),
             max_pktlen=0,
             # TODO: Apply desired RSS flags.
             # rss4 kept 0 (auto) as API default.
