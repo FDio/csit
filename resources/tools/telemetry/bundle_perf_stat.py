@@ -37,55 +37,39 @@ class BundlePerfStat:
         :type serializer: Serializer
         :type hook: int
         """
-        self.metrics = program[u"metrics"]
-        self.events = program[u"events"]
-        self.architecture = program[u"architecture"]
+        self.metrics = program["metrics"]
+        self.events = program["events"]
+        self.architecture = program["architecture"]
         self.api_replies_list = list()
         self.serializer = serializer
         self.hook = hook
 
     def attach(self, duration=1):
         """
-               Performs perf stat.
+        Performs perf stat.
 
-               :param duration: Time how long perf stat is collecting data (in
-               seconds). Default value is 1 second.
-               :type duration: int
-               """
+        :param duration: Time how long perf stat is collecting data (in
+        seconds). Default value is 1 second.
+        :type duration: int
+        """
         try:
             self.serializer.create(metrics=self.metrics)
-            # The following PMU event format is specific to x86_64 systems.
-            if self.architecture == "x86_64":
-                event = self.events[0]
-                text = subprocess.getoutput(
-                    f"""sudo perf stat -x';' -e\
-                    '{{cpu/event={hex(event[u"eventcode"])},\
-                    umask={hex(event[u"umask"])}/u}}'\
-                    -a --per-thread\
-                    sleep {duration}"""
-                )
-            # We select the symbolic event name instead on AArch64.
-            else:
-                event = self.events
-                text = subprocess.getoutput(
-                    f"""sudo perf stat -x';' -e\
-                    {event}\
-                    -a --per-thread\
-                    sleep {duration}"""
-                )
+            event = self.events
+            text = subprocess.getoutput(
+                f"""sudo perf stat -x';' -e\
+                {event}\
+                taskset -c 1 timeout {duration} sh -c 'while :; do :; done'"""
+            )
         except subprocess.CalledProcessError:
             getLogger("console_stderr").error(f"Could not successfully run "
                                               f"perf stat command.")
             sys.exit(Constants.err_linux_perf_stat)
 
-        if text == u"":
-            if self.architecture == "x86_64":
-                getLogger("console_stdout").info(event[u"eventcode"])
-            else:
-                getLogger("console_stdout").info(event)
+        if text == "":
+            getLogger("console_stdout").info(event)
         else:
             for line in text.splitlines():
-                if line.count(u";") < 6:
+                if line.count(";") < 6:
                     getLogger("console_stdout").info(
                         f"Could not get counters for current thread."
                         f"{line}"
@@ -93,14 +77,9 @@ class BundlePerfStat:
                     continue
                 item = dict()
                 labels = dict()
-                item[u"name"] = self.metrics['counter'][0]['name']
-                item[u"value"] = line.split(";")[1]
-                labels["thread"] = u"-".join(
-                    line.split(";")[0].split("-")[0:-1]
-                )
-                labels["pid"] = line.split(";")[0].split("-")[-1]
-                item[u"labels"] = labels
-
+                item["name"] = self.metrics['counter'][0]['name']
+                item["value"] = line.split(";")[0]
+                labels["event"] = line.split(";")[2]
                 getLogger("console_stdout").info(item)
                 self.api_replies_list.append(item)
 

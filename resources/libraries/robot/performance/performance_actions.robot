@@ -106,7 +106,7 @@
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
 | | ... | ${nodes} | profile=${profile}
-| | ... | rate=${telemetry_rate} | export=${False}
+| | ... | rate=${telemetry_rate} | export=${True}
 | | Stop traffic on tg
 
 | Additional Statistics Action For trex-runtime
