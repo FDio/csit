@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f273ecde_9e42f420",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-08T08:44:49Z",
+      "side": 1,
+      "message": "Better or neutral on all testbeds tested. Applying to oper to get few runs before SFDP NAT next week.",
+      "revId": "ac8625caf95c09180c863d6905e52dff923be166",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
