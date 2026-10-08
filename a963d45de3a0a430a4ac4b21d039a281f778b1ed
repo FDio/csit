@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-zn2 perftest mrrANDnic_*ANDdrv_rdma*AND1cAND64bANDeth-l2patch",
       "revId": "a963d45de3a0a430a4ac4b21d039a281f778b1ed",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34057475_39feabba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-08T07:57:43Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-spr perftest mrrANDnic_*ANDdrv_rdma*AND1cAND64bANDeth-l2patch",
+      "revId": "a963d45de3a0a430a4ac4b21d039a281f778b1ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
