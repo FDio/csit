@@ -1376,7 +1376,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create_v4"
+        cmd = u"rdma_create_v6"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1386,6 +1386,7 @@ class InterfaceUtil:
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
             no_multi_seg=not Jumbo.jumbo_enabled(),
+            no_striding=False,
             max_pktlen=0,
             # TODO: Apply desired RSS flags.
             # rss4 kept 0 (auto) as API default.
