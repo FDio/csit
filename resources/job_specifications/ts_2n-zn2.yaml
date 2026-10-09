@@ -162,6 +162,7 @@ test-sets:
         - avf
         - vfio-pci
       100ge2p1cx556a:
+        - mlx5_core
         - rdma-core
     tests:
       - container-memif-l2bd-sw-sm
