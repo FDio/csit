@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc5692c1_d63b8fae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-09T12:43:47Z",
+      "side": 1,
+      "message": "Not for this week\u0027s oper branch, will be picked up by next week oper branch creation.",
+      "revId": "5dc8f747296b1e463980337112dd612f260b53f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
