@@ -481,18 +481,22 @@ function get_test_code () {
         *"2n-aws")
             NODENESS="2n"
             FLAVOR="aws"
+            VPP_PLATFORM="skylake-avx512"
             ;;
         *"3n-aws")
             NODENESS="3n"
             FLAVOR="aws"
+            VPP_PLATFORM="skylake-avx512"
             ;;
         *"2n-c7gn")
             NODENESS="2n"
             FLAVOR="c7gn"
+            VPP_PLATFORM="neoverse-v1"
             ;;
         *"2n-c8gn")
             NODENESS="2n"
             FLAVOR="c8gn"
+            VPP_PLATFORM="neoverse-v2"
             ;;
         *"1n-c6in")
             NODENESS="1n"
@@ -501,14 +505,17 @@ function get_test_code () {
         *"2n-c6in")
             NODENESS="2n"
             FLAVOR="c6in"
+            VPP_PLATFORM="icelake-server"
             ;;
         *"2n-c8in")
             NODENESS="2n"
             FLAVOR="c8in"
+            VPP_PLATFORM="graniterapids"
             ;;
         *"2n-zn2")
             NODENESS="2n"
             FLAVOR="zn2"
+            VPP_PLATFORM="znver2"
             ;;
         *"2n-icx")
             NODENESS="2n"
@@ -538,6 +545,7 @@ function get_test_code () {
         *"3n-srf")
             NODENESS="3n"
             FLAVOR="srf"
+            VPP_PLATFORM="sierraforest"
             ;;
         *"3n-alt")
             NODENESS="3n"
@@ -562,10 +570,12 @@ function get_test_code () {
         *"2n-gnr")
             NODENESS="2n"
             FLAVOR="gnr"
+            VPP_PLATFORM="graniterapids"
             ;;
         *"3n-gnr")
             NODENESS="3n"
             FLAVOR="gnr"
+            VPP_PLATFORM="graniterapids"
             ;;
         *"3n-oct")
             NODENESS="3n"
