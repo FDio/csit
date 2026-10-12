@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-3n-srf perftest mrrANDnic_*AND1cAND64bANDeth-l2patch",
       "revId": "5e7ebe422921027761cabb1aed69691bb6f490c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "261f0ea2_790dcc34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-12T12:47:41Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-srf perftest ndrpdrANDnic_*AND1cAND64bANDeth-l2patch ndrpdrANDnic_*AND1cAND1518bANDethip4ipsec1000tnl*-ip4base-int-aes256gcm #generate-all",
+      "revId": "5e7ebe422921027761cabb1aed69691bb6f490c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
