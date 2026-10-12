@@ -84,6 +84,7 @@ def graph_statistics(df: pd.DataFrame, job: str, layout: dict) -> tuple:
             x=data["start_time"],
             y=data["duration"],
             name="Duration",
+            mode="lines+markers",
             text=hover,
             hoverinfo="text"
         )
