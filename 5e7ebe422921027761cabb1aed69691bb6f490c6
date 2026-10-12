@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24a714f6_90d4a740",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-12T10:36:03Z",
+      "side": 1,
+      "message": "Comparison base.\n\ngha-run csit-vpp-2n-gnr perftest mrrANDnic_*AND1cAND64bANDeth-l2patch",
+      "revId": "5e7ebe422921027761cabb1aed69691bb6f490c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
