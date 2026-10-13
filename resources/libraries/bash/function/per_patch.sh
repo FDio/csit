@@ -54,18 +54,21 @@ function build_vpp_ubuntu () {
 
     # Force recompilation of DPDK and similar dependencies.
     sudo dpkg -P vpp-ext-deps || echo "Ignoring vpp-ext-deps purge failure."
-    if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
-        make ${params} pkg-verify > "tmp.log" || die "VPP build failed."
-    else
-        pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
-        # Old VPP source does not recognize new ARM platforms.
-        opars="UNATTENDED=y"
-        make ${pars} pkg-verify > "tmp.log" || {
-            make ${opars} pkg-verify > "tmp.log" || die "Build fail."
-        }
-        # TODO: Configurable log filenames?
+    # "directory '/opt' not empty so not removed" could happen, so:
+    sudo rm -vrf /opt/vpp/ || echo "Ignoring opt cleanup failures."
+    sudo apt install -y locate || die
+    sudo updatedb || die
+    locate libcrypto.so || die
+
+    params="UNATTENDED=y"
+    targets="install-dep install-opt-deps install-ext-deps"
+    make ${params} ${targets} || die "Dependency fail."
+    # TODO: Figure out why this cannot be done together with VPP build below.
+
+    if [ -n "${VPP_PLATFORM-}" ]; then
+        params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
+    make ${params} pkg-verify || die "VPP build failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
