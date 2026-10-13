@@ -67,6 +67,23 @@
       "message": "gha-run csit-vpp-2n-zn2 perftest nic_*AND1cAND64bANDeth-l2patch nic_*AND1cAND1518bANDethip4ipsec1000tnl*-ip4base-int-aes256gcm* #generate-all",
       "revId": "5e7ebe422921027761cabb1aed69691bb6f490c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "264afe11_4e49a634",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-13T10:16:17Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-gnr perftest nic_*AND1cAND64bANDeth-l2patch nic_*AND1cAND1518bANDethip4ipsec1000tnl*-ip4base-int-aes256gcm #generate-all",
+      "revId": "5e7ebe422921027761cabb1aed69691bb6f490c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ],
   "submitRequirementResults": [
