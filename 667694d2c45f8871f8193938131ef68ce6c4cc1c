@@ -39,6 +39,30 @@
       },
       "revId": "667694d2c45f8871f8193938131ef68ce6c4cc1c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6946265b_021ac431",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-10-14T10:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1bdd275_b6b0cee0",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "667694d2c45f8871f8193938131ef68ce6c4cc1c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
