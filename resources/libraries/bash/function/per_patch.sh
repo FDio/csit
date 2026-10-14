@@ -39,6 +39,7 @@ function build_vpp_ubuntu () {
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
+    shopt -s nullglob
 
     cd "${VPP_DIR}" || die "Change directory command failed."
     if [ -n "${MAKE_PARALLEL_FLAGS-}" ]; then
@@ -54,18 +55,30 @@ function build_vpp_ubuntu () {
 
     # Force recompilation of DPDK and similar dependencies.
     sudo dpkg -P vpp-ext-deps || echo "Ignoring vpp-ext-deps purge failure."
-    if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
-        make ${params} pkg-verify > "tmp.log" || die "VPP build failed."
-    else
-        pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
-        # Old VPP source does not recognize new ARM platforms.
-        opars="UNATTENDED=y"
-        make ${pars} pkg-verify > "tmp.log" || {
-            make ${opars} pkg-verify > "tmp.log" || die "Build fail."
-        }
-        # TODO: Configurable log filenames?
+    # "directory '/opt' not empty so not removed" could happen, so make sure:
+    sudo rm -vrf /opt/vpp/ || echo "Ignoring opt cleanup failures."
+
+    params="UNATTENDED=y"
+    targets="install-dep install-opt-deps install-ext-deps"
+    make ${params} ${targets} || die "Dependency fail."
+
+    # Old VPP looks only into external, SSL cev libs are built in optional.
+    for has_where in /opt/vpp/optional/*/lib*/libssl.so*
+    do
+        wants_where="/opt/vpp/external/${has_where#/opt/vpp/optional/}"
+        sudo ln -s -T "${has_where}" "${wants_where}" || echo "Symlink ignored."
+    done
+    for has_where in /opt/vpp/optional/*/lib*/libcrypto.so*
+    do
+        wants_where="/opt/vpp/external/${has_where#/opt/vpp/optional/}"
+        sudo ln -s -T "${has_where}" "${wants_where}" || echo "Symlink ignored."
+    done
+
+    if [ -n "${VPP_PLATFORM-}" ]; then
+        params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
+    make ${params} pkg-verify || die "VPP build failed."
+    check_libs
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
