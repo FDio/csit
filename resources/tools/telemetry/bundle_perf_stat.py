@@ -78,7 +78,10 @@ class BundlePerfStat:
                 item = dict()
                 labels = dict()
                 item["name"] = self.metrics['counter'][0]['name']
-                item["value"] = line.split(";")[0]
+                try:
+                    item["value"] = float(line.split(";")[0])
+                except ValueError:
+                    item["value"] = 0
                 labels["event"] = line.split(";")[2]
                 item[u"labels"] = labels
                 getLogger("console_stdout").info(item)
