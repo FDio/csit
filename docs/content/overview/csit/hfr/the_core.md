@@ -1,6 +1,6 @@
 ---
 title: "The Core"
-weight: 1
+weight: 2
 ---
 
 # Managing the testing jobs

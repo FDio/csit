@@ -1,6 +1,6 @@
 ---
 title: "The Configuration"
-weight: 2
+weight: 3
 ---
 
 # The Configuration
