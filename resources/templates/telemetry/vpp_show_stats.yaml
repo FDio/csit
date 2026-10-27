@@ -248,4 +248,4 @@ programs:
             - thread_name
             - thread_id
     code: |
-      show node counters verbose
+      show node
