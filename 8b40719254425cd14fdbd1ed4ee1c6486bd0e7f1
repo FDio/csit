@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d3f73c7_bf18a409",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-10-28T12:49:17Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-gnr perftest mrrAND2cANDethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcmAND1518b",
+      "revId": "8b40719254425cd14fdbd1ed4ee1c6486bd0e7f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
