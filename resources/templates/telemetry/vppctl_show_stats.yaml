@@ -248,4 +248,4 @@ programs:
             - thread_name
             - thread_id
     code: |
-      vppctl -s {socket} show node counters verbose
+      vppctl -s {socket} show node
