@@ -279,3 +279,20 @@ class VppCounters:
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show ipsec all")
+
+    @staticmethod
+    def vpp_show_ipsec_nodes(node):
+        """Run "show node <name>" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, "show node esp4-encrypt"
+        )
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, "show node esp4-encrypt-tun"
+        )
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, "show node ip4-lookup"
+        )

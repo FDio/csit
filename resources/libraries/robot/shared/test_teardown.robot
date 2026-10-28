@@ -140,6 +140,8 @@
 | | ... | Additional teardown for tests which uses IPSec security association.
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword
+| | | ... | Vpp Show Ipsec Nodes | ${nodes['${dut}']}
 | | | Run Keyword If Test Failed
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
 | | | Run Keyword If Test Failed
