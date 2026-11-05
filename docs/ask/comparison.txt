@@ -1,0 +1,22 @@
+
+For rls2610 comparison, I would like to have three big CSV tables:
++ 2606-release results (all of them so I can see what went missing).
++ 2610-rc2.
++ 2610-release.
+
+This implies VPP tests only, no DPDK nor TRex-only ones.
+
+Each table has the same columns:
++ testbed code such as `2n-skx`.
++ suite and test identification (not sure which one, UTI and CDash maintain several).
++ result type (NDR and PDR are different results even if coming from the same testcase, _min values only)
++ VPP version (the platform suffix is interesting to me but why not full string).
++ hosts (I will merge manualy when needed.
+- the above are "keys" so combinations should be unique, now values
++ Primary unit (CPS is different from PPS, not to mention hoststack).
+- Not sure I want secondary units such as Gbps from STL pps tests, I can filter them out if present, recomputing is harder.
++ Primary value (average for MRR results) averaged over runs present.
+- Stdev from MRR probably not needed yet.
++ Stdev for primary valye over runs.
++ Number of runs.
+- I am not sure about outliers. Is it possible to have the three plusses above twice, with and without outlier removal?
