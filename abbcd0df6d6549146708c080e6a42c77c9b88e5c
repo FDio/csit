@@ -16,6 +16,23 @@
       "message": "gha-run csit-vpp-2n-icx perftest nic_*AND1cAND1518bAND*ipsec*udir #generate-all",
       "revId": "abbcd0df6d6549146708c080e6a42c77c9b88e5c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc85c92c_d8974778",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-11-06T13:16:16Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-2n-icx perftest nic_*AND*ipsec*udir #generate-all",
+      "revId": "abbcd0df6d6549146708c080e6a42c77c9b88e5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
