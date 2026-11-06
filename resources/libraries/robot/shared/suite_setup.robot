@@ -140,17 +140,60 @@
 | | Create suite topology variables | @{actions}
 | | Finalize Suite Setup Export
 
-| Additional Suite Setup Action For scapy
+# Please keep action keywords sorted alphabetically.
+
+| Additional Suite Setup Action For ab
 | | [Documentation]
-| | ... | Additional Setup for suites which uses scapy as Traffic generator.
+| | ... | Additional Setup for suites which uses ab TG.
 | |
-| | Export TG Type And Version | scapy | 2.4.3
-| | FOR | ${dut} | IN | @{duts}
-| | | Set Suite Variable | ${${dut}_vf1} | ${${dut}_${int}1}
-| | | Set Suite Variable | ${${dut}_vf2} | ${${dut}_${int}2}
+| | Iface update numa node | ${tg}
+| | ${running}= | Is TRex running | ${tg}
+| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
+| | ${driver}= | Get Variable Value
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']} | ${driver}
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
+| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
+| | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
+| | | ... | ${ip_addr} | ${ab_ip_prefix}
+| | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
+| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
 | | END
-| | Set Interface State | ${tg} | ${TG_pf1}[0] | up
-| | Set Interface State | ${tg} | ${TG_pf2}[0] | up
+| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
+| | ${driver}= | Get Variable Value
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']} | ${driver}
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
+| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
+| | Check AB | ${tg}
+| | ${type} = | Get AB Type | ${nodes}[TG]
+| | ${version} = | Get AB Version | ${nodes}[TG]
+| | Export TG Type And Version | ${type} | ${version}
+
+| Additional Suite Setup Action For cryptohw
+| | [Documentation]
+| | ... | Additional Setup for suites which uses QAT/OCTEON HW.
+| |
+| | ${marvell}= | Get Node Model Bool | ${nodes[('${duts}[0]')]}
+| | ... | Marvell-Octeon
+| | Run Keyword If | not ${marvell}
+| | ... | Run Keyword | Crypto Device Verify on all DUTs | ${nodes}
+| | ... | ELSE
+| | ... | Run Keyword | Octeon Crypto Device Verify on all DUTs | ${nodes}
 
 | Additional Suite Setup Action For dpdk
 | | [Documentation]
@@ -162,6 +205,68 @@
 | | | Initialize DPDK Framework | ${nodes['${dut}']}
 | | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | END
+
+| Additional Suite Setup Action For iPerf3
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement over
+| | ... | iPerf3.
+| |
+| | ${type} = | Get iPerf Type
+| | ${version} = | Get iPerf Version | ${nodes}[DUT1]
+| | Export TG Type And Version | ${type} | ${version}
+
+| Additional Suite Setup Action For nginx
+| | [Documentation]
+| | ... | Additional Setup for suites which uses Nginx.
+| |
+| | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
+| | ... | ${nginx_version}
+
+| Additional Suite Setup Action For performance
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${nic_vfs} > 0
+| | | ... | Additional Suite Setup Action For performance vf | ${dut}
+| | | ... | ELSE
+| | | ... | Additional Suite Setup Action For performance pf | ${dut}
+| | END
+| | ${type} = | Get TG Type | ${nodes}[TG]
+| | ${version} = | Get TG Version | ${nodes}[TG]
+| | Export TG Type And Version | ${type} | ${version}
+| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
+
+| Additional Suite Setup Action For performance pf
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement for
+| | ... | single DUT (inner loop).
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Additional Suite Setup Action For performance pf \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Run Keyword | Init interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
+| | | ... | numvfs=${0} | osi_layer=${osi_layer}
+| | END
+
+| Additional Suite Setup Action For performance_tg_nic
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement
+| | ... | for L1 cross connect tests.
+| |
+| | ${type} = | Get TG Type | ${nodes}[TG]
+| | ${version} = | Get TG Version | ${nodes}[TG]
+| | Export Dut Type And Version | ${type} | ${version}
+| | Export TG Type And Version | ${type} | ${version}
+| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
 
 | Additional Suite Setup Action For performance vf
 | | [Documentation]
@@ -208,78 +313,17 @@
 | | Set Suite Variable
 | | ... | ${int} | prevf
 
-| Additional Suite Setup Action For performance pf
+| Additional Suite Setup Action For scapy
 | | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement for
-| | ... | single DUT (inner loop).
+| | ... | Additional Setup for suites which uses scapy as Traffic generator.
 | |
-| | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Additional Suite Setup Action For performance pf \| DUT1 \|
-| |
-| | [Arguments] | ${dut}
-| |
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | Run Keyword | Init interface
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
-| | | ... | numvfs=${0} | osi_layer=${osi_layer}
-| | END
-
-| Additional Suite Setup Action For performance
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement.
-| |
+| | Export TG Type And Version | scapy | 2.4.3
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If | ${nic_vfs} > 0
-| | | ... | Additional Suite Setup Action For performance vf | ${dut}
-| | | ... | ELSE
-| | | ... | Additional Suite Setup Action For performance pf | ${dut}
+| | | Set Suite Variable | ${${dut}_vf1} | ${${dut}_${int}1}
+| | | Set Suite Variable | ${${dut}_vf2} | ${${dut}_${int}2}
 | | END
-| | ${type} = | Get TG Type | ${nodes}[TG]
-| | ${version} = | Get TG Version | ${nodes}[TG]
-| | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
-
-| Additional Suite Setup Action For performance_tg_nic
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement
-| | ... | for L1 cross connect tests.
-| |
-| | ${type} = | Get TG Type | ${nodes}[TG]
-| | ${version} = | Get TG Version | ${nodes}[TG]
-| | Export Dut Type And Version | ${type} | ${version}
-| | Export TG Type And Version | ${type} | ${version}
-| | Initialize traffic generator | ${osi_layer} | ${nic_pfs}
-
-| Additional Suite Setup Action For iPerf3
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement over
-| | ... | iPerf3.
-| |
-| | ${type} = | Get iPerf Type
-| | ${version} = | Get iPerf Version | ${nodes}[DUT1]
-| | Export TG Type And Version | ${type} | ${version}
-
-| Additional Suite Setup Action For cryptohw
-| | [Documentation]
-| | ... | Additional Setup for suites which uses QAT/OCTEON HW.
-| |
-| | ${marvell}= | Get Node Model Bool | ${nodes[('${duts}[0]')]}
-| | ... | Marvell-Octeon
-| | Run Keyword If | not ${marvell}
-| | ... | Run Keyword | Crypto Device Verify on all DUTs | ${nodes}
-| | ... | ELSE
-| | ... | Run Keyword | Octeon Crypto Device Verify on all DUTs | ${nodes}
-
-| Additional Suite Setup Action For nginx
-| | [Documentation]
-| | ... | Additional Setup for suites which uses Nginx.
-| |
-| | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
-| | ... | ${nginx_version}
+| | Set Interface State | ${tg} | ${TG_pf1}[0] | up
+| | Set Interface State | ${tg} | ${TG_pf2}[0] | up
 
 | Additional Suite Setup Action For vperf
 | | [Documentation]
@@ -289,44 +333,4 @@
 | | Export DUT Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
 | | Export TG Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
 
-| Additional Suite Setup Action For ab
-| | [Documentation]
-| | ... | Additional Setup for suites which uses ab TG.
-| |
-| | Iface update numa node | ${tg}
-| | ${running}= | Is TRex running | ${tg}
-| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
-| | ${curr_driver}= | Get PCI dev driver | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
-| | ${driver}= | Get Variable Value
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']} | ${driver}
-| | ${intf_name}= | Get Linux interface name | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf1}[0]']['pci_address']}
-| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
-| | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
-| | | ... | ${ip_addr} | ${ab_ip_prefix}
-| | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
-| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
-| | END
-| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
-| | ${curr_driver}= | Get PCI dev driver | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
-| | ${driver}= | Get Variable Value
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']} | ${driver}
-| | ${intf_name}= | Get Linux interface name | ${tg}
-| | ... | ${tg['interfaces']['${TG_pf2}[0]']['pci_address']}
-| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
-| | Check AB | ${tg}
-| | ${type} = | Get AB Type | ${nodes}[TG]
-| | ${version} = | Get AB Version | ${nodes}[TG]
-| | Export TG Type And Version | ${type} | ${version}
+# Please keep action keywords sorted alphabetically.
