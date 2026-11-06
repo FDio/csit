@@ -898,7 +898,7 @@ class IPsecUtil:
                     raddr_range=no_match_remote_addr_range,
                 )
 
-        IPsecUtil.vpp_ipsec_show_all(node)
+        IPsecUtil.vpp_show_ipsec_all(node)
 
     @staticmethod
     def _vpp_ipsec_add_spd_entry_internal(
@@ -2170,7 +2170,7 @@ class IPsecUtil:
             )
 
     @staticmethod
-    def vpp_ipsec_show_all(node: dict) -> None:
+    def vpp_show_ipsec_all(node: dict) -> None:
         """Run "show ipsec all" debug CLI command.
 
         :param node: Node to run command on.
@@ -2179,14 +2179,13 @@ class IPsecUtil:
         PapiSocketExecutor.run_cli_cmd(node, "show ipsec all")
 
     @staticmethod
-    def show_ipsec_security_association(node: dict) -> None:
-        """Show IPSec security association.
+    def vpp_show_crypto_handlers(node: dict) -> None:
+        """Run "show crypto handlers" debug CLI command.
 
-        :param node: DUT node.
+        :param node: Node to run command on.
         :type node: dict
         """
-        cmd = "ipsec_sa_v5_dump"
-        PapiSocketExecutor.dump_and_log(node, [cmd])
+        PapiSocketExecutor.run_cli_cmd(node, "show crypto handlers")
 
     @staticmethod
     def vpp_ipsec_flow_enable_rss(
