@@ -285,6 +285,7 @@ test-sets:
       25ge2p1e810xxv:
         - avf
     tests:
+      - ipsec-udir
       - container-memif-l2bd-sw-sm:
           infra:
             200ge2p1cx7veat:

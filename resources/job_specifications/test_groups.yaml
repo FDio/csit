@@ -160,6 +160,9 @@ test-groups:
     - ethip4ipsec4tnlhwasync-ip4base-policy-aes256gcm
     - ethip4ipsec1000tnlhwasync-ip4base-policy-aes256gcm
     - ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
+## test
+  ipsec-udir:
+    - ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
 ## GSO
   gso-tap-sm:
     - ethip4-ip4base-2tap-gso-iperf3
