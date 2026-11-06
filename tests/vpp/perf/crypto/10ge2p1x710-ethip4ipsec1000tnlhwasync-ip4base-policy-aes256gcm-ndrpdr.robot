@@ -24,7 +24,7 @@
 | Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | ipsec_all | performance
+| Test Teardown | Tear down test | ipsec | performance
 |
 | Test Template | Local Template
 |
