@@ -14,6 +14,7 @@ weight: 1
     - **SFDP suites**: Added for initial coverage for VPP's SFDP functionality and performance.
     - **Added 2n-gnr, 3n-gnr and 3n-srf testbeds**, see
       [FD.io DC Testbed Specifications]({{< ref "../../../infrastructure/fdio_dc_testbed_specifications" >}})
+    - **Added RDMA tests.**
     - **Removed 3n-snr and 3n-icxd testbeds**.
 
 # Known Issues
