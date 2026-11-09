@@ -113,7 +113,7 @@ jobs:
     steps:
       - name: Gerrit Checkout
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/checkout-gerrit-change-action@8523d768952d9690702b4696a8310d2a84b1be39 # v1.0.1
+        uses: lfreleng-actions/checkout-gerrit-change-action@8721c15dacdd703064df5ade1416f7e5590b65f3 # v1.4.1
         with:
           gerrit-refspec: ${{ github.event.inputs.GERRIT_REFSPEC }}
           gerrit-project: ${{ github.event.inputs.GERRIT_PROJECT }}
