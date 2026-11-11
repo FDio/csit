@@ -174,8 +174,6 @@
     # vnet/ipsec/ipsec.api
     ipsec_interface_add_del_spd: '0x80f80cbb'
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'
-    ipsec_sa_v5_details: '0x3cfecfbd'
-    ipsec_sa_v5_dump: '0x2076c2f4'
     ipsec_sad_entry_add_v2: '0x9611297a'
     ipsec_sad_entry_add_v2_reply: '0x9ffac24b'
     ipsec_select_backend: '0x5bcfd3b7'
