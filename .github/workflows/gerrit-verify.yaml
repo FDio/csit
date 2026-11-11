@@ -1,5 +1,6 @@
 ---
 name: gerrit-verify
+run-name: "gerrit-verify ${{ inputs.GERRIT_CHANGE_NUMBER }}/${{ inputs.GERRIT_PATCHSET_NUMBER }}"
 
 # yamllint disable-line rule:truthy
 on:

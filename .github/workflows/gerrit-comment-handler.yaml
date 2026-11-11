@@ -1,5 +1,6 @@
 ---
 name: comment-handler
+run-name: "gerrit-comment-handler ${{ inputs.GERRIT_CHANGE_NUMBER }}/${{ inputs.GERRIT_PATCHSET_NUMBER }}"
 
 # yamllint disable-line rule:truthy
 on:
