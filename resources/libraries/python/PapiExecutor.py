@@ -294,7 +294,9 @@ class PapiSocketExecutor:
                 async_thread=False,
                 # Some operations take considerable time.
                 # For example, 4c dpdk interface up on e810cq, takes ~3 seconds.
-                read_timeout=14.0,
+                # Currently, ipsec scale is slowest due to ip6 init VPP does,
+                # that is write timeout but papi thinks timeout is only for reads.
+                read_timeout=600.0,
                 logger=FilteredLogger(logger, "INFO"),
             )
             # The following is needed to prevent union (e.g. Ip4) debug logging
