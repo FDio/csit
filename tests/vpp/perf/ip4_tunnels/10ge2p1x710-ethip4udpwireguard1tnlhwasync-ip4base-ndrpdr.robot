@@ -22,7 +22,7 @@
 | Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+| Test Teardown | Tear down test | crypto | performance
 |
 | Test Template | Local Template
 |

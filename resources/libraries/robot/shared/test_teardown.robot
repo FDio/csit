@@ -95,13 +95,21 @@
 | | | Destroy all '${container_group}' containers
 | | END
 
+| Additional Test Tear Down Action For crypto
+| | [Documentation]
+| | ... | Additional teardown for tests which rely on crypto handlers.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Vpp Show Crypto Handlers | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For det44
 | | [Documentation]
 | | ... | Additional teardown for tests which uses DET44 feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If Test Failed
-| | | ... | Show DET44 verbose | ${nodes['${dut}']}
+| | | ... | Show DET44 Verbose | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For dma
@@ -128,23 +136,11 @@
 | | Run Keyword And Ignore Error
 | | ... | Teardown iPerf | ${nodes['${iperf_server_node}']}
 
-| Additional Test Tear Down Action For ipsec_all
+| Additional Test Tear Down Action For ipsec
 | | [Documentation]
-| | ... | Additional teardown for tests which use varied IPSec configuration.
-| | ... | Databases.
+| | ... | Additional teardown for tests which uses IPSec.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Vpp Ipsec Show All | ${nodes['${dut}']}
-| | END
-
-| Additional Test Tear Down Action For ipsec_sa
-| | [Documentation]
-| | ... | Additional teardown for tests which uses IPSec security association.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
 | | | Run Keyword If Test Failed
 | | | ... | Vpp Show Ipsec All | ${nodes['${dut}']}
 | | END
