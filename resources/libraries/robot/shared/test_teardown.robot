@@ -69,7 +69,8 @@
 | | Clean Sockets On All Nodes | ${nodes}
 | | Finalize Test Export
 
-# Additional Test Tear Down Actions in alphabetical order
+# Please keep action keywords sorted alphabetically.
+
 | Additional Test Tear Down Action For acl
 | | [Documentation]
 | | ... | Additional teardown for tests which uses ACL feature.
@@ -92,14 +93,6 @@
 | |
 | | FOR | ${container_group} | IN | @{container_groups}
 | | | Destroy all '${container_group}' containers
-| | END
-
-| Additional Test Tear Down Action For nginx
-| | [Documentation]
-| | ... | Additional teardown for tests which uses nginx.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Kill Program | ${nodes['${dut}']} | nginx
 | | END
 
 | Additional Test Tear Down Action For det44
@@ -135,6 +128,16 @@
 | | Run Keyword And Ignore Error
 | | ... | Teardown iPerf | ${nodes['${iperf_server_node}']}
 
+| Additional Test Tear Down Action For ipsec_all
+| | [Documentation]
+| | ... | Additional teardown for tests which use varied IPSec configuration.
+| | ... | Databases.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If Test Failed
+| | | ... | Vpp Ipsec Show All | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For ipsec_sa
 | | [Documentation]
 | | ... | Additional teardown for tests which uses IPSec security association.
@@ -144,16 +147,6 @@
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
 | | | Run Keyword If Test Failed
 | | | ... | Vpp Show Ipsec All | ${nodes['${dut}']}
-| | END
-
-| Additional Test Tear Down Action For ipsec_all
-| | [Documentation]
-| | ... | Additional teardown for tests which use varied IPSec configuration.
-| | ... | Databases.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Vpp Ipsec Show All | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For linux_bridge
@@ -192,18 +185,19 @@
 | | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For nginx
+| | [Documentation]
+| | ... | Additional teardown for tests which uses nginx.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Kill Program | ${nodes['${dut}']} | nginx
+| | END
+
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]
 | | ... | Additional teardown for tests which uses packet trace.
 | |
 | | Show Packet Trace on All DUTs | ${nodes}
-
-| Additional Test Tear Down Action For telemetry
-| | [Documentation]
-| | ... | Additional teardown for tests which uses telemetry reads.
-| |
-| | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=${telemetry_profile}.yaml
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]
@@ -243,6 +237,13 @@
 | | Run Keyword If Test Failed
 | | ... | Show SR LocalSIDs on all DUTs | ${nodes}
 
+| Additional Test Tear Down Action For telemetry
+| | [Documentation]
+| | ... | Additional teardown for tests which uses telemetry reads.
+| |
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=${telemetry_profile}.yaml
+
 | Additional Test Tear Down Action For vhost
 | | [Documentation]
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
@@ -259,3 +260,5 @@
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
+
+# Please keep action keywords sorted alphabetically.
