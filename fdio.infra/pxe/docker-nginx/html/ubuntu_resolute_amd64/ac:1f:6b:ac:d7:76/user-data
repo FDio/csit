@@ -14,10 +14,10 @@ autoinstall:
         source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable"
         keyid: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
   identity:
-    hostname: s89-t39t310-tg1
-    password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
-    realname: testuser
-    username: testuser
+    hostname: s89-nomad
+    password: $6$FIsbVDQR$5D0wgufOd2FtnmOiRNsGlgg6Loh.0x3dWSj72DSQnqisSyE9DROfgSgA6s0yxDwz4Jd5SRTXiTKuRYuSQ5POI1
+    realname: localadmin
+    username: localadmin
   keyboard:
     layout: us
     toggle: null
