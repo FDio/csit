@@ -8,14 +8,14 @@ weight: 1
 1. TEST FRAMEWORK
     - **CSIT test environment** version is ver. 20, see
       [Environment Versioning]({{< ref "../../../infrastructure/fdio_csit_testbed_versioning" >}}).
+    - **Platform specific builds**: Now used for every testbed.
+    - **Buffer layout**: Explicitly apply natural layout as we use hugepages.
     - **General Code Housekeeping**: Ongoing code optimizations and bug fixes,
       including tweaks to job specifications.
 2. VPP PERFORMANCE TESTS
-    - **SFDP suites**: Added for initial coverage for VPP's SFDP functionality and performance.
-    - **Added 2n-gnr, 3n-gnr and 3n-srf testbeds**, see
-      [FD.io DC Testbed Specifications]({{< ref "../../../infrastructure/fdio_dc_testbed_specifications" >}})
-    - **Added RDMA tests.**
-    - **Removed 3n-snr and 3n-icxd testbeds**.
+    - **SFDP suites**: Added suites for NAT SFDP service.
+    - **Added RDMA tests**: For CX6 and CX7.
+    - **Hoststack**: Use vperf instead of vpp_echo.
 
 # Known Issues
 

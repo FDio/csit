@@ -42,6 +42,7 @@ Following is the list of CSIT versions to date:
   ).
   - Intel GraniteRapids all core turbo frequency turned on. Current base frequency
     is 3.6GHz.
+  - Added 2n-c8in testbed.
 - Ver. 19 associated with CSIT rls2606 branch (
   [HW](https://git.fd.io/csit/tree/docs/content/infrastructure/testbed_configuration?h=rls2606),
   [CSIT](https://git.fd.io/csit/tree/?h=rls2606)
