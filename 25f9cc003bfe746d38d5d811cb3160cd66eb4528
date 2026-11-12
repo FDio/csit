@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7f492e0_400c4574",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-11-12T09:06:14Z",
+      "side": 1,
+      "message": "Safe enough, only timeouts in next change seem disruptive.",
+      "revId": "25f9cc003bfe746d38d5d811cb3160cd66eb4528",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
