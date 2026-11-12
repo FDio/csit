@@ -1027,6 +1027,8 @@ class PapiSocketExecutor:
         """
         vpp_instance = self.get_connected_client(check_connected=False)
         ret_list = list()
+        logger.debug(f"async execute from {local_list[0]=}")
+        time_start = time.monotonic()
         try:
             for index, _ in enumerate(local_list):
                 # Blocks up to timeout.
@@ -1036,8 +1038,13 @@ class PapiSocketExecutor:
                     raise RuntimeError(f"{err_msg}\n{time_msg}")
                 ret_list.append(dictize_and_check_retval(reply, err_msg))
         finally:
+            time_check = time.monotonic()
+            duration_check = time_check - time_start
+            logger.debug(f"Took {duration_check=} until {local_list[-1]=}")
             # Discard any unprocessed replies to avoid secondary failures.
             PapiSocketExecutor._drain(vpp_instance, err_msg)
+            duration_drain = time.monotonic() - time_check
+            logger.debug(f"Drained {duration_drain=}")
         return ret_list
 
 
