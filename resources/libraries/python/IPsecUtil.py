@@ -1454,20 +1454,6 @@ class IPsecUtil:
             )
             papi_exec.get_replies(err_msg)
 
-            # Configure unnumbered interfaces
-            cmd = "sw_interface_set_unnumbered"
-            args = dict(
-                is_add=True,
-                sw_if_index=InterfaceUtil.get_interface_index(
-                    nodes["DUT1"], if1_key
-                ),
-                unnumbered_sw_if_index=0,
-            )
-            for i in range(existing_tunnels, n_tunnels):
-                args["unnumbered_sw_if_index"] = ipip_tunnels[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
             # Set interfaces up
             cmd = "sw_interface_set_flags"
             args = dict(
@@ -1714,20 +1700,6 @@ class IPsecUtil:
                 )
                 args = dict(is_add=1, is_multipath=0, route=route)
                 papi_exec.add(cmd, **args)
-            # Configure unnumbered interfaces
-            cmd = "sw_interface_set_unnumbered"
-            args = dict(
-                is_add=True,
-                sw_if_index=InterfaceUtil.get_interface_index(
-                    nodes["DUT2"], if2_key
-                ),
-                unnumbered_sw_if_index=0,
-            )
-            for i in range(existing_tunnels, n_tunnels):
-                args["unnumbered_sw_if_index"] = ipip_tunnels[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
             # Set interfaces up
             cmd = "sw_interface_set_flags"
             args = dict(
