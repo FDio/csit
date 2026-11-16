@@ -1,13 +1,6 @@
 ---
 # file: tasks/main.yaml
 
-- name: "Build Base Docker Images"
-  import_tasks: "base.yaml"
-  when: >
-    inventory_hostname in groups["sut"]
-  tags:
-    - docker-base
-
 - name: "Docker Orchestration for TG"
   import_tasks: "tg.yaml"
   when: >

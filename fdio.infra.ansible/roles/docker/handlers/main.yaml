@@ -1,9 +1,0 @@
----
-# file handlers/main.yaml
-
-- name: "Restart Docker"
-  ansible.builtin.service:
-    name: "docker"
-    state: "{{ docker_restart_handler_state }}"
-  tags:
-    - docker-restart-service
