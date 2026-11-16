@@ -23,8 +23,19 @@ sysctl:
     nr_hugepages: 32768
     max_map_count: 20000
 
-inventory_ipmi_hostname: "10.30.55.24"
+inventory_ipmi_hostname: "10.30.55.60"
 cpu_microarchitecture: "epyc"
 
 intel_700_matrix: "dpdk24.07"
 mellanox_matrix: "dpdk24.07"
+
+docker_sut: true
+docker_volumes:
+  - source: "/dev/null"
+    target: "/etc/sysctl.d/80-vpp.conf"
+  - source: "/opt/boot/"
+    target: "/opt/boot/"
+  - source: "/var/run/docker.sock"
+    target: "/var/run/docker.sock"
+  - source: "/usr/lib/firmware/"
+    target: "/usr/lib/firmware/"
