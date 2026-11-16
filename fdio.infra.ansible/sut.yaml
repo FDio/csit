@@ -12,24 +12,12 @@
       tags:
         - always
   roles:
-    - role: common
-      tags: common
     - role: kernel
       tags: kernel
     - role: mellanox
       tags: mellanox
     - role: intel
       tags: intel
-    - role: docker
-      tags: docker
-    #- role: kubernetes
-    #  tags: kubernetes
-    - role: calico
-      tags: calico
-    - role: vpp
-      tags: vpp
-    - role: dpdk
-      tags: dpdk
     - role: kernel_vm
       tags: kernel_vm
     - role: docker_images
