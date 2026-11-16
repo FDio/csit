@@ -1,8 +1,0 @@
----
-# file: handlers/main.yaml
-
-- name: Reboot Server
-  ansible.builtin.reboot:
-    reboot_timeout: 3600
-  tags:
-    - reboot-server
