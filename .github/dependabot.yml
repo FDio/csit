@@ -13,4 +13,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-
+  - package-ecosystem: "terraform"
+    directory: "fdio.infra.terraform/"
+    schedule:
+      interval: "weekly"
