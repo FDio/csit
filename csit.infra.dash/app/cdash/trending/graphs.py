@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,8 +19,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 from numpy import nan
-from datetime import datetime
-from pytz import UTC
+from datetime import datetime, timezone
 
 from ..utils.constants import Constants as C
 from ..utils.utils import get_color, get_hdrh_latencies
@@ -552,7 +551,10 @@ def graph_trending(
 
         y_units.update(units)
 
-    x_range = [min(start_times), datetime.now(tz=UTC).strftime("%Y-%m-%d")]
+    x_range = [
+        min(start_times),
+        datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
+    ]
     if fig_tput:
         layout_tput = layout.get("plot-trending-tput", dict())
         layout_tput["yaxis"]["title"] = \

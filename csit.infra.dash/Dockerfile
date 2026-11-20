@@ -1,5 +1,5 @@
-ARG PYTHON_VERSION=3.11
-FROM python:${PYTHON_VERSION}-buster
+ARG PYTHON_VERSION=3.15
+FROM python:${PYTHON_VERSION}-trixie
 
 WORKDIR /var/app/current
 
