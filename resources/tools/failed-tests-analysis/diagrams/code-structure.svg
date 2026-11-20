@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="940" viewBox="0 0 1600 940" role="img" aria-labelledby="title desc">
+  <title id="title">Code structure</title>
+  <desc id="desc">Code structure diagram mapping CLI, data models, input and cache helpers, Robot parsing, analysis logic, workbook writer, and column contracts.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2.2; rx: 14; }
+      .model { fill: #e0f2fe; stroke: #0369a1; stroke-width: 2.2; rx: 14; }
+      .logic { fill: #fef3c7; stroke: #b45309; stroke-width: 2.2; rx: 14; }
+      .output { fill: #dcfce7; stroke: #15803d; stroke-width: 2.2; rx: 14; }
+      .cli { fill: #ede9fe; stroke: #6d28d9; stroke-width: 2.2; rx: 14; }
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 20px Arial, sans-serif; fill: #0f172a; }
+      .text { font: 15px Arial, sans-serif; fill: #334155; }
+      .small { font: 13px Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #334155; stroke-width: 2.6; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="940"/>
+  <text class="title" x="50" y="62">analyze_failed_tests.py Code Structure</text>
+  <text class="small" x="50" y="92">Major function groups and the direction of data flow through the script.</text>
+
+  <rect class="cli" x="70" y="150" width="275" height="150"/>
+  <text class="label" x="105" y="190">CLI entrypoint</text>
+  <text class="text" x="105" y="225">parse_args</text>
+  <text class="text" x="105" y="249">main</text>
+  <text class="text" x="105" y="273">print_progress</text>
+
+  <rect class="model" x="70" y="410" width="275" height="185"/>
+  <text class="label" x="105" y="450">Data models</text>
+  <text class="text" x="105" y="485">TestExecution</text>
+  <text class="text" x="105" y="509">RunAnalysis</text>
+  <text class="text" x="105" y="533">GroupAnalysis</text>
+  <text class="text" x="105" y="557">Candidate</text>
+
+  <rect class="logic" x="455" y="140" width="335" height="185"/>
+  <text class="label" x="490" y="180">Input and cache</text>
+  <text class="text" x="490" y="215">read_input_csv</text>
+  <text class="text" x="490" y="239">fetch_archive</text>
+  <text class="text" x="490" y="263">archive_url_for_log</text>
+  <text class="text" x="490" y="287">cache_path_for_url</text>
+
+  <rect class="logic" x="455" y="420" width="335" height="220"/>
+  <text class="label" x="490" y="460">Robot parsing</text>
+  <text class="text" x="490" y="495">parse_generated_tests_archive</text>
+  <text class="text" x="490" y="519">parse_robot_file</text>
+  <text class="text" x="490" y="543">parse_driver_from_text</text>
+  <text class="text" x="490" y="567">parse_nic_and_area_from_stem</text>
+  <text class="text" x="490" y="591">normalize_* helpers</text>
+
+  <rect class="logic" x="900" y="180" width="330" height="210"/>
+  <text class="label" x="935" y="220">Analysis logic</text>
+  <text class="text" x="935" y="255">analyze_csv</text>
+  <text class="text" x="935" y="279">group_id_for_row</text>
+  <text class="text" x="935" y="303">findings_for_group</text>
+  <text class="text" x="935" y="327">mine_candidates</text>
+  <text class="text" x="935" y="351">dedupe_candidates</text>
+
+  <rect class="output" x="900" y="500" width="330" height="220"/>
+  <text class="label" x="935" y="540">Workbook writer</text>
+  <text class="text" x="935" y="575">build_workbook</text>
+  <text class="text" x="935" y="599">finding_row, summary_row</text>
+  <text class="text" x="935" y="623">write_sheet</text>
+  <text class="text" x="935" y="647">style_header, style_body</text>
+  <text class="text" x="935" y="671">add_table, autosize_columns</text>
+
+  <rect class="box" x="455" y="760" width="775" height="100"/>
+  <text class="label" x="490" y="802">Column contracts</text>
+  <text class="text" x="490" y="834">FINDINGS_COLUMNS, SUMMARY_COLUMNS, SKIPPED_COLUMNS</text>
+
+  <path class="arrow" d="M345 225 H455"/>
+  <text class="small" x="370" y="210">calls</text>
+
+  <path class="arrow" d="M622 325 V420"/>
+  <path class="arrow" d="M790 530 H900 V285"/>
+  <text class="small" x="815" y="512">executions</text>
+
+  <path class="arrow" d="M1065 390 V500"/>
+  <text class="small" x="1080" y="452">findings</text>
+
+  <path class="arrow" d="M345 503 H455"/>
+  <text class="small" x="365" y="488">stores parsed data</text>
+
+  <path class="arrow" d="M842 760 V720 H900"/>
+  <text class="small" x="722" y="742">sheet columns</text>
+</svg>

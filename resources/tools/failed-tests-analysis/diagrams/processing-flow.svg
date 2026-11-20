@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">Runtime processing flow</title>
+  <desc id="desc">Runtime flow from CSV loading through log checks, archive caching, Robot parsing, failure matching, grouping, pattern mining, workbook formatting, and Excel output.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .step { fill: #ffffff; stroke: #334155; stroke-width: 2.2; rx: 14; }
+      .decision { fill: #fff7ed; stroke: #c2410c; stroke-width: 2.2; }
+      .skip { fill: #fee2e2; stroke: #b91c1c; stroke-width: 2.2; rx: 14; }
+      .output { fill: #dcfce7; stroke: #15803d; stroke-width: 2.2; rx: 14; }
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 19px Arial, sans-serif; fill: #0f172a; text-anchor: middle; }
+      .text { font: 15px Arial, sans-serif; fill: #334155; text-anchor: middle; }
+      .small { font: 13px Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #334155; stroke-width: 2.6; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="920"/>
+  <text class="title" x="50" y="62">Runtime Processing Flow</text>
+  <text class="small" x="50" y="92">The analyzer treats CSV rows and generated Robot archives as source data.</text>
+
+  <rect class="step" x="70" y="175" width="210" height="95"/>
+  <text class="label" x="175" y="214">Read CSV</text>
+  <text class="text" x="175" y="242">rows and headers</text>
+
+  <rect class="step" x="350" y="175" width="210" height="95"/>
+  <text class="label" x="455" y="214">For each row</text>
+  <text class="text" x="455" y="242">inspect Log field</text>
+
+  <polygon class="decision" points="720,155 850,222 720,290 590,222"/>
+  <text class="label" x="720" y="215">Log URL?</text>
+  <text class="text" x="720" y="242">present</text>
+
+  <rect class="skip" x="615" y="390" width="235" height="95"/>
+  <text class="label" x="732" y="430">Skip row</text>
+  <text class="text" x="732" y="458">unfinished run</text>
+
+  <rect class="step" x="940" y="175" width="250" height="95"/>
+  <text class="label" x="1065" y="214">Fetch or cache</text>
+  <text class="text" x="1065" y="242">generated_tests.tar.gz</text>
+
+  <rect class="step" x="1280" y="175" width="230" height="95"/>
+  <text class="label" x="1395" y="214">Parse Robot</text>
+  <text class="text" x="1395" y="242">test executions</text>
+
+  <rect class="step" x="1280" y="430" width="230" height="105"/>
+  <text class="label" x="1395" y="470">Match failures</text>
+  <text class="text" x="1395" y="498">exact test names</text>
+
+  <rect class="step" x="940" y="430" width="250" height="105"/>
+  <text class="label" x="1065" y="470">Build groups</text>
+  <text class="text" x="1065" y="498">iterative tuple</text>
+  <text class="text" x="1065" y="520">coverage per row</text>
+
+  <rect class="step" x="600" y="660" width="250" height="105"/>
+  <text class="label" x="725" y="700">Mine patterns</text>
+  <text class="text" x="725" y="728">rate, share, lift</text>
+
+  <rect class="step" x="940" y="660" width="250" height="105"/>
+  <text class="label" x="1065" y="700">Format sheets</text>
+  <text class="text" x="1065" y="728">tables and widths</text>
+
+  <rect class="output" x="1280" y="660" width="230" height="105"/>
+  <text class="label" x="1395" y="700">Save XLSX</text>
+  <text class="text" x="1395" y="728">three worksheets</text>
+
+  <path class="arrow" d="M280 222 H350"/>
+  <path class="arrow" d="M560 222 H590"/>
+  <path class="arrow" d="M850 222 H940"/>
+  <text class="small" x="875" y="205">yes</text>
+
+  <path class="arrow" d="M720 290 V390"/>
+  <text class="small" x="735" y="345">no</text>
+
+  <path class="arrow" d="M1190 222 H1280"/>
+  <path class="arrow" d="M1395 270 V430"/>
+  <path class="arrow" d="M1280 482 H1190"/>
+  <path class="arrow" d="M1065 535 V610 H725 V660"/>
+  <text class="small" x="790" y="594">all parsed runs</text>
+
+  <path class="arrow" d="M850 712 H940"/>
+  <path class="arrow" d="M1190 712 H1280"/>
+</svg>
