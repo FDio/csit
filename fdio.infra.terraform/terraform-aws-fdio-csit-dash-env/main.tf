@@ -41,7 +41,7 @@ module "elastic_beanstalk_environment" {
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env-m8g"
-  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.3.2 running Python 3.12"
+  environment_solution_stack_name    = "64bit Amazon Linux 2023 v4.14.4 running Python 3.15"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
