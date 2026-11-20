@@ -8,4 +8,4 @@ export UID=$(id -u)
 export GID=$(id -g)
 
 docker network create csit-data || true
-docker compose up --remove-orphans --detach
+docker compose up --remove-orphans --detach --build
