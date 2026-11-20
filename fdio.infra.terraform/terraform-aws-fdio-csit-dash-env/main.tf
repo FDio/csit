@@ -3,13 +3,44 @@ ephemeral "vault_kv_secret_v2" "csit_docs" {
   name  = "etl/csit_docs"
 }
 
-ephemeral "vault_kv_secret_v2" "creds" {
-  mount = "kv"
-  name  = "elasticbeanstalk"
+resource "aws_ssm_parameter" "csit_docs_access_key" {
+  name             = "/fdio-csit-dash-app-m8g/AWS_ACCESS_KEY_ID"
+  type             = "SecureString"
+  value_wo         = ephemeral.vault_kv_secret_v2.csit_docs.data["access_key"]
+  value_wo_version = 1
+}
+
+resource "aws_ssm_parameter" "csit_docs_secret_key" {
+  name             = "/fdio-csit-dash-app-m8g/AWS_SECRET_ACCESS_KEY"
+  type             = "SecureString"
+  value_wo         = ephemeral.vault_kv_secret_v2.csit_docs.data["secret_key"]
+  value_wo_version = 1
+}
+
+resource "aws_iam_role_policy" "read_app_secrets" {
+  name = "fdio-csit-dash-app-m8g-read-secrets"
+  role = "fdio-csit-dash-app-m8g-eb-ec2"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = ["ssm:GetParameter", "ssm:GetParameters"]
+      Resource = [
+        aws_ssm_parameter.csit_docs_access_key.arn,
+        aws_ssm_parameter.csit_docs_secret_key.arn,
+      ]
+    }]
+  })
+  depends_on = [module.elastic_beanstalk_environment]
 }
 
 module "elastic_beanstalk_application" {
-  source = "../terraform-aws-elastic-beanstalk-application"
+  providers = {
+    aws = aws.deploy
+  }
+
+  source  = "pmikus/elastic-beanstalk-application/aws"
+  version = "1.0.0"
 
   # application
   application_description                    = "FD.io CDASH M8G"
@@ -20,7 +51,12 @@ module "elastic_beanstalk_application" {
 }
 
 module "elastic_beanstalk_environment" {
-  source = "../terraform-aws-elastic-beanstalk-environment"
+  providers = {
+    aws = aws.deploy
+  }
+
+  source  = "pmikus/elastic-beanstalk-environment/aws"
+  version = "1.0.3"
 
   # environment
   application_name = "fdio-csit-dash-app-m8g"
@@ -118,8 +154,15 @@ module "elastic_beanstalk_environment" {
 
   # aws:elasticbeanstalk:application:environment
   environment_variables = {
-    "AWS_ACCESS_KEY_ID"     = ephemeral.vault_kv_secret_v2.csit_docs.data["access_key"]
-    "AWS_SECRET_ACCESS_KEY" = ephemeral.vault_kv_secret_v2.csit_docs.data["secret_key"]
-    "AWS_DEFAULT_REGION"    = ephemeral.vault_kv_secret_v2.csit_docs.data["region"]
+    "AWS_DEFAULT_REGION" = "us-east-1"
   }
+  environment_secrets = {
+    "AWS_ACCESS_KEY_ID"     = aws_ssm_parameter.csit_docs_access_key.arn
+    "AWS_SECRET_ACCESS_KEY" = aws_ssm_parameter.csit_docs_secret_key.arn
+  }
+  #environment_variables = {
+  #  "AWS_ACCESS_KEY_ID"     = ephemeral.vault_kv_secret_v2.csit_docs.data["access_key"]
+  #  "AWS_SECRET_ACCESS_KEY" = ephemeral.vault_kv_secret_v2.csit_docs.data["secret_key"]
+  #  "AWS_DEFAULT_REGION"    = ephemeral.vault_kv_secret_v2.csit_docs.data["region"]
+  #}
 }
