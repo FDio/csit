@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 
-from datetime import datetime
-from pytz import UTC
+from datetime import datetime, timezone
 
 from ..utils.constants import Constants as C
 
@@ -90,7 +89,10 @@ def graph_statistics(df: pd.DataFrame, job: str, layout: dict) -> tuple:
         )
     )
 
-    x_range = [data["start_time"][0], datetime.now(tz=UTC).strftime("%Y-%m-%d")]
+    x_range = [
+        data["start_time"][0],
+        datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
+    ]
     tickvals = [0, ]
     step = max(data["duration"]) / 5
     for i in range(5):

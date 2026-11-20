@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Cisco and/or its affiliates.
+# Copyright (c) 2026 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,9 +22,8 @@ import pandas as pd
 import pyarrow as pa
 
 from yaml import load, FullLoader, YAMLError
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from time import time
-from pytz import UTC
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
 from pyarrow.lib import ArrowInvalid, ArrowNotImplementedError
 
@@ -155,7 +154,8 @@ class Data:
         """
         file_list = list()
         if days:
-            last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
+            last_modified_begin = \
+                datetime.now(tz=timezone.utc) - timedelta(days=days)
         try:
             if C.AWS_ENDPOINT_URL:
                 wr.config.s3_endpoint_url = C.AWS_ENDPOINT_URL
@@ -244,7 +244,8 @@ class Data:
         :type days: integer, optional
         """
         if days:
-            last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
+            last_modified_begin = \
+                datetime.now(tz=timezone.utc) - timedelta(days=days)
 
         if C.AWS_ENDPOINT_URL:
             wr.config.s3_endpoint_url = C.AWS_ENDPOINT_URL
@@ -333,7 +334,8 @@ class Data:
         df = pd.DataFrame()
         start = time()
         if days:
-            last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
+            last_modified_begin = \
+                datetime.now(tz=timezone.utc) - timedelta(days=days)
         try:
             wr.config.botocore_config = botocore.config.Config(
                 max_pool_connections=C.MAX_POOL_SIZE
