@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="650" viewBox="0 0 1040 650" role="img" aria-labelledby="title desc">
+  <title id="title">Compare Releases Processing Flow</title>
+  <desc id="desc">Runtime processing flow from CLI arguments through log processing, warning handling, aggregation, and workbook output.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4f6228"/>
+    </marker>
+    <marker id="warn-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b56b00"/>
+    </marker>
+    <style>
+      .step { fill: #f4f9ef; stroke: #4f6228; stroke-width: 2; }
+      .decision { fill: #fff7e6; stroke: #b56b00; stroke-width: 2; }
+      .warn { fill: #fff7e6; stroke: #b56b00; stroke-width: 2; }
+      .text { font: 15px Arial, sans-serif; fill: #1f1f1f; }
+      .small { font: 12px Arial, sans-serif; fill: #3f3f3f; }
+      .label { font: 12px Arial, sans-serif; fill: #4f6228; font-weight: bold; }
+      .warn-label { font: 12px Arial, sans-serif; fill: #b56b00; font-weight: bold; }
+      .title { font: 22px Arial, sans-serif; font-weight: bold; fill: #1f1f1f; }
+      .line { stroke: #4f6228; stroke-width: 2; marker-end: url(#arrow); fill: none; }
+      .warn-line { stroke: #b56b00; stroke-width: 2; stroke-dasharray: 6 5; marker-end: url(#warn-arrow); fill: none; }
+    </style>
+  </defs>
+
+  <text class="title" x="34" y="42">Runtime Processing Flow</text>
+
+  <rect class="step" x="70" y="82" width="180" height="74" rx="6"/>
+  <text class="text" x="100" y="114">Parse CLI</text>
+  <text class="small" x="100" y="138">workbooks, cache, output</text>
+
+  <rect class="step" x="310" y="82" width="180" height="74" rx="6"/>
+  <text class="text" x="338" y="114">Detect releases</text>
+  <text class="small" x="338" y="138">older = previous</text>
+
+  <rect class="step" x="550" y="82" width="190" height="74" rx="6"/>
+  <text class="text" x="580" y="114">Read workbook rows</text>
+  <text class="small" x="580" y="138">normalize headers</text>
+
+  <polygon class="decision" points="890,78 970,122 890,166 810,122"/>
+  <text class="text" x="852" y="118">More logs?</text>
+  <text class="small" x="854" y="140">per release</text>
+
+  <rect class="step" x="710" y="232" width="200" height="76" rx="6"/>
+  <text class="text" x="742" y="264">Normalize URL</text>
+  <text class="small" x="742" y="288">report.html.gz only</text>
+
+  <rect class="step" x="470" y="232" width="200" height="76" rx="6"/>
+  <text class="text" x="505" y="264">Get report</text>
+  <text class="small" x="505" y="288">cache hit or download</text>
+
+  <rect class="step" x="230" y="232" width="200" height="76" rx="6"/>
+  <text class="text" x="260" y="264">Decode Robot data</text>
+  <text class="small" x="260" y="288">suite, sPart, strings</text>
+
+  <rect class="step" x="70" y="374" width="190" height="86" rx="6"/>
+  <text class="text" x="98" y="406">Parse tests</text>
+  <text class="small" x="98" y="430">tags, status, messages</text>
+  <text class="small" x="98" y="450">metric values</text>
+
+  <rect class="step" x="330" y="374" width="210" height="86" rx="6"/>
+  <text class="text" x="358" y="406">Aggregate metrics</text>
+  <text class="small" x="358" y="430">exclude outliers</text>
+  <text class="small" x="358" y="450">mean and stdev</text>
+
+  <rect class="step" x="610" y="374" width="190" height="86" rx="6"/>
+  <text class="text" x="640" y="406">Merge releases</text>
+  <text class="small" x="640" y="430">union by identity</text>
+  <text class="small" x="640" y="450">calculate diffs</text>
+
+  <rect class="step" x="850" y="374" width="160" height="86" rx="6"/>
+  <text class="text" x="876" y="406">Write workbook</text>
+  <text class="small" x="876" y="430">filter, freeze</text>
+  <text class="small" x="876" y="450">formats, widths</text>
+
+  <rect class="warn" x="330" y="528" width="250" height="76" rx="6"/>
+  <text class="text" x="360" y="560">Warn and skip log</text>
+  <text class="small" x="360" y="584">continue with remaining logs</text>
+
+  <path class="line" d="M250 119 L310 119"/>
+  <path class="line" d="M490 119 L550 119"/>
+  <path class="line" d="M740 119 L810 122"/>
+  <path class="line" d="M890 166 L890 210 L810 232"/>
+  <text class="label" x="900" y="205">yes</text>
+
+  <path class="line" d="M710 270 L670 270"/>
+  <path class="line" d="M470 270 L430 270"/>
+  <path class="line" d="M330 308 L200 374"/>
+  <path class="line" d="M260 417 L330 417"/>
+  <path class="line" d="M540 417 L610 417"/>
+  <path class="line" d="M800 417 L850 417"/>
+
+  <path class="line" d="M970 122 C1010 145 1010 300 800 384"/>
+  <text class="label" x="975" y="154">no</text>
+
+  <path class="line" d="M435 374 C415 250 660 190 810 122"/>
+  <text class="label" x="498" y="252">next log</text>
+
+  <path class="warn-line" d="M330 308 C350 390 390 470 455 528"/>
+  <text class="warn-label" x="372" y="392">parse/decode failure</text>
+  <path class="warn-line" d="M580 566 C850 520 1010 300 970 122"/>
+</svg>

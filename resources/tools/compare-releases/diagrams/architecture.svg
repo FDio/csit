@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img" aria-labelledby="title desc">
+  <title id="title">Compare Releases Architecture</title>
+  <desc id="desc">High-level architecture for workbook inputs, log cache, parser, aggregation, and Excel output.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2f5597"/>
+    </marker>
+    <style>
+      .box { fill: #f8fbff; stroke: #2f5597; stroke-width: 2; rx: 6; }
+      .store { fill: #fff7e6; stroke: #b56b00; stroke-width: 2; rx: 6; }
+      .out { fill: #eef8ee; stroke: #3f7f3f; stroke-width: 2; rx: 6; }
+      .text { font: 16px Arial, sans-serif; fill: #1f1f1f; }
+      .small { font: 13px Arial, sans-serif; fill: #3f3f3f; }
+      .title { font: 22px Arial, sans-serif; font-weight: bold; fill: #1f1f1f; }
+      .line { stroke: #2f5597; stroke-width: 2; marker-end: url(#arrow); fill: none; }
+    </style>
+  </defs>
+
+  <text class="title" x="34" y="42">Compare Releases Architecture</text>
+
+  <rect class="box" x="40" y="90" width="210" height="92"/>
+  <text class="text" x="65" y="125">Previous workbook</text>
+  <text class="small" x="65" y="150">YYMM.xlsx first sheet</text>
+  <text class="small" x="65" y="170">Rows with Log URLs</text>
+
+  <rect class="box" x="40" y="250" width="210" height="92"/>
+  <text class="text" x="65" y="285">Current workbook</text>
+  <text class="small" x="65" y="310">YYMM.xlsx first sheet</text>
+  <text class="small" x="65" y="330">Rows with Log URLs</text>
+
+  <rect class="box" x="330" y="170" width="220" height="118"/>
+  <text class="text" x="360" y="205">compare_releases.py</text>
+  <text class="small" x="360" y="230">CLI and orchestration</text>
+  <text class="small" x="360" y="250">Workbook normalization</text>
+  <text class="small" x="360" y="270">Robot report decoding</text>
+
+  <rect class="store" x="620" y="70" width="210" height="92"/>
+  <text class="text" x="653" y="105">Log server</text>
+  <text class="small" x="653" y="130">report.html.gz only</text>
+  <text class="small" x="653" y="150">Referenced by Log</text>
+
+  <rect class="store" x="620" y="230" width="210" height="92"/>
+  <text class="text" x="654" y="265">Local cache</text>
+  <text class="small" x="654" y="290">.cache/failed-test-logs</text>
+  <text class="small" x="654" y="310">URL hash filenames</text>
+
+  <rect class="box" x="620" y="390" width="210" height="92"/>
+  <text class="text" x="650" y="425">Aggregation</text>
+  <text class="small" x="650" y="450">Outlier exclusion</text>
+  <text class="small" x="650" y="470">Mean, stdev, diff</text>
+
+  <rect class="out" x="880" y="250" width="130" height="92"/>
+  <text class="text" x="908" y="285">Output</text>
+  <text class="small" x="900" y="310">Filterable</text>
+  <text class="small" x="900" y="330">.xlsx workbook</text>
+
+  <path class="line" d="M250 136 L330 206"/>
+  <path class="line" d="M250 296 L330 252"/>
+  <path class="line" d="M550 205 L620 120"/>
+  <path class="line" d="M725 162 L725 230"/>
+  <path class="line" d="M550 252 L620 276"/>
+  <path class="line" d="M725 322 L725 390"/>
+  <path class="line" d="M830 436 L945 342"/>
+</svg>

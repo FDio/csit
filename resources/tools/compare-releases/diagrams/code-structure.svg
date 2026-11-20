@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620" role="img" aria-labelledby="title desc">
+  <title id="title">Compare Releases Code Structure</title>
+  <desc id="desc">Code structure showing functional groups inside compare_releases.py and tests.</desc>
+  <defs>
+    <style>
+      .group { fill: #f8fbff; stroke: #2f5597; stroke-width: 2; rx: 6; }
+      .test { fill: #eef8ee; stroke: #3f7f3f; stroke-width: 2; rx: 6; }
+      .text { font: 15px Arial, sans-serif; fill: #1f1f1f; }
+      .small { font: 12px Arial, sans-serif; fill: #3f3f3f; }
+      .title { font: 22px Arial, sans-serif; font-weight: bold; fill: #1f1f1f; }
+      .file { font: 17px Arial, sans-serif; font-weight: bold; fill: #1f1f1f; }
+    </style>
+  </defs>
+
+  <text class="title" x="34" y="42">Code Structure</text>
+
+  <rect class="group" x="40" y="80" width="960" height="420"/>
+  <text class="file" x="70" y="114">compare_releases.py</text>
+
+  <rect class="group" x="70" y="145" width="190" height="120"/>
+  <text class="text" x="92" y="178">Input handling</text>
+  <text class="small" x="92" y="204">parse_release_path</text>
+  <text class="small" x="92" y="224">determine_releases</text>
+  <text class="small" x="92" y="244">read_workbook_rows</text>
+
+  <rect class="group" x="300" y="145" width="190" height="120"/>
+  <text class="text" x="322" y="178">Log access</text>
+  <text class="small" x="322" y="204">report_url</text>
+  <text class="small" x="322" y="224">cache_file_for_url</text>
+  <text class="small" x="322" y="244">download_report</text>
+
+  <rect class="group" x="530" y="145" width="190" height="120"/>
+  <text class="text" x="552" y="178">Robot decoding</text>
+  <text class="small" x="552" y="204">extract_robot_payload</text>
+  <text class="small" x="552" y="224">collect_robot_tests</text>
+  <text class="small" x="552" y="244">decode_status</text>
+
+  <rect class="group" x="760" y="145" width="190" height="120"/>
+  <text class="text" x="782" y="178">Metric parsing</text>
+  <text class="small" x="782" y="204">parse_test_result</text>
+  <text class="small" x="782" y="224">extract_tag_fields</text>
+  <text class="small" x="782" y="244">identity_for</text>
+
+  <rect class="group" x="180" y="320" width="220" height="126"/>
+  <text class="text" x="205" y="353">Aggregation</text>
+  <text class="small" x="205" y="379">exclude_outliers</text>
+  <text class="small" x="205" y="399">summarize</text>
+  <text class="small" x="205" y="419">process_release</text>
+
+  <rect class="group" x="440" y="320" width="220" height="126"/>
+  <text class="text" x="465" y="353">Comparison output</text>
+  <text class="small" x="465" y="379">output_rows</text>
+  <text class="small" x="465" y="399">write_output_workbook</text>
+  <text class="small" x="465" y="419">compare_workbooks</text>
+
+  <rect class="group" x="700" y="320" width="190" height="126"/>
+  <text class="text" x="725" y="353">CLI</text>
+  <text class="small" x="725" y="379">build_arg_parser</text>
+  <text class="small" x="725" y="399">main</text>
+  <text class="small" x="725" y="419">exit code 2 on errors</text>
+
+  <rect class="test" x="40" y="525" width="960" height="70"/>
+  <text class="file" x="70" y="557">test_compare_releases.py</text>
+  <text class="small" x="70" y="580">Unit tests cover workbook normalization, Robot decoding, metric parsing, outliers, aggregation, cache behavior, and mocked end-to-end workbook generation.</text>
+</svg>
