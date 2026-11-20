@@ -9,7 +9,8 @@ ephemeral "vault_kv_secret_v2" "creds" {
 }
 
 module "elastic_beanstalk_application" {
-  source = "../terraform-aws-elastic-beanstalk-application"
+  source  = "pmikus/elastic-beanstalk-application/aws"
+  version = "1.0.0"
 
   # application
   application_description                    = "FD.io CDASH M8G"
@@ -20,7 +21,8 @@ module "elastic_beanstalk_application" {
 }
 
 module "elastic_beanstalk_environment" {
-  source = "../terraform-aws-elastic-beanstalk-environment"
+  source  = "pmikus/elastic-beanstalk-environment/aws"
+  version = "1.0.0"
 
   # environment
   application_name = "fdio-csit-dash-app-m8g"
