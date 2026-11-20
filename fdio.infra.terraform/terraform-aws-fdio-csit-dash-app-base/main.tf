@@ -12,7 +12,9 @@ ephemeral "vault_kv_secret_v2" "creds" {
 }
 
 module "elastic_beanstalk_application_version" {
-  source                   = "../terraform-aws-elastic-beanstalk-application-version"
+  source  = "pmikus/elastic-beanstalk-application-version/aws"
+  version = "1.0.0"
+
   application_bucket       = local.bucket
   application_description  = local.description
   application_name         = local.name
