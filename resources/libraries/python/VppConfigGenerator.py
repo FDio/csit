@@ -163,6 +163,11 @@ class VppConfigGenerator:
         path = ["unix", "gid"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_unix_nocolor(self):
+        """Add nocolor configuration to avoid codes in CLI."""
+        path = ["unix", "nocolor"]
+        self.add_config_item(self._nodeconfig, "", path)
+
     def add_unix_nodaemon(self):
         """Add UNIX nodaemon configuration."""
         path = ["unix", "nodaemon"]
