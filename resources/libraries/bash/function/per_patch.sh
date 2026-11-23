@@ -48,24 +48,24 @@ function build_vpp_ubuntu () {
         echo "Building VPP. Number of cores for build set with" \
              "MAKE_PARALLEL_JOBS='${MAKE_PARALLEL_JOBS}'."
     else
-        echo "Building VPP. Number of cores not set, " \
-             "using build default ($(grep -c ^processor /proc/cpuinfo))."
+        export MAKE_PARALLEL_FLAGS="-j 1"
+        export MAKE_PARALLEL_JOBSS="1"
     fi
 
     # Force recompilation of DPDK and similar dependencies.
     sudo dpkg -P vpp-ext-deps || echo "Ignoring vpp-ext-deps purge failure."
-    if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
-        make ${params} pkg-verify > "tmp.log" || die "VPP build failed."
-    else
-        pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
-        # Old VPP source does not recognize new ARM platforms.
-        opars="UNATTENDED=y"
-        make ${pars} pkg-verify > "tmp.log" || {
-            make ${opars} pkg-verify > "tmp.log" || die "Build fail."
-        }
-        # TODO: Configurable log filenames?
+
+    params="UNATTENDED=y"
+    if [ -n "${VPP_PLATFORM-}" ]; then
+        params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
+    targets="install-deps install-opt-deps install-ext-deps"
+    make -j 1 ${params} ${targets} || die "VPP build failed."
+    ls -l /opt/vpp/external/x86_64/lib64
+    ls -l /opt/vpp/optional/x86_64/lib64
+    ls -l /scratch/docker-build/gha-runner/_work/csit/csit/vpp/build-root/install-vpp-native/external
+    ls -l /scratch/docker-build/gha-runner/_work/csit/csit/vpp/build-root/install-vpp-native/optional
+    make ${params} pkg-verify || die "VPP build failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
