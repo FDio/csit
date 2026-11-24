@@ -162,7 +162,6 @@
 | | | Run Keyword | ${dut}.Add Unix Log
 | | | Run Keyword | ${dut}.Add Unix CLI Listen
 | | | Run Keyword | ${dut}.Add Unix CLI No Pager
-| | | Run Keyword | ${dut}.Add API Segment Prefix | ${dut}
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
 | | | Run Keyword If | not ${marvell}
