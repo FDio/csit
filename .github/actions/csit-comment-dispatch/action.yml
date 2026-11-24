@@ -24,9 +24,9 @@ runs:
     - name: Parse parameters
       id: parse-params
       shell: bash
+      env:
+        COMMENT: "${{ inputs.gerrit_comment }}"
       run: |
-        COMMENT="${{ inputs.gerrit_comment }}"
-
         if [ -z "$COMMENT" ]; then
           echo "::error::GERRIT_COMMENT is empty."
           exit 1

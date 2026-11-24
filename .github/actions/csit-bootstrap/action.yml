@@ -29,11 +29,14 @@ runs:
         BRANCH_ID: oper
         GERRIT_BRANCH: master
         GIT_URL: "https://github.com/FDio"
+        PATH: "${{ inputs.path }}"
+        WITH_OPER: "${{ inputs.with_oper }}"
+        BOOTSTRAP_SCRIPT: "${{ inputs.bootstrap_script }}"
       run: |
-        pushd ${{ inputs.path }}
+        pushd "$PATH"
         csit_entry_dir="./resources/libraries/bash/entry"
-        if [[ "${{ inputs.with_oper }}" == "true" ]]; then
-            source ${csit_entry_dir}/with_oper_for_vpp.sh "${{ inputs.bootstrap_script }}"
+        if [[ "$WITH_OPER" == "true" ]]; then
+            source ${csit_entry_dir}/with_oper_for_vpp.sh "$BOOTSTRAP_SCRIPT"
         else
-            source ${csit_entry_dir}/${{ inputs.bootstrap_script }}
+            source ${csit_entry_dir}/$BOOTSTRAP_SCRIPT
         fi

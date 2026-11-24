@@ -13,9 +13,13 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
   - package-ecosystem: "terraform"
     directories:
       - "/"
       - "/fdio.infra.terraform/**"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7

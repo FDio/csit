@@ -48,9 +48,15 @@ on:
 
 permissions:
   contents: read
+  actions: read   # Needed to read local actions
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.FDIO_NAMESPACE }}
+  cancel-in-progress: true
 
 jobs:
   dispatch:
+    name: Dispatch
     runs-on:
       - ubuntu-latest
 
@@ -68,6 +74,7 @@ jobs:
     needs: dispatch
     name: vpp-csit-bisect-master-${{ matrix.node }}
     runs-on:
+      # zizmor: ignore[self-hosted-runner]
       - self-hosted
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
@@ -78,6 +85,7 @@ jobs:
       - fdio:workflow=${{ github.run_id }}
     timeout-minutes: 1440
 
+    environment: production
     strategy:
       matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
 
@@ -98,6 +106,7 @@ jobs:
           ref: master
           fetch-depth: 0
           fetch-tags: 'true'
+          persist-credentials: false
 
       - name: Git Checkout CSIT
         # yamllint disable-line rule:line-length
@@ -107,19 +116,23 @@ jobs:
           ref: master
           fetch-depth: 0
           fetch-tags: 'true'
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
         uses: fdio/.github/.github/actions/setup-executor-env@4eb74b59c8f76192681941b89e277454d96bebb8
 
       - name: Prepare Bisect
+        env:
+          CSIT_GERRIT_REFSPEC: ${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}
+          GERRIT_REFSPEC: ${{ github.event.inputs.GERRIT_REFSPEC }}
         run: |
           pushd vpp
-          git fetch https://gerrit.fd.io/r/vpp "${{ github.event.inputs.GERRIT_REFSPEC }}"
+          git fetch https://gerrit.fd.io/r/vpp "$GERRIT_REFSPEC"
           git checkout FETCH_HEAD
           pushd csit
-          if [[ -n "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}" ]]; then
-              git fetch https://gerrit.fd.io/r/csit "${{ github.event.inputs.CSIT_GERRIT_REFSPEC }}"
+          if [[ -n "$CSIT_GERRIT_REFSPEC" ]]; then
+              git fetch https://gerrit.fd.io/r/csit "$CSIT_GERRIT_REFSPEC"
               git checkout FETCH_HEAD
           else
               git checkout HEAD

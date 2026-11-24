@@ -25,9 +25,12 @@ runs:
     - name: Set Matrix
       id: set-matrix
       shell: bash
+      env:
+        NODE: "${{ inputs.node }}"
+        DUT: "${{ inputs.dut }}"
       run: |
-        node="${{ inputs.node }}"
-        dut="${{ inputs.dut }}"
+        node="$NODE"
+        dut="$DUT"
 
         dpdk="false"
         trex="false"

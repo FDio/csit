@@ -66,9 +66,15 @@ on:
 
 permissions:
   contents: read
+  actions: read   # Needed to read local actions
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.FDIO_NAMESPACE }}
+  cancel-in-progress: true
 
 jobs:
   dispatch:
+    name: Dispatch
     runs-on:
       - ubuntu-latest
 
@@ -89,6 +95,7 @@ jobs:
     # yamllint disable-line rule:line-length
     name: csit-${{ github.event.inputs.dut }}-perf-report-${{ github.event.inputs.job_type }}-${{ github.event.inputs.branch == 'rls2610' && '2610' }}-${{ matrix.node }}
     runs-on:
+      # zizmor: ignore[self-hosted-runner]
       - self-hosted
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
@@ -99,6 +106,7 @@ jobs:
       - fdio:workflow=${{ github.run_id }}
     timeout-minutes: 1440
 
+    environment: production
     strategy:
       matrix: ${{ fromJSON(needs.dispatch.outputs.matrix) }}
 
@@ -118,6 +126,7 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length

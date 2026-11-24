@@ -7,10 +7,19 @@ on:
   schedule:
     - cron: "0 0 * * 6"
 
+permissions:
+  contents: read
+  actions: read   # Needed to read local actions
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.FDIO_NAMESPACE }}
+  cancel-in-progress: true
+
 jobs:
   csit-vpp-perf-ndrpdr-weekly:
     name: csit-vpp-perf-ndrpdr-weekly-master-${{ matrix.node }}
     runs-on:
+      # zizmor: ignore[self-hosted-runner]
       - self-hosted
       - nomad
       - fdio:arch=${{ matrix.executor_arch }}
@@ -21,6 +30,7 @@ jobs:
       - fdio:workflow=${{ github.run_id }}
     timeout-minutes: 1440
 
+    environment: production
     strategy:
       matrix:
         include:
@@ -81,6 +91,7 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
