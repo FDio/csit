@@ -33,6 +33,23 @@
       "message": "gha-run csit-vpp-3n-icx perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND1518bANDethip4ipsec4tnlsw-ip4base-int-aes256gcm #generate-all",
       "revId": "f0b1369b62ceb16906267a88c7c3867be32083dd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5f492b_d7b88caf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-11-25T11:33:57Z",
+      "side": 1,
+      "message": "gha-run csit-vpp-3n-emr perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND1518bANDethip4ipsec4tnlsw-ip4base-int-aes256gcm #generate-all",
+      "revId": "f0b1369b62ceb16906267a88c7c3867be32083dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
