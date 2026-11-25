@@ -38,9 +38,6 @@
 | | [Arguments] | @{actions}
 | |
 | | Show PAPI History On All DUTs | ${nodes}
-| | FOR | ${action} | IN | @{actions}
-| | | Run Keyword | Additional Test Tear Down Action For ${action}
-| | END
 | | Run Keyword If Test Failed
 | | ... | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
@@ -49,6 +46,9 @@
 | | ... | Verify VPP PID in Teardown
 | | Run Keyword If Test Failed
 | | ... | VPP Show Memory On All DUTs | ${nodes}
+| | FOR | ${action} | IN | @{actions}
+| | | Run Keyword | Additional Test Tear Down Action For ${action}
+| | END
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Clean Sockets On All Nodes | ${nodes}
 | | Finalize Test Export
