@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "791278b3_87510aad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2026-11-25T09:26:23Z",
+      "side": 1,
+      "message": "Comparing with rls12610 coverage:\n\ngha-run csit-vpp-2n-emr perftest ndrpdrANDnic_intel-e810cqANDdrv_avfANDeth-l2bdbasemaclrn-eth-2memif-1dcr #generate-all",
+      "revId": "e59592d1021c5cc30fb43651ad35a3decb46f15d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
