@@ -68,6 +68,30 @@
       },
       "revId": "52ebb9eb20bf0d7d0e19f274b995a5ebdd09aecc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607d3bff_8155786d",
+        "filename": ".github/workflows/csit-vpp-perf-hoststack-daily.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2026-11-25T13:27:24Z",
+      "side": 1,
+      "message": "this would make orphaned testbeds and so on.",
+      "parentUuid": "ab6ffdf0_d014b0f2",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "52ebb9eb20bf0d7d0e19f274b995a5ebdd09aecc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
