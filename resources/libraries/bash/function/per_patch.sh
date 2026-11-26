@@ -52,20 +52,16 @@ function build_vpp_ubuntu () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
-    # Force recompilation of DPDK and similar dependencies.
-    sudo dpkg -P vpp-ext-deps || echo "Ignoring vpp-ext-deps purge failure."
-    if [ -z "${VPP_PLATFORM-}" ]; then
-        params="UNATTENDED=y"
-        make ${params} pkg-verify > "tmp.log" || die "VPP build failed."
-    else
-        pars="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
-        # Old VPP source does not recognize new ARM platforms.
-        opars="UNATTENDED=y"
-        make ${pars} pkg-verify > "tmp.log" || {
-            make ${opars} pkg-verify > "tmp.log" || die "Build fail."
-        }
-        # TODO: Configurable log filenames?
+    # Force recompilation of DPDK and all indirect dependencies.
+    sudo dpkg -P vpp-ext-deps vpp-opt-deps || echo "Ignoring purge failures."
+    # TODO: Apply the line above only in bisect.
+
+    params="UNATTENDED=y"
+    if [ -n "${VPP_PLATFORM-}" ]; then
+        params="UNATTENDED=y VPP_PLATFORM=${VPP_PLATFORM}"
     fi
+    targets="install-deps install-opt-deps install-ext-deps pkg-verify"
+    make ${params} ${targets} || die "VPP build failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
@@ -314,9 +310,9 @@ function set_aside_build_artifacts () {
     rm -rf "${dir_name}" || die "Remove operation failed."
     mkdir -p "${dir_name}" || die "Directory creation failed."
     mv "build-root"/*".deb" "${dir_name}"/ || die "Move operation failed."
-    # The previous build could have left some incompatible leftovers,
-    # e.g. DPDK artifacts of different version (in build/external).
-    # Also, there usually is a copy of dpdk artifact in build-root.
+    mv "build-root/external"/*".deb" "${dir_name}"/ || die "Move operation failed."
+    mv "build-root/optional"/*".deb" "${dir_name}"/ || die "Move operation failed."
+    # The previous build could have left some incompatible leftovers.
     git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
     git status || die
 }
