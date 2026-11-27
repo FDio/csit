@@ -33,8 +33,13 @@ For reporting reasons, even issues fixed during release are listed here,
 as long as they caused some results to be missing (or performance wrong).
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+------|--------------------------------------------------------------|--------------------------------------------------------
+  1   | [csit/issues/4200](https://github.com/FDio/csit/issues/4200) | Probable crashes in rdma-core tests
+  2   | [csit/issues/4211](https://github.com/FDio/csit/issues/4211) | Reassembly tests fail with rdma-core
+  2   | [csit/issues/4212](https://github.com/FDio/csit/issues/4212) | Frequent ipsecHW fails with unknown ip protocol
+  2   | [csit/issues/4213](https://github.com/FDio/csit/issues/4213) | 3n-oct cable shortcuts trex
+  2   | [csit/issues/4214](https://github.com/FDio/csit/issues/4214) | Wrong teardown order can break containers across suites
+  2   | [csit/issues/4216](https://github.com/FDio/csit/issues/4216) | PAPI timeout on 2n-grc with rdma-core and VPP-in-VM
 
 ## Previous
 
@@ -42,8 +47,41 @@ Issues reported in previous releases which still affect the current results
 (or would be affecting if other issues were not hiding the symptoms):
 
 **#** | **Github issue number**                                      | **Issue Description**
-------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------
+  1   | [csit/issues/3879](https://github.com/FDio/csit/issues/3879) | [CSIT-1795] Ocassionally not all DET44 sessions have been established: 4128767 != 4128768
+  2   | [csit/issues/3966](https://github.com/FDio/csit/issues/3966) | [CSIT-1884] 2n-icx, 2n-spr: All NAT44DET IMIX large scale BIDIR tests fail to create enough sessions
+  3   | [csit/issues/3968](https://github.com/FDio/csit/issues/3968) | [CSIT-1886] 3n: Wireguard tests with 100 and more tunnels are failing PDR criteria
+  4   | [csit/issues/3996](https://github.com/FDio/csit/issues/3996) | [CSIT-1914] TRex does not produce latency data on ICE NICs
+  5   | [csit/issues/3997](https://github.com/FDio/csit/issues/3997) | [CSIT-1915] 2n-icx testbeds do not have the same performance
+  6   | [csit/issues/3998](https://github.com/FDio/csit/issues/3998) | [CSIT-1916] Poor CPU scaling on 2n-zn2 RDMA
+  7   | [csit/issues/3999](https://github.com/FDio/csit/issues/3999) | [CSIT-1917] TRex STL performance is unstable at high pps due to unsent packets
+  8   | [csit/issues/4011](https://github.com/FDio/csit/issues/4011) | [CSIT-1929] Lossy trials in nat udp mlx5 and avf tests
+  9   | [csit/issues/4018](https://github.com/FDio/csit/issues/4018) | [CSIT-1936] TRex occasionally sees link down in E8xx (dpdk) tests
+ 10   | [csit/issues/4020](https://github.com/FDio/csit/issues/4020) | [CSIT-1938] 3n-alt: High scale ipsec policy tests may crash VPP
+ 11   | [csit/issues/4023](https://github.com/FDio/csit/issues/4023) | [CSIT-1941] TRex may wrongly detect link bandwidth
+ 12   | [csit/issues/4024](https://github.com/FDio/csit/issues/4024) | [CSIT-1942] 3nb-spr hoststack: interface not up after first test
+ 13   | [vpp/issues/3551](https://github.com/FDio/vpp/issues/3551)   | [VPP-2090] MRR < PDR: dpdk plugin with mlx5 driver does not read full queue
+ 14   | [csit/issues/4030](https://github.com/FDio/csit/issues/4030) | [CSIT-1948] NICs do not consistently distribute tunnels over RXQs depending on model or plugin
+ 15   | [csit/issues/4033](https://github.com/FDio/csit/issues/4033) | [CSIT-1951] Combination of AVF and vhost drops all 9000B packets
+ 16   | [csit/issues/4045](https://github.com/FDio/csit/issues/4045) | [CSIT-1964] 3nb-spr, 3n-snr: Wireguardhw tests are likely to crash
+ 17   | [csit/issues/4073](https://github.com/FDio/csit/issues/4073) | Tests combining iavf+jumbo gradually run out of buffers for rx
+ 18   | [csit/issues/4076](https://github.com/FDio/csit/issues/4076) | 3n-icx: vhost mounting /dev failed
+ 19   | [csit/issues/4088](https://github.com/FDio/csit/issues/4088) | Occasional timeout in iperf vhost non-gso
+ 20   | [csit/issues/4090](https://github.com/FDio/csit/issues/4090) | crypto engine error in 1tnl wireguardhw test
+ 23   | [csit/issues/4094](https://github.com/FDio/csit/issues/4094) | 3n-oct: unsent packets even at min load
+ 24   | [csit/issues/4096](https://github.com/FDio/csit/issues/4096) | rare crash in nginx tests
+ 25   | [csit/issues/4097](https://github.com/FDio/csit/issues/4097) | 2n-zn2 iavf: two-band structure in 1c mrr tests
+ 26   | [vpp/issues/3628](https://github.com/FDio/vpp/issues/3628)   | ip: route APIs are not thread safe
+ 27   | [csit/issues/4106](https://github.com/FDio/csit/issues/4106) | Unstable performance of ldpreload+tcp tests
+ 28   | [csit/issues/4113](https://github.com/FDio/csit/issues/4113) | 2n-grc: rarely, Linux is too slow to re-detect interfaces after VPP kill
+  1   | [vpp/issues/3693](https://github.com/FDio/vpp/issues/3693)   | SFDP does not implement any Conntrack TIME-WAIT Timeout
+  2   | [csit/issues/4160](https://github.com/FDio/csit/issues/4160) | 3n-oct: large losses due to no free tx slots
+  3   | [csit/issues/4161](https://github.com/FDio/csit/issues/4161) | gtpu_offload_rx PAPI call started to fail
+  5   | [csit/issues/4163](https://github.com/FDio/csit/issues/4163) | 2n-zn2: jumbo+geneve loses packets after VPP
+  7   | [vpp/issues/3731](https://github.com/FDio/vpp/issues/3731)   | SFDP: Possible worker deadlock when killing sessions
+  8   | [csit/issues/4166](https://github.com/FDio/csit/issues/4166) | 2n-gnr DMA: ZeroDivisionError
+  9   | [csit/issues/4167](https://github.com/FDio/csit/issues/4167) | 3n-icx TB38 e810 has poor PDR results with jumbo
+  3   | [csit/issues/4169](https://github.com/FDio/csit/issues/4169) | rls2606: aes128nullgmac regression in March
 
 ## Fixed
 
@@ -52,7 +90,13 @@ forever) in this release:
 
 **#** | **Github issue number**                                      | **Issue Description**
 ------|--------------------------------------------------------------|--------------------------------------------------
-  1   |                                                              |
+ 21   | [csit/issues/4091](https://github.com/FDio/csit/issues/4091) | udpquicbase fails due to: Echo connect failed
+ 22   | [csit/issues/4092](https://github.com/FDio/csit/issues/4092) | udp ldpreload fails on no test data retrieved
+ 29   | [csit/issues/4118](https://github.com/FDio/csit/issues/4118) | GTPUhw jumbo has zero traffic due to tx_errors
+  4   | [csit/issues/4162](https://github.com/FDio/csit/issues/4162) | ipolicemarkbase suites are failing since octeon refactor, fixed after rls2606
+  6   | [csit/issues/4164](https://github.com/FDio/csit/issues/4164) | ocassional crypto error in swasync tests
+ 10   | [csit/issues/4170](https://github.com/FDio/csit/issues/4170) | rare losses on 2n-spr in e180+avf+ip4scale200k-rnd+soak
+  2   | [csit/issues/4168](https://github.com/FDio/csit/issues/4168) | rls2606: ip6 regressions related to platform builds
 
 # Root Cause Analysis for Regressions
 
