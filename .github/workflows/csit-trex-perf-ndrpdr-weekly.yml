@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: "30 21 * * 5"
 
+permissions:
+  contents: read
+  actions: read   # Needed to read local actions
+
 jobs:
   csit-trex-perf-ndrpdr-weekly:
     name: csit-trex-perf-ndrpdr-weekly-master-${{ matrix.node }}
@@ -45,6 +49,7 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length

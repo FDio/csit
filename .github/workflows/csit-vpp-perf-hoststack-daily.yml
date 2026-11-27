@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: "0 20 * * 0-4"
 
+permissions:
+  contents: read
+  actions: read   # Needed to read local actions
+
 jobs:
   csit-vpp-perf-hoststack-daily:
     name: csit-vpp-perf-hoststack-daily-master-${{ matrix.node }}
@@ -71,6 +75,7 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length

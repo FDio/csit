@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: "30 22 * * 0-4"
 
+permissions:
+  contents: read
+  actions: read   # Needed to read local actions
+
 jobs:
   csit-vpp-perf-mrr-daily:
     name: csit-vpp-perf-mrr-daily-master-${{ matrix.node }}
@@ -33,9 +37,9 @@ jobs:
           - node: 2n-spr
             os: ubuntu2404
             executor_arch: x86_64
-          - node: 2n-zn2
-            os: ubuntu2404
-            executor_arch: x86_64
+          #- node: 2n-zn2
+          #  os: ubuntu2604
+          #  executor_arch: x86_64
           - node: 3n-icx
             os: ubuntu2404
             executor_arch: x86_64
@@ -81,6 +85,7 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length

@@ -946,6 +946,12 @@ function select_arch_os () {
                     VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_NOBLE"
                     PKG_SUFFIX="deb"
                     ;;
+                *"LTS (Resolute Raccoon)"*)
+                    IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_RESOLUTE"
+                    VPP_COMMIT_FILE="VPP_STABLE_COMMIT"
+                    VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_RESOLUTE"
+                    PKG_SUFFIX="deb"
+                    ;;
                 *)
                     die "Unsupported Ubuntu version!"
                     ;;

@@ -49,6 +49,7 @@ on:
 
 permissions:
   contents: read
+  actions: read   # Needed to read local actions
 
 jobs:
   notify-start:
@@ -66,7 +67,6 @@ jobs:
           gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
           vote-type: clear
           comment-only: true
-
 
   dispatch:
     runs-on: ubuntu-latest

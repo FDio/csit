@@ -5,8 +5,13 @@ name: csit-cdash-version
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: read   # Needed to read local actions
+
 jobs:
   verify:
+    name: Verify
     runs-on:
       - self-hosted
       - nomad
@@ -27,6 +32,7 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length
@@ -47,6 +53,7 @@ jobs:
           with_oper: false
 
   deploy:
+    name: Deploy
     needs: verify
     runs-on:
       - self-hosted
@@ -71,6 +78,7 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Environment
         # yamllint disable-line rule:line-length

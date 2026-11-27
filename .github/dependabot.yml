@@ -1,5 +1,5 @@
 ---
-# SPDX-FileCopyrightText: 2025 The Linux Foundation
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
 # SPDX-License-Identifier: Apache-2.0
 
 # To get started with Dependabot version updates, you'll need to specify which
@@ -13,9 +13,13 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
   - package-ecosystem: "terraform"
     directories:
       - "/"
       - "/fdio.infra.terraform/**"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
